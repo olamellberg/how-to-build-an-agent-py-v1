@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Build an Agent (Python Edition) - Chronicle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #FAF9F6;
+            --bg-secondary: #F0EDE8;
+            --text-primary: #1a1a18;
+            --text-secondary: #4a4a45;
+            --text-muted: #7a7a72;
+            --accent-olive: #5c6650;
+            --accent-olive-light: #6b7760;
+            --border-color: #d4d0c8;
+            --code-bg: #2d2d2d;
+            --code-text: #e6e6e6;
+            --terminal-bg: #1e1e1e;
+            --terminal-green: #4ec9b0;
+            --terminal-yellow: #dcdcaa;
+            --terminal-blue: #9cdcfe;
+            --link-color: #5c6650;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Newsreader', Georgia, serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 18px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header / Navigation */
+        header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            background: var(--bg-primary);
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo {
+            font-weight: 600;
+            font-size: 1.25rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+        }
+
+        .logo::before {
+            content: "◆";
+            margin-right: 0.5rem;
+            color: var(--accent-olive);
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .breadcrumb a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 3rem 2rem 6rem;
+        }
+
+        /* Hero / Header section */
+        .article-header {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .article-meta {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: 0.5px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 500;
+            line-height: 1.15;
+            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-style: italic;
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+        }
+
+        /* Typography */
+        h2 {
+            font-size: 1.75rem;
+            font-weight: 500;
+            margin: 3rem 0 1.5rem;
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
+        }
+
+        h2 code {
+            font-weight: 400;
+            font-size: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        a:hover {
+            color: var(--accent-olive-light);
+        }
+
+        em {
+            font-style: italic;
+        }
+
+        strong {
+            font-weight: 600;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.75rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Inline code */
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.88em;
+            background: var(--bg-secondary);
+            padding: 0.15em 0.4em;
+            border-radius: 4px;
+            color: var(--text-primary);
+        }
+
+        /* Code blocks */
+        pre {
+            background: var(--code-bg);
+            color: var(--code-text);
+            padding: 1.25rem 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            border: 1px solid #3d3d3d;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            font-size: inherit;
+            color: inherit;
+        }
+
+        /* Shell code blocks */
+        pre.shell {
+            background: #1a1a1a;
+        }
+
+        /* Terminal output boxes */
+        .terminal {
+            background: var(--terminal-bg);
+            border-radius: 8px;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            line-height: 1.7;
+            border: 1px solid #333;
+            overflow-x: auto;
+        }
+
+        .terminal .prompt {
+            color: #888;
+        }
+
+        .terminal .command {
+            color: #fff;
+        }
+
+        .terminal .output {
+            color: #b0b0b0;
+        }
+
+        .terminal .user {
+            color: #6ab0f3;
+            font-weight: 500;
+        }
+
+        .terminal .claude {
+            color: #e6c07b;
+            font-weight: 500;
+        }
+
+        .terminal .tool {
+            color: #98c379;
+            font-weight: 500;
+        }
+
+        .terminal-line {
+            margin-bottom: 0.25rem;
+        }
+
+        .terminal-line:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Blockquote */
+        blockquote {
+            border-left: 3px solid var(--accent-olive);
+            padding-left: 1.25rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        /* Python syntax highlighting */
+        .keyword { color: #c678dd; }
+        .string { color: #98c379; }
+        .function { color: #61afef; }
+        .comment { color: #7f848e; font-style: italic; }
+        .decorator { color: #e5c07b; }
+        .class { color: #e5c07b; }
+        .builtin { color: #e06c75; }
+        .number { color: #d19a66; }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 4rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr repeat(4, 1fr);
+            gap: 3rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-brand .logo {
+            font-size: 1.1rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.6rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .footer-links h3 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .status-badge::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            background: #4ade80;
+            border-radius: 50%;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.25rem;
+            }
+
+            main {
+                padding: 2rem 1.25rem 4rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+
+            .footer-brand {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                font-size: 16px;
+            }
+
+            h1 {
+                font-size: 1.9rem;
+            }
+
+            pre, .terminal {
+                font-size: 0.78rem;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="nav-container">
+            <a href="#" class="logo">Chronicle</a>
+            <span class="breadcrumb">// <a href="#">Chronicle</a> // [Note] How to Build an Agent</span>
+        </nav>
+    </header>
+
+    <main>
+        <article>
+            <header class="article-header">
+                <p class="article-meta">Adapted for Python // January 2026</p>
+                <h1>How to Build an Agent</h1>
+                <p class="subtitle">or: The Emperor Has No Clothes</p>
+            </header>
+
+            <p>It's not that hard to build a fully functioning, code-editing agent.</p>
+
+            <p>It seems like it would be. When you look at an agent editing files, running commands, wriggling itself out of errors, retrying different strategies — it seems like there has to be a secret behind it.</p>
+
+            <p>There isn't. It's an LLM, a loop, and enough tokens. It's what we've been saying on the <a href="https://ampcode.com/podcast">podcast</a> from the start. The rest, the stuff that makes <a href="https://ampcode.com">Amp</a> so addictive and impressive? Elbow grease.</p>
+
+            <p>But building a small and yet highly impressive agent doesn't even require that. You can do it in less than 400 lines of code, most of which is boilerplate.</p>
+
+            <p>I'm going to show you how, right now. We're going to write some code together and go from zero lines of code to "oh wow, this is… a game changer."</p>
+
+            <p>I <em>urge</em> you to follow along. No, really. You might think you can just read this and that you don't have to type out the code, but it's less than 400 lines of code. I need you to <em>feel</em> how little code it is and I want you to see this with your own eyes in your own terminal in your own folders.</p>
+
+            <p>Here's what we need:</p>
+
+            <ul>
+                <li><a href="https://www.python.org/">Python 3.10+</a></li>
+                <li><a href="https://console.anthropic.com/settings/keys">Anthropic API key</a> that you set as an environment variable, <code>ANTHROPIC_API_KEY</code></li>
+            </ul>
+
+            <h2>Pencils out!</h2>
+
+            <p>Let's dive right in and get ourselves a new Python project set up in a few easy commands:</p>
+
+            <pre class="shell"><code>mkdir code-editing-agent
+cd code-editing-agent
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install anthropic
+touch agent.py</code></pre>
+
+            <p>Now, let's open <code>agent.py</code> and, as a first step, put a skeleton of things we need in it:</p>
+
+            <pre><code><span class="keyword">import</span> anthropic
+
+
+<span class="keyword">def</span> <span class="function">get_user_message</span>():
+    <span class="keyword">try</span>:
+        <span class="keyword">return</span> <span class="builtin">input</span>(), <span class="builtin">True</span>
+    <span class="keyword">except</span> <span class="class">EOFError</span>:
+        <span class="keyword">return</span> <span class="string">""</span>, <span class="builtin">False</span>
+
+
+<span class="keyword">class</span> <span class="class">Agent</span>:
+    <span class="keyword">def</span> <span class="function">__init__</span>(self, client, get_user_message_func):
+        self.client = client
+        self.get_user_message = get_user_message_func
+
+
+<span class="keyword">def</span> <span class="function">main</span>():
+    client = anthropic.Anthropic()
+    agent = Agent(client, get_user_message)
+    agent.run()
+
+
+<span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:
+    main()</code></pre>
+
+            <p>Yes, this doesn't run yet. But what we have here is an <code>Agent</code> that has access to an <code>anthropic.Anthropic</code> client (which, by default, looks for <code>ANTHROPIC_API_KEY</code>) and that can get a user message by reading from stdin on the terminal.</p>
+
+            <p>Now let's add the missing <code>run()</code> method:</p>
+
+            <pre><code><span class="comment"># agent.py</span>
+
+<span class="keyword">class</span> <span class="class">Agent</span>:
+    <span class="keyword">def</span> <span class="function">__init__</span>(self, client, get_user_message_func):
+        self.client = client
+        self.get_user_message = get_user_message_func
+
+    <span class="keyword">def</span> <span class="function">run</span>(self):
+        conversation = []
+
+        <span class="builtin">print</span>(<span class="string">"Chat with Claude (use 'ctrl-c' to quit)"</span>)
+
+        <span class="keyword">while</span> <span class="builtin">True</span>:
+            <span class="builtin">print</span>(<span class="string">"\033[94mYou\033[0m: "</span>, end=<span class="string">""</span>)
+            user_input, ok = self.get_user_message()
+            <span class="keyword">if</span> <span class="keyword">not</span> ok:
+                <span class="keyword">break</span>
+
+            conversation.append({
+                <span class="string">"role"</span>: <span class="string">"user"</span>,
+                <span class="string">"content"</span>: user_input
+            })
+
+            message = self.run_inference(conversation)
+            conversation.append({
+                <span class="string">"role"</span>: <span class="string">"assistant"</span>,
+                <span class="string">"content"</span>: message.content
+            })
+
+            <span class="keyword">for</span> block <span class="keyword">in</span> message.content:
+                <span class="keyword">if</span> block.type == <span class="string">"text"</span>:
+                    <span class="builtin">print</span>(<span class="string">f"\033[93mClaude\033[0m: </span>{block.text}<span class="string">"</span>)
+
+    <span class="keyword">def</span> <span class="function">run_inference</span>(self, conversation):
+        <span class="keyword">return</span> self.client.messages.create(
+            model=<span class="string">"claude-sonnet-4-20250514"</span>,
+            max_tokens=<span class="number">1024</span>,
+            messages=conversation
+        )</code></pre>
+
+            <p>It's not a lot, is it? About 40 lines and the most important thing in them is this loop in <code>run()</code> that lets us talk to Claude. But that's already the heartbeat of this program.</p>
+
+            <p>And for a heartbeat, it's pretty straightforward: we first print a prompt, ask the user to type something, add it to the conversation, send it to Claude, add Claude's response to the conversation, print the response, and around we go.</p>
+
+            <p>This is every AI chat application you've ever used, except it's in the terminal.</p>
+
+            <p>Let's run it:</p>
+
+            <pre class="shell"><code>export ANTHROPIC_API_KEY="this is the last time i will tell you to set this"
+
+# Run it
+python agent.py</code></pre>
+
+            <p>Then you can just talk to Claude, like this:</p>
+
+            <div class="terminal">
+                <div class="terminal-line"><span class="prompt">$</span> <span class="command">python agent.py</span></div>
+                <div class="terminal-line"><span class="output">Chat with Claude (use 'ctrl-c' to quit)</span></div>
+                <div class="terminal-line"><span class="user">You</span>: Hey! I'm Thorsten! How are you?</div>
+                <div class="terminal-line"><span class="claude">Claude</span>: Hi Thorsten! I'm doing well, thanks for asking. It's nice to meet you. How are you doing today? Is there something I can help you with?</div>
+                <div class="terminal-line"><span class="user">You</span>: Can you come up with any horse-related nicknames that make fun of my first name?</div>
+                <div class="terminal-line"><span class="claude">Claude</span>: I can try to come up with some playful horse-related nicknames based on "Thorsten": * Thorough-bred Thorsten * Trotsten * Thorsten the Stallion * Neighsten * Horseten * Thorsten the Galloper * Saddle-sten * Thorsten of the Mane * Canter-sten * Thorsteed These are meant to be lighthearted - I hope they give you a chuckle!</div>
+                <div class="terminal-line"><span class="user">You</span>: </div>
+            </div>
+
+            <p>Notice how we kept the same conversation going over multiple turns. It remembers my name from the first message. The <code>conversation</code> grows longer with every turn and we send the whole conversation every time. The server — Anthropic's server — is stateless. It only sees what's in the <code>conversation</code> list. It's up to us to maintain that.</p>
+
+            <p>Okay, let's move on, because the nicknames suck and this is not an agent yet. What's an agent? Here's <a href="https://youtu.be/J1-W9O3n7j8?t=72">my definition</a>: an LLM with <em>access to tools</em>, giving it the ability to modify something outside the context window.</p>
+
+            <h2>A First Tool</h2>
+
+            <p>An LLM with <em>access to tools</em>? What's a tool? The basic idea is this: you send a prompt to the model that says it should reply in a certain way if it wants to use "a tool". Then you, as the receiver of that message, "use the tool" by executing it and replying with the result. That's it. Everything else we'll see is just abstraction on top of it.</p>
+
+            <p>Imagine you're talking to a friend and you tell them: "in the following conversation, wink if you want me to raise my arm". Weird thing to say, but an easy concept to grasp.</p>
+
+            <p>We can already try it without changing any of our code.</p>
+
+            <div class="terminal">
+                <div class="terminal-line"><span class="prompt">$</span> <span class="command">python agent.py</span></div>
+                <div class="terminal-line"><span class="output">Chat with Claude (use 'ctrl-c' to quit)</span></div>
+                <div class="terminal-line"><span class="user">You</span>: You are a weather expert. When I ask you about the weather in a given location, I want you to reply with `get_weather(&lt;location_name&gt;)`. I will then tell you what the weather in that location is. Understood?</div>
+                <div class="terminal-line"><span class="claude">Claude</span>: I understand your instructions. When you ask me about the weather in a specific location, I will reply with `get_weather(&lt;location_name&gt;)`. Then you'll provide me with the weather information for that location, and I can discuss it further with you. I'm ready whenever you'd like to ask about the weather somewhere.</div>
+                <div class="terminal-line"><span class="user">You</span>: Hey, what's the weather in Munich?</div>
+                <div class="terminal-line"><span class="claude">Claude</span>: get_weather(Munich)</div>
+            </div>
+
+            <p>We told Claude to wink with <code>get_weather</code> when it wants to know about the weather. The next step is to raise our arm and reply with "result of the tool":</p>
+
+            <div class="terminal">
+                <div class="terminal-line"><span class="user">You</span>: hot and humid, 28 degrees celsius</div>
+                <div class="terminal-line"><span class="claude">Claude</span>: Thank you for providing that information. The current weather in Munich is hot and humid at 28 degrees Celsius (about 82 degrees Fahrenheit). These are fairly warm conditions for Munich, especially with the added humidity which can make it feel even warmer than the temperature indicates. If you're in Munich or planning to visit, it would be good to stay hydrated, wear light clothing, and perhaps plan indoor activities during the hottest parts of the day. The combination of heat and humidity can be quite uncomfortable, particularly if you're not accustomed to such weather. Would you like to know about the weather in any other location?</div>
+            </div>
+
+            <p>That worked very well, on first try, didn't it?</p>
+
+            <p>These models are trained and fine-tuned to use "tools" and they're very eager to do so. By now, 2025, they kinda "know" that they don't know everything and can use tools to get more information. (Of course that's not precisely what's going on, but it's good enough an explanation for now.)</p>
+
+            <p>To summarize, all there is to tools and tool use are two things:</p>
+
+            <ol>
+                <li>You tell the model what tools are available</li>
+                <li>When the model wants to execute the tool, it tells you, you execute the tool and send the response up</li>
+            </ol>
+
+            <p>To make (1) easier, the big model providers have built-in APIs to send tool definitions along.</p>
+
+            <p>Okay, now let's build our first tool: <code>read_file</code></p>
+
+            <h2>The <code>read_file</code> tool</h2>
+
+            <p>In order to define the <code>read_file</code> tool, we're going to use the types that the Anthropic SDK suggests, but keep in mind: under the hood, this will all end up as strings that are sent to the model. It's all "wink if you want me to use <code>read_file</code>".</p>
+
+            <p>Each tool we're going to add will require the following:</p>
+
+            <ul>
+                <li>A name</li>
+                <li>A description to tell the model what the tool does, when to use it, when to not use it, what it returns and so on</li>
+                <li>An input schema that describes, as a JSON schema, what inputs this tool expects and in which form</li>
+                <li>A function that actually executes the tool with the input the model sends to us and returns the result</li>
+            </ul>
+
+            <p>So let's add that to our code:</p>
+
+            <pre><code><span class="comment"># agent.py</span>
+<span class="keyword">from</span> dataclasses <span class="keyword">import</span> dataclass
+<span class="keyword">from</span> typing <span class="keyword">import</span> Callable, Any
+
+
+<span class="decorator">@dataclass</span>
+<span class="keyword">class</span> <span class="class">ToolDefinition</span>:
+    name: <span class="builtin">str</span>
+    description: <span class="builtin">str</span>
+    input_schema: <span class="builtin">dict</span>
+    function: Callable[[<span class="builtin">dict</span>], <span class="builtin">str</span>]</code></pre>
+
+            <p>Now we give our <code>Agent</code> tool definitions:</p>
+
+            <pre><code><span class="comment"># agent.py</span>
+
+<span class="keyword">class</span> <span class="class">Agent</span>:
+    <span class="comment"># `tools` is added here:</span>
+    <span class="keyword">def</span> <span class="function">__init__</span>(self, client, get_user_message_func, tools=<span class="builtin">None</span>):
+        self.client = client
+        self.get_user_message = get_user_message_func
+        self.tools = tools <span class="keyword">or</span> []
+
+
+<span class="keyword">def</span> <span class="function">main</span>():
+    client = anthropic.Anthropic()
+    tools = []
+    agent = Agent(client, get_user_message, tools)
+    agent.run()</code></pre>
+
+            <p>And send them along to the model in <code>run_inference</code>:</p>
+
+            <pre><code><span class="comment"># agent.py</span>
+
+<span class="keyword">def</span> <span class="function">run_inference</span>(self, conversation):
+    <span class="comment"># Convert our tool definitions to Anthropic's format</span>
+    anthropic_tools = [
+        {
+            <span class="string">"name"</span>: tool.name,
+            <span class="string">"description"</span>: tool.description,
+            <span class="string">"input_schema"</span>: tool.input_schema,
+        }
+        <span class="keyword">for</span> tool <span class="keyword">in</span> self.tools
+    ]
+
+    <span class="keyword">return</span> self.client.messages.create(
+        model=<span class="string">"claude-sonnet-4-20250514"</span>,
+        max_tokens=<span class="number">1024</span>,
+        messages=conversation,
+        tools=anthropic_tools <span class="keyword">if</span> anthropic_tools <span class="keyword">else</span> []
+    )</code></pre>
+
+            <p>There's not much magic going on here. In Python, we just build a list of dictionaries that match Anthropic's expected format. Very straightforward:</p>
+
+            <p>We send along our tool definitions, on the server Anthropic then wraps these definitions in <a href="https://docs.anthropic.com/en/docs/build-with-claude/tool-use/overview#tool-use-system-prompt">this system prompt</a> (which isn't much), which it adds to our <code>conversation</code>, and the model then replies in a specific way if it wants to use that tool.</p>
+
+            <p>Alright, so tool definitions are being sent along, but we haven't defined a tool yet. Let's do that and define <code>read_file</code>:</p>
+
+            <pre><code><span class="comment"># agent.py</span>
+<span class="keyword">import</span> os
+
+
+<span class="keyword">def</span> <span class="function">read_file</span>(input_data: <span class="builtin">dict</span>) -> <span class="builtin">str</span>:
+    <span class="string">"""Read the contents of a file at the given path."""</span>
+    path = input_data[<span class="string">"path"</span>]
+    <span class="keyword">try</span>:
+        <span class="keyword">with</span> <span class="builtin">open</span>(path, <span class="string">"r"</span>) <span class="keyword">as</span> f:
+            <span class="keyword">return</span> f.read()
+    <span class="keyword">except</span> <span class="class">Exception</span> <span class="keyword">as</span> e:
+        <span class="keyword">return</span> <span class="string">f"Error: </span>{<span class="builtin">str</span>(e)}<span class="string">"</span>
+
+
+READ_FILE_TOOL = ToolDefinition(
+    name=<span class="string">"read_file"</span>,
+    description=<span class="string">"""Read the contents of a given relative file path. Use this when you want to see what's inside a file. Do not use this with directory names."""</span>,
+    input_schema={
+        <span class="string">"type"</span>: <span class="string">"object"</span>,
+        <span class="string">"properties"</span>: {
+            <span class="string">"path"</span>: {
+                <span class="string">"type"</span>: <span class="string">"string"</span>,
+                <span class="string">"description"</span>: <span class="string">"The relative path of a file in the working directory."</span>
+            }
+        },
+        <span class="string">"required"</span>: [<span class="string">"path"</span>]
+    },
+    function=read_file
+)</code></pre>
+
+            <p>That's not much, is it? It's a single function, <code>read_file</code>, and two descriptions the model will see: our <code>description</code> that describes the tool itself (<code>"Read the contents of a given relative file path. ..."</code>) and a description of the single input parameter this tool has (<code>"The relative path of a ..."</code>).</p>
+
+            <p>The <code>input_schema</code> is just a Python dictionary that follows JSON Schema format. Much simpler than Go's approach with struct tags and reflection!</p>
+
+            <p>Then, in the <code>main</code> function, we need to make sure that we use the definition:</p>
+
+            <pre><code><span class="keyword">def</span> <span class="function">main</span>():
+    client = anthropic.Anthropic()
+    tools = [READ_FILE_TOOL]
+    agent = Agent(client, get_user_message, tools)
+    agent.run()</code></pre>
+
+            <p>Time to try it!</p>
+
+            <div class="terminal">
+                <div class="terminal-line"><span class="prompt">$</span> <span class="command">python agent.py</span></div>
+                <div class="terminal-line"><span class="output">Chat with Claude (use 'ctrl-c' to quit)</span></div>
+                <div class="terminal-line"><span class="user">You</span>: what's in agent.py?</div>
+                <div class="terminal-line"><span class="claude">Claude</span>: I'll help you check what's in the agent.py file. Let me read it for you.</div>
+                <div class="terminal-line"><span class="user">You</span>: </div>
+            </div>
+
+            <p>Wait, what? Ho, ho, ho, it wants to use the tool! Obviously the output will be slightly different for you, but it certainly sounds like Claude knows that it can read files, right?</p>
+
+            <p>The problem is that we don't listen! When Claude winks, we ignore it. We need to fix that.</p>
+
+            <p>Here, let me show you how to do that in a single, quick, surprisingly-agile-for-my-age move by replacing our <code>Agent</code>'s <code>run</code> method with this:</p>
+
+            <pre><code><span class="comment"># agent.py</span>
+<span class="keyword">import</span> json
+
+
+<span class="keyword">class</span> <span class="class">Agent</span>:
+    <span class="keyword">def</span> <span class="function">__init__</span>(self, client, get_user_message_func, tools=<span class="builtin">None</span>):
+        self.client = client
+        self.get_user_message = get_user_message_func
+        self.tools = tools <span class="keyword">or</span> []
+
+    <span class="keyword">def</span> <span class="function">run</span>(self):
+        conversation = []
+        <span class="builtin">print</span>(<span class="string">"Chat with Claude (use 'ctrl-c' to quit)"</span>)
+
+        read_user_input = <span class="builtin">True</span>
+
+        <span class="keyword">while</span> <span class="builtin">True</span>:
+            <span class="keyword">if</span> read_user_input:
+                <span class="builtin">print</span>(<span class="string">"\033[94mYou\033[0m: "</span>, end=<span class="string">""</span>)
+                user_input, ok = self.get_user_message()
+                <span class="keyword">if</span> <span class="keyword">not</span> ok:
+                    <span class="keyword">break</span>
+                conversation.append({
+                    <span class="string">"role"</span>: <span class="string">"user"</span>,
+                    <span class="string">"content"</span>: user_input
+                })
+
+            message = self.run_inference(conversation)
+            conversation.append({
+                <span class="string">"role"</span>: <span class="string">"assistant"</span>,
+                <span class="string">"content"</span>: message.content
+            })
+
+            tool_results = []
+            <span class="keyword">for</span> block <span class="keyword">in</span> message.content:
+                <span class="keyword">if</span> block.type == <span class="string">"text"</span>:
+                    <span class="builtin">print</span>(<span class="string">f"\033[93mClaude\033[0m: </span>{block.text}<span class="string">"</span>)
+                <span class="keyword">elif</span> block.type == <span class="string">"tool_use"</span>:
+                    result = self.execute_tool(block.id, block.name, block.input)
+                    tool_results.append(result)
+
+            <span class="keyword">if</span> <span class="keyword">not</span> tool_results:
+                read_user_input = <span class="builtin">True</span>
+                <span class="keyword">continue</span>
+
+            read_user_input = <span class="builtin">False</span>
+            conversation.append({
+                <span class="string">"role"</span>: <span class="string">"user"</span>,
+                <span class="string">"content"</span>: tool_results
+            })
+
+    <span class="keyword">def</span> <span class="function">execute_tool</span>(self, tool_id, name, tool_input):
+        <span class="comment"># Find the tool</span>
+        tool = <span class="builtin">next</span>((t <span class="keyword">for</span> t <span class="keyword">in</span> self.tools <span class="keyword">if</span> t.name == name), <span class="builtin">None</span>)
+        <span class="keyword">if</span> <span class="keyword">not</span> tool:
+            <span class="keyword">return</span> {
+                <span class="string">"type"</span>: <span class="string">"tool_result"</span>,
+                <span class="string">"tool_use_id"</span>: tool_id,
+                <span class="string">"content"</span>: <span class="string">"Tool not found"</span>,
+                <span class="string">"is_error"</span>: <span class="builtin">True</span>
+            }
+
+        <span class="builtin">print</span>(<span class="string">f"\033[92mtool\033[0m: </span>{name}<span class="string">(</span>{json.dumps(tool_input)}<span class="string">)"</span>)
+
+        <span class="keyword">try</span>:
+            result = tool.function(tool_input)
+            <span class="keyword">return</span> {
+                <span class="string">"type"</span>: <span class="string">"tool_result"</span>,
+                <span class="string">"tool_use_id"</span>: tool_id,
+                <span class="string">"content"</span>: result
+            }
+        <span class="keyword">except</span> <span class="class">Exception</span> <span class="keyword">as</span> e:
+            <span class="keyword">return</span> {
+                <span class="string">"type"</span>: <span class="string">"tool_result"</span>,
+                <span class="string">"tool_use_id"</span>: tool_id,
+                <span class="string">"content"</span>: <span class="builtin">str</span>(e),
+                <span class="string">"is_error"</span>: <span class="builtin">True</span>
+            }</code></pre>
+
+            <p>Squint and you'll see that it's 90% boilerplate and 10% that matter: when we get a <code>message</code> back from Claude, we check whether Claude asked us to execute a tool by looking for <code>block.type == "tool_use"</code>, if so we hand over to <code>execute_tool</code>, look up the tool by name in our local registry, execute it, return the result. If it's an error, we flip a boolean. That's it.</p>
+
+            <p>(Yes, there is a loop in a loop, but it doesn't matter.)</p>
+
+            <p>We execute the tool, send the result back up to Claude, and ask again for Claude's response. Truly: that's <em>it</em>. Let me show you.</p>
+
+            <p>Mise-en-place, run this:</p>
+
+            <pre class="shell"><code>echo 'what animal is the most disagreeable because it always says neigh?' >> secret-file.txt</code></pre>
+
+            <p>That creates a <code>secret-file.txt</code> in our directory, containing a mysterious riddle.</p>
+
+            <p>In that very same directory, let's run our new tool-using agent, and ask it to look at the file:</p>
+
+            <div class="terminal">
+                <div class="terminal-line"><span class="prompt">$</span> <span class="command">python agent.py</span></div>
+                <div class="terminal-line"><span class="output">Chat with Claude (use 'ctrl-c' to quit)</span></div>
+                <div class="terminal-line"><span class="user">You</span>: Claude, buddy, help me solve the riddle in the secret-file.txt file</div>
+                <div class="terminal-line"><span class="claude">Claude</span>: I'll help you solve the riddle in the secret-file.txt file. Let me first read the contents of this file to see what the riddle is.</div>
+                <div class="terminal-line"><span class="tool">tool</span>: read_file({"path":"secret-file.txt"})</div>
+                <div class="terminal-line"><span class="claude">Claude</span>: Great! I've found the riddle. The answer to the riddle is: **A horse** The riddle is playing on wordplay where "neigh" (the sound a horse makes) sounds like "nay" (a way to say "no" or disagree with something). So horses are described as disagreeable because they always say "neigh/nay" - implying they're always disagreeing.</div>
+                <div class="terminal-line"><span class="user">You</span>: </div>
+            </div>
+
+            <p>Let's take a deep breath and say it together. Ready? Here we go: <em>holy shit</em>. You just give it a tool and it… <em>uses it when it thinks it'll help solve the task</em>. Remember: we didn't say <em>anything</em> about "if a user asks you about a file, read the file". We also didn't say "if something looks like a filename, figure out how to read it". No, none of that. We say "help me solve the thing in this file" and Claude realizes that it can read the file to answer that and off it goes.</p>
+
+            <p>Of course, we <em>can</em> be specific and really nudge it towards a tool, but it basically does it all on its own:</p>
+
+            <div class="terminal">
+                <div class="terminal-line"><span class="prompt">$</span> <span class="command">python agent.py</span></div>
+                <div class="terminal-line"><span class="output">Chat with Claude (use 'ctrl-c' to quit)</span></div>
+                <div class="terminal-line"><span class="user">You</span>: What's going on in agent.py? Be brief!</div>
+                <div class="terminal-line"><span class="claude">Claude</span>: I'll check the agent.py file to see what's going on.</div>
+                <div class="terminal-line"><span class="tool">tool</span>: read_file({"path":"agent.py"})</div>
+                <div class="terminal-line"><span class="claude">Claude</span>: Based on my review, agent.py implements a Claude AI assistant agent that can use tools. Here's a brief summary: - It creates a command-line chat interface with Claude using the Anthropic Python SDK - Implements a tool system with a single "read_file" tool for reading file contents - Manages the conversation flow with Claude, handling both regular text responses and tool use requests - When Claude requests to use a tool, the agent executes it and returns the results - The program loops continuously to maintain a conversation until the user exits The code essentially builds a simple CLI-based chatbot that can interact with the file system when requested by Claude.</div>
+                <div class="terminal-line"><span class="user">You</span>: </div>
+            </div>
+
+            <p>Spot on. Okay, now that we know how to make Claude use tools, let's add a few more.</p>
+
+            <h2>The <code>list_files</code> tool</h2>
+
+            <p>If you're anything like me, the first thing you do when you log into a new computer is to get your bearings by running <code>ls</code> — list files.</p>
+
+            <p>Let's give Claude the same ability, a tool to list files. And here's the complete implementation of a <code>list_files</code> tool:</p>
+
+            <pre><code><span class="comment"># agent.py</span>
+<span class="keyword">import</span> os
+
+
+<span class="keyword">def</span> <span class="function">list_files</span>(input_data: <span class="builtin">dict</span>) -> <span class="builtin">str</span>:
+    <span class="string">"""List files and directories at a given path."""</span>
+    path = input_data.get(<span class="string">"path"</span>, <span class="string">"."</span>)
+
+    <span class="keyword">try</span>:
+        files = []
+        <span class="keyword">for</span> root, dirs, filenames <span class="keyword">in</span> os.walk(path):
+            <span class="keyword">for</span> d <span class="keyword">in</span> dirs:
+                rel_path = os.path.relpath(os.path.join(root, d), path)
+                files.append(rel_path + <span class="string">"/"</span>)
+            <span class="keyword">for</span> f <span class="keyword">in</span> filenames:
+                rel_path = os.path.relpath(os.path.join(root, f), path)
+                files.append(rel_path)
+        <span class="keyword">return</span> json.dumps(files)
+    <span class="keyword">except</span> <span class="class">Exception</span> <span class="keyword">as</span> e:
+        <span class="keyword">return</span> <span class="string">f"Error: </span>{<span class="builtin">str</span>(e)}<span class="string">"</span>
+
+
+LIST_FILES_TOOL = ToolDefinition(
+    name=<span class="string">"list_files"</span>,
+    description=<span class="string">"""List files and directories at a given path. If no path is provided, lists files in the current directory."""</span>,
+    input_schema={
+        <span class="string">"type"</span>: <span class="string">"object"</span>,
+        <span class="string">"properties"</span>: {
+            <span class="string">"path"</span>: {
+                <span class="string">"type"</span>: <span class="string">"string"</span>,
+                <span class="string">"description"</span>: <span class="string">"Optional relative path to list files from. Defaults to current directory if not provided."</span>
+            }
+        }
+    },
+    function=list_files
+)</code></pre>
+
+            <p>Nothing fancy here: <code>list_files</code> returns the list of files and directories in the current folder. There's a thousand optimizations we could (and probably should) make if this were a serious effort, but since I just want to show you what's in the wizard's hat, this is fine.</p>
+
+            <p>One thing to note: we return a list of strings and we denote directories with a trailing slash. That's not required, it's just something I just decided to do. There's no fixed format. Anything goes as long as Claude can make sense of it and whether it can you need to figure out by experimentation. You could also prepend each directory with <code>"directory: "</code> or return a Markdown document with two headers: <code>"directories"</code> and <code>"files"</code>. There's a ton of options and which one you chose depends on what Claude can make the most sense of, how many tokens it requires, how fast it is to generate and read, and so on.</p>
+
+            <p>Here, we just want to create a small <code>list_files</code> tool and the easiest option wins.</p>
+
+            <p>Of course we need to tell Claude about <code>list_files</code> too:</p>
+
+            <pre><code><span class="keyword">def</span> <span class="function">main</span>():
+    client = anthropic.Anthropic()
+    tools = [READ_FILE_TOOL, LIST_FILES_TOOL]
+    agent = Agent(client, get_user_message, tools)
+    agent.run()</code></pre>
+
+            <p>And that's it. Let's ask Claude what it can see in this directory.</p>
+
+            <div class="terminal">
+                <div class="terminal-line"><span class="prompt">$</span> <span class="command">python agent.py</span></div>
+                <div class="terminal-line"><span class="output">Chat with Claude (use 'ctrl-c' to quit)</span></div>
+                <div class="terminal-line"><span class="user">You</span>: what do you see in this directory?</div>
+                <div class="terminal-line"><span class="claude">Claude</span>: I'll help you see what's in the current directory. Let me list the files and directories for you.</div>
+                <div class="terminal-line"><span class="tool">tool</span>: list_files({})</div>
+                <div class="terminal-line"><span class="claude">Claude</span>: I can see several files and directories in the current directory: 1. Python project files: - `agent.py` - the main Python source code file - `venv/` - Python virtual environment directory 2. Other files: - `secret-file.txt` - a text file containing a riddle Would you like me to examine the contents of any specific file from this list?</div>
+                <div class="terminal-line"><span class="user">You</span>: </div>
+            </div>
+
+            <p>Works! It can read the directory.</p>
+
+            <p>But here's the thing: Claude knows how to combine these tools. We just need to prompt it in a way that provokes it:</p>
+
+            <div class="terminal">
+                <div class="terminal-line"><span class="prompt">$</span> <span class="command">python agent.py</span></div>
+                <div class="terminal-line"><span class="output">Chat with Claude (use 'ctrl-c' to quit)</span></div>
+                <div class="terminal-line"><span class="user">You</span>: Tell me about all the Python files in here. Be brief!</div>
+                <div class="terminal-line"><span class="claude">Claude</span>: I'll examine the Python files in the current directory for you. Let me check what files are available first.</div>
+                <div class="terminal-line"><span class="tool">tool</span>: list_files({})</div>
+                <div class="terminal-line"><span class="claude">Claude</span>: I found a Python file in the current directory. Let me examine it:</div>
+                <div class="terminal-line"><span class="tool">tool</span>: read_file({"path":"agent.py"})</div>
+                <div class="terminal-line"><span class="claude">Claude</span>: Here's a brief overview of the Python file in this project: **agent.py**: - Implements a Claude AI agent that can interact with the local filesystem - Uses the Anthropic SDK for Python to communicate with Claude AI models - Provides two tools: `read_file` and `list_files` that allow Claude to read file contents and list directory contents - Manages a conversation flow between the user and Claude, handling tool execution when Claude needs to access files This is a simple terminal-based application that allows users to chat with Claude while giving the AI access to read local files and list directories.</div>
+                <div class="terminal-line"><span class="user">You</span>: </div>
+            </div>
+
+            <p>First it used the <code>list_files</code> and then it called <code>read_file</code> with the Python file that I asked about.</p>
+
+            <p>Just… just like we would, right? I mean, here, what would you do if I ask you what version of Python we need in this project? Here's what Claude does for me:</p>
+
+            <div class="terminal">
+                <div class="terminal-line"><span class="prompt">$</span> <span class="command">python agent.py</span></div>
+                <div class="terminal-line"><span class="output">Chat with Claude (use 'ctrl-c' to quit)</span></div>
+                <div class="terminal-line"><span class="user">You</span>: What Python version are we using in this project?</div>
+                <div class="terminal-line"><span class="claude">Claude</span>: I'll help you find the Python version being used in this project. Let me check the files to locate where the Python version might be specified.</div>
+                <div class="terminal-line"><span class="tool">tool</span>: list_files({})</div>
+                <div class="terminal-line"><span class="claude">Claude</span>: I can see there's a Python project here with the venv directory. Let me check the agent.py file for any version hints, or look for a pyproject.toml or requirements.txt.</div>
+                <div class="terminal-line"><span class="tool">tool</span>: read_file({"path":"agent.py"})</div>
+                <div class="terminal-line"><span class="claude">Claude</span>: Based on my review, the code uses modern Python features like type hints, dataclasses, and f-strings. While there's no explicit version specified, this code requires Python 3.10+ due to the typing features used.</div>
+            </div>
+
+            <p>Claude looks at the directory, looks at <code>agent.py</code>, and makes a reasonable inference.</p>
+
+            <p>We're at around 100 lines of code now. Let that sink in. Once you have, let's add another tool.</p>
+
+            <h2>Let it <code>edit_file</code></h2>
+
+            <p>The last tool we're going to add is <code>edit_file</code> — a tool that lets Claude edit files.</p>
+
+            <p>"Holy shit", you're thinking now, "this is where the rubber hits the road, this is where he pulls the rabbit out of the hat." Well, let's see, shall we?</p>
+
+            <p>First, let's add a definition for our new <code>edit_file</code> tool:</p>
+
+            <pre><code><span class="comment"># agent.py</span>
+
+<span class="keyword">def</span> <span class="function">edit_file</span>(input_data: <span class="builtin">dict</span>) -> <span class="builtin">str</span>:
+    <span class="string">"""Edit a file by replacing old_str with new_str."""</span>
+    path = input_data[<span class="string">"path"</span>]
+    old_str = input_data[<span class="string">"old_str"</span>]
+    new_str = input_data[<span class="string">"new_str"</span>]
+
+    <span class="keyword">if</span> <span class="keyword">not</span> path <span class="keyword">or</span> old_str == new_str:
+        <span class="keyword">return</span> <span class="string">"Error: invalid input parameters"</span>
+
+    <span class="comment"># If file doesn't exist and old_str is empty, create new file</span>
+    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(path) <span class="keyword">and</span> old_str == <span class="string">""</span>:
+        <span class="keyword">return</span> create_new_file(path, new_str)
+
+    <span class="keyword">try</span>:
+        <span class="keyword">with</span> <span class="builtin">open</span>(path, <span class="string">"r"</span>) <span class="keyword">as</span> f:
+            content = f.read()
+
+        <span class="keyword">if</span> old_str <span class="keyword">and</span> old_str <span class="keyword">not</span> <span class="keyword">in</span> content:
+            <span class="keyword">return</span> <span class="string">"Error: old_str not found in file"</span>
+
+        new_content = content.replace(old_str, new_str)
+
+        <span class="keyword">with</span> <span class="builtin">open</span>(path, <span class="string">"w"</span>) <span class="keyword">as</span> f:
+            f.write(new_content)
+
+        <span class="keyword">return</span> <span class="string">"OK"</span>
+
+    <span class="keyword">except</span> <span class="class">Exception</span> <span class="keyword">as</span> e:
+        <span class="keyword">return</span> <span class="string">f"Error: </span>{<span class="builtin">str</span>(e)}<span class="string">"</span>
+
+
+<span class="keyword">def</span> <span class="function">create_new_file</span>(path: <span class="builtin">str</span>, content: <span class="builtin">str</span>) -> <span class="builtin">str</span>:
+    <span class="string">"""Create a new file with the given content."""</span>
+    <span class="keyword">try</span>:
+        <span class="comment"># Create directories if they don't exist</span>
+        directory = os.path.dirname(path)
+        <span class="keyword">if</span> directory:
+            os.makedirs(directory, exist_ok=<span class="builtin">True</span>)
+
+        <span class="keyword">with</span> <span class="builtin">open</span>(path, <span class="string">"w"</span>) <span class="keyword">as</span> f:
+            f.write(content)
+
+        <span class="keyword">return</span> <span class="string">f"Successfully created file </span>{path}<span class="string">"</span>
+    <span class="keyword">except</span> <span class="class">Exception</span> <span class="keyword">as</span> e:
+        <span class="keyword">return</span> <span class="string">f"Error: </span>{<span class="builtin">str</span>(e)}<span class="string">"</span>
+
+
+EDIT_FILE_TOOL = ToolDefinition(
+    name=<span class="string">"edit_file"</span>,
+    description=<span class="string">"""Make edits to a text file. Replaces 'old_str' with 'new_str' in the given file.
+'old_str' and 'new_str' MUST be different from each other.
+
+If the file specified with path doesn't exist, it will be created."""</span>,
+    input_schema={
+        <span class="string">"type"</span>: <span class="string">"object"</span>,
+        <span class="string">"properties"</span>: {
+            <span class="string">"path"</span>: {
+                <span class="string">"type"</span>: <span class="string">"string"</span>,
+                <span class="string">"description"</span>: <span class="string">"The path to the file"</span>
+            },
+            <span class="string">"old_str"</span>: {
+                <span class="string">"type"</span>: <span class="string">"string"</span>,
+                <span class="string">"description"</span>: <span class="string">"Text to search for - must match exactly and must only have one match exactly"</span>
+            },
+            <span class="string">"new_str"</span>: {
+                <span class="string">"type"</span>: <span class="string">"string"</span>,
+                <span class="string">"description"</span>: <span class="string">"Text to replace old_str with"</span>
+            }
+        },
+        <span class="string">"required"</span>: [<span class="string">"path"</span>, <span class="string">"old_str"</span>, <span class="string">"new_str"</span>]
+    },
+    function=edit_file
+)</code></pre>
+
+            <p>That's right, I again know what you're thinking: "string replacement to edit files?" Claude loves replacing strings (experimentation is how you find out what they love or don't), so we're going to implement <code>edit_file</code> by telling Claude it can edit files by replacing existing text with new text.</p>
+
+            <p>It checks the input parameters, it reads the file (or creates it if it doesn't exist), and replaces the <code>old_str</code> with <code>new_str</code>. Then it writes the content back to disk and returns <code>"OK"</code>.</p>
+
+            <p>Last step: adding it to the list of tools that we send to Claude.</p>
+
+            <pre><code><span class="keyword">def</span> <span class="function">main</span>():
+    client = anthropic.Anthropic()
+    tools = [READ_FILE_TOOL, LIST_FILES_TOOL, EDIT_FILE_TOOL]
+    agent = Agent(client, get_user_message, tools)
+    agent.run()</code></pre>
+
+            <p>And… we're ready, but are <em>you</em>? Are you ready to let it rip?</p>
+
+            <p>Thought so, let's do this. Let's tell Claude to create a new FizzBuzz function in JavaScript.</p>
+
+            <div class="terminal">
+                <div class="terminal-line"><span class="prompt">$</span> <span class="command">python agent.py</span></div>
+                <div class="terminal-line"><span class="output">Chat with Claude (use 'ctrl-c' to quit)</span></div>
+                <div class="terminal-line"><span class="user">You</span>: hey claude, create fizzbuzz.js that I can run with Nodejs and that has fizzbuzz in it and executes it</div>
+                <div class="terminal-line"><span class="claude">Claude</span>: I'll create a fizzbuzz.js file that you can run with Node.js. First, let me check if the file already exists:</div>
+                <div class="terminal-line"><span class="tool">tool</span>: list_files({})</div>
+                <div class="terminal-line"><span class="claude">Claude</span>: I don't see a fizzbuzz.js file, so I'll create one with a classic FizzBuzz implementation. This program will print numbers from 1 to 100, but for multiples of 3 it will print "Fizz", for multiples of 5 it will print "Buzz", and for numbers that are multiples of both 3 and 5 it will print "FizzBuzz".</div>
+                <div class="terminal-line"><span class="tool">tool</span>: edit_file({"path":"fizzbuzz.js","old_str":"","new_str":"/**\n * FizzBuzz implementation in JavaScript\n * Prints numbers from 1 to 100, but:\n * - For multiples of 3, print \"Fizz\" instead of the number\n * - For multiples of 5, print \"Buzz\" instead of the number\n * - For multiples of both 3 and 5, print \"FizzBuzz\"\n */\n\nfunction fizzBuzz(n) {\n  for (let i = 1; i &lt;= n; i++) {\n    let output = '';\n    \n    if (i % 3 === 0) output += 'Fizz';\n    if (i % 5 === 0) output += 'Buzz';\n    \n    console.log(output || i);\n  }\n}\n\n// Execute FizzBuzz for numbers 1 to 100\nconsole.log('Running FizzBuzz:');\nfizzBuzz(100);"})</div>
+                <div class="terminal-line"><span class="claude">Claude</span>: I've created a fizzbuzz.js file that you can run with Node.js. The program: 1. Defines a function called `fizzBuzz` that takes a parameter `n` for the upper limit 2. Loops from 1 to n (set to 100 in the execution) 3. For each number: - If it's divisible by 3, it adds "Fizz" to the output - If it's divisible by 5, it adds "Buzz" to the output - If it's divisible by both, it adds both resulting in "FizzBuzz" - If it's not divisible by either 3 or 5, it outputs the number itself 4. The script automatically executes the function for numbers 1 to 100 You can run this script using Node.js with the following command in your terminal: node fizzbuzz.js This will output the FizzBuzz sequence from 1 to 100 to your console.</div>
+            </div>
+
+            <p>Right?! It's impressive, isn't it? And that's the <em>most basic implementation</em> of <code>edit_file</code> — of an agent in general — you can probably come up with.</p>
+
+            <p>But, did it work? Yes, it did:</p>
+
+            <pre class="shell"><code>$ node fizzbuzz.js
+Running FizzBuzz:
+1
+2
+Fizz
+4
+Buzz
+Fizz
+7
+8
+Fizz
+Buzz
+11
+Fizz
+13
+14
+FizzBuzz
+16
+[...]</code></pre>
+
+            <p>Amazing. But hey, let's have it actually <em>edit</em> a file and not just create one.</p>
+
+            <p>Here's what Claude does when I ask it to "Please edit the <code>fizzbuzz.js</code> so that it only prints until 15":</p>
+
+            <div class="terminal">
+                <div class="terminal-line"><span class="prompt">$</span> <span class="command">python agent.py</span></div>
+                <div class="terminal-line"><span class="output">Chat with Claude (use 'ctrl-c' to quit)</span></div>
+                <div class="terminal-line"><span class="user">You</span>: Please edit fizzbuzz.js so that it only prints until 15</div>
+                <div class="terminal-line"><span class="claude">Claude</span>: I'll edit the fizzbuzz.js file to print only until 15 instead of its current limit. First, let me check the current content of the file to understand what changes are needed.</div>
+                <div class="terminal-line"><span class="tool">tool</span>: read_file({"path":"fizzbuzz.js"})</div>
+                <div class="terminal-line"><span class="claude">Claude</span>: I can see that the file currently runs FizzBuzz up to 100. I'll modify it to only run up to 15 instead by changing the parameter in the fizzBuzz function call.</div>
+                <div class="terminal-line"><span class="tool">tool</span>: edit_file({"path":"fizzbuzz.js","old_str":"// Execute FizzBuzz for numbers 1 to 100\nconsole.log('Running FizzBuzz:');\nfizzBuzz(100);","new_str":"// Execute FizzBuzz for numbers 1 to 15\nconsole.log('Running FizzBuzz:');\nfizzBuzz(15);"})</div>
+                <div class="terminal-line"><span class="claude">Claude</span>: I also need to update the comment at the top of the file to reflect this change:</div>
+                <div class="terminal-line"><span class="tool">tool</span>: edit_file({"path":"fizzbuzz.js","old_str":"/**\n * FizzBuzz implementation in JavaScript\n * Prints numbers from 1 to 100, but:","new_str":"/**\n * FizzBuzz implementation in JavaScript\n * Prints numbers from 1 to 15, but:"})</div>
+                <div class="terminal-line"><span class="claude">Claude</span>: The changes have been successfully made to the fizzbuzz.js file. The program will now: 1. Only print FizzBuzz from 1 to 15 (instead of 1 to 100) 2. The documentation has been updated to reflect this change The function itself remains the same, as it takes a parameter to determine the upper limit, and we've simply changed that parameter from 100 to 15.</div>
+            </div>
+
+            <p>It reads the file, it edits the file to change the how long it runs, <em>and</em> then it also edits the file to update the comment at the top.</p>
+
+            <p>And it still works:</p>
+
+            <pre class="shell"><code>$ node fizzbuzz.js
+Running FizzBuzz:
+1
+2
+Fizz
+4
+Buzz
+Fizz
+7
+8
+Fizz
+Buzz
+11
+Fizz
+13
+14
+FizzBuzz</code></pre>
+
+            <p>Okay, let's do one more and ask it to do the following:</p>
+
+            <blockquote>
+                <p>Create a congrats.js script that rot13-decodes the following string 'Pbatenghyngvbaf ba ohvyqvat n pbqr-rqvgvat ntrag!' and prints it</p>
+            </blockquote>
+
+            <p>Maybe a tall order. Let's see:</p>
+
+            <div class="terminal">
+                <div class="terminal-line"><span class="prompt">$</span> <span class="command">python agent.py</span></div>
+                <div class="terminal-line"><span class="output">Chat with Claude (use 'ctrl-c' to quit)</span></div>
+                <div class="terminal-line"><span class="user">You</span>: Create a congrats.js script that rot13-decodes the following string 'Pbatenghyngvbaf ba ohvyqvat n pbqr-rqvgvat ntrag!' and prints it</div>
+                <div class="terminal-line"><span class="claude">Claude</span>: I'll create a congrats.js script that decodes the ROT13-encoded string and prints it. ROT13 is a simple letter substitution cipher that replaces a letter with the 13th letter after it in the alphabet. Let me create this file for you:</div>
+                <div class="terminal-line"><span class="tool">tool</span>: edit_file({"path":"congrats.js","old_str":"","new_str":"/**\n * A script to decode a ROT13-encoded string and print the result\n */\n\nfunction rot13Decode(encodedStr) {\n  return encodedStr.replace(/[a-zA-Z]/g, function(char) {\n    const charCode = char.charCodeAt(0);\n    \n    if (charCode >= 65 && charCode <= 90) {\n      return String.fromCharCode(((charCode - 65 + 13) % 26) + 65);\n    }\n    \n    if (charCode >= 97 && charCode <= 122) {\n      return String.fromCharCode(((charCode - 97 + 13) % 26) + 97);\n    }\n    \n    return char;\n  });\n}\n\nconst encodedMessage = 'Pbatenghyngvbaf ba ohvyqvat n pbqr-rqvgvat ntrag!';\nconst decodedMessage = rot13Decode(encodedMessage);\n\nconsole.log(decodedMessage);"})</div>
+                <div class="terminal-line"><span class="claude">Claude</span>: I've created a JavaScript file called congrats.js that: 1. Defines a `rot13Decode` function that takes an encoded string and applies the ROT13 cipher to decode it 2. Takes the provided string 'Pbatenghyngvbaf ba ohvyqvat n pbqr-rqvgvat ntrag!' 3. Decodes it using the function 4. Prints the decoded message to the console You can run this script using Node.js by typing `node congrats.js` in your terminal. The script will decode and display the hidden congratulatory message!</div>
+            </div>
+
+            <p>Does it work? Let's try it:</p>
+
+            <pre class="shell"><code>$ node congrats.js
+Congratulations on building a code-editing agent!</code></pre>
+
+            <p>It does!</p>
+
+            <h2>Isn't this amazing?</h2>
+
+            <p>If you're anything like all the engineers I've talked to in the past few months, chances are that, while reading this, you have been waiting for the rabbit to be pulled out of the hat, for me to say "well, in reality it's much, much harder than this." But it's not.</p>
+
+            <p>This is essentially all there is to the inner loop of a code-editing agent. Sure, integrating it into your editor, tweaking the system prompt, giving it the right feedback at the right time, a nice UI around it, better tooling around the tools, support for multiple agents, and so on — we've built all of that in <a href="https://ampcode.com">Amp</a>, but it didn't require moments of genius. All that was required was practical engineering and elbow grease.</p>
+
+            <p>These models are incredibly powerful now. Under 150 lines of Python code and three tools and now you're able to talk to an alien intelligence that edits your code. If you think "well, but we didn't really…" — go and try it! Go and see how far you can get with this. I bet it's a lot farther than you think.</p>
+
+            <p><em>That's</em> why we think everything's changing.</p>
+        </article>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="#" class="logo">Chronicle</a>
+                <span class="status-badge">All Systems Operational</span>
+            </div>
+            <div class="footer-links">
+                <h3>Product</h3>
+                <ul>
+                    <li><a href="#">Get Started</a></li>
+                    <li><a href="#">Sign In</a></li>
+                    <li><a href="#">Owner's Manual</a></li>
+                    <li><a href="#">Models</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="#">Chronicle</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">Podcast</a></li>
+                    <li><a href="#">Press Kit</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Guides</h3>
+                <ul>
+                    <li><a href="#">How to Build an Agent</a></li>
+                    <li><a href="#">Context Management</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Community</h3>
+                <ul>
+                    <li><a href="#">𝕏 @ampcode</a></li>
+                    <li><a href="#">Build Crew</a></li>
+                    <li><a href="#">YouTube</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

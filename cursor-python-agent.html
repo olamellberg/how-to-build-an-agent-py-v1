@@ -236,7 +236,7 @@
             font-weight: 500;
         }
 
-        .terminal .claude {
+        .terminal .assistant {
             color: #e6c07b;
             font-weight: 500;
         }
@@ -496,7 +496,7 @@
 
             <ul>
                 <li><a href="https://www.python.org/">Python 3.10+</a></li>
-                <li><a href="https://console.anthropic.com/settings/keys">Anthropic API key</a> that you set as an environment variable, <code>ANTHROPIC_API_KEY</code></li>
+                <li><a href="https://platform.openai.com/api-keys">OpenAI API key</a> that you set as an environment variable, <code>OPENAI_API_KEY</code></li>
                 <li><a href="https://cursor.com/">Cursor IDE</a> — this is where the meta-magic happens</li>
             </ul>
 
@@ -513,23 +513,23 @@
 
             <pre class="shell"><code>python -m venv venv
 venv\Scripts\activate  # On Mac/Linux: source venv/bin/activate
-pip install anthropic</code></pre>
+pip install openai</code></pre>
 
             <div class="cursor-tip">
                 <div class="cursor-tip-header">Cursor Tip</div>
-                <p>You can also ask Cursor's agent to run these commands for you! Press <code>Ctrl+I</code> and type: "Set up a Python virtual environment and install the anthropic package". The agent will execute the commands in the terminal.</p>
+                <p>You can also ask Cursor's agent to run these commands for you! Press <code>Ctrl+I</code> and type: "Set up a Python virtual environment and install the openai package". The agent will execute the commands in the terminal.</p>
             </div>
 
             <p>Now comes the fun part. Instead of typing all the code ourselves, let's ask Cursor to help. Press <code>Ctrl+I</code> to open the agent panel, and give it this prompt:</p>
 
             <div class="agent-prompt">
                 <div class="agent-prompt-header">Prompt for Cursor</div>
-                <div class="agent-prompt-content">"Create a new file called agent.py with a basic skeleton for a CLI chat application using the Anthropic SDK. Include an Agent class with an __init__ that takes a client and a get_user_message function. Add a get_user_message function that reads from stdin. Include a main function that creates the client and agent."</div>
+                <div class="agent-prompt-content">"Create a new file called agent.py with a basic skeleton for a CLI chat application using the OpenAI SDK. Include an Agent class with an __init__ that takes a client and a get_user_message function. Add a get_user_message function that reads from stdin. Include a main function that creates the client and agent."</div>
             </div>
 
             <p>Cursor will generate something like this:</p>
 
-            <pre><code><span class="keyword">import</span> anthropic
+            <pre><code><span class="keyword">from</span> openai <span class="keyword">import</span> OpenAI
 
 
 <span class="keyword">def</span> <span class="function">get_user_message</span>():
@@ -546,7 +546,7 @@ pip install anthropic</code></pre>
 
 
 <span class="keyword">def</span> <span class="function">main</span>():
-    client = anthropic.Anthropic()
+    client = OpenAI()
     agent = Agent(client, get_user_message)
     agent.run()
 
@@ -554,13 +554,13 @@ pip install anthropic</code></pre>
 <span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:
     main()</code></pre>
 
-            <p>Yes, this doesn't run yet. But what we have here is an <code>Agent</code> that has access to an <code>anthropic.Anthropic</code> client (which, by default, looks for <code>ANTHROPIC_API_KEY</code>) and that can get a user message by reading from stdin on the terminal.</p>
+            <p>Yes, this doesn't run yet. But what we have here is an <code>Agent</code> that has access to an <code>OpenAI</code> client (which, by default, looks for <code>OPENAI_API_KEY</code>) and that can get a user message by reading from stdin on the terminal.</p>
 
             <p>Now let's add the missing <code>run()</code> method. Ask Cursor:</p>
 
             <div class="agent-prompt">
                 <div class="agent-prompt-header">Prompt for Cursor</div>
-                <div class="agent-prompt-content">"Add a run() method to the Agent class that implements a chat loop. It should: maintain a conversation list, print a prompt for user input, append messages to the conversation, call run_inference to get Claude's response, and print Claude's text responses. Also add a run_inference method that calls the Anthropic messages API with claude-sonnet-4-20250514."</div>
+                <div class="agent-prompt-content">"Add a run() method to the Agent class that implements a chat loop. It should: maintain a conversation list, print a prompt for user input, append messages to the conversation, call run_inference to get the model's response, and print the assistant's text responses. Also add a run_inference method that calls the OpenAI chat completions API with gpt-4o."</div>
             </div>
 
             <p>Cursor will update your Agent class to look like this:</p>
@@ -575,7 +575,7 @@ pip install anthropic</code></pre>
     <span class="keyword">def</span> <span class="function">run</span>(self):
         conversation = []
 
-        <span class="builtin">print</span>(<span class="string">"Chat with Claude (use 'ctrl-c' to quit)"</span>)
+        <span class="builtin">print</span>(<span class="string">"Chat with the assistant (use 'ctrl-c' to quit)"</span>)
 
         <span class="keyword">while</span> <span class="builtin">True</span>:
             <span class="builtin">print</span>(<span class="string">"\033[94mYou\033[0m: "</span>, end=<span class="string">""</span>)
@@ -588,52 +588,52 @@ pip install anthropic</code></pre>
                 <span class="string">"content"</span>: user_input
             })
 
-            message = self.run_inference(conversation)
+            response = self.run_inference(conversation)
+            message = response.choices[<span class="number">0</span>].message
             conversation.append({
                 <span class="string">"role"</span>: <span class="string">"assistant"</span>,
                 <span class="string">"content"</span>: message.content
             })
 
-            <span class="keyword">for</span> block <span class="keyword">in</span> message.content:
-                <span class="keyword">if</span> block.type == <span class="string">"text"</span>:
-                    <span class="builtin">print</span>(<span class="string">f"\033[93mClaude\033[0m: </span>{block.text}<span class="string">"</span>)
+            <span class="keyword">if</span> message.content:
+                <span class="builtin">print</span>(<span class="string">f"\033[93mAssistant\033[0m: </span>{message.content}<span class="string">"</span>)
 
     <span class="keyword">def</span> <span class="function">run_inference</span>(self, conversation):
-        <span class="keyword">return</span> self.client.messages.create(
-            model=<span class="string">"claude-sonnet-4-20250514"</span>,
+        <span class="keyword">return</span> self.client.chat.completions.create(
+            model=<span class="string">"gpt-4o"</span>,
             max_tokens=<span class="number">1024</span>,
             messages=conversation
         )</code></pre>
 
-            <p>It's not a lot, is it? About 40 lines and the most important thing in them is this loop in <code>run()</code> that lets us talk to Claude. But that's already the heartbeat of this program.</p>
+            <p>It's not a lot, is it? About 40 lines and the most important thing in them is this loop in <code>run()</code> that lets us talk to the model. But that's already the heartbeat of this program.</p>
 
             <div class="cursor-tip">
                 <div class="cursor-tip-header">Cursor Tip</div>
                 <p>Notice how Cursor understood the context of your existing code and added the methods in the right place. You can use <code>@agent.py</code> in your prompts to explicitly reference files, helping Cursor understand exactly what you're working with.</p>
             </div>
 
-            <p>And for a heartbeat, it's pretty straightforward: we first print a prompt, ask the user to type something, add it to the conversation, send it to Claude, add Claude's response to the conversation, print the response, and around we go.</p>
+            <p>And for a heartbeat, it's pretty straightforward: we first print a prompt, ask the user to type something, add it to the conversation, send it to the model, add the model's response to the conversation, print the response, and around we go.</p>
 
             <p>This is every AI chat application you've ever used, except it's in the terminal.</p>
 
             <p>Let's run it. First, set your API key in the terminal:</p>
 
-            <pre class="shell"><code>set ANTHROPIC_API_KEY=your-api-key-here  # On Mac/Linux: export ANTHROPIC_API_KEY=...
+            <pre class="shell"><code>set OPENAI_API_KEY=your-api-key-here  # On Mac/Linux: export OPENAI_API_KEY=...
 
 # Run it
 python agent.py</code></pre>
 
-            <p>Then you can just talk to Claude, like this:</p>
+            <p>Then you can just talk to the assistant, like this:</p>
 
             <div class="terminal">
                 <div class="terminal-line"><span class="prompt">$</span> <span class="command">python agent.py</span></div>
-                <div class="terminal-line"><span class="output">Chat with Claude (use 'ctrl-c' to quit)</span></div>
+                <div class="terminal-line"><span class="output">Chat with the assistant (use 'ctrl-c' to quit)</span></div>
                 <div class="terminal-line"><span class="user">You</span>: Hey! I'm building an agent! How are you?</div>
-                <div class="terminal-line"><span class="claude">Claude</span>: Hi! That's exciting - building an agent is a great way to understand how AI systems work under the hood. I'm doing well, thanks for asking. How's your agent project going so far? What kind of capabilities are you planning to give it?</div>
+                <div class="terminal-line"><span class="assistant">Assistant</span>: Hi! That's exciting - building an agent is a great way to understand how AI systems work under the hood. I'm doing well, thanks for asking. How's your agent project going so far? What kind of capabilities are you planning to give it?</div>
                 <div class="terminal-line"><span class="user">You</span>: </div>
             </div>
 
-            <p>Notice how we kept the same conversation going over multiple turns. The <code>conversation</code> grows longer with every turn and we send the whole conversation every time. The server — Anthropic's server — is stateless. It only sees what's in the <code>conversation</code> list. It's up to us to maintain that.</p>
+            <p>Notice how we kept the same conversation going over multiple turns. The <code>conversation</code> grows longer with every turn and we send the whole conversation every time. The server — OpenAI's server — is stateless. It only sees what's in the <code>conversation</code> list. It's up to us to maintain that.</p>
 
             <div class="cursor-tip">
                 <div class="cursor-tip-header">Cursor Tip</div>
@@ -674,7 +674,7 @@ python agent.py</code></pre>
 
             <div class="agent-prompt">
                 <div class="agent-prompt-header">Prompt for Cursor</div>
-                <div class="agent-prompt-content">"Add a ToolDefinition dataclass with fields: name (str), description (str), input_schema (dict), and function (Callable). Update the Agent __init__ to accept an optional tools parameter. Update run_inference to convert tool definitions to Anthropic's format and pass them to the API call."</div>
+                <div class="agent-prompt-content">"Add a ToolDefinition dataclass with fields: name (str), description (str), input_schema (dict), and function (Callable). Update the Agent __init__ to accept an optional tools parameter. Update run_inference to convert tool definitions to OpenAI's format and pass them to the API call."</div>
             </div>
 
             <p>Cursor will add something like this:</p>
@@ -703,21 +703,24 @@ python agent.py</code></pre>
         self.tools = tools <span class="keyword">or</span> []
 
     <span class="keyword">def</span> <span class="function">run_inference</span>(self, conversation):
-        <span class="comment"># Convert our tool definitions to Anthropic's format</span>
-        anthropic_tools = [
+        <span class="comment"># Convert our tool definitions to OpenAI's format</span>
+        openai_tools = [
             {
-                <span class="string">"name"</span>: tool.name,
-                <span class="string">"description"</span>: tool.description,
-                <span class="string">"input_schema"</span>: tool.input_schema,
+                <span class="string">"type"</span>: <span class="string">"function"</span>,
+                <span class="string">"function"</span>: {
+                    <span class="string">"name"</span>: tool.name,
+                    <span class="string">"description"</span>: tool.description,
+                    <span class="string">"parameters"</span>: tool.input_schema,
+                }
             }
             <span class="keyword">for</span> tool <span class="keyword">in</span> self.tools
         ]
 
-        <span class="keyword">return</span> self.client.messages.create(
-            model=<span class="string">"claude-sonnet-4-20250514"</span>,
+        <span class="keyword">return</span> self.client.chat.completions.create(
+            model=<span class="string">"gpt-4o"</span>,
             max_tokens=<span class="number">1024</span>,
             messages=conversation,
-            tools=anthropic_tools <span class="keyword">if</span> anthropic_tools <span class="keyword">else</span> []
+            tools=openai_tools <span class="keyword">if</span> openai_tools <span class="keyword">else</span> <span class="builtin">None</span>
         )</code></pre>
 
             <p>Now let's create the actual <code>read_file</code> tool. Ask Cursor:</p>
@@ -764,11 +767,11 @@ READ_FILE_TOOL = ToolDefinition(
 
             <p>That's not much, is it? It's a single function, <code>read_file</code>, and two descriptions the model will see: our <code>description</code> that describes the tool itself and a description of the single input parameter this tool has.</p>
 
-            <p>Now we need to actually <em>listen</em> when Claude wants to use a tool. Ask Cursor to update the run method:</p>
+            <p>Now we need to actually <em>listen</em> when the model wants to use a tool. Ask Cursor to update the run method:</p>
 
             <div class="agent-prompt">
                 <div class="agent-prompt-header">Prompt for Cursor</div>
-                <div class="agent-prompt-content">"Update the Agent's run() method to handle tool use. After getting a response, check if any content blocks have type 'tool_use'. If so, call an execute_tool method, collect the results, and add them to the conversation as a user message with tool_result blocks. Add the execute_tool method that looks up tools by name and executes them."</div>
+                <div class="agent-prompt-content">"Update the Agent's run() method to handle tool use. After getting a response, check if message.tool_calls exists. If so, call an execute_tool method for each tool call, collect the results, and add them to the conversation as tool role messages. Add the execute_tool method that looks up tools by name and executes them."</div>
             </div>
 
             <p>Cursor will update your code to handle the tool execution loop:</p>
@@ -785,7 +788,7 @@ READ_FILE_TOOL = ToolDefinition(
 
     <span class="keyword">def</span> <span class="function">run</span>(self):
         conversation = []
-        <span class="builtin">print</span>(<span class="string">"Chat with Claude (use 'ctrl-c' to quit)"</span>)
+        <span class="builtin">print</span>(<span class="string">"Chat with the assistant (use 'ctrl-c' to quit)"</span>)
 
         read_user_input = <span class="builtin">True</span>
 
@@ -800,62 +803,47 @@ READ_FILE_TOOL = ToolDefinition(
                     <span class="string">"content"</span>: user_input
                 })
 
-            message = self.run_inference(conversation)
-            conversation.append({
-                <span class="string">"role"</span>: <span class="string">"assistant"</span>,
-                <span class="string">"content"</span>: message.content
-            })
+            response = self.run_inference(conversation)
+            message = response.choices[<span class="number">0</span>].message
+            
+            <span class="comment"># Add assistant message to conversation</span>
+            conversation.append(message)
 
-            tool_results = []
-            <span class="keyword">for</span> block <span class="keyword">in</span> message.content:
-                <span class="keyword">if</span> block.type == <span class="string">"text"</span>:
-                    <span class="builtin">print</span>(<span class="string">f"\033[93mClaude\033[0m: </span>{block.text}<span class="string">"</span>)
-                <span class="keyword">elif</span> block.type == <span class="string">"tool_use"</span>:
-                    result = self.execute_tool(block.id, block.name, block.input)
-                    tool_results.append(result)
+            <span class="keyword">if</span> message.content:
+                <span class="builtin">print</span>(<span class="string">f"\033[93mAssistant\033[0m: </span>{message.content}<span class="string">"</span>)
 
-            <span class="keyword">if</span> <span class="keyword">not</span> tool_results:
+            <span class="keyword">if</span> <span class="keyword">not</span> message.tool_calls:
                 read_user_input = <span class="builtin">True</span>
                 <span class="keyword">continue</span>
 
-            read_user_input = <span class="builtin">False</span>
-            conversation.append({
-                <span class="string">"role"</span>: <span class="string">"user"</span>,
-                <span class="string">"content"</span>: tool_results
-            })
+            <span class="comment"># Execute tools and add results</span>
+            <span class="keyword">for</span> tool_call <span class="keyword">in</span> message.tool_calls:
+                args = json.loads(tool_call.function.arguments)
+                <span class="builtin">print</span>(<span class="string">f"\033[92mtool\033[0m: </span>{tool_call.function.name}<span class="string">(</span>{json.dumps(args)}<span class="string">)"</span>)
+                result = self.execute_tool(tool_call.function.name, args)
+                conversation.append({
+                    <span class="string">"role"</span>: <span class="string">"tool"</span>,
+                    <span class="string">"tool_call_id"</span>: tool_call.id,
+                    <span class="string">"content"</span>: result
+                })
 
-    <span class="keyword">def</span> <span class="function">execute_tool</span>(self, tool_id, name, tool_input):
+            read_user_input = <span class="builtin">False</span>
+
+    <span class="keyword">def</span> <span class="function">execute_tool</span>(self, name, tool_input):
         <span class="comment"># Find the tool</span>
         tool = <span class="builtin">next</span>((t <span class="keyword">for</span> t <span class="keyword">in</span> self.tools <span class="keyword">if</span> t.name == name), <span class="builtin">None</span>)
         <span class="keyword">if</span> <span class="keyword">not</span> tool:
-            <span class="keyword">return</span> {
-                <span class="string">"type"</span>: <span class="string">"tool_result"</span>,
-                <span class="string">"tool_use_id"</span>: tool_id,
-                <span class="string">"content"</span>: <span class="string">"Tool not found"</span>,
-                <span class="string">"is_error"</span>: <span class="builtin">True</span>
-            }
-
-        <span class="builtin">print</span>(<span class="string">f"\033[92mtool\033[0m: </span>{name}<span class="string">(</span>{json.dumps(tool_input)}<span class="string">)"</span>)
+            <span class="keyword">return</span> <span class="string">"Error: Tool not found"</span>
 
         <span class="keyword">try</span>:
-            result = tool.function(tool_input)
-            <span class="keyword">return</span> {
-                <span class="string">"type"</span>: <span class="string">"tool_result"</span>,
-                <span class="string">"tool_use_id"</span>: tool_id,
-                <span class="string">"content"</span>: result
-            }
+            <span class="keyword">return</span> tool.function(tool_input)
         <span class="keyword">except</span> <span class="class">Exception</span> <span class="keyword">as</span> e:
-            <span class="keyword">return</span> {
-                <span class="string">"type"</span>: <span class="string">"tool_result"</span>,
-                <span class="string">"tool_use_id"</span>: tool_id,
-                <span class="string">"content"</span>: <span class="builtin">str</span>(e),
-                <span class="string">"is_error"</span>: <span class="builtin">True</span>
-            }</code></pre>
+            <span class="keyword">return</span> <span class="string">f"Error: </span>{<span class="builtin">str</span>(e)}<span class="string">"</span></code></pre>
 
             <p>Finally, update main to use the tool:</p>
 
             <pre><code><span class="keyword">def</span> <span class="function">main</span>():
-    client = anthropic.Anthropic()
+    client = OpenAI()
     tools = [READ_FILE_TOOL]
     agent = Agent(client, get_user_message, tools)
     agent.run()</code></pre>
@@ -868,11 +856,11 @@ READ_FILE_TOOL = ToolDefinition(
 
             <div class="terminal">
                 <div class="terminal-line"><span class="prompt">$</span> <span class="command">python agent.py</span></div>
-                <div class="terminal-line"><span class="output">Chat with Claude (use 'ctrl-c' to quit)</span></div>
-                <div class="terminal-line"><span class="user">You</span>: Claude, buddy, help me solve the riddle in the secret-file.txt file</div>
-                <div class="terminal-line"><span class="claude">Claude</span>: I'll help you solve the riddle in the secret-file.txt file. Let me first read the contents of this file to see what the riddle is.</div>
+                <div class="terminal-line"><span class="output">Chat with the assistant (use 'ctrl-c' to quit)</span></div>
+                <div class="terminal-line"><span class="user">You</span>: Hey, help me solve the riddle in the secret-file.txt file</div>
+                <div class="terminal-line"><span class="assistant">Assistant</span>: I'll help you solve the riddle in the secret-file.txt file. Let me first read the contents of this file to see what the riddle is.</div>
                 <div class="terminal-line"><span class="tool">tool</span>: read_file({"path":"secret-file.txt"})</div>
-                <div class="terminal-line"><span class="claude">Claude</span>: Great! I've found the riddle. The answer to the riddle is: **A horse** The riddle is playing on wordplay where "neigh" (the sound a horse makes) sounds like "nay" (a way to say "no" or disagree with something). So horses are described as disagreeable because they always say "neigh/nay" - implying they're always disagreeing.</div>
+                <div class="terminal-line"><span class="assistant">Assistant</span>: Great! I've found the riddle. The answer to the riddle is: **A horse** The riddle is playing on wordplay where "neigh" (the sound a horse makes) sounds like "nay" (a way to say "no" or disagree with something). So horses are described as disagreeable because they always say "neigh/nay" - implying they're always disagreeing.</div>
                 <div class="terminal-line"><span class="user">You</span>: </div>
             </div>
 
@@ -930,22 +918,22 @@ LIST_FILES_TOOL = ToolDefinition(
             <p>Update main:</p>
 
             <pre><code><span class="keyword">def</span> <span class="function">main</span>():
-    client = anthropic.Anthropic()
+    client = OpenAI()
     tools = [READ_FILE_TOOL, LIST_FILES_TOOL]
     agent = Agent(client, get_user_message, tools)
     agent.run()</code></pre>
 
-            <p>Now Claude can <em>combine</em> these tools:</p>
+            <p>Now the model can <em>combine</em> these tools:</p>
 
             <div class="terminal">
                 <div class="terminal-line"><span class="prompt">$</span> <span class="command">python agent.py</span></div>
-                <div class="terminal-line"><span class="output">Chat with Claude (use 'ctrl-c' to quit)</span></div>
+                <div class="terminal-line"><span class="output">Chat with the assistant (use 'ctrl-c' to quit)</span></div>
                 <div class="terminal-line"><span class="user">You</span>: Tell me about all the Python files in here. Be brief!</div>
-                <div class="terminal-line"><span class="claude">Claude</span>: I'll examine the Python files in the current directory for you. Let me check what files are available first.</div>
+                <div class="terminal-line"><span class="assistant">Assistant</span>: I'll examine the Python files in the current directory for you. Let me check what files are available first.</div>
                 <div class="terminal-line"><span class="tool">tool</span>: list_files({})</div>
-                <div class="terminal-line"><span class="claude">Claude</span>: I found a Python file in the current directory. Let me examine it:</div>
+                <div class="terminal-line"><span class="assistant">Assistant</span>: I found a Python file in the current directory. Let me examine it:</div>
                 <div class="terminal-line"><span class="tool">tool</span>: read_file({"path":"agent.py"})</div>
-                <div class="terminal-line"><span class="claude">Claude</span>: **agent.py**: Implements a Claude AI agent with file system access. Uses the Anthropic SDK, provides `read_file` and `list_files` tools, and manages a conversation loop with tool execution.</div>
+                <div class="terminal-line"><span class="assistant">Assistant</span>: **agent.py**: Implements an AI agent with file system access. Uses the OpenAI SDK, provides `read_file` and `list_files` tools, and manages a conversation loop with tool execution.</div>
                 <div class="terminal-line"><span class="user">You</span>: </div>
             </div>
 
@@ -958,7 +946,7 @@ LIST_FILES_TOOL = ToolDefinition(
 
             <h2>Let it <code>edit_file</code></h2>
 
-            <p>The last tool we're going to add is <code>edit_file</code> — a tool that lets Claude edit files. This is where the magic really happens.</p>
+            <p>The last tool we're going to add is <code>edit_file</code> — a tool that lets the assistant edit files. This is where the magic really happens.</p>
 
             <p>Ask Cursor:</p>
 
@@ -1045,7 +1033,7 @@ If the file specified with path doesn't exist, it will be created."""</span>,
             <p>Update main one last time:</p>
 
             <pre><code><span class="keyword">def</span> <span class="function">main</span>():
-    client = anthropic.Anthropic()
+    client = OpenAI()
     tools = [READ_FILE_TOOL, LIST_FILES_TOOL, EDIT_FILE_TOOL]
     agent = Agent(client, get_user_message, tools)
     agent.run()</code></pre>
@@ -1054,13 +1042,13 @@ If the file specified with path doesn't exist, it will be created."""</span>,
 
             <div class="terminal">
                 <div class="terminal-line"><span class="prompt">$</span> <span class="command">python agent.py</span></div>
-                <div class="terminal-line"><span class="output">Chat with Claude (use 'ctrl-c' to quit)</span></div>
-                <div class="terminal-line"><span class="user">You</span>: hey claude, create fizzbuzz.js that I can run with Nodejs</div>
-                <div class="terminal-line"><span class="claude">Claude</span>: I'll create a fizzbuzz.js file for you. Let me check if it already exists first:</div>
+                <div class="terminal-line"><span class="output">Chat with the assistant (use 'ctrl-c' to quit)</span></div>
+                <div class="terminal-line"><span class="user">You</span>: Hey, create fizzbuzz.js that I can run with Nodejs</div>
+                <div class="terminal-line"><span class="assistant">Assistant</span>: I'll create a fizzbuzz.js file for you. Let me check if it already exists first:</div>
                 <div class="terminal-line"><span class="tool">tool</span>: list_files({})</div>
-                <div class="terminal-line"><span class="claude">Claude</span>: I don't see a fizzbuzz.js file, so I'll create one with a classic FizzBuzz implementation:</div>
+                <div class="terminal-line"><span class="assistant">Assistant</span>: I don't see a fizzbuzz.js file, so I'll create one with a classic FizzBuzz implementation:</div>
                 <div class="terminal-line"><span class="tool">tool</span>: edit_file({"path":"fizzbuzz.js","old_str":"","new_str":"function fizzBuzz(n) {\n  for (let i = 1; i <= n; i++) {\n    let output = '';\n    if (i % 3 === 0) output += 'Fizz';\n    if (i % 5 === 0) output += 'Buzz';\n    console.log(output || i);\n  }\n}\n\nfizzBuzz(100);"})</div>
-                <div class="terminal-line"><span class="claude">Claude</span>: I've created fizzbuzz.js! You can run it with: node fizzbuzz.js</div>
+                <div class="terminal-line"><span class="assistant">Assistant</span>: I've created fizzbuzz.js! You can run it with: node fizzbuzz.js</div>
             </div>
 
             <div class="cursor-tip">

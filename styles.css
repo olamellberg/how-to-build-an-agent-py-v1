@@ -137,7 +137,7 @@ body {
 /* Header / Navigation  */
 /* ==================== */
 body > header {
-    padding: 1rem 2rem;
+    padding: 1rem 0;
     border-bottom: 1px solid var(--border-color);
     position: sticky;
     top: 0;
@@ -149,8 +149,10 @@ body > header {
 }
 
 .nav-container {
-    max-width: 900px;
+    width: 90%;
+    max-width: 1000px;
     margin: 0 auto;
+    padding: 0 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -228,25 +230,38 @@ body > header {
 }
 
 /* ==================== */
-/* Quick Navigation     */
+/* Article Navigation   */
 /* ==================== */
-.nav-pills {
-    display: none;
+/* Nav-pills placeras under artikelrubriken, inte i header.
+   Sticky-funktion gör att den fastnar under headern vid scroll. */
+.article-nav {
+    display: flex;
     align-items: center;
+    justify-content: flex-start;
     gap: 0.5rem;
-    margin-left: 1rem;
-    flex-shrink: 0;
+    flex-wrap: wrap;
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 60px; /* Height of main header */
+    background: var(--bg-primary);
+    z-index: 50;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-@media (min-width: 1100px) {
-    .nav-pills.active {
-        display: flex;
-    }
+/* Add subtle shadow when sticky */
+.article-nav.stuck {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] .article-nav.stuck {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .nav-pill {
-    padding: 0.25rem 0.75rem;
-    font-size: 0.75rem;
+    padding: 0.35rem 0.85rem;
+    font-size: 0.8rem;
     font-family: 'JetBrains Mono', monospace;
     background: var(--bg-secondary);
     border: 1px solid var(--border-color);
@@ -261,6 +276,26 @@ body > header {
     background: var(--accent-olive);
     color: white;
     border-color: var(--accent-olive);
+}
+
+.nav-pill.active {
+    background: var(--accent-olive);
+    color: white;
+    border-color: var(--accent-olive);
+}
+
+/* Hide on very small screens, show hamburger menu instead */
+@media (max-width: 480px) {
+    .article-nav {
+        display: none;
+    }
+}
+
+/* DEPRECATED: Nav-pills i header används ej längre.
+   Använd .article-nav under artikelrubriken istället.
+   Denna regel döljer eventuella kvarvarande nav-pills i header. */
+.nav-left .nav-pills {
+    display: none;
 }
 
 /* ==================== */
@@ -516,16 +551,17 @@ body > header {
 /* Main Content         */
 /* ==================== */
 main {
-    max-width: 720px;
+    width: 90%;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 3rem 2rem 6rem;
 }
 
 /* Hero / Header section */
 .article-header {
-    margin-bottom: 3rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 1rem;
+    padding-bottom: 0;
+    border-bottom: none;
 }
 
 .article-meta {
@@ -991,5 +1027,340 @@ footer {
     .mobile-menu {
         width: 100%;
         max-width: 100vw;
+    }
+}
+
+/* ==================== */
+/* Presentation Mode    */
+/* ==================== */
+
+/* Presentation Toggle Button */
+.presentation-toggle {
+    background: none;
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    padding: 0.35rem 0.6rem;
+    border-radius: 6px;
+    color: var(--text-secondary);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.presentation-toggle:hover {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border-color: var(--accent-olive);
+}
+
+.presentation-toggle.active {
+    background: var(--accent-olive);
+    color: white;
+    border-color: var(--accent-olive);
+}
+
+.presentation-toggle .icon {
+    font-size: 0.9rem;
+}
+
+/* Presentation mode active styles */
+[data-presentation="true"] {
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+}
+
+[data-presentation="true"] body {
+    overflow-x: hidden;
+}
+
+/* Hide normal content flow elements in presentation mode */
+[data-presentation="true"] main {
+    max-width: 100%;
+    padding: 0;
+}
+
+[data-presentation="true"] article {
+    display: contents;
+}
+
+[data-presentation="true"] footer {
+    display: none;
+}
+
+/* Slides */
+.presentation-slide {
+    min-height: 100vh;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 6rem 2rem 4rem;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    position: relative;
+    background: var(--bg-primary);
+}
+
+.presentation-slide:nth-child(even) {
+    background: var(--bg-secondary);
+}
+
+[data-presentation="true"] .presentation-slide {
+    display: flex;
+}
+
+.presentation-slide-content {
+    max-width: 800px;
+    width: 100%;
+}
+
+/* Hero slide styling */
+.presentation-slide.hero-slide {
+    text-align: center;
+}
+
+.presentation-slide.hero-slide h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.presentation-slide.hero-slide .subtitle {
+    font-size: 1.5rem;
+}
+
+/* Content slide styling */
+.presentation-slide h2 {
+    font-size: 2.25rem;
+    margin-bottom: 1.5rem;
+    color: var(--accent-olive);
+}
+
+.presentation-slide h3 {
+    font-size: 1.5rem;
+    margin: 1.5rem 0 1rem;
+}
+
+.presentation-slide p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+}
+
+.presentation-slide ul,
+.presentation-slide ol {
+    font-size: 1.15rem;
+    padding-left: 2rem;
+}
+
+.presentation-slide li {
+    margin-bottom: 0.75rem;
+    line-height: 1.7;
+}
+
+.presentation-slide pre,
+.presentation-slide .terminal {
+    font-size: 0.9rem;
+}
+
+.presentation-slide .cursor-tip {
+    margin: 1.5rem 0;
+}
+
+.presentation-slide blockquote {
+    font-size: 1.3rem;
+    padding-left: 1.5rem;
+}
+
+/* Slide number indicator */
+.presentation-slide::after {
+    content: attr(data-slide-number);
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    background: var(--bg-secondary);
+    padding: 0.35rem 0.75rem;
+    border-radius: 20px;
+}
+
+[data-presentation="true"] .presentation-slide:nth-child(even)::after {
+    background: var(--bg-primary);
+}
+
+/* ==================== */
+/* Presentation Progress */
+/* ==================== */
+.presentation-progress {
+    position: fixed;
+    left: 2.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 90;
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+}
+
+[data-presentation="true"] .presentation-progress {
+    display: flex;
+}
+
+.presentation-progress-track {
+    position: absolute;
+    left: 5px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--border-color);
+    border-radius: 3px;
+}
+
+.presentation-progress-fill {
+    position: absolute;
+    left: 5px;
+    top: 0;
+    width: 3px;
+    height: 0%;
+    background: linear-gradient(180deg, var(--accent-olive), var(--accent-olive-light));
+    border-radius: 3px;
+    transition: height 0.3s ease;
+}
+
+.presentation-progress-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.6rem 0;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+}
+
+.presentation-progress-dot {
+    width: 13px;
+    height: 13px;
+    min-width: 13px;
+    background: var(--bg-primary);
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    transition: all 0.25s ease;
+}
+
+.presentation-progress-item:hover .presentation-progress-dot {
+    border-color: var(--accent-olive);
+    transform: scale(1.2);
+}
+
+.presentation-progress-item.active .presentation-progress-dot {
+    background: var(--accent-olive);
+    border-color: var(--accent-olive);
+    box-shadow: 0 0 0 4px rgba(92, 102, 80, 0.2);
+}
+
+.presentation-progress-item.passed .presentation-progress-dot {
+    background: var(--accent-olive);
+    border-color: var(--accent-olive);
+}
+
+.presentation-progress-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(-5px);
+    transition: all 0.2s ease;
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.presentation-progress-item:hover .presentation-progress-label,
+.presentation-progress-item.active .presentation-progress-label {
+    opacity: 1;
+    transform: translateX(0);
+    color: var(--text-secondary);
+}
+
+.presentation-progress-item.active .presentation-progress-label {
+    font-weight: 500;
+    color: var(--accent-olive);
+}
+
+/* Hide presentation progress on smaller screens */
+@media (max-width: 1100px) {
+    .presentation-progress {
+        display: none !important;
+    }
+}
+
+/* Scroll hint for first slide */
+.presentation-scroll-hint {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    animation: presentationBounce 2s infinite;
+}
+
+@keyframes presentationBounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-8px); }
+}
+
+/* Hide scroll hint after first slide is passed */
+[data-presentation="true"] .presentation-slide:not(:first-of-type) .presentation-scroll-hint {
+    display: none;
+}
+
+/* Presentation mode responsive */
+@media (max-width: 768px) {
+    .presentation-slide {
+        padding: 5rem 1.5rem 3rem;
+    }
+
+    .presentation-slide.hero-slide h1 {
+        font-size: 2.5rem;
+    }
+
+    .presentation-slide h2 {
+        font-size: 1.75rem;
+    }
+
+    .presentation-slide p {
+        font-size: 1.1rem;
+    }
+
+    .presentation-slide::after {
+        bottom: 1rem;
+        right: 1rem;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .presentation-toggle span:not(.icon) {
+        display: none;
+    }
+
+    .presentation-slide.hero-slide h1 {
+        font-size: 2rem;
+    }
+
+    .presentation-slide h2 {
+        font-size: 1.5rem;
     }
 }

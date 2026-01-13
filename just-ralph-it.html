@@ -10,6 +10,51 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Presentation Progress Indicator -->
+    <nav class="presentation-progress" id="presentationProgress">
+        <div class="presentation-progress-track"></div>
+        <div class="presentation-progress-fill" id="progressFill"></div>
+        <div class="presentation-progress-item active" data-slide="0">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Intro</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="1">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">
+                <span class="lang-sv">Koncept</span>
+                <span class="lang-en">Concept</span>
+            </span>
+        </div>
+        <div class="presentation-progress-item" data-slide="2">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Loop</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="3">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">
+                <span class="lang-sv">Principer</span>
+                <span class="lang-en">Principles</span>
+            </span>
+        </div>
+        <div class="presentation-progress-item" data-slide="4">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">
+                <span class="lang-sv">Filer</span>
+                <span class="lang-en">Files</span>
+            </span>
+        </div>
+        <div class="presentation-progress-item" data-slide="5">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">
+                <span class="lang-sv">Kom igång</span>
+                <span class="lang-en">Get started</span>
+            </span>
+        </div>
+    </nav>
+
     <!-- Vertical Scroll Timeline -->
     <div class="scroll-timeline" id="scrollTimeline">
         <div class="scroll-timeline-progress" id="scrollProgress"></div>
@@ -52,7 +97,6 @@
     <nav class="mobile-menu" id="mobileMenu">
         <div class="mobile-menu-header">
             <a href="index.html" class="logo">
-                <span class="logo-icon"></span>
                 B3 Commit
             </a>
             <button class="mobile-menu-close" id="menuClose" aria-label="Stäng meny">&times;</button>
@@ -146,18 +190,16 @@
         <nav class="nav-container">
             <div class="nav-left">
                 <a href="index.html" class="logo">
-                    <span class="logo-icon"></span>
                     B3 Commit
                 </a>
                 <span class="breadcrumb">/ <a href="index.html">AI Handbook</a> / Just Ralph-it</span>
-                <div class="nav-pills active" id="navPills">
-                    <a href="#concept" class="nav-pill"><span class="lang-sv">Koncept</span><span class="lang-en">Concept</span></a>
-                    <a href="#loop" class="nav-pill">Loop</a>
-                    <a href="#principles" class="nav-pill"><span class="lang-sv">Principer</span><span class="lang-en">Principles</span></a>
-                    <a href="#files" class="nav-pill"><span class="lang-sv">Filer</span><span class="lang-en">Files</span></a>
-                </div>
             </div>
             <div class="nav-right">
+                <button class="presentation-toggle" id="presentationToggle" aria-label="Presentation mode">
+                    <span class="icon">📽️</span>
+                    <span class="lang-sv">Presentation</span>
+                    <span class="lang-en">Present</span>
+                </button>
                 <button class="lang-toggle" id="langToggle" aria-label="Byt språk">
                     <span class="flag lang-sv">🇸🇪</span>
                     <span class="flag lang-en">🇬🇧</span>
@@ -194,6 +236,14 @@
                     <span class="lang-en">Let the AI do the work in an infinite loop</span>
                 </p>
             </header>
+
+            <!-- Article Navigation -->
+            <nav class="article-nav" id="articleNav">
+                <a href="#concept" class="nav-pill"><span class="lang-sv">Koncept</span><span class="lang-en">Concept</span></a>
+                <a href="#loop" class="nav-pill">Loop</a>
+                <a href="#principles" class="nav-pill"><span class="lang-sv">Principer</span><span class="lang-en">Principles</span></a>
+                <a href="#files" class="nav-pill"><span class="lang-sv">Filer</span><span class="lang-en">Files</span></a>
+            </nav>
 
             <div class="cursor-tip">
                 <div class="cursor-tip-header">Credit</div>
@@ -480,11 +530,127 @@
         </article>
     </main>
 
+    <!-- Presentation Slides (shown only in presentation mode) -->
+    <section class="presentation-slide hero-slide" data-slide-number="1 / 6">
+        <div class="presentation-slide-content">
+            <p class="article-meta">
+                <span class="lang-sv">Agentisk utveckling // Januari 2026</span>
+                <span class="lang-en">Agentic Development // January 2026</span>
+            </p>
+            <h1>Just Ralph-it</h1>
+            <p class="subtitle">
+                <span class="lang-sv">Låt AI:n göra jobbet i en oändlig loop</span>
+                <span class="lang-en">Let the AI do the work in an infinite loop</span>
+            </p>
+        </div>
+        <div class="presentation-scroll-hint">
+            <span class="lang-sv">Scrolla ner</span>
+            <span class="lang-en">Scroll down</span>
+            <span>↓</span>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="2 / 6">
+        <div class="presentation-slide-content">
+            <h2>
+                <span class="lang-sv">Konceptet: Tre faser, en loop</span>
+                <span class="lang-en">The Concept: Three phases, one loop</span>
+            </h2>
+            <ol>
+                <li><strong><span class="lang-sv">Definiera krav</span><span class="lang-en">Define requirements</span></strong> — <span class="lang-sv">Skriv specifikationer i <code>specs/*.md</code></span><span class="lang-en">Write specifications in <code>specs/*.md</code></span></li>
+                <li><strong><span class="lang-sv">Planera</span><span class="lang-en">Plan</span></strong> — <span class="lang-sv">Generera <code>IMPLEMENTATION_PLAN.md</code></span><span class="lang-en">Generate <code>IMPLEMENTATION_PLAN.md</code></span></li>
+                <li><strong><span class="lang-sv">Bygg</span><span class="lang-en">Build</span></strong> — <span class="lang-sv">Agenten plockar uppgifter, implementerar, committar</span><span class="lang-en">Agent picks tasks, implements, commits</span></li>
+            </ol>
+            <blockquote>
+                <span class="lang-sv"><strong>Nyckelinsikt:</strong> Varje loop-iteration startar med rent kontextfönster.</span>
+                <span class="lang-en"><strong>Key insight:</strong> Each loop iteration starts with a fresh context window.</span>
+            </blockquote>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="3 / 6">
+        <div class="presentation-slide-content">
+            <h2>
+                <span class="lang-sv">Den grundläggande loopen</span>
+                <span class="lang-en">The basic loop</span>
+            </h2>
+            <p>
+                <span class="lang-sv">I sin enklaste form är Ralph bara en bash-loop:</span>
+                <span class="lang-en">In its simplest form, Ralph is just a bash loop:</span>
+            </p>
+            <pre><code><span class="keyword">while</span> :; <span class="keyword">do</span> cat PROMPT.md | claude ; <span class="keyword">done</span></code></pre>
+            <p>
+                <span class="lang-sv">Loopen kör agenten, agenten läser prompten, implementerar nästa uppgift, committar, och avslutar. Bash-loopen startar om direkt — med rent minne.</span>
+                <span class="lang-en">The loop runs the agent, the agent reads the prompt, implements the next task, commits, and exits. The bash loop restarts immediately — with a fresh memory.</span>
+            </p>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="4 / 6">
+        <div class="presentation-slide-content">
+            <h2>
+                <span class="lang-sv">Nyckelprinciper</span>
+                <span class="lang-en">Key Principles</span>
+            </h2>
+            <ul>
+                <li><span class="lang-sv"><strong>Kontext är allt</strong> — håll uppgifter små, rensa kontexten varje iteration</span><span class="lang-en"><strong>Context is everything</strong> — keep tasks small, clear context each iteration</span></li>
+                <li><span class="lang-sv"><strong>Backpressure via verktyg</strong> — tester, linters, bygge måste passera</span><span class="lang-en"><strong>Backpressure via tools</strong> — tests, linters, build must pass</span></li>
+                <li><span class="lang-sv"><strong>Let Ralph Ralph</strong> — lita på att agenten självkorrigerar</span><span class="lang-en"><strong>Let Ralph Ralph</strong> — trust the agent to self-correct</span></li>
+            </ul>
+            <blockquote>
+                <span class="lang-sv">"Eventual consistency achieved through iteration."</span>
+                <span class="lang-en">"Eventual consistency achieved through iteration."</span>
+            </blockquote>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="5 / 6">
+        <div class="presentation-slide-content">
+            <h2>
+                <span class="lang-sv">Filstruktur</span>
+                <span class="lang-en">File Structure</span>
+            </h2>
+            <pre><code>project-root/
+├── loop.sh                    <span class="comment"># Ralph loop-skript</span>
+├── PROMPT_build.md            <span class="comment"># Instruktioner för build mode</span>
+├── PROMPT_plan.md             <span class="comment"># Instruktioner för plan mode</span>
+├── AGENTS.md                  <span class="comment"># Hur man bygger/kör projektet</span>
+├── IMPLEMENTATION_PLAN.md     <span class="comment"># Prioriterad uppgiftslista</span>
+├── specs/                     <span class="comment"># Kravspecifikationer</span>
+└── src/                       <span class="comment"># Applikationskod</span></code></pre>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="6 / 6">
+        <div class="presentation-slide-content">
+            <h2>
+                <span class="lang-sv">Kom igång</span>
+                <span class="lang-en">Get Started</span>
+            </h2>
+            <ol>
+                <li><span class="lang-sv">Installera Claude CLI</span><span class="lang-en">Install Claude CLI</span></li>
+                <li><span class="lang-sv">Skapa filstrukturen</span><span class="lang-en">Create the file structure</span></li>
+                <li><span class="lang-sv">Skriv specs i <code>specs/*.md</code></span><span class="lang-en">Write specs in <code>specs/*.md</code></span></li>
+                <li><span class="lang-sv">Kör <code>./loop.sh plan</code></span><span class="lang-en">Run <code>./loop.sh plan</code></span></li>
+                <li><span class="lang-sv">Kör <code>./loop.sh</code> och låt Ralph arbeta</span><span class="lang-en">Run <code>./loop.sh</code> and let Ralph work</span></li>
+            </ol>
+            <div class="cursor-tip">
+                <div class="cursor-tip-header">
+                    <span class="lang-sv">Fullständig dokumentation</span>
+                    <span class="lang-en">Full documentation</span>
+                </div>
+                <p>
+                    <span class="lang-sv">Se <a href="https://github.com/ghuntley/how-to-ralph-wiggum" target="_blank">The Ralph Playbook</a> av Geoffrey Huntley.</span>
+                    <span class="lang-en">See <a href="https://github.com/ghuntley/how-to-ralph-wiggum" target="_blank">The Ralph Playbook</a> by Geoffrey Huntley.</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
                 <a href="index.html" class="logo">
-                    <span class="logo-icon"></span>
                     B3 Commit
                 </a>
                 <span class="status-badge">All Systems Operational</span>
@@ -661,6 +827,112 @@
                 }
             });
         });
+
+        // ==================== 
+        // Presentation Mode
+        // ====================
+        const presentationToggle = document.getElementById('presentationToggle');
+        const presentationProgress = document.getElementById('presentationProgress');
+        const progressFill = document.getElementById('progressFill');
+        const slides = document.querySelectorAll('.presentation-slide');
+        const progressItems = document.querySelectorAll('.presentation-progress-item');
+
+        function setPresentationMode(enabled) {
+            html.setAttribute('data-presentation', enabled ? 'true' : 'false');
+            presentationToggle.classList.toggle('active', enabled);
+            
+            if (enabled) {
+                if (slides.length > 0) {
+                    slides[0].scrollIntoView({ behavior: 'smooth' });
+                }
+            } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        presentationToggle.addEventListener('click', () => {
+            const isActive = html.getAttribute('data-presentation') === 'true';
+            setPresentationMode(!isActive);
+        });
+
+        function updatePresentationProgress() {
+            if (html.getAttribute('data-presentation') !== 'true') return;
+
+            const scrollTop = window.scrollY;
+            const windowHeight = window.innerHeight;
+            let currentSlide = 0;
+
+            slides.forEach((slide, index) => {
+                const slideTop = slide.offsetTop;
+                const slideHeight = slide.offsetHeight;
+                if (scrollTop + windowHeight / 2 >= slideTop && 
+                    scrollTop + windowHeight / 2 < slideTop + slideHeight) {
+                    currentSlide = index;
+                }
+            });
+
+            progressItems.forEach((item, index) => {
+                item.classList.remove('active', 'passed');
+                if (index < currentSlide) {
+                    item.classList.add('passed');
+                } else if (index === currentSlide) {
+                    item.classList.add('active');
+                }
+            });
+
+            const totalSlides = slides.length;
+            const progressPercentage = (currentSlide / (totalSlides - 1)) * 100;
+            progressFill.style.height = progressPercentage + '%';
+        }
+
+        window.addEventListener('scroll', updatePresentationProgress);
+
+        progressItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                if (slides[index]) {
+                    slides[index].scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (html.getAttribute('data-presentation') !== 'true') return;
+
+            let currentSlide = 0;
+            const scrollTop = window.scrollY;
+            const windowHeight = window.innerHeight;
+
+            slides.forEach((slide, index) => {
+                const slideTop = slide.offsetTop;
+                const slideHeight = slide.offsetHeight;
+                if (scrollTop + windowHeight / 2 >= slideTop && 
+                    scrollTop + windowHeight / 2 < slideTop + slideHeight) {
+                    currentSlide = index;
+                }
+            });
+
+            if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+                e.preventDefault();
+                if (currentSlide < slides.length - 1) {
+                    slides[currentSlide + 1].scrollIntoView({ behavior: 'smooth' });
+                }
+            } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                e.preventDefault();
+                if (currentSlide > 0) {
+                    slides[currentSlide - 1].scrollIntoView({ behavior: 'smooth' });
+                }
+            } else if (e.key === 'Escape') {
+                setPresentationMode(false);
+            } else if (e.key === 'Home') {
+                e.preventDefault();
+                slides[0].scrollIntoView({ behavior: 'smooth' });
+            } else if (e.key === 'End') {
+                e.preventDefault();
+                slides[slides.length - 1].scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+
+        updatePresentationProgress();
     </script>
 </body>
 </html>

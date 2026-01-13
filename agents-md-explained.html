@@ -13,6 +13,76 @@
     <!-- Progress Bar -->
     <div class="progress-bar" id="progressBar"></div>
 
+    <!-- Presentation Progress Indicator -->
+    <nav class="presentation-progress" id="presentationProgress">
+        <div class="presentation-progress-track"></div>
+        <div class="presentation-progress-fill" id="progressFill"></div>
+        <div class="presentation-progress-item active" data-slide="0">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">
+                <span class="lang-sv">Intro</span>
+                <span class="lang-en">Intro</span>
+            </span>
+        </div>
+        <div class="presentation-progress-item" data-slide="1">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">
+                <span class="lang-sv">Vad är det?</span>
+                <span class="lang-en">What is it?</span>
+            </span>
+        </div>
+        <div class="presentation-progress-item" data-slide="2">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">
+                <span class="lang-sv">Varför det är viktigt</span>
+                <span class="lang-en">Why it matters</span>
+            </span>
+        </div>
+        <div class="presentation-progress-item" data-slide="3">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">
+                <span class="lang-sv">Uppmärksamhet</span>
+                <span class="lang-en">Attention</span>
+            </span>
+        </div>
+        <div class="presentation-progress-item" data-slide="4">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">
+                <span class="lang-sv">Hur det laddas</span>
+                <span class="lang-en">How it loads</span>
+            </span>
+        </div>
+        <div class="presentation-progress-item" data-slide="5">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Compounding</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="6">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">
+                <span class="lang-sv">Modellkänslighet</span>
+                <span class="lang-en">Model Sensitivity</span>
+            </span>
+        </div>
+        <div class="presentation-progress-item" data-slide="7">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">
+                <span class="lang-sv">Exempel</span>
+                <span class="lang-en">Example</span>
+            </span>
+        </div>
+        <div class="presentation-progress-item" data-slide="8">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">TL;DR</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="9">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">
+                <span class="lang-sv">Referenser</span>
+                <span class="lang-en">References</span>
+            </span>
+        </div>
+    </nav>
+
     <!-- Menu Overlay -->
     <div class="menu-overlay" id="menuOverlay"></div>
 
@@ -20,7 +90,6 @@
     <nav class="mobile-menu" id="mobileMenu">
         <div class="mobile-menu-header">
             <a href="index.html" class="logo">
-                <span class="logo-icon"></span>
                 B3 Commit
             </a>
             <button class="mobile-menu-close" id="menuClose" aria-label="Stäng meny">&times;</button>
@@ -117,19 +186,16 @@
         <nav class="nav-container">
             <div class="nav-left">
                 <a href="index.html" class="logo">
-                    <span class="logo-icon"></span>
                     B3 Commit
                 </a>
                 <span class="breadcrumb">/ <a href="index.html">AI Handbook</a> / Agents.md Explained</span>
-                <div class="nav-pills active" id="navPills">
-                    <a href="#why" class="nav-pill"><span class="lang-sv">Varför</span><span class="lang-en">Why</span></a>
-                    <a href="#attention" class="nav-pill"><span class="lang-sv">Uppmärksamhet</span><span class="lang-en">Attention</span></a>
-                    <a href="#compounding" class="nav-pill">Compounding</a>
-                    <a href="#sensitivity" class="nav-pill"><span class="lang-sv">Modeller</span><span class="lang-en">Models</span></a>
-                    <a href="#example" class="nav-pill"><span class="lang-sv">Exempel</span><span class="lang-en">Example</span></a>
-                </div>
             </div>
             <div class="nav-right">
+                <button class="presentation-toggle" id="presentationToggle" aria-label="Presentation mode">
+                    <span class="icon">📽️</span>
+                    <span class="lang-sv">Presentation</span>
+                    <span class="lang-en">Present</span>
+                </button>
                 <button class="lang-toggle" id="langToggle" aria-label="Byt språk">
                     <span class="flag lang-sv">🇸🇪</span>
                     <span class="flag lang-en">🇬🇧</span>
@@ -169,6 +235,15 @@
                     <span class="lang-en">A Practical Guide to Getting Real Value from Agentic AI</span>
                 </p>
             </header>
+
+            <!-- Article Navigation -->
+            <nav class="article-nav" id="articleNav">
+                <a href="#why" class="nav-pill"><span class="lang-sv">Varför</span><span class="lang-en">Why</span></a>
+                <a href="#attention" class="nav-pill"><span class="lang-sv">Uppmärksamhet</span><span class="lang-en">Attention</span></a>
+                <a href="#compounding" class="nav-pill">Compounding</a>
+                <a href="#sensitivity" class="nav-pill"><span class="lang-sv">Modeller</span><span class="lang-en">Models</span></a>
+                <a href="#example" class="nav-pill"><span class="lang-sv">Exempel</span><span class="lang-en">Example</span></a>
+            </nav>
 
             <!-- Introduction -->
             <h2>
@@ -610,11 +685,235 @@
         </article>
     </main>
 
+    <!-- Presentation Slides (shown only in presentation mode) -->
+    <section class="presentation-slide hero-slide" data-slide-number="1 / 10">
+        <div class="presentation-slide-content">
+            <p class="article-meta">
+                <span class="lang-sv">Agentisk utveckling // Januari 2026</span>
+                <span class="lang-en">Agentic Development // January 2026</span>
+            </p>
+            <h1>
+                <span class="lang-sv">Agents.md förklarat</span>
+                <span class="lang-en">Agents.md Explained</span>
+            </h1>
+            <p class="subtitle">
+                <span class="lang-sv">En praktisk guide till tillförlitlig agentisk AI</span>
+                <span class="lang-en">A Practical Guide to Getting Real Value from Agentic AI</span>
+            </p>
+        </div>
+        <div class="presentation-scroll-hint">
+            <span class="lang-sv">Scrolla ner</span>
+            <span class="lang-en">Scroll down</span>
+            <span>↓</span>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="2 / 10">
+        <div class="presentation-slide-content">
+            <h2>
+                <span class="lang-sv">Vad Agents.md är</span>
+                <span class="lang-en">What Agents.md Is</span>
+            </h2>
+            <p>
+                <span class="lang-sv">När AI-baserade kodverktyg utvecklades från enkel autocomplete till autonoma <em>agenter</em> uppstod ett nytt grundproblem: <strong>kontext</strong>.</span>
+                <span class="lang-en">As AI-powered coding tools evolved from simple autocomplete into autonomous <em>agents</em>, a new problem emerged: <strong>context</strong>.</span>
+            </p>
+            <p>
+                <span class="lang-sv">Varje gång en agent börjar arbeta behöver den förstå:</span>
+                <span class="lang-en">Every time an agent starts working, it needs to understand:</span>
+            </p>
+            <ul>
+                <li><span class="lang-sv">hur projektet byggs</span><span class="lang-en">how your project is built</span></li>
+                <li><span class="lang-sv">hur det testas</span><span class="lang-en">how it is tested</span></li>
+                <li><span class="lang-sv">hur koden är strukturerad</span><span class="lang-en">how it is structured</span></li>
+                <li><span class="lang-sv">vad den absolut inte får göra</span><span class="lang-en">what it must never do</span></li>
+            </ul>
+            <p>
+                <span class="lang-sv"><code>agents.md</code> är en <strong>liten, persistent instruktionsfil</strong> som automatiskt laddas när en agent arbetar i ett repo.</span>
+                <span class="lang-en"><code>agents.md</code> is a <strong>small, persistent instruction file</strong> that is automatically loaded when an agent works in a repository.</span>
+            </p>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="3 / 10">
+        <div class="presentation-slide-content">
+            <h2>
+                <span class="lang-sv">Varför det är viktigt</span>
+                <span class="lang-en">Why It Matters</span>
+            </h2>
+            <p>
+                <span class="lang-sv">Agentisk AI är lätt att demonstrera – och svår att lita på.</span>
+                <span class="lang-en">Agentic AI is easy to demonstrate — and notoriously hard to trust.</span>
+            </p>
+            <ul>
+                <li><span class="lang-sv">Agenten ser imponerande ut i början</span><span class="lang-en">The agent looks impressive at first</span></li>
+                <li><span class="lang-sv">Den löser några uppgifter korrekt</span><span class="lang-en">It solves a few tasks correctly</span></li>
+                <li><span class="lang-sv">Beteendet blir sedan inkonsekvent</span><span class="lang-en">Then behavior becomes inconsistent</span></li>
+                <li><span class="lang-sv">Små ändringar ger oväntade fel</span><span class="lang-en">Small changes produce surprising failures</span></li>
+            </ul>
+            <blockquote>
+                <span class="lang-sv">Orsaken är nästan alltid <strong>saknad eller instabil kontext</strong>.</span>
+                <span class="lang-en">The root cause is almost always <strong>missing or unstable context</strong>.</span>
+            </blockquote>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="4 / 10">
+        <div class="presentation-slide-content">
+            <h2>
+                <span class="lang-sv">Uppmärksamhet är ändlig</span>
+                <span class="lang-en">Attention Is Finite</span>
+            </h2>
+            <p>
+                <span class="lang-sv">Alla LLM-baserade agenter har en hård begränsning: <strong>uppmärksamhetsbudget</strong>.</span>
+                <span class="lang-en">All LLM-based agents share a hard limitation: <strong>attention budget</strong>.</span>
+            </p>
+            <ul>
+                <li><span class="lang-sv">För mycket kontext → sämre resonemang</span><span class="lang-en">Too much context → degraded reasoning</span></li>
+                <li><span class="lang-sv">För lite kontext → hallucinationer</span><span class="lang-en">Too little context → hallucinations</span></li>
+            </ul>
+            <div class="cursor-tip">
+                <div class="cursor-tip-header">
+                    <span class="lang-sv">Nyckelinsikt</span>
+                    <span class="lang-en">Key Insight</span>
+                </div>
+                <p>
+                    <span class="lang-sv"><code>agents.md</code> laddas tidigt och permanent i kontextfönstret. Varje onödig rad tränger undan verkligt arbete.</span>
+                    <span class="lang-en"><code>agents.md</code> is injected early and persistently. Every unnecessary line reduces space for actual work.</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="5 / 10">
+        <div class="presentation-slide-content">
+            <h2>
+                <span class="lang-sv">Hur Agents.md laddas</span>
+                <span class="lang-en">How Agents.md Is Loaded</span>
+            </h2>
+            <div class="terminal">
+                <div class="terminal-line"><span class="lang-sv">Plats 0: system-/harness-prompt (verktygsstyrd)</span><span class="lang-en">Position 0: Harness / system prompt (tool-owned)</span></div>
+                <div class="terminal-line"><span class="lang-sv">Plats 1: agents.md (användarstyrd, persistent)</span><span class="lang-en">Position 1: agents.md (user-controlled, persistent)</span></div>
+                <div class="terminal-line"><span class="lang-sv">Plats 2+: arbetsminne (uppgifter, loggar, resonemang)</span><span class="lang-en">Position 2+: Working memory (tasks, logs, reasoning)</span></div>
+            </div>
+            <p>
+                <span class="lang-sv">Allt på plats 1 måste vara <strong>minimalt, stabilt och högvärdigt</strong>.</span>
+                <span class="lang-en">Anything at position 1 must be <strong>minimal, stable, and high-value</strong>.</span>
+            </p>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="6 / 10">
+        <div class="presentation-slide-content">
+            <h2>Compounding Engineering</h2>
+            <p>
+                <span class="lang-sv"><strong>Varje smärtsam interaktion med en agent förbättrar nästa.</strong></span>
+                <span class="lang-en"><strong>Every painful interaction with an AI agent improves the next one.</strong></span>
+            </p>
+            <p>
+                <span class="lang-sv">I stället för att upprepa korrigeringar kodar du in begränsningar och arbetssätt så att beteendet förbättras över tid.</span>
+                <span class="lang-en">Instead of repeating corrections, you encode constraints and workflows so behavior improves over time.</span>
+            </p>
+            <blockquote>
+                <span class="lang-sv">De största vinsterna kommer från att <strong>aldrig behöva rätta samma AI-misstag två gånger</strong>.</span>
+                <span class="lang-en">The biggest gains come from <strong>never fixing the same AI mistake twice</strong>.</span>
+            </blockquote>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="7 / 10">
+        <div class="presentation-slide-content">
+            <h2>
+                <span class="lang-sv">Modellkänslighet</span>
+                <span class="lang-en">Model Sensitivity</span>
+            </h2>
+            <p>
+                <span class="lang-sv">Olika modeller tolkar <em>samma instruktioner</em> på olika sätt.</span>
+                <span class="lang-en">Different models interpret the <em>same instructions</em> in different ways.</span>
+            </p>
+            <ul>
+                <li><span class="lang-sv">Hur strikt de tolkar begränsningar</span><span class="lang-en">How strictly they interpret constraints</span></li>
+                <li><span class="lang-sv">Hur de reagerar på ton och betoning</span><span class="lang-en">How they respond to tone and emphasis</span></li>
+                <li><span class="lang-sv">Hur mycket initiativ de tar</span><span class="lang-en">How much initiative they take by default</span></li>
+                <li><span class="lang-sv">Hur de balanserar försiktighet mot handling</span><span class="lang-en">How they balance caution versus action</span></li>
+            </ul>
+            <div class="cursor-tip">
+                <div class="cursor-tip-header">
+                    <span class="lang-sv">Nyckelinsikt</span>
+                    <span class="lang-en">Key Insight</span>
+                </div>
+                <p>
+                    <span class="lang-sv"><strong>Agents.md är beteendeprogrammering, och beteende är modellberoende.</strong></span>
+                    <span class="lang-en"><strong>Agents.md is behavioral programming, and behavior is model-dependent.</strong></span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="8 / 10">
+        <div class="presentation-slide-content">
+            <h2>
+                <span class="lang-sv">Exempel på en bra agents.md</span>
+                <span class="lang-en">Example of a Good agents.md</span>
+            </h2>
+            <pre><code><span class="comment">## Commands</span>
+- Build: npm run build
+- Test: npm test
+
+<span class="comment">## Structure</span>
+- src/: application code
+- test/: tests
+
+<span class="comment">## Stack</span>
+- Node.js 20
+- TypeScript 5.x
+
+<span class="comment">## Boundaries</span>
+- Never commit secrets
+- Never delete failing tests</code></pre>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="9 / 10">
+        <div class="presentation-slide-content">
+            <h2>TL;DR</h2>
+            <ul>
+                <li><span class="lang-sv">Stabil kontext ger pålitliga agenter</span><span class="lang-en">Stable context enables reliable agents</span></li>
+                <li><span class="lang-sv"><code>agents.md</code> är hög hävstång och dyr kontext</span><span class="lang-en"><code>agents.md</code> is high-leverage and expensive</span></li>
+                <li><span class="lang-sv">Håll den liten och explicit</span><span class="lang-en">Keep it minimal and explicit</span></li>
+                <li><span class="lang-sv">Eliminera upprepade fel</span><span class="lang-en">Use it to eliminate repeated failures</span></li>
+                <li><span class="lang-sv">Målet är förtroende, inte imponerande output</span><span class="lang-en">The goal is trust, not cleverness</span></li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="10 / 10">
+        <div class="presentation-slide-content">
+            <h2>
+                <span class="lang-sv">Referenser & Credits</span>
+                <span class="lang-en">References & Credits</span>
+            </h2>
+            <h3>
+                <span class="lang-sv">Officiella resurser</span>
+                <span class="lang-en">Official Resources</span>
+            </h3>
+            <ul>
+                <li><a href="https://agents.md/" target="_blank">agents.md</a></li>
+                <li><a href="https://www.claude.com/blog/using-claude-md-files" target="_blank">Using CLAUDE.md Files — Anthropic</a></li>
+                <li><a href="https://github.blog/ai-and-ml/github-copilot/how-to-write-a-great-agents-md-lessons-from-over-2500-repositories/" target="_blank">How to Write a Great agents.md — GitHub Blog</a></li>
+            </ul>
+            <h3>Inspiration</h3>
+            <ul>
+                <li><a href="https://www.youtube.com/@GritAIStudio" target="_blank">Grit AI Studio</a></li>
+                <li><a href="https://ghuntley.com/" target="_blank">Geoffrey Huntley</a></li>
+            </ul>
+        </div>
+    </section>
+
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
                 <a href="index.html" class="logo">
-                    <span class="logo-icon"></span>
                     B3 Commit
                 </a>
                 <span class="status-badge">All Systems Operational</span>
@@ -741,6 +1040,130 @@
                 }
             });
         });
+
+        // ==================== 
+        // Presentation Mode
+        // ====================
+        const presentationToggle = document.getElementById('presentationToggle');
+        const presentationProgress = document.getElementById('presentationProgress');
+        const progressFill = document.getElementById('progressFill');
+        const slides = document.querySelectorAll('.presentation-slide');
+        const progressItems = document.querySelectorAll('.presentation-progress-item');
+
+        function setPresentationMode(enabled) {
+            html.setAttribute('data-presentation', enabled ? 'true' : 'false');
+            localStorage.setItem('presentationMode', enabled ? 'true' : 'false');
+            presentationToggle.classList.toggle('active', enabled);
+            
+            if (enabled) {
+                // Scroll to first slide
+                if (slides.length > 0) {
+                    slides[0].scrollIntoView({ behavior: 'smooth' });
+                }
+            } else {
+                // Scroll to top of article
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // Check for saved presentation mode preference
+        const savedPresentationMode = localStorage.getItem('presentationMode') === 'true';
+        if (savedPresentationMode) {
+            setPresentationMode(true);
+        }
+
+        presentationToggle.addEventListener('click', () => {
+            const isActive = html.getAttribute('data-presentation') === 'true';
+            setPresentationMode(!isActive);
+        });
+
+        // Track current slide and update progress
+        function updatePresentationProgress() {
+            if (html.getAttribute('data-presentation') !== 'true') return;
+
+            const scrollTop = window.scrollY;
+            const windowHeight = window.innerHeight;
+            let currentSlide = 0;
+
+            slides.forEach((slide, index) => {
+                const slideTop = slide.offsetTop;
+                const slideHeight = slide.offsetHeight;
+                
+                // If the middle of the viewport is within the slide
+                if (scrollTop + windowHeight / 2 >= slideTop && 
+                    scrollTop + windowHeight / 2 < slideTop + slideHeight) {
+                    currentSlide = index;
+                }
+            });
+
+            // Update progress items
+            progressItems.forEach((item, index) => {
+                item.classList.remove('active', 'passed');
+                if (index < currentSlide) {
+                    item.classList.add('passed');
+                } else if (index === currentSlide) {
+                    item.classList.add('active');
+                }
+            });
+
+            // Update progress fill
+            const totalSlides = slides.length;
+            const progressPercentage = (currentSlide / (totalSlides - 1)) * 100;
+            progressFill.style.height = progressPercentage + '%';
+        }
+
+        // Listen for scroll to update progress
+        window.addEventListener('scroll', updatePresentationProgress);
+
+        // Click on progress items to navigate
+        progressItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                if (slides[index]) {
+                    slides[index].scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Keyboard navigation in presentation mode
+        document.addEventListener('keydown', (e) => {
+            if (html.getAttribute('data-presentation') !== 'true') return;
+
+            let currentSlide = 0;
+            const scrollTop = window.scrollY;
+            const windowHeight = window.innerHeight;
+
+            slides.forEach((slide, index) => {
+                const slideTop = slide.offsetTop;
+                const slideHeight = slide.offsetHeight;
+                if (scrollTop + windowHeight / 2 >= slideTop && 
+                    scrollTop + windowHeight / 2 < slideTop + slideHeight) {
+                    currentSlide = index;
+                }
+            });
+
+            if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+                e.preventDefault();
+                if (currentSlide < slides.length - 1) {
+                    slides[currentSlide + 1].scrollIntoView({ behavior: 'smooth' });
+                }
+            } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                e.preventDefault();
+                if (currentSlide > 0) {
+                    slides[currentSlide - 1].scrollIntoView({ behavior: 'smooth' });
+                }
+            } else if (e.key === 'Escape') {
+                setPresentationMode(false);
+            } else if (e.key === 'Home') {
+                e.preventDefault();
+                slides[0].scrollIntoView({ behavior: 'smooth' });
+            } else if (e.key === 'End') {
+                e.preventDefault();
+                slides[slides.length - 1].scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+
+        // Initial progress update
+        updatePresentationProgress();
     </script>
 </body>
 </html>

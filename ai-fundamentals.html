@@ -10,6 +10,65 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Presentation Progress Indicator -->
+    <nav class="presentation-progress" id="presentationProgress">
+        <div class="presentation-progress-track"></div>
+        <div class="presentation-progress-fill" id="progressFill"></div>
+        <div class="presentation-progress-item active" data-slide="0">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Intro</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="1">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">
+                <span class="lang-sv">Modell vs App</span>
+                <span class="lang-en">Model vs App</span>
+            </span>
+        </div>
+        <div class="presentation-progress-item" data-slide="2">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Tokens</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="3">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">LLM & LMM</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="4">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Prompting</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="5">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">RAG</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="6">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Tools</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="7">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Agent</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="8">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">
+                <span class="lang-sv">Säkerhet</span>
+                <span class="lang-en">Security</span>
+            </span>
+        </div>
+        <div class="presentation-progress-item" data-slide="9">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Evals</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="10">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">TL;DR</span>
+        </div>
+    </nav>
+
     <!-- Vertical Scroll Timeline -->
     <div class="scroll-timeline" id="scrollTimeline">
         <div class="scroll-timeline-progress" id="scrollProgress"></div>
@@ -46,7 +105,6 @@
     <nav class="mobile-menu" id="mobileMenu">
         <div class="mobile-menu-header">
             <a href="index.html" class="logo">
-                <span class="logo-icon"></span>
                 B3 Commit
             </a>
             <button class="mobile-menu-close" id="menuClose" aria-label="Stäng meny">×</button>
@@ -146,20 +204,16 @@
         <nav class="nav-container">
             <div class="nav-left">
                 <a href="index.html" class="logo">
-                    <span class="logo-icon"></span>
                     B3 Commit
                 </a>
                 <span class="breadcrumb">/ <a href="index.html">AI Handbook</a> / AI Fundamentals 2026</span>
-                <div class="nav-pills active" id="navPills">
-                    <a href="#intro" class="nav-pill">Intro</a>
-                    <a href="#tokens" class="nav-pill">Tokens</a>
-                    <a href="#prompting" class="nav-pill">Prompting</a>
-                    <a href="#rag" class="nav-pill">RAG</a>
-                    <a href="#tools" class="nav-pill">Tools</a>
-                    <a href="#agent" class="nav-pill">Agent</a>
-                </div>
             </div>
             <div class="nav-right">
+                <button class="presentation-toggle" id="presentationToggle" aria-label="Presentation mode">
+                    <span class="icon">📽️</span>
+                    <span class="lang-sv">Presentation</span>
+                    <span class="lang-en">Present</span>
+                </button>
                 <button class="lang-toggle" id="langToggle" aria-label="Byt språk">
                     <span class="flag lang-sv">🇸🇪</span>
                     <span class="flag lang-en">🇬🇧</span>
@@ -196,6 +250,19 @@
                     <span class="lang-en">A practical introduction to generative AI for developers</span>
                 </p>
             </header>
+
+            <!-- Article Navigation -->
+            <nav class="article-nav" id="articleNav">
+                <a href="#intro" class="nav-pill">Intro</a>
+                <a href="#tokens" class="nav-pill">Tokens</a>
+                <a href="#begrepp" class="nav-pill">LLM/LMM</a>
+                <a href="#prompting" class="nav-pill">Prompting</a>
+                <a href="#rag" class="nav-pill">RAG</a>
+                <a href="#tools" class="nav-pill">Tools</a>
+                <a href="#agent" class="nav-pill">Agent</a>
+                <a href="#sakerhet" class="nav-pill"><span class="lang-sv">Säkerhet</span><span class="lang-en">Security</span></a>
+                <a href="#evals" class="nav-pill">Evals</a>
+            </nav>
 
             <!-- Section 1: Modell vs Applikation -->
             <h2>
@@ -1030,11 +1097,240 @@ Output: return JSON with fields:
         </article>
     </main>
 
+    <!-- Presentation Slides (shown only in presentation mode) -->
+    <section class="presentation-slide hero-slide" data-slide-number="1 / 11">
+        <div class="presentation-slide-content">
+            <p class="article-meta">
+                <span class="lang-sv">AI Grundkurs // Januari 2026</span>
+                <span class="lang-en">AI Basics // January 2026</span>
+            </p>
+            <h1>AI Fundamentals 2026</h1>
+            <p class="subtitle">
+                <span class="lang-sv">En praktisk grundkurs i generativ AI för systemutvecklare</span>
+                <span class="lang-en">A practical introduction to generative AI for developers</span>
+            </p>
+        </div>
+        <div class="presentation-scroll-hint">
+            <span class="lang-sv">Scrolla ner</span>
+            <span class="lang-en">Scroll down</span>
+            <span>↓</span>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="2 / 11">
+        <div class="presentation-slide-content">
+            <h2>
+                <span class="lang-sv">Modell vs Applikation</span>
+                <span class="lang-en">Model vs Application</span>
+            </h2>
+            <p>
+                <span class="lang-sv">En <strong>modell</strong> är motorn som tar in input och skapar output. Din <strong>applikation</strong> är den riktiga produkten.</span>
+                <span class="lang-en">A <strong>model</strong> is the engine that takes input and produces output. Your <strong>application</strong> is the real product.</span>
+            </p>
+            <ul>
+                <li><span class="lang-sv">Promptmallar och regler</span><span class="lang-en">Prompt templates and rules</span></li>
+                <li><span class="lang-sv">Koppling till dokument och data</span><span class="lang-en">Connection to documents and data</span></li>
+                <li><span class="lang-sv">Verktygsanrop (funktioner)</span><span class="lang-en">Tool calls (functions)</span></li>
+                <li><span class="lang-sv">Validering och säkerhet</span><span class="lang-en">Validation and security</span></li>
+                <li><span class="lang-sv">Loggning och mätning (evals)</span><span class="lang-en">Logging and measurement (evals)</span></li>
+            </ul>
+            <blockquote>
+                <span class="lang-sv"><strong>Aha 1:</strong> Modellen är bara "motorn". Din produkt är applikationen runtomkring.</span>
+                <span class="lang-en"><strong>Aha 1:</strong> The model is just the "engine". Your product is the application around it.</span>
+            </blockquote>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="3 / 11">
+        <div class="presentation-slide-content">
+            <h2>
+                <span class="lang-sv">Tokens & Kontext</span>
+                <span class="lang-en">Tokens & Context</span>
+            </h2>
+            <p>
+                <span class="lang-sv">Modellen läser och skriver <strong>tokens</strong> — små textbitar. Kontextfönstret är max tokens per anrop.</span>
+                <span class="lang-en">The model reads and writes <strong>tokens</strong> — small pieces of text. The context window is max tokens per request.</span>
+            </p>
+            <ul>
+                <li><span class="lang-sv"><strong>Pris</strong> — ofta per token</span><span class="lang-en"><strong>Price</strong> — often per token</span></li>
+                <li><span class="lang-sv"><strong>Svarstid</strong> — fler tokens tar längre tid</span><span class="lang-en"><strong>Response time</strong> — more tokens take longer</span></li>
+                <li><span class="lang-sv"><strong>Maxlängd</strong> — på input + output</span><span class="lang-en"><strong>Max length</strong> — of input + output</span></li>
+            </ul>
+            <blockquote>
+                <span class="lang-sv"><strong>Aha 2:</strong> Att hantera kontext smart är en kärnkompetens i generativ AI.</span>
+                <span class="lang-en"><strong>Aha 2:</strong> Managing context smartly is a core competency in generative AI.</span>
+            </blockquote>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="4 / 11">
+        <div class="presentation-slide-content">
+            <h2>LLM & LMM</h2>
+            <ul>
+                <li><strong>LLM</strong> = Large Language Model (<span class="lang-sv">bra på text/kod</span><span class="lang-en">good at text/code</span>)</li>
+                <li><strong>LMM</strong> = Large Multimodal Model (<span class="lang-sv">hanterar text + bild</span><span class="lang-en">handles text + image</span>)</li>
+            </ul>
+            <p>
+                <span class="lang-sv"><strong>Tumregel:</strong></span>
+                <span class="lang-en"><strong>Rule of thumb:</strong></span>
+            </p>
+            <ul>
+                <li><span class="lang-sv">Text/kod → LLM</span><span class="lang-en">Text/code → LLM</span></li>
+                <li><span class="lang-sv">Text + bilder/diagram → LMM</span><span class="lang-en">Text + images/diagrams → LMM</span></li>
+            </ul>
+            <div class="cursor-tip">
+                <div class="cursor-tip-header">
+                    <span class="lang-sv">Modellexempel</span>
+                    <span class="lang-en">Model example</span>
+                </div>
+                <p>
+                    <span class="lang-sv">GPT-5.1 stödjer text och bild som input. Gemini 3-serien är multimodal och agent-inriktad.</span>
+                    <span class="lang-en">GPT-5.1 supports text and image as input. The Gemini 3 series is multimodal and agent-focused.</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="5 / 11">
+        <div class="presentation-slide-content">
+            <h2>Prompting</h2>
+            <p>
+                <span class="lang-sv">En prompt är inte "en fråga", utan en <strong>spec</strong> för hur systemet ska bete sig.</span>
+                <span class="lang-en">A prompt is not "a question", but a <strong>spec</strong> for how the system should behave.</span>
+            </p>
+            <p><span class="lang-sv">En bra prompt har fyra delar:</span><span class="lang-en">A good prompt has four parts:</span></p>
+            <ol>
+                <li><strong><span class="lang-sv">Roll</span><span class="lang-en">Role</span></strong>: "<span class="lang-sv">Du är en senior backendutvecklare...</span><span class="lang-en">You are a senior backend developer...</span>"</li>
+                <li><strong><span class="lang-sv">Mål</span><span class="lang-en">Goal</span></strong>: "<span class="lang-sv">Föreslå en fix...</span><span class="lang-en">Suggest a fix...</span>"</li>
+                <li><strong><span class="lang-sv">Regler</span><span class="lang-en">Rules</span></strong>: "<span class="lang-sv">Använd bara källor... gissa inte...</span><span class="lang-en">Only use sources... don't guess...</span>"</li>
+                <li><strong><span class="lang-sv">Outputformat</span><span class="lang-en">Output format</span></strong>: "<span class="lang-sv">Svara i JSON enligt schema...</span><span class="lang-en">Respond in JSON according to schema...</span>"</li>
+            </ol>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="6 / 11">
+        <div class="presentation-slide-content">
+            <h2>RAG</h2>
+            <p>
+                <span class="lang-sv"><strong>RAG</strong> = Retrieval-Augmented Generation = "hämta först, skriv sen"</span>
+                <span class="lang-en"><strong>RAG</strong> = Retrieval-Augmented Generation = "retrieve first, then write"</span>
+            </p>
+            <ol>
+                <li><span class="lang-sv">Sök fram relevanta utdrag (från dokument/kod)</span><span class="lang-en">Search for relevant excerpts (from documents/code)</span></li>
+                <li><span class="lang-sv">Stoppa in dem i kontext</span><span class="lang-en">Insert them into context</span></li>
+                <li><span class="lang-sv">Modellen skriver svaret med utdragen som stöd</span><span class="lang-en">The model writes the answer with the excerpts as support</span></li>
+            </ol>
+            <p>
+                <span class="lang-sv"><strong>Embeddings</strong> representerar betydelse som talvektorer. <strong>Vektordatabas</strong> hittar liknande innehåll snabbt.</span>
+                <span class="lang-en"><strong>Embeddings</strong> represent meaning as number vectors. <strong>Vector database</strong> finds similar content quickly.</span>
+            </p>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="7 / 11">
+        <div class="presentation-slide-content">
+            <h2>Tools</h2>
+            <p>
+                <span class="lang-sv"><strong>Tool calling</strong> betyder att modellen kan anropa definierade funktioner i din app.</span>
+                <span class="lang-en"><strong>Tool calling</strong> means the model can invoke defined functions in your app.</span>
+            </p>
+            <ul>
+                <li><code>search_docs(query)</code></li>
+                <li><code>search_repo(query)</code></li>
+                <li><code>get_ci_log(build_id)</code></li>
+                <li><code>run_tests()</code></li>
+                <li><code>create_ticket(title, body)</code></li>
+            </ul>
+            <blockquote>
+                <span class="lang-sv"><strong>Aha 4:</strong> I stabila system är modellen ofta "skrivaren" — tools är "sanningen".</span>
+                <span class="lang-en"><strong>Aha 4:</strong> In stable systems, the model is often "the writer" — tools are "the truth".</span>
+            </blockquote>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="8 / 11">
+        <div class="presentation-slide-content">
+            <h2>Agent</h2>
+            <p>
+                <span class="lang-sv">En <strong>agent</strong> är en loop där modellen:</span>
+                <span class="lang-en">An <strong>agent</strong> is a loop where the model:</span>
+            </p>
+            <ol>
+                <li><span class="lang-sv">Planerar kort</span><span class="lang-en">Plans briefly</span></li>
+                <li><span class="lang-sv">Anropar tools</span><span class="lang-en">Calls tools</span></li>
+                <li><span class="lang-sv">Läser resultat</span><span class="lang-en">Reads results</span></li>
+                <li><span class="lang-sv">Upprepar tills den är klar</span><span class="lang-en">Repeats until done</span></li>
+            </ol>
+            <p>
+                <span class="lang-sv"><strong>Säker agent-setup:</strong> Max steg (3–5), allowlist för tools, verifiering innan åtgärd.</span>
+                <span class="lang-en"><strong>Safe agent setup:</strong> Max steps (3–5), tool allowlist, verification before action.</span>
+            </p>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="9 / 11">
+        <div class="presentation-slide-content">
+            <h2>
+                <span class="lang-sv">Säkerhet</span>
+                <span class="lang-en">Security</span>
+            </h2>
+            <p><span class="lang-sv"><strong>Två sorters validering:</strong></span><span class="lang-en"><strong>Two types of validation:</strong></span></p>
+            <ol>
+                <li><span class="lang-sv"><strong>Formatvalidering</strong> — går JSON att läsa, saknas fält?</span><span class="lang-en"><strong>Format validation</strong> — is the JSON readable, are fields missing?</span></li>
+                <li><span class="lang-sv"><strong>Regelvalidering</strong> — följer svaret era regler?</span><span class="lang-en"><strong>Rule validation</strong> — does the response follow your rules?</span></li>
+            </ol>
+            <p>
+                <span class="lang-sv"><strong>Instruktionskapning (prompt injection)</strong> är när text försöker lura modellen att bryta regler.</span>
+                <span class="lang-en"><strong>Prompt injection</strong> is when text tries to trick the model into breaking rules.</span>
+            </p>
+            <p>
+                <span class="lang-sv"><strong>Skydd:</strong> Markera KÄLLOR som "opålitlig text", separera INSTRUKTIONER och KÄLLOR visuellt.</span>
+                <span class="lang-en"><strong>Protection:</strong> Mark SOURCES as "untrusted text", separate INSTRUCTIONS and SOURCES visually.</span>
+            </p>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="10 / 11">
+        <div class="presentation-slide-content">
+            <h2>Evals</h2>
+            <p>
+                <span class="lang-sv"><strong>Evals</strong> är ett återkommande testpaket för AI-beteende.</span>
+                <span class="lang-en"><strong>Evals</strong> are a recurring test suite for AI behavior.</span>
+            </p>
+            <p><span class="lang-sv">Minsta eval-setup:</span><span class="lang-en">Minimum eval setup:</span></p>
+            <ul>
+                <li><span class="lang-sv">20 vanliga frågor (riktiga)</span><span class="lang-en">20 common questions (real ones)</span></li>
+                <li><span class="lang-sv">5 fall med svagt underlag</span><span class="lang-en">5 cases with weak evidence</span></li>
+                <li><span class="lang-sv">5 säkerhetsfall (instruktionskapning)</span><span class="lang-en">5 security cases (prompt injection)</span></li>
+                <li><span class="lang-sv">5 verktygsfall (måste använda tool)</span><span class="lang-en">5 tool cases (must use tool)</span></li>
+            </ul>
+            <blockquote>
+                <span class="lang-sv"><strong>Aha 5:</strong> Utan evals vet du inte om du förbättrar — du bara hoppas.</span>
+                <span class="lang-en"><strong>Aha 5:</strong> Without evals you don't know if you're improving — you're just hoping.</span>
+            </blockquote>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="11 / 11">
+        <div class="presentation-slide-content">
+            <h2>TL;DR</h2>
+            <ul>
+                <li><span class="lang-sv"><strong>Modell = motor</strong>, applikation = produkt</span><span class="lang-en"><strong>Model = engine</strong>, application = product</span></li>
+                <li><span class="lang-sv"><strong>Tokens</strong> = pris + hastighet + maxlängd</span><span class="lang-en"><strong>Tokens</strong> = price + speed + max length</span></li>
+                <li><span class="lang-sv"><strong>Prompting</strong> = roll + mål + regler + format</span><span class="lang-en"><strong>Prompting</strong> = role + goal + rules + format</span></li>
+                <li><span class="lang-sv"><strong>RAG</strong> = hämta intern kunskap</span><span class="lang-en"><strong>RAG</strong> = retrieve internal knowledge</span></li>
+                <li><span class="lang-sv"><strong>Tools</strong> = modellen hämtar fakta</span><span class="lang-en"><strong>Tools</strong> = model fetches facts</span></li>
+                <li><span class="lang-sv"><strong>Agent</strong> = tool-loop i flera steg</span><span class="lang-en"><strong>Agent</strong> = multi-step tool loop</span></li>
+                <li><span class="lang-sv"><strong>Validering</strong> = format + regler + injection-skydd</span><span class="lang-en"><strong>Validation</strong> = format + rules + injection protection</span></li>
+                <li><span class="lang-sv"><strong>Evals</strong> = tester för AI-beteende</span><span class="lang-en"><strong>Evals</strong> = tests for AI behavior</span></li>
+            </ul>
+        </div>
+    </section>
+
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
                 <a href="index.html" class="logo">
-                    <span class="logo-icon"></span>
                     B3 Commit
                 </a>
                 <span class="status-badge">All Systems Operational</span>
@@ -1211,6 +1507,123 @@ Output: return JSON with fields:
                 }
             });
         });
+
+        // ==================== 
+        // Presentation Mode
+        // ====================
+        const presentationToggle = document.getElementById('presentationToggle');
+        const presentationProgress = document.getElementById('presentationProgress');
+        const progressFill = document.getElementById('progressFill');
+        const slides = document.querySelectorAll('.presentation-slide');
+        const progressItems = document.querySelectorAll('.presentation-progress-item');
+
+        function setPresentationMode(enabled) {
+            html.setAttribute('data-presentation', enabled ? 'true' : 'false');
+            presentationToggle.classList.toggle('active', enabled);
+            
+            if (enabled) {
+                // Scroll to first slide
+                if (slides.length > 0) {
+                    slides[0].scrollIntoView({ behavior: 'smooth' });
+                }
+            } else {
+                // Scroll to top of article
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        presentationToggle.addEventListener('click', () => {
+            const isActive = html.getAttribute('data-presentation') === 'true';
+            setPresentationMode(!isActive);
+        });
+
+        // Track current slide and update progress
+        function updatePresentationProgress() {
+            if (html.getAttribute('data-presentation') !== 'true') return;
+
+            const scrollTop = window.scrollY;
+            const windowHeight = window.innerHeight;
+            let currentSlide = 0;
+
+            slides.forEach((slide, index) => {
+                const slideTop = slide.offsetTop;
+                const slideHeight = slide.offsetHeight;
+                
+                // If the middle of the viewport is within the slide
+                if (scrollTop + windowHeight / 2 >= slideTop && 
+                    scrollTop + windowHeight / 2 < slideTop + slideHeight) {
+                    currentSlide = index;
+                }
+            });
+
+            // Update progress items
+            progressItems.forEach((item, index) => {
+                item.classList.remove('active', 'passed');
+                if (index < currentSlide) {
+                    item.classList.add('passed');
+                } else if (index === currentSlide) {
+                    item.classList.add('active');
+                }
+            });
+
+            // Update progress fill
+            const totalSlides = slides.length;
+            const progressPercentage = (currentSlide / (totalSlides - 1)) * 100;
+            progressFill.style.height = progressPercentage + '%';
+        }
+
+        // Listen for scroll to update progress
+        window.addEventListener('scroll', updatePresentationProgress);
+
+        // Click on progress items to navigate
+        progressItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                if (slides[index]) {
+                    slides[index].scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Keyboard navigation in presentation mode
+        document.addEventListener('keydown', (e) => {
+            if (html.getAttribute('data-presentation') !== 'true') return;
+
+            let currentSlide = 0;
+            const scrollTop = window.scrollY;
+            const windowHeight = window.innerHeight;
+
+            slides.forEach((slide, index) => {
+                const slideTop = slide.offsetTop;
+                const slideHeight = slide.offsetHeight;
+                if (scrollTop + windowHeight / 2 >= slideTop && 
+                    scrollTop + windowHeight / 2 < slideTop + slideHeight) {
+                    currentSlide = index;
+                }
+            });
+
+            if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+                e.preventDefault();
+                if (currentSlide < slides.length - 1) {
+                    slides[currentSlide + 1].scrollIntoView({ behavior: 'smooth' });
+                }
+            } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                e.preventDefault();
+                if (currentSlide > 0) {
+                    slides[currentSlide - 1].scrollIntoView({ behavior: 'smooth' });
+                }
+            } else if (e.key === 'Escape') {
+                setPresentationMode(false);
+            } else if (e.key === 'Home') {
+                e.preventDefault();
+                slides[0].scrollIntoView({ behavior: 'smooth' });
+            } else if (e.key === 'End') {
+                e.preventDefault();
+                slides[slides.length - 1].scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+
+        // Initial progress update
+        updatePresentationProgress();
     </script>
 </body>
 </html>

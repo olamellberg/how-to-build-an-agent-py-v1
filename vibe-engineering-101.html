@@ -10,6 +10,56 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Presentation Progress Indicator -->
+    <nav class="presentation-progress" id="presentationProgress">
+        <div class="presentation-progress-track"></div>
+        <div class="presentation-progress-fill" id="progressFill"></div>
+        <div class="presentation-progress-item active" data-slide="0">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Intro</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="1">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Agent</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="2">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">
+                <span class="lang-sv">Kontext</span>
+                <span class="lang-en">Context</span>
+            </span>
+        </div>
+        <div class="presentation-progress-item" data-slide="3">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">
+                <span class="lang-sv">Rigg</span>
+                <span class="lang-en">Harness</span>
+            </span>
+        </div>
+        <div class="presentation-progress-item" data-slide="4">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Setup</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="5">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">TDD</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="6">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">DevDocs</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="7">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">
+                <span class="lang-sv">Checklista</span>
+                <span class="lang-en">Checklist</span>
+            </span>
+        </div>
+    </nav>
+
     <!-- Vertical Scroll Timeline -->
     <div class="scroll-timeline" id="scrollTimeline">
         <div class="scroll-timeline-progress" id="scrollProgress"></div>
@@ -55,7 +105,6 @@
     <nav class="mobile-menu" id="mobileMenu">
         <div class="mobile-menu-header">
             <a href="index.html" class="logo">
-                <span class="logo-icon"></span>
                 B3 Commit
             </a>
             <button class="mobile-menu-close" id="menuClose" aria-label="Stäng meny">&times;</button>
@@ -151,20 +200,16 @@
         <nav class="nav-container">
             <div class="nav-left">
                 <a href="index.html" class="logo">
-                    <span class="logo-icon"></span>
                     B3 Commit
                 </a>
                 <span class="breadcrumb">/ <a href="index.html">AI Handbook</a> / Vibe Engineering 101</span>
-                <div class="nav-pills active" id="navPills">
-                    <a href="#agent" class="nav-pill">Agent</a>
-                    <a href="#context" class="nav-pill"><span class="lang-sv">Kontext</span><span class="lang-en">Context</span></a>
-                    <a href="#setup" class="nav-pill"><span class="lang-sv">Upplägg</span><span class="lang-en">Setup</span></a>
-                    <a href="#tdd" class="nav-pill">TDD</a>
-                    <a href="#devdocs" class="nav-pill">DevDocs</a>
-                    <a href="#checklist" class="nav-pill"><span class="lang-sv">Checklista</span><span class="lang-en">Checklist</span></a>
-                </div>
             </div>
             <div class="nav-right">
+                <button class="presentation-toggle" id="presentationToggle" aria-label="Presentation mode">
+                    <span class="icon">📽️</span>
+                    <span class="lang-sv">Presentation</span>
+                    <span class="lang-en">Present</span>
+                </button>
                 <button class="lang-toggle" id="langToggle" aria-label="Byt språk">
                     <span class="flag lang-sv">🇸🇪</span>
                     <span class="flag lang-en">🇬🇧</span>
@@ -201,6 +246,16 @@
                     <span class="lang-en">A practical guide for system developers getting started with agentic development</span>
                 </p>
             </header>
+
+            <!-- Article Navigation -->
+            <nav class="article-nav" id="articleNav">
+                <a href="#agent" class="nav-pill">Agent</a>
+                <a href="#context" class="nav-pill"><span class="lang-sv">Kontext</span><span class="lang-en">Context</span></a>
+                <a href="#setup" class="nav-pill"><span class="lang-sv">Upplägg</span><span class="lang-en">Setup</span></a>
+                <a href="#tdd" class="nav-pill">TDD</a>
+                <a href="#devdocs" class="nav-pill">DevDocs</a>
+                <a href="#checklist" class="nav-pill"><span class="lang-sv">Checklista</span><span class="lang-en">Checklist</span></a>
+            </nav>
 
             <p>
                 <span class="lang-sv">Agentbaserad utveckling handlar mindre om "AI som skriver kod" och mer om att designa en pålitlig loop: en modell föreslår ändringar, verktyg validerar dem, och återkoppling driver nästa iteration. Den här artikeln är en fältguide för att bygga den loopen så att den producerar användbar mjukvara — konsekvent.</span>
@@ -1373,11 +1428,178 @@ cargo test && cargo fmt --check && cargo clippy</code></pre>
         </article>
     </main>
 
+    <!-- Presentation Slides (shown only in presentation mode) -->
+    <section class="presentation-slide hero-slide" data-slide-number="1 / 8">
+        <div class="presentation-slide-content">
+            <p class="article-meta">
+                <span class="lang-sv">Agentbaserad utveckling // Januari 2026</span>
+                <span class="lang-en">Agentic Development // January 2026</span>
+            </p>
+            <h1>Vibe Engineering 101</h1>
+            <p class="subtitle">
+                <span class="lang-sv">En praktisk guide för systemutvecklare som vill komma igång med agentbaserad utveckling</span>
+                <span class="lang-en">A practical guide for system developers getting started with agentic development</span>
+            </p>
+        </div>
+        <div class="presentation-scroll-hint">
+            <span class="lang-sv">Scrolla ner</span>
+            <span class="lang-en">Scroll down</span>
+            <span>↓</span>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="2 / 8">
+        <div class="presentation-slide-content">
+            <h2>
+                <span class="lang-sv">Vad en agent är</span>
+                <span class="lang-en">What an agent is</span>
+            </h2>
+            <blockquote>
+                <span class="lang-sv"><strong>En agent kör verktyg i en loop för att uppnå ett mål.</strong></span>
+                <span class="lang-en"><strong>An agent runs tools in a loop to achieve a goal.</strong></span>
+            </blockquote>
+            <ol>
+                <li><span class="lang-sv">Ange ett mål + begränsningar</span><span class="lang-en">Provide a goal + constraints</span></li>
+                <li><span class="lang-sv">Modellen föreslår åtgärder</span><span class="lang-en">Model proposes actions</span></li>
+                <li><span class="lang-sv">Verktyg körs (tester, linters, byggen)</span><span class="lang-en">Tools run (tests, linters, builds)</span></li>
+                <li><span class="lang-sv">Resultaten går tillbaka in i loopen</span><span class="lang-en">Results go back into the loop</span></li>
+                <li><span class="lang-sv">Upprepa tills acceptanskriterierna är uppfyllda</span><span class="lang-en">Repeat until acceptance criteria are satisfied</span></li>
+            </ol>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="3 / 8">
+        <div class="presentation-slide-content">
+            <h2>
+                <span class="lang-sv">Kontextfönstret är ditt "RAM"</span>
+                <span class="lang-en">Context window is your "RAM"</span>
+            </h2>
+            <ul>
+                <li><span class="lang-sv"><strong>Allt som spelar roll måste finnas i kontexten</strong></span><span class="lang-en"><strong>Everything that matters must be in context</strong></span></li>
+                <li><span class="lang-sv"><strong>Mer kontext är inte alltid bättre</strong> — överfulla kontexter ökar fel</span><span class="lang-en"><strong>More context is not always better</strong> — overstuffed contexts increase errors</span></li>
+                <li><span class="lang-sv"><strong>Du behöver hantera vad som kommer in i loopen</strong></span><span class="lang-en"><strong>You need to manage what enters the loop</strong></span></li>
+            </ul>
+            <blockquote>
+                <span class="lang-sv">Behandla kontextfönstret som ont om minne. Om du låter det fyllas med brus, försämras prestandan.</span>
+                <span class="lang-en">Treat the context window like scarce memory. If you let it fill with noise, performance degrades.</span>
+            </blockquote>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="4 / 8">
+        <div class="presentation-slide-content">
+            <h2>
+                <span class="lang-sv">Bygg en bättre rigg</span>
+                <span class="lang-en">Build a better harness</span>
+            </h2>
+            <p>
+                <span class="lang-sv">När agenten går åt fel håll, anta att något av detta är sant:</span>
+                <span class="lang-en">When the agent goes wrong, assume one of these is true:</span>
+            </p>
+            <ol>
+                <li><span class="lang-sv"><strong>Planen var underspecificerad</strong></span><span class="lang-en"><strong>The plan was under-specified</strong></span></li>
+                <li><span class="lang-sv"><strong>Acceptanskriterierna var vaga</strong></span><span class="lang-en"><strong>The acceptance criteria were vague</strong></span></li>
+                <li><span class="lang-sv"><strong>Feedback-loopen är svag eller brusig</strong></span><span class="lang-en"><strong>The feedback loop is weak or noisy</strong></span></li>
+            </ol>
+            <div class="cursor-tip">
+                <div class="cursor-tip-header">
+                    <span class="lang-sv">Lösningen</span>
+                    <span class="lang-en">The Fix</span>
+                </div>
+                <p>
+                    <span class="lang-sv">Förbättra specen, skärp testerna, minska brus i output.</span>
+                    <span class="lang-en">Improve the spec, tighten the tests, reduce noise in outputs.</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="5 / 8">
+        <div class="presentation-slide-content">
+            <h2>
+                <span class="lang-sv">Projektupplägg</span>
+                <span class="lang-en">Project setup</span>
+            </h2>
+            <p>
+                <span class="lang-sv"><strong>Hårt krav:</strong> ett kommando för att validera.</span>
+                <span class="lang-en"><strong>Hard requirement:</strong> one command to validate.</span>
+            </p>
+            <pre><code>make check
+./scripts/ci.sh
+npm test</code></pre>
+            <ul>
+                <li><span class="lang-sv"><strong>Koncisa sammanfattningar</strong> vid framgång</span><span class="lang-en"><strong>Concise summaries</strong> on success</span></li>
+                <li><span class="lang-sv"><strong>Fokuserade fel</strong> — visa det felande påståendet</span><span class="lang-en"><strong>Focused failures</strong> — show the failing assertion</span></li>
+                <li><span class="lang-sv"><strong>Undvik tusentals rader</strong> av kompilatorspam</span><span class="lang-en"><strong>Avoid thousands of lines</strong> of compiler spew</span></li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="6 / 8">
+        <div class="presentation-slide-content">
+            <h2>TDD</h2>
+            <p>
+                <span class="lang-sv">Med agenter blir TDD ovanligt effektivt — tester blir en <strong>ratt</strong>.</span>
+                <span class="lang-en">With agents, TDD becomes unusually effective — tests become a <strong>steering wheel</strong>.</span>
+            </p>
+            <ol>
+                <li><span class="lang-sv">Skriv ett fallande test</span><span class="lang-en">Write a failing test</span></li>
+                <li><span class="lang-sv">Låt agenten implementera ändringen</span><span class="lang-en">Let the agent implement the change</span></li>
+                <li><span class="lang-sv">Iterera tills grönt</span><span class="lang-en">Iterate until green</span></li>
+            </ol>
+            <p>
+                <span class="lang-sv"><strong>Skydda mot "fusk":</strong> property-baserade tester, integrationstester, invarianter.</span>
+                <span class="lang-en"><strong>Guard against "cheating":</strong> property-based tests, integration tests, invariants.</span>
+            </p>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="7 / 8">
+        <div class="presentation-slide-content">
+            <h2>DevDocs</h2>
+            <p>
+                <span class="lang-sv">Håll lättvikts "agent handoff"-dokument i repot:</span>
+                <span class="lang-en">Keep lightweight "agent handoff" docs in the repo:</span>
+            </p>
+            <pre><code>devdocs/
+  plan.md       # mål, arkitektur, faser
+  progress.md   # nuläge, vad är klart, nästa steg</code></pre>
+            <div class="cursor-tip">
+                <div class="cursor-tip-header">
+                    <span class="lang-sv">När sessionen blir rörig</span>
+                    <span class="lang-en">When the session gets messy</span>
+                </div>
+                <p>
+                    <span class="lang-sv">Starta ny session, peka på <code>devdocs/</code>, fortsätt med rent blad.</span>
+                    <span class="lang-en">Start fresh session, point at <code>devdocs/</code>, continue with a clean slate.</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="8 / 8">
+        <div class="presentation-slide-content">
+            <h2>
+                <span class="lang-sv">Praktisk checklista</span>
+                <span class="lang-en">Practical Checklist</span>
+            </h2>
+            <ul>
+                <li><span class="lang-sv"><strong>Repo-rigg:</strong> Ett kommando: bygge + test + lint</span><span class="lang-en"><strong>Repository harness:</strong> Single command: build + test + lint</span></li>
+                <li><span class="lang-sv"><strong>Arbetsflöde:</strong> Skriv acceptanskriterier först</span><span class="lang-en"><strong>Workflow:</strong> Write acceptance criteria first</span></li>
+                <li><span class="lang-sv"><strong>Kontexthygien:</strong> Klistra inte in enorma loggar</span><span class="lang-en"><strong>Context hygiene:</strong> Don't paste huge logs</span></li>
+                <li><span class="lang-sv"><strong>Kvalitetskontroller:</strong> Linter + formatter + CI-grind</span><span class="lang-en"><strong>Quality controls:</strong> Linter + formatter + CI gate</span></li>
+            </ul>
+            <blockquote>
+                <span class="lang-sv">"Vibe Engineering" blir verkligt när du behandlar agenter som en del av ett system.</span>
+                <span class="lang-en">"Vibe Engineering" becomes real when you treat agents as part of a system.</span>
+            </blockquote>
+        </div>
+    </section>
+
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
                 <a href="index.html" class="logo">
-                    <span class="logo-icon"></span>
                     B3 Commit
                 </a>
                 <span class="status-badge">All Systems Operational</span>
@@ -1554,6 +1776,112 @@ cargo test && cargo fmt --check && cargo clippy</code></pre>
                 }
             });
         });
+
+        // ==================== 
+        // Presentation Mode
+        // ====================
+        const presentationToggle = document.getElementById('presentationToggle');
+        const presentationProgress = document.getElementById('presentationProgress');
+        const progressFill = document.getElementById('progressFill');
+        const slides = document.querySelectorAll('.presentation-slide');
+        const progressItems = document.querySelectorAll('.presentation-progress-item');
+
+        function setPresentationMode(enabled) {
+            html.setAttribute('data-presentation', enabled ? 'true' : 'false');
+            presentationToggle.classList.toggle('active', enabled);
+            
+            if (enabled) {
+                if (slides.length > 0) {
+                    slides[0].scrollIntoView({ behavior: 'smooth' });
+                }
+            } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        presentationToggle.addEventListener('click', () => {
+            const isActive = html.getAttribute('data-presentation') === 'true';
+            setPresentationMode(!isActive);
+        });
+
+        function updatePresentationProgress() {
+            if (html.getAttribute('data-presentation') !== 'true') return;
+
+            const scrollTop = window.scrollY;
+            const windowHeight = window.innerHeight;
+            let currentSlide = 0;
+
+            slides.forEach((slide, index) => {
+                const slideTop = slide.offsetTop;
+                const slideHeight = slide.offsetHeight;
+                if (scrollTop + windowHeight / 2 >= slideTop && 
+                    scrollTop + windowHeight / 2 < slideTop + slideHeight) {
+                    currentSlide = index;
+                }
+            });
+
+            progressItems.forEach((item, index) => {
+                item.classList.remove('active', 'passed');
+                if (index < currentSlide) {
+                    item.classList.add('passed');
+                } else if (index === currentSlide) {
+                    item.classList.add('active');
+                }
+            });
+
+            const totalSlides = slides.length;
+            const progressPercentage = (currentSlide / (totalSlides - 1)) * 100;
+            progressFill.style.height = progressPercentage + '%';
+        }
+
+        window.addEventListener('scroll', updatePresentationProgress);
+
+        progressItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                if (slides[index]) {
+                    slides[index].scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (html.getAttribute('data-presentation') !== 'true') return;
+
+            let currentSlide = 0;
+            const scrollTop = window.scrollY;
+            const windowHeight = window.innerHeight;
+
+            slides.forEach((slide, index) => {
+                const slideTop = slide.offsetTop;
+                const slideHeight = slide.offsetHeight;
+                if (scrollTop + windowHeight / 2 >= slideTop && 
+                    scrollTop + windowHeight / 2 < slideTop + slideHeight) {
+                    currentSlide = index;
+                }
+            });
+
+            if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+                e.preventDefault();
+                if (currentSlide < slides.length - 1) {
+                    slides[currentSlide + 1].scrollIntoView({ behavior: 'smooth' });
+                }
+            } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                e.preventDefault();
+                if (currentSlide > 0) {
+                    slides[currentSlide - 1].scrollIntoView({ behavior: 'smooth' });
+                }
+            } else if (e.key === 'Escape') {
+                setPresentationMode(false);
+            } else if (e.key === 'Home') {
+                e.preventDefault();
+                slides[0].scrollIntoView({ behavior: 'smooth' });
+            } else if (e.key === 'End') {
+                e.preventDefault();
+                slides[slides.length - 1].scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+
+        updatePresentationProgress();
     </script>
 </body>
 </html>

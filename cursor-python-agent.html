@@ -10,6 +10,49 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Presentation Progress Indicator -->
+    <nav class="presentation-progress" id="presentationProgress">
+        <div class="presentation-progress-track"></div>
+        <div class="presentation-progress-fill" id="progressFill"></div>
+        <div class="presentation-progress-item active" data-slide="0">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Intro</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="1">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">
+                <span class="lang-sv">Koncept</span>
+                <span class="lang-en">Concept</span>
+            </span>
+        </div>
+        <div class="presentation-progress-item" data-slide="2">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Tools</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="3">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">read_file</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="4">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">list_files</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="5">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">edit_file</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="6">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">
+                <span class="lang-sv">Slutsats</span>
+                <span class="lang-en">Conclusion</span>
+            </span>
+        </div>
+    </nav>
+
     <!-- Vertical Scroll Timeline -->
     <div class="scroll-timeline" id="scrollTimeline">
         <div class="scroll-timeline-progress" id="scrollProgress"></div>
@@ -37,7 +80,6 @@
     <nav class="mobile-menu" id="mobileMenu">
         <div class="mobile-menu-header">
             <a href="index.html" class="logo">
-                <span class="logo-icon"></span>
                 B3 Commit
             </a>
             <button class="mobile-menu-close" id="menuClose" aria-label="Stäng meny">×</button>
@@ -131,19 +173,16 @@
         <nav class="nav-container">
             <div class="nav-left">
                 <a href="index.html" class="logo">
-                    <span class="logo-icon"></span>
                     B3 Commit
                 </a>
                 <span class="breadcrumb">/ <a href="index.html">AI Handbook</a> / How to Build an Agent</span>
-                <div class="nav-pills active" id="navPills">
-                    <a href="#intro" class="nav-pill">Intro</a>
-                    <a href="#first-tool" class="nav-pill">Tools</a>
-                    <a href="#read-file" class="nav-pill">read_file</a>
-                    <a href="#list-files" class="nav-pill">list_files</a>
-                    <a href="#edit-file" class="nav-pill">edit_file</a>
-                </div>
             </div>
             <div class="nav-right">
+                <button class="presentation-toggle" id="presentationToggle" aria-label="Presentation mode">
+                    <span class="icon">📽️</span>
+                    <span class="lang-sv">Presentation</span>
+                    <span class="lang-en">Present</span>
+                </button>
                 <button class="lang-toggle" id="langToggle" aria-label="Byt språk">
                     <span class="flag lang-sv">🇸🇪</span>
                     <span class="flag lang-en">🇬🇧</span>
@@ -180,6 +219,15 @@
                     <span class="lang-en">or: The Emperor Has No Clothes (And Neither Does This Tutorial)</span>
                 </p>
             </header>
+
+            <!-- Article Navigation -->
+            <nav class="article-nav" id="articleNav">
+                <a href="#intro" class="nav-pill">Intro</a>
+                <a href="#first-tool" class="nav-pill">Tools</a>
+                <a href="#read-file" class="nav-pill">read_file</a>
+                <a href="#list-files" class="nav-pill">list_files</a>
+                <a href="#edit-file" class="nav-pill">edit_file</a>
+            </nav>
 
             <p>
                 <span class="lang-sv">Det är inte så svårt att bygga en fullt fungerande kodredigeringsagent.</span>
@@ -822,11 +870,154 @@ If the file specified with path doesn't exist, it will be created."""</span>,
         </article>
     </main>
 
+    <!-- Presentation Slides (shown only in presentation mode) -->
+    <section class="presentation-slide hero-slide" data-slide-number="1 / 7">
+        <div class="presentation-slide-content">
+            <p class="article-meta">
+                <span class="lang-sv">Cursor + Python Edition // Januari 2026</span>
+                <span class="lang-en">Cursor + Python Edition // January 2026</span>
+            </p>
+            <h1>How to Build an Agent</h1>
+            <p class="subtitle">
+                <span class="lang-sv">eller: Kejsaren har inga kläder (och det har inte heller den här tutorialen)</span>
+                <span class="lang-en">or: The Emperor Has No Clothes (And Neither Does This Tutorial)</span>
+            </p>
+        </div>
+        <div class="presentation-scroll-hint">
+            <span class="lang-sv">Scrolla ner</span>
+            <span class="lang-en">Scroll down</span>
+            <span>↓</span>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="2 / 7">
+        <div class="presentation-slide-content">
+            <h2>
+                <span class="lang-sv">Konceptet</span>
+                <span class="lang-en">The Concept</span>
+            </h2>
+            <p>
+                <span class="lang-sv">Det är inte så svårt att bygga en fullt fungerande kodredigeringsagent.</span>
+                <span class="lang-en">It's not that hard to build a fully functioning, code-editing agent.</span>
+            </p>
+            <p>
+                <span class="lang-sv">Det är en LLM, en loop och tillräckligt med tokens. Under 400 rader kod.</span>
+                <span class="lang-en">It's an LLM, a loop, and enough tokens. Under 400 lines of code.</span>
+            </p>
+            <blockquote>
+                <span class="lang-sv"><strong>Vi ska använda en agent för att bygga en agent.</strong> Meta? Ja. Men det fungerar.</span>
+                <span class="lang-en"><strong>We're going to use an agent to build an agent.</strong> Meta? Yes. But it works.</span>
+            </blockquote>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="3 / 7">
+        <div class="presentation-slide-content">
+            <h2>
+                <span class="lang-sv">Vad är ett verktyg (tool)?</span>
+                <span class="lang-en">What is a tool?</span>
+            </h2>
+            <p>
+                <span class="lang-sv">Du säger till modellen: "Blinka om du vill att jag lyfter armen." Modellen blinkar, du lyfter armen.</span>
+                <span class="lang-en">You tell the model: "Wink if you want me to raise my arm." The model winks, you raise your arm.</span>
+            </p>
+            <p><span class="lang-sv">Det är allt. Två saker:</span><span class="lang-en">That's all. Two things:</span></p>
+            <ol>
+                <li><span class="lang-sv">Du talar om för modellen vilka verktyg som finns</span><span class="lang-en">You tell the model what tools are available</span></li>
+                <li><span class="lang-sv">När modellen vill köra verktyget, kör du det och skickar tillbaka resultatet</span><span class="lang-en">When the model wants to run the tool, you run it and send back the result</span></li>
+            </ol>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="4 / 7">
+        <div class="presentation-slide-content">
+            <h2><code>read_file</code></h2>
+            <p>
+                <span class="lang-sv">Vårt första verktyg. Läser en fil och returnerar innehållet.</span>
+                <span class="lang-en">Our first tool. Reads a file and returns its contents.</span>
+            </p>
+            <pre><code><span class="keyword">def</span> <span class="function">read_file</span>(input_data):
+    path = input_data[<span class="string">"path"</span>]
+    <span class="keyword">with</span> <span class="builtin">open</span>(path, <span class="string">"r"</span>) <span class="keyword">as</span> f:
+        <span class="keyword">return</span> f.read()</code></pre>
+            <p>
+                <span class="lang-sv">Du ger verktyget till modellen, och den <em>använder det när den tror det hjälper</em>.</span>
+                <span class="lang-en">You give the tool to the model, and it <em>uses it when it thinks it'll help</em>.</span>
+            </p>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="5 / 7">
+        <div class="presentation-slide-content">
+            <h2><code>list_files</code></h2>
+            <p>
+                <span class="lang-sv">Listar filer och kataloger. Nu kan modellen <strong>kombinera</strong> verktyg.</span>
+                <span class="lang-en">Lists files and directories. Now the model can <strong>combine</strong> tools.</span>
+            </p>
+            <pre><code><span class="keyword">def</span> <span class="function">list_files</span>(input_data):
+    path = input_data.get(<span class="string">"path"</span>, <span class="string">"."</span>)
+    files = []
+    <span class="keyword">for</span> root, dirs, filenames <span class="keyword">in</span> os.walk(path):
+        <span class="comment"># ...</span>
+    <span class="keyword">return</span> json.dumps(files)</code></pre>
+            <p>
+                <span class="lang-sv">Modellen listar filer, väljer en, läser den. Allt automatiskt.</span>
+                <span class="lang-en">The model lists files, picks one, reads it. All automatically.</span>
+            </p>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="6 / 7">
+        <div class="presentation-slide-content">
+            <h2><code>edit_file</code></h2>
+            <p>
+                <span class="lang-sv">Det sista verktyget. Ersätter text i en fil. Nu kan agenten <strong>redigera kod</strong>.</span>
+                <span class="lang-en">The final tool. Replaces text in a file. Now the agent can <strong>edit code</strong>.</span>
+            </p>
+            <pre><code><span class="keyword">def</span> <span class="function">edit_file</span>(input_data):
+    path = input_data[<span class="string">"path"</span>]
+    old_str = input_data[<span class="string">"old_str"</span>]
+    new_str = input_data[<span class="string">"new_str"</span>]
+    <span class="comment"># ...</span>
+    content = content.replace(old_str, new_str)</code></pre>
+            <p>
+                <span class="lang-sv">"Skapa fizzbuzz.js" → agenten listar, skapar, skriver koden.</span>
+                <span class="lang-en">"Create fizzbuzz.js" → the agent lists, creates, writes the code.</span>
+            </p>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="7 / 7">
+        <div class="presentation-slide-content">
+            <h2>
+                <span class="lang-sv">Slutsats</span>
+                <span class="lang-en">Conclusion</span>
+            </h2>
+            <p>
+                <span class="lang-sv">Under 150 rader Python-kod och tre verktyg — och du pratar med en intelligens som redigerar din kod.</span>
+                <span class="lang-en">Under 150 lines of Python code and three tools — and you're talking to an intelligence that edits your code.</span>
+            </p>
+            <blockquote>
+                <span class="lang-sv"><em>Det är därför</em> vi tror att allt håller på att förändras.</span>
+                <span class="lang-en"><em>That's</em> why we think everything's changing.</span>
+            </blockquote>
+            <div class="cursor-tip">
+                <div class="cursor-tip-header">
+                    <span class="lang-sv">Nästa steg</span>
+                    <span class="lang-en">Next step</span>
+                </div>
+                <p>
+                    <span class="lang-sv">Lägg till fler verktyg! <code>run_command</code>, <code>search_files</code>... himlen är gränsen.</span>
+                    <span class="lang-en">Add more tools! <code>run_command</code>, <code>search_files</code>... the sky's the limit.</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
                 <a href="index.html" class="logo">
-                    <span class="logo-icon"></span>
                     B3 Commit
                 </a>
                 <span class="status-badge">All Systems Operational</span>
@@ -1003,6 +1194,112 @@ If the file specified with path doesn't exist, it will be created."""</span>,
                 }
             });
         });
+
+        // ==================== 
+        // Presentation Mode
+        // ====================
+        const presentationToggle = document.getElementById('presentationToggle');
+        const presentationProgress = document.getElementById('presentationProgress');
+        const progressFill = document.getElementById('progressFill');
+        const slides = document.querySelectorAll('.presentation-slide');
+        const progressItems = document.querySelectorAll('.presentation-progress-item');
+
+        function setPresentationMode(enabled) {
+            html.setAttribute('data-presentation', enabled ? 'true' : 'false');
+            presentationToggle.classList.toggle('active', enabled);
+            
+            if (enabled) {
+                if (slides.length > 0) {
+                    slides[0].scrollIntoView({ behavior: 'smooth' });
+                }
+            } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        presentationToggle.addEventListener('click', () => {
+            const isActive = html.getAttribute('data-presentation') === 'true';
+            setPresentationMode(!isActive);
+        });
+
+        function updatePresentationProgress() {
+            if (html.getAttribute('data-presentation') !== 'true') return;
+
+            const scrollTop = window.scrollY;
+            const windowHeight = window.innerHeight;
+            let currentSlide = 0;
+
+            slides.forEach((slide, index) => {
+                const slideTop = slide.offsetTop;
+                const slideHeight = slide.offsetHeight;
+                if (scrollTop + windowHeight / 2 >= slideTop && 
+                    scrollTop + windowHeight / 2 < slideTop + slideHeight) {
+                    currentSlide = index;
+                }
+            });
+
+            progressItems.forEach((item, index) => {
+                item.classList.remove('active', 'passed');
+                if (index < currentSlide) {
+                    item.classList.add('passed');
+                } else if (index === currentSlide) {
+                    item.classList.add('active');
+                }
+            });
+
+            const totalSlides = slides.length;
+            const progressPercentage = (currentSlide / (totalSlides - 1)) * 100;
+            progressFill.style.height = progressPercentage + '%';
+        }
+
+        window.addEventListener('scroll', updatePresentationProgress);
+
+        progressItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                if (slides[index]) {
+                    slides[index].scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (html.getAttribute('data-presentation') !== 'true') return;
+
+            let currentSlide = 0;
+            const scrollTop = window.scrollY;
+            const windowHeight = window.innerHeight;
+
+            slides.forEach((slide, index) => {
+                const slideTop = slide.offsetTop;
+                const slideHeight = slide.offsetHeight;
+                if (scrollTop + windowHeight / 2 >= slideTop && 
+                    scrollTop + windowHeight / 2 < slideTop + slideHeight) {
+                    currentSlide = index;
+                }
+            });
+
+            if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+                e.preventDefault();
+                if (currentSlide < slides.length - 1) {
+                    slides[currentSlide + 1].scrollIntoView({ behavior: 'smooth' });
+                }
+            } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                e.preventDefault();
+                if (currentSlide > 0) {
+                    slides[currentSlide - 1].scrollIntoView({ behavior: 'smooth' });
+                }
+            } else if (e.key === 'Escape') {
+                setPresentationMode(false);
+            } else if (e.key === 'Home') {
+                e.preventDefault();
+                slides[0].scrollIntoView({ behavior: 'smooth' });
+            } else if (e.key === 'End') {
+                e.preventDefault();
+                slides[slides.length - 1].scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+
+        updatePresentationProgress();
     </script>
 </body>
 </html>

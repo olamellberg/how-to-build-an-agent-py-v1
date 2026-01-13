@@ -10,6 +10,63 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Presentation Progress Indicator -->
+    <nav class="presentation-progress" id="presentationProgress">
+        <div class="presentation-progress-track"></div>
+        <div class="presentation-progress-fill" id="progressFill"></div>
+        <div class="presentation-progress-item active" data-slide="0">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Intro</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="1">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">
+                <span class="lang-sv">Tänk först</span>
+                <span class="lang-en">Think first</span>
+            </span>
+        </div>
+        <div class="presentation-progress-item" data-slide="2">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">
+                <span class="lang-sv">Arkitektur</span>
+                <span class="lang-en">Architecture</span>
+            </span>
+        </div>
+        <div class="presentation-progress-item" data-slide="3">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">CLAUDE.md</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="4">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">
+                <span class="lang-sv">Kontext</span>
+                <span class="lang-en">Context</span>
+            </span>
+        </div>
+        <div class="presentation-progress-item" data-slide="5">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Prompting</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="6">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">MCP & Hooks</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="7">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">
+                <span class="lang-sv">När fast</span>
+                <span class="lang-en">When stuck</span>
+            </span>
+        </div>
+        <div class="presentation-progress-item" data-slide="8">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">TL;DR</span>
+        </div>
+    </nav>
+
     <!-- Vertical Scroll Timeline -->
     <div class="scroll-timeline" id="scrollTimeline">
         <div class="scroll-timeline-progress" id="scrollProgress"></div>
@@ -79,7 +136,6 @@
     <nav class="mobile-menu" id="mobileMenu">
         <div class="mobile-menu-header">
             <a href="index.html" class="logo">
-                <span class="logo-icon"></span>
                 B3 Commit
             </a>
             <button class="mobile-menu-close" id="menuClose" aria-label="Stäng meny">&times;</button>
@@ -178,20 +234,16 @@
         <nav class="nav-container">
             <div class="nav-left">
                 <a href="index.html" class="logo">
-                    <span class="logo-icon"></span>
                     B3 Commit
                 </a>
                 <span class="breadcrumb">/ <a href="index.html">AI Handbook</a> / Claude Code 101</span>
-                <div class="nav-pills active" id="navPills">
-                    <a href="#think" class="nav-pill"><span class="lang-sv">Tänk</span><span class="lang-en">Think</span></a>
-                    <a href="#claudemd" class="nav-pill">CLAUDE.md</a>
-                    <a href="#context" class="nav-pill"><span class="lang-sv">Kontext</span><span class="lang-en">Context</span></a>
-                    <a href="#prompting" class="nav-pill">Prompting</a>
-                    <a href="#mcp" class="nav-pill">MCP</a>
-                    <a href="#tldr" class="nav-pill">TL;DR</a>
-                </div>
             </div>
             <div class="nav-right">
+                <button class="presentation-toggle" id="presentationToggle" aria-label="Presentation mode">
+                    <span class="icon">📽️</span>
+                    <span class="lang-sv">Presentation</span>
+                    <span class="lang-en">Present</span>
+                </button>
                 <button class="lang-toggle" id="langToggle" aria-label="Byt språk">
                     <span class="flag lang-sv">🇸🇪</span>
                     <span class="flag lang-en">🇬🇧</span>
@@ -228,6 +280,16 @@
                     <span class="lang-en">A practical playbook for shipping real changes safely with Claude Code</span>
                 </p>
             </header>
+
+            <!-- Article Navigation -->
+            <nav class="article-nav" id="articleNav">
+                <a href="#think" class="nav-pill"><span class="lang-sv">Tänk</span><span class="lang-en">Think</span></a>
+                <a href="#claudemd" class="nav-pill">CLAUDE.md</a>
+                <a href="#context" class="nav-pill"><span class="lang-sv">Kontext</span><span class="lang-en">Context</span></a>
+                <a href="#prompting" class="nav-pill">Prompting</a>
+                <a href="#mcp" class="nav-pill">MCP</a>
+                <a href="#tldr" class="nav-pill">TL;DR</a>
+            </nav>
 
             <p>
                 <span class="lang-sv">Den här guiden är en <strong>Claude Code-specifik</strong> "101" för systemutvecklare. Målet är inte teori — det är en uppsättning repeterbara arbetsflöden som producerar <strong>små diffar, snabb feedback och färre regressioner</strong>.</span>
@@ -1040,11 +1102,178 @@
         </article>
     </main>
 
+    <!-- Presentation Slides (shown only in presentation mode) -->
+    <section class="presentation-slide hero-slide" data-slide-number="1 / 9">
+        <div class="presentation-slide-content">
+            <p class="article-meta">
+                <span class="lang-sv">Agentisk utveckling // Januari 2026</span>
+                <span class="lang-en">Agentic Development // January 2026</span>
+            </p>
+            <h1>Claude Code 101</h1>
+            <p class="subtitle">
+                <span class="lang-sv">En praktisk handbok för att leverera riktiga ändringar säkert med Claude Code</span>
+                <span class="lang-en">A practical playbook for shipping real changes safely with Claude Code</span>
+            </p>
+        </div>
+        <div class="presentation-scroll-hint">
+            <span class="lang-sv">Scrolla ner</span>
+            <span class="lang-en">Scroll down</span>
+            <span>↓</span>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="2 / 9">
+        <div class="presentation-slide-content">
+            <h2>
+                <span class="lang-sv">Tänk först (Plan Mode)</span>
+                <span class="lang-en">Think first (Plan Mode)</span>
+            </h2>
+            <p>
+                <span class="lang-sv">Claude Code fungerar bäst när första steget är att <strong>strukturera problemet</strong>, inte att skriva instruktioner.</span>
+                <span class="lang-en">Claude Code works best when the first step is <strong>structuring the problem</strong>, not typing instructions.</span>
+            </p>
+            <ol>
+                <li><span class="lang-sv"><strong>Skriv måltillståndet</strong> (acceptanskriterier) innan du ber om kod</span><span class="lang-en"><strong>Write the target state</strong> (acceptance criteria) before asking for code</span></li>
+                <li><span class="lang-sv"><strong>Använd Plan Mode</strong> för arkitektur, data, auth eller gränssnitt</span><span class="lang-en"><strong>Use Plan Mode</strong> for architecture, data, auth, or interfaces</span></li>
+                <li><span class="lang-sv"><strong>Be om alternativ</strong> och avvägningar först, välj sedan</span><span class="lang-en"><strong>Ask for options</strong> and tradeoffs first, then choose</span></li>
+            </ol>
+            <blockquote>
+                <span class="lang-sv">Tvetydighet ökar lösningsrymden, och modellen kommer utforska den.</span>
+                <span class="lang-en">Ambiguity increases solution space, and the model will explore it.</span>
+            </blockquote>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="3 / 9">
+        <div class="presentation-slide-content">
+            <h2>
+                <span class="lang-sv">Arkitekturbegränsningar</span>
+                <span class="lang-en">Architecture Constraints</span>
+            </h2>
+            <p>
+                <span class="lang-sv">Claude kan generera fungerande kod som bryter mot ditt systems invarianter. Lösningen är <strong>arkitekturbegränsningar i förväg</strong>.</span>
+                <span class="lang-en">Claude can generate working code that violates your system's invariants. The fix is <strong>architectural constraints up front</strong>.</span>
+            </p>
+            <ul>
+                <li><span class="lang-sv"><strong>Gränser:</strong> vilka moduler som kan/inte kan röra varandra</span><span class="lang-en"><strong>Boundaries:</strong> what modules can/can't touch each other</span></li>
+                <li><span class="lang-sv"><strong>Invarianter:</strong> vad som måste förbli sant</span><span class="lang-en"><strong>Invariants:</strong> what must remain true</span></li>
+                <li><span class="lang-sv"><strong>Icke-mål:</strong> vad som inte får ändras</span><span class="lang-en"><strong>Non-goals:</strong> what must not change</span></li>
+                <li><span class="lang-sv"><strong>Validering:</strong> kommandon som bevisar att det fungerar</span><span class="lang-en"><strong>Validation:</strong> commands that prove it works</span></li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="4 / 9">
+        <div class="presentation-slide-content">
+            <h2>CLAUDE.md</h2>
+            <p>
+                <span class="lang-sv"><code>CLAUDE.md</code> är en Markdown-fil som Claude Code läser vid sessionens start. Den fungerar som <strong>beständiga repo-specifika instruktioner</strong>.</span>
+                <span class="lang-en"><code>CLAUDE.md</code> is a Markdown file Claude Code reads at the start of a session. It functions as <strong>persistent repo-specific instruction</strong>.</span>
+            </p>
+            <ul>
+                <li><span class="lang-sv"><strong>Håll den kort</strong> — för mycket ignoreras oförutsägbart</span><span class="lang-en"><strong>Keep it short</strong> — too much is ignored unpredictably</span></li>
+                <li><span class="lang-sv"><strong>Gör den repo-specifik</strong> — lokala regler, inte generella</span><span class="lang-en"><strong>Make it repo-specific</strong> — local rules, not general</span></li>
+                <li><span class="lang-sv"><strong>Förklara "varför"</strong> — hjälper kantfall</span><span class="lang-en"><strong>Explain "why"</strong> — helps edge cases</span></li>
+                <li><span class="lang-sv"><strong>Uppdatera kontinuerligt</strong> — varje korrigering = en instruktion</span><span class="lang-en"><strong>Update continuously</strong> — each correction = an instruction</span></li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="5 / 9">
+        <div class="presentation-slide-content">
+            <h2>
+                <span class="lang-sv">Kontexthantering</span>
+                <span class="lang-en">Context Management</span>
+            </h2>
+            <p>
+                <span class="lang-sv">Även med stora kontextfönster sjunker kvaliteten före gränsen.</span>
+                <span class="lang-en">Even with large context windows, quality drops before the limit.</span>
+            </p>
+            <ul>
+                <li><span class="lang-sv"><strong>En konversation per uppgift</strong></span><span class="lang-en"><strong>One conversation per task</strong></span></li>
+                <li><span class="lang-sv"><strong>Använd externa minnesfiler</strong> (<code>SCRATCHPAD.md</code>, <code>plan.md</code>)</span><span class="lang-en"><strong>Use external memory files</strong> (<code>SCRATCHPAD.md</code>, <code>plan.md</code>)</span></li>
+                <li><span class="lang-sv"><strong>Kopiera-klistra reset</strong>: <code>/compact</code> → <code>/clear</code> → klistra tillbaka kritisk plan</span><span class="lang-en"><strong>Copy-paste reset</strong>: <code>/compact</code> → <code>/clear</code> → paste back critical plan</span></li>
+                <li><span class="lang-sv"><strong>Nollställ tidigt</strong> om sessionen är förvirrad</span><span class="lang-en"><strong>Reset early</strong> if the session is confused</span></li>
+            </ul>
+            <div class="cursor-tip">
+                <div class="cursor-tip-header">
+                    <span class="lang-sv">Mental modell</span>
+                    <span class="lang-en">Mental model</span>
+                </div>
+                <p>
+                    <span class="lang-sv">Claude är tillståndslös om du inte externaliserar tillståndet.</span>
+                    <span class="lang-en">Claude is stateless unless you externalize state.</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="6 / 9">
+        <div class="presentation-slide-content">
+            <h2>Prompting</h2>
+            <p>
+                <span class="lang-sv">Prompting är inte magi. Det är krav + begränsningar + verifiering.</span>
+                <span class="lang-en">Prompting is not magic. It is requirements + constraints + verification.</span>
+            </p>
+            <p><strong><span class="lang-sv">Förfrågningsmall:</span><span class="lang-en">Request template:</span></strong></p>
+            <ul>
+                <li><span class="lang-sv">Mål</span><span class="lang-en">Goal</span></li>
+                <li><span class="lang-sv">Kontext (filer/sökvägar)</span><span class="lang-en">Context (files/paths)</span></li>
+                <li><span class="lang-sv">Begränsningar / icke-mål</span><span class="lang-en">Constraints / non-goals</span></li>
+                <li><span class="lang-sv">"Klart"-kriterier</span><span class="lang-en">"Done" criteria</span></li>
+                <li><span class="lang-sv">Be om plan först (sedan kod)</span><span class="lang-en">Ask for a plan first (then code)</span></li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="7 / 9">
+        <div class="presentation-slide-content">
+            <h2>MCP & Hooks</h2>
+            <p>
+                <span class="lang-sv">Poängen är att <strong>ta bort upprepad friktion</strong>.</span>
+                <span class="lang-en">The point is to <strong>remove repeated friction</strong>.</span>
+            </p>
+            <ul>
+                <li><strong>MCP</strong>: <span class="lang-sv">Automatisera kontextinhämtning från GitHub, Slack, databaser</span><span class="lang-en">Automate context ingestion from GitHub, Slack, databases</span></li>
+                <li><strong>Hooks</strong>: <span class="lang-sv">Kör kommandon före/efter ändringar (formatter, typecheck, test)</span><span class="lang-en">Run commands before/after changes (formatter, typecheck, test)</span></li>
+                <li><strong><span class="lang-sv">Slash-kommandon</span><span class="lang-en">Slash commands</span></strong>: <span class="lang-sv">Återanvändbara promptar via <code>.claude/commands/*.md</code></span><span class="lang-en">Reusable prompts via <code>.claude/commands/*.md</code></span></li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="8 / 9">
+        <div class="presentation-slide-content">
+            <h2>
+                <span class="lang-sv">När Claude fastnar</span>
+                <span class="lang-en">When Claude gets stuck</span>
+            </h2>
+            <ol>
+                <li><span class="lang-sv"><strong>Nollställ kontext</strong> (<code>/clear</code>) — ge endast uppgift + begränsningar + fel</span><span class="lang-en"><strong>Reset context</strong> (<code>/clear</code>) — provide only task + constraints + error</span></li>
+                <li><span class="lang-sv"><strong>Gör uppgiften mindre</strong> — minimal reproduktion, enfils-fix, test-first</span><span class="lang-en"><strong>Make task smaller</strong> — minimal repro, single-file fix, test-first</span></li>
+                <li><span class="lang-sv"><strong>Visa ett konkret exempel</strong> — "Här är önskat format; applicera det"</span><span class="lang-en"><strong>Show a concrete example</strong> — "Here is desired format; apply it"</span></li>
+                <li><span class="lang-sv"><strong>Omformulera</strong> — "Behandla detta som en tillståndsmaskin"</span><span class="lang-en"><strong>Reframe</strong> — "Treat this as a state machine"</span></li>
+            </ol>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="9 / 9">
+        <div class="presentation-slide-content">
+            <h2>TL;DR</h2>
+            <ul>
+                <li><span class="lang-sv"><strong>Tänk först, skriv sedan:</strong> Plan Mode ger bättre resultat</span><span class="lang-en"><strong>Think first, then type:</strong> Plan Mode gives better outcomes</span></li>
+                <li><span class="lang-sv"><strong>Skriv arkitekturbegränsningar:</strong> gränser + invarianter + icke-mål</span><span class="lang-en"><strong>Write architecture constraints:</strong> boundaries + invariants + non-goals</span></li>
+                <li><span class="lang-sv"><strong>CLAUDE.md är hävstång:</strong> kort, repo-specifik, uppdaterad</span><span class="lang-en"><strong>CLAUDE.md is leverage:</strong> short, repo-specific, updated</span></li>
+                <li><span class="lang-sv"><strong>Kontext degraderas tidigt:</strong> scope sessioner, externalisera minne</span><span class="lang-en"><strong>Context degrades early:</strong> scope sessions, externalize memory</span></li>
+                <li><span class="lang-sv"><strong>Prompta som en ingenjör:</strong> explicit om klart-kriterier</span><span class="lang-en"><strong>Prompt like an engineer:</strong> explicit about done criteria</span></li>
+                <li><span class="lang-sv"><strong>När fast, byt approach:</strong> nollställ, förenkla, omformulera</span><span class="lang-en"><strong>When stuck, change approach:</strong> reset, simplify, reframe</span></li>
+            </ul>
+        </div>
+    </section>
+
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
                 <a href="index.html" class="logo">
-                    <span class="logo-icon"></span>
                     B3 Commit
                 </a>
                 <span class="status-badge">All Systems Operational</span>
@@ -1221,6 +1450,112 @@
                 }
             });
         });
+
+        // ==================== 
+        // Presentation Mode
+        // ====================
+        const presentationToggle = document.getElementById('presentationToggle');
+        const presentationProgress = document.getElementById('presentationProgress');
+        const progressFill = document.getElementById('progressFill');
+        const slides = document.querySelectorAll('.presentation-slide');
+        const progressItems = document.querySelectorAll('.presentation-progress-item');
+
+        function setPresentationMode(enabled) {
+            html.setAttribute('data-presentation', enabled ? 'true' : 'false');
+            presentationToggle.classList.toggle('active', enabled);
+            
+            if (enabled) {
+                if (slides.length > 0) {
+                    slides[0].scrollIntoView({ behavior: 'smooth' });
+                }
+            } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        presentationToggle.addEventListener('click', () => {
+            const isActive = html.getAttribute('data-presentation') === 'true';
+            setPresentationMode(!isActive);
+        });
+
+        function updatePresentationProgress() {
+            if (html.getAttribute('data-presentation') !== 'true') return;
+
+            const scrollTop = window.scrollY;
+            const windowHeight = window.innerHeight;
+            let currentSlide = 0;
+
+            slides.forEach((slide, index) => {
+                const slideTop = slide.offsetTop;
+                const slideHeight = slide.offsetHeight;
+                if (scrollTop + windowHeight / 2 >= slideTop && 
+                    scrollTop + windowHeight / 2 < slideTop + slideHeight) {
+                    currentSlide = index;
+                }
+            });
+
+            progressItems.forEach((item, index) => {
+                item.classList.remove('active', 'passed');
+                if (index < currentSlide) {
+                    item.classList.add('passed');
+                } else if (index === currentSlide) {
+                    item.classList.add('active');
+                }
+            });
+
+            const totalSlides = slides.length;
+            const progressPercentage = (currentSlide / (totalSlides - 1)) * 100;
+            progressFill.style.height = progressPercentage + '%';
+        }
+
+        window.addEventListener('scroll', updatePresentationProgress);
+
+        progressItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                if (slides[index]) {
+                    slides[index].scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (html.getAttribute('data-presentation') !== 'true') return;
+
+            let currentSlide = 0;
+            const scrollTop = window.scrollY;
+            const windowHeight = window.innerHeight;
+
+            slides.forEach((slide, index) => {
+                const slideTop = slide.offsetTop;
+                const slideHeight = slide.offsetHeight;
+                if (scrollTop + windowHeight / 2 >= slideTop && 
+                    scrollTop + windowHeight / 2 < slideTop + slideHeight) {
+                    currentSlide = index;
+                }
+            });
+
+            if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+                e.preventDefault();
+                if (currentSlide < slides.length - 1) {
+                    slides[currentSlide + 1].scrollIntoView({ behavior: 'smooth' });
+                }
+            } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                e.preventDefault();
+                if (currentSlide > 0) {
+                    slides[currentSlide - 1].scrollIntoView({ behavior: 'smooth' });
+                }
+            } else if (e.key === 'Escape') {
+                setPresentationMode(false);
+            } else if (e.key === 'Home') {
+                e.preventDefault();
+                slides[0].scrollIntoView({ behavior: 'smooth' });
+            } else if (e.key === 'End') {
+                e.preventDefault();
+                slides[slides.length - 1].scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+
+        updatePresentationProgress();
     </script>
 </body>
 </html>

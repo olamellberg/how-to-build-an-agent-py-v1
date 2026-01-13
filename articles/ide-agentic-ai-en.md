@@ -1,0 +1,127 @@
+# Agentic AI in the IDE for .NET backend and JavaScript frontend (January 2026)
+
+Agentic AI in an IDE is more than “autocomplete”. It’s a workflow where the assistant can **plan**, propose **multi-file diffs**, run **build/test/lint**, read failures, and iterate toward clear acceptance criteria. For the general methodology (harness, feedback loops, context hygiene), refer to your existing articles on agent loops and “model CI”. fileciteturn2file6L10-L24 fileciteturn2file7L18-L27
+
+This article focuses on what is **IDE-specific**: which IDEs/editors are relevant without JetBrains, what model families they typically expose, how agentic workflows look in real engineering for .NET + JS, and what it costs (indicative).
+
+---
+
+## 1) What you’re actually choosing when you pick “IDE + agent”
+In practice you are choosing four things at once:
+
+1) **Context engine**: how the editor/agent gathers relevant files and diffs.  
+2) **Agent capabilities**: plan mode, multi-file edits, command execution, PR support.  
+3) **Model portfolio**: which model families (OpenAI/Anthropic/Google, etc.) you can select for different tasks. GitHub Copilot publishes an official list of supported models for Copilot Chat. citeturn1search3  
+4) **Governance/cost**: licenses, usage/premium requests, team policies.
+
+---
+
+## 2) Compact matrix: IDE ↔ models ↔ agent capability ↔ price
+
+> **Price** = list price in USD (excl. VAT), indicative. Features and model availability vary by plan and may change over time.
+
+| IDE / editor | AI assistants (examples) | Model families & vendors (examples) | Agentic support (practical) | Indicative price |
+|---|---|---|---|---|
+| **VS Code** | GitHub Copilot • Gemini Code Assist • Amazon Q Developer • (optional BYOK via Continue) | Copilot: model selection in Copilot Chat across multiple vendors (see “AI models for GitHub Copilot”). citeturn1search3 • Gemini Code Assist: Google (Gemini). citeturn0search9turn0search1 • Amazon Q Developer: AWS service for agentic coding assistance. citeturn0search2 | Multi-file diffs, plan/agent modes (plan-dependent), and the loop “edit → run checks → iterate”. | Copilot Pro **$10/mo**, Pro+ **$39/mo**. citeturn1search2turn1search14 • Amazon Q Developer Pro: **$19/user/mo** (list price). citeturn0search2 • Gemini Code Assist: Standard/Enterprise via Google Cloud pricing. citeturn0search1turn0search13 |
+| **Visual Studio** | GitHub Copilot | Copilot models per GitHub (see “AI models for GitHub Copilot”). citeturn1search3 | Agentic chat/edit in the IDE; a strong fit for .NET “vertical slices” (API + tests) when you have a repo harness. | Copilot licensing per GitHub: Business **$19/user/mo** (org) plus individual Pro/Pro+ above. citeturn1search14turn0search0 |
+| **Cursor** | Cursor (built-in agents + team controls) | Model costs and governance are documented in Cursor pricing (usage-based, per model). citeturn1search1turn0search3 | AI-native agentic workflow: multi-file edits, agent runs, and team-level spend controls. citeturn0search3turn1search1 | Teams: spend controls and model pricing via Cursor. citeturn0search3turn1search1 |
+| **Windsurf** | Windsurf (Cascade) | Model catalog / premium models are determined by Windsurf plan and credits. citeturn1search0 | AI-native agent flow via Cascade (multi-step in the editor). | Windsurf pricing (plans for individuals/teams/enterprise). citeturn1search0 |
+
+**How to read this for .NET + JS teams:**  
+- If you want an “enterprise-default” that’s easy to standardize in the Microsoft ecosystem: **VS Code/Visual Studio + Copilot** is typically the most predictable rollout path (licensing and docs are very explicit). citeturn1search14turn1search3  
+- If you want a Google-first IDE assistant: **Gemini Code Assist** is Google’s primary IDE offering. citeturn0search9turn0search13  
+- If you want an AI-first editor with a stronger agent experience: **Cursor/Windsurf** often push agent workflows further, but also become a platform you need to standardize and cost-control. citeturn1search1turn1search0
+
+---
+
+## 3) Practical starting bundles for teams
+These three “baseline” bundles usually work without creating tool chaos:
+
+### Bundle A: Microsoft standard (most compatible)
+- **VS Code for JS/TS and polyglot**
+- **Visual Studio for .NET** (when it adds value in debugging/profiling)
+- **GitHub Copilot** as the shared AI baseline
+
+This makes it easier to establish consistent guidance for model selection, prompts, and workflows (because Copilot concepts are consistent across both IDEs). citeturn1search3turn1search14
+
+### Bundle B: Google-first IDE assistant
+- **VS Code**
+- **Gemini Code Assist** (Standard/Enterprise when you need org-level features)
+
+Gemini Code Assist is available as “for individuals” and in Standard/Enterprise tiers, documented via Google Developer/Cloud docs. citeturn0search9turn0search13turn0search1
+
+### Bundle C: AI-first editor
+- **Cursor** or **Windsurf** for teams that want to push agentic workflows further inside the editor
+- Clear spend-control processes to avoid cost surprises (Cursor documents spend controls for Teams). citeturn0search3turn1search1
+
+---
+
+## 4) Agentic workflows in the IDE (compressed, with references)
+Rather than repeating fundamentals from your earlier articles, this section provides an **IDE-oriented checklist** you can copy into a team working agreement.
+
+### 4.1 Standard loop: “Plan → Diff → Check → Iterate”
+- A **single validation signal** (e.g., `make check` or `./scripts/ci.sh`) is the highest-leverage accelerator for agentic development. fileciteturn2file7L18-L27  
+- Agentic work scales when you can trust the loop (agent changes code, runs checks, iterates until green, then presents diff + risks). fileciteturn2file9L14-L21  
+- For the complete methodology (harness design, context as “RAM”, log signal): see *Vibe Engineering 101*. fileciteturn2file6L28-L39 fileciteturn2file7L29-L43  
+
+### 4.2 .NET: “Vertical slice” as the default unit of work
+Run the agent on tasks with clear steps and clear verification:
+- Endpoint + domain rule + persistence + tests (and optionally swagger/contract)
+- Small diffs (max 3–7 files per iteration)
+- `dotnet build` + `dotnet test` after each batch
+
+This fits the “tool-driven, easy to validate” category where agent loops typically produce the best results. fileciteturn2file2L5-L20  
+
+### 4.3 JS/TS: “Feature + states + test”
+Have the agent work around:
+- UI states (loading/error/success)
+- explicit error handling (409/400/500)
+- lint/test/build as the gate
+
+Keep logs minimal and targeted—overloaded context reduces precision. fileciteturn2file7L29-L41  
+
+### 4.4 Reset rule when the session degrades
+When the agent starts looping, it’s often faster to reset than to rescue a noisy context. Your `/compact` → `/clear` routine and re-injecting plan + constraints + current errors is a solid default. fileciteturn2file4L1-L11  
+
+---
+
+## 5) Protecting sensitive code and information (consolidated)
+
+This section is the operational, short version. For the broader principles (why stable context and repo “contracts” such as agents.md matter), see *Agents.md Explained*. fileciteturn2file0L6-L36
+
+### 5.1 Minimize the data surface that can leave the machine
+- Maintain an **AI allowlist** of folders the agent may read (e.g., `/src`, `/tests`) and a **denylist** for everything that must never enter context (`/secrets`, certs, prod-config, customer exports).
+- Restrict auto-indexing / project scanning in sensitive repos if the tool supports it (goal: the agent only sees what the task requires).
+
+### 5.2 Control tools and network capabilities
+- Run commands through a **controlled harness** (script/Makefile) rather than arbitrary execution.
+- Whitelist commands (build/test/lint) and require human approval for risk areas (auth, crypto, infra, licenses, secrets).
+
+### 5.3 Stabilize behavior with a repo contract (agents.md)
+Keep `agents.md` (or equivalent) short and always include:
+- Commands (build/test/lint)
+- Structure (key folders)
+- Boundaries (what the agent must not do)
+
+This reduces variance across sessions and eliminates recurring failure modes. fileciteturn2file15L1-L11 fileciteturn2file0L59-L68  
+
+### 5.4 Ops requirement: log tool outcomes and run evals
+For production-grade agentic workflows (even internally), treat the model as a pipeline component: tools produce truth, the model proposes changes, and you measure behavior with evals. *AI Fundamentals 2026* describes the minimum bar (pipeline + evals). fileciteturn2file5L6-L21 fileciteturn2file11L9-L13  
+
+---
+
+## 6) Pricing and licensing notes (for budgeting)
+- **Copilot**: individual licenses (Pro/Pro+) and org licenses (Business, etc.) are specified by GitHub. citeturn1search14turn1search2  
+- **Amazon Q Developer**: AWS lists pricing and limits for free/pro. citeturn0search2  
+- **Gemini Code Assist**: pricing and editions (Standard/Enterprise) are documented in Google Cloud. citeturn0search1turn0search13turn0search9  
+- **Cursor**: usage-based (model pricing + token fees + team spend controls). citeturn0search3turn1search1  
+- **Windsurf**: plan split is documented on the pricing page. citeturn1search0  
+
+---
+
+## 7) A one-week team playbook (Week 1)
+1) Introduce **one validation command** (`make check` or `./scripts/ci.sh`) and make it the agent’s default tool. fileciteturn2file7L18-L27  
+2) Add `agents.md` with commands/structure/boundaries (keep it compact). fileciteturn2file0L59-L68  
+3) Standardize prompts: **Goal → Constraints/non-goals → Done → Plan first** (your “prompt as engineering communication” pattern). fileciteturn2file4L21-L31  
+4) Establish a reset rule: if the loop degrades → compact/clear and restart clean. fileciteturn2file4L1-L11  
+5) For sensitive repos: enable denylist and restrict tools per 5.1–5.2.

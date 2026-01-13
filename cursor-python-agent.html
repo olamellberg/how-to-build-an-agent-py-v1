@@ -1,477 +1,200 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv" data-lang="sv">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>How to Build an Agent (Cursor + Python Edition) - Chronicle</title>
+    <title>How to Build an Agent (Cursor + Python Edition) - B3 Commit AI Handbook</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-primary: #FAF9F6;
-            --bg-secondary: #F0EDE8;
-            --text-primary: #1a1a18;
-            --text-secondary: #4a4a45;
-            --text-muted: #7a7a72;
-            --accent-olive: #5c6650;
-            --accent-olive-light: #6b7760;
-            --border-color: #d4d0c8;
-            --code-bg: #2d2d2d;
-            --code-text: #e6e6e6;
-            --terminal-bg: #1e1e1e;
-            --terminal-green: #4ec9b0;
-            --terminal-yellow: #dcdcaa;
-            --terminal-blue: #9cdcfe;
-            --link-color: #5c6650;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Newsreader', Georgia, serif;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.7;
-            font-size: 18px;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* Header / Navigation */
-        header {
-            padding: 1.5rem 2rem;
-            border-bottom: 1px solid var(--border-color);
-            position: sticky;
-            top: 0;
-            background: var(--bg-primary);
-            z-index: 100;
-        }
-
-        .nav-container {
-            max-width: 900px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .logo {
-            font-weight: 600;
-            font-size: 1.25rem;
-            text-decoration: none;
-            color: var(--text-primary);
-            letter-spacing: -0.5px;
-        }
-
-        .logo::before {
-            content: "◆";
-            margin-right: 0.5rem;
-            color: var(--accent-olive);
-        }
-
-        .breadcrumb {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        .breadcrumb a {
-            color: var(--text-secondary);
-            text-decoration: none;
-        }
-
-        .breadcrumb a:hover {
-            text-decoration: underline;
-        }
-
-        /* Main Content */
-        main {
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 3rem 2rem 6rem;
-        }
-
-        /* Hero / Header section */
-        .article-header {
-            margin-bottom: 3rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .article-meta {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-            font-family: 'JetBrains Mono', monospace;
-            letter-spacing: 0.5px;
-        }
-
-        h1 {
-            font-size: 3rem;
-            font-weight: 500;
-            line-height: 1.15;
-            margin-bottom: 0.5rem;
-            letter-spacing: -1px;
-        }
-
-        .subtitle {
-            font-style: italic;
-            color: var(--text-secondary);
-            font-size: 1.25rem;
-        }
-
-        /* Typography */
-        h2 {
-            font-size: 1.75rem;
-            font-weight: 500;
-            margin: 3rem 0 1.5rem;
-            letter-spacing: -0.5px;
-            color: var(--text-primary);
-        }
-
-        h2 code {
-            font-weight: 400;
-            font-size: 1.5rem;
-        }
-
-        p {
-            margin-bottom: 1.5rem;
-        }
-
-        a {
-            color: var(--link-color);
-            text-decoration: underline;
-            text-underline-offset: 2px;
-        }
-
-        a:hover {
-            color: var(--accent-olive-light);
-        }
-
-        em {
-            font-style: italic;
-        }
-
-        strong {
-            font-weight: 600;
-        }
-
-        /* Lists */
-        ul, ol {
-            margin-bottom: 1.5rem;
-            padding-left: 1.75rem;
-        }
-
-        li {
-            margin-bottom: 0.5rem;
-        }
-
-        /* Inline code */
-        code {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.88em;
-            background: var(--bg-secondary);
-            padding: 0.15em 0.4em;
-            border-radius: 4px;
-            color: var(--text-primary);
-        }
-
-        /* Code blocks */
-        pre {
-            background: var(--code-bg);
-            color: var(--code-text);
-            padding: 1.25rem 1.5rem;
-            border-radius: 8px;
-            overflow-x: auto;
-            margin-bottom: 1.5rem;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            line-height: 1.6;
-            border: 1px solid #3d3d3d;
-        }
-
-        pre code {
-            background: none;
-            padding: 0;
-            font-size: inherit;
-            color: inherit;
-        }
-
-        /* Shell code blocks */
-        pre.shell {
-            background: #1a1a1a;
-        }
-
-        /* Terminal output boxes */
-        .terminal {
-            background: var(--terminal-bg);
-            border-radius: 8px;
-            padding: 1.25rem 1.5rem;
-            margin-bottom: 1.5rem;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            line-height: 1.7;
-            border: 1px solid #333;
-            overflow-x: auto;
-            color: #d4d4d4;
-        }
-
-        .terminal .prompt {
-            color: #888;
-        }
-
-        .terminal .command {
-            color: #fff;
-        }
-
-        .terminal .output {
-            color: #b0b0b0;
-        }
-
-        .terminal .user {
-            color: #6ab0f3;
-            font-weight: 500;
-        }
-
-        .terminal .assistant {
-            color: #e6c07b;
-            font-weight: 500;
-        }
-
-        .terminal .tool {
-            color: #98c379;
-            font-weight: 500;
-        }
-
-        .terminal-line {
-            margin-bottom: 0.5rem;
-            color: #d4d4d4;
-            word-wrap: break-word;
-            white-space: pre-wrap;
-        }
-
-        .terminal-line:last-child {
-            margin-bottom: 0;
-        }
-
-        /* Blockquote */
-        blockquote {
-            border-left: 3px solid var(--accent-olive);
-            padding-left: 1.25rem;
-            margin: 1.5rem 0;
-            font-style: italic;
-            color: var(--text-secondary);
-        }
-
-        /* Python syntax highlighting */
-        .keyword { color: #c678dd; }
-        .string { color: #98c379; }
-        .function { color: #61afef; }
-        .comment { color: #7f848e; font-style: italic; }
-        .decorator { color: #e5c07b; }
-        .class { color: #e5c07b; }
-        .builtin { color: #e06c75; }
-        .number { color: #d19a66; }
-
-        /* Cursor Tip boxes */
-        .cursor-tip {
-            background: #f0f4e8;
-            border-left: 4px solid var(--accent-olive);
-            padding: 1rem 1.25rem;
-            margin: 1.5rem 0;
-            border-radius: 0 8px 8px 0;
-        }
-
-        .cursor-tip-header {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--accent-olive);
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .cursor-tip-header::before {
-            content: "⌘";
-            font-size: 1rem;
-        }
-
-        .cursor-tip p {
-            margin-bottom: 0.75rem;
-            font-size: 0.95rem;
-        }
-
-        .cursor-tip p:last-child {
-            margin-bottom: 0;
-        }
-
-        .cursor-tip code {
-            background: rgba(92, 102, 80, 0.15);
-        }
-
-        /* Agent prompt boxes */
-        .agent-prompt {
-            background: linear-gradient(135deg, #f8f6f0 0%, #f0ede8 100%);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1rem 1.25rem;
-            margin: 1.5rem 0;
-        }
-
-        .agent-prompt-header {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: var(--text-muted);
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .agent-prompt-content {
-            font-style: italic;
-            color: var(--text-secondary);
-            font-size: 1rem;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--border-color);
-            padding: 4rem 2rem;
-        }
-
-        .footer-content {
-            max-width: 900px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr repeat(4, 1fr);
-            gap: 3rem;
-        }
-
-        .footer-brand {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .footer-brand .logo {
-            font-size: 1.1rem;
-        }
-
-        .footer-links ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.6rem;
-        }
-
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.95rem;
-        }
-
-        .footer-links a:hover {
-            color: var(--text-primary);
-        }
-
-        .footer-links h3 {
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-
-        .status-badge::before {
-            content: "";
-            width: 8px;
-            height: 8px;
-            background: #4ade80;
-            border-radius: 50%;
-        }
-
-        .version-link {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-top: 0.5rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.25rem;
-            }
-
-            main {
-                padding: 2rem 1.25rem 4rem;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr 1fr;
-                gap: 2rem;
-            }
-
-            .footer-brand {
-                grid-column: 1 / -1;
-            }
-        }
-
-        @media (max-width: 480px) {
-            body {
-                font-size: 16px;
-            }
-
-            h1 {
-                font-size: 1.9rem;
-            }
-
-            pre, .terminal {
-                font-size: 0.78rem;
-                padding: 1rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Vertical Scroll Timeline -->
+    <div class="scroll-timeline" id="scrollTimeline">
+        <div class="scroll-timeline-progress" id="scrollProgress"></div>
+        <div class="scroll-timeline-marker" data-section="intro" style="top: 0%">
+            <span class="scroll-timeline-label">Intro</span>
+        </div>
+        <div class="scroll-timeline-marker" data-section="first-tool" style="top: 25%">
+            <span class="scroll-timeline-label">A First Tool</span>
+        </div>
+        <div class="scroll-timeline-marker" data-section="read-file" style="top: 50%">
+            <span class="scroll-timeline-label">read_file</span>
+        </div>
+        <div class="scroll-timeline-marker" data-section="list-files" style="top: 75%">
+            <span class="scroll-timeline-label">list_files</span>
+        </div>
+        <div class="scroll-timeline-marker" data-section="edit-file" style="top: 100%">
+            <span class="scroll-timeline-label">edit_file</span>
+        </div>
+    </div>
+
+    <!-- Menu Overlay -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <!-- Mobile Menu -->
+    <nav class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <a href="index.html" class="logo">
+                <span class="logo-icon"></span>
+                B3 Commit
+            </a>
+            <button class="mobile-menu-close" id="menuClose" aria-label="Stäng meny">×</button>
+        </div>
+
+        <div class="mobile-menu-section">
+            <h3><span class="lang-sv">I denna artikel</span><span class="lang-en">In this article</span></h3>
+            <ul class="mobile-menu-links">
+                <li><a href="#intro"><span class="menu-icon">📖</span> Intro</a></li>
+                <li><a href="#first-tool"><span class="menu-icon">🔧</span> A First Tool</a></li>
+                <li><a href="#read-file"><span class="menu-icon">📄</span> read_file</a></li>
+                <li><a href="#list-files"><span class="menu-icon">📁</span> list_files</a></li>
+                <li><a href="#edit-file"><span class="menu-icon">✏️</span> edit_file</a></li>
+            </ul>
+        </div>
+
+        <div class="mobile-menu-section">
+            <h3><span class="lang-sv">Artiklar</span><span class="lang-en">Articles</span></h3>
+            <ul class="mobile-menu-links">
+                <li>
+                    <a href="ai-fundamentals.html">
+                        <span class="menu-icon">🧠</span>
+                        AI Fundamentals 2026
+                    </a>
+                </li>
+                <li>
+                    <a href="cursor-python-agent.html">
+                        <span class="menu-icon">🤖</span>
+                        How to Build an Agent
+                    </a>
+                </li>
+                <li>
+                    <a href="vibe-engineering-101.html">
+                        <span class="menu-icon">⚡</span>
+                        Vibe Engineering 101
+                    </a>
+                </li>
+                <li>
+                    <a href="just-ralph-it.html">
+                        <span class="menu-icon">🔁</span>
+                        Just Ralph-it
+                    </a>
+                </li>
+                <li>
+                    <a href="claude-code-101.html">
+                        <span class="menu-icon">🔮</span>
+                        Claude Code 101
+                    </a>
+                </li>
+                <li>
+                    <a href="agents-md-explained.html">
+                        <span class="menu-icon">📋</span>
+                        Agents.md Explained
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="mobile-menu-section">
+            <h3><span class="lang-sv">Länkar</span><span class="lang-en">Links</span></h3>
+            <ul class="mobile-menu-links">
+                <li>
+                    <a href="https://github.com/b3-commit" target="_blank">
+                        <span class="menu-icon">📦</span>
+                        GitHub
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="menuThemeToggle">
+                        <span class="menu-icon">🌙</span>
+                        <span id="menuThemeText">
+                            <span class="lang-sv">Byt till mörkt läge</span>
+                            <span class="lang-en">Switch to dark mode</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="menuLangToggle">
+                        <span class="menu-icon">🌐</span>
+                        <span id="menuLangText">
+                            <span class="lang-sv">English</span>
+                            <span class="lang-en">Svenska</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
     <header>
         <nav class="nav-container">
-            <a href="#" class="logo">Chronicle</a>
-            <span class="breadcrumb">// <a href="#">Chronicle</a> // [Note] How to Build an Agent (Cursor Edition)</span>
+            <div class="nav-left">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon"></span>
+                    B3 Commit
+                </a>
+                <span class="breadcrumb">/ <a href="index.html">AI Handbook</a> / How to Build an Agent</span>
+                <div class="nav-pills active" id="navPills">
+                    <a href="#intro" class="nav-pill">Intro</a>
+                    <a href="#first-tool" class="nav-pill">Tools</a>
+                    <a href="#read-file" class="nav-pill">read_file</a>
+                    <a href="#list-files" class="nav-pill">list_files</a>
+                    <a href="#edit-file" class="nav-pill">edit_file</a>
+                </div>
+            </div>
+            <div class="nav-right">
+                <button class="lang-toggle" id="langToggle" aria-label="Byt språk">
+                    <span class="flag lang-sv">🇸🇪</span>
+                    <span class="flag lang-en">🇬🇧</span>
+                    <span class="lang-sv">SV</span>
+                    <span class="lang-en">EN</span>
+                </button>
+                <button class="theme-toggle" id="themeToggle" aria-label="Växla tema">
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                </button>
+                <button class="hamburger" id="hamburger" aria-label="Öppna meny">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
         </nav>
     </header>
 
     <main>
         <article>
-            <header class="article-header">
-                <p class="article-meta">Cursor + Python Edition // January 2026</p>
+            <header class="article-header" id="intro">
+                <p class="article-meta">
+                    <span class="lang-sv">Cursor + Python Edition // Januari 2026</span>
+                    <span class="lang-en">Cursor + Python Edition // January 2026</span>
+                </p>
                 <h1>How to Build an Agent</h1>
-                <p class="subtitle">or: The Emperor Has No Clothes (And Neither Does This Tutorial)</p>
+                <p class="subtitle">
+                    <span class="lang-sv">eller: Kejsaren har inga kläder (och det har inte heller den här tutorialen)</span>
+                    <span class="lang-en">or: The Emperor Has No Clothes (And Neither Does This Tutorial)</span>
+                </p>
             </header>
 
-            <p>It's not that hard to build a fully functioning, code-editing agent.</p>
+            <p>
+                <span class="lang-sv">Det är inte så svårt att bygga en fullt fungerande kodredigeringsagent.</span>
+                <span class="lang-en">It's not that hard to build a fully functioning, code-editing agent.</span>
+            </p>
 
-            <p>It seems like it would be. When you look at an agent editing files, running commands, wriggling itself out of errors, retrying different strategies — it seems like there has to be a secret behind it.</p>
+            <p>
+                <span class="lang-sv">Det verkar som om det skulle vara det. När man ser en agent redigera filer, köra kommandon, ta sig ur fel, prova olika strategier — det verkar som att det måste finnas en hemlighet bakom.</span>
+                <span class="lang-en">It seems like it would be. When you look at an agent editing files, running commands, wriggling itself out of errors, retrying different strategies — it seems like there has to be a secret behind it.</span>
+            </p>
 
-            <p>There isn't. It's an LLM, a loop, and enough tokens. The rest, the stuff that makes it so addictive and impressive? Elbow grease.</p>
+            <p>
+                <span class="lang-sv">Det finns det inte. Det är en LLM, en loop och tillräckligt med tokens. Resten, det som gör det så beroendeframkallande och imponerande? Hårt arbete.</span>
+                <span class="lang-en">There isn't. It's an LLM, a loop, and enough tokens. The rest, the stuff that makes it so addictive and impressive? Elbow grease.</span>
+            </p>
 
             <p>But building a small and yet highly impressive agent doesn't even require that. You can do it in less than 400 lines of code, most of which is boilerplate.</p>
 
@@ -505,7 +228,10 @@
                 <p>If you're new to Cursor, it's a code editor built on VS Code with AI capabilities baked in. The key feature we'll use is <strong>Agent mode</strong> — accessible via <code>Ctrl+I</code> (or <code>Cmd+I</code> on Mac). This lets you have a conversation with an AI that can read, write, and execute code in your project. Yes, we're about to use this agent to build an agent. Try not to think about it too hard.</p>
             </div>
 
-            <h2>Pencils out!</h2>
+            <h2>
+                <span class="lang-sv">Ta fram pennan!</span>
+                <span class="lang-en">Pencils out!</span>
+            </h2>
 
             <p>Let's start by opening Cursor and creating a new project. Open Cursor, then go to <strong>File → Open Folder</strong> and create a new folder called <code>code-editing-agent</code>.</p>
 
@@ -642,7 +368,10 @@ python agent.py</code></pre>
 
             <p>Okay, let's move on, because this is not an agent yet. What's an agent? Here's <a href="https://youtu.be/J1-W9O3n7j8?t=72">my definition</a>: an LLM with <em>access to tools</em>, giving it the ability to modify something outside the context window.</p>
 
-            <h2>A First Tool</h2>
+            <h2 id="first-tool">
+                <span class="lang-sv">Ett första verktyg</span>
+                <span class="lang-en">A First Tool</span>
+            </h2>
 
             <p>An LLM with <em>access to tools</em>? What's a tool? The basic idea is this: you send a prompt to the model that says it should reply in a certain way if it wants to use "a tool". Then you, as the receiver of that message, "use the tool" by executing it and replying with the result. That's it. Everything else we'll see is just abstraction on top of it.</p>
 
@@ -659,7 +388,10 @@ python agent.py</code></pre>
 
             <p>Okay, now let's build our first tool: <code>read_file</code></p>
 
-            <h2>The <code>read_file</code> tool</h2>
+            <h2 id="read-file">
+                <span class="lang-sv">Verktyget <code>read_file</code></span>
+                <span class="lang-en">The <code>read_file</code> tool</span>
+            </h2>
 
             <p>Each tool we're going to add will require the following:</p>
 
@@ -871,7 +603,10 @@ READ_FILE_TOOL = ToolDefinition(
                 <p>When Cursor makes changes to your code, you'll see a diff view showing exactly what changed. You can <strong>Accept</strong> (checkmark) or <strong>Reject</strong> (X) each change individually. If something doesn't look right, reject it and refine your prompt. Remember: you're always in control of what gets saved to your files.</p>
             </div>
 
-            <h2>The <code>list_files</code> tool</h2>
+            <h2 id="list-files">
+                <span class="lang-sv">Verktyget <code>list_files</code></span>
+                <span class="lang-en">The <code>list_files</code> tool</span>
+            </h2>
 
             <p>Let's add another tool. Ask Cursor:</p>
 
@@ -944,7 +679,10 @@ LIST_FILES_TOOL = ToolDefinition(
                 <p>Want to understand how a specific function works? Select it and press <code>Ctrl+L</code> to open the Chat panel with that code selected. Then ask questions like "How does this function handle errors?" or "What would happen if the path doesn't exist?" This is a great way to learn from the code Cursor generates.</p>
             </div>
 
-            <h2>Let it <code>edit_file</code></h2>
+            <h2 id="edit-file">
+                <span class="lang-sv">Låt den <code>edit_file</code></span>
+                <span class="lang-en">Let it <code>edit_file</code></span>
+            </h2>
 
             <p>The last tool we're going to add is <code>edit_file</code> — a tool that lets the assistant edit files. This is where the magic really happens.</p>
 
@@ -1056,9 +794,15 @@ If the file specified with path doesn't exist, it will be created."""</span>,
                 <p>You just used Cursor's agent to build an agent that can create files. Try asking <em>your</em> agent to create something, then watch it work. It's agents all the way down!</p>
             </div>
 
-            <h2>Isn't this amazing?</h2>
+            <h2>
+                <span class="lang-sv">Är inte detta fantastiskt?</span>
+                <span class="lang-en">Isn't this amazing?</span>
+            </h2>
 
-            <p>If you're anything like all the engineers I've talked to in the past few months, chances are that, while reading this, you have been waiting for the rabbit to be pulled out of the hat, for me to say "well, in reality it's much, much harder than this." But it's not.</p>
+            <p>
+                <span class="lang-sv">Om du är som alla ingenjörer jag har pratat med de senaste månaderna, har du förmodligen väntat på att kaninen ska dras ur hatten, på att jag ska säga "ja, i verkligheten är det mycket, mycket svårare än så här." Men det är det inte.</span>
+                <span class="lang-en">If you're anything like all the engineers I've talked to in the past few months, chances are that, while reading this, you have been waiting for the rabbit to be pulled out of the hat, for me to say "well, in reality it's much, much harder than this." But it's not.</span>
+            </p>
 
             <p>This is essentially all there is to the inner loop of a code-editing agent. Sure, integrating it into your editor, tweaking the system prompt, giving it the right feedback at the right time, a nice UI around it, better tooling around the tools, support for multiple agents, and so on — we've built all of that, but it didn't require moments of genius. All that was required was practical engineering and elbow grease.</p>
 
@@ -1071,18 +815,194 @@ If the file specified with path doesn't exist, it will be created."""</span>,
                 <p>Now that you've built your own agent, try extending it! Use Cursor to add more tools — maybe a <code>run_command</code> tool to execute shell commands, or a <code>search_files</code> tool for grep-like functionality. Just describe what you want: "Add a tool that runs shell commands and returns the output." Cursor will handle the rest. The sky's the limit.</p>
             </div>
 
-            <p><em>That's</em> why we think everything's changing.</p>
+            <p>
+                <span class="lang-sv"><em>Det är därför</em> vi tror att allt håller på att förändras.</span>
+                <span class="lang-en"><em>That's</em> why we think everything's changing.</span>
+            </p>
         </article>
     </main>
 
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
-                <a href="#" class="logo">Chronicle</a>
+                <a href="index.html" class="logo">
+                    <span class="logo-icon"></span>
+                    B3 Commit
+                </a>
                 <span class="status-badge">All Systems Operational</span>
-                <p class="version-link">Also available: <a href="how-to-build-an-agent.html">Original Python Edition</a></p>
             </div>
         </div>
     </footer>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const menuThemeToggle = document.getElementById('menuThemeToggle');
+        const html = document.documentElement;
+
+        function setTheme(theme) {
+            html.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+        }
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        setTheme(savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+        });
+
+        if (menuThemeToggle) {
+            menuThemeToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                const currentTheme = html.getAttribute('data-theme');
+                setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+            });
+        }
+
+        // Language Toggle
+        const langToggle = document.getElementById('langToggle');
+        const menuLangToggle = document.getElementById('menuLangToggle');
+
+        function setLanguage(lang) {
+            html.setAttribute('data-lang', lang);
+            html.setAttribute('lang', lang);
+            localStorage.setItem('language', lang);
+        }
+
+        // Load saved language (default: Swedish)
+        const savedLang = localStorage.getItem('language') || 'sv';
+        setLanguage(savedLang);
+
+        langToggle.addEventListener('click', () => {
+            const currentLang = html.getAttribute('data-lang');
+            setLanguage(currentLang === 'sv' ? 'en' : 'sv');
+        });
+
+        if (menuLangToggle) {
+            menuLangToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                const currentLang = html.getAttribute('data-lang');
+                setLanguage(currentLang === 'sv' ? 'en' : 'sv');
+            });
+        }
+
+        // Hamburger Menu
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const menuClose = document.getElementById('menuClose');
+
+        function openMenu() {
+            hamburger.classList.add('active');
+            mobileMenu.classList.add('active');
+            menuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        hamburger.addEventListener('click', () => {
+            if (mobileMenu.classList.contains('active')) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        });
+
+        menuOverlay.addEventListener('click', closeMenu);
+        menuClose.addEventListener('click', closeMenu);
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (!link.id || link.id !== 'menuThemeToggle') {
+                    closeMenu();
+                }
+            });
+        });
+
+        // Vertical Scroll Timeline
+        const scrollTimeline = document.getElementById('scrollTimeline');
+        const scrollProgress = document.getElementById('scrollProgress');
+        const timelineMarkers = document.querySelectorAll('.scroll-timeline-marker');
+        
+        // Section IDs for tracking
+        const sections = ['intro', 'first-tool', 'read-file', 'list-files', 'edit-file'];
+        
+        function updateTimeline() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            
+            // Update progress bar
+            scrollProgress.style.height = scrolled + '%';
+            
+            // Show/hide timeline based on scroll position
+            if (winScroll > 200) {
+                scrollTimeline.classList.add('visible');
+            } else {
+                scrollTimeline.classList.remove('visible');
+            }
+            
+            // Update active marker based on current section
+            let currentSection = sections[0];
+            sections.forEach(sectionId => {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top <= 150) {
+                        currentSection = sectionId;
+                    }
+                }
+            });
+            
+            timelineMarkers.forEach(marker => {
+                if (marker.dataset.section === currentSection) {
+                    marker.classList.add('active');
+                } else {
+                    marker.classList.remove('active');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', updateTimeline);
+        updateTimeline(); // Initial call
+        
+        // Click on timeline markers to navigate
+        timelineMarkers.forEach(marker => {
+            marker.addEventListener('click', () => {
+                const sectionId = marker.dataset.section;
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Smooth scroll for nav pills
+        document.querySelectorAll('.nav-pill, .mobile-menu a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>

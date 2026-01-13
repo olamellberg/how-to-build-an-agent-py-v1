@@ -1,0 +1,1559 @@
+<!DOCTYPE html>
+<html lang="sv" data-lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe Engineering 101 - B3 Commit AI Handbook</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Vertical Scroll Timeline -->
+    <div class="scroll-timeline" id="scrollTimeline">
+        <div class="scroll-timeline-progress" id="scrollProgress"></div>
+        <div class="scroll-timeline-marker" data-section="intro" style="top: 0%">
+            <span class="scroll-timeline-label">Intro</span>
+        </div>
+        <div class="scroll-timeline-marker" data-section="agent" style="top: 10%">
+            <span class="scroll-timeline-label">Agent</span>
+        </div>
+        <div class="scroll-timeline-marker" data-section="context" style="top: 20%">
+            <span class="scroll-timeline-label">
+                <span class="lang-sv">Kontext</span>
+                <span class="lang-en">Context</span>
+            </span>
+        </div>
+        <div class="scroll-timeline-marker" data-section="harness" style="top: 35%">
+            <span class="scroll-timeline-label">
+                <span class="lang-sv">Rigg</span>
+                <span class="lang-en">Harness</span>
+            </span>
+        </div>
+        <div class="scroll-timeline-marker" data-section="setup" style="top: 45%">
+            <span class="scroll-timeline-label">Setup</span>
+        </div>
+        <div class="scroll-timeline-marker" data-section="tdd" style="top: 60%">
+            <span class="scroll-timeline-label">TDD</span>
+        </div>
+        <div class="scroll-timeline-marker" data-section="devdocs" style="top: 75%">
+            <span class="scroll-timeline-label">DevDocs</span>
+        </div>
+        <div class="scroll-timeline-marker" data-section="checklist" style="top: 90%">
+            <span class="scroll-timeline-label">
+                <span class="lang-sv">Checklista</span>
+                <span class="lang-en">Checklist</span>
+            </span>
+        </div>
+    </div>
+
+    <!-- Menu Overlay -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <!-- Mobile Menu -->
+    <nav class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <a href="index.html" class="logo">
+                <span class="logo-icon"></span>
+                B3 Commit
+            </a>
+            <button class="mobile-menu-close" id="menuClose" aria-label="Stäng meny">&times;</button>
+        </div>
+
+        <div class="mobile-menu-section">
+            <h3><span class="lang-sv">I denna artikel</span><span class="lang-en">In this article</span></h3>
+            <ul class="mobile-menu-links">
+                <li><a href="#agent"><span class="menu-icon">🤖</span> <span class="lang-sv">Vad en agent är</span><span class="lang-en">What an agent is</span></a></li>
+                <li><a href="#context"><span class="menu-icon">🧠</span> <span class="lang-sv">Kontext</span><span class="lang-en">Context</span></a></li>
+                <li><a href="#harness"><span class="menu-icon">🔧</span> <span class="lang-sv">Rigg</span><span class="lang-en">Harness</span></a></li>
+                <li><a href="#setup"><span class="menu-icon">📁</span> <span class="lang-sv">Projektupplägg</span><span class="lang-en">Project setup</span></a></li>
+                <li><a href="#tdd"><span class="menu-icon">✅</span> TDD</a></li>
+                <li><a href="#devdocs"><span class="menu-icon">📝</span> DevDocs</a></li>
+                <li><a href="#checklist"><span class="menu-icon">📋</span> <span class="lang-sv">Checklista</span><span class="lang-en">Checklist</span></a></li>
+            </ul>
+        </div>
+
+        <div class="mobile-menu-section">
+            <h3><span class="lang-sv">Artiklar</span><span class="lang-en">Articles</span></h3>
+            <ul class="mobile-menu-links">
+                <li>
+                    <a href="ai-fundamentals.html">
+                        <span class="menu-icon">🧠</span>
+                        AI Fundamentals 2026
+                    </a>
+                </li>
+                <li>
+                    <a href="cursor-python-agent.html">
+                        <span class="menu-icon">🤖</span>
+                        How to Build an Agent
+                    </a>
+                </li>
+                <li>
+                    <a href="vibe-engineering-101.html">
+                        <span class="menu-icon">⚡</span>
+                        Vibe Engineering 101
+                    </a>
+                </li>
+                <li>
+                    <a href="claude-code-101.html">
+                        <span class="menu-icon">🔮</span>
+                        Claude Code 101
+                    </a>
+                </li>
+                <li>
+                    <a href="just-ralph-it.html">
+                        <span class="menu-icon">🔁</span>
+                        Just Ralph-it
+                    </a>
+                </li>
+                <li>
+                    <a href="agents-md-explained.html">
+                        <span class="menu-icon">📋</span>
+                        Agents.md Explained
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="mobile-menu-section">
+            <h3><span class="lang-sv">Länkar</span><span class="lang-en">Links</span></h3>
+            <ul class="mobile-menu-links">
+                <li>
+                    <a href="https://github.com/b3-commit" target="_blank">
+                        <span class="menu-icon">📦</span>
+                        GitHub
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="menuThemeToggle">
+                        <span class="menu-icon">🌙</span>
+                        <span id="menuThemeText">
+                            <span class="lang-sv">Byt till mörkt läge</span>
+                            <span class="lang-en">Switch to dark mode</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="menuLangToggle">
+                        <span class="menu-icon">🌐</span>
+                        <span id="menuLangText">
+                            <span class="lang-sv">English</span>
+                            <span class="lang-en">Svenska</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <header>
+        <nav class="nav-container">
+            <div class="nav-left">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon"></span>
+                    B3 Commit
+                </a>
+                <span class="breadcrumb">/ <a href="index.html">AI Handbook</a> / Vibe Engineering 101</span>
+                <div class="nav-pills active" id="navPills">
+                    <a href="#agent" class="nav-pill">Agent</a>
+                    <a href="#context" class="nav-pill"><span class="lang-sv">Kontext</span><span class="lang-en">Context</span></a>
+                    <a href="#setup" class="nav-pill"><span class="lang-sv">Upplägg</span><span class="lang-en">Setup</span></a>
+                    <a href="#tdd" class="nav-pill">TDD</a>
+                    <a href="#devdocs" class="nav-pill">DevDocs</a>
+                    <a href="#checklist" class="nav-pill"><span class="lang-sv">Checklista</span><span class="lang-en">Checklist</span></a>
+                </div>
+            </div>
+            <div class="nav-right">
+                <button class="lang-toggle" id="langToggle" aria-label="Byt språk">
+                    <span class="flag lang-sv">🇸🇪</span>
+                    <span class="flag lang-en">🇬🇧</span>
+                    <span class="lang-sv">SV</span>
+                    <span class="lang-en">EN</span>
+                </button>
+                <button class="theme-toggle" id="themeToggle" aria-label="Växla tema">
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                </button>
+                <button class="hamburger" id="hamburger" aria-label="Öppna meny">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <article>
+            <header class="article-header" id="intro">
+                <p class="article-meta">
+                    <span class="lang-sv">Agentbaserad utveckling // Januari 2026</span>
+                    <span class="lang-en">Agentic Development // January 2026</span>
+                </p>
+                <h1>Vibe Engineering 101</h1>
+                <p class="subtitle">
+                    <span class="lang-sv">En praktisk guide för systemutvecklare som vill komma igång med agentbaserad utveckling</span>
+                    <span class="lang-en">A practical guide for system developers getting started with agentic development</span>
+                </p>
+            </header>
+
+            <p>
+                <span class="lang-sv">Agentbaserad utveckling handlar mindre om "AI som skriver kod" och mer om att designa en pålitlig loop: en modell föreslår ändringar, verktyg validerar dem, och återkoppling driver nästa iteration. Den här artikeln är en fältguide för att bygga den loopen så att den producerar användbar mjukvara — konsekvent.</span>
+                <span class="lang-en">Agentic development is less about "AI that writes code" and more about designing a reliable loop: a model proposes changes, tools validate them, and feedback drives the next iteration. This article is a field guide for building that loop so it produces useful software — consistently.</span>
+            </p>
+
+            <p>
+                <span class="lang-sv">Målet här är inte att romantisera "vibe coding", utan att göra det operationellt: tydliga begränsningar, snabb feedback och repeterbara resultat.</span>
+                <span class="lang-en">The goal here is not to romanticize "vibe coding," but to make it operational: clear constraints, fast feedback, and repeatable outcomes.</span>
+            </p>
+
+            <!-- Section 1: What an agent actually is -->
+            <h2 id="agent">
+                <span class="lang-sv">1) Vad en agent faktiskt är</span>
+                <span class="lang-en">1) What an "agent" actually is</span>
+            </h2>
+
+            <p>
+                <span class="lang-sv">En användbar arbetsdefinition är:</span>
+                <span class="lang-en">A useful working definition is:</span>
+            </p>
+
+            <blockquote>
+                <span class="lang-sv"><strong>En agent kör verktyg i en loop för att uppnå ett mål.</strong></span>
+                <span class="lang-en"><strong>An agent runs tools in a loop to achieve a goal.</strong></span>
+            </blockquote>
+
+            <p>
+                <span class="lang-sv">Ur ett ingenjörsperspektiv är det medvetet oglamoröst. Systemet är typiskt:</span>
+                <span class="lang-en">From an engineering perspective, that's intentionally unglamorous. The system is typically:</span>
+            </p>
+
+            <ol>
+                <li>
+                    <span class="lang-sv">Ange ett mål + begränsningar</span>
+                    <span class="lang-en">Provide a goal + constraints</span>
+                </li>
+                <li>
+                    <span class="lang-sv">Modellen föreslår åtgärder (redigera filer, köra kommandon, inspektera utdata)</span>
+                    <span class="lang-en">Model proposes actions (edit files, run commands, inspect outputs)</span>
+                </li>
+                <li>
+                    <span class="lang-sv">Verktyg körs (tester, linters, byggen, sökning, exekvering)</span>
+                    <span class="lang-en">Tools run (tests, linters, builds, search, execution)</span>
+                </li>
+                <li>
+                    <span class="lang-sv">Resultaten går tillbaka in i loopen</span>
+                    <span class="lang-en">Results go back into the loop</span>
+                </li>
+                <li>
+                    <span class="lang-sv">Upprepa tills acceptanskriterierna är uppfyllda</span>
+                    <span class="lang-en">Repeat until the acceptance criteria are satisfied</span>
+                </li>
+            </ol>
+
+            <div class="cursor-tip">
+                <div class="cursor-tip-header">
+                    <span class="lang-sv">Nyckelpunkt</span>
+                    <span class="lang-en">Key Point</span>
+                </div>
+                <p>
+                    <span class="lang-sv">Denna enkelhet är goda nyheter: det betyder att agentbaserade system går att konstruera och förbättra. Du kan förbättra dem genom att förbättra loopen, inte genom att behandla modellen som magi.</span>
+                    <span class="lang-en">This simplicity is good news: it means agentic systems are <em>engineerable</em>. You can improve them by improving the loop, not by treating the model as magic.</span>
+                </p>
+            </div>
+
+            <!-- Section 2: Context window -->
+            <h2 id="context">
+                <span class="lang-sv">2) Ditt kontextfönster är ditt "RAM"</span>
+                <span class="lang-en">2) Your context window is your "RAM"</span>
+            </h2>
+
+            <p>
+                <span class="lang-sv">LLM:er "minns" inte ditt repo — i varje ögonblick arbetar de på de tokens du har tillhandahållit (plus vad dina verktyg injicerar). Praktiskt:</span>
+                <span class="lang-en">LLMs don't "remember" your repository — at any moment, they operate on the tokens you've provided (plus whatever your tooling injects). Practically:</span>
+            </p>
+
+            <ul>
+                <li>
+                    <span class="lang-sv"><strong>Allt som spelar roll måste finnas i kontexten</strong> (eller vara pålitligt hämtbart via verktyg).</span>
+                    <span class="lang-en"><strong>Everything that matters must be in context</strong> (or reliably retrievable via tools).</span>
+                </li>
+                <li>
+                    <span class="lang-sv"><strong>Mer kontext är inte alltid bättre.</strong> Överfulla kontexter ökar förvirring, felaktig verktygsanvändning och subtila fel.</span>
+                    <span class="lang-en"><strong>More context is not always better.</strong> Overstuffed contexts increase confusion, tool misuse, and subtle errors.</span>
+                </li>
+                <li>
+                    <span class="lang-sv"><strong>Du behöver hantera vad som kommer in i loopen.</strong></span>
+                    <span class="lang-en"><strong>You need to manage what enters the loop.</strong></span>
+                </li>
+            </ul>
+
+            <h3>
+                <span class="lang-sv">Praktiska tumregler</span>
+                <span class="lang-en">Practical rules of thumb</span>
+            </h3>
+
+            <ul>
+                <li>
+                    <span class="lang-sv">Undvik att låta verktyg dumpa stora mängder loggar, diffar eller hela repon i prompten.</span>
+                    <span class="lang-en">Avoid letting tools dump huge blobs of logs, diffs, or entire repos into the prompt.</span>
+                </li>
+                <li>
+                    <span class="lang-sv">Håll återkopplingen <strong>minimal och handlingsbar</strong> (mer om detta i rigg-avsnittet).</span>
+                    <span class="lang-en">Keep feedback <strong>minimal and actionable</strong> (more on this in the harness section).</span>
+                </li>
+                <li>
+                    <span class="lang-sv">Om din agent/verktyg auto-injicerar kontext, lär dig vad det inkluderar och hur du ställer in det.</span>
+                    <span class="lang-en">If your agent/tooling auto-injects context, learn what it includes and how to tune it.</span>
+                </li>
+            </ul>
+
+            <blockquote>
+                <span class="lang-sv"><strong>Mental modell:</strong> Behandla kontextfönstret som ont om minne i äldre system. Om du låter det fyllas med brusiga loggar och redundant information, försämras prestandan på samma sätt som en begränsad maskin när den svälter på resurser.</span>
+                <span class="lang-en"><strong>Mental model:</strong> Treat the context window like scarce memory in older systems. If you let it fill with noisy logs and redundant information, you'll degrade performance the same way a constrained machine does when starved of resources.</span>
+            </blockquote>
+
+            <!-- Section 3: The great decoupling -->
+            <h2 id="decoupling">
+                <span class="lang-sv">3) Den stora frikopplingen: skriva kod vs systemdesign</span>
+                <span class="lang-en">3) The great decoupling: typing code vs engineering systems</span>
+            </h2>
+
+            <p>
+                <span class="lang-sv">Agentbaserad utveckling förstärker ett skifte som många utvecklare redan upplever med senioritet:</span>
+                <span class="lang-en">Agentic development amplifies a shift many developers already experience with seniority:</span>
+            </p>
+
+            <ul>
+                <li>
+                    <span class="lang-sv"><strong>Programmering (skriva kod)</strong> blir billigare.</span>
+                    <span class="lang-en"><strong>Programming (typing code)</strong> becomes cheaper.</span>
+                </li>
+                <li>
+                    <span class="lang-sv"><strong>Engineering (design, begränsningar, testning, avvägningar)</strong> blir mer värdefullt.</span>
+                    <span class="lang-en"><strong>Engineering (design, constraints, testing, tradeoffs)</strong> becomes more valuable.</span>
+                </li>
+            </ul>
+
+            <p>
+                <span class="lang-sv">Modeller är ofta mycket starka på:</span>
+                <span class="lang-en">Models are often very strong at:</span>
+            </p>
+
+            <ul>
+                <li>
+                    <span class="lang-sv">syntax och boilerplate</span>
+                    <span class="lang-en">syntax and boilerplate</span>
+                </li>
+                <li>
+                    <span class="lang-sv">översätta avsikt till implementation</span>
+                    <span class="lang-en">translating intent into implementation</span>
+                </li>
+                <li>
+                    <span class="lang-sv">generera variationer snabbt</span>
+                    <span class="lang-en">generating variations quickly</span>
+                </li>
+                <li>
+                    <span class="lang-sv">arbeta i okända ekosystem (med vägledning)</span>
+                    <span class="lang-en">working across unfamiliar ecosystems (with guidance)</span>
+                </li>
+            </ul>
+
+            <p>
+                <span class="lang-sv">De är fortfarande svaga eller opålitliga på:</span>
+                <span class="lang-en">They're still weak or unreliable at:</span>
+            </p>
+
+            <ul>
+                <li>
+                    <span class="lang-sv">förstå din affärskontext som standard</span>
+                    <span class="lang-en">understanding your business context by default</span>
+                </li>
+                <li>
+                    <span class="lang-sv">göra produktavvägningar utan tydliga prioriteringar</span>
+                    <span class="lang-en">making product tradeoffs without clear priorities</span>
+                </li>
+                <li>
+                    <span class="lang-sv">gissa icke-uppenbara systembegränsningar</span>
+                    <span class="lang-en">guessing non-obvious system constraints</span>
+                </li>
+                <li>
+                    <span class="lang-sv">upprätthålla koherens över långa, röriga historiker</span>
+                    <span class="lang-en">maintaining coherence over long, messy histories</span>
+                </li>
+            </ul>
+
+            <div class="cursor-tip">
+                <div class="cursor-tip-header">
+                    <span class="lang-sv">Rollskifte</span>
+                    <span class="lang-en">Role Shift</span>
+                </div>
+                <p>
+                    <span class="lang-sv">Rollen förändras: du spenderar mer tid på specifikationer, acceptanskriterier, tester och arkitektur — och mindre tid på tangenttryckningar.</span>
+                    <span class="lang-en">The role changes: you spend more time on specs, acceptance criteria, tests, and architecture — and less time on keystrokes.</span>
+                </p>
+            </div>
+
+            <!-- Section 4: Tech Lead + QA Lead -->
+            <h2 id="techlead">
+                <span class="lang-sv">4) Du är nu Tech Lead + QA Lead</span>
+                <span class="lang-en">4) You are now Tech Lead + QA Lead</span>
+            </h2>
+
+            <p>
+                <span class="lang-sv">En produktiv inramning är:</span>
+                <span class="lang-en">A productive framing is:</span>
+            </p>
+
+            <ul>
+                <li>
+                    <span class="lang-sv"><strong>Du definierar "klart".</strong></span>
+                    <span class="lang-en"><strong>You define "done."</strong></span>
+                </li>
+                <li>
+                    <span class="lang-sv"><strong>Du designar feedback-loopen.</strong></span>
+                    <span class="lang-en"><strong>You design the feedback loop.</strong></span>
+                </li>
+                <li>
+                    <span class="lang-sv"><strong>Du granskar utfall, inte varje rad.</strong></span>
+                    <span class="lang-en"><strong>You review outcomes, not every line.</strong></span>
+                </li>
+            </ul>
+
+            <p>
+                <span class="lang-sv">Modeller beter sig som extremt snabba medarbetare utan långtidsminne. De kan röra sig snabbt, men de behöver:</span>
+                <span class="lang-en">Models behave like extremely fast collaborators with no long-term memory. They can move quickly, but they need:</span>
+            </p>
+
+            <ul>
+                <li>
+                    <span class="lang-sv">tydliga begränsningar</span>
+                    <span class="lang-en">clear constraints</span>
+                </li>
+                <li>
+                    <span class="lang-sv">skarpa definitioner av framgång</span>
+                    <span class="lang-en">crisp definitions of success</span>
+                </li>
+                <li>
+                    <span class="lang-sv">deterministisk feedback (tester, lint, bygge)</span>
+                    <span class="lang-en">deterministic feedback (tests, lint, build)</span>
+                </li>
+                <li>
+                    <span class="lang-sv">skyddsräcken mot drift</span>
+                    <span class="lang-en">guardrails against drifting</span>
+                </li>
+            </ul>
+
+            <blockquote>
+                <span class="lang-sv"><strong>Kärnkompetens:</strong> Bygg "modell-CI" in i ditt arbetsflöde.</span>
+                <span class="lang-en"><strong>Core skill:</strong> Build "model CI" into your workflow.</span>
+            </blockquote>
+
+            <!-- Section 5: Build a better harness -->
+            <h2 id="harness">
+                <span class="lang-sv">5) Sluta brottas med modellen — bygg en bättre rigg</span>
+                <span class="lang-en">5) Stop fighting the model — build a better harness</span>
+            </h2>
+
+            <p>
+                <span class="lang-sv">Ett vanligt felläge är att behandla modellen som en junior utvecklare du måste mikromanagera i realtid. Det skapar en mänsklig flaskhals och minskar genomströmningen.</span>
+                <span class="lang-en">A common failure mode is treating the model like a junior developer you must micromanage in real time. That creates a human bottleneck and reduces throughput.</span>
+            </p>
+
+            <p>
+                <span class="lang-sv">Istället för att manuellt fixa formatering, namn eller små stilproblem:</span>
+                <span class="lang-en">Instead of manually fixing formatting, names, or tiny style issues:</span>
+            </p>
+
+            <ul>
+                <li>
+                    <span class="lang-sv">koda regler i verktyg (formatter/linter)</span>
+                    <span class="lang-en">encode rules into tooling (formatter/linter)</span>
+                </li>
+                <li>
+                    <span class="lang-sv">låt agenten köra verktygen</span>
+                    <span class="lang-en">let the agent run the tooling</span>
+                </li>
+                <li>
+                    <span class="lang-sv">använd fel som feedback-signaler</span>
+                    <span class="lang-en">use failures as feedback signals</span>
+                </li>
+            </ul>
+
+            <p>
+                <span class="lang-sv">När agenten går åt fel håll, anta att något av detta är sant:</span>
+                <span class="lang-en">When the agent goes in the wrong direction, assume one of these is true:</span>
+            </p>
+
+            <ol>
+                <li>
+                    <span class="lang-sv"><strong>Planen var underspecificerad.</strong></span>
+                    <span class="lang-en"><strong>The plan was under-specified.</strong></span>
+                </li>
+                <li>
+                    <span class="lang-sv"><strong>Acceptanskriterierna var vaga.</strong></span>
+                    <span class="lang-en"><strong>The acceptance criteria were vague.</strong></span>
+                </li>
+                <li>
+                    <span class="lang-sv"><strong>Feedback-loopen är svag eller brusig.</strong></span>
+                    <span class="lang-en"><strong>The feedback loop is weak or noisy.</strong></span>
+                </li>
+            </ol>
+
+            <div class="cursor-tip">
+                <div class="cursor-tip-header">
+                    <span class="lang-sv">Lösningen</span>
+                    <span class="lang-en">The Fix</span>
+                </div>
+                <p>
+                    <span class="lang-sv">Lösningen är sällan "titta hårdare". Det är vanligtvis: förbättra specen, skärp testerna, minska brus i output, försök om rent.</span>
+                    <span class="lang-en">The fix is rarely "watch harder." It's usually: improve the spec, tighten the tests, reduce noise in outputs, retry cleanly.</span>
+                </p>
+            </div>
+
+            <!-- Section 6: Project setup -->
+            <h2 id="setup">
+                <span class="lang-sv">6) Projektupplägg är allt</span>
+                <span class="lang-en">6) Project setup is everything</span>
+            </h2>
+
+            <p>
+                <span class="lang-sv">Den bästa tidsinvesteringen du kan göra är ett repo som en agent kan arbeta i utan förvirring.</span>
+                <span class="lang-en">The best time investment you can make is a repo that an agent can operate without confusion.</span>
+            </p>
+
+            <h3>
+                <span class="lang-sv">Hårt krav: ett kommando för att validera</span>
+                <span class="lang-en">Hard requirement: one command to validate</span>
+            </h3>
+
+            <p>
+                <span class="lang-sv">Ditt projekt ska bygga, testa och linta med <strong>ett enda kommando</strong>.</span>
+                <span class="lang-en">Your project should build, test, and lint with <strong>a single command</strong>.</span>
+            </p>
+
+            <p>
+                <span class="lang-sv">Exempel:</span>
+                <span class="lang-en">Examples:</span>
+            </p>
+
+            <pre><code>make check
+./scripts/ci.sh
+npm test
+cargo test && cargo fmt --check && cargo clippy</code></pre>
+
+            <p>
+                <span class="lang-sv">Om validering kräver stamkunskap ("exportera denna variabel", "kör detta i den mappen", "installera detta systemberoende manuellt"), kommer din loop att slösa kontext och tid på att återupptäcka det — om och om igen.</span>
+                <span class="lang-en">If validation requires tribal knowledge ("export this var," "run this in that directory," "install this system dependency manually"), your loop will waste context and time re-discovering it — over and over.</span>
+            </p>
+
+            <h3>
+                <span class="lang-sv">Minimera och forma output</span>
+                <span class="lang-en">Minimize and shape output</span>
+            </h3>
+
+            <p>
+                <span class="lang-sv">Allt som skrivs ut av dina verktyg blir del av agentens arbetsminne. Behandla loggar som ett gränssnitt till en automatiserad medarbetare:</span>
+                <span class="lang-en">Everything printed by your tools becomes part of the agent's working memory. Treat logs as an interface to an automated collaborator:</span>
+            </p>
+
+            <ul>
+                <li>
+                    <span class="lang-sv">Föredra <strong>koncisa sammanfattningar</strong> vid framgång — "✅ 1000 tester godkända" slår 1000 rader av "ok"</span>
+                    <span class="lang-en">Prefer <strong>concise summaries</strong> on success — "✅ 1000 tests passed" beats 1000 lines of "ok"</span>
+                </li>
+                <li>
+                    <span class="lang-sv">Föredra <strong>fokuserade fel</strong> — visa det felande påståendet, relevant diff, minimal stacktrace</span>
+                    <span class="lang-en">Prefer <strong>focused failures</strong> — show the failing assertion, relevant diff, minimal stack trace</span>
+                </li>
+                <li>
+                    <span class="lang-sv">Undvik att dumpa tusentals rader av kompilatorspam om du kan kollapsa det</span>
+                    <span class="lang-en">Avoid dumping thousands of lines of compiler spew if you can collapse it</span>
+                </li>
+            </ul>
+
+            <blockquote>
+                <span class="lang-sv">Detta är "context engineering" i praktiken: designa I/O så att modellen ser signal, inte brus.</span>
+                <span class="lang-en">This is "context engineering" in practice: design the I/O so the model sees signal, not noise.</span>
+            </blockquote>
+
+            <!-- Section 7: Trust the loop -->
+            <h2 id="loop">
+                <span class="lang-sv">7) Lita på loopen, inte dina ögon</span>
+                <span class="lang-en">7) Trust the loop, not your eyes</span>
+            </h2>
+
+            <p>
+                <span class="lang-sv">Agentbaserade arbetsflöden skalar när du kan låta agenten köra utan konstant övervakning.</span>
+                <span class="lang-en">Agentic workflows scale when you can let the agent run without constant supervision.</span>
+            </p>
+
+            <p>
+                <span class="lang-sv">För att komma dit behöver du:</span>
+                <span class="lang-en">To get there, you need:</span>
+            </p>
+
+            <ul>
+                <li>
+                    <span class="lang-sv">deterministiska byggen</span>
+                    <span class="lang-en">deterministic builds</span>
+                </li>
+                <li>
+                    <span class="lang-sv">pålitliga tester</span>
+                    <span class="lang-en">reliable tests</span>
+                </li>
+                <li>
+                    <span class="lang-sv">linters/formatters</span>
+                    <span class="lang-en">linters/formatters</span>
+                </li>
+                <li>
+                    <span class="lang-sv">tydliga exit-koder</span>
+                    <span class="lang-en">clear exit codes</span>
+                </li>
+                <li>
+                    <span class="lang-sv">stabila skript</span>
+                    <span class="lang-en">stable scripts</span>
+                </li>
+            </ul>
+
+            <p>
+                <span class="lang-sv">En stark rigg gör det säkert att delegera:</span>
+                <span class="lang-en">A strong harness makes it safe to delegate:</span>
+            </p>
+
+            <ul>
+                <li>
+                    <span class="lang-sv">agenten ändrar kod</span>
+                    <span class="lang-en">the agent changes code</span>
+                </li>
+                <li>
+                    <span class="lang-sv">kör validering</span>
+                    <span class="lang-en">runs validation</span>
+                </li>
+                <li>
+                    <span class="lang-sv">läser felen</span>
+                    <span class="lang-en">reads the failures</span>
+                </li>
+                <li>
+                    <span class="lang-sv">itererar tills grönt</span>
+                    <span class="lang-en">iterates until green</span>
+                </li>
+                <li>
+                    <span class="lang-sv">presenterar en sammanfattning och den slutliga diffen</span>
+                    <span class="lang-en">presents a summary and the final diff</span>
+                </li>
+            </ul>
+
+            <blockquote>
+                <span class="lang-sv"><strong>Din roll:</strong> Verifiering via kontrakt: "Uppfyller det specen och klarar checkarna?"</span>
+                <span class="lang-en"><strong>Your role:</strong> Verification-by-contract: "Does it meet the spec and pass the checks?"</span>
+            </blockquote>
+
+            <!-- Section 8: Design for black boxes -->
+            <h2 id="blackbox">
+                <span class="lang-sv">8) Designa för svarta lådor</span>
+                <span class="lang-en">8) Design for black boxes</span>
+            </h2>
+
+            <p>
+                <span class="lang-sv">Agentbaserad utveckling belönar modularitet.</span>
+                <span class="lang-en">Agentic development rewards modularity.</span>
+            </p>
+
+            <p>
+                <span class="lang-sv">Favorisera komponenter som är:</span>
+                <span class="lang-en">Favor components that are:</span>
+            </p>
+
+            <ul>
+                <li>
+                    <span class="lang-sv">små</span>
+                    <span class="lang-en">small</span>
+                </li>
+                <li>
+                    <span class="lang-sv">testbara isolerat</span>
+                    <span class="lang-en">testable in isolation</span>
+                </li>
+                <li>
+                    <span class="lang-sv">definierade av tydliga inputs/outputs</span>
+                    <span class="lang-en">defined by clear inputs/outputs</span>
+                </li>
+                <li>
+                    <span class="lang-sv">utbytbara utan att skriva om världen</span>
+                    <span class="lang-en">swappable without rewriting the world</span>
+                </li>
+            </ul>
+
+            <p>
+                <span class="lang-sv">Tänk "svarta lådor-moduler", inte nödvändigtvis microservices:</span>
+                <span class="lang-en">Think "black box modules," not necessarily microservices:</span>
+            </p>
+
+            <ul>
+                <li>
+                    <span class="lang-sv">ett CLI-verktyg med stabila flaggor</span>
+                    <span class="lang-en">a CLI tool with stable flags</span>
+                </li>
+                <li>
+                    <span class="lang-sv">ett bibliotek med ett smalt gränssnitt</span>
+                    <span class="lang-en">a library with a narrow interface</span>
+                </li>
+                <li>
+                    <span class="lang-sv">en tjänst med en strikt API-gräns</span>
+                    <span class="lang-en">a service with a strict API boundary</span>
+                </li>
+                <li>
+                    <span class="lang-sv">ett pipeline-steg med explicita artefakter</span>
+                    <span class="lang-en">a pipeline stage with explicit artifacts</span>
+                </li>
+            </ul>
+
+            <div class="cursor-tip">
+                <div class="cursor-tip-header">
+                    <span class="lang-sv">Fördel</span>
+                    <span class="lang-en">Benefit</span>
+                </div>
+                <p>
+                    <span class="lang-sv">Detta minskar mängden kod modellen måste hålla koherent på en gång och gör refaktoreringar säkrare.</span>
+                    <span class="lang-en">This reduces the amount of code the model must keep coherent at once and makes refactors safer.</span>
+                </p>
+            </div>
+
+            <!-- Section 9: CLI over IDE -->
+            <h2 id="cli">
+                <span class="lang-sv">9) CLI före IDE (för agenter)</span>
+                <span class="lang-en">9) CLI over IDE (for agents)</span>
+            </h2>
+
+            <p>
+                <span class="lang-sv">IDE-integrationer kan vara bekväma, men CLI har strukturella fördelar för agentbaserat arbete:</span>
+                <span class="lang-en">IDE integrations can be convenient, but the CLI has structural advantages for agentic work:</span>
+            </p>
+
+            <ul>
+                <li>
+                    <span class="lang-sv"><strong>Upptäckbarhet:</strong> <code>--help</code> lär ut verktyg utan extra kontext</span>
+                    <span class="lang-en"><strong>Discoverability:</strong> <code>--help</code> teaches tools without extra context</span>
+                </li>
+                <li>
+                    <span class="lang-sv"><strong>Determinism:</strong> skript beter sig likadant i CI som lokalt</span>
+                    <span class="lang-en"><strong>Determinism:</strong> scripts behave the same in CI as locally</span>
+                </li>
+                <li>
+                    <span class="lang-sv"><strong>Transparens:</strong> stdout/stderr är ett explicit gränssnitt du kan justera</span>
+                    <span class="lang-en"><strong>Transparency:</strong> stdout/stderr is an explicit interface you can tune</span>
+                </li>
+                <li>
+                    <span class="lang-sv"><strong>Komponerbarhet:</strong> lätt att kedja steg till ett kommando</span>
+                    <span class="lang-en"><strong>Composability:</strong> easy to chain steps into one command</span>
+                </li>
+            </ul>
+
+            <p>
+                <span class="lang-sv">Ett bra CLI-först arbetsflöde gör det också lättare att köra flera agentsessioner parallellt, eftersom varje session kan arbeta genom skript snarare än UI-tillstånd.</span>
+                <span class="lang-en">A good CLI-first workflow also makes it easier to run multiple agent sessions in parallel, since each session can operate through scripts rather than UI state.</span>
+            </p>
+
+            <!-- Section 10: TDD -->
+            <h2 id="tdd">
+                <span class="lang-sv">10) TDD blir ovanligt effektivt med agenter</span>
+                <span class="lang-en">10) TDD becomes unusually effective with agents</span>
+            </h2>
+
+            <p>
+                <span class="lang-sv">Klassisk, strikt Test-Driven Development kan kännas dyrt för människor. Med agenter skiftar ekonomin eftersom tester blir en ratt:</span>
+                <span class="lang-en">Classic, strict Test-Driven Development can feel expensive for humans. With agents, the economics shift because tests become a steering wheel:</span>
+            </p>
+
+            <ol>
+                <li>
+                    <span class="lang-sv">Skriv ett fallande test (eller en fallande check)</span>
+                    <span class="lang-en">Write a failing test (or a failing check)</span>
+                </li>
+                <li>
+                    <span class="lang-sv">Låt agenten implementera ändringen</span>
+                    <span class="lang-en">Let the agent implement the change</span>
+                </li>
+                <li>
+                    <span class="lang-sv">Iterera tills grönt</span>
+                    <span class="lang-en">Iterate until green</span>
+                </li>
+            </ol>
+
+            <p>
+                <span class="lang-sv">Detta fungerar särskilt bra när:</span>
+                <span class="lang-en">This works especially well when:</span>
+            </p>
+
+            <ul>
+                <li>
+                    <span class="lang-sv">krav är skarpa</span>
+                    <span class="lang-en">requirements are crisp</span>
+                </li>
+                <li>
+                    <span class="lang-sv">edge cases är testbara</span>
+                    <span class="lang-en">edge cases are testable</span>
+                </li>
+                <li>
+                    <span class="lang-sv">framgång är observerbar via assertions</span>
+                    <span class="lang-en">success is observable via assertions</span>
+                </li>
+            </ul>
+
+            <h3>
+                <span class="lang-sv">Skydda mot "fusk"</span>
+                <span class="lang-en">Guard against "cheating"</span>
+            </h3>
+
+            <p>
+                <span class="lang-sv">Agenter kan ibland tillfredsställa tester på ytliga sätt (mocka för mycket, hårdkoda, kringgå logik). Motåtgärder:</span>
+                <span class="lang-en">Agents may sometimes satisfy tests in shallow ways (mocking too much, hardcoding, bypassing logic). Countermeasures:</span>
+            </p>
+
+            <ul>
+                <li>
+                    <span class="lang-sv">lägg till property-baserade tester där lämpligt</span>
+                    <span class="lang-en">add property-based tests where appropriate</span>
+                </li>
+                <li>
+                    <span class="lang-sv">testa flera fall (inte bara "happy path")</span>
+                    <span class="lang-en">test multiple cases (not just "happy path")</span>
+                </li>
+                <li>
+                    <span class="lang-sv">verifiera integrationsbeteende, inte bara enhetsbeteende</span>
+                    <span class="lang-en">verify integration behavior, not only unit behavior</span>
+                </li>
+                <li>
+                    <span class="lang-sv">inkludera negativa tester och invarianter</span>
+                    <span class="lang-en">include negative tests and invariants</span>
+                </li>
+            </ul>
+
+            <!-- Section 11: Golden master testing -->
+            <h2 id="golden">
+                <span class="lang-sv">11) Golden master-testning för portar och refaktoreringar</span>
+                <span class="lang-en">11) Golden master testing for ports and refactors</span>
+            </h2>
+
+            <p>
+                <span class="lang-sv">När du migrerar system eller gör stora refaktoreringar kan golden master-testning vara extremt effektiv:</span>
+                <span class="lang-en">When you're migrating systems or doing large refactors, golden master testing can be extremely effective:</span>
+            </p>
+
+            <ul>
+                <li>
+                    <span class="lang-sv">instrumentera det gamla systemet för att avge deterministiska spår (beslut, nyckelstate, outputs)</span>
+                    <span class="lang-en">instrument the old system to emit deterministic traces (decisions, key state, outputs)</span>
+                </li>
+                <li>
+                    <span class="lang-sv">spara spåret som "golden"-filen</span>
+                    <span class="lang-en">save the trace as the "golden" file</span>
+                </li>
+                <li>
+                    <span class="lang-sv">implementera det nya systemet</span>
+                    <span class="lang-en">implement the new system</span>
+                </li>
+                <li>
+                    <span class="lang-sv">säkerställ att det matchar golden-spåret byte-för-byte (eller via en normaliserad komparator)</span>
+                    <span class="lang-en">ensure it matches the golden trace byte-for-byte (or via a normalized comparator)</span>
+                </li>
+            </ul>
+
+            <p>
+                <span class="lang-sv">Detta är kraftfullt för:</span>
+                <span class="lang-en">This is powerful for:</span>
+            </p>
+
+            <ul>
+                <li>
+                    <span class="lang-sv">språkmigreringar</span>
+                    <span class="lang-en">language migrations</span>
+                </li>
+                <li>
+                    <span class="lang-sv">parser/serializer-omskrivningar</span>
+                    <span class="lang-en">parser/serializer rewrites</span>
+                </li>
+                <li>
+                    <span class="lang-sv">algoritm-refaktoreringar</span>
+                    <span class="lang-en">algorithm refactors</span>
+                </li>
+                <li>
+                    <span class="lang-sv">"samma beteende, annan implementation"-projekt</span>
+                    <span class="lang-en">"same behavior, different implementation" projects</span>
+                </li>
+            </ul>
+
+            <div class="cursor-tip">
+                <div class="cursor-tip-header">Tips</div>
+                <p>
+                    <span class="lang-sv">Om spår innehåller icke-deterministiska värden (tidsstämplar, pekare, slumpmässiga seed), normalisera dem.</span>
+                    <span class="lang-en">If traces contain nondeterministic values (timestamps, pointers, random seeds), normalize them.</span>
+                </p>
+            </div>
+
+            <!-- Section 12: Planning -->
+            <h2 id="planning">
+                <span class="lang-sv">12) Lägg tid på planering (och gör den återanvändbar)</span>
+                <span class="lang-en">12) Spend time on planning (and make it reusable)</span>
+            </h2>
+
+            <p>
+                <span class="lang-sv">Agenter drar nytta av planer som är:</span>
+                <span class="lang-en">Agents benefit from plans that are:</span>
+            </p>
+
+            <ul>
+                <li>
+                    <span class="lang-sv">indelade i steg</span>
+                    <span class="lang-en">staged</span>
+                </li>
+                <li>
+                    <span class="lang-sv">explicita om begränsningar</span>
+                    <span class="lang-en">explicit about constraints</span>
+                </li>
+                <li>
+                    <span class="lang-sv">explicita om "klart"</span>
+                    <span class="lang-en">explicit about "done"</span>
+                </li>
+                <li>
+                    <span class="lang-sv">nedskrivna i repot</span>
+                    <span class="lang-en">written down inside the repo</span>
+                </li>
+            </ul>
+
+            <p>
+                <span class="lang-sv">En bra plan svarar på:</span>
+                <span class="lang-en">A good plan answers:</span>
+            </p>
+
+            <ul>
+                <li>
+                    <span class="lang-sv">vad bygger vi?</span>
+                    <span class="lang-en">what are we building?</span>
+                </li>
+                <li>
+                    <span class="lang-sv">vad är icke-mål?</span>
+                    <span class="lang-en">what are the non-goals?</span>
+                </li>
+                <li>
+                    <span class="lang-sv">vad är gränssnitten?</span>
+                    <span class="lang-en">what are the interfaces?</span>
+                </li>
+                <li>
+                    <span class="lang-sv">vad är invarianterna?</span>
+                    <span class="lang-en">what are the invariants?</span>
+                </li>
+                <li>
+                    <span class="lang-sv">vilka tester bevisar korrekthet?</span>
+                    <span class="lang-en">what tests prove correctness?</span>
+                </li>
+                <li>
+                    <span class="lang-sv">i vilken ordning ska ändringar landa?</span>
+                    <span class="lang-en">what order should changes land?</span>
+                </li>
+            </ul>
+
+            <p>
+                <span class="lang-sv">Modeller är också användbara som planeringsassistenter:</span>
+                <span class="lang-en">Models are also useful as planning assistants:</span>
+            </p>
+
+            <ul>
+                <li>
+                    <span class="lang-sv">be om arkitekturalternativ</span>
+                    <span class="lang-en">ask for architectural alternatives</span>
+                </li>
+                <li>
+                    <span class="lang-sv">begär risklistor</span>
+                    <span class="lang-en">request risk lists</span>
+                </li>
+                <li>
+                    <span class="lang-sv">generera ett fasat implementationsförslag</span>
+                    <span class="lang-en">generate a phased implementation proposal</span>
+                </li>
+                <li>
+                    <span class="lang-sv">identifiera saknade acceptanskriterier</span>
+                    <span class="lang-en">identify missing acceptance criteria</span>
+                </li>
+            </ul>
+
+            <blockquote>
+                <span class="lang-sv">Men planen måste till slut spegla <em>dina</em> begränsningar och prioriteringar.</span>
+                <span class="lang-en">But the plan must ultimately reflect <em>your</em> constraints and priorities.</span>
+            </blockquote>
+
+            <!-- Section 13: DevDocs -->
+            <h2 id="devdocs">
+                <span class="lang-sv">13) DevDocs: överlev kontextåterställningar</span>
+                <span class="lang-en">13) DevDocs: surviving context resets</span>
+            </h2>
+
+            <p>
+                <span class="lang-sv">Långa sessioner tappar lätt fokus. En praktisk teknik är att hålla lättvikts \"agent handoff\"-dokument i repot, t.ex.:</span>
+                <span class="lang-en">Long sessions degrade. A practical technique is to keep lightweight "agent handoff" docs in the repo, e.g.:</span>
+            </p>
+
+            <pre><code>devdocs/
+  plan.md
+  progress.md
+  decisions.md   (valfritt/optional)
+  notes.md       (valfritt/optional)</code></pre>
+
+            <p>
+                <span class="lang-sv">Föreslaget innehåll:</span>
+                <span class="lang-en">Suggested contents:</span>
+            </p>
+
+            <h3>devdocs/plan.md</h3>
+            <ul>
+                <li>
+                    <span class="lang-sv">mål / icke-mål</span>
+                    <span class="lang-en">goals / non-goals</span>
+                </li>
+                <li>
+                    <span class="lang-sv">arkitekturskiss</span>
+                    <span class="lang-en">architecture sketch</span>
+                </li>
+                <li>
+                    <span class="lang-sv">faser</span>
+                    <span class="lang-en">phases</span>
+                </li>
+                <li>
+                    <span class="lang-sv">acceptanskriterier</span>
+                    <span class="lang-en">acceptance criteria</span>
+                </li>
+                <li>
+                    <span class="lang-sv">kommandon att köra</span>
+                    <span class="lang-en">commands to run</span>
+                </li>
+            </ul>
+
+            <h3>devdocs/progress.md</h3>
+            <ul>
+                <li>
+                    <span class="lang-sv">nuvarande tillstånd</span>
+                    <span class="lang-en">current state</span>
+                </li>
+                <li>
+                    <span class="lang-sv">vad är klart (checkboxar)</span>
+                    <span class="lang-en">what's done (checkboxes)</span>
+                </li>
+                <li>
+                    <span class="lang-sv">vad är nästa steg</span>
+                    <span class="lang-en">what's next</span>
+                </li>
+                <li>
+                    <span class="lang-sv">kända problem</span>
+                    <span class="lang-en">known issues</span>
+                </li>
+                <li>
+                    <span class="lang-sv">länkar till relevanta filer</span>
+                    <span class="lang-en">links to relevant files</span>
+                </li>
+            </ul>
+
+            <div class="cursor-tip">
+                <div class="cursor-tip-header">
+                    <span class="lang-sv">När sessionen blir rörig</span>
+                    <span class="lang-en">When the session gets messy</span>
+                </div>
+                <p>
+                    <span class="lang-sv">Starta en ny session, peka agenten på <code>devdocs/plan.md</code> + <code>devdocs/progress.md</code>, fortsätt med rent blad.</span>
+                    <span class="lang-en">Start a fresh session, point the agent at <code>devdocs/plan.md</code> + <code>devdocs/progress.md</code>, continue with a clean slate.</span>
+                </p>
+            </div>
+
+            <blockquote>
+                <span class="lang-sv"><strong>Nyckelinsikt:</strong> Planer och begränsningar är beständiga; kod är utbytbar.</span>
+                <span class="lang-en"><strong>Key mindset:</strong> Plans and constraints are durable; code is replaceable.</span>
+            </blockquote>
+
+            <!-- Section 14: Accumulation risk -->
+            <h2 id="slop">
+                <span class="lang-sv">14) Ackumulering och slaskrisk</span>
+                <span class="lang-en">14) Accumulation and "slop" risk</span>
+            </h2>
+
+            <p>
+                <span class="lang-sv">En verklig oro i agentbaserad utveckling är långsiktig kodkvalitetsdrift:</span>
+                <span class="lang-en">A real concern in agentic development is long-term code quality drift:</span>
+            </p>
+
+            <ul>
+                <li>
+                    <span class="lang-sv">inkonsekventa mönster</span>
+                    <span class="lang-en">inconsistent patterns</span>
+                </li>
+                <li>
+                    <span class="lang-sv">övervuxna abstraktioner</span>
+                    <span class="lang-en">overgrown abstractions</span>
+                </li>
+                <li>
+                    <span class="lang-sv">duplicerad logik</span>
+                    <span class="lang-en">duplicated logic</span>
+                </li>
+                <li>
+                    <span class="lang-sv">oklara gränser</span>
+                    <span class="lang-en">unclear boundaries</span>
+                </li>
+            </ul>
+
+            <p>
+                <span class="lang-sv">Motåtgärder:</span>
+                <span class="lang-en">Mitigations:</span>
+            </p>
+
+            <ul>
+                <li>
+                    <span class="lang-sv">upprätthåll formatering och linting</span>
+                    <span class="lang-en">enforce formatting and linting</span>
+                </li>
+                <li>
+                    <span class="lang-sv">kräv tester för ändringar</span>
+                    <span class="lang-en">require tests for changes</span>
+                </li>
+                <li>
+                    <span class="lang-sv">underhåll en arkitektur/beslutslogg</span>
+                    <span class="lang-en">maintain an architecture/decisions log</span>
+                </li>
+                <li>
+                    <span class="lang-sv">refaktorera medvetet i faser</span>
+                    <span class="lang-en">refactor deliberately in phases</span>
+                </li>
+                <li>
+                    <span class="lang-sv">härleda moduler på nytt från en ren spec periodiskt (när motiverat)</span>
+                    <span class="lang-en">periodically "re-derive" modules from a clean spec (when warranted)</span>
+                </li>
+                <li>
+                    <span class="lang-sv">håll moduler små och utbytbara</span>
+                    <span class="lang-en">keep modules small and replaceable</span>
+                </li>
+            </ul>
+
+            <blockquote>
+                <span class="lang-sv">Behandla agenten som en höggenomsättlig bidragsgivare: utan styrning ackumuleras entropi.</span>
+                <span class="lang-en">Treat the agent like a high-throughput contributor: without governance, entropy accumulates.</span>
+            </blockquote>
+
+            <!-- Section 15: Beyond coding -->
+            <h2 id="beyond">
+                <span class="lang-sv">15) Bortom kodning: där agenter glänser</span>
+                <span class="lang-en">15) Beyond coding: where agents shine</span>
+            </h2>
+
+            <p>
+                <span class="lang-sv">Agentloopar är ofta mest värdefulla för arbete som är:</span>
+                <span class="lang-en">Agentic loops are often most valuable for work that is:</span>
+            </p>
+
+            <ul>
+                <li>
+                    <span class="lang-sv">nödvändigt men inte intellektuellt centralt</span>
+                    <span class="lang-en">necessary but not intellectually central</span>
+                </li>
+                <li>
+                    <span class="lang-sv">starkt iterativt</span>
+                    <span class="lang-en">highly iterative</span>
+                </li>
+                <li>
+                    <span class="lang-sv">verktygsdrivet</span>
+                    <span class="lang-en">tool-driven</span>
+                </li>
+                <li>
+                    <span class="lang-sv">lätt att validera</span>
+                    <span class="lang-en">easy to validate</span>
+                </li>
+            </ul>
+
+            <p>
+                <span class="lang-sv">Exempel:</span>
+                <span class="lang-en">Examples:</span>
+            </p>
+
+            <ul>
+                <li>
+                    <span class="lang-sv">fixa CI-fel</span>
+                    <span class="lang-en">fixing CI failures</span>
+                </li>
+                <li>
+                    <span class="lang-sv">uppdatera byggskript</span>
+                    <span class="lang-en">updating build scripts</span>
+                </li>
+                <li>
+                    <span class="lang-sv">repohygien (lint, formatering, beroendeuppgraderingar)</span>
+                    <span class="lang-en">repository hygiene (lint, formatting, dependency upgrades)</span>
+                </li>
+                <li>
+                    <span class="lang-sv">utforska okända kodstigar</span>
+                    <span class="lang-en">researching unfamiliar codepaths</span>
+                </li>
+                <li>
+                    <span class="lang-sv">generera minimala reprofall</span>
+                    <span class="lang-en">generating minimal repros</span>
+                </li>
+                <li>
+                    <span class="lang-sv">skriva migreringsskript</span>
+                    <span class="lang-en">writing migration scripts</span>
+                </li>
+                <li>
+                    <span class="lang-sv">operativ felsökning (när säkert och kontrollerat)</span>
+                    <span class="lang-en">operational troubleshooting (when safe and controlled)</span>
+                </li>
+            </ul>
+
+            <div class="cursor-tip">
+                <div class="cursor-tip-header">
+                    <span class="lang-sv">Gemensamt tema</span>
+                    <span class="lang-en">Common theme</span>
+                </div>
+                <p>
+                    <span class="lang-sv">Loopen har tydlig verktygsfeedback och begränsad risk.</span>
+                    <span class="lang-en">The loop has clear tooling feedback and bounded risk.</span>
+                </p>
+            </div>
+
+            <!-- Section 16: Sub-agents -->
+            <h2 id="subagents">
+                <span class="lang-sv">16) Sub-agenter och delegeringsmönster</span>
+                <span class="lang-en">16) Sub-agents and delegation patterns</span>
+            </h2>
+
+            <p>
+                <span class="lang-sv">Ett skalningsmönster är att separera:</span>
+                <span class="lang-en">One scaling pattern is separating:</span>
+            </p>
+
+            <ul>
+                <li>
+                    <span class="lang-sv"><strong>utforskning</strong> (läs kod, kartlägg flöden, identifiera filer)</span>
+                    <span class="lang-en"><strong>exploration</strong> (read code, map flows, identify files)</span>
+                </li>
+                <li>
+                    <span class="lang-sv"><strong>exekvering</strong> (applicera ändringar, kör checkar, förfina)</span>
+                    <span class="lang-en"><strong>execution</strong> (apply changes, run checks, refine)</span>
+                </li>
+            </ul>
+
+            <p>
+                <span class="lang-sv">Du kan modellera detta som:</span>
+                <span class="lang-en">You can model this as:</span>
+            </p>
+
+            <ul>
+                <li>
+                    <span class="lang-sv">en "scout"-agent som returnerar en kort rapport: var relevant logik finns, hur anropsgrafen ser ut, vad som ska ändras och varför</span>
+                    <span class="lang-en">a "scout" agent that returns a short report: where the relevant logic lives, what the call graph looks like, what to change and why</span>
+                </li>
+                <li>
+                    <span class="lang-sv">en "builder"-agent som implementerar och validerar</span>
+                    <span class="lang-en">a "builder" agent that implements and validates</span>
+                </li>
+                <li>
+                    <span class="lang-sv">ett "reviewer"-steg som sammanfattar diffar och risker</span>
+                    <span class="lang-en">a "reviewer" step that summarizes diffs and risks</span>
+                </li>
+            </ul>
+
+            <blockquote>
+                <span class="lang-sv">Detta hjälper till att kontrollera kontexttillväxt och minskar thrash.</span>
+                <span class="lang-en">This helps control context growth and reduces thrash.</span>
+            </blockquote>
+
+            <!-- Section 17: Checklist -->
+            <h2 id="checklist">
+                <span class="lang-sv">17) En praktisk startchecklista</span>
+                <span class="lang-en">17) A practical starter checklist</span>
+            </h2>
+
+            <p>
+                <span class="lang-sv">Om du vill att agentbaserad utveckling ska kännas produktiv snabbt, börja här:</span>
+                <span class="lang-en">If you want agentic development to feel productive quickly, start here:</span>
+            </p>
+
+            <h3>
+                <span class="lang-sv">Repo-rigg</span>
+                <span class="lang-en">Repository harness</span>
+            </h3>
+            <ul>
+                <li>
+                    <span class="lang-sv">Ett kommando: bygge + test + lint</span>
+                    <span class="lang-en">Single command: build + test + lint</span>
+                </li>
+                <li>
+                    <span class="lang-sv">Tydliga skript i <code>./scripts</code> eller <code>Makefile</code></span>
+                    <span class="lang-en">Clear scripts in <code>./scripts</code> or <code>Makefile</code></span>
+                </li>
+                <li>
+                    <span class="lang-sv">Minimala loggar vid framgång, handlingsbara loggar vid fel</span>
+                    <span class="lang-en">Minimal logs on success, actionable logs on failure</span>
+                </li>
+                <li>
+                    <span class="lang-sv">Deterministiska testkörningar</span>
+                    <span class="lang-en">Deterministic test runs</span>
+                </li>
+            </ul>
+
+            <h3>
+                <span class="lang-sv">Arbetsflöde</span>
+                <span class="lang-en">Workflow</span>
+            </h3>
+            <ul>
+                <li>
+                    <span class="lang-sv">Skriv acceptanskriterier först</span>
+                    <span class="lang-en">Write acceptance criteria first</span>
+                </li>
+                <li>
+                    <span class="lang-sv">Lägg till tester före eller tillsammans med ändringar</span>
+                    <span class="lang-en">Add tests before or alongside changes</span>
+                </li>
+                <li>
+                    <span class="lang-sv">Håll ändringar små och komponerbara</span>
+                    <span class="lang-en">Keep changes small and composable</span>
+                </li>
+                <li>
+                    <span class="lang-sv">Föredra moduler med smala gränssnitt</span>
+                    <span class="lang-en">Prefer modules with narrow interfaces</span>
+                </li>
+            </ul>
+
+            <h3>
+                <span class="lang-sv">Kontexthygien</span>
+                <span class="lang-en">Context hygiene</span>
+            </h3>
+            <ul>
+                <li>
+                    <span class="lang-sv">Klistra inte in enorma loggar/diffar om det inte är nödvändigt</span>
+                    <span class="lang-en">Don't paste huge logs/diffs unless necessary</span>
+                </li>
+                <li>
+                    <span class="lang-sv">Ge riktade filsökvägar och mål</span>
+                    <span class="lang-en">Provide targeted file paths and goals</span>
+                </li>
+                <li>
+                    <span class="lang-sv">Använd <code>devdocs/</code> för beständig plan/progress</span>
+                    <span class="lang-en">Use <code>devdocs/</code> for durable plan/progress</span>
+                </li>
+            </ul>
+
+            <h3>
+                <span class="lang-sv">Kvalitetskontroller</span>
+                <span class="lang-en">Quality controls</span>
+            </h3>
+            <ul>
+                <li>
+                    <span class="lang-sv">Linter + formatter + CI-grind</span>
+                    <span class="lang-en">Linter + formatter + CI gate</span>
+                </li>
+                <li>
+                    <span class="lang-sv">Golden master-approach för riskfyllda migreringar</span>
+                    <span class="lang-en">Golden master approach for risky migrations</span>
+                </li>
+                <li>
+                    <span class="lang-sv">Periodiska refaktoreringsfaser för att minska drift</span>
+                    <span class="lang-en">Periodic refactor phases to reduce drift</span>
+                </li>
+            </ul>
+
+            <!-- Closing -->
+            <h2 id="closing">
+                <span class="lang-sv">Avslutning</span>
+                <span class="lang-en">Closing</span>
+            </h2>
+
+            <p>
+                <span class="lang-sv">"Vibe Engineering" blir verkligt när du behandlar agenter som en del av ett system: en loop med verktyg, begränsningar och återkoppling. Om du investerar i riggen och gör "klart" maskin-kontrollerbart, kan du delegera säkrare, röra dig snabbare och lägga mer tid på de ingenjörsbeslut som faktiskt spelar roll.</span>
+                <span class="lang-en">"Vibe Engineering" becomes real when you treat agents as part of a system: a loop with tools, constraints, and feedback. If you invest in the harness and make "done" machine-checkable, you can delegate more safely, move faster, and spend more time on the engineering decisions that actually matter.</span>
+            </p>
+
+        </article>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon"></span>
+                    B3 Commit
+                </a>
+                <span class="status-badge">All Systems Operational</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const menuThemeToggle = document.getElementById('menuThemeToggle');
+        const html = document.documentElement;
+
+        function setTheme(theme) {
+            html.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+        }
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        setTheme(savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+        });
+
+        if (menuThemeToggle) {
+            menuThemeToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                const currentTheme = html.getAttribute('data-theme');
+                setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+            });
+        }
+
+        // Language Toggle
+        const langToggle = document.getElementById('langToggle');
+        const menuLangToggle = document.getElementById('menuLangToggle');
+
+        function setLanguage(lang) {
+            html.setAttribute('data-lang', lang);
+            html.setAttribute('lang', lang);
+            localStorage.setItem('language', lang);
+        }
+
+        // Load saved language (default: Swedish)
+        const savedLang = localStorage.getItem('language') || 'sv';
+        setLanguage(savedLang);
+
+        langToggle.addEventListener('click', () => {
+            const currentLang = html.getAttribute('data-lang');
+            setLanguage(currentLang === 'sv' ? 'en' : 'sv');
+        });
+
+        if (menuLangToggle) {
+            menuLangToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                const currentLang = html.getAttribute('data-lang');
+                setLanguage(currentLang === 'sv' ? 'en' : 'sv');
+            });
+        }
+
+        // Hamburger Menu
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const menuClose = document.getElementById('menuClose');
+
+        function openMenu() {
+            hamburger.classList.add('active');
+            mobileMenu.classList.add('active');
+            menuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        hamburger.addEventListener('click', () => {
+            if (mobileMenu.classList.contains('active')) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        });
+
+        menuOverlay.addEventListener('click', closeMenu);
+        menuClose.addEventListener('click', closeMenu);
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (!link.id || (link.id !== 'menuThemeToggle' && link.id !== 'menuLangToggle')) {
+                    closeMenu();
+                }
+            });
+        });
+
+        // Vertical Scroll Timeline
+        const scrollTimeline = document.getElementById('scrollTimeline');
+        const scrollProgress = document.getElementById('scrollProgress');
+        const timelineMarkers = document.querySelectorAll('.scroll-timeline-marker');
+        
+        // Section IDs for tracking
+        const sections = ['intro', 'agent', 'context', 'decoupling', 'techlead', 'harness', 'setup', 'loop', 'blackbox', 'cli', 'tdd', 'golden', 'planning', 'devdocs', 'slop', 'beyond', 'subagents', 'checklist', 'closing'];
+        
+        function updateTimeline() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            
+            // Update progress bar
+            scrollProgress.style.height = scrolled + '%';
+            
+            // Show/hide timeline based on scroll position
+            if (winScroll > 200) {
+                scrollTimeline.classList.add('visible');
+            } else {
+                scrollTimeline.classList.remove('visible');
+            }
+            
+            // Update active marker based on current section
+            let currentSection = sections[0];
+            sections.forEach(sectionId => {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top <= 150) {
+                        currentSection = sectionId;
+                    }
+                }
+            });
+            
+            timelineMarkers.forEach(marker => {
+                if (marker.dataset.section === currentSection) {
+                    marker.classList.add('active');
+                } else {
+                    marker.classList.remove('active');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', updateTimeline);
+        updateTimeline(); // Initial call
+        
+        // Click on timeline markers to navigate
+        timelineMarkers.forEach(marker => {
+            marker.addEventListener('click', () => {
+                const sectionId = marker.dataset.section;
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Smooth scroll for nav pills
+        document.querySelectorAll('.nav-pill, .mobile-menu a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -170,3 +170,16 @@ Tillförlitlighet uppstår inte genom att välja ”bästa” modellen, utan gen
 - Håll den liten och explicit
 - Eliminera upprepade fel
 - Målet är förtroende, inte imponerande output
+
+## Referenser & Credits
+
+### Officiella resurser
+
+- [agents.md](https://agents.md/)
+- [Using CLAUDE.md Files — Anthropic](https://www.claude.com/blog/using-claude-md-files)
+- [How to Write a Great agents.md — GitHub Blog](https://github.blog/ai-and-ml/github-copilot/how-to-write-a-great-agents-md-lessons-from-over-2500-repositories/)
+
+### Inspiration
+
+- [Grit AI Studio](https://www.youtube.com/@GritAIStudio)
+- [Geoffrey Huntley](https://ghuntley.com/)

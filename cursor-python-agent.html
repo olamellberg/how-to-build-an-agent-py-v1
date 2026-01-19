@@ -23,55 +23,77 @@
         </div>
         <div class="presentation-progress-item" data-slide="1">
             <div class="presentation-progress-dot"></div>
-            <span class="presentation-progress-label">
-                <span class="lang-sv">Koncept</span>
-                <span class="lang-en">Concept</span>
-            </span>
+            <span class="presentation-progress-label">Vad vi behöver</span>
         </div>
         <div class="presentation-progress-item" data-slide="2">
             <div class="presentation-progress-dot"></div>
-            <span class="presentation-progress-label">Tools</span>
+            <span class="presentation-progress-label">Ta fram pennan!</span>
         </div>
         <div class="presentation-progress-item" data-slide="3">
             <div class="presentation-progress-dot"></div>
-            <span class="presentation-progress-label">read_file</span>
+            <span class="presentation-progress-label">Ett första verktyg</span>
         </div>
         <div class="presentation-progress-item" data-slide="4">
             <div class="presentation-progress-dot"></div>
-            <span class="presentation-progress-label">list_files</span>
+            <span class="presentation-progress-label">Verktyget `read_file`</span>
         </div>
         <div class="presentation-progress-item" data-slide="5">
             <div class="presentation-progress-dot"></div>
-            <span class="presentation-progress-label">edit_file</span>
+            <span class="presentation-progress-label">Ytterligare verktyg: list_files och edit_file</span>
         </div>
         <div class="presentation-progress-item" data-slide="6">
             <div class="presentation-progress-dot"></div>
-            <span class="presentation-progress-label">
-                <span class="lang-sv">Slutsats</span>
-                <span class="lang-en">Conclusion</span>
-            </span>
+            <span class="presentation-progress-label">Slutsats</span>
         </div>
     </nav>
 
-    <!-- Vertical Scroll Timeline -->
-    <div class="scroll-timeline" id="scrollTimeline">
-        <div class="scroll-timeline-progress" id="scrollProgress"></div>
-        <div class="scroll-timeline-marker" data-section="intro" style="top: 0%">
-            <span class="scroll-timeline-label">Intro</span>
-        </div>
-        <div class="scroll-timeline-marker" data-section="first-tool" style="top: 25%">
-            <span class="scroll-timeline-label">A First Tool</span>
-        </div>
-        <div class="scroll-timeline-marker" data-section="read-file" style="top: 50%">
-            <span class="scroll-timeline-label">read_file</span>
-        </div>
-        <div class="scroll-timeline-marker" data-section="list-files" style="top: 75%">
-            <span class="scroll-timeline-label">list_files</span>
-        </div>
-        <div class="scroll-timeline-marker" data-section="edit-file" style="top: 100%">
-            <span class="scroll-timeline-label">edit_file</span>
-        </div>
-    </div>
+    <!-- Reading Progress (vertical chapter nav for reading mode) -->
+    <nav class="reading-progress" id="readingProgress">
+        <div class="reading-progress-track"></div>
+        <div class="reading-progress-fill" id="readingProgressFill"></div>
+        <a href="#vad-vi-behöver" class="reading-progress-item" data-section="vad-vi-behöver">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Vad vi behöver</span>
+                <span class="lang-en">What we need</span>
+            </span>
+        </a>
+        <a href="#ta-fram-pennan" class="reading-progress-item" data-section="ta-fram-pennan">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Ta fram pennan!</span>
+                <span class="lang-en">Pencils out!</span>
+            </span>
+        </a>
+        <a href="#ett-första-verktyg" class="reading-progress-item" data-section="ett-första-verktyg">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Ett första verktyg</span>
+                <span class="lang-en">A First Tool</span>
+            </span>
+        </a>
+        <a href="#verktyget-read_file" class="reading-progress-item" data-section="verktyget-read_file">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Verktyget `read_file`</span>
+                <span class="lang-en">The `read_file` tool</span>
+            </span>
+        </a>
+        <a href="#ytterligare-verktyg-list_files-och-edit_file" class="reading-progress-item" data-section="ytterligare-verktyg-list_files-och-edit_file">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Ytterligare verktyg: list_files och edit_file</span>
+                <span class="lang-en">Additional tools: list_files and edit_file</span>
+            </span>
+        </a>
+        <a href="#slutsats" class="reading-progress-item" data-section="slutsats">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Slutsats</span>
+                <span class="lang-en">Conclusion</span>
+            </span>
+        </a>
+    </nav>
 
     <!-- Menu Overlay -->
     <div class="menu-overlay" id="menuOverlay"></div>
@@ -79,109 +101,17 @@
     <!-- Mobile Menu -->
     <nav class="mobile-menu" id="mobileMenu">
         <div class="mobile-menu-header">
-            <a href="index.html" class="logo">
-                B3 Commit
-            </a>
-            <button class="mobile-menu-close" id="menuClose" aria-label="Stäng meny">×</button>
+            <a href="index.html" class="logo">B3 Commit</a>
+            <button class="mobile-menu-close" id="menuClose" aria-label="Stäng meny">&times;</button>
         </div>
-
-        <div class="mobile-menu-section">
-            <h3><span class="lang-sv">I denna artikel</span><span class="lang-en">In this article</span></h3>
-            <ul class="mobile-menu-links">
-                <li><a href="#intro"><span class="menu-icon">📖</span> Intro</a></li>
-                <li><a href="#first-tool"><span class="menu-icon">🔧</span> A First Tool</a></li>
-                <li><a href="#read-file"><span class="menu-icon">📄</span> read_file</a></li>
-                <li><a href="#list-files"><span class="menu-icon">📁</span> list_files</a></li>
-                <li><a href="#edit-file"><span class="menu-icon">✏️</span> edit_file</a></li>
-            </ul>
-        </div>
-
-        <div class="mobile-menu-section">
-            <h3><span class="lang-sv">Artiklar</span><span class="lang-en">Articles</span></h3>
-            <ul class="mobile-menu-links">
-                <li>
-                    <a href="ai-fundamentals.html">
-                        <span class="menu-icon">🧠</span>
-                        AI Fundamentals 2026
-                    </a>
-                </li>
-                <li>
-                    <a href="cursor-python-agent.html">
-                        <span class="menu-icon">🤖</span>
-                        How to Build an Agent
-                    </a>
-                </li>
-                <li>
-                    <a href="vibe-engineering-101.html">
-                        <span class="menu-icon">⚡</span>
-                        Vibe Engineering 101
-                    </a>
-                </li>
-                <li>
-                    <a href="just-ralph-it.html">
-                        <span class="menu-icon">🔁</span>
-                        Just Ralph-it
-                    </a>
-                </li>
-                <li>
-                    <a href="claude-code-101.html">
-                        <span class="menu-icon">🔮</span>
-                        Claude Code 101
-                    </a>
-                </li>
-                <li>
-                    <a href="agents-md-explained.html">
-                        <span class="menu-icon">📋</span>
-                        Agents.md Explained
-                    </a>
-                </li>
-                <li>
-                    <a href="ide-agentic-ai.html">
-                        <span class="menu-icon">🖥️</span>
-                        Välj IDE för Agentisk AI
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="mobile-menu-section">
-            <h3><span class="lang-sv">Länkar</span><span class="lang-en">Links</span></h3>
-            <ul class="mobile-menu-links">
-                <li>
-                    <a href="https://github.com/b3-commit" target="_blank">
-                        <span class="menu-icon">📦</span>
-                        GitHub
-                    </a>
-                </li>
-                <li>
-                    <a href="#" id="menuThemeToggle">
-                        <span class="menu-icon">🌙</span>
-                        <span id="menuThemeText">
-                            <span class="lang-sv">Byt till mörkt läge</span>
-                            <span class="lang-en">Switch to dark mode</span>
-                        </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" id="menuLangToggle">
-                        <span class="menu-icon">🌐</span>
-                        <span id="menuLangText">
-                            <span class="lang-sv">English</span>
-                            <span class="lang-en">Svenska</span>
-                        </span>
-                    </a>
-                </li>
-            </ul>
-        </div>
+        <!-- Mobile menu content would be generated from manifest -->
     </nav>
 
     <header>
         <nav class="nav-container">
             <div class="nav-left">
-                <a href="index.html" class="logo">
-                    B3 Commit
-                </a>
-                <span class="breadcrumb">/ <a href="index.html">AI Handbook</a> / How to Build an Agent</span>
+                <a href="index.html" class="logo">B3 Commit</a>
+                <span class="breadcrumb">/ <a href="index.html"><span class="lang-sv">AI Handbook</span><span class="lang-en">AI Handbook</span></a> / <span class="lang-sv">Hur man bygger en agent (Cursor + Python)</span><span class="lang-en">How to Build an Agent (Cursor + Python Edition)</span></span>
             </div>
             <div class="nav-right">
                 <button class="presentation-toggle" id="presentationToggle" aria-label="Presentation mode">
@@ -199,9 +129,6 @@
                     <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
                     </svg>
-                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                    </svg>
                 </button>
                 <button class="hamburger" id="hamburger" aria-label="Öppna meny">
                     <span class="hamburger-line"></span>
@@ -216,677 +143,499 @@
         <article>
             <header class="article-header" id="intro">
                 <p class="article-meta">
-                    <span class="lang-sv">Cursor + Python Edition // Januari 2026</span>
-                    <span class="lang-en">Cursor + Python Edition // January 2026</span>
+                    <span class="lang-sv">Cursor + Python // 2026-01</span>
+                    <span class="lang-en">Cursor + Python // 2026-01</span>
                 </p>
-                <h1>How to Build an Agent</h1>
+                <h1><span class="lang-sv">Hur man bygger en agent (Cursor + Python)</span><span class="lang-en">How to Build an Agent (Cursor + Python Edition)</span></h1>
                 <p class="subtitle">
-                    <span class="lang-sv">eller: Kejsaren har inga kläder (och det har inte heller den här tutorialen)</span>
-                    <span class="lang-en">or: The Emperor Has No Clothes (And Neither Does This Tutorial)</span>
+                    <span class="lang-sv">Lär dig bygga en kod-redigerande agent med hjälp av Cursor IDE</span>
+                    <span class="lang-en">Learn to build a code-editing agent using Cursor IDE</span>
                 </p>
             </header>
 
             <!-- Article Navigation -->
             <nav class="article-nav" id="articleNav">
-                <a href="#intro" class="nav-pill">Intro</a>
-                <a href="#first-tool" class="nav-pill">Tools</a>
-                <a href="#read-file" class="nav-pill">read_file</a>
-                <a href="#list-files" class="nav-pill">list_files</a>
-                <a href="#edit-file" class="nav-pill">edit_file</a>
+                <a href="#vad-vi-behöver" class="nav-pill">Vad vi behöver</a>
+                <a href="#ta-fram-pennan" class="nav-pill">Ta fram pennan!</a>
+                <a href="#ett-första-verktyg" class="nav-pill">Ett första verktyg</a>
+                <a href="#verktyget-read_file" class="nav-pill">Verktyget `read_file`</a>
+                <a href="#ytterligare-verktyg-list_files-och-edit_file" class="nav-pill">Ytterligare verktyg: list_files och edit_file</a>
+                <a href="#slutsats" class="nav-pill">Slutsats</a>
             </nav>
 
-            <p>
-                <span class="lang-sv">Det är inte så svårt att bygga en fullt fungerande kodredigeringsagent.</span>
-                <span class="lang-en">It's not that hard to build a fully functioning, code-editing agent.</span>
-            </p>
-
-            <p>
-                <span class="lang-sv">Det verkar som om det skulle vara det. När man ser en agent redigera filer, köra kommandon, ta sig ur fel, prova olika strategier — det verkar som att det måste finnas en hemlighet bakom.</span>
-                <span class="lang-en">It seems like it would be. When you look at an agent editing files, running commands, wriggling itself out of errors, retrying different strategies — it seems like there has to be a secret behind it.</span>
-            </p>
-
-            <p>
-                <span class="lang-sv">Det finns det inte. Det är en LLM, en loop och tillräckligt med tokens. Resten, det som gör det så beroendeframkallande och imponerande? Hårt arbete.</span>
-                <span class="lang-en">There isn't. It's an LLM, a loop, and enough tokens. The rest, the stuff that makes it so addictive and impressive? Elbow grease.</span>
-            </p>
-
-            <p>But building a small and yet highly impressive agent doesn't even require that. You can do it in less than 400 lines of code, most of which is boilerplate.</p>
-
-            <p>I'm going to show you how, right now. We're going to write some code together and go from zero lines of code to "oh wow, this is… a game changer."</p>
-
-            <p>But here's where it gets <em>weird</em>.</p>
-
-            <p><strong>We're going to use an agent to build an agent.</strong></p>
-
-            <p>That's right — we're going to open Cursor, fire up its AI agent, and ask <em>it</em> to help us build our own AI agent. We're going to use an AI coding assistant to build an AI coding assistant. It's recursive. It's meta. It's agents all the way down.</p>
-
-            <p>If that sounds like cheating, well… maybe it is. But it's also the point. These tools are so powerful now that you can use them to build more of themselves. And by the end of this tutorial, you'll understand exactly why that works — because you'll see how simple the "magic" really is.</p>
-
-            <p>I <em>urge</em> you to follow along. No, really. You might think you can just read this and that you don't have to type out the code, but it's less than 400 lines of code. I need you to <em>feel</em> how little code it is and I want you to see this with your own eyes in your own terminal in your own folders. And with Cursor's agent helping you, you won't even have to type most of it — you'll <em>describe</em> what you want and watch it appear.</p>
-
-            <div class="cursor-tip">
-                <div class="cursor-tip-header">Cursor Tip</div>
-                <p>Cursor has two main AI modes: <strong>Agent mode</strong> and <strong>Ask mode</strong>. Agent mode (what we'll use) can make changes to your files and run commands. Ask mode is read-only — great for questions about code but won't modify anything. You can toggle between them in the AI panel. For this tutorial, make sure you're in <strong>Agent mode</strong>!</p>
-            </div>
-
-            <p>Here's what we need:</p>
-
-            <ul>
-                <li><a href="https://www.python.org/">Python 3.10+</a></li>
-                <li><a href="https://platform.openai.com/api-keys">OpenAI API key</a> that you set as an environment variable, <code>OPENAI_API_KEY</code></li>
-                <li><a href="https://cursor.com/">Cursor IDE</a> — this is where the meta-magic happens</li>
-            </ul>
-
-            <div class="cursor-tip">
-                <div class="cursor-tip-header">Cursor Tip</div>
-                <p>If you're new to Cursor, it's a code editor built on VS Code with AI capabilities baked in. The key feature we'll use is <strong>Agent mode</strong> — accessible via <code>Ctrl+I</code> (or <code>Cmd+I</code> on Mac). This lets you have a conversation with an AI that can read, write, and execute code in your project. Yes, we're about to use this agent to build an agent. Try not to think about it too hard.</p>
-            </div>
-
-            <h2>
-                <span class="lang-sv">Ta fram pennan!</span>
-                <span class="lang-en">Pencils out!</span>
-            </h2>
-
-            <p>Let's start by opening Cursor and creating a new project. Open Cursor, then go to <strong>File → Open Folder</strong> and create a new folder called <code>code-editing-agent</code>.</p>
-
-            <p>Now, open Cursor's integrated terminal with <code>Ctrl+`</code> (that's the backtick key). Let's set up our Python environment:</p>
-
-            <pre class="shell"><code>python -m venv venv
-venv\Scripts\activate  # On Mac/Linux: source venv/bin/activate
-pip install openai</code></pre>
-
-            <div class="cursor-tip">
-                <div class="cursor-tip-header">Cursor Tip</div>
-                <p>You can also ask Cursor's agent to run these commands for you! Press <code>Ctrl+I</code> and type: "Set up a Python virtual environment and install the openai package". The agent will execute the commands in the terminal.</p>
-            </div>
-
-            <p>Now comes the fun part. Instead of typing all the code ourselves, let's ask Cursor to help. Press <code>Ctrl+I</code> to open the agent panel, and give it this prompt:</p>
-
-            <div class="agent-prompt">
-                <div class="agent-prompt-header">Prompt for Cursor</div>
-                <div class="agent-prompt-content">"Create a new file called agent.py with a basic skeleton for a CLI chat application using the OpenAI SDK. Include an Agent class with an __init__ that takes a client and a get_user_message function. Add a get_user_message function that reads from stdin. Include a main function that creates the client and agent."</div>
-            </div>
-
-            <p>Cursor will generate something like this:</p>
-
-            <pre><code><span class="keyword">from</span> openai <span class="keyword">import</span> OpenAI
+            <div class="lang-sv"><h1 id="hur-man-bygger-en-agent-cursor-python">Hur man bygger en agent (Cursor + Python)</h1>
+<h3 id="eller-kejsaren-har-inga-klader-och-det-har-inte-heller-den-har-tutorialen">eller: Kejsaren har inga kläder (och det har inte heller den här tutorialen)</h3>
+<p>Det är inte så svårt att bygga en fullt fungerande kodredigeringsagent.</p>
+<p>Det verkar som om det skulle vara det. När man ser en agent redigera filer, köra kommandon, ta sig ur fel, prova olika strategier — det verkar som att det måste finnas en hemlighet bakom.</p>
+<p>Det finns det inte. Det är en LLM, en loop och tillräckligt med tokens. Resten, det som gör det så beroendeframkallande och imponerande? Hårt arbete.</p>
+<p>Men att bygga en liten och ändå mycket imponerande agent kräver inte ens det. Du kan göra det på mindre än 400 rader kod, varav det mesta är boilerplate.</p>
+<p>Jag ska visa dig hur, just nu. Vi ska skriva lite kod tillsammans och gå från noll rader kod till "oj, det här är… en spelväxlare."</p>
+<p>Men här blir det <em>konstigt</em>.</p>
+<p><strong>Vi ska använda en agent för att bygga en agent.</strong></p>
+<p>Precis så — vi ska öppna Cursor, starta dess AI-agent, och be <em>den</em> att hjälpa oss bygga vår egen AI-agent. Vi ska använda en AI-kodassistent för att bygga en AI-kodassistent. Det är rekursivt. Det är meta. Det är agenter hela vägen ner.</p>
+<p>Om det låter som fusk, tja… kanske är det det. Men det är också poängen. Dessa verktyg är så kraftfulla nu att du kan använda dem för att bygga fler av sig själva. Och i slutet av denna tutorial kommer du att förstå exakt varför det fungerar — eftersom du kommer att se hur enkel "magin" verkligen är.</p>
+<p>Jag <em>uppmanar</em> dig att följa med. Nej, verkligen. Du kanske tror att du bara kan läsa detta och att du inte behöver skriva ut koden, men det är mindre än 400 rader kod. Jag behöver att du <em>känner</em> hur lite kod det är och jag vill att du ser detta med dina egna ögon i din egen terminal i dina egna mappar. Och med Cursors agent som hjälper dig behöver du inte ens skriva det mesta — du <em>beskriver</em> vad du vill ha och ser det dyka upp.</p>
+<h2 id="vad-vi-behover">Vad vi behöver</h2>
+<ul>
+<li><a href="https://www.python.org/">Python 3.10+</a></li>
+<li><a href="https://platform.openai.com/api-keys">OpenAI API-nyckel</a> som du sätter som miljövariabel, <code>OPENAI_API_KEY</code></li>
+<li><a href="https://cursor.com/">Cursor IDE</a> — det är här meta-magisken händer</li>
+</ul>
+<h2 id="ta-fram-pennan">Ta fram pennan!</h2>
+<p>Låt oss börja med att öppna Cursor och skapa ett nytt projekt. Öppna Cursor, gå sedan till <strong>File → Open Folder</strong> och skapa en ny mapp som heter <code>code-editing-agent</code>.</p>
+<p>Nu, öppna Cursors integrerade terminal med <code>Ctrl+</code> (det är backtick-tangenten). Låt oss sätta upp vår Python-miljö:</p>
+<pre><code class="language-bash">python -m venv venv
+venv\Scripts\activate  # På Mac/Linux: source venv/bin/activate
+pip install openai
+</code></pre>
+<p>Nu kommer den roliga delen. I stället för att skriva all kod själva, låt oss be Cursor om hjälp. Tryck <code>Ctrl+I</code> för att öppna agentpanelen, och ge den denna prompt:</p>
+<p><strong>Prompt för Cursor:</strong><br />
+"Skapa en ny fil som heter agent.py med en grundläggande skeleton för en CLI-chattapplikation med OpenAI SDK. Inkludera en Agent-klass med en <strong>init</strong> som tar en client och en get_user_message-funktion. Lägg till en get_user_message-funktion som läser från stdin. Inkludera en main-funktion som skapar clienten och agenten."</p>
+<p>Cursor kommer generera något som detta:</p>
+<pre><code class="language-python">from openai import OpenAI
 
 
-<span class="keyword">def</span> <span class="function">get_user_message</span>():
-    <span class="keyword">try</span>:
-        <span class="keyword">return</span> <span class="builtin">input</span>(), <span class="builtin">True</span>
-    <span class="keyword">except</span> <span class="class">EOFError</span>:
-        <span class="keyword">return</span> <span class="string">""</span>, <span class="builtin">False</span>
+def get_user_message():
+    try:
+        return input(), True
+    except EOFError:
+        return &quot;&quot;, False
 
 
-<span class="keyword">class</span> <span class="class">Agent</span>:
-    <span class="keyword">def</span> <span class="function">__init__</span>(self, client, get_user_message_func):
+class Agent:
+    def __init__(self, client, get_user_message_func):
         self.client = client
         self.get_user_message = get_user_message_func
 
 
-<span class="keyword">def</span> <span class="function">main</span>():
+def main():
     client = OpenAI()
     agent = Agent(client, get_user_message)
     agent.run()
 
 
-<span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:
-    main()</code></pre>
-
-            <p>Yes, this doesn't run yet. But what we have here is an <code>Agent</code> that has access to an <code>OpenAI</code> client (which, by default, looks for <code>OPENAI_API_KEY</code>) and that can get a user message by reading from stdin on the terminal.</p>
-
-            <p>Now let's add the missing <code>run()</code> method. Ask Cursor:</p>
-
-            <div class="agent-prompt">
-                <div class="agent-prompt-header">Prompt for Cursor</div>
-                <div class="agent-prompt-content">"Add a run() method to the Agent class that implements a chat loop. It should: maintain a conversation list, print a prompt for user input, append messages to the conversation, call run_inference to get the model's response, and print the assistant's text responses. Also add a run_inference method that calls the OpenAI chat completions API with gpt-4o."</div>
-            </div>
-
-            <p>Cursor will update your Agent class to look like this:</p>
-
-            <pre><code><span class="comment"># agent.py</span>
-
-<span class="keyword">class</span> <span class="class">Agent</span>:
-    <span class="keyword">def</span> <span class="function">__init__</span>(self, client, get_user_message_func):
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+<p>Ja, detta körs inte ännu. Men vad vi har här är en <code>Agent</code> som har tillgång till en <code>OpenAI</code>-client (som som standard letar efter <code>OPENAI_API_KEY</code>) och som kan få ett användarmeddelande genom att läsa från stdin i terminalen.</p>
+<p>Nu låt oss lägga till den saknade <code>run()</code>-metoden. Be Cursor:</p>
+<p><strong>Prompt för Cursor:</strong><br />
+"Lägg till en run()-metod i Agent-klassen som implementerar en chatloop. Den ska: upprätthålla en konversationslista, skriva ut en prompt för användarinput, lägga till meddelanden i konversationen, anropa run_inference för att få modellens svar, och skriva ut assistentens textsvar. Lägg också till en run_inference-metod som anropar OpenAI chat completions API med gpt-4o."</p>
+<p>Cursor kommer uppdatera din Agent-klass så att den ser ut så här:</p>
+<pre><code class="language-python">class Agent:
+    def __init__(self, client, get_user_message_func):
         self.client = client
         self.get_user_message = get_user_message_func
 
-    <span class="keyword">def</span> <span class="function">run</span>(self):
+    def run(self):
         conversation = []
+        print(&quot;Chat with the assistant (use 'ctrl-c' to quit)&quot;)
 
-        <span class="builtin">print</span>(<span class="string">"Chat with the assistant (use 'ctrl-c' to quit)"</span>)
-
-        <span class="keyword">while</span> <span class="builtin">True</span>:
-            <span class="builtin">print</span>(<span class="string">"\033[94mYou\033[0m: "</span>, end=<span class="string">""</span>)
+        while True:
+            print(&quot;\033[94mYou\033[0m: &quot;, end=&quot;&quot;)
             user_input, ok = self.get_user_message()
-            <span class="keyword">if</span> <span class="keyword">not</span> ok:
-                <span class="keyword">break</span>
+            if not ok:
+                break
 
             conversation.append({
-                <span class="string">"role"</span>: <span class="string">"user"</span>,
-                <span class="string">"content"</span>: user_input
+                &quot;role&quot;: &quot;user&quot;,
+                &quot;content&quot;: user_input
             })
 
             response = self.run_inference(conversation)
-            message = response.choices[<span class="number">0</span>].message
+            message = response.choices[0].message
             conversation.append({
-                <span class="string">"role"</span>: <span class="string">"assistant"</span>,
-                <span class="string">"content"</span>: message.content
+                &quot;role&quot;: &quot;assistant&quot;,
+                &quot;content&quot;: message.content
             })
 
-            <span class="keyword">if</span> message.content:
-                <span class="builtin">print</span>(<span class="string">f"\033[93mAssistant\033[0m: </span>{message.content}<span class="string">"</span>)
+            if message.content:
+                print(f&quot;\033[93mAssistant\033[0m: {message.content}&quot;)
 
-    <span class="keyword">def</span> <span class="function">run_inference</span>(self, conversation):
-        <span class="keyword">return</span> self.client.chat.completions.create(
-            model=<span class="string">"gpt-4o"</span>,
-            max_tokens=<span class="number">1024</span>,
+    def run_inference(self, conversation):
+        return self.client.chat.completions.create(
+            model=&quot;gpt-4o&quot;,
+            max_tokens=1024,
             messages=conversation
-        )</code></pre>
+        )
+</code></pre>
+<p>Det är inte mycket, eller hur? Ungefär 40 rader och det viktigaste i dem är denna loop i <code>run()</code> som låter oss prata med modellen. Men det är redan hjärtat i detta program.</p>
+<p>Låt oss köra det. Först, sätt din API-nyckel i terminalen:</p>
+<pre><code class="language-bash">set OPENAI_API_KEY=din-api-nyckel-här  # På Mac/Linux: export OPENAI_API_KEY=...
 
-            <p>It's not a lot, is it? About 40 lines and the most important thing in them is this loop in <code>run()</code> that lets us talk to the model. But that's already the heartbeat of this program.</p>
-
-            <div class="cursor-tip">
-                <div class="cursor-tip-header">Cursor Tip</div>
-                <p>Notice how Cursor understood the context of your existing code and added the methods in the right place. You can use <code>@agent.py</code> in your prompts to explicitly reference files, helping Cursor understand exactly what you're working with.</p>
-            </div>
-
-            <p>And for a heartbeat, it's pretty straightforward: we first print a prompt, ask the user to type something, add it to the conversation, send it to the model, add the model's response to the conversation, print the response, and around we go.</p>
-
-            <p>This is every AI chat application you've ever used, except it's in the terminal.</p>
-
-            <p>Let's run it. First, set your API key in the terminal:</p>
-
-            <pre class="shell"><code>set OPENAI_API_KEY=your-api-key-here  # On Mac/Linux: export OPENAI_API_KEY=...
-
-# Run it
-python agent.py</code></pre>
-
-            <p>Then you can just talk to the assistant, like this:</p>
-
-            <div class="terminal">
-                <div class="terminal-line"><span class="prompt">$</span> <span class="command">python agent.py</span></div>
-                <div class="terminal-line"><span class="output">Chat with the assistant (use 'ctrl-c' to quit)</span></div>
-                <div class="terminal-line"><span class="user">You</span>: Hey! I'm building an agent! How are you?</div>
-                <div class="terminal-line"><span class="assistant">Assistant</span>: Hi! That's exciting - building an agent is a great way to understand how AI systems work under the hood. I'm doing well, thanks for asking. How's your agent project going so far? What kind of capabilities are you planning to give it?</div>
-                <div class="terminal-line"><span class="user">You</span>: </div>
-            </div>
-
-            <p>Notice how we kept the same conversation going over multiple turns. The <code>conversation</code> grows longer with every turn and we send the whole conversation every time. The server — OpenAI's server — is stateless. It only sees what's in the <code>conversation</code> list. It's up to us to maintain that.</p>
-
-            <div class="cursor-tip">
-                <div class="cursor-tip-header">Cursor Tip</div>
-                <p>If something goes wrong (like an API error or a Python exception), you can ask Cursor to help debug it. Just paste the error message into the agent panel and ask "What's causing this error?" or use <code>@codebase</code> to let it search your entire project for context. Cursor excels at diagnosing issues because it can see your whole codebase.</p>
-            </div>
-
-            <p>Okay, let's move on, because this is not an agent yet. What's an agent? Here's <a href="https://youtu.be/J1-W9O3n7j8?t=72">my definition</a>: an LLM with <em>access to tools</em>, giving it the ability to modify something outside the context window.</p>
-
-            <h2 id="first-tool">
-                <span class="lang-sv">Ett första verktyg</span>
-                <span class="lang-en">A First Tool</span>
-            </h2>
-
-            <p>An LLM with <em>access to tools</em>? What's a tool? The basic idea is this: you send a prompt to the model that says it should reply in a certain way if it wants to use "a tool". Then you, as the receiver of that message, "use the tool" by executing it and replying with the result. That's it. Everything else we'll see is just abstraction on top of it.</p>
-
-            <p>Imagine you're talking to a friend and you tell them: "in the following conversation, wink if you want me to raise my arm". Weird thing to say, but an easy concept to grasp.</p>
-
-            <p>To summarize, all there is to tools and tool use are two things:</p>
-
-            <ol>
-                <li>You tell the model what tools are available</li>
-                <li>When the model wants to execute the tool, it tells you, you execute the tool and send the response up</li>
-            </ol>
-
-            <p>To make (1) easier, the big model providers have built-in APIs to send tool definitions along.</p>
-
-            <p>Okay, now let's build our first tool: <code>read_file</code></p>
-
-            <h2 id="read-file">
-                <span class="lang-sv">Verktyget <code>read_file</code></span>
-                <span class="lang-en">The <code>read_file</code> tool</span>
-            </h2>
-
-            <p>Each tool we're going to add will require the following:</p>
-
-            <ul>
-                <li>A name</li>
-                <li>A description to tell the model what the tool does, when to use it, when to not use it, what it returns and so on</li>
-                <li>An input schema that describes, as a JSON schema, what inputs this tool expects and in which form</li>
-                <li>A function that actually executes the tool with the input the model sends to us and returns the result</li>
-            </ul>
-
-            <p>Let's ask Cursor to set up the tool infrastructure. Press <code>Ctrl+I</code> and enter:</p>
-
-            <div class="agent-prompt">
-                <div class="agent-prompt-header">Prompt for Cursor</div>
-                <div class="agent-prompt-content">"Add a ToolDefinition dataclass with fields: name (str), description (str), input_schema (dict), and function (Callable). Update the Agent __init__ to accept an optional tools parameter. Update run_inference to convert tool definitions to OpenAI's format and pass them to the API call."</div>
-            </div>
-
-            <p>Cursor will add something like this:</p>
-
-            <pre><code><span class="comment"># agent.py</span>
-<span class="keyword">from</span> dataclasses <span class="keyword">import</span> dataclass
-<span class="keyword">from</span> typing <span class="keyword">import</span> Callable, Any
+# Kör det
+python agent.py
+</code></pre>
+<p>Sedan kan du bara prata med assistenten, så här:</p>
+<pre><code>$ python agent.py
+Chat with the assistant (use 'ctrl-c' to quit)
+You: Hej! Jag bygger en agent! Hur mår du?
+Assistant: Hej! Det är spännande - att bygga en agent är ett bra sätt att förstå hur AI-system fungerar under huven. Jag mår bra, tack för att du frågade. Hur går ditt agentprojekt hittills? Vilken typ av funktioner planerar du att ge den?
+You:
+</code></pre>
+<p>Lägg märke till hur vi höll samma konversation igång över flera varv. <code>conversation</code> växer längre med varje varv och vi skickar hela konversationen varje gång. Servern — OpenAIs server — är tillståndslös. Den ser bara vad som finns i <code>conversation</code>-listan. Det är upp till oss att upprätthålla det.</p>
+<p>Okej, låt oss gå vidare, eftersom detta inte är en agent ännu. Vad är en agent? Här är <a href="https://youtu.be/J1-W9O3n7j8?t=72">min definition</a>: en LLM med <em>åtkomst till verktyg</em>, vilket ger den möjligheten att modifiera något utanför kontextfönstret.</p>
+<h2 id="ett-forsta-verktyg">Ett första verktyg</h2>
+<p>En LLM med <em>åtkomst till verktyg</em>? Vad är ett verktyg? Grundidén är denna: du skickar en prompt till modellen som säger att den ska svara på ett visst sätt om den vill använda "ett verktyg". Sedan, som mottagare av det meddelandet, "använder du verktyget" genom att köra det och svara med resultatet. Det är allt. Allt annat vi kommer att se är bara abstraktion ovanpå det.</p>
+<p>För att sammanfatta, allt som finns till verktyg och verktygsanvändning är två saker:</p>
+<ol>
+<li>Du berättar för modellen vilka verktyg som finns tillgängliga</li>
+<li>När modellen vill köra verktyget, berättar den för dig, du kör verktyget och skickar svaret upp</li>
+</ol>
+<p>För att göra (1) enklare har de stora modellleverantörerna inbyggda API:er för att skicka verktygsdefinitioner tillsammans.</p>
+<p>Okej, nu låt oss bygga vårt första verktyg: <code>read_file</code></p>
+<h2 id="verktyget-read_file">Verktyget <code>read_file</code></h2>
+<p>Varje verktyg vi kommer att lägga till kommer att kräva följande:</p>
+<ul>
+<li>Ett namn</li>
+<li>En beskrivning för att berätta för modellen vad verktyget gör, när det ska användas, när det inte ska användas, vad det returnerar och så vidare</li>
+<li>Ett input-schema som beskriver, som ett JSON-schema, vilka inputs detta verktyg förväntar sig och i vilken form</li>
+<li>En funktion som faktiskt kör verktyget med inputen modellen skickar till oss och returnerar resultatet</li>
+</ul>
+<p>Låt oss be Cursor att sätta upp verktygsinfrastrukturen. Tryck <code>Ctrl+I</code> och ange:</p>
+<p><strong>Prompt för Cursor:</strong><br />
+"Lägg till en ToolDefinition dataclass med fält: name (str), description (str), input_schema (dict), och function (Callable). Uppdatera Agent <strong>init</strong> för att acceptera en valfri tools-parameter. Uppdatera run_inference för att konvertera verktygsdefinitioner till OpenAIs format och skicka dem till API-anropet."</p>
+<p>Cursor kommer lägga till något som detta:</p>
+<pre><code class="language-python">from dataclasses import dataclass
+from typing import Callable, Any
 
 
-<span class="decorator">@dataclass</span>
-<span class="keyword">class</span> <span class="class">ToolDefinition</span>:
-    name: <span class="builtin">str</span>
-    description: <span class="builtin">str</span>
-    input_schema: <span class="builtin">dict</span>
-    function: Callable[[<span class="builtin">dict</span>], <span class="builtin">str</span>]</code></pre>
-
-            <p>And update the Agent class:</p>
-
-            <pre><code><span class="comment"># agent.py</span>
-
-<span class="keyword">class</span> <span class="class">Agent</span>:
-    <span class="comment"># `tools` is added here:</span>
-    <span class="keyword">def</span> <span class="function">__init__</span>(self, client, get_user_message_func, tools=<span class="builtin">None</span>):
+@dataclass
+class ToolDefinition:
+    name: str
+    description: str
+    input_schema: dict
+    function: Callable[[dict], str]
+</code></pre>
+<p>Och uppdatera Agent-klassen:</p>
+<pre><code class="language-python">class Agent:
+    # `tools` läggs till här:
+    def __init__(self, client, get_user_message_func, tools=None):
         self.client = client
         self.get_user_message = get_user_message_func
-        self.tools = tools <span class="keyword">or</span> []
+        self.tools = tools or []
 
-    <span class="keyword">def</span> <span class="function">run_inference</span>(self, conversation):
-        <span class="comment"># Convert our tool definitions to OpenAI's format</span>
+    def run_inference(self, conversation):
+        # Konvertera våra verktygsdefinitioner till OpenAIs format
         openai_tools = [
             {
-                <span class="string">"type"</span>: <span class="string">"function"</span>,
-                <span class="string">"function"</span>: {
-                    <span class="string">"name"</span>: tool.name,
-                    <span class="string">"description"</span>: tool.description,
-                    <span class="string">"parameters"</span>: tool.input_schema,
+                &quot;type&quot;: &quot;function&quot;,
+                &quot;function&quot;: {
+                    &quot;name&quot;: tool.name,
+                    &quot;description&quot;: tool.description,
+                    &quot;parameters&quot;: tool.input_schema,
                 }
             }
-            <span class="keyword">for</span> tool <span class="keyword">in</span> self.tools
+            for tool in self.tools
         ]
 
-        <span class="keyword">return</span> self.client.chat.completions.create(
-            model=<span class="string">"gpt-4o"</span>,
-            max_tokens=<span class="number">1024</span>,
+        return self.client.chat.completions.create(
+            model=&quot;gpt-4o&quot;,
+            max_tokens=1024,
             messages=conversation,
-            tools=openai_tools <span class="keyword">if</span> openai_tools <span class="keyword">else</span> <span class="builtin">None</span>
-        )</code></pre>
-
-            <p>Now let's create the actual <code>read_file</code> tool. Ask Cursor:</p>
-
-            <div class="agent-prompt">
-                <div class="agent-prompt-header">Prompt for Cursor</div>
-                <div class="agent-prompt-content">"Create a read_file function that takes input_data dict, extracts the 'path' key, reads the file, and returns its contents (or an error message). Then create a READ_FILE_TOOL ToolDefinition with appropriate name, description, and JSON schema for the path parameter."</div>
-            </div>
-
-            <pre><code><span class="comment"># agent.py</span>
-<span class="keyword">import</span> os
-
-
-<span class="keyword">def</span> <span class="function">read_file</span>(input_data: <span class="builtin">dict</span>) -> <span class="builtin">str</span>:
-    <span class="string">"""Read the contents of a file at the given path."""</span>
-    path = input_data[<span class="string">"path"</span>]
-    <span class="keyword">try</span>:
-        <span class="keyword">with</span> <span class="builtin">open</span>(path, <span class="string">"r"</span>) <span class="keyword">as</span> f:
-            <span class="keyword">return</span> f.read()
-    <span class="keyword">except</span> <span class="class">Exception</span> <span class="keyword">as</span> e:
-        <span class="keyword">return</span> <span class="string">f"Error: </span>{<span class="builtin">str</span>(e)}<span class="string">"</span>
+            tools=openai_tools if openai_tools else None
+        )
+</code></pre>
+<p>Nu låt oss skapa det faktiska <code>read_file</code>-verktyget. Be Cursor:</p>
+<p><strong>Prompt för Cursor:</strong><br />
+"Skapa ett read_file-verktyg. Funktionen ska ta en dict med 'path' och läsa filen. Skapa en ToolDefinition med namn 'read_file', en beskrivning som förklarar när det ska användas, ett JSON-schema för input med en 'path'-egenskap, och funktionen. Uppdatera main() för att skicka verktyget till Agent."</p>
+<p>Cursor kommer skapa något som detta:</p>
+<pre><code class="language-python">def read_file(input_data: dict) -&gt; str:
+    &quot;&quot;&quot;Read the contents of a file at the given path.&quot;&quot;&quot;
+    path = input_data[&quot;path&quot;]
+    try:
+        with open(path, &quot;r&quot;) as f:
+            return f.read()
+    except Exception as e:
+        return f&quot;Error: {str(e)}&quot;
 
 
 READ_FILE_TOOL = ToolDefinition(
-    name=<span class="string">"read_file"</span>,
-    description=<span class="string">"""Read the contents of a given relative file path. Use this when you want to see what's inside a file. Do not use this with directory names."""</span>,
+    name=&quot;read_file&quot;,
+    description=&quot;Read the contents of a given relative file path. Use this when you want to see what's inside a file. Do not use this with directory names.&quot;,
     input_schema={
-        <span class="string">"type"</span>: <span class="string">"object"</span>,
-        <span class="string">"properties"</span>: {
-            <span class="string">"path"</span>: {
-                <span class="string">"type"</span>: <span class="string">"string"</span>,
-                <span class="string">"description"</span>: <span class="string">"The relative path of a file in the working directory."</span>
+        &quot;type&quot;: &quot;object&quot;,
+        &quot;properties&quot;: {
+            &quot;path&quot;: {
+                &quot;type&quot;: &quot;string&quot;,
+                &quot;description&quot;: &quot;The relative path of a file in the working directory.&quot;
             }
         },
-        <span class="string">"required"</span>: [<span class="string">"path"</span>]
+        &quot;required&quot;: [&quot;path&quot;]
     },
     function=read_file
-)</code></pre>
-
-            <div class="cursor-tip">
-                <div class="cursor-tip-header">Cursor Tip</div>
-                <p>You can use <code>Ctrl+K</code> for quick inline edits. Select a piece of code and press <code>Ctrl+K</code> to ask Cursor to modify just that selection. This is great for tweaking tool descriptions or fixing small issues.</p>
-            </div>
-
-            <p>That's not much, is it? It's a single function, <code>read_file</code>, and two descriptions the model will see: our <code>description</code> that describes the tool itself and a description of the single input parameter this tool has.</p>
-
-            <p>Now we need to actually <em>listen</em> when the model wants to use a tool. Ask Cursor to update the run method:</p>
-
-            <div class="agent-prompt">
-                <div class="agent-prompt-header">Prompt for Cursor</div>
-                <div class="agent-prompt-content">"Update the Agent's run() method to handle tool use. After getting a response, check if message.tool_calls exists. If so, call an execute_tool method for each tool call, collect the results, and add them to the conversation as tool role messages. Add the execute_tool method that looks up tools by name and executes them."</div>
-            </div>
-
-            <p>Cursor will update your code to handle the tool execution loop:</p>
-
-            <pre><code><span class="comment"># agent.py</span>
-<span class="keyword">import</span> json
-
-
-<span class="keyword">class</span> <span class="class">Agent</span>:
-    <span class="keyword">def</span> <span class="function">__init__</span>(self, client, get_user_message_func, tools=<span class="builtin">None</span>):
-        self.client = client
-        self.get_user_message = get_user_message_func
-        self.tools = tools <span class="keyword">or</span> []
-
-    <span class="keyword">def</span> <span class="function">run</span>(self):
-        conversation = []
-        <span class="builtin">print</span>(<span class="string">"Chat with the assistant (use 'ctrl-c' to quit)"</span>)
-
-        read_user_input = <span class="builtin">True</span>
-
-        <span class="keyword">while</span> <span class="builtin">True</span>:
-            <span class="keyword">if</span> read_user_input:
-                <span class="builtin">print</span>(<span class="string">"\033[94mYou\033[0m: "</span>, end=<span class="string">""</span>)
-                user_input, ok = self.get_user_message()
-                <span class="keyword">if</span> <span class="keyword">not</span> ok:
-                    <span class="keyword">break</span>
-                conversation.append({
-                    <span class="string">"role"</span>: <span class="string">"user"</span>,
-                    <span class="string">"content"</span>: user_input
-                })
-
-            response = self.run_inference(conversation)
-            message = response.choices[<span class="number">0</span>].message
-            
-            <span class="comment"># Add assistant message to conversation</span>
-            conversation.append(message)
-
-            <span class="keyword">if</span> message.content:
-                <span class="builtin">print</span>(<span class="string">f"\033[93mAssistant\033[0m: </span>{message.content}<span class="string">"</span>)
-
-            <span class="keyword">if</span> <span class="keyword">not</span> message.tool_calls:
-                read_user_input = <span class="builtin">True</span>
-                <span class="keyword">continue</span>
-
-            <span class="comment"># Execute tools and add results</span>
-            <span class="keyword">for</span> tool_call <span class="keyword">in</span> message.tool_calls:
-                args = json.loads(tool_call.function.arguments)
-                <span class="builtin">print</span>(<span class="string">f"\033[92mtool\033[0m: </span>{tool_call.function.name}<span class="string">(</span>{json.dumps(args)}<span class="string">)"</span>)
-                result = self.execute_tool(tool_call.function.name, args)
-                conversation.append({
-                    <span class="string">"role"</span>: <span class="string">"tool"</span>,
-                    <span class="string">"tool_call_id"</span>: tool_call.id,
-                    <span class="string">"content"</span>: result
-                })
-
-            read_user_input = <span class="builtin">False</span>
-
-    <span class="keyword">def</span> <span class="function">execute_tool</span>(self, name, tool_input):
-        <span class="comment"># Find the tool</span>
-        tool = <span class="builtin">next</span>((t <span class="keyword">for</span> t <span class="keyword">in</span> self.tools <span class="keyword">if</span> t.name == name), <span class="builtin">None</span>)
-        <span class="keyword">if</span> <span class="keyword">not</span> tool:
-            <span class="keyword">return</span> <span class="string">"Error: Tool not found"</span>
-
-        <span class="keyword">try</span>:
-            <span class="keyword">return</span> tool.function(tool_input)
-        <span class="keyword">except</span> <span class="class">Exception</span> <span class="keyword">as</span> e:
-            <span class="keyword">return</span> <span class="string">f"Error: </span>{<span class="builtin">str</span>(e)}<span class="string">"</span></code></pre>
-
-            <p>Finally, update main to use the tool:</p>
-
-            <pre><code><span class="keyword">def</span> <span class="function">main</span>():
+)
+</code></pre>
+<p>Och uppdatera <code>main()</code>:</p>
+<pre><code class="language-python">def main():
     client = OpenAI()
     tools = [READ_FILE_TOOL]
     agent = Agent(client, get_user_message, tools)
-    agent.run()</code></pre>
-
-            <p>Let's test it! Create a test file in your terminal:</p>
-
-            <pre class="shell"><code>echo "what animal is the most disagreeable because it always says neigh?" > secret-file.txt</code></pre>
-
-            <p>Now run the agent and ask it about the file:</p>
-
-            <div class="terminal">
-                <div class="terminal-line"><span class="prompt">$</span> <span class="command">python agent.py</span></div>
-                <div class="terminal-line"><span class="output">Chat with the assistant (use 'ctrl-c' to quit)</span></div>
-                <div class="terminal-line"><span class="user">You</span>: Hey, help me solve the riddle in the secret-file.txt file</div>
-                <div class="terminal-line"><span class="assistant">Assistant</span>: I'll help you solve the riddle in the secret-file.txt file. Let me first read the contents of this file to see what the riddle is.</div>
-                <div class="terminal-line"><span class="tool">tool</span>: read_file({"path":"secret-file.txt"})</div>
-                <div class="terminal-line"><span class="assistant">Assistant</span>: Great! I've found the riddle. The answer to the riddle is: **A horse** The riddle is playing on wordplay where "neigh" (the sound a horse makes) sounds like "nay" (a way to say "no" or disagree with something). So horses are described as disagreeable because they always say "neigh/nay" - implying they're always disagreeing.</div>
-                <div class="terminal-line"><span class="user">You</span>: </div>
-            </div>
-
-            <p>Let's take a deep breath and say it together. Ready? Here we go: <em>holy shit</em>. You just give it a tool and it… <em>uses it when it thinks it'll help solve the task</em>.</p>
-
-            <div class="cursor-tip">
-                <div class="cursor-tip-header">Cursor Tip</div>
-                <p>When Cursor makes changes to your code, you'll see a diff view showing exactly what changed. You can <strong>Accept</strong> (checkmark) or <strong>Reject</strong> (X) each change individually. If something doesn't look right, reject it and refine your prompt. Remember: you're always in control of what gets saved to your files.</p>
-            </div>
-
-            <h2 id="list-files">
-                <span class="lang-sv">Verktyget <code>list_files</code></span>
-                <span class="lang-en">The <code>list_files</code> tool</span>
-            </h2>
-
-            <p>Let's add another tool. Ask Cursor:</p>
-
-            <div class="agent-prompt">
-                <div class="agent-prompt-header">Prompt for Cursor</div>
-                <div class="agent-prompt-content">"Create a list_files tool that uses os.walk to list all files and directories at a given path (defaulting to '.'). Return the results as a JSON array. Directories should have a trailing slash. Create the LIST_FILES_TOOL definition and add it to the tools list in main()."</div>
-            </div>
-
-            <pre><code><span class="comment"># agent.py</span>
-
-<span class="keyword">def</span> <span class="function">list_files</span>(input_data: <span class="builtin">dict</span>) -> <span class="builtin">str</span>:
-    <span class="string">"""List files and directories at a given path."""</span>
-    path = input_data.get(<span class="string">"path"</span>, <span class="string">"."</span>)
-
-    <span class="keyword">try</span>:
-        files = []
-        <span class="keyword">for</span> root, dirs, filenames <span class="keyword">in</span> os.walk(path):
-            <span class="keyword">for</span> d <span class="keyword">in</span> dirs:
-                rel_path = os.path.relpath(os.path.join(root, d), path)
-                files.append(rel_path + <span class="string">"/"</span>)
-            <span class="keyword">for</span> f <span class="keyword">in</span> filenames:
-                rel_path = os.path.relpath(os.path.join(root, f), path)
-                files.append(rel_path)
-        <span class="keyword">return</span> json.dumps(files)
-    <span class="keyword">except</span> <span class="class">Exception</span> <span class="keyword">as</span> e:
-        <span class="keyword">return</span> <span class="string">f"Error: </span>{<span class="builtin">str</span>(e)}<span class="string">"</span>
+    agent.run()
+</code></pre>
+<p>Men vi behöver också uppdatera <code>run()</code>-metoden för att hantera verktygsanrop. Be Cursor:</p>
+<p><strong>Prompt för Cursor:</strong><br />
+"Uppdatera run()-metoden för att hantera tool_use i modellens svar. När modellen vill använda ett verktyg, kör funktionen, lägg till resultatet i konversationen, och skicka tillbaka till modellen för att få det slutliga svaret."</p>
+<p>Cursor kommer uppdatera <code>run()</code> så att den hanterar verktygsanrop korrekt. Nu har du en fungerande agent som kan läsa filer!</p>
+<h2 id="ytterligare-verktyg-list_files-och-edit_file">Ytterligare verktyg: list_files och edit_file</h2>
+<p>Med samma mönster kan du lägga till fler verktyg:</p>
+<ul>
+<li><code>list_files</code> — lista filer i en katalog</li>
+<li><code>edit_file</code> — redigera en fil genom att ersätta gammal text med ny text</li>
+</ul>
+<p>Varje verktyg följer samma mönster: en funktion, en ToolDefinition, och läggs till i tools-listan.</p>
+<h2 id="slutsats">Slutsats</h2>
+<p>Det är inte så svårt. En agent är bara:<br />
+- En LLM<br />
+- En loop<br />
+- Verktyg<br />
+- Tillräckligt med tokens</p>
+<p>Resten är bara detaljer och boilerplate. Men dessa detaljer — hur du strukturerar verktygen, hur du hanterar fel, hur du designar feedback-loopen — det är där skillnaden mellan en demo och något användbart ligger.</p>
+<p><strong>Och det roligaste?</strong> Du kan använda Cursor för att bygga allt detta. Det är rekursivt. Det är meta. Det är agenter hela vägen ner.</p></div>
+            <div class="lang-en"><h1 id="how-to-build-an-agent-cursor-python-edition">How to Build an Agent (Cursor + Python Edition)</h1>
+<h3 id="or-the-emperor-has-no-clothes-and-neither-does-this-tutorial">or: The Emperor Has No Clothes (And Neither Does This Tutorial)</h3>
+<p>It's not that hard to build a fully functioning, code-editing agent.</p>
+<p>It seems like it would be. When you look at an agent editing files, running commands, wriggling itself out of errors, retrying different strategies — it seems like there has to be a secret behind it.</p>
+<p>There isn't. It's an LLM, a loop, and enough tokens. The rest, the stuff that makes it so addictive and impressive? Elbow grease.</p>
+<p>But building a small and yet highly impressive agent doesn't even require that. You can do it in less than 400 lines of code, most of which is boilerplate.</p>
+<p>I'm going to show you how, right now. We're going to write some code together and go from zero lines of code to "oh wow, this is… a game changer."</p>
+<p>But here's where it gets <em>weird</em>.</p>
+<p><strong>We're going to use an agent to build an agent.</strong></p>
+<p>That's right — we're going to open Cursor, fire up its AI agent, and ask <em>it</em> to help us build our own AI agent. We're going to use an AI coding assistant to build an AI coding assistant. It's recursive. It's meta. It's agents all the way down.</p>
+<p>If that sounds like cheating, well… maybe it is. But it's also the point. These tools are so powerful now that you can use them to build more of themselves. And by the end of this tutorial, you'll understand exactly why that works — because you'll see how simple the "magic" really is.</p>
+<p>I <em>urge</em> you to follow along. No, really. You might think you can just read this and that you don't have to type out the code, but it's less than 400 lines of code. I need you to <em>feel</em> how little code it is and I want you to see this with your own eyes in your own terminal in your own folders. And with Cursor's agent helping you, you won't even have to type most of it — you'll <em>describe</em> what you want and watch it appear.</p>
+<h2 id="what-we-need">What we need</h2>
+<ul>
+<li><a href="https://www.python.org/">Python 3.10+</a></li>
+<li><a href="https://platform.openai.com/api-keys">OpenAI API key</a> that you set as an environment variable, <code>OPENAI_API_KEY</code></li>
+<li><a href="https://cursor.com/">Cursor IDE</a> — this is where the meta-magic happens</li>
+</ul>
+<h2 id="pencils-out">Pencils out!</h2>
+<p>Let's start by opening Cursor and creating a new project. Open Cursor, then go to <strong>File → Open Folder</strong> and create a new folder called <code>code-editing-agent</code>.</p>
+<p>Now, open Cursor's integrated terminal with <code>Ctrl+</code> (that's the backtick key). Let's set up our Python environment:</p>
+<pre><code class="language-bash">python -m venv venv
+venv\Scripts\activate  # On Mac/Linux: source venv/bin/activate
+pip install openai
+</code></pre>
+<p>Now comes the fun part. Instead of typing all the code ourselves, let's ask Cursor to help. Press <code>Ctrl+I</code> to open the agent panel, and give it this prompt:</p>
+<p><strong>Prompt for Cursor:</strong><br />
+"Create a new file called agent.py with a basic skeleton for a CLI chat application using the OpenAI SDK. Include an Agent class with an <strong>init</strong> that takes a client and a get_user_message function. Add a get_user_message function that reads from stdin. Include a main function that creates the client and agent."</p>
+<p>Cursor will generate something like this:</p>
+<pre><code class="language-python">from openai import OpenAI
 
 
-LIST_FILES_TOOL = ToolDefinition(
-    name=<span class="string">"list_files"</span>,
-    description=<span class="string">"""List files and directories at a given path. If no path is provided, lists files in the current directory."""</span>,
-    input_schema={
-        <span class="string">"type"</span>: <span class="string">"object"</span>,
-        <span class="string">"properties"</span>: {
-            <span class="string">"path"</span>: {
-                <span class="string">"type"</span>: <span class="string">"string"</span>,
-                <span class="string">"description"</span>: <span class="string">"Optional relative path to list files from. Defaults to current directory if not provided."</span>
-            }
-        }
-    },
-    function=list_files
-)</code></pre>
+def get_user_message():
+    try:
+        return input(), True
+    except EOFError:
+        return &quot;&quot;, False
 
-            <p>Update main:</p>
 
-            <pre><code><span class="keyword">def</span> <span class="function">main</span>():
+class Agent:
+    def __init__(self, client, get_user_message_func):
+        self.client = client
+        self.get_user_message = get_user_message_func
+
+
+def main():
     client = OpenAI()
-    tools = [READ_FILE_TOOL, LIST_FILES_TOOL]
-    agent = Agent(client, get_user_message, tools)
-    agent.run()</code></pre>
-
-            <p>Now the model can <em>combine</em> these tools:</p>
-
-            <div class="terminal">
-                <div class="terminal-line"><span class="prompt">$</span> <span class="command">python agent.py</span></div>
-                <div class="terminal-line"><span class="output">Chat with the assistant (use 'ctrl-c' to quit)</span></div>
-                <div class="terminal-line"><span class="user">You</span>: Tell me about all the Python files in here. Be brief!</div>
-                <div class="terminal-line"><span class="assistant">Assistant</span>: I'll examine the Python files in the current directory for you. Let me check what files are available first.</div>
-                <div class="terminal-line"><span class="tool">tool</span>: list_files({})</div>
-                <div class="terminal-line"><span class="assistant">Assistant</span>: I found a Python file in the current directory. Let me examine it:</div>
-                <div class="terminal-line"><span class="tool">tool</span>: read_file({"path":"agent.py"})</div>
-                <div class="terminal-line"><span class="assistant">Assistant</span>: **agent.py**: Implements an AI agent with file system access. Uses the OpenAI SDK, provides `read_file` and `list_files` tools, and manages a conversation loop with tool execution.</div>
-                <div class="terminal-line"><span class="user">You</span>: </div>
-            </div>
-
-            <p>We're at around 100 lines of code now. Let that sink in.</p>
-
-            <div class="cursor-tip">
-                <div class="cursor-tip-header">Cursor Tip</div>
-                <p>Want to understand how a specific function works? Select it and press <code>Ctrl+L</code> to open the Chat panel with that code selected. Then ask questions like "How does this function handle errors?" or "What would happen if the path doesn't exist?" This is a great way to learn from the code Cursor generates.</p>
-            </div>
-
-            <h2 id="edit-file">
-                <span class="lang-sv">Låt den <code>edit_file</code></span>
-                <span class="lang-en">Let it <code>edit_file</code></span>
-            </h2>
-
-            <p>The last tool we're going to add is <code>edit_file</code> — a tool that lets the assistant edit files. This is where the magic really happens.</p>
-
-            <p>Ask Cursor:</p>
-
-            <div class="agent-prompt">
-                <div class="agent-prompt-header">Prompt for Cursor</div>
-                <div class="agent-prompt-content">"Create an edit_file tool that replaces old_str with new_str in a file. If the file doesn't exist and old_str is empty, create the file with new_str as content. Include a helper create_new_file function. Create the EDIT_FILE_TOOL definition with path, old_str, and new_str parameters (all required). Add it to the tools list."</div>
-            </div>
-
-            <pre><code><span class="comment"># agent.py</span>
-
-<span class="keyword">def</span> <span class="function">edit_file</span>(input_data: <span class="builtin">dict</span>) -> <span class="builtin">str</span>:
-    <span class="string">"""Edit a file by replacing old_str with new_str."""</span>
-    path = input_data[<span class="string">"path"</span>]
-    old_str = input_data[<span class="string">"old_str"</span>]
-    new_str = input_data[<span class="string">"new_str"</span>]
-
-    <span class="keyword">if</span> <span class="keyword">not</span> path <span class="keyword">or</span> old_str == new_str:
-        <span class="keyword">return</span> <span class="string">"Error: invalid input parameters"</span>
-
-    <span class="comment"># If file doesn't exist and old_str is empty, create new file</span>
-    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(path) <span class="keyword">and</span> old_str == <span class="string">""</span>:
-        <span class="keyword">return</span> create_new_file(path, new_str)
-
-    <span class="keyword">try</span>:
-        <span class="keyword">with</span> <span class="builtin">open</span>(path, <span class="string">"r"</span>) <span class="keyword">as</span> f:
-            content = f.read()
-
-        <span class="keyword">if</span> old_str <span class="keyword">and</span> old_str <span class="keyword">not</span> <span class="keyword">in</span> content:
-            <span class="keyword">return</span> <span class="string">"Error: old_str not found in file"</span>
-
-        new_content = content.replace(old_str, new_str)
-
-        <span class="keyword">with</span> <span class="builtin">open</span>(path, <span class="string">"w"</span>) <span class="keyword">as</span> f:
-            f.write(new_content)
-
-        <span class="keyword">return</span> <span class="string">"OK"</span>
-
-    <span class="keyword">except</span> <span class="class">Exception</span> <span class="keyword">as</span> e:
-        <span class="keyword">return</span> <span class="string">f"Error: </span>{<span class="builtin">str</span>(e)}<span class="string">"</span>
+    agent = Agent(client, get_user_message)
+    agent.run()
 
 
-<span class="keyword">def</span> <span class="function">create_new_file</span>(path: <span class="builtin">str</span>, content: <span class="builtin">str</span>) -> <span class="builtin">str</span>:
-    <span class="string">"""Create a new file with the given content."""</span>
-    <span class="keyword">try</span>:
-        directory = os.path.dirname(path)
-        <span class="keyword">if</span> directory:
-            os.makedirs(directory, exist_ok=<span class="builtin">True</span>)
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+<p>Yes, this doesn't run yet. But what we have here is an <code>Agent</code> that has access to an <code>OpenAI</code> client (which, by default, looks for <code>OPENAI_API_KEY</code>) and that can get a user message by reading from stdin on the terminal.</p>
+<p>Now let's add the missing <code>run()</code> method. Ask Cursor:</p>
+<p><strong>Prompt for Cursor:</strong><br />
+"Add a run() method to the Agent class that implements a chat loop. It should: maintain a conversation list, print a prompt for user input, append messages to the conversation, call run_inference to get the model's response, and print the assistant's text responses. Also add a run_inference method that calls the OpenAI chat completions API with gpt-4o."</p>
+<p>Cursor will update your Agent class to look like this:</p>
+<pre><code class="language-python">class Agent:
+    def __init__(self, client, get_user_message_func):
+        self.client = client
+        self.get_user_message = get_user_message_func
 
-        <span class="keyword">with</span> <span class="builtin">open</span>(path, <span class="string">"w"</span>) <span class="keyword">as</span> f:
-            f.write(content)
+    def run(self):
+        conversation = []
+        print(&quot;Chat with the assistant (use 'ctrl-c' to quit)&quot;)
 
-        <span class="keyword">return</span> <span class="string">f"Successfully created file </span>{path}<span class="string">"</span>
-    <span class="keyword">except</span> <span class="class">Exception</span> <span class="keyword">as</span> e:
-        <span class="keyword">return</span> <span class="string">f"Error: </span>{<span class="builtin">str</span>(e)}<span class="string">"</span>
+        while True:
+            print(&quot;\033[94mYou\033[0m: &quot;, end=&quot;&quot;)
+            user_input, ok = self.get_user_message()
+            if not ok:
+                break
+
+            conversation.append({
+                &quot;role&quot;: &quot;user&quot;,
+                &quot;content&quot;: user_input
+            })
+
+            response = self.run_inference(conversation)
+            message = response.choices[0].message
+            conversation.append({
+                &quot;role&quot;: &quot;assistant&quot;,
+                &quot;content&quot;: message.content
+            })
+
+            if message.content:
+                print(f&quot;\033[93mAssistant\033[0m: {message.content}&quot;)
+
+    def run_inference(self, conversation):
+        return self.client.chat.completions.create(
+            model=&quot;gpt-4o&quot;,
+            max_tokens=1024,
+            messages=conversation
+        )
+</code></pre>
+<p>It's not a lot, is it? About 40 lines and the most important thing in them is this loop in <code>run()</code> that lets us talk to the model. But that's already the heartbeat of this program.</p>
+<p>Let's run it. First, set your API key in the terminal:</p>
+<pre><code class="language-bash">set OPENAI_API_KEY=your-api-key-here  # On Mac/Linux: export OPENAI_API_KEY=...
+
+# Run it
+python agent.py
+</code></pre>
+<p>Then you can just talk to the assistant, like this:</p>
+<pre><code>$ python agent.py
+Chat with the assistant (use 'ctrl-c' to quit)
+You: Hey! I'm building an agent! How are you?
+Assistant: Hi! That's exciting - building an agent is a great way to understand how AI systems work under the hood. I'm doing well, thanks for asking. How's your agent project going so far? What kind of capabilities are you planning to give it?
+You:
+</code></pre>
+<p>Notice how we kept the same conversation going over multiple turns. The <code>conversation</code> grows longer with every turn and we send the whole conversation every time. The server — OpenAI's server — is stateless. It only sees what's in the <code>conversation</code> list. It's up to us to maintain that.</p>
+<p>Okay, let's move on, because this is not an agent yet. What's an agent? Here's <a href="https://youtu.be/J1-W9O3n7j8?t=72">my definition</a>: an LLM with <em>access to tools</em>, giving it the ability to modify something outside the context window.</p>
+<h2 id="a-first-tool">A First Tool</h2>
+<p>An LLM with <em>access to tools</em>? What's a tool? The basic idea is this: you send a prompt to the model that says it should reply in a certain way if it wants to use "a tool". Then you, as the receiver of that message, "use the tool" by executing it and replying with the result. That's it. Everything else we'll see is just abstraction on top of it.</p>
+<p>To summarize, all there is to tools and tool use are two things:</p>
+<ol>
+<li>You tell the model what tools are available</li>
+<li>When the model wants to execute the tool, it tells you, you execute the tool and send the response up</li>
+</ol>
+<p>To make (1) easier, the big model providers have built-in APIs to send tool definitions along.</p>
+<p>Okay, now let's build our first tool: <code>read_file</code></p>
+<h2 id="the-read_file-tool">The <code>read_file</code> tool</h2>
+<p>Each tool we're going to add will require the following:</p>
+<ul>
+<li>A name</li>
+<li>A description to tell the model what the tool does, when to use it, when to not use it, what it returns and so on</li>
+<li>An input schema that describes, as a JSON schema, what inputs this tool expects and in which form</li>
+<li>A function that actually executes the tool with the input the model sends to us and returns the result</li>
+</ul>
+<p>Let's ask Cursor to set up the tool infrastructure. Press <code>Ctrl+I</code> and enter:</p>
+<p><strong>Prompt for Cursor:</strong><br />
+"Add a ToolDefinition dataclass with fields: name (str), description (str), input_schema (dict), and function (Callable). Update the Agent <strong>init</strong> to accept an optional tools parameter. Update run_inference to convert tool definitions to OpenAI's format and pass them to the API call."</p>
+<p>Cursor will add something like this:</p>
+<pre><code class="language-python">from dataclasses import dataclass
+from typing import Callable, Any
 
 
-EDIT_FILE_TOOL = ToolDefinition(
-    name=<span class="string">"edit_file"</span>,
-    description=<span class="string">"""Make edits to a text file. Replaces 'old_str' with 'new_str' in the given file.
-'old_str' and 'new_str' MUST be different from each other.
+@dataclass
+class ToolDefinition:
+    name: str
+    description: str
+    input_schema: dict
+    function: Callable[[dict], str]
+</code></pre>
+<p>And update the Agent class:</p>
+<pre><code class="language-python">class Agent:
+    # `tools` is added here:
+    def __init__(self, client, get_user_message_func, tools=None):
+        self.client = client
+        self.get_user_message = get_user_message_func
+        self.tools = tools or []
 
-If the file specified with path doesn't exist, it will be created."""</span>,
+    def run_inference(self, conversation):
+        # Convert our tool definitions to OpenAI's format
+        openai_tools = [
+            {
+                &quot;type&quot;: &quot;function&quot;,
+                &quot;function&quot;: {
+                    &quot;name&quot;: tool.name,
+                    &quot;description&quot;: tool.description,
+                    &quot;parameters&quot;: tool.input_schema,
+                }
+            }
+            for tool in self.tools
+        ]
+
+        return self.client.chat.completions.create(
+            model=&quot;gpt-4o&quot;,
+            max_tokens=1024,
+            messages=conversation,
+            tools=openai_tools if openai_tools else None
+        )
+</code></pre>
+<p>Now let's create the actual <code>read_file</code> tool. Ask Cursor:</p>
+<p><strong>Prompt for Cursor:</strong><br />
+"Create a read_file tool. The function should take a dict with 'path' and read the file. Create a ToolDefinition with name 'read_file', a description explaining when to use it, a JSON schema for input with a 'path' property, and the function. Update main() to pass the tool to Agent."</p>
+<p>Cursor will create something like this:</p>
+<pre><code class="language-python">def read_file(input_data: dict) -&gt; str:
+    &quot;&quot;&quot;Read the contents of a file at the given path.&quot;&quot;&quot;
+    path = input_data[&quot;path&quot;]
+    try:
+        with open(path, &quot;r&quot;) as f:
+            return f.read()
+    except Exception as e:
+        return f&quot;Error: {str(e)}&quot;
+
+
+READ_FILE_TOOL = ToolDefinition(
+    name=&quot;read_file&quot;,
+    description=&quot;Read the contents of a given relative file path. Use this when you want to see what's inside a file. Do not use this with directory names.&quot;,
     input_schema={
-        <span class="string">"type"</span>: <span class="string">"object"</span>,
-        <span class="string">"properties"</span>: {
-            <span class="string">"path"</span>: {
-                <span class="string">"type"</span>: <span class="string">"string"</span>,
-                <span class="string">"description"</span>: <span class="string">"The path to the file"</span>
-            },
-            <span class="string">"old_str"</span>: {
-                <span class="string">"type"</span>: <span class="string">"string"</span>,
-                <span class="string">"description"</span>: <span class="string">"Text to search for - must match exactly and must only have one match exactly"</span>
-            },
-            <span class="string">"new_str"</span>: {
-                <span class="string">"type"</span>: <span class="string">"string"</span>,
-                <span class="string">"description"</span>: <span class="string">"Text to replace old_str with"</span>
+        &quot;type&quot;: &quot;object&quot;,
+        &quot;properties&quot;: {
+            &quot;path&quot;: {
+                &quot;type&quot;: &quot;string&quot;,
+                &quot;description&quot;: &quot;The relative path of a file in the working directory.&quot;
             }
         },
-        <span class="string">"required"</span>: [<span class="string">"path"</span>, <span class="string">"old_str"</span>, <span class="string">"new_str"</span>]
+        &quot;required&quot;: [&quot;path&quot;]
     },
-    function=edit_file
-)</code></pre>
-
-            <p>Update main one last time:</p>
-
-            <pre><code><span class="keyword">def</span> <span class="function">main</span>():
+    function=read_file
+)
+</code></pre>
+<p>And update <code>main()</code>:</p>
+<pre><code class="language-python">def main():
     client = OpenAI()
-    tools = [READ_FILE_TOOL, LIST_FILES_TOOL, EDIT_FILE_TOOL]
+    tools = [READ_FILE_TOOL]
     agent = Agent(client, get_user_message, tools)
-    agent.run()</code></pre>
+    agent.run()
+</code></pre>
+<p>But we also need to update the <code>run()</code> method to handle tool calls. Ask Cursor:</p>
+<p><strong>Prompt for Cursor:</strong><br />
+"Update the run() method to handle tool_use in the model's response. When the model wants to use a tool, execute the function, add the result to the conversation, and send back to the model to get the final answer."</p>
+<p>Cursor will update <code>run()</code> to handle tool calls correctly. Now you have a working agent that can read files!</p>
+<h2 id="additional-tools-list_files-and-edit_file">Additional tools: list_files and edit_file</h2>
+<p>With the same pattern, you can add more tools:</p>
+<ul>
+<li><code>list_files</code> — list files in a directory</li>
+<li><code>edit_file</code> — edit a file by replacing old text with new text</li>
+</ul>
+<p>Each tool follows the same pattern: a function, a ToolDefinition, and added to the tools list.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>It's not that hard. An agent is just:<br />
+- An LLM<br />
+- A loop<br />
+- Tools<br />
+- Enough tokens</p>
+<p>The rest is just details and boilerplate. But those details — how you structure the tools, how you handle errors, how you design the feedback loop — that's where the difference between a demo and something useful lies.</p>
+<p><strong>And the funniest part?</strong> You can use Cursor to build all of this. It's recursive. It's meta. It's agents all the way down.</p></div>
 
-            <p>Now let's watch it create a file from scratch:</p>
-
-            <div class="terminal">
-                <div class="terminal-line"><span class="prompt">$</span> <span class="command">python agent.py</span></div>
-                <div class="terminal-line"><span class="output">Chat with the assistant (use 'ctrl-c' to quit)</span></div>
-                <div class="terminal-line"><span class="user">You</span>: Hey, create fizzbuzz.js that I can run with Nodejs</div>
-                <div class="terminal-line"><span class="assistant">Assistant</span>: I'll create a fizzbuzz.js file for you. Let me check if it already exists first:</div>
-                <div class="terminal-line"><span class="tool">tool</span>: list_files({})</div>
-                <div class="terminal-line"><span class="assistant">Assistant</span>: I don't see a fizzbuzz.js file, so I'll create one with a classic FizzBuzz implementation:</div>
-                <div class="terminal-line"><span class="tool">tool</span>: edit_file({"path":"fizzbuzz.js","old_str":"","new_str":"function fizzBuzz(n) {\n  for (let i = 1; i <= n; i++) {\n    let output = '';\n    if (i % 3 === 0) output += 'Fizz';\n    if (i % 5 === 0) output += 'Buzz';\n    console.log(output || i);\n  }\n}\n\nfizzBuzz(100);"})</div>
-                <div class="terminal-line"><span class="assistant">Assistant</span>: I've created fizzbuzz.js! You can run it with: node fizzbuzz.js</div>
-            </div>
-
-            <div class="cursor-tip">
-                <div class="cursor-tip-header">Cursor Tip</div>
-                <p>You just used Cursor's agent to build an agent that can create files. Try asking <em>your</em> agent to create something, then watch it work. It's agents all the way down!</p>
-            </div>
-
-            <h2>
-                <span class="lang-sv">Är inte detta fantastiskt?</span>
-                <span class="lang-en">Isn't this amazing?</span>
-            </h2>
-
-            <p>
-                <span class="lang-sv">Om du är som alla ingenjörer jag har pratat med de senaste månaderna, har du förmodligen väntat på att kaninen ska dras ur hatten, på att jag ska säga "ja, i verkligheten är det mycket, mycket svårare än så här." Men det är det inte.</span>
-                <span class="lang-en">If you're anything like all the engineers I've talked to in the past few months, chances are that, while reading this, you have been waiting for the rabbit to be pulled out of the hat, for me to say "well, in reality it's much, much harder than this." But it's not.</span>
-            </p>
-
-            <p>This is essentially all there is to the inner loop of a code-editing agent. Sure, integrating it into your editor, tweaking the system prompt, giving it the right feedback at the right time, a nice UI around it, better tooling around the tools, support for multiple agents, and so on — we've built all of that, but it didn't require moments of genius. All that was required was practical engineering and elbow grease.</p>
-
-            <p>And with Cursor, you didn't even have to write most of the code yourself. You described what you wanted, and an agent helped you build it. <em>That's</em> the meta-lesson here: these tools are so powerful that you can use them to build more of themselves.</p>
-
-            <p>These models are incredibly powerful now. Under 150 lines of Python code and three tools and now you're able to talk to an alien intelligence that edits your code. If you think "well, but we didn't really…" — go and try it! Go and see how far you can get with this. I bet it's a lot farther than you think.</p>
-
-            <div class="cursor-tip">
-                <div class="cursor-tip-header">Cursor Tip</div>
-                <p>Now that you've built your own agent, try extending it! Use Cursor to add more tools — maybe a <code>run_command</code> tool to execute shell commands, or a <code>search_files</code> tool for grep-like functionality. Just describe what you want: "Add a tool that runs shell commands and returns the output." Cursor will handle the rest. The sky's the limit.</p>
-            </div>
-
-            <p>
-                <span class="lang-sv"><em>Det är därför</em> vi tror att allt håller på att förändras.</span>
-                <span class="lang-en"><em>That's</em> why we think everything's changing.</span>
-            </p>
         </article>
     </main>
 
-    <!-- Presentation Slides (shown only in presentation mode) -->
+    <!-- Presentation Slides -->
     <section class="presentation-slide hero-slide" data-slide-number="1 / 7">
         <div class="presentation-slide-content">
             <p class="article-meta">
-                <span class="lang-sv">Cursor + Python Edition // Januari 2026</span>
-                <span class="lang-en">Cursor + Python Edition // January 2026</span>
+                <span class="lang-sv">Cursor + Python // 2026-01</span>
+                <span class="lang-en">Cursor + Python // 2026-01</span>
             </p>
-            <h1>How to Build an Agent</h1>
+            <h1>How to Build an Agent (Cursor + Python Edition)</h1>
             <p class="subtitle">
-                <span class="lang-sv">eller: Kejsaren har inga kläder (och det har inte heller den här tutorialen)</span>
-                <span class="lang-en">or: The Emperor Has No Clothes (And Neither Does This Tutorial)</span>
+                <span class="lang-sv">Lär dig bygga en kod-redigerande agent med hjälp av Cursor IDE</span>
+                <span class="lang-en">Learn to build a code-editing agent using Cursor IDE</span>
             </p>
         </div>
         <div class="presentation-scroll-hint">
@@ -898,134 +647,472 @@ If the file specified with path doesn't exist, it will be created."""</span>,
 
     <section class="presentation-slide" data-slide-number="2 / 7">
         <div class="presentation-slide-content">
-            <h2>
-                <span class="lang-sv">Konceptet</span>
-                <span class="lang-en">The Concept</span>
-            </h2>
-            <p>
-                <span class="lang-sv">Det är inte så svårt att bygga en fullt fungerande kodredigeringsagent.</span>
-                <span class="lang-en">It's not that hard to build a fully functioning, code-editing agent.</span>
-            </p>
-            <p>
-                <span class="lang-sv">Det är en LLM, en loop och tillräckligt med tokens. Under 400 rader kod.</span>
-                <span class="lang-en">It's an LLM, a loop, and enough tokens. Under 400 lines of code.</span>
-            </p>
-            <blockquote>
-                <span class="lang-sv"><strong>Vi ska använda en agent för att bygga en agent.</strong> Meta? Ja. Men det fungerar.</span>
-                <span class="lang-en"><strong>We're going to use an agent to build an agent.</strong> Meta? Yes. But it works.</span>
-            </blockquote>
+            <div class="lang-sv"><h2 id="vad-vi-behover">Vad vi behöver</h2>
+<ul>
+<li><a href="https://www.python.org/">Python 3.10+</a></li>
+<li><a href="https://platform.openai.com/api-keys">OpenAI API-nyckel</a> som du sätter som miljövariabel, <code>OPENAI_API_KEY</code></li>
+<li><a href="https://cursor.com/">Cursor IDE</a> — det är här meta-magisken händer</li>
+</ul></div>
+            <div class="lang-en"><h2 id="what-we-need">What we need</h2>
+<ul>
+<li><a href="https://www.python.org/">Python 3.10+</a></li>
+<li><a href="https://platform.openai.com/api-keys">OpenAI API key</a> that you set as an environment variable, <code>OPENAI_API_KEY</code></li>
+<li><a href="https://cursor.com/">Cursor IDE</a> — this is where the meta-magic happens</li>
+</ul></div>
         </div>
     </section>
 
     <section class="presentation-slide" data-slide-number="3 / 7">
         <div class="presentation-slide-content">
-            <h2>
-                <span class="lang-sv">Vad är ett verktyg (tool)?</span>
-                <span class="lang-en">What is a tool?</span>
-            </h2>
-            <p>
-                <span class="lang-sv">Du säger till modellen: "Blinka om du vill att jag lyfter armen." Modellen blinkar, du lyfter armen.</span>
-                <span class="lang-en">You tell the model: "Wink if you want me to raise my arm." The model winks, you raise your arm.</span>
-            </p>
-            <p><span class="lang-sv">Det är allt. Två saker:</span><span class="lang-en">That's all. Two things:</span></p>
-            <ol>
-                <li><span class="lang-sv">Du talar om för modellen vilka verktyg som finns</span><span class="lang-en">You tell the model what tools are available</span></li>
-                <li><span class="lang-sv">När modellen vill köra verktyget, kör du det och skickar tillbaka resultatet</span><span class="lang-en">When the model wants to run the tool, you run it and send back the result</span></li>
-            </ol>
+            <div class="lang-sv"><h2 id="ta-fram-pennan">Ta fram pennan!</h2>
+<p>Låt oss börja med att öppna Cursor och skapa ett nytt projekt. Öppna Cursor, gå sedan till <strong>File → Open Folder</strong> och skapa en ny mapp som heter <code>code-editing-agent</code>.</p>
+<p>Nu, öppna Cursors integrerade terminal med <code>Ctrl+</code> (det är backtick-tangenten). Låt oss sätta upp vår Python-miljö:</p>
+<pre><code class="language-bash">python -m venv venv
+venv\Scripts\activate  # På Mac/Linux: source venv/bin/activate
+pip install openai
+</code></pre>
+<p>Nu kommer den roliga delen. I stället för att skriva all kod själva, låt oss be Cursor om hjälp. Tryck <code>Ctrl+I</code> för att öppna agentpanelen, och ge den denna prompt:</p>
+<p><strong>Prompt för Cursor:</strong><br />
+"Skapa en ny fil som heter agent.py med en grundläggande skeleton för en CLI-chattapplikation med OpenAI SDK. Inkludera en Agent-klass med en <strong>init</strong> som tar en client och en get_user_message-funktion. Lägg till en get_user_message-funktion som läser från stdin. Inkludera en main-funktion som skapar clienten och agenten."</p>
+<p>Cursor kommer generera något som detta:</p>
+<pre><code class="language-python">from openai import OpenAI
+
+
+def get_user_message():
+    try:
+        return input(), True
+    except EOFError:
+        return &quot;&quot;, False
+
+
+class Agent:
+    def __init__(self, client, get_user_message_func):
+        self.client = client
+        self.get_user_message = get_user_message_func
+
+
+def main():
+    client = OpenAI()
+    agent = Agent(client, get_user_message)
+    agent.run()
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+<p>Ja, detta körs inte ännu. Men vad vi har här är en <code>Agent</code> som har tillgång till en <code>OpenAI</code>-client (som som standard letar efter <code>OPENAI_API_KEY</code>) och som kan få ett användarmeddelande genom att läsa från stdin i terminalen.</p>
+<p>Nu låt oss lägga till den saknade <code>run()</code>-metoden. Be Cursor:</p>
+<p><strong>Prompt för Cursor:</strong><br />
+"Lägg till en run()-metod i Agent-klassen som implementerar en chatloop. Den ska: upprätthålla en konversationslista, skriva ut en prompt för användarinput, lägga till meddelanden i konversationen, anropa run_inference för att få modellens svar, och skriva ut assistentens textsvar. Lägg också till en run_inference-metod som anropar OpenAI chat completions API med gpt-4o."</p>
+<p>Cursor kommer uppdatera din Agent-klass så att den ser ut så här:</p>
+<pre><code class="language-python">class Agent:
+    def __init__(self, client, get_user_message_func):
+        self.client = client
+        self.get_user_message = get_user_message_func
+
+    def run(self):
+        conversation = []
+        print(&quot;Chat with the assistant (use 'ctrl-c' to quit)&quot;)
+
+        while True:
+            print(&quot;\033[94mYou\033[0m: &quot;, end=&quot;&quot;)
+            user_input, ok = self.get_user_message()
+            if not ok:
+                break
+
+            conversation.append({
+                &quot;role&quot;: &quot;user&quot;,
+                &quot;content&quot;: user_input
+            })
+
+            response = self.run_inference(conversation)
+            message = response.choices[0].message
+            conversation.append({
+                &quot;role&quot;: &quot;assistant&quot;,
+                &quot;content&quot;: message.content
+            })
+
+            if message.content:
+                print(f&quot;\033[93mAssistant\033[0m: {message.content}&quot;)
+
+    def run_inference(self, conversation):
+        return self.client.chat.completions.create(
+            model=&quot;gpt-4o&quot;,
+            max_tokens=1024,
+            messages=conversation
+        )
+</code></pre>
+<p>Det är inte mycket, eller hur? Ungefär 40 rader och det viktigaste i dem är denna loop i <code>run()</code> som låter oss prata med modellen. Men det är redan hjärtat i detta program.</p>
+<p>Låt oss köra det. Först, sätt din API-nyckel i terminalen:</p>
+<pre><code class="language-bash">set OPENAI_API_KEY=din-api-nyckel-här  # På Mac/Linux: export OPENAI_API_KEY=...
+
+# Kör det
+python agent.py
+</code></pre>
+<p>Sedan kan du bara prata med assistenten, så här:</p>
+<pre><code>$ python agent.py
+Chat with the assistant (use 'ctrl-c' to quit)
+You: Hej! Jag bygger en agent! Hur mår du?
+Assistant: Hej! Det är spännande - att bygga en agent är ett bra sätt att förstå hur AI-system fungerar under huven. Jag mår bra, tack för att du frågade. Hur går ditt agentprojekt hittills? Vilken typ av funktioner planerar du att ge den?
+You:
+</code></pre>
+<p>Lägg märke till hur vi höll samma konversation igång över flera varv. <code>conversation</code> växer längre med varje varv och vi skickar hela konversationen varje gång. Servern — OpenAIs server — är tillståndslös. Den ser bara vad som finns i <code>conversation</code>-listan. Det är upp till oss att upprätthålla det.</p>
+<p>Okej, låt oss gå vidare, eftersom detta inte är en agent ännu. Vad är en agent? Här är <a href="https://youtu.be/J1-W9O3n7j8?t=72">min definition</a>: en LLM med <em>åtkomst till verktyg</em>, vilket ger den möjligheten att modifiera något utanför kontextfönstret.</p></div>
+            <div class="lang-en"><h2 id="pencils-out">Pencils out!</h2>
+<p>Let's start by opening Cursor and creating a new project. Open Cursor, then go to <strong>File → Open Folder</strong> and create a new folder called <code>code-editing-agent</code>.</p>
+<p>Now, open Cursor's integrated terminal with <code>Ctrl+</code> (that's the backtick key). Let's set up our Python environment:</p>
+<pre><code class="language-bash">python -m venv venv
+venv\Scripts\activate  # On Mac/Linux: source venv/bin/activate
+pip install openai
+</code></pre>
+<p>Now comes the fun part. Instead of typing all the code ourselves, let's ask Cursor to help. Press <code>Ctrl+I</code> to open the agent panel, and give it this prompt:</p>
+<p><strong>Prompt for Cursor:</strong><br />
+"Create a new file called agent.py with a basic skeleton for a CLI chat application using the OpenAI SDK. Include an Agent class with an <strong>init</strong> that takes a client and a get_user_message function. Add a get_user_message function that reads from stdin. Include a main function that creates the client and agent."</p>
+<p>Cursor will generate something like this:</p>
+<pre><code class="language-python">from openai import OpenAI
+
+
+def get_user_message():
+    try:
+        return input(), True
+    except EOFError:
+        return &quot;&quot;, False
+
+
+class Agent:
+    def __init__(self, client, get_user_message_func):
+        self.client = client
+        self.get_user_message = get_user_message_func
+
+
+def main():
+    client = OpenAI()
+    agent = Agent(client, get_user_message)
+    agent.run()
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+<p>Yes, this doesn't run yet. But what we have here is an <code>Agent</code> that has access to an <code>OpenAI</code> client (which, by default, looks for <code>OPENAI_API_KEY</code>) and that can get a user message by reading from stdin on the terminal.</p>
+<p>Now let's add the missing <code>run()</code> method. Ask Cursor:</p>
+<p><strong>Prompt for Cursor:</strong><br />
+"Add a run() method to the Agent class that implements a chat loop. It should: maintain a conversation list, print a prompt for user input, append messages to the conversation, call run_inference to get the model's response, and print the assistant's text responses. Also add a run_inference method that calls the OpenAI chat completions API with gpt-4o."</p>
+<p>Cursor will update your Agent class to look like this:</p>
+<pre><code class="language-python">class Agent:
+    def __init__(self, client, get_user_message_func):
+        self.client = client
+        self.get_user_message = get_user_message_func
+
+    def run(self):
+        conversation = []
+        print(&quot;Chat with the assistant (use 'ctrl-c' to quit)&quot;)
+
+        while True:
+            print(&quot;\033[94mYou\033[0m: &quot;, end=&quot;&quot;)
+            user_input, ok = self.get_user_message()
+            if not ok:
+                break
+
+            conversation.append({
+                &quot;role&quot;: &quot;user&quot;,
+                &quot;content&quot;: user_input
+            })
+
+            response = self.run_inference(conversation)
+            message = response.choices[0].message
+            conversation.append({
+                &quot;role&quot;: &quot;assistant&quot;,
+                &quot;content&quot;: message.content
+            })
+
+            if message.content:
+                print(f&quot;\033[93mAssistant\033[0m: {message.content}&quot;)
+
+    def run_inference(self, conversation):
+        return self.client.chat.completions.create(
+            model=&quot;gpt-4o&quot;,
+            max_tokens=1024,
+            messages=conversation
+        )
+</code></pre>
+<p>It's not a lot, is it? About 40 lines and the most important thing in them is this loop in <code>run()</code> that lets us talk to the model. But that's already the heartbeat of this program.</p>
+<p>Let's run it. First, set your API key in the terminal:</p>
+<pre><code class="language-bash">set OPENAI_API_KEY=your-api-key-here  # On Mac/Linux: export OPENAI_API_KEY=...
+
+# Run it
+python agent.py
+</code></pre>
+<p>Then you can just talk to the assistant, like this:</p>
+<pre><code>$ python agent.py
+Chat with the assistant (use 'ctrl-c' to quit)
+You: Hey! I'm building an agent! How are you?
+Assistant: Hi! That's exciting - building an agent is a great way to understand how AI systems work under the hood. I'm doing well, thanks for asking. How's your agent project going so far? What kind of capabilities are you planning to give it?
+You:
+</code></pre>
+<p>Notice how we kept the same conversation going over multiple turns. The <code>conversation</code> grows longer with every turn and we send the whole conversation every time. The server — OpenAI's server — is stateless. It only sees what's in the <code>conversation</code> list. It's up to us to maintain that.</p>
+<p>Okay, let's move on, because this is not an agent yet. What's an agent? Here's <a href="https://youtu.be/J1-W9O3n7j8?t=72">my definition</a>: an LLM with <em>access to tools</em>, giving it the ability to modify something outside the context window.</p></div>
         </div>
     </section>
 
     <section class="presentation-slide" data-slide-number="4 / 7">
         <div class="presentation-slide-content">
-            <h2><code>read_file</code></h2>
-            <p>
-                <span class="lang-sv">Vårt första verktyg. Läser en fil och returnerar innehållet.</span>
-                <span class="lang-en">Our first tool. Reads a file and returns its contents.</span>
-            </p>
-            <pre><code><span class="keyword">def</span> <span class="function">read_file</span>(input_data):
-    path = input_data[<span class="string">"path"</span>]
-    <span class="keyword">with</span> <span class="builtin">open</span>(path, <span class="string">"r"</span>) <span class="keyword">as</span> f:
-        <span class="keyword">return</span> f.read()</code></pre>
-            <p>
-                <span class="lang-sv">Du ger verktyget till modellen, och den <em>använder det när den tror det hjälper</em>.</span>
-                <span class="lang-en">You give the tool to the model, and it <em>uses it when it thinks it'll help</em>.</span>
-            </p>
+            <div class="lang-sv"><h2 id="ett-forsta-verktyg">Ett första verktyg</h2>
+<p>En LLM med <em>åtkomst till verktyg</em>? Vad är ett verktyg? Grundidén är denna: du skickar en prompt till modellen som säger att den ska svara på ett visst sätt om den vill använda "ett verktyg". Sedan, som mottagare av det meddelandet, "använder du verktyget" genom att köra det och svara med resultatet. Det är allt. Allt annat vi kommer att se är bara abstraktion ovanpå det.</p>
+<p>För att sammanfatta, allt som finns till verktyg och verktygsanvändning är två saker:</p>
+<ol>
+<li>Du berättar för modellen vilka verktyg som finns tillgängliga</li>
+<li>När modellen vill köra verktyget, berättar den för dig, du kör verktyget och skickar svaret upp</li>
+</ol>
+<p>För att göra (1) enklare har de stora modellleverantörerna inbyggda API:er för att skicka verktygsdefinitioner tillsammans.</p>
+<p>Okej, nu låt oss bygga vårt första verktyg: <code>read_file</code></p></div>
+            <div class="lang-en"><h2 id="a-first-tool">A First Tool</h2>
+<p>An LLM with <em>access to tools</em>? What's a tool? The basic idea is this: you send a prompt to the model that says it should reply in a certain way if it wants to use "a tool". Then you, as the receiver of that message, "use the tool" by executing it and replying with the result. That's it. Everything else we'll see is just abstraction on top of it.</p>
+<p>To summarize, all there is to tools and tool use are two things:</p>
+<ol>
+<li>You tell the model what tools are available</li>
+<li>When the model wants to execute the tool, it tells you, you execute the tool and send the response up</li>
+</ol>
+<p>To make (1) easier, the big model providers have built-in APIs to send tool definitions along.</p>
+<p>Okay, now let's build our first tool: <code>read_file</code></p></div>
         </div>
     </section>
 
     <section class="presentation-slide" data-slide-number="5 / 7">
         <div class="presentation-slide-content">
-            <h2><code>list_files</code></h2>
-            <p>
-                <span class="lang-sv">Listar filer och kataloger. Nu kan modellen <strong>kombinera</strong> verktyg.</span>
-                <span class="lang-en">Lists files and directories. Now the model can <strong>combine</strong> tools.</span>
-            </p>
-            <pre><code><span class="keyword">def</span> <span class="function">list_files</span>(input_data):
-    path = input_data.get(<span class="string">"path"</span>, <span class="string">"."</span>)
-    files = []
-    <span class="keyword">for</span> root, dirs, filenames <span class="keyword">in</span> os.walk(path):
-        <span class="comment"># ...</span>
-    <span class="keyword">return</span> json.dumps(files)</code></pre>
-            <p>
-                <span class="lang-sv">Modellen listar filer, väljer en, läser den. Allt automatiskt.</span>
-                <span class="lang-en">The model lists files, picks one, reads it. All automatically.</span>
-            </p>
+            <div class="lang-sv"><h2 id="verktyget-read_file">Verktyget <code>read_file</code></h2>
+<p>Varje verktyg vi kommer att lägga till kommer att kräva följande:</p>
+<ul>
+<li>Ett namn</li>
+<li>En beskrivning för att berätta för modellen vad verktyget gör, när det ska användas, när det inte ska användas, vad det returnerar och så vidare</li>
+<li>Ett input-schema som beskriver, som ett JSON-schema, vilka inputs detta verktyg förväntar sig och i vilken form</li>
+<li>En funktion som faktiskt kör verktyget med inputen modellen skickar till oss och returnerar resultatet</li>
+</ul>
+<p>Låt oss be Cursor att sätta upp verktygsinfrastrukturen. Tryck <code>Ctrl+I</code> och ange:</p>
+<p><strong>Prompt för Cursor:</strong><br />
+"Lägg till en ToolDefinition dataclass med fält: name (str), description (str), input_schema (dict), och function (Callable). Uppdatera Agent <strong>init</strong> för att acceptera en valfri tools-parameter. Uppdatera run_inference för att konvertera verktygsdefinitioner till OpenAIs format och skicka dem till API-anropet."</p>
+<p>Cursor kommer lägga till något som detta:</p>
+<pre><code class="language-python">from dataclasses import dataclass
+from typing import Callable, Any
+
+
+@dataclass
+class ToolDefinition:
+    name: str
+    description: str
+    input_schema: dict
+    function: Callable[[dict], str]
+</code></pre>
+<p>Och uppdatera Agent-klassen:</p>
+<pre><code class="language-python">class Agent:
+    # `tools` läggs till här:
+    def __init__(self, client, get_user_message_func, tools=None):
+        self.client = client
+        self.get_user_message = get_user_message_func
+        self.tools = tools or []
+
+    def run_inference(self, conversation):
+        # Konvertera våra verktygsdefinitioner till OpenAIs format
+        openai_tools = [
+            {
+                &quot;type&quot;: &quot;function&quot;,
+                &quot;function&quot;: {
+                    &quot;name&quot;: tool.name,
+                    &quot;description&quot;: tool.description,
+                    &quot;parameters&quot;: tool.input_schema,
+                }
+            }
+            for tool in self.tools
+        ]
+
+        return self.client.chat.completions.create(
+            model=&quot;gpt-4o&quot;,
+            max_tokens=1024,
+            messages=conversation,
+            tools=openai_tools if openai_tools else None
+        )
+</code></pre>
+<p>Nu låt oss skapa det faktiska <code>read_file</code>-verktyget. Be Cursor:</p>
+<p><strong>Prompt för Cursor:</strong><br />
+"Skapa ett read_file-verktyg. Funktionen ska ta en dict med 'path' och läsa filen. Skapa en ToolDefinition med namn 'read_file', en beskrivning som förklarar när det ska användas, ett JSON-schema för input med en 'path'-egenskap, och funktionen. Uppdatera main() för att skicka verktyget till Agent."</p>
+<p>Cursor kommer skapa något som detta:</p>
+<pre><code class="language-python">def read_file(input_data: dict) -&gt; str:
+    &quot;&quot;&quot;Read the contents of a file at the given path.&quot;&quot;&quot;
+    path = input_data[&quot;path&quot;]
+    try:
+        with open(path, &quot;r&quot;) as f:
+            return f.read()
+    except Exception as e:
+        return f&quot;Error: {str(e)}&quot;
+
+
+READ_FILE_TOOL = ToolDefinition(
+    name=&quot;read_file&quot;,
+    description=&quot;Read the contents of a given relative file path. Use this when you want to see what's inside a file. Do not use this with directory names.&quot;,
+    input_schema={
+        &quot;type&quot;: &quot;object&quot;,
+        &quot;properties&quot;: {
+            &quot;path&quot;: {
+                &quot;type&quot;: &quot;string&quot;,
+                &quot;description&quot;: &quot;The relative path of a file in the working directory.&quot;
+            }
+        },
+        &quot;required&quot;: [&quot;path&quot;]
+    },
+    function=read_file
+)
+</code></pre>
+<p>Och uppdatera <code>main()</code>:</p>
+<pre><code class="language-python">def main():
+    client = OpenAI()
+    tools = [READ_FILE_TOOL]
+    agent = Agent(client, get_user_message, tools)
+    agent.run()
+</code></pre>
+<p>Men vi behöver också uppdatera <code>run()</code>-metoden för att hantera verktygsanrop. Be Cursor:</p>
+<p><strong>Prompt för Cursor:</strong><br />
+"Uppdatera run()-metoden för att hantera tool_use i modellens svar. När modellen vill använda ett verktyg, kör funktionen, lägg till resultatet i konversationen, och skicka tillbaka till modellen för att få det slutliga svaret."</p>
+<p>Cursor kommer uppdatera <code>run()</code> så att den hanterar verktygsanrop korrekt. Nu har du en fungerande agent som kan läsa filer!</p></div>
+            <div class="lang-en"><h2 id="the-read_file-tool">The <code>read_file</code> tool</h2>
+<p>Each tool we're going to add will require the following:</p>
+<ul>
+<li>A name</li>
+<li>A description to tell the model what the tool does, when to use it, when to not use it, what it returns and so on</li>
+<li>An input schema that describes, as a JSON schema, what inputs this tool expects and in which form</li>
+<li>A function that actually executes the tool with the input the model sends to us and returns the result</li>
+</ul>
+<p>Let's ask Cursor to set up the tool infrastructure. Press <code>Ctrl+I</code> and enter:</p>
+<p><strong>Prompt for Cursor:</strong><br />
+"Add a ToolDefinition dataclass with fields: name (str), description (str), input_schema (dict), and function (Callable). Update the Agent <strong>init</strong> to accept an optional tools parameter. Update run_inference to convert tool definitions to OpenAI's format and pass them to the API call."</p>
+<p>Cursor will add something like this:</p>
+<pre><code class="language-python">from dataclasses import dataclass
+from typing import Callable, Any
+
+
+@dataclass
+class ToolDefinition:
+    name: str
+    description: str
+    input_schema: dict
+    function: Callable[[dict], str]
+</code></pre>
+<p>And update the Agent class:</p>
+<pre><code class="language-python">class Agent:
+    # `tools` is added here:
+    def __init__(self, client, get_user_message_func, tools=None):
+        self.client = client
+        self.get_user_message = get_user_message_func
+        self.tools = tools or []
+
+    def run_inference(self, conversation):
+        # Convert our tool definitions to OpenAI's format
+        openai_tools = [
+            {
+                &quot;type&quot;: &quot;function&quot;,
+                &quot;function&quot;: {
+                    &quot;name&quot;: tool.name,
+                    &quot;description&quot;: tool.description,
+                    &quot;parameters&quot;: tool.input_schema,
+                }
+            }
+            for tool in self.tools
+        ]
+
+        return self.client.chat.completions.create(
+            model=&quot;gpt-4o&quot;,
+            max_tokens=1024,
+            messages=conversation,
+            tools=openai_tools if openai_tools else None
+        )
+</code></pre>
+<p>Now let's create the actual <code>read_file</code> tool. Ask Cursor:</p>
+<p><strong>Prompt for Cursor:</strong><br />
+"Create a read_file tool. The function should take a dict with 'path' and read the file. Create a ToolDefinition with name 'read_file', a description explaining when to use it, a JSON schema for input with a 'path' property, and the function. Update main() to pass the tool to Agent."</p>
+<p>Cursor will create something like this:</p>
+<pre><code class="language-python">def read_file(input_data: dict) -&gt; str:
+    &quot;&quot;&quot;Read the contents of a file at the given path.&quot;&quot;&quot;
+    path = input_data[&quot;path&quot;]
+    try:
+        with open(path, &quot;r&quot;) as f:
+            return f.read()
+    except Exception as e:
+        return f&quot;Error: {str(e)}&quot;
+
+
+READ_FILE_TOOL = ToolDefinition(
+    name=&quot;read_file&quot;,
+    description=&quot;Read the contents of a given relative file path. Use this when you want to see what's inside a file. Do not use this with directory names.&quot;,
+    input_schema={
+        &quot;type&quot;: &quot;object&quot;,
+        &quot;properties&quot;: {
+            &quot;path&quot;: {
+                &quot;type&quot;: &quot;string&quot;,
+                &quot;description&quot;: &quot;The relative path of a file in the working directory.&quot;
+            }
+        },
+        &quot;required&quot;: [&quot;path&quot;]
+    },
+    function=read_file
+)
+</code></pre>
+<p>And update <code>main()</code>:</p>
+<pre><code class="language-python">def main():
+    client = OpenAI()
+    tools = [READ_FILE_TOOL]
+    agent = Agent(client, get_user_message, tools)
+    agent.run()
+</code></pre>
+<p>But we also need to update the <code>run()</code> method to handle tool calls. Ask Cursor:</p>
+<p><strong>Prompt for Cursor:</strong><br />
+"Update the run() method to handle tool_use in the model's response. When the model wants to use a tool, execute the function, add the result to the conversation, and send back to the model to get the final answer."</p>
+<p>Cursor will update <code>run()</code> to handle tool calls correctly. Now you have a working agent that can read files!</p></div>
         </div>
     </section>
 
     <section class="presentation-slide" data-slide-number="6 / 7">
         <div class="presentation-slide-content">
-            <h2><code>edit_file</code></h2>
-            <p>
-                <span class="lang-sv">Det sista verktyget. Ersätter text i en fil. Nu kan agenten <strong>redigera kod</strong>.</span>
-                <span class="lang-en">The final tool. Replaces text in a file. Now the agent can <strong>edit code</strong>.</span>
-            </p>
-            <pre><code><span class="keyword">def</span> <span class="function">edit_file</span>(input_data):
-    path = input_data[<span class="string">"path"</span>]
-    old_str = input_data[<span class="string">"old_str"</span>]
-    new_str = input_data[<span class="string">"new_str"</span>]
-    <span class="comment"># ...</span>
-    content = content.replace(old_str, new_str)</code></pre>
-            <p>
-                <span class="lang-sv">"Skapa fizzbuzz.js" → agenten listar, skapar, skriver koden.</span>
-                <span class="lang-en">"Create fizzbuzz.js" → the agent lists, creates, writes the code.</span>
-            </p>
+            <div class="lang-sv"><h2 id="ytterligare-verktyg-list_files-och-edit_file">Ytterligare verktyg: list_files och edit_file</h2>
+<p>Med samma mönster kan du lägga till fler verktyg:</p>
+<ul>
+<li><code>list_files</code> — lista filer i en katalog</li>
+<li><code>edit_file</code> — redigera en fil genom att ersätta gammal text med ny text</li>
+</ul>
+<p>Varje verktyg följer samma mönster: en funktion, en ToolDefinition, och läggs till i tools-listan.</p></div>
+            <div class="lang-en"><h2 id="additional-tools-list_files-and-edit_file">Additional tools: list_files and edit_file</h2>
+<p>With the same pattern, you can add more tools:</p>
+<ul>
+<li><code>list_files</code> — list files in a directory</li>
+<li><code>edit_file</code> — edit a file by replacing old text with new text</li>
+</ul>
+<p>Each tool follows the same pattern: a function, a ToolDefinition, and added to the tools list.</p></div>
         </div>
     </section>
 
     <section class="presentation-slide" data-slide-number="7 / 7">
         <div class="presentation-slide-content">
-            <h2>
-                <span class="lang-sv">Slutsats</span>
-                <span class="lang-en">Conclusion</span>
-            </h2>
-            <p>
-                <span class="lang-sv">Under 150 rader Python-kod och tre verktyg — och du pratar med en intelligens som redigerar din kod.</span>
-                <span class="lang-en">Under 150 lines of Python code and three tools — and you're talking to an intelligence that edits your code.</span>
-            </p>
-            <blockquote>
-                <span class="lang-sv"><em>Det är därför</em> vi tror att allt håller på att förändras.</span>
-                <span class="lang-en"><em>That's</em> why we think everything's changing.</span>
-            </blockquote>
-            <div class="cursor-tip">
-                <div class="cursor-tip-header">
-                    <span class="lang-sv">Nästa steg</span>
-                    <span class="lang-en">Next step</span>
-                </div>
-                <p>
-                    <span class="lang-sv">Lägg till fler verktyg! <code>run_command</code>, <code>search_files</code>... himlen är gränsen.</span>
-                    <span class="lang-en">Add more tools! <code>run_command</code>, <code>search_files</code>... the sky's the limit.</span>
-                </p>
-            </div>
+            <div class="lang-sv"><h2 id="slutsats">Slutsats</h2>
+<p>Det är inte så svårt. En agent är bara:<br />
+- En LLM<br />
+- En loop<br />
+- Verktyg<br />
+- Tillräckligt med tokens</p>
+<p>Resten är bara detaljer och boilerplate. Men dessa detaljer — hur du strukturerar verktygen, hur du hanterar fel, hur du designar feedback-loopen — det är där skillnaden mellan en demo och något användbart ligger.</p>
+<p><strong>Och det roligaste?</strong> Du kan använda Cursor för att bygga allt detta. Det är rekursivt. Det är meta. Det är agenter hela vägen ner.</p></div>
+            <div class="lang-en"><h2 id="conclusion">Conclusion</h2>
+<p>It's not that hard. An agent is just:<br />
+- An LLM<br />
+- A loop<br />
+- Tools<br />
+- Enough tokens</p>
+<p>The rest is just details and boilerplate. But those details — how you structure the tools, how you handle errors, how you design the feedback loop — that's where the difference between a demo and something useful lies.</p>
+<p><strong>And the funniest part?</strong> You can use Cursor to build all of this. It's recursive. It's meta. It's agents all the way down.</p></div>
         </div>
     </section>
 
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
-                <a href="index.html" class="logo">
-                    B3 Commit
-                </a>
+                <a href="index.html" class="logo">B3 Commit</a>
                 <span class="status-badge">All Systems Operational</span>
             </div>
         </div>
@@ -1042,7 +1129,6 @@ If the file specified with path doesn't exist, it will be created."""</span>,
             localStorage.setItem('theme', theme);
         }
 
-        // Load saved theme
         const savedTheme = localStorage.getItem('theme') || 'light';
         setTheme(savedTheme);
 
@@ -1069,7 +1155,6 @@ If the file specified with path doesn't exist, it will be created."""</span>,
             localStorage.setItem('language', lang);
         }
 
-        // Load saved language (default: Swedish)
         const savedLang = localStorage.getItem('language') || 'sv';
         setLanguage(savedLang);
 
@@ -1107,103 +1192,22 @@ If the file specified with path doesn't exist, it will be created."""</span>,
         }
 
         hamburger.addEventListener('click', () => {
-            if (mobileMenu.classList.contains('active')) {
-                closeMenu();
-            } else {
-                openMenu();
-            }
+            mobileMenu.classList.contains('active') ? closeMenu() : openMenu();
         });
 
-        menuOverlay.addEventListener('click', closeMenu);
-        menuClose.addEventListener('click', closeMenu);
+        if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
+        if (menuClose) menuClose.addEventListener('click', closeMenu);
 
-        // Close menu when clicking a link
-        document.querySelectorAll('.mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (!link.id || link.id !== 'menuThemeToggle') {
-                    closeMenu();
-                }
-            });
-        });
-
-        // Vertical Scroll Timeline
-        const scrollTimeline = document.getElementById('scrollTimeline');
-        const scrollProgress = document.getElementById('scrollProgress');
-        const timelineMarkers = document.querySelectorAll('.scroll-timeline-marker');
-        
-        // Section IDs for tracking
-        const sections = ['intro', 'first-tool', 'read-file', 'list-files', 'edit-file'];
-        
-        function updateTimeline() {
+        // Progress Bar
+        window.addEventListener('scroll', () => {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrolled = (winScroll / height) * 100;
-            
-            // Update progress bar
-            scrollProgress.style.height = scrolled + '%';
-            
-            // Show/hide timeline based on scroll position
-            if (winScroll > 200) {
-                scrollTimeline.classList.add('visible');
-            } else {
-                scrollTimeline.classList.remove('visible');
-            }
-            
-            // Update active marker based on current section
-            let currentSection = sections[0];
-            sections.forEach(sectionId => {
-                const section = document.getElementById(sectionId);
-                if (section) {
-                    const rect = section.getBoundingClientRect();
-                    if (rect.top <= 150) {
-                        currentSection = sectionId;
-                    }
-                }
-            });
-            
-            timelineMarkers.forEach(marker => {
-                if (marker.dataset.section === currentSection) {
-                    marker.classList.add('active');
-                } else {
-                    marker.classList.remove('active');
-                }
-            });
-        }
-        
-        window.addEventListener('scroll', updateTimeline);
-        updateTimeline(); // Initial call
-        
-        // Click on timeline markers to navigate
-        timelineMarkers.forEach(marker => {
-            marker.addEventListener('click', () => {
-                const sectionId = marker.dataset.section;
-                const section = document.getElementById(sectionId);
-                if (section) {
-                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
+            const progressBar = document.getElementById('progressBar');
+            if (progressBar) progressBar.style.width = scrolled + '%';
         });
 
-        // Smooth scroll for nav pills
-        document.querySelectorAll('.nav-pill, .mobile-menu a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href.startsWith('#')) {
-                    e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                }
-            });
-        });
-
-        // ==================== 
         // Presentation Mode
-        // ====================
         const presentationToggle = document.getElementById('presentationToggle');
         const presentationProgress = document.getElementById('presentationProgress');
         const progressFill = document.getElementById('progressFill');
@@ -1212,100 +1216,287 @@ If the file specified with path doesn't exist, it will be created."""</span>,
 
         function setPresentationMode(enabled) {
             html.setAttribute('data-presentation', enabled ? 'true' : 'false');
-            presentationToggle.classList.toggle('active', enabled);
-            
-            if (enabled) {
-                if (slides.length > 0) {
-                    slides[0].scrollIntoView({ behavior: 'smooth' });
-                }
-            } else {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+            localStorage.setItem('presentation', enabled ? 'true' : 'false');
+            if (presentationToggle) {
+                presentationToggle.classList.toggle('active', enabled);
             }
         }
 
-        presentationToggle.addEventListener('click', () => {
-            const isActive = html.getAttribute('data-presentation') === 'true';
-            setPresentationMode(!isActive);
-        });
+        // Always start with presentation mode OFF (user must click to enable)
+        setPresentationMode(false);
 
+        if (presentationToggle) {
+            presentationToggle.addEventListener('click', () => {
+                const current = html.getAttribute('data-presentation') === 'true';
+                setPresentationMode(!current);
+                if (!current) {
+                    // Scroll to first slide when enabling
+                    slides[0]?.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        }
+
+        // Presentation Progress Tracking
         function updatePresentationProgress() {
             if (html.getAttribute('data-presentation') !== 'true') return;
 
-            const scrollTop = window.scrollY;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             const windowHeight = window.innerHeight;
             let currentSlide = 0;
 
             slides.forEach((slide, index) => {
                 const slideTop = slide.offsetTop;
-                const slideHeight = slide.offsetHeight;
-                if (scrollTop + windowHeight / 2 >= slideTop && 
-                    scrollTop + windowHeight / 2 < slideTop + slideHeight) {
+                const slideBottom = slideTop + slide.offsetHeight;
+                if (scrollTop + windowHeight / 2 >= slideTop && scrollTop + windowHeight / 2 < slideBottom) {
                     currentSlide = index;
                 }
             });
 
+            // Update progress items
             progressItems.forEach((item, index) => {
-                item.classList.remove('active', 'passed');
-                if (index < currentSlide) {
-                    item.classList.add('passed');
-                } else if (index === currentSlide) {
-                    item.classList.add('active');
-                }
+                item.classList.toggle('active', index === currentSlide);
+                item.classList.toggle('passed', index < currentSlide);
             });
 
-            const totalSlides = slides.length;
-            const progressPercentage = (currentSlide / (totalSlides - 1)) * 100;
-            progressFill.style.height = progressPercentage + '%';
+            // Update progress fill
+            if (progressFill && slides.length > 0) {
+                const progress = ((currentSlide + 1) / slides.length) * 100;
+                progressFill.style.height = progress + '%';
+            }
         }
 
         window.addEventListener('scroll', updatePresentationProgress);
+        updatePresentationProgress();
 
-        progressItems.forEach((item, index) => {
-            item.addEventListener('click', () => {
-                if (slides[index]) {
-                    slides[index].scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-
+        // Keyboard Navigation for Presentation Mode
+        // Note: We query slides fresh each time to include dynamically created continuation slides
         document.addEventListener('keydown', (e) => {
             if (html.getAttribute('data-presentation') !== 'true') return;
 
-            let currentSlide = 0;
-            const scrollTop = window.scrollY;
+            // Query slides fresh to include any dynamically created continuation slides
+            const allSlides = document.querySelectorAll('.presentation-slide');
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
             const windowHeight = window.innerHeight;
+            let currentSlideIndex = 0;
 
-            slides.forEach((slide, index) => {
+            allSlides.forEach((slide, index) => {
                 const slideTop = slide.offsetTop;
-                const slideHeight = slide.offsetHeight;
-                if (scrollTop + windowHeight / 2 >= slideTop && 
-                    scrollTop + windowHeight / 2 < slideTop + slideHeight) {
-                    currentSlide = index;
+                if (currentScroll + windowHeight / 2 >= slideTop) {
+                    currentSlideIndex = index;
                 }
             });
 
-            if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+            if (e.key === 'ArrowDown' || e.key === ' ' || e.key === 'PageDown') {
                 e.preventDefault();
-                if (currentSlide < slides.length - 1) {
-                    slides[currentSlide + 1].scrollIntoView({ behavior: 'smooth' });
+                if (currentSlideIndex < allSlides.length - 1) {
+                    allSlides[currentSlideIndex + 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
-            } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'PageUp') {
+            } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
                 e.preventDefault();
-                if (currentSlide > 0) {
-                    slides[currentSlide - 1].scrollIntoView({ behavior: 'smooth' });
+                if (currentSlideIndex > 0) {
+                    allSlides[currentSlideIndex - 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
-            } else if (e.key === 'Escape') {
-                setPresentationMode(false);
             } else if (e.key === 'Home') {
                 e.preventDefault();
-                slides[0].scrollIntoView({ behavior: 'smooth' });
+                allSlides[0].scrollIntoView({ behavior: 'smooth', block: 'start' });
             } else if (e.key === 'End') {
                 e.preventDefault();
-                slides[slides.length - 1].scrollIntoView({ behavior: 'smooth' });
+                allSlides[allSlides.length - 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else if (e.key === 'Escape') {
+                e.preventDefault();
+                setPresentationMode(false);
             }
         });
 
-        updatePresentationProgress();
+        // Click on progress items to jump to slide
+        progressItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                if (slides[index]) {
+                    slides[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Auto-split overflowing slides into continuation slides
+        let slidesSplit = false;
+        
+        function splitOverflowingSlides() {
+            if (slidesSplit) return; // Only run once
+            if (html.getAttribute('data-presentation') !== 'true') return;
+            
+            const maxContentHeight = window.innerHeight - 220; // Account for padding (6rem top + 4rem bottom + buffer)
+            const allSlides = Array.from(document.querySelectorAll('.presentation-slide:not(.continuation-slide)'));
+            let continuationSlides = [];
+            
+            allSlides.forEach((slide, originalIndex) => {
+                const content = slide.querySelector('.presentation-slide-content');
+                if (!content || slide.classList.contains('hero-slide')) return;
+                
+                // Force layout calculation
+                const svDiv = content.querySelector('.lang-sv');
+                const enDiv = content.querySelector('.lang-en');
+                if (!svDiv || !enDiv) return;
+                
+                // Check both language versions for overflow
+                const svOverflows = svDiv.scrollHeight > maxContentHeight;
+                const enOverflows = enDiv.scrollHeight > maxContentHeight;
+                
+                if (!svOverflows && !enOverflows) return;
+                
+                // This slide needs splitting
+                slide.classList.add('has-continuation');
+                
+                // Get splittable elements (skip H2 headers)
+                const svElements = Array.from(svDiv.children).filter(el => el.tagName !== 'H2');
+                const enElements = Array.from(enDiv.children).filter(el => el.tagName !== 'H2');
+                
+                if (svElements.length <= 1) return;
+                
+                // Find split point based on cumulative height
+                let currentHeight = 0;
+                let splitIndex = -1;
+                
+                // Include H2 height in initial calculation
+                const svH2 = svDiv.querySelector('h2');
+                if (svH2) currentHeight = svH2.offsetHeight + 40;
+                
+                for (let i = 0; i < svElements.length; i++) {
+                    const el = svElements[i];
+                    const style = window.getComputedStyle(el);
+                    const marginTop = parseInt(style.marginTop) || 0;
+                    const marginBottom = parseInt(style.marginBottom) || 0;
+                    currentHeight += el.offsetHeight + marginTop + marginBottom;
+                    
+                    if (currentHeight > maxContentHeight && i > 0) {
+                        splitIndex = i;
+                        break;
+                    }
+                }
+                
+                if (splitIndex <= 0) return;
+                
+                // Create continuation slide
+                const continuationSlide = document.createElement('section');
+                continuationSlide.className = 'presentation-slide continuation-slide';
+                continuationSlide.setAttribute('data-original-slide', originalIndex.toString());
+                
+                const continuationContent = document.createElement('div');
+                continuationContent.className = 'presentation-slide-content';
+                
+                // Create language containers for continuation
+                const svContinuation = document.createElement('div');
+                svContinuation.className = 'lang-sv';
+                const enContinuation = document.createElement('div');
+                enContinuation.className = 'lang-en';
+                
+                // Add continuation label
+                const svLabel = document.createElement('span');
+                svLabel.className = 'continuation-label';
+                svLabel.textContent = '(fortsättning)';
+                svContinuation.appendChild(svLabel);
+                
+                const enLabel = document.createElement('span');
+                enLabel.className = 'continuation-label';
+                enLabel.textContent = '(continued)';
+                enContinuation.appendChild(enLabel);
+                
+                // Move overflow elements to continuation slide
+                for (let i = splitIndex; i < svElements.length; i++) {
+                    svContinuation.appendChild(svElements[i].cloneNode(true));
+                    svElements[i].remove();
+                }
+                
+                const enSplitIndex = Math.min(splitIndex, enElements.length);
+                for (let i = enSplitIndex; i < enElements.length; i++) {
+                    enContinuation.appendChild(enElements[i].cloneNode(true));
+                    enElements[i].remove();
+                }
+                
+                continuationContent.appendChild(svContinuation);
+                continuationContent.appendChild(enContinuation);
+                continuationSlide.appendChild(continuationContent);
+                
+                // Insert continuation slide after original
+                slide.insertAdjacentElement('afterend', continuationSlide);
+                continuationSlides.push(continuationSlide);
+            });
+            
+            // If we created continuation slides, update numbering
+            if (continuationSlides.length > 0) {
+                const allSlidesNow = document.querySelectorAll('.presentation-slide');
+                const totalSlides = allSlidesNow.length;
+                
+                allSlidesNow.forEach((slide, index) => {
+                    slide.setAttribute('data-slide-number', `${index + 1} / ${totalSlides}`);
+                });
+                
+                slidesSplit = true;
+                
+                // Recursively check if continuation slides also need splitting
+                setTimeout(splitOverflowingSlides, 50);
+            } else {
+                slidesSplit = true;
+            }
+        }
+        
+        // Run split check when presentation mode is toggled
+        const originalSetPresentationMode = setPresentationMode;
+        setPresentationMode = function(enabled) {
+            originalSetPresentationMode(enabled);
+            if (enabled && !slidesSplit) {
+                // Delay to allow rendering
+                requestAnimationFrame(() => {
+                    setTimeout(splitOverflowingSlides, 50);
+                });
+            }
+        };
+
+        // Reading Progress (vertical chapter navigation for reading mode)
+        const readingProgressItems = document.querySelectorAll('.reading-progress-item');
+        const readingProgressFill = document.getElementById('readingProgressFill');
+        
+        function updateReadingProgress() {
+            // Don't update in presentation mode
+            if (html.getAttribute('data-presentation') === 'true') return;
+            
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const currentLang = html.getAttribute('data-lang') || 'sv';
+            
+            // Find H2 sections only from the active language
+            const sections = document.querySelectorAll(`article .lang-${currentLang} h2[id]`);
+            let currentIndex = -1;
+            
+            sections.forEach((section, index) => {
+                const sectionTop = section.offsetTop - 150; // Offset for header
+                if (scrollTop >= sectionTop) {
+                    currentIndex = index;
+                }
+            });
+            
+            // Update reading progress items
+            readingProgressItems.forEach((item, index) => {
+                item.classList.remove('active', 'passed');
+                if (index === currentIndex) {
+                    item.classList.add('active');
+                } else if (index < currentIndex) {
+                    item.classList.add('passed');
+                }
+            });
+            
+            // Update progress fill
+            if (readingProgressFill && sections.length > 0) {
+                const progress = ((currentIndex + 1) / sections.length) * 100;
+                readingProgressFill.style.height = Math.max(0, progress) + '%';
+            }
+        }
+        
+        // Listen for scroll events
+        window.addEventListener('scroll', updateReadingProgress);
+        
+        // Initial update
+        updateReadingProgress();
+        
+
     </script>
 </body>
 </html>

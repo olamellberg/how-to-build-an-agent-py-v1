@@ -23,72 +23,121 @@
         </div>
         <div class="presentation-progress-item" data-slide="1">
             <div class="presentation-progress-dot"></div>
-            <span class="presentation-progress-label">
-                <span class="lang-sv">Koncept</span>
-                <span class="lang-en">Concept</span>
-            </span>
+            <span class="presentation-progress-label">Konceptet: Tre faser, en loop</span>
         </div>
         <div class="presentation-progress-item" data-slide="2">
             <div class="presentation-progress-dot"></div>
-            <span class="presentation-progress-label">Loop</span>
+            <span class="presentation-progress-label">Den grundläggande loopen</span>
         </div>
         <div class="presentation-progress-item" data-slide="3">
             <div class="presentation-progress-dot"></div>
-            <span class="presentation-progress-label">
-                <span class="lang-sv">Principer</span>
-                <span class="lang-en">Principles</span>
-            </span>
+            <span class="presentation-progress-label">Nyckelprinciper</span>
         </div>
         <div class="presentation-progress-item" data-slide="4">
             <div class="presentation-progress-dot"></div>
-            <span class="presentation-progress-label">
-                <span class="lang-sv">Filer</span>
-                <span class="lang-en">Files</span>
-            </span>
+            <span class="presentation-progress-label">Filstruktur</span>
         </div>
         <div class="presentation-progress-item" data-slide="5">
             <div class="presentation-progress-dot"></div>
-            <span class="presentation-progress-label">
-                <span class="lang-sv">Kom igång</span>
-                <span class="lang-en">Get started</span>
-            </span>
+            <span class="presentation-progress-label">Commands</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="6">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Structure</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="7">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Stack</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="8">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Kom igång</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="9">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Varför det fungerar</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="10">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Referenser</span>
         </div>
     </nav>
 
-    <!-- Vertical Scroll Timeline -->
-    <div class="scroll-timeline" id="scrollTimeline">
-        <div class="scroll-timeline-progress" id="scrollProgress"></div>
-        <div class="scroll-timeline-marker" data-section="intro" style="top: 0%">
-            <span class="scroll-timeline-label">Intro</span>
-        </div>
-        <div class="scroll-timeline-marker" data-section="concept" style="top: 15%">
-            <span class="scroll-timeline-label">
-                <span class="lang-sv">Koncept</span>
-                <span class="lang-en">Concept</span>
+    <!-- Reading Progress (vertical chapter nav for reading mode) -->
+    <nav class="reading-progress" id="readingProgress">
+        <div class="reading-progress-track"></div>
+        <div class="reading-progress-fill" id="readingProgressFill"></div>
+        <a href="#konceptet-tre-faser-en-loop" class="reading-progress-item" data-section="konceptet-tre-faser-en-loop">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Konceptet: Tre faser, en loop</span>
+                <span class="lang-en">The Concept: Three phases, one loop</span>
             </span>
-        </div>
-        <div class="scroll-timeline-marker" data-section="loop" style="top: 35%">
-            <span class="scroll-timeline-label">Loop</span>
-        </div>
-        <div class="scroll-timeline-marker" data-section="principles" style="top: 55%">
-            <span class="scroll-timeline-label">
-                <span class="lang-sv">Principer</span>
-                <span class="lang-en">Principles</span>
+        </a>
+        <a href="#den-grundläggande-loopen" class="reading-progress-item" data-section="den-grundläggande-loopen">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Den grundläggande loopen</span>
+                <span class="lang-en">The basic loop</span>
             </span>
-        </div>
-        <div class="scroll-timeline-marker" data-section="files" style="top: 75%">
-            <span class="scroll-timeline-label">
-                <span class="lang-sv">Filer</span>
-                <span class="lang-en">Files</span>
+        </a>
+        <a href="#nyckelprinciper" class="reading-progress-item" data-section="nyckelprinciper">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Nyckelprinciper</span>
+                <span class="lang-en">Key Principles</span>
             </span>
-        </div>
-        <div class="scroll-timeline-marker" data-section="start" style="top: 90%">
-            <span class="scroll-timeline-label">
+        </a>
+        <a href="#filstruktur" class="reading-progress-item" data-section="filstruktur">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Filstruktur</span>
+                <span class="lang-en">File structure</span>
+            </span>
+        </a>
+        <a href="#commands" class="reading-progress-item" data-section="commands">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Commands</span>
+                <span class="lang-en">Commands</span>
+            </span>
+        </a>
+        <a href="#structure" class="reading-progress-item" data-section="structure">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Structure</span>
+                <span class="lang-en">Structure</span>
+            </span>
+        </a>
+        <a href="#stack" class="reading-progress-item" data-section="stack">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Stack</span>
+                <span class="lang-en">Stack</span>
+            </span>
+        </a>
+        <a href="#kom-igång" class="reading-progress-item" data-section="kom-igång">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
                 <span class="lang-sv">Kom igång</span>
                 <span class="lang-en">Get started</span>
             </span>
-        </div>
-    </div>
+        </a>
+        <a href="#varför-det-fungerar" class="reading-progress-item" data-section="varför-det-fungerar">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Varför det fungerar</span>
+                <span class="lang-en">Why it works</span>
+            </span>
+        </a>
+        <a href="#referenser" class="reading-progress-item" data-section="referenser">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Referenser</span>
+                <span class="lang-en">References</span>
+            </span>
+        </a>
+    </nav>
 
     <!-- Menu Overlay -->
     <div class="menu-overlay" id="menuOverlay"></div>
@@ -96,109 +145,17 @@
     <!-- Mobile Menu -->
     <nav class="mobile-menu" id="mobileMenu">
         <div class="mobile-menu-header">
-            <a href="index.html" class="logo">
-                B3 Commit
-            </a>
+            <a href="index.html" class="logo">B3 Commit</a>
             <button class="mobile-menu-close" id="menuClose" aria-label="Stäng meny">&times;</button>
         </div>
-
-        <div class="mobile-menu-section">
-            <h3><span class="lang-sv">I denna artikel</span><span class="lang-en">In this article</span></h3>
-            <ul class="mobile-menu-links">
-                <li><a href="#concept"><span class="menu-icon">💡</span> <span class="lang-sv">Konceptet</span><span class="lang-en">The Concept</span></a></li>
-                <li><a href="#loop"><span class="menu-icon">🔄</span> <span class="lang-sv">Loopen</span><span class="lang-en">The Loop</span></a></li>
-                <li><a href="#principles"><span class="menu-icon">📐</span> <span class="lang-sv">Nyckelprinciper</span><span class="lang-en">Key Principles</span></a></li>
-                <li><a href="#files"><span class="menu-icon">📁</span> <span class="lang-sv">Filstruktur</span><span class="lang-en">File Structure</span></a></li>
-                <li><a href="#start"><span class="menu-icon">🚀</span> <span class="lang-sv">Kom igång</span><span class="lang-en">Get Started</span></a></li>
-            </ul>
-        </div>
-
-        <div class="mobile-menu-section">
-            <h3><span class="lang-sv">Artiklar</span><span class="lang-en">Articles</span></h3>
-            <ul class="mobile-menu-links">
-                <li>
-                    <a href="ai-fundamentals.html">
-                        <span class="menu-icon">🧠</span>
-                        AI Fundamentals 2026
-                    </a>
-                </li>
-                <li>
-                    <a href="cursor-python-agent.html">
-                        <span class="menu-icon">🤖</span>
-                        How to Build an Agent
-                    </a>
-                </li>
-                <li>
-                    <a href="vibe-engineering-101.html">
-                        <span class="menu-icon">⚡</span>
-                        Vibe Engineering 101
-                    </a>
-                </li>
-                <li>
-                    <a href="just-ralph-it.html">
-                        <span class="menu-icon">🔁</span>
-                        Just Ralph-it
-                    </a>
-                </li>
-                <li>
-                    <a href="claude-code-101.html">
-                        <span class="menu-icon">🔮</span>
-                        Claude Code 101
-                    </a>
-                </li>
-                <li>
-                    <a href="agents-md-explained.html">
-                        <span class="menu-icon">📋</span>
-                        Agents.md Explained
-                    </a>
-                </li>
-                <li>
-                    <a href="ide-agentic-ai.html">
-                        <span class="menu-icon">🖥️</span>
-                        Välj IDE för Agentisk AI
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="mobile-menu-section">
-            <h3><span class="lang-sv">Länkar</span><span class="lang-en">Links</span></h3>
-            <ul class="mobile-menu-links">
-                <li>
-                    <a href="https://github.com/b3-commit" target="_blank">
-                        <span class="menu-icon">📦</span>
-                        GitHub
-                    </a>
-                </li>
-                <li>
-                    <a href="#" id="menuThemeToggle">
-                        <span class="menu-icon">🌙</span>
-                        <span id="menuThemeText">
-                            <span class="lang-sv">Byt till mörkt läge</span>
-                            <span class="lang-en">Switch to dark mode</span>
-                        </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" id="menuLangToggle">
-                        <span class="menu-icon">🌐</span>
-                        <span id="menuLangText">
-                            <span class="lang-sv">English</span>
-                            <span class="lang-en">Svenska</span>
-                        </span>
-                    </a>
-                </li>
-            </ul>
-        </div>
+        <!-- Mobile menu content would be generated from manifest -->
     </nav>
 
     <header>
         <nav class="nav-container">
             <div class="nav-left">
-                <a href="index.html" class="logo">
-                    B3 Commit
-                </a>
-                <span class="breadcrumb">/ <a href="index.html">AI Handbook</a> / Just Ralph-it</span>
+                <a href="index.html" class="logo">B3 Commit</a>
+                <span class="breadcrumb">/ <a href="index.html"><span class="lang-sv">AI Handbook</span><span class="lang-en">AI Handbook</span></a> / <span class="lang-sv">Just Ralph-it</span><span class="lang-en">Just Ralph-it</span></span>
             </div>
             <div class="nav-right">
                 <button class="presentation-toggle" id="presentationToggle" aria-label="Presentation mode">
@@ -216,9 +173,6 @@
                     <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
                     </svg>
-                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                    </svg>
                 </button>
                 <button class="hamburger" id="hamburger" aria-label="Öppna meny">
                     <span class="hamburger-line"></span>
@@ -233,10 +187,10 @@
         <article>
             <header class="article-header" id="intro">
                 <p class="article-meta">
-                    <span class="lang-sv">Agentisk utveckling // Januari 2026</span>
-                    <span class="lang-en">Agentic Development // January 2026</span>
+                    <span class="lang-sv">Agentisk utveckling // 2026-01</span>
+                    <span class="lang-en">Agentic Development // 2026-01</span>
                 </p>
-                <h1>Just Ralph-it</h1>
+                <h1><span class="lang-sv">Just Ralph-it</span><span class="lang-en">Just Ralph-it</span></h1>
                 <p class="subtitle">
                     <span class="lang-sv">Låt AI:n göra jobbet i en oändlig loop</span>
                     <span class="lang-en">Let the AI do the work in an infinite loop</span>
@@ -245,303 +199,366 @@
 
             <!-- Article Navigation -->
             <nav class="article-nav" id="articleNav">
-                <a href="#concept" class="nav-pill"><span class="lang-sv">Koncept</span><span class="lang-en">Concept</span></a>
-                <a href="#loop" class="nav-pill">Loop</a>
-                <a href="#principles" class="nav-pill"><span class="lang-sv">Principer</span><span class="lang-en">Principles</span></a>
-                <a href="#files" class="nav-pill"><span class="lang-sv">Filer</span><span class="lang-en">Files</span></a>
+                <a href="#konceptet-tre-faser-en-loop" class="nav-pill">Konceptet: Tre faser, en loop</a>
+                <a href="#den-grundläggande-loopen" class="nav-pill">Den grundläggande loopen</a>
+                <a href="#nyckelprinciper" class="nav-pill">Nyckelprinciper</a>
+                <a href="#filstruktur" class="nav-pill">Filstruktur</a>
+                <a href="#commands" class="nav-pill">Commands</a>
+                <a href="#structure" class="nav-pill">Structure</a>
+                <a href="#stack" class="nav-pill">Stack</a>
+                <a href="#kom-igång" class="nav-pill">Kom igång</a>
+                <a href="#varför-det-fungerar" class="nav-pill">Varför det fungerar</a>
+                <a href="#referenser" class="nav-pill">Referenser</a>
             </nav>
 
-            <div class="cursor-tip">
-                <div class="cursor-tip-header">Credit</div>
-                <p>
-                    <span class="lang-sv">Ralph-metoden är skapad av <strong><a href="https://x.com/GeoffreyHuntley" target="_blank">Geoffrey Huntley</a></strong>. Denna artikel är en kortfattad sammanfattning — för den fullständiga guiden, se <a href="https://github.com/ghuntley/how-to-ralph-wiggum" target="_blank">The Ralph Playbook</a> på GitHub.</span>
-                    <span class="lang-en">The Ralph method was created by <strong><a href="https://x.com/GeoffreyHuntley" target="_blank">Geoffrey Huntley</a></strong>. This article is a brief summary — for the complete guide, see <a href="https://github.com/ghuntley/how-to-ralph-wiggum" target="_blank">The Ralph Playbook</a> on GitHub.</span>
-                </p>
-            </div>
+            <div class="lang-sv"><h1 id="just-ralph-it">Just Ralph-it</h1>
+<h3 id="lat-ain-gora-jobbet-i-en-oandlig-loop">Låt AI:n göra jobbet i en oändlig loop</h3>
+<p><strong>Credit:</strong> Ralph-metoden är skapad av <a href="https://x.com/GeoffreyHuntley">Geoffrey Huntley</a>. Denna artikel är en kortfattad sammanfattning — för den fullständiga guiden, se <a href="https://github.com/ghuntley/how-to-ralph-wiggum">The Ralph Playbook</a> på GitHub.</p>
+<p>"Ralph Wiggum Technique" är en utvecklingsmetodik där du låter en AI-agent arbeta autonomt i en oändlig loop. Istället för att mikromanagera agenten steg för steg, sätter du upp rätt struktur — och låter sedan agenten köra tills jobbet är klart.</p>
+<p>Idén är enkel: <strong>eventual consistency genom iteration</strong>. Agenten kan göra misstag, men med rätt feedback-loop (tester, linters, bygge) korrigerar den sig själv — om och om igen — tills allt fungerar.</p>
+<hr />
+<h2 id="konceptet-tre-faser-en-loop">Konceptet: Tre faser, en loop</h2>
+<p>Ralph-metoden följer ett enkelt arbetsflöde:</p>
+<ol>
+<li>
+<p><strong>Definiera krav</strong> — Diskutera med LLM:en vad du vill bygga. Bryt ner i "Jobs to Be Done" (JTBD). Skriv specifikationer i <code>specs/*.md</code>.</p>
+</li>
+<li>
+<p><strong>Planera</strong> — Kör loopen i "planning mode" för att generera en <code>IMPLEMENTATION_PLAN.md</code> med prioriterade uppgifter.</p>
+</li>
+<li>
+<p><strong>Bygg</strong> — Kör loopen i "build mode". Agenten plockar en uppgift från planen, implementerar, kör tester, committar — och börjar om med nästa.</p>
+</li>
+</ol>
+<blockquote>
+<p><strong>Nyckelinsikt:</strong> Varje loop-iteration startar med rent kontextfönster. Agenten läser samma filer varje gång (<code>PROMPT.md</code> + <code>AGENTS.md</code>), väljer nästa uppgift från planen, och arbetar fokuserat på <em>en</em> sak.</p>
+</blockquote>
+<hr />
+<h2 id="den-grundlaggande-loopen">Den grundläggande loopen</h2>
+<p>I sin enklaste form är Ralph bara en bash-loop:</p>
+<pre><code class="language-bash">while :; do cat PROMPT.md | claude ; done
+</code></pre>
+<p>Det är allt. Loopen kör agenten, agenten läser prompten, implementerar nästa uppgift, committar, och avslutar. Bash-loopen startar om direkt — med rent minne.</p>
+<h3 id="exempel-utokad-loop-med-mode-val">Exempel: Utökad loop med mode-val</h3>
+<pre><code class="language-bash">#!/bin/bash
+# Usage: ./loop.sh [plan] [max_iterations]
 
-            <p>
-                <span class="lang-sv">"Ralph Wiggum Technique" är en utvecklingsmetodik där du låter en AI-agent arbeta autonomt i en oändlig loop. Istället för att mikromanagera agenten steg för steg, sätter du upp rätt struktur — och låter sedan agenten köra tills jobbet är klart.</span>
-                <span class="lang-en">"Ralph Wiggum Technique" is a development methodology where you let an AI agent work autonomously in an infinite loop. Instead of micromanaging the agent step by step, you set up the right structure — and then let the agent run until the job is done.</span>
-            </p>
+if [ &quot;$1&quot; = &quot;plan&quot; ]; then
+    MODE=&quot;plan&quot;
+    PROMPT_FILE=&quot;PROMPT_plan.md&quot;
+else
+    MODE=&quot;build&quot;
+    PROMPT_FILE=&quot;PROMPT_build.md&quot;
+fi
 
-            <p>
-                <span class="lang-sv">Idén är enkel: <strong>eventual consistency genom iteration</strong>. Agenten kan göra misstag, men med rätt feedback-loop (tester, linters, bygge) korrigerar den sig själv — om och om igen — tills allt fungerar.</span>
-                <span class="lang-en">The idea is simple: <strong>eventual consistency through iteration</strong>. The agent may make mistakes, but with the right feedback loop (tests, linters, build), it self-corrects — over and over — until everything works.</span>
-            </p>
-
-            <!-- Section: The Concept -->
-            <h2 id="concept">
-                <span class="lang-sv">Konceptet: Tre faser, en loop</span>
-                <span class="lang-en">The Concept: Three phases, one loop</span>
-            </h2>
-
-            <p>
-                <span class="lang-sv">Ralph-metoden följer ett enkelt arbetsflöde:</span>
-                <span class="lang-en">The Ralph method follows a simple workflow:</span>
-            </p>
-
-            <ol>
-                <li>
-                    <strong><span class="lang-sv">Definiera krav</span><span class="lang-en">Define requirements</span></strong>
-                    <span class="lang-sv"> — Diskutera med LLM:en vad du vill bygga. Bryt ner i "Jobs to Be Done" (JTBD). Skriv specifikationer i <code>specs/*.md</code>.</span>
-                    <span class="lang-en"> — Discuss with the LLM what you want to build. Break down into "Jobs to Be Done" (JTBD). Write specifications in <code>specs/*.md</code>.</span>
-                </li>
-                <li>
-                    <strong><span class="lang-sv">Planera</span><span class="lang-en">Plan</span></strong>
-                    <span class="lang-sv"> — Kör loopen i "planning mode" för att generera en <code>IMPLEMENTATION_PLAN.md</code> med prioriterade uppgifter.</span>
-                    <span class="lang-en"> — Run the loop in "planning mode" to generate an <code>IMPLEMENTATION_PLAN.md</code> with prioritized tasks.</span>
-                </li>
-                <li>
-                    <strong><span class="lang-sv">Bygg</span><span class="lang-en">Build</span></strong>
-                    <span class="lang-sv"> — Kör loopen i "build mode". Agenten plockar en uppgift från planen, implementerar, kör tester, committar — och börjar om med nästa.</span>
-                    <span class="lang-en"> — Run the loop in "build mode". The agent picks a task from the plan, implements, runs tests, commits — and starts over with the next one.</span>
-                </li>
-            </ol>
-
-            <blockquote>
-                <span class="lang-sv"><strong>Nyckelinsikt:</strong> Varje loop-iteration startar med rent kontextfönster. Agenten läser samma filer varje gång (<code>PROMPT.md</code> + <code>AGENTS.md</code>), väljer nästa uppgift från planen, och arbetar fokuserat på <em>en</em> sak.</span>
-                <span class="lang-en"><strong>Key insight:</strong> Each loop iteration starts with a fresh context window. The agent reads the same files every time (<code>PROMPT.md</code> + <code>AGENTS.md</code>), picks the next task from the plan, and works focused on <em>one</em> thing.</span>
-            </blockquote>
-
-            <!-- Section: The Loop -->
-            <h2 id="loop">
-                <span class="lang-sv">Den grundläggande loopen</span>
-                <span class="lang-en">The basic loop</span>
-            </h2>
-
-            <p>
-                <span class="lang-sv">I sin enklaste form är Ralph bara en bash-loop:</span>
-                <span class="lang-en">In its simplest form, Ralph is just a bash loop:</span>
-            </p>
-
-            <pre><code><span class="keyword">while</span> :; <span class="keyword">do</span> cat PROMPT.md | claude ; <span class="keyword">done</span></code></pre>
-
-            <p>
-                <span class="lang-sv">Det är allt. Loopen kör agenten, agenten läser prompten, implementerar nästa uppgift, committar, och avslutar. Bash-loopen startar om direkt — med rent minne.</span>
-                <span class="lang-en">That's it. The loop runs the agent, the agent reads the prompt, implements the next task, commits, and exits. The bash loop restarts immediately — with a fresh memory.</span>
-            </p>
-
-            <h3>
-                <span class="lang-sv">Exempel: Utökad loop med mode-val</span>
-                <span class="lang-en">Example: Enhanced loop with mode selection</span>
-            </h3>
-
-            <pre><code><span class="comment">#!/bin/bash</span>
-<span class="comment"># Usage: ./loop.sh [plan] [max_iterations]</span>
-
-<span class="keyword">if</span> [ <span class="string">"$1"</span> = <span class="string">"plan"</span> ]; <span class="keyword">then</span>
-    MODE=<span class="string">"plan"</span>
-    PROMPT_FILE=<span class="string">"PROMPT_plan.md"</span>
-<span class="keyword">else</span>
-    MODE=<span class="string">"build"</span>
-    PROMPT_FILE=<span class="string">"PROMPT_build.md"</span>
-<span class="keyword">fi</span>
-
-<span class="keyword">while</span> true; <span class="keyword">do</span>
-    cat <span class="string">"$PROMPT_FILE"</span> | claude -p \
+while true; do
+    cat &quot;$PROMPT_FILE&quot; | claude -p \
         --dangerously-skip-permissions \
         --model opus
-    
-    git push origin <span class="string">"$(git branch --show-current)"</span>
-    
-    echo <span class="string">"======================== LOOP COMPLETE ========================"</span>
-<span class="keyword">done</span></code></pre>
 
-            <div class="cursor-tip">
-                <div class="cursor-tip-header">
-                    <span class="lang-sv">Viktigt: Sandboxning</span>
-                    <span class="lang-en">Important: Sandboxing</span>
-                </div>
-                <p>
-                    <span class="lang-sv"><code>--dangerously-skip-permissions</code> kringgår alla behörighetsfrågor. Kör alltid i en isolerad miljö (Docker, VM, eller liknande) med minimala credentials. "It's not if it gets popped, it's when."</span>
-                    <span class="lang-en"><code>--dangerously-skip-permissions</code> bypasses all permission prompts. Always run in an isolated environment (Docker, VM, or similar) with minimal credentials. "It's not if it gets popped, it's when."</span>
-                </p>
-            </div>
+    git push origin &quot;$(git branch --show-current)&quot;
 
-            <!-- Section: Key Principles -->
-            <h2 id="principles">
-                <span class="lang-sv">Nyckelprinciper</span>
-                <span class="lang-en">Key Principles</span>
-            </h2>
+    echo &quot;======================== LOOP COMPLETE ========================&quot;
+done
+</code></pre>
+<blockquote>
+<p><strong>Viktigt: Sandboxning</strong><br />
+<code>--dangerously-skip-permissions</code> kringgår alla behörighetsfrågor. Kör alltid i en isolerad miljö (Docker, VM, eller liknande) med minimala credentials. "It's not if it gets popped, it's when."</p>
+</blockquote>
+<hr />
+<h2 id="nyckelprinciper">Nyckelprinciper</h2>
+<h3 id="1-kontext-ar-allt">1. Kontext är allt</h3>
+<p>En LLM har begränsat "arbetsminne" (context window). Ralph maximerar detta genom att:</p>
+<ul>
+<li><strong>Hålla uppgifter små</strong> — en uppgift per loop-iteration</li>
+<li><strong>Rensa kontexten</strong> — varje iteration startar från scratch</li>
+<li><strong>Använda subagenter</strong> — delegera utforskande arbete för att inte förorena huvudkontexten</li>
+</ul>
+<h3 id="2-backpressure-via-verktyg">2. Backpressure via verktyg</h3>
+<p>Agenten styrs av feedback från verkliga verktyg:</p>
+<ul>
+<li><strong>Tester</strong> — måste passera innan commit</li>
+<li><strong>Linters/formatters</strong> — automatisk stilkontroll</li>
+<li><strong>Bygge</strong> — koden måste kompilera</li>
+</ul>
+<p>Om något fallerar, itererar agenten tills det fungerar. Detta är "backpressure" — verktyg som trycker tillbaka mot dålig kod.</p>
+<h3 id="3-let-ralph-ralph">3. Let Ralph Ralph</h3>
+<p>Lita på att agenten självkorrigerar. Din roll är att:</p>
+<ul>
+<li><strong>Observera</strong> — se vilka mönster som uppstår, var agenten går fel</li>
+<li><strong>Justera strukturen</strong> — uppdatera <code>PROMPT.md</code> eller <code>AGENTS.md</code> när du ser återkommande problem</li>
+<li><strong>Lita på loopen</strong> — ge agenten tid att självkorrigera</li>
+</ul>
+<blockquote>
+<p>"Eventual consistency achieved through iteration."</p>
+</blockquote>
+<hr />
+<h2 id="filstruktur">Filstruktur</h2>
+<p>Ett typiskt Ralph-projekt ser ut så här:</p>
+<pre><code>project-root/
+├── loop.sh                    # Ralph loop-skript
+├── PROMPT_build.md            # Instruktioner för build mode
+├── PROMPT_plan.md             # Instruktioner för plan mode
+├── AGENTS.md                  # Hur man bygger/kör projektet
+├── IMPLEMENTATION_PLAN.md     # Prioriterad uppgiftslista
+├── specs/                     # Kravspecifikationer
+│   ├── feature-1.md
+│   └── feature-2.md
+└── src/                       # Källkod (genereras av agenten)
+</code></pre>
+<h3 id="prompt_buildmd-exempel">PROMPT_build.md (exempel)</h3>
+<pre><code class="language-markdown"># Build Mode
 
-            <h3>
-                <span class="lang-sv">1. Kontext är allt</span>
-                <span class="lang-en">1. Context is everything</span>
-            </h3>
-            <p>
-                <span class="lang-sv">En LLM har begränsat "arbetsminne" (context window). Ralph maximerar detta genom att:</span>
-                <span class="lang-en">An LLM has limited "working memory" (context window). Ralph maximizes this by:</span>
-            </p>
-            <ul>
-                <li>
-                    <span class="lang-sv"><strong>Hålla uppgifter små</strong> — en uppgift per loop-iteration</span>
-                    <span class="lang-en"><strong>Keeping tasks small</strong> — one task per loop iteration</span>
-                </li>
-                <li>
-                    <span class="lang-sv"><strong>Rensa kontexten</strong> — varje iteration startar från scratch</span>
-                    <span class="lang-en"><strong>Clearing context</strong> — each iteration starts from scratch</span>
-                </li>
-                <li>
-                    <span class="lang-sv"><strong>Använda subagenter</strong> — delegera utforskande arbete för att inte förorena huvudkontexten</span>
-                    <span class="lang-en"><strong>Using subagents</strong> — delegate exploratory work to avoid polluting the main context</span>
-                </li>
-            </ul>
+Du är en kodredigeringsagent. Din uppgift:
 
-            <h3>
-                <span class="lang-sv">2. Backpressure via verktyg</span>
-                <span class="lang-en">2. Backpressure via tools</span>
-            </h3>
-            <p>
-                <span class="lang-sv">Agenten styrs av feedback från verkliga verktyg:</span>
-                <span class="lang-en">The agent is steered by feedback from real tools:</span>
-            </p>
-            <ul>
-                <li>
-                    <span class="lang-sv"><strong>Tester</strong> — måste passera innan commit</span>
-                    <span class="lang-en"><strong>Tests</strong> — must pass before commit</span>
-                </li>
-                <li>
-                    <span class="lang-sv"><strong>Linters/formatters</strong> — automatisk stilkontroll</span>
-                    <span class="lang-en"><strong>Linters/formatters</strong> — automatic style enforcement</span>
-                </li>
-                <li>
-                    <span class="lang-sv"><strong>Bygge</strong> — koden måste kompilera</span>
-                    <span class="lang-en"><strong>Build</strong> — the code must compile</span>
-                </li>
-            </ul>
-            <p>
-                <span class="lang-sv">Om något fallerar, itererar agenten tills det fungerar. Detta är "backpressure" — verktyg som trycker tillbaka mot dålig kod.</span>
-                <span class="lang-en">If something fails, the agent iterates until it works. This is "backpressure" — tools pushing back against bad code.</span>
-            </p>
+1. Läs IMPLEMENTATION_PLAN.md
+2. Välj nästa uppgift (den första som inte är markerad som klar)
+3. Implementera uppgiften
+4. Kör tester: `npm test`
+5. Om tester passerar: commit med beskrivande meddelande
+6. Om tester misslyckas: fixa och försök igen
 
-            <h3>
-                <span class="lang-sv">3. Let Ralph Ralph</span>
-                <span class="lang-en">3. Let Ralph Ralph</span>
-            </h3>
-            <p>
-                <span class="lang-sv">Lita på att agenten självkorrigerar. Din roll är att:</span>
-                <span class="lang-en">Trust the agent to self-correct. Your role is to:</span>
-            </p>
-            <ul>
-                <li>
-                    <span class="lang-sv"><strong>Observera</strong> — se vilka mönster som uppstår, var agenten går fel</span>
-                    <span class="lang-en"><strong>Observe</strong> — see what patterns emerge, where the agent goes wrong</span>
-                </li>
-                <li>
-                    <span class="lang-sv"><strong>Justera</strong> — lägg till "skyltar" (instruktioner i prompten, utilities i koden)</span>
-                    <span class="lang-en"><strong>Adjust</strong> — add "signs" (instructions in the prompt, utilities in the code)</span>
-                </li>
-                <li>
-                    <span class="lang-sv"><strong>Regenerera planen</strong> — om agenten går i cirklar, kasta planen och börja om</span>
-                    <span class="lang-en"><strong>Regenerate the plan</strong> — if the agent goes in circles, throw out the plan and start over</span>
-                </li>
-            </ul>
+Regler:
+- Ändra bara filer som behövs för nuvarande uppgift
+- Följ kodstilen i befintlig kod
+- Committa ofta, små commits
+</code></pre>
+<h3 id="agentsmd-exempel">AGENTS.md (exempel)</h3>
+<pre><code class="language-markdown">## Commands
+- Build: `npm run build`
+- Test: `npm test`
+- Lint: `npm run lint`
 
-            <blockquote>
-                <span class="lang-sv">"Eventual consistency achieved through iteration."</span>
-                <span class="lang-en">"Eventual consistency achieved through iteration."</span>
-            </blockquote>
+## Structure
+- src/: källkod
+- tests/: tester
+- specs/: kravspecifikationer
 
-            <!-- Section: File Structure -->
-            <h2 id="files">
-                <span class="lang-sv">Filstruktur</span>
-                <span class="lang-en">File Structure</span>
-            </h2>
+## Stack
+- Node.js 20
+- TypeScript 5.x
+</code></pre>
+<hr />
+<h2 id="kom-igang">Kom igång</h2>
+<ol>
+<li>
+<p><strong>Sätt upp projektet:</strong><br />
+<code>bash
+   mkdir ralph-project
+   cd ralph-project
+   git init</code></p>
+</li>
+<li>
+<p><strong>Skapa <code>PROMPT_build.md</code> och <code>AGENTS.md</code></strong> (se exempel ovan)</p>
+</li>
+<li>
+<p><strong>Kör loopen:</strong><br />
+<code>bash
+   chmod +x loop.sh
+   ./loop.sh build</code></p>
+</li>
+<li>
+<p><strong>Observera och justera:</strong><br />
+   - Se vilka mönster som uppstår<br />
+   - Uppdatera <code>PROMPT_build.md</code> när du ser återkommande problem<br />
+   - Lita på att agenten självkorrigerar</p>
+</li>
+</ol>
+<hr />
+<h2 id="varfor-det-fungerar">Varför det fungerar</h2>
+<p>Ralph fungerar eftersom:</p>
+<ol>
+<li><strong>Rent minne varje iteration</strong> — agenten ser bara det som behövs</li>
+<li><strong>Deterministisk feedback</strong> — tester och bygge ger tydliga signaler</li>
+<li><strong>Eventual consistency</strong> — med tillräckligt många iterationer konvergerar systemet mot "klart"</li>
+<li><strong>Autonomi</strong> — du behöver inte mikromanagera varje steg</li>
+</ol>
+<p>Det är inte perfekt. Det är inte snabbt. Men det är <em>automatiskt</em> — och det är kraften.</p>
+<hr />
+<h2 id="referenser">Referenser</h2>
+<ul>
+<li><a href="https://github.com/ghuntley/how-to-ralph-wiggum">The Ralph Playbook</a> — komplett guide av Geoffrey Huntley</li>
+<li><a href="https://x.com/GeoffreyHuntley">Geoffrey Huntley på X</a></li>
+</ul></div>
+            <div class="lang-en"><h1 id="just-ralph-it">Just Ralph-it</h1>
+<h3 id="let-the-ai-do-the-work-in-an-infinite-loop">Let the AI do the work in an infinite loop</h3>
+<p><strong>Credit:</strong> The Ralph method was created by <a href="https://x.com/GeoffreyHuntley">Geoffrey Huntley</a>. This article is a brief summary — for the complete guide, see <a href="https://github.com/ghuntley/how-to-ralph-wiggum">The Ralph Playbook</a> on GitHub.</p>
+<p>"Ralph Wiggum Technique" is a development methodology where you let an AI agent work autonomously in an infinite loop. Instead of micromanaging the agent step by step, you set up the right structure — and then let the agent run until the job is done.</p>
+<p>The idea is simple: <strong>eventual consistency through iteration</strong>. The agent may make mistakes, but with the right feedback loop (tests, linters, build), it self-corrects — over and over — until everything works.</p>
+<hr />
+<h2 id="the-concept-three-phases-one-loop">The Concept: Three phases, one loop</h2>
+<p>The Ralph method follows a simple workflow:</p>
+<ol>
+<li>
+<p><strong>Define requirements</strong> — Discuss with the LLM what you want to build. Break down into "Jobs to Be Done" (JTBD). Write specifications in <code>specs/*.md</code>.</p>
+</li>
+<li>
+<p><strong>Plan</strong> — Run the loop in "planning mode" to generate an <code>IMPLEMENTATION_PLAN.md</code> with prioritized tasks.</p>
+</li>
+<li>
+<p><strong>Build</strong> — Run the loop in "build mode". The agent picks a task from the plan, implements, runs tests, commits — and starts over with the next one.</p>
+</li>
+</ol>
+<blockquote>
+<p><strong>Key insight:</strong> Each loop iteration starts with a fresh context window. The agent reads the same files every time (<code>PROMPT.md</code> + <code>AGENTS.md</code>), picks the next task from the plan, and works focused on <em>one</em> thing.</p>
+</blockquote>
+<hr />
+<h2 id="the-basic-loop">The basic loop</h2>
+<p>In its simplest form, Ralph is just a bash loop:</p>
+<pre><code class="language-bash">while :; do cat PROMPT.md | claude ; done
+</code></pre>
+<p>That's it. The loop runs the agent, the agent reads the prompt, implements the next task, commits, and exits. The bash loop restarts immediately — with a fresh memory.</p>
+<h3 id="example-enhanced-loop-with-mode-selection">Example: Enhanced loop with mode selection</h3>
+<pre><code class="language-bash">#!/bin/bash
+# Usage: ./loop.sh [plan] [max_iterations]
 
-            <p>
-                <span class="lang-sv">Ett typiskt Ralph-projekt ser ut så här:</span>
-                <span class="lang-en">A typical Ralph project looks like this:</span>
-            </p>
+if [ &quot;$1&quot; = &quot;plan&quot; ]; then
+    MODE=&quot;plan&quot;
+    PROMPT_FILE=&quot;PROMPT_plan.md&quot;
+else
+    MODE=&quot;build&quot;
+    PROMPT_FILE=&quot;PROMPT_build.md&quot;
+fi
 
-            <pre><code>project-root/
-├── loop.sh                    <span class="comment"># Ralph loop-skript</span>
-├── PROMPT_build.md            <span class="comment"># Instruktioner för build mode</span>
-├── PROMPT_plan.md             <span class="comment"># Instruktioner för plan mode</span>
-├── AGENTS.md                  <span class="comment"># Hur man bygger/kör projektet</span>
-├── IMPLEMENTATION_PLAN.md     <span class="comment"># Prioriterad uppgiftslista (genereras)</span>
-├── specs/                     <span class="comment"># Kravspecifikationer</span>
-│   ├── feature-a.md
-│   └── feature-b.md
-└── src/                       <span class="comment"># Applikationskod</span></code></pre>
+while true; do
+    cat &quot;$PROMPT_FILE&quot; | claude -p \
+        --dangerously-skip-permissions \
+        --model opus
 
-            <h3>PROMPT_build.md</h3>
-            <p>
-                <span class="lang-sv">Instruktioner som agenten läser varje iteration. Exempel på nyckelpunkter:</span>
-                <span class="lang-en">Instructions the agent reads every iteration. Example key points:</span>
-            </p>
-            <ul>
-                <li><span class="lang-sv">"Studera <code>specs/*</code> för att lära dig specifikationerna"</span><span class="lang-en">"Study <code>specs/*</code> to learn the specifications"</span></li>
-                <li><span class="lang-sv">"Välj den viktigaste uppgiften från <code>IMPLEMENTATION_PLAN.md</code>"</span><span class="lang-en">"Choose the most important task from <code>IMPLEMENTATION_PLAN.md</code>"</span></li>
-                <li><span class="lang-sv">"Sök i koden innan du antar att något inte finns implementerat"</span><span class="lang-en">"Search the codebase before assuming something isn't implemented"</span></li>
-                <li><span class="lang-sv">"Kör tester efter implementation"</span><span class="lang-en">"Run tests after implementation"</span></li>
-                <li><span class="lang-sv">"När testerna passerar, committa och pusha"</span><span class="lang-en">"When tests pass, commit and push"</span></li>
-            </ul>
+    git push origin &quot;$(git branch --show-current)&quot;
 
-            <h3>AGENTS.md</h3>
-            <p>
-                <span class="lang-sv">En kort guide för hur man bygger och kör projektet. Håll den kort (~60 rader) — detta laddas i varje iteration.</span>
-                <span class="lang-en">A short guide on how to build and run the project. Keep it brief (~60 lines) — this is loaded in every iteration.</span>
-            </p>
+    echo &quot;======================== LOOP COMPLETE ========================&quot;
+done
+</code></pre>
+<blockquote>
+<p><strong>Important: Sandboxing</strong><br />
+<code>--dangerously-skip-permissions</code> bypasses all permission prompts. Always run in an isolated environment (Docker, VM, or similar) with minimal credentials. "It's not if it gets popped, it's when."</p>
+</blockquote>
+<hr />
+<h2 id="key-principles">Key Principles</h2>
+<h3 id="1-context-is-everything">1. Context is everything</h3>
+<p>An LLM has limited "working memory" (context window). Ralph maximizes this by:</p>
+<ul>
+<li><strong>Keeping tasks small</strong> — one task per loop iteration</li>
+<li><strong>Clearing context</strong> — each iteration starts from scratch</li>
+<li><strong>Using subagents</strong> — delegate exploratory work to avoid polluting the main context</li>
+</ul>
+<h3 id="2-backpressure-via-tools">2. Backpressure via tools</h3>
+<p>The agent is steered by feedback from real tools:</p>
+<ul>
+<li><strong>Tests</strong> — must pass before commit</li>
+<li><strong>Linters/formatters</strong> — automatic style enforcement</li>
+<li><strong>Build</strong> — the code must compile</li>
+</ul>
+<p>If something fails, the agent iterates until it works. This is "backpressure" — tools pushing back against bad code.</p>
+<h3 id="3-let-ralph-ralph">3. Let Ralph Ralph</h3>
+<p>Trust the agent to self-correct. Your role is to:</p>
+<ul>
+<li><strong>Observe</strong> — see what patterns emerge, where the agent goes wrong</li>
+<li><strong>Adjust structure</strong> — update <code>PROMPT.md</code> or <code>AGENTS.md</code> when you see recurring problems</li>
+<li><strong>Trust the loop</strong> — give the agent time to self-correct</li>
+</ul>
+<blockquote>
+<p>"Eventual consistency achieved through iteration."</p>
+</blockquote>
+<hr />
+<h2 id="file-structure">File structure</h2>
+<p>A typical Ralph project looks like this:</p>
+<pre><code>project-root/
+├── loop.sh                    # Ralph loop script
+├── PROMPT_build.md            # Instructions for build mode
+├── PROMPT_plan.md             # Instructions for plan mode
+├── AGENTS.md                  # How to build/run the project
+├── IMPLEMENTATION_PLAN.md     # Prioritized task list
+├── specs/                     # Requirements specifications
+│   ├── feature-1.md
+│   └── feature-2.md
+└── src/                       # Source code (generated by agent)
+</code></pre>
+<h3 id="prompt_buildmd-example">PROMPT_build.md (example)</h3>
+<pre><code class="language-markdown"># Build Mode
 
-            <h3>IMPLEMENTATION_PLAN.md</h3>
-            <p>
-                <span class="lang-sv">Genereras av agenten i "plan mode". En prioriterad lista med uppgifter som agenten arbetar igenom. <strong>Planen är "disposable"</strong> — om den blir fel, kasta den och generera en ny.</span>
-                <span class="lang-en">Generated by the agent in "plan mode". A prioritized list of tasks the agent works through. <strong>The plan is disposable</strong> — if it goes wrong, throw it out and generate a new one.</span>
-            </p>
+You are a code-editing agent. Your task:
 
-            <!-- Section: Get Started -->
-            <h2 id="start">
-                <span class="lang-sv">Kom igång</span>
-                <span class="lang-en">Get Started</span>
-            </h2>
+1. Read IMPLEMENTATION_PLAN.md
+2. Pick the next task (the first one not marked as done)
+3. Implement the task
+4. Run tests: `npm test`
+5. If tests pass: commit with descriptive message
+6. If tests fail: fix and try again
 
-            <ol>
-                <li>
-                    <span class="lang-sv"><strong>Installera Claude CLI</strong> — se <a href="https://docs.anthropic.com/en/docs/claude-code/cli" target="_blank">Anthropics dokumentation</a></span>
-                    <span class="lang-en"><strong>Install Claude CLI</strong> — see <a href="https://docs.anthropic.com/en/docs/claude-code/cli" target="_blank">Anthropic's documentation</a></span>
-                </li>
-                <li>
-                    <span class="lang-sv"><strong>Skapa filstrukturen</strong> — <code>loop.sh</code>, <code>PROMPT_build.md</code>, <code>PROMPT_plan.md</code>, <code>AGENTS.md</code>, <code>specs/</code></span>
-                    <span class="lang-en"><strong>Create the file structure</strong> — <code>loop.sh</code>, <code>PROMPT_build.md</code>, <code>PROMPT_plan.md</code>, <code>AGENTS.md</code>, <code>specs/</code></span>
-                </li>
-                <li>
-                    <span class="lang-sv"><strong>Skriv specs</strong> — definiera vad du vill bygga i <code>specs/*.md</code></span>
-                    <span class="lang-en"><strong>Write specs</strong> — define what you want to build in <code>specs/*.md</code></span>
-                </li>
-                <li>
-                    <span class="lang-sv"><strong>Kör plan mode</strong> — <code>./loop.sh plan</code> för att generera <code>IMPLEMENTATION_PLAN.md</code></span>
-                    <span class="lang-en"><strong>Run plan mode</strong> — <code>./loop.sh plan</code> to generate <code>IMPLEMENTATION_PLAN.md</code></span>
-                </li>
-                <li>
-                    <span class="lang-sv"><strong>Kör build mode</strong> — <code>./loop.sh</code> och låt Ralph arbeta</span>
-                    <span class="lang-en"><strong>Run build mode</strong> — <code>./loop.sh</code> and let Ralph work</span>
-                </li>
-                <li>
-                    <span class="lang-sv"><strong>Observera och justera</strong> — lägg till skyltar i prompten när agenten gör fel</span>
-                    <span class="lang-en"><strong>Observe and adjust</strong> — add signs to the prompt when the agent makes mistakes</span>
-                </li>
-            </ol>
+Rules:
+- Only change files needed for current task
+- Follow code style in existing code
+- Commit often, small commits
+</code></pre>
+<h3 id="agentsmd-example">AGENTS.md (example)</h3>
+<pre><code class="language-markdown">## Commands
+- Build: `npm run build`
+- Test: `npm test`
+- Lint: `npm run lint`
 
-            <div class="cursor-tip">
-                <div class="cursor-tip-header">
-                    <span class="lang-sv">Fullständig dokumentation</span>
-                    <span class="lang-en">Full documentation</span>
-                </div>
-                <p>
-                    <span class="lang-sv">För promptmallar, avancerade konfigurationer och djupare förklaringar, se <a href="https://github.com/ghuntley/how-to-ralph-wiggum" target="_blank">The Ralph Playbook</a> av <a href="https://x.com/GeoffreyHuntley" target="_blank">Geoffrey Huntley</a>.</span>
-                    <span class="lang-en">For prompt templates, advanced configurations and deeper explanations, see <a href="https://github.com/ghuntley/how-to-ralph-wiggum" target="_blank">The Ralph Playbook</a> by <a href="https://x.com/GeoffreyHuntley" target="_blank">Geoffrey Huntley</a>.</span>
-                </p>
-            </div>
+## Structure
+- src/: source code
+- tests/: tests
+- specs/: requirements
+
+## Stack
+- Node.js 20
+- TypeScript 5.x
+</code></pre>
+<hr />
+<h2 id="get-started">Get started</h2>
+<ol>
+<li>
+<p><strong>Set up the project:</strong><br />
+<code>bash
+   mkdir ralph-project
+   cd ralph-project
+   git init</code></p>
+</li>
+<li>
+<p><strong>Create <code>PROMPT_build.md</code> and <code>AGENTS.md</code></strong> (see examples above)</p>
+</li>
+<li>
+<p><strong>Run the loop:</strong><br />
+<code>bash
+   chmod +x loop.sh
+   ./loop.sh build</code></p>
+</li>
+<li>
+<p><strong>Observe and adjust:</strong><br />
+   - See what patterns emerge<br />
+   - Update <code>PROMPT_build.md</code> when you see recurring problems<br />
+   - Trust the agent to self-correct</p>
+</li>
+</ol>
+<hr />
+<h2 id="why-it-works">Why it works</h2>
+<p>Ralph works because:</p>
+<ol>
+<li><strong>Fresh memory each iteration</strong> — the agent only sees what's needed</li>
+<li><strong>Deterministic feedback</strong> — tests and build give clear signals</li>
+<li><strong>Eventual consistency</strong> — with enough iterations, the system converges to "done"</li>
+<li><strong>Autonomy</strong> — you don't need to micromanage every step</li>
+</ol>
+<p>It's not perfect. It's not fast. But it's <em>automatic</em> — and that's the power.</p>
+<hr />
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://github.com/ghuntley/how-to-ralph-wiggum">The Ralph Playbook</a> — complete guide by Geoffrey Huntley</li>
+<li><a href="https://x.com/GeoffreyHuntley">Geoffrey Huntley on X</a></li>
+</ul></div>
 
         </article>
     </main>
 
-    <!-- Presentation Slides (shown only in presentation mode) -->
-    <section class="presentation-slide hero-slide" data-slide-number="1 / 6">
+    <!-- Presentation Slides -->
+    <section class="presentation-slide hero-slide" data-slide-number="1 / 11">
         <div class="presentation-slide-content">
             <p class="article-meta">
-                <span class="lang-sv">Agentisk utveckling // Januari 2026</span>
-                <span class="lang-en">Agentic Development // January 2026</span>
+                <span class="lang-sv">Agentisk utveckling // 2026-01</span>
+                <span class="lang-en">Agentic Development // 2026-01</span>
             </p>
             <h1>Just Ralph-it</h1>
             <p class="subtitle">
@@ -556,109 +573,396 @@
         </div>
     </section>
 
-    <section class="presentation-slide" data-slide-number="2 / 6">
+    <section class="presentation-slide" data-slide-number="2 / 11">
         <div class="presentation-slide-content">
-            <h2>
-                <span class="lang-sv">Konceptet: Tre faser, en loop</span>
-                <span class="lang-en">The Concept: Three phases, one loop</span>
-            </h2>
-            <ol>
-                <li><strong><span class="lang-sv">Definiera krav</span><span class="lang-en">Define requirements</span></strong> — <span class="lang-sv">Skriv specifikationer i <code>specs/*.md</code></span><span class="lang-en">Write specifications in <code>specs/*.md</code></span></li>
-                <li><strong><span class="lang-sv">Planera</span><span class="lang-en">Plan</span></strong> — <span class="lang-sv">Generera <code>IMPLEMENTATION_PLAN.md</code></span><span class="lang-en">Generate <code>IMPLEMENTATION_PLAN.md</code></span></li>
-                <li><strong><span class="lang-sv">Bygg</span><span class="lang-en">Build</span></strong> — <span class="lang-sv">Agenten plockar uppgifter, implementerar, committar</span><span class="lang-en">Agent picks tasks, implements, commits</span></li>
-            </ol>
-            <blockquote>
-                <span class="lang-sv"><strong>Nyckelinsikt:</strong> Varje loop-iteration startar med rent kontextfönster.</span>
-                <span class="lang-en"><strong>Key insight:</strong> Each loop iteration starts with a fresh context window.</span>
-            </blockquote>
+            <div class="lang-sv"><h2 id="konceptet-tre-faser-en-loop">Konceptet: Tre faser, en loop</h2>
+<p>Ralph-metoden följer ett enkelt arbetsflöde:</p>
+<ol>
+<li>
+<p><strong>Definiera krav</strong> — Diskutera med LLM:en vad du vill bygga. Bryt ner i "Jobs to Be Done" (JTBD). Skriv specifikationer i <code>specs/*.md</code>.</p>
+</li>
+<li>
+<p><strong>Planera</strong> — Kör loopen i "planning mode" för att generera en <code>IMPLEMENTATION_PLAN.md</code> med prioriterade uppgifter.</p>
+</li>
+<li>
+<p><strong>Bygg</strong> — Kör loopen i "build mode". Agenten plockar en uppgift från planen, implementerar, kör tester, committar — och börjar om med nästa.</p>
+</li>
+</ol>
+<blockquote>
+<p><strong>Nyckelinsikt:</strong> Varje loop-iteration startar med rent kontextfönster. Agenten läser samma filer varje gång (<code>PROMPT.md</code> + <code>AGENTS.md</code>), väljer nästa uppgift från planen, och arbetar fokuserat på <em>en</em> sak.</p>
+</blockquote>
+<hr /></div>
+            <div class="lang-en"><h2 id="the-concept-three-phases-one-loop">The Concept: Three phases, one loop</h2>
+<p>The Ralph method follows a simple workflow:</p>
+<ol>
+<li>
+<p><strong>Define requirements</strong> — Discuss with the LLM what you want to build. Break down into "Jobs to Be Done" (JTBD). Write specifications in <code>specs/*.md</code>.</p>
+</li>
+<li>
+<p><strong>Plan</strong> — Run the loop in "planning mode" to generate an <code>IMPLEMENTATION_PLAN.md</code> with prioritized tasks.</p>
+</li>
+<li>
+<p><strong>Build</strong> — Run the loop in "build mode". The agent picks a task from the plan, implements, runs tests, commits — and starts over with the next one.</p>
+</li>
+</ol>
+<blockquote>
+<p><strong>Key insight:</strong> Each loop iteration starts with a fresh context window. The agent reads the same files every time (<code>PROMPT.md</code> + <code>AGENTS.md</code>), picks the next task from the plan, and works focused on <em>one</em> thing.</p>
+</blockquote>
+<hr /></div>
         </div>
     </section>
 
-    <section class="presentation-slide" data-slide-number="3 / 6">
+    <section class="presentation-slide" data-slide-number="3 / 11">
         <div class="presentation-slide-content">
-            <h2>
-                <span class="lang-sv">Den grundläggande loopen</span>
-                <span class="lang-en">The basic loop</span>
-            </h2>
-            <p>
-                <span class="lang-sv">I sin enklaste form är Ralph bara en bash-loop:</span>
-                <span class="lang-en">In its simplest form, Ralph is just a bash loop:</span>
-            </p>
-            <pre><code><span class="keyword">while</span> :; <span class="keyword">do</span> cat PROMPT.md | claude ; <span class="keyword">done</span></code></pre>
-            <p>
-                <span class="lang-sv">Loopen kör agenten, agenten läser prompten, implementerar nästa uppgift, committar, och avslutar. Bash-loopen startar om direkt — med rent minne.</span>
-                <span class="lang-en">The loop runs the agent, the agent reads the prompt, implements the next task, commits, and exits. The bash loop restarts immediately — with a fresh memory.</span>
-            </p>
+            <div class="lang-sv"><h2 id="den-grundlaggande-loopen">Den grundläggande loopen</h2>
+<p>I sin enklaste form är Ralph bara en bash-loop:</p>
+<pre><code class="language-bash">while :; do cat PROMPT.md | claude ; done
+</code></pre>
+<p>Det är allt. Loopen kör agenten, agenten läser prompten, implementerar nästa uppgift, committar, och avslutar. Bash-loopen startar om direkt — med rent minne.</p>
+<h3 id="exempel-utokad-loop-med-mode-val">Exempel: Utökad loop med mode-val</h3>
+<pre><code class="language-bash">#!/bin/bash
+# Usage: ./loop.sh [plan] [max_iterations]
+
+if [ &quot;$1&quot; = &quot;plan&quot; ]; then
+    MODE=&quot;plan&quot;
+    PROMPT_FILE=&quot;PROMPT_plan.md&quot;
+else
+    MODE=&quot;build&quot;
+    PROMPT_FILE=&quot;PROMPT_build.md&quot;
+fi
+
+while true; do
+    cat &quot;$PROMPT_FILE&quot; | claude -p \
+        --dangerously-skip-permissions \
+        --model opus
+
+    git push origin &quot;$(git branch --show-current)&quot;
+
+    echo &quot;======================== LOOP COMPLETE ========================&quot;
+done
+</code></pre>
+<blockquote>
+<p><strong>Viktigt: Sandboxning</strong><br />
+<code>--dangerously-skip-permissions</code> kringgår alla behörighetsfrågor. Kör alltid i en isolerad miljö (Docker, VM, eller liknande) med minimala credentials. "It's not if it gets popped, it's when."</p>
+</blockquote>
+<hr /></div>
+            <div class="lang-en"><h2 id="the-basic-loop">The basic loop</h2>
+<p>In its simplest form, Ralph is just a bash loop:</p>
+<pre><code class="language-bash">while :; do cat PROMPT.md | claude ; done
+</code></pre>
+<p>That's it. The loop runs the agent, the agent reads the prompt, implements the next task, commits, and exits. The bash loop restarts immediately — with a fresh memory.</p>
+<h3 id="example-enhanced-loop-with-mode-selection">Example: Enhanced loop with mode selection</h3>
+<pre><code class="language-bash">#!/bin/bash
+# Usage: ./loop.sh [plan] [max_iterations]
+
+if [ &quot;$1&quot; = &quot;plan&quot; ]; then
+    MODE=&quot;plan&quot;
+    PROMPT_FILE=&quot;PROMPT_plan.md&quot;
+else
+    MODE=&quot;build&quot;
+    PROMPT_FILE=&quot;PROMPT_build.md&quot;
+fi
+
+while true; do
+    cat &quot;$PROMPT_FILE&quot; | claude -p \
+        --dangerously-skip-permissions \
+        --model opus
+
+    git push origin &quot;$(git branch --show-current)&quot;
+
+    echo &quot;======================== LOOP COMPLETE ========================&quot;
+done
+</code></pre>
+<blockquote>
+<p><strong>Important: Sandboxing</strong><br />
+<code>--dangerously-skip-permissions</code> bypasses all permission prompts. Always run in an isolated environment (Docker, VM, or similar) with minimal credentials. "It's not if it gets popped, it's when."</p>
+</blockquote>
+<hr /></div>
         </div>
     </section>
 
-    <section class="presentation-slide" data-slide-number="4 / 6">
+    <section class="presentation-slide" data-slide-number="4 / 11">
         <div class="presentation-slide-content">
-            <h2>
-                <span class="lang-sv">Nyckelprinciper</span>
-                <span class="lang-en">Key Principles</span>
-            </h2>
-            <ul>
-                <li><span class="lang-sv"><strong>Kontext är allt</strong> — håll uppgifter små, rensa kontexten varje iteration</span><span class="lang-en"><strong>Context is everything</strong> — keep tasks small, clear context each iteration</span></li>
-                <li><span class="lang-sv"><strong>Backpressure via verktyg</strong> — tester, linters, bygge måste passera</span><span class="lang-en"><strong>Backpressure via tools</strong> — tests, linters, build must pass</span></li>
-                <li><span class="lang-sv"><strong>Let Ralph Ralph</strong> — lita på att agenten självkorrigerar</span><span class="lang-en"><strong>Let Ralph Ralph</strong> — trust the agent to self-correct</span></li>
-            </ul>
-            <blockquote>
-                <span class="lang-sv">"Eventual consistency achieved through iteration."</span>
-                <span class="lang-en">"Eventual consistency achieved through iteration."</span>
-            </blockquote>
+            <div class="lang-sv"><h2 id="nyckelprinciper">Nyckelprinciper</h2>
+<h3 id="1-kontext-ar-allt">1. Kontext är allt</h3>
+<p>En LLM har begränsat "arbetsminne" (context window). Ralph maximerar detta genom att:</p>
+<ul>
+<li><strong>Hålla uppgifter små</strong> — en uppgift per loop-iteration</li>
+<li><strong>Rensa kontexten</strong> — varje iteration startar från scratch</li>
+<li><strong>Använda subagenter</strong> — delegera utforskande arbete för att inte förorena huvudkontexten</li>
+</ul>
+<h3 id="2-backpressure-via-verktyg">2. Backpressure via verktyg</h3>
+<p>Agenten styrs av feedback från verkliga verktyg:</p>
+<ul>
+<li><strong>Tester</strong> — måste passera innan commit</li>
+<li><strong>Linters/formatters</strong> — automatisk stilkontroll</li>
+<li><strong>Bygge</strong> — koden måste kompilera</li>
+</ul>
+<p>Om något fallerar, itererar agenten tills det fungerar. Detta är "backpressure" — verktyg som trycker tillbaka mot dålig kod.</p>
+<h3 id="3-let-ralph-ralph">3. Let Ralph Ralph</h3>
+<p>Lita på att agenten självkorrigerar. Din roll är att:</p>
+<ul>
+<li><strong>Observera</strong> — se vilka mönster som uppstår, var agenten går fel</li>
+<li><strong>Justera strukturen</strong> — uppdatera <code>PROMPT.md</code> eller <code>AGENTS.md</code> när du ser återkommande problem</li>
+<li><strong>Lita på loopen</strong> — ge agenten tid att självkorrigera</li>
+</ul>
+<blockquote>
+<p>"Eventual consistency achieved through iteration."</p>
+</blockquote>
+<hr /></div>
+            <div class="lang-en"><h2 id="key-principles">Key Principles</h2>
+<h3 id="1-context-is-everything">1. Context is everything</h3>
+<p>An LLM has limited "working memory" (context window). Ralph maximizes this by:</p>
+<ul>
+<li><strong>Keeping tasks small</strong> — one task per loop iteration</li>
+<li><strong>Clearing context</strong> — each iteration starts from scratch</li>
+<li><strong>Using subagents</strong> — delegate exploratory work to avoid polluting the main context</li>
+</ul>
+<h3 id="2-backpressure-via-tools">2. Backpressure via tools</h3>
+<p>The agent is steered by feedback from real tools:</p>
+<ul>
+<li><strong>Tests</strong> — must pass before commit</li>
+<li><strong>Linters/formatters</strong> — automatic style enforcement</li>
+<li><strong>Build</strong> — the code must compile</li>
+</ul>
+<p>If something fails, the agent iterates until it works. This is "backpressure" — tools pushing back against bad code.</p>
+<h3 id="3-let-ralph-ralph">3. Let Ralph Ralph</h3>
+<p>Trust the agent to self-correct. Your role is to:</p>
+<ul>
+<li><strong>Observe</strong> — see what patterns emerge, where the agent goes wrong</li>
+<li><strong>Adjust structure</strong> — update <code>PROMPT.md</code> or <code>AGENTS.md</code> when you see recurring problems</li>
+<li><strong>Trust the loop</strong> — give the agent time to self-correct</li>
+</ul>
+<blockquote>
+<p>"Eventual consistency achieved through iteration."</p>
+</blockquote>
+<hr /></div>
         </div>
     </section>
 
-    <section class="presentation-slide" data-slide-number="5 / 6">
+    <section class="presentation-slide" data-slide-number="5 / 11">
         <div class="presentation-slide-content">
-            <h2>
-                <span class="lang-sv">Filstruktur</span>
-                <span class="lang-en">File Structure</span>
-            </h2>
-            <pre><code>project-root/
-├── loop.sh                    <span class="comment"># Ralph loop-skript</span>
-├── PROMPT_build.md            <span class="comment"># Instruktioner för build mode</span>
-├── PROMPT_plan.md             <span class="comment"># Instruktioner för plan mode</span>
-├── AGENTS.md                  <span class="comment"># Hur man bygger/kör projektet</span>
-├── IMPLEMENTATION_PLAN.md     <span class="comment"># Prioriterad uppgiftslista</span>
-├── specs/                     <span class="comment"># Kravspecifikationer</span>
-└── src/                       <span class="comment"># Applikationskod</span></code></pre>
+            <div class="lang-sv"><h2 id="filstruktur">Filstruktur</h2>
+<p>Ett typiskt Ralph-projekt ser ut så här:</p>
+<pre><code>project-root/
+├── loop.sh                    # Ralph loop-skript
+├── PROMPT_build.md            # Instruktioner för build mode
+├── PROMPT_plan.md             # Instruktioner för plan mode
+├── AGENTS.md                  # Hur man bygger/kör projektet
+├── IMPLEMENTATION_PLAN.md     # Prioriterad uppgiftslista
+├── specs/                     # Kravspecifikationer
+│   ├── feature-1.md
+│   └── feature-2.md
+└── src/                       # Källkod (genereras av agenten)
+</code></pre>
+<h3 id="prompt_buildmd-exempel">PROMPT_build.md (exempel)</h3>
+<pre><code class="language-markdown"># Build Mode
+
+Du är en kodredigeringsagent. Din uppgift:
+
+1. Läs IMPLEMENTATION_PLAN.md
+2. Välj nästa uppgift (den första som inte är markerad som klar)
+3. Implementera uppgiften
+4. Kör tester: `npm test`
+5. Om tester passerar: commit med beskrivande meddelande
+6. Om tester misslyckas: fixa och försök igen
+
+Regler:
+- Ändra bara filer som behövs för nuvarande uppgift
+- Följ kodstilen i befintlig kod
+- Committa ofta, små commits
+</code></pre>
+<h3 id="agentsmd-exempel">AGENTS.md (exempel)</h3>
+<p>```markdown</p></div>
+            <div class="lang-en"><h2 id="file-structure">File structure</h2>
+<p>A typical Ralph project looks like this:</p>
+<pre><code>project-root/
+├── loop.sh                    # Ralph loop script
+├── PROMPT_build.md            # Instructions for build mode
+├── PROMPT_plan.md             # Instructions for plan mode
+├── AGENTS.md                  # How to build/run the project
+├── IMPLEMENTATION_PLAN.md     # Prioritized task list
+├── specs/                     # Requirements specifications
+│   ├── feature-1.md
+│   └── feature-2.md
+└── src/                       # Source code (generated by agent)
+</code></pre>
+<h3 id="prompt_buildmd-example">PROMPT_build.md (example)</h3>
+<pre><code class="language-markdown"># Build Mode
+
+You are a code-editing agent. Your task:
+
+1. Read IMPLEMENTATION_PLAN.md
+2. Pick the next task (the first one not marked as done)
+3. Implement the task
+4. Run tests: `npm test`
+5. If tests pass: commit with descriptive message
+6. If tests fail: fix and try again
+
+Rules:
+- Only change files needed for current task
+- Follow code style in existing code
+- Commit often, small commits
+</code></pre>
+<h3 id="agentsmd-example">AGENTS.md (example)</h3>
+<p>```markdown</p></div>
         </div>
     </section>
 
-    <section class="presentation-slide" data-slide-number="6 / 6">
+    <section class="presentation-slide" data-slide-number="6 / 11">
         <div class="presentation-slide-content">
-            <h2>
-                <span class="lang-sv">Kom igång</span>
-                <span class="lang-en">Get Started</span>
-            </h2>
-            <ol>
-                <li><span class="lang-sv">Installera Claude CLI</span><span class="lang-en">Install Claude CLI</span></li>
-                <li><span class="lang-sv">Skapa filstrukturen</span><span class="lang-en">Create the file structure</span></li>
-                <li><span class="lang-sv">Skriv specs i <code>specs/*.md</code></span><span class="lang-en">Write specs in <code>specs/*.md</code></span></li>
-                <li><span class="lang-sv">Kör <code>./loop.sh plan</code></span><span class="lang-en">Run <code>./loop.sh plan</code></span></li>
-                <li><span class="lang-sv">Kör <code>./loop.sh</code> och låt Ralph arbeta</span><span class="lang-en">Run <code>./loop.sh</code> and let Ralph work</span></li>
-            </ol>
-            <div class="cursor-tip">
-                <div class="cursor-tip-header">
-                    <span class="lang-sv">Fullständig dokumentation</span>
-                    <span class="lang-en">Full documentation</span>
-                </div>
-                <p>
-                    <span class="lang-sv">Se <a href="https://github.com/ghuntley/how-to-ralph-wiggum" target="_blank">The Ralph Playbook</a> av Geoffrey Huntley.</span>
-                    <span class="lang-en">See <a href="https://github.com/ghuntley/how-to-ralph-wiggum" target="_blank">The Ralph Playbook</a> by Geoffrey Huntley.</span>
-                </p>
-            </div>
+            <div class="lang-sv"><h2 id="commands">Commands</h2>
+<ul>
+<li>Build: <code>npm run build</code></li>
+<li>Test: <code>npm test</code></li>
+<li>Lint: <code>npm run lint</code></li>
+</ul></div>
+            <div class="lang-en"><h2 id="commands">Commands</h2>
+<ul>
+<li>Build: <code>npm run build</code></li>
+<li>Test: <code>npm test</code></li>
+<li>Lint: <code>npm run lint</code></li>
+</ul></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="7 / 11">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="structure">Structure</h2>
+<ul>
+<li>src/: källkod</li>
+<li>tests/: tester</li>
+<li>specs/: kravspecifikationer</li>
+</ul></div>
+            <div class="lang-en"><h2 id="structure">Structure</h2>
+<ul>
+<li>src/: source code</li>
+<li>tests/: tests</li>
+<li>specs/: requirements</li>
+</ul></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="8 / 11">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="stack">Stack</h2>
+<ul>
+<li>Node.js 20</li>
+<li>TypeScript 5.x<br />
+```</li>
+</ul>
+<hr /></div>
+            <div class="lang-en"><h2 id="stack">Stack</h2>
+<ul>
+<li>Node.js 20</li>
+<li>TypeScript 5.x<br />
+```</li>
+</ul>
+<hr /></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="9 / 11">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="kom-igang">Kom igång</h2>
+<ol>
+<li>
+<p><strong>Sätt upp projektet:</strong><br />
+<code>bash
+   mkdir ralph-project
+   cd ralph-project
+   git init</code></p>
+</li>
+<li>
+<p><strong>Skapa <code>PROMPT_build.md</code> och <code>AGENTS.md</code></strong> (se exempel ovan)</p>
+</li>
+<li>
+<p><strong>Kör loopen:</strong><br />
+<code>bash
+   chmod +x loop.sh
+   ./loop.sh build</code></p>
+</li>
+<li>
+<p><strong>Observera och justera:</strong><br />
+   - Se vilka mönster som uppstår<br />
+   - Uppdatera <code>PROMPT_build.md</code> när du ser återkommande problem<br />
+   - Lita på att agenten självkorrigerar</p>
+</li>
+</ol>
+<hr /></div>
+            <div class="lang-en"><h2 id="get-started">Get started</h2>
+<ol>
+<li>
+<p><strong>Set up the project:</strong><br />
+<code>bash
+   mkdir ralph-project
+   cd ralph-project
+   git init</code></p>
+</li>
+<li>
+<p><strong>Create <code>PROMPT_build.md</code> and <code>AGENTS.md</code></strong> (see examples above)</p>
+</li>
+<li>
+<p><strong>Run the loop:</strong><br />
+<code>bash
+   chmod +x loop.sh
+   ./loop.sh build</code></p>
+</li>
+<li>
+<p><strong>Observe and adjust:</strong><br />
+   - See what patterns emerge<br />
+   - Update <code>PROMPT_build.md</code> when you see recurring problems<br />
+   - Trust the agent to self-correct</p>
+</li>
+</ol>
+<hr /></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="10 / 11">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="varfor-det-fungerar">Varför det fungerar</h2>
+<p>Ralph fungerar eftersom:</p>
+<ol>
+<li><strong>Rent minne varje iteration</strong> — agenten ser bara det som behövs</li>
+<li><strong>Deterministisk feedback</strong> — tester och bygge ger tydliga signaler</li>
+<li><strong>Eventual consistency</strong> — med tillräckligt många iterationer konvergerar systemet mot "klart"</li>
+<li><strong>Autonomi</strong> — du behöver inte mikromanagera varje steg</li>
+</ol>
+<p>Det är inte perfekt. Det är inte snabbt. Men det är <em>automatiskt</em> — och det är kraften.</p>
+<hr /></div>
+            <div class="lang-en"><h2 id="why-it-works">Why it works</h2>
+<p>Ralph works because:</p>
+<ol>
+<li><strong>Fresh memory each iteration</strong> — the agent only sees what's needed</li>
+<li><strong>Deterministic feedback</strong> — tests and build give clear signals</li>
+<li><strong>Eventual consistency</strong> — with enough iterations, the system converges to "done"</li>
+<li><strong>Autonomy</strong> — you don't need to micromanage every step</li>
+</ol>
+<p>It's not perfect. It's not fast. But it's <em>automatic</em> — and that's the power.</p>
+<hr /></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="11 / 11">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="referenser">Referenser</h2>
+<ul>
+<li><a href="https://github.com/ghuntley/how-to-ralph-wiggum">The Ralph Playbook</a> — komplett guide av Geoffrey Huntley</li>
+<li><a href="https://x.com/GeoffreyHuntley">Geoffrey Huntley på X</a></li>
+</ul></div>
+            <div class="lang-en"><h2 id="references">References</h2>
+<ul>
+<li><a href="https://github.com/ghuntley/how-to-ralph-wiggum">The Ralph Playbook</a> — complete guide by Geoffrey Huntley</li>
+<li><a href="https://x.com/GeoffreyHuntley">Geoffrey Huntley on X</a></li>
+</ul></div>
         </div>
     </section>
 
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
-                <a href="index.html" class="logo">
-                    B3 Commit
-                </a>
+                <a href="index.html" class="logo">B3 Commit</a>
                 <span class="status-badge">All Systems Operational</span>
             </div>
         </div>
@@ -675,7 +979,6 @@
             localStorage.setItem('theme', theme);
         }
 
-        // Load saved theme
         const savedTheme = localStorage.getItem('theme') || 'light';
         setTheme(savedTheme);
 
@@ -702,7 +1005,6 @@
             localStorage.setItem('language', lang);
         }
 
-        // Load saved language (default: Swedish)
         const savedLang = localStorage.getItem('language') || 'sv';
         setLanguage(savedLang);
 
@@ -740,103 +1042,22 @@
         }
 
         hamburger.addEventListener('click', () => {
-            if (mobileMenu.classList.contains('active')) {
-                closeMenu();
-            } else {
-                openMenu();
-            }
+            mobileMenu.classList.contains('active') ? closeMenu() : openMenu();
         });
 
-        menuOverlay.addEventListener('click', closeMenu);
-        menuClose.addEventListener('click', closeMenu);
+        if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
+        if (menuClose) menuClose.addEventListener('click', closeMenu);
 
-        // Close menu when clicking a link
-        document.querySelectorAll('.mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (!link.id || (link.id !== 'menuThemeToggle' && link.id !== 'menuLangToggle')) {
-                    closeMenu();
-                }
-            });
-        });
-
-        // Vertical Scroll Timeline
-        const scrollTimeline = document.getElementById('scrollTimeline');
-        const scrollProgress = document.getElementById('scrollProgress');
-        const timelineMarkers = document.querySelectorAll('.scroll-timeline-marker');
-        
-        // Section IDs for tracking
-        const sections = ['intro', 'concept', 'loop', 'principles', 'files', 'start'];
-        
-        function updateTimeline() {
+        // Progress Bar
+        window.addEventListener('scroll', () => {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrolled = (winScroll / height) * 100;
-            
-            // Update progress bar
-            scrollProgress.style.height = scrolled + '%';
-            
-            // Show/hide timeline based on scroll position
-            if (winScroll > 200) {
-                scrollTimeline.classList.add('visible');
-            } else {
-                scrollTimeline.classList.remove('visible');
-            }
-            
-            // Update active marker based on current section
-            let currentSection = sections[0];
-            sections.forEach(sectionId => {
-                const section = document.getElementById(sectionId);
-                if (section) {
-                    const rect = section.getBoundingClientRect();
-                    if (rect.top <= 150) {
-                        currentSection = sectionId;
-                    }
-                }
-            });
-            
-            timelineMarkers.forEach(marker => {
-                if (marker.dataset.section === currentSection) {
-                    marker.classList.add('active');
-                } else {
-                    marker.classList.remove('active');
-                }
-            });
-        }
-        
-        window.addEventListener('scroll', updateTimeline);
-        updateTimeline(); // Initial call
-        
-        // Click on timeline markers to navigate
-        timelineMarkers.forEach(marker => {
-            marker.addEventListener('click', () => {
-                const sectionId = marker.dataset.section;
-                const section = document.getElementById(sectionId);
-                if (section) {
-                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
+            const progressBar = document.getElementById('progressBar');
+            if (progressBar) progressBar.style.width = scrolled + '%';
         });
 
-        // Smooth scroll for nav pills
-        document.querySelectorAll('.nav-pill, .mobile-menu a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href.startsWith('#')) {
-                    e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                }
-            });
-        });
-
-        // ==================== 
         // Presentation Mode
-        // ====================
         const presentationToggle = document.getElementById('presentationToggle');
         const presentationProgress = document.getElementById('presentationProgress');
         const progressFill = document.getElementById('progressFill');
@@ -845,100 +1066,287 @@
 
         function setPresentationMode(enabled) {
             html.setAttribute('data-presentation', enabled ? 'true' : 'false');
-            presentationToggle.classList.toggle('active', enabled);
-            
-            if (enabled) {
-                if (slides.length > 0) {
-                    slides[0].scrollIntoView({ behavior: 'smooth' });
-                }
-            } else {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+            localStorage.setItem('presentation', enabled ? 'true' : 'false');
+            if (presentationToggle) {
+                presentationToggle.classList.toggle('active', enabled);
             }
         }
 
-        presentationToggle.addEventListener('click', () => {
-            const isActive = html.getAttribute('data-presentation') === 'true';
-            setPresentationMode(!isActive);
-        });
+        // Always start with presentation mode OFF (user must click to enable)
+        setPresentationMode(false);
 
+        if (presentationToggle) {
+            presentationToggle.addEventListener('click', () => {
+                const current = html.getAttribute('data-presentation') === 'true';
+                setPresentationMode(!current);
+                if (!current) {
+                    // Scroll to first slide when enabling
+                    slides[0]?.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        }
+
+        // Presentation Progress Tracking
         function updatePresentationProgress() {
             if (html.getAttribute('data-presentation') !== 'true') return;
 
-            const scrollTop = window.scrollY;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             const windowHeight = window.innerHeight;
             let currentSlide = 0;
 
             slides.forEach((slide, index) => {
                 const slideTop = slide.offsetTop;
-                const slideHeight = slide.offsetHeight;
-                if (scrollTop + windowHeight / 2 >= slideTop && 
-                    scrollTop + windowHeight / 2 < slideTop + slideHeight) {
+                const slideBottom = slideTop + slide.offsetHeight;
+                if (scrollTop + windowHeight / 2 >= slideTop && scrollTop + windowHeight / 2 < slideBottom) {
                     currentSlide = index;
                 }
             });
 
+            // Update progress items
             progressItems.forEach((item, index) => {
-                item.classList.remove('active', 'passed');
-                if (index < currentSlide) {
-                    item.classList.add('passed');
-                } else if (index === currentSlide) {
-                    item.classList.add('active');
-                }
+                item.classList.toggle('active', index === currentSlide);
+                item.classList.toggle('passed', index < currentSlide);
             });
 
-            const totalSlides = slides.length;
-            const progressPercentage = (currentSlide / (totalSlides - 1)) * 100;
-            progressFill.style.height = progressPercentage + '%';
+            // Update progress fill
+            if (progressFill && slides.length > 0) {
+                const progress = ((currentSlide + 1) / slides.length) * 100;
+                progressFill.style.height = progress + '%';
+            }
         }
 
         window.addEventListener('scroll', updatePresentationProgress);
+        updatePresentationProgress();
 
-        progressItems.forEach((item, index) => {
-            item.addEventListener('click', () => {
-                if (slides[index]) {
-                    slides[index].scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-
+        // Keyboard Navigation for Presentation Mode
+        // Note: We query slides fresh each time to include dynamically created continuation slides
         document.addEventListener('keydown', (e) => {
             if (html.getAttribute('data-presentation') !== 'true') return;
 
-            let currentSlide = 0;
-            const scrollTop = window.scrollY;
+            // Query slides fresh to include any dynamically created continuation slides
+            const allSlides = document.querySelectorAll('.presentation-slide');
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
             const windowHeight = window.innerHeight;
+            let currentSlideIndex = 0;
 
-            slides.forEach((slide, index) => {
+            allSlides.forEach((slide, index) => {
                 const slideTop = slide.offsetTop;
-                const slideHeight = slide.offsetHeight;
-                if (scrollTop + windowHeight / 2 >= slideTop && 
-                    scrollTop + windowHeight / 2 < slideTop + slideHeight) {
-                    currentSlide = index;
+                if (currentScroll + windowHeight / 2 >= slideTop) {
+                    currentSlideIndex = index;
                 }
             });
 
-            if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+            if (e.key === 'ArrowDown' || e.key === ' ' || e.key === 'PageDown') {
                 e.preventDefault();
-                if (currentSlide < slides.length - 1) {
-                    slides[currentSlide + 1].scrollIntoView({ behavior: 'smooth' });
+                if (currentSlideIndex < allSlides.length - 1) {
+                    allSlides[currentSlideIndex + 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
-            } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'PageUp') {
+            } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
                 e.preventDefault();
-                if (currentSlide > 0) {
-                    slides[currentSlide - 1].scrollIntoView({ behavior: 'smooth' });
+                if (currentSlideIndex > 0) {
+                    allSlides[currentSlideIndex - 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
-            } else if (e.key === 'Escape') {
-                setPresentationMode(false);
             } else if (e.key === 'Home') {
                 e.preventDefault();
-                slides[0].scrollIntoView({ behavior: 'smooth' });
+                allSlides[0].scrollIntoView({ behavior: 'smooth', block: 'start' });
             } else if (e.key === 'End') {
                 e.preventDefault();
-                slides[slides.length - 1].scrollIntoView({ behavior: 'smooth' });
+                allSlides[allSlides.length - 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else if (e.key === 'Escape') {
+                e.preventDefault();
+                setPresentationMode(false);
             }
         });
 
-        updatePresentationProgress();
+        // Click on progress items to jump to slide
+        progressItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                if (slides[index]) {
+                    slides[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Auto-split overflowing slides into continuation slides
+        let slidesSplit = false;
+        
+        function splitOverflowingSlides() {
+            if (slidesSplit) return; // Only run once
+            if (html.getAttribute('data-presentation') !== 'true') return;
+            
+            const maxContentHeight = window.innerHeight - 220; // Account for padding (6rem top + 4rem bottom + buffer)
+            const allSlides = Array.from(document.querySelectorAll('.presentation-slide:not(.continuation-slide)'));
+            let continuationSlides = [];
+            
+            allSlides.forEach((slide, originalIndex) => {
+                const content = slide.querySelector('.presentation-slide-content');
+                if (!content || slide.classList.contains('hero-slide')) return;
+                
+                // Force layout calculation
+                const svDiv = content.querySelector('.lang-sv');
+                const enDiv = content.querySelector('.lang-en');
+                if (!svDiv || !enDiv) return;
+                
+                // Check both language versions for overflow
+                const svOverflows = svDiv.scrollHeight > maxContentHeight;
+                const enOverflows = enDiv.scrollHeight > maxContentHeight;
+                
+                if (!svOverflows && !enOverflows) return;
+                
+                // This slide needs splitting
+                slide.classList.add('has-continuation');
+                
+                // Get splittable elements (skip H2 headers)
+                const svElements = Array.from(svDiv.children).filter(el => el.tagName !== 'H2');
+                const enElements = Array.from(enDiv.children).filter(el => el.tagName !== 'H2');
+                
+                if (svElements.length <= 1) return;
+                
+                // Find split point based on cumulative height
+                let currentHeight = 0;
+                let splitIndex = -1;
+                
+                // Include H2 height in initial calculation
+                const svH2 = svDiv.querySelector('h2');
+                if (svH2) currentHeight = svH2.offsetHeight + 40;
+                
+                for (let i = 0; i < svElements.length; i++) {
+                    const el = svElements[i];
+                    const style = window.getComputedStyle(el);
+                    const marginTop = parseInt(style.marginTop) || 0;
+                    const marginBottom = parseInt(style.marginBottom) || 0;
+                    currentHeight += el.offsetHeight + marginTop + marginBottom;
+                    
+                    if (currentHeight > maxContentHeight && i > 0) {
+                        splitIndex = i;
+                        break;
+                    }
+                }
+                
+                if (splitIndex <= 0) return;
+                
+                // Create continuation slide
+                const continuationSlide = document.createElement('section');
+                continuationSlide.className = 'presentation-slide continuation-slide';
+                continuationSlide.setAttribute('data-original-slide', originalIndex.toString());
+                
+                const continuationContent = document.createElement('div');
+                continuationContent.className = 'presentation-slide-content';
+                
+                // Create language containers for continuation
+                const svContinuation = document.createElement('div');
+                svContinuation.className = 'lang-sv';
+                const enContinuation = document.createElement('div');
+                enContinuation.className = 'lang-en';
+                
+                // Add continuation label
+                const svLabel = document.createElement('span');
+                svLabel.className = 'continuation-label';
+                svLabel.textContent = '(fortsättning)';
+                svContinuation.appendChild(svLabel);
+                
+                const enLabel = document.createElement('span');
+                enLabel.className = 'continuation-label';
+                enLabel.textContent = '(continued)';
+                enContinuation.appendChild(enLabel);
+                
+                // Move overflow elements to continuation slide
+                for (let i = splitIndex; i < svElements.length; i++) {
+                    svContinuation.appendChild(svElements[i].cloneNode(true));
+                    svElements[i].remove();
+                }
+                
+                const enSplitIndex = Math.min(splitIndex, enElements.length);
+                for (let i = enSplitIndex; i < enElements.length; i++) {
+                    enContinuation.appendChild(enElements[i].cloneNode(true));
+                    enElements[i].remove();
+                }
+                
+                continuationContent.appendChild(svContinuation);
+                continuationContent.appendChild(enContinuation);
+                continuationSlide.appendChild(continuationContent);
+                
+                // Insert continuation slide after original
+                slide.insertAdjacentElement('afterend', continuationSlide);
+                continuationSlides.push(continuationSlide);
+            });
+            
+            // If we created continuation slides, update numbering
+            if (continuationSlides.length > 0) {
+                const allSlidesNow = document.querySelectorAll('.presentation-slide');
+                const totalSlides = allSlidesNow.length;
+                
+                allSlidesNow.forEach((slide, index) => {
+                    slide.setAttribute('data-slide-number', `${index + 1} / ${totalSlides}`);
+                });
+                
+                slidesSplit = true;
+                
+                // Recursively check if continuation slides also need splitting
+                setTimeout(splitOverflowingSlides, 50);
+            } else {
+                slidesSplit = true;
+            }
+        }
+        
+        // Run split check when presentation mode is toggled
+        const originalSetPresentationMode = setPresentationMode;
+        setPresentationMode = function(enabled) {
+            originalSetPresentationMode(enabled);
+            if (enabled && !slidesSplit) {
+                // Delay to allow rendering
+                requestAnimationFrame(() => {
+                    setTimeout(splitOverflowingSlides, 50);
+                });
+            }
+        };
+
+        // Reading Progress (vertical chapter navigation for reading mode)
+        const readingProgressItems = document.querySelectorAll('.reading-progress-item');
+        const readingProgressFill = document.getElementById('readingProgressFill');
+        
+        function updateReadingProgress() {
+            // Don't update in presentation mode
+            if (html.getAttribute('data-presentation') === 'true') return;
+            
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const currentLang = html.getAttribute('data-lang') || 'sv';
+            
+            // Find H2 sections only from the active language
+            const sections = document.querySelectorAll(`article .lang-${currentLang} h2[id]`);
+            let currentIndex = -1;
+            
+            sections.forEach((section, index) => {
+                const sectionTop = section.offsetTop - 150; // Offset for header
+                if (scrollTop >= sectionTop) {
+                    currentIndex = index;
+                }
+            });
+            
+            // Update reading progress items
+            readingProgressItems.forEach((item, index) => {
+                item.classList.remove('active', 'passed');
+                if (index === currentIndex) {
+                    item.classList.add('active');
+                } else if (index < currentIndex) {
+                    item.classList.add('passed');
+                }
+            });
+            
+            // Update progress fill
+            if (readingProgressFill && sections.length > 0) {
+                const progress = ((currentIndex + 1) / sections.length) * 100;
+                readingProgressFill.style.height = Math.max(0, progress) + '%';
+            }
+        }
+        
+        // Listen for scroll events
+        window.addEventListener('scroll', updateReadingProgress);
+        
+        // Initial update
+        updateReadingProgress();
+        
+
     </script>
 </body>
 </html>

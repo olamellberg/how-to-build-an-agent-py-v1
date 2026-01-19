@@ -1,0 +1,317 @@
+{
+  "articles": [
+    {
+      "slug": "ai-fundamentals",
+      "html": "ai-fundamentals.html",
+      "category": "fundamentals",
+      "date": "2026-01",
+      "title": {
+        "sv": "AI Fundamentals 2026",
+        "en": "AI Fundamentals 2026"
+      },
+      "subtitle": {
+        "sv": "En praktisk grundkurs i generativ AI för systemutvecklare",
+        "en": "A practical introduction to generative AI for developers"
+      },
+      "meta": {
+        "sv": "AI Grundkurs",
+        "en": "AI Basics"
+      },
+      "sources": {
+        "sv": "articles/ai-fundamentals-2026-sv.md",
+        "en": "articles/ai-fundamentals-2026-en.md"
+      },
+      "description": {
+        "sv": "En praktisk grundkurs i generativ AI för systemutvecklare. Lär dig om modeller, tokens, RAG, tools, agenter och säkerhet.",
+        "en": "A practical introduction to generative AI for developers. Learn about models, tokens, RAG, tools, agents and security."
+      }
+    },
+    {
+      "slug": "cursor-python-agent",
+      "html": "cursor-python-agent.html",
+      "category": "101-guides",
+      "date": "2026-01",
+      "title": {
+        "sv": "Hur man bygger en agent (Cursor + Python)",
+        "en": "How to Build an Agent (Cursor + Python Edition)"
+      },
+      "subtitle": {
+        "sv": "Lär dig bygga en kod-redigerande agent med hjälp av Cursor IDE",
+        "en": "Learn to build a code-editing agent using Cursor IDE"
+      },
+      "meta": {
+        "sv": "Cursor + Python",
+        "en": "Cursor + Python"
+      },
+      "sources": {
+        "sv": "articles/cursor-python-agent-sv.md",
+        "en": "articles/cursor-python-agent-en.md"
+      },
+      "description": {
+        "sv": "Lär dig bygga en kod-redigerande agent med hjälp av Cursor IDE. Använd en AI-agent för att bygga din egen AI-agent — det är rekursivt, meta, och agenter hela vägen ner.",
+        "en": "Learn to build a code-editing agent using Cursor IDE. Use an AI agent to build your own AI agent — it's recursive, meta, and agents all the way down."
+      }
+    },
+    {
+      "slug": "claude-code-101",
+      "html": "claude-code-101.html",
+      "category": "101-guides",
+      "date": "2026-01",
+      "title": {
+        "sv": "Claude Code 101",
+        "en": "Claude Code 101"
+      },
+      "subtitle": {
+        "sv": "En praktisk handbok för att leverera riktiga ändringar säkert med Claude Code",
+        "en": "A practical playbook for shipping real changes safely with Claude Code"
+      },
+      "meta": {
+        "sv": "Agentisk utveckling",
+        "en": "Agentic Development"
+      },
+      "sources": {
+        "sv": "articles/claude-code-101-sv.md",
+        "en": "articles/claude-code-101-en.md"
+      },
+      "description": {
+        "sv": "En praktisk guide för systemutvecklare som vill använda Claude Code effektivt. Planering, CLAUDE.md, kontexthantering och automation.",
+        "en": "A practical playbook for system developers using Claude Code. Planning, CLAUDE.md, context management, and automation."
+      }
+    },
+    {
+      "slug": "vibe-engineering-101",
+      "html": "vibe-engineering-101.html",
+      "category": "workflows-playbooks",
+      "date": "2026-01",
+      "title": {
+        "sv": "Vibe Engineering 101",
+        "en": "Vibe Engineering 101"
+      },
+      "subtitle": {
+        "sv": "En praktisk guide för systemutvecklare som vill komma igång med agentisk utveckling",
+        "en": "A practical guide for system developers getting started with agentic development"
+      },
+      "meta": {
+        "sv": "Agentisk utveckling",
+        "en": "Agentic Development"
+      },
+      "sources": {
+        "sv": "articles/vibe-engineering-101-sv.md",
+        "en": "articles/vibe-engineering-101-en.md"
+      },
+      "description": {
+        "sv": "En praktisk guide för systemutvecklare som vill komma igång med agentisk utveckling. Lär dig bygga pålitliga loopar med constraints, feedback och verktyg.",
+        "en": "A practical guide for system developers getting started with agentic development. Learn to build reliable loops with constraints, feedback, and tools."
+      }
+    },
+    {
+      "slug": "agents-md-explained",
+      "html": "agents-md-explained.html",
+      "category": "workflows-playbooks",
+      "date": "2026-01",
+      "title": {
+        "sv": "Agents.md förklarat",
+        "en": "Agents.md Explained"
+      },
+      "subtitle": {
+        "sv": "En praktisk guide till tillförlitlig agentisk AI",
+        "en": "A practical guide to getting real value from agentic AI"
+      },
+      "meta": {
+        "sv": "Agentisk utveckling",
+        "en": "Agentic Development"
+      },
+      "sources": {
+        "sv": "articles/agents-explained-sv.md",
+        "en": "articles/agents-explained-en.md"
+      },
+      "description": {
+        "sv": "En praktisk guide till tillförlitlig agentisk AI. Lär dig hur agents.md ger stabil kontext och eliminerar upprepade fel.",
+        "en": "A practical guide to getting real value from agentic AI. Learn how agents.md provides stable context and eliminates repeated failures."
+      }
+    },
+    {
+      "slug": "ide-agentic-ai",
+      "html": "ide-agentic-ai.html",
+      "category": "tooling-choices",
+      "date": "2026-01",
+      "title": {
+        "sv": "Välj IDE för Agentisk AI",
+        "en": "Choosing an IDE for Agentic AI"
+      },
+      "subtitle": {
+        "sv": "En praktisk guide för .NET och JavaScript-team",
+        "en": "A practical guide for .NET and JavaScript teams"
+      },
+      "meta": {
+        "sv": "Agentisk utveckling",
+        "en": "Agentic Development"
+      },
+      "sources": {
+        "sv": "articles/ide-agentic-ai-sv.md",
+        "en": "articles/ide-agentic-ai-en.md"
+      },
+      "description": {
+        "sv": "En praktisk guide för .NET och JavaScript-team. Jämför IDE:er, modeller, agentflöden och kostnader.",
+        "en": "A practical guide for .NET and JavaScript teams. Compare IDEs, models, agentic workflows, and costs."
+      }
+    },
+    {
+      "slug": "just-ralph-it",
+      "html": "just-ralph-it.html",
+      "category": "tips-trix-philosophy",
+      "date": "2026-01",
+      "title": {
+        "sv": "Just Ralph-it",
+        "en": "Just Ralph-it"
+      },
+      "subtitle": {
+        "sv": "Låt AI:n göra jobbet i en oändlig loop",
+        "en": "Let the AI do the work in an infinite loop"
+      },
+      "meta": {
+        "sv": "Agentisk utveckling",
+        "en": "Agentic Development"
+      },
+      "sources": {
+        "sv": "articles/just-ralph-it-sv.md",
+        "en": "articles/just-ralph-it-en.md"
+      },
+      "description": {
+        "sv": "Låt AI:n göra jobbet i en oändlig loop. Ralph Wiggum Technique är en metod för autonom AI-utveckling skapad av Geoffrey Huntley.",
+        "en": "Let the AI do the work in an infinite loop. Ralph Wiggum Technique is a method for autonomous AI development created by Geoffrey Huntley."
+      }
+    },
+    {
+      "slug": "shared-terminology",
+      "html": "shared-terminology.html",
+      "category": "fundamentals",
+      "date": "2026-01",
+      "title": {
+        "sv": "Gemensam terminologi",
+        "en": "Shared Terminology"
+      },
+      "subtitle": {
+        "sv": "Vanliga definitioner för agentisk AI-utveckling",
+        "en": "Common definitions for agentic AI development"
+      },
+      "meta": {
+        "sv": "Referens",
+        "en": "Reference"
+      },
+      "sources": {
+        "sv": "articles/shared-terminology-sv.md",
+        "en": "articles/shared-terminology-en.md"
+      },
+      "description": {
+        "sv": "Gemensam terminologikontrakt som definierar termer som används konsekvent i alla artiklar i denna handbok.",
+        "en": "Shared terminology contract defining terms used consistently across all articles in this handbook."
+      }
+    },
+    {
+      "slug": "repo-harness-setup",
+      "html": "repo-harness-setup.html",
+      "category": "workflows-playbooks",
+      "date": "2026-01",
+      "title": {
+        "sv": "Repository Harness Setup",
+        "en": "Repository Harness Setup"
+      },
+      "subtitle": {
+        "sv": "Checklista för ett-kommando CI, loggsignal och determinism",
+        "en": "Checklist for one-command CI, log signal, and determinism"
+      },
+      "meta": {
+        "sv": "Praktisk guide",
+        "en": "Practical Guide"
+      },
+      "sources": {
+        "sv": "articles/repo-harness-setup-sv.md",
+        "en": "articles/repo-harness-setup-en.md"
+      },
+      "description": {
+        "sv": "En praktisk checklista för att sätta upp en repository harness som gör agentisk utveckling pålitlig. Ett-kommando-validering, loggsignal och determinism.",
+        "en": "A practical checklist for setting up a repository harness that makes agentic development reliable. One-command validation, log signal, and determinism."
+      }
+    },
+    {
+      "slug": "agents-md-template",
+      "html": "agents-md-template.html",
+      "category": "workflows-playbooks",
+      "date": "2026-01",
+      "title": {
+        "sv": "agents.md / CLAUDE.md Mall",
+        "en": "agents.md / CLAUDE.md Template"
+      },
+      "subtitle": {
+        "sv": "En kopiera-klistra-mall konsekvent med handbokens vägledning",
+        "en": "A copy-paste template consistent with handbook guidance"
+      },
+      "meta": {
+        "sv": "Mall",
+        "en": "Template"
+      },
+      "sources": {
+        "sv": "articles/agents-md-template-sv.md",
+        "en": "articles/agents-md-template-en.md"
+      },
+      "description": {
+        "sv": "En minimal, repo-specifik mall för agents.md eller CLAUDE.md. Inkluderar tom mall och fyllda exempel för Node.js, Python och C#/.NET.",
+        "en": "A minimal, repo-specific template for agents.md or CLAUDE.md. Includes empty template and filled examples for Node.js, Python, and C#/.NET."
+      }
+    },
+    {
+      "slug": "developer-career-2026",
+      "html": "developer-career-2026.html",
+      "category": "tips-trix-philosophy",
+      "date": "2026-01",
+      "title": {
+        "sv": "Så överlever du som utvecklare 2026",
+        "en": "How to NOT Kill Your Dev Career in 2026"
+      },
+      "subtitle": {
+        "sv": "Anpassa dig och blomstra när AI omformar utvecklarrollen",
+        "en": "Survive and thrive as AI reshapes the developer role"
+      },
+      "meta": {
+        "sv": "Karriär & Filosofi",
+        "en": "Career & Philosophy"
+      },
+      "sources": {
+        "sv": "articles/developer-career-2026-sv.md",
+        "en": "articles/developer-career-2026-en.md"
+      },
+      "description": {
+        "sv": "Jobbet försvinner inte — det flyttar sig. Lär dig vilka färdigheter som blir värdefulla när AI tar över syntax och output: arkitektur, debugging, säkerhet och produkttänk.",
+        "en": "The job isn't disappearing — it's moving. Learn which skills become valuable when AI handles syntax and output: architecture, debugging, security, and product thinking."
+      }
+    }
+  ],
+  "categories": {
+    "fundamentals": {
+      "sv": "Fundamentals",
+      "en": "Fundamentals",
+      "order": 1
+    },
+    "101-guides": {
+      "sv": "101 Guides",
+      "en": "101 Guides",
+      "order": 2
+    },
+    "workflows-playbooks": {
+      "sv": "Workflows & Playbooks",
+      "en": "Workflows & Playbooks",
+      "order": 3
+    },
+    "tooling-choices": {
+      "sv": "Tooling & Choices",
+      "en": "Tooling & Choices",
+      "order": 4
+    },
+    "tips-trix-philosophy": {
+      "sv": "Tips, Trix & Filosofi",
+      "en": "Tips, Tricks & Philosophy",
+      "order": 5
+    }
+  }
+}

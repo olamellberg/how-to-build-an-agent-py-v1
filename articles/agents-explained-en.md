@@ -10,7 +10,7 @@ Every time an agent starts working, it needs to understand:
 - how it is structured
 - what it must never do
 
-Without that information, agents guess. Sometimes they guess well. Often they don’t. The result is repetition, inconsistency, and subtle errors that waste time.
+Without that information, agents guess. Sometimes they guess well. Often they don't. The result is repetition, inconsistency, and subtle errors that waste time.
 
 `agents.md` (along with equivalents like `CLAUDE.md` or Cursor rules) emerged as a simple idea to solve this:
 **a small, persistent instruction file that is automatically loaded when an agent starts working in a repository.**
@@ -18,14 +18,14 @@ Without that information, agents guess. Sometimes they guess well. Often they do
 The goal is not to tell the agent *everything*, but to give it **just enough shared context** so that:
 - you stop repeating yourself
 - the agent behaves consistently
-- future sessions start “warmer” than the last
+- future sessions start "warmer" than the last
 
 Historically, this started informally. Different tools introduced their own files, repositories became cluttered, and there was no shared convention. Over time, the ecosystem converged on `agents.md` as a neutral, tool-agnostic convention.
 
 Today, we are at a point where:
 - agents are powerful enough to do real engineering work
 - context mistakes are the main limiting factor
-- teams that manage context well move dramatically faster than those that don’t
+- teams that manage context well move dramatically faster than those that don't
 
 ## Why Agents.md Matters: From Demos to Dependable Agents
 
@@ -59,7 +59,7 @@ Without `agents.md`, every session starts cold. The agent guesses:
 - how the project is structured
 - what is safe to touch
 
-Sometimes it guesses right. Sometimes it doesn’t.
+Sometimes it guesses right. Sometimes it doesn't.
 That randomness is what destroys trust.
 
 ### Agents.md Turns Guessing Into Contracts
@@ -67,10 +67,10 @@ That randomness is what destroys trust.
 `agents.md` replaces implicit assumptions with explicit contracts.
 
 Instead of:
-“The agent should probably know this…”
+"The agent should probably know this…"
 
 you define:
-“This is how things work here.”
+"This is how things work here."
 
 Agents.md is not about making the agent smarter.
 **It is about making it reliable.**
@@ -114,6 +114,36 @@ Compounding Engineering means:
 
 Instead of repeating corrections, you encode constraints and workflows so behavior improves over time.
 
+
+## Model Sensitivity: Why the Same Agents.md Behaves Differently Across Models
+
+A common assumption is that an `agents.md` file is neutral — that once written, it should behave the same way across all models.
+
+In practice, this is false.
+
+Different models interpret the *same instructions* in different ways. This becomes especially visible when comparing OpenAI models with Anthropic's Claude models, as demonstrated by Geoffrey Huntley in his talk.
+
+In that example, an `agents.md` file that produced confident, decisive behavior on an OpenAI model caused noticeably different behavior on a Claude model — including increased hesitation and overly cautious execution. The file did not change. The model did.
+
+This happens because models differ in:
+- how strictly they interpret constraints
+- how they respond to tone and emphasis
+- how much initiative they take by default
+- how they balance caution versus action
+
+Because `agents.md` is typically loaded at position 1 in the context array, immediately after the system prompt, these differences are amplified. Small wording choices can lead to large behavioral shifts depending on the model.
+
+The key insight is this:
+
+**Agents.md is not just configuration — it is behavioral programming, and behavior is model-dependent.**
+
+When switching models, teams should:
+- revalidate agent behavior
+- observe changes in hesitation or overconfidence
+- retune or regenerate `agents.md` rather than patching blindly
+
+Reliability does not come from choosing the "best" model, but from aligning **instructions, model behavior, and expectations**.
+
 ## A Compact Example of a Good agents.md
 
 ```md
@@ -141,3 +171,16 @@ Instead of repeating corrections, you encode constraints and workflows so behavi
 - Keep it minimal and explicit
 - Use it to eliminate repeated failures
 - The goal is trust, not cleverness
+
+## References & Credits
+
+### Official Resources
+
+- [agents.md](https://agents.md/)
+- [Using CLAUDE.md Files — Anthropic](https://www.claude.com/blog/using-claude-md-files)
+- [How to Write a Great agents.md — GitHub Blog](https://github.blog/ai-and-ml/github-copilot/how-to-write-a-great-agents-md-lessons-from-over-2500-repositories/)
+
+### Inspiration
+
+- [Grit AI Studio](https://www.youtube.com/@GritAIStudio)
+- [Geoffrey Huntley](https://ghuntley.com/)

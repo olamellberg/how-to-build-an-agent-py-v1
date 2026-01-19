@@ -1,19 +1,19 @@
 # Vibe Engineering 101  
 *A practical guide for system developers getting started with agentic development*
 
-Agentic development is less about “AI that writes code” and more about designing a reliable loop: a model proposes changes, tools validate them, and feedback drives the next iteration. This article is a field guide for building that loop so it produces useful software—consistently.
+Agentic development is less about "AI that writes code" and more about designing a reliable loop: a model proposes changes, tools validate them, and feedback drives the next iteration. This article is a field guide for building that loop so it produces useful software—consistently.
 
-The goal here is not to romanticize “vibe coding,” but to make it operational: clear constraints, fast feedback, and repeatable outcomes.
+The goal here is not to romanticize "vibe coding," but to make it operational: clear constraints, fast feedback, and repeatable outcomes.
 
 ---
 
-## 1) What an “agent” actually is
+## 1) What an "agent" actually is
 
 A useful working definition is:
 
 **An agent runs tools in a loop to achieve a goal.**
 
-From an engineering perspective, that’s intentionally unglamorous. The system is typically:
+From an engineering perspective, that's intentionally unglamorous. The system is typically:
 
 1. Provide a goal + constraints  
 2. Model proposes actions (edit files, run commands, inspect outputs)  
@@ -25,9 +25,9 @@ This simplicity is good news: it means agentic systems are *engineerable*. You c
 
 ---
 
-## 2) Your context window is your “RAM”
+## 2) Your context window is your "RAM"
 
-LLMs don’t “remember” your repository—at any moment, they operate on the tokens you’ve provided (plus whatever your tooling injects). Practically:
+LLMs don't "remember" your repository—at any moment, they operate on the tokens you've provided (plus whatever your tooling injects). Practically:
 
 - **Everything that matters must be in context** (or reliably retrievable via tools).
 - **More context is not always better.** Overstuffed contexts increase confusion, tool misuse, and subtle errors.
@@ -39,7 +39,7 @@ LLMs don’t “remember” your repository—at any moment, they operate on the
 - If your agent/tooling auto-injects context, learn what it includes and how to tune it.
 
 ### A useful mental model
-Treat the context window like scarce memory in older systems. If you let it fill with noisy logs and redundant information, you’ll degrade performance the same way a constrained machine does when starved of resources.
+Treat the context window like scarce memory in older systems. If you let it fill with noisy logs and redundant information, you'll degrade performance the same way a constrained machine does when starved of resources.
 
 ---
 
@@ -56,7 +56,7 @@ Models are often very strong at:
 - generating variations quickly
 - working across unfamiliar ecosystems (with guidance)
 
-They’re still weak or unreliable at:
+They're still weak or unreliable at:
 - understanding your business context by default
 - making product tradeoffs without clear priorities
 - guessing non-obvious system constraints
@@ -70,7 +70,7 @@ So the role changes: you spend more time on specs, acceptance criteria, tests, a
 
 A productive framing is:
 
-- **You define “done.”**
+- **You define "done."**
 - **You design the feedback loop.**
 - **You review outcomes, not every line.**
 
@@ -80,7 +80,7 @@ Models behave like extremely fast collaborators with no long-term memory. They c
 - deterministic feedback (tests, lint, build)
 - guardrails against drifting
 
-This is the core skill: **build “model CI” into your workflow**.
+This is the core skill: **build "model CI" into your workflow**.
 
 ---
 
@@ -98,7 +98,7 @@ When the agent goes in the wrong direction, assume one of these is true:
 2. **The acceptance criteria were vague.**
 3. **The feedback loop is weak or noisy.**
 
-The fix is rarely “watch harder.” It’s usually:
+The fix is rarely "watch harder." It's usually:
 - improve the spec
 - tighten the tests
 - reduce noise in outputs
@@ -119,13 +119,13 @@ Examples:
 - `npm test` (if it truly runs the full suite)
 - `cargo test` + `cargo fmt --check` + `cargo clippy` via one wrapper
 
-If validation requires tribal knowledge (“export this var,” “run this in that directory,” “install this system dependency manually”), your loop will waste context and time re-discovering it—over and over.
+If validation requires tribal knowledge ("export this var," "run this in that directory," "install this system dependency manually"), your loop will waste context and time re-discovering it—over and over.
 
 ### Minimize and shape output
-Everything printed by your tools becomes part of the agent’s working memory. Treat logs as an interface to an automated collaborator:
+Everything printed by your tools becomes part of the agent's working memory. Treat logs as an interface to an automated collaborator:
 
 - Prefer **concise summaries** on success  
-  - “✅ 1000 tests passed” beats 1000 lines of “ok”
+  - "✅ 1000 tests passed" beats 1000 lines of "ok"
 - Prefer **focused failures**  
   - show the failing assertion, relevant diff, minimal stack trace
 - Avoid dumping thousands of lines of compiler spew if you can collapse it
@@ -133,9 +133,9 @@ Everything printed by your tools becomes part of the agent’s working memory. T
 If you can, add a log filter that:
 - extracts the *first* meaningful error
 - includes the relevant file/line
-- outputs only what’s needed to take the next step
+- outputs only what's needed to take the next step
 
-This is “context engineering” in practice: design the I/O so the model sees signal, not noise.
+This is "context engineering" in practice: design the I/O so the model sees signal, not noise.
 
 ---
 
@@ -157,7 +157,7 @@ A strong harness makes it safe to delegate:
 - iterates until green
 - presents a summary and the final diff
 
-Your role becomes verification-by-contract: “Does it meet the spec and pass the checks?”
+Your role becomes verification-by-contract: "Does it meet the spec and pass the checks?"
 
 ---
 
@@ -171,7 +171,7 @@ Favor components that are:
 - defined by clear inputs/outputs
 - swappable without rewriting the world
 
-Think “black box modules,” not necessarily microservices:
+Think "black box modules," not necessarily microservices:
 - a CLI tool with stable flags
 - a library with a narrow interface
 - a service with a strict API boundary
@@ -198,7 +198,7 @@ If your environment is non-POSIX (or differs from what your tooling expects), co
 - standardized shell scripts
 - consistent path handling
 
-The goal is not “one OS is best,” but “remove friction that creates tool failures and noisy logs.”
+The goal is not "one OS is best," but "remove friction that creates tool failures and noisy logs."
 
 ---
 
@@ -215,10 +215,10 @@ This works especially well when:
 - edge cases are testable
 - success is observable via assertions
 
-### Guard against “cheating”
+### Guard against "cheating"
 Agents may sometimes satisfy tests in shallow ways (mocking too much, hardcoding, bypassing logic). Countermeasures:
 - add property-based tests where appropriate
-- test multiple cases (not just “happy path”)
+- test multiple cases (not just "happy path")
 - verify integration behavior, not only unit behavior
 - include negative tests and invariants
 
@@ -226,10 +226,10 @@ Agents may sometimes satisfy tests in shallow ways (mocking too much, hardcoding
 
 ## 11) Golden master testing for ports and refactors
 
-When you’re migrating systems or doing large refactors, golden master testing can be extremely effective:
+When you're migrating systems or doing large refactors, golden master testing can be extremely effective:
 
 - instrument the old system to emit deterministic traces (decisions, key state, outputs)
-- save the trace as the “golden” file
+- save the trace as the "golden" file
 - implement the new system
 - ensure it matches the golden trace byte-for-byte (or via a normalized comparator)
 
@@ -237,7 +237,7 @@ This is powerful for:
 - language migrations
 - parser/serializer rewrites
 - algorithm refactors
-- “same behavior, different implementation” projects
+- "same behavior, different implementation" projects
 
 If traces contain nondeterministic values (timestamps, pointers, random seeds), normalize them.
 
@@ -248,7 +248,7 @@ If traces contain nondeterministic values (timestamps, pointers, random seeds), 
 Agents benefit from plans that are:
 - staged
 - explicit about constraints
-- explicit about “done”
+- explicit about "done"
 - written down inside the repo
 
 A good plan answers:
@@ -271,7 +271,7 @@ But the plan must ultimately reflect *your* constraints and priorities.
 
 ## 13) DevDocs: surviving context resets
 
-Long sessions degrade. A practical technique is to keep lightweight “agent handoff” docs in the repo, e.g.:
+Long sessions degrade. A practical technique is to keep lightweight "agent handoff" docs in the repo, e.g.:
 
 ```
 devdocs/
@@ -292,8 +292,8 @@ Suggested contents:
 
 **devdocs/progress.md**
 - current state
-- what’s done (checkboxes)
-- what’s next
+- what's done (checkboxes)
+- what's next
 - known issues
 - links to relevant files
 
@@ -306,7 +306,7 @@ Key mindset: **plans and constraints are durable; code is replaceable.**
 
 ---
 
-## 14) Accumulation and “slop” risk
+## 14) Accumulation and "slop" risk
 
 A real concern in agentic development is long-term code quality drift:
 - inconsistent patterns
@@ -319,7 +319,7 @@ Mitigations:
 - require tests for changes
 - maintain an architecture/decisions log
 - refactor deliberately in phases
-- periodically “re-derive” modules from a clean spec (when warranted)
+- periodically "re-derive" modules from a clean spec (when warranted)
 - keep modules small and replaceable
 
 Treat the agent like a high-throughput contributor: without governance, entropy accumulates.
@@ -355,12 +355,12 @@ from
 - **execution** (apply changes, run checks, refine)
 
 You can model this as:
-- a “scout” agent that returns a short report:
+- a "scout" agent that returns a short report:
   - where the relevant logic lives
   - what the call graph looks like
   - what to change and why
-- a “builder” agent that implements and validates
-- a “reviewer” step that summarizes diffs and risks
+- a "builder" agent that implements and validates
+- a "reviewer" step that summarizes diffs and risks
 
 This helps control context growth and reduces thrash.
 
@@ -383,7 +383,7 @@ If you want agentic development to feel productive quickly, start here:
 - [ ] Prefer modules with narrow interfaces
 
 **Context hygiene**
-- [ ] Don’t paste huge logs/diffs unless necessary
+- [ ] Don't paste huge logs/diffs unless necessary
 - [ ] Provide targeted file paths and goals
 - [ ] Use `devdocs/` for durable plan/progress
 
@@ -396,9 +396,4 @@ If you want agentic development to feel productive quickly, start here:
 
 ## Closing
 
-“Vibe Engineering” becomes real when you treat agents as part of a system: a loop with tools, constraints, and feedback. If you invest in the harness and make “done” machine-checkable, you can delegate more safely, move faster, and spend more time on the engineering decisions that actually matter.
-
-If you want, I can also:
-- rewrite this into a shorter blog-post format (800–1200 words),
-- turn it into an internal handbook page for your team,
-- or create a reusable `devdocs/` template + `scripts/ci.sh` skeleton you can drop into new repos.
+"Vibe Engineering" becomes real when you treat agents as part of a system: a loop with tools, constraints, and feedback. If you invest in the harness and make "done" machine-checkable, you can delegate more safely, move faster, and spend more time on the engineering decisions that actually matter.

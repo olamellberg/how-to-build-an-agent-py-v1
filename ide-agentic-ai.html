@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Välj IDE för Agentisk AI - B3 Commit AI Handbook</title>
+    <title>Choosing an IDE for Agentic AI - B3 Commit AI Handbook</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -23,50 +23,87 @@
         </div>
         <div class="presentation-progress-item" data-slide="1">
             <div class="presentation-progress-dot"></div>
-            <span class="presentation-progress-label">
-                <span class="lang-sv">Val</span>
-                <span class="lang-en">Choice</span>
-            </span>
+            <span class="presentation-progress-label">1) Vad du väljer när du "väljer IDE + agent"</span>
         </div>
         <div class="presentation-progress-item" data-slide="2">
             <div class="presentation-progress-dot"></div>
-            <span class="presentation-progress-label">
-                <span class="lang-sv">Matris</span>
-                <span class="lang-en">Matrix</span>
-            </span>
+            <span class="presentation-progress-label">2) Kompakt matris: IDE ↔ modeller ↔ agentförmåga ↔ pris</span>
         </div>
         <div class="presentation-progress-item" data-slide="3">
             <div class="presentation-progress-dot"></div>
-            <span class="presentation-progress-label">
-                <span class="lang-sv">Paket</span>
-                <span class="lang-en">Bundles</span>
-            </span>
+            <span class="presentation-progress-label">3) Rekommenderade startpaket för team (praktiskt)</span>
         </div>
         <div class="presentation-progress-item" data-slide="4">
             <div class="presentation-progress-dot"></div>
-            <span class="presentation-progress-label">
-                <span class="lang-sv">Arbetsflöden</span>
-                <span class="lang-en">Workflows</span>
-            </span>
+            <span class="presentation-progress-label">4) Praktiska agentiska arbetsflöden i IDE:n (komprimerat, med hänvisningar)</span>
         </div>
         <div class="presentation-progress-item" data-slide="5">
             <div class="presentation-progress-dot"></div>
-            <span class="presentation-progress-label">
-                <span class="lang-sv">Säkerhet</span>
-                <span class="lang-en">Security</span>
-            </span>
+            <span class="presentation-progress-label">5) Skydda känslig kod/info (samlat, utan att ligga i tabellen)</span>
         </div>
         <div class="presentation-progress-item" data-slide="6">
             <div class="presentation-progress-dot"></div>
-            <span class="presentation-progress-label">
-                <span class="lang-sv">Kostnader</span>
-                <span class="lang-en">Pricing</span>
-            </span>
+            <span class="presentation-progress-label">6) Kostnads- och licensnoter (så ni kan budgetera rimligt)</span>
         </div>
         <div class="presentation-progress-item" data-slide="7">
             <div class="presentation-progress-dot"></div>
-            <span class="presentation-progress-label">Playbook</span>
+            <span class="presentation-progress-label">7) En kort "team-playbook" att införa vecka 1</span>
         </div>
+    </nav>
+
+    <!-- Reading Progress (vertical chapter nav for reading mode) -->
+    <nav class="reading-progress" id="readingProgress">
+        <div class="reading-progress-track"></div>
+        <div class="reading-progress-fill" id="readingProgressFill"></div>
+        <a href="#1-vad-du-väljer-när-du-väljer-ide-agent" class="reading-progress-item" data-section="1-vad-du-väljer-när-du-väljer-ide-agent">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">1) Vad du väljer när du "väljer IDE + agent"</span>
+                <span class="lang-en">1) What you're actually choosing when you pick "IDE + agent"</span>
+            </span>
+        </a>
+        <a href="#2-kompakt-matris-ide-modeller-agentförmåga-pris" class="reading-progress-item" data-section="2-kompakt-matris-ide-modeller-agentförmåga-pris">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">2) Kompakt matris: IDE ↔ modeller ↔ agentförmåga ↔ pris</span>
+                <span class="lang-en">2) Compact matrix: IDE ↔ models ↔ agent capability ↔ price</span>
+            </span>
+        </a>
+        <a href="#3-rekommenderade-startpaket-för-team-praktiskt" class="reading-progress-item" data-section="3-rekommenderade-startpaket-för-team-praktiskt">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">3) Rekommenderade startpaket för team (praktiskt)</span>
+                <span class="lang-en">3) Practical starting bundles for teams</span>
+            </span>
+        </a>
+        <a href="#4-praktiska-agentiska-arbetsflöden-i-iden-komprimerat-med-hänvisningar" class="reading-progress-item" data-section="4-praktiska-agentiska-arbetsflöden-i-iden-komprimerat-med-hänvisningar">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">4) Praktiska agentiska arbetsflöden i IDE:n (komprimerat, med hänvisningar)</span>
+                <span class="lang-en">4) Agentic workflows in the IDE (compressed, with references)</span>
+            </span>
+        </a>
+        <a href="#5-skydda-känslig-kodinfo-samlat-utan-att-ligga-i-tabellen" class="reading-progress-item" data-section="5-skydda-känslig-kodinfo-samlat-utan-att-ligga-i-tabellen">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">5) Skydda känslig kod/info (samlat, utan att ligga i tabellen)</span>
+                <span class="lang-en">5) Protecting sensitive code and information (consolidated)</span>
+            </span>
+        </a>
+        <a href="#6-kostnads-och-licensnoter-så-ni-kan-budgetera-rimligt" class="reading-progress-item" data-section="6-kostnads-och-licensnoter-så-ni-kan-budgetera-rimligt">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">6) Kostnads- och licensnoter (så ni kan budgetera rimligt)</span>
+                <span class="lang-en">6) Pricing and licensing notes (for budgeting)</span>
+            </span>
+        </a>
+        <a href="#7-en-kort-team-playbook-att-införa-vecka-1" class="reading-progress-item" data-section="7-en-kort-team-playbook-att-införa-vecka-1">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">7) En kort "team-playbook" att införa vecka 1</span>
+                <span class="lang-en">7) A one-week team playbook (Week 1)</span>
+            </span>
+        </a>
     </nav>
 
     <!-- Menu Overlay -->
@@ -78,74 +115,14 @@
             <a href="index.html" class="logo">B3 Commit</a>
             <button class="mobile-menu-close" id="menuClose" aria-label="Stäng meny">&times;</button>
         </div>
-
-        <div class="mobile-menu-section">
-            <h3>
-                <span class="lang-sv">I denna artikel</span>
-                <span class="lang-en">In this article</span>
-            </h3>
-            <ul class="mobile-menu-links">
-                <li><a href="#choice"><span class="lang-sv">Vad du väljer</span><span class="lang-en">What you choose</span></a></li>
-                <li><a href="#matrix"><span class="lang-sv">Matris</span><span class="lang-en">Matrix</span></a></li>
-                <li><a href="#bundles"><span class="lang-sv">Startpaket</span><span class="lang-en">Bundles</span></a></li>
-                <li><a href="#workflows"><span class="lang-sv">Arbetsflöden</span><span class="lang-en">Workflows</span></a></li>
-                <li><a href="#security"><span class="lang-sv">Säkerhet</span><span class="lang-en">Security</span></a></li>
-                <li><a href="#pricing"><span class="lang-sv">Kostnader</span><span class="lang-en">Pricing</span></a></li>
-                <li><a href="#playbook">Playbook</a></li>
-            </ul>
-        </div>
-
-        <div class="mobile-menu-section">
-            <h3>
-                <span class="lang-sv">Artiklar</span>
-                <span class="lang-en">Articles</span>
-            </h3>
-            <ul class="mobile-menu-links">
-                <li><a href="ai-fundamentals.html">AI Fundamentals 2026</a></li>
-                <li><a href="cursor-python-agent.html">How to Build an Agent</a></li>
-                <li><a href="vibe-engineering-101.html">Vibe Engineering 101</a></li>
-                <li><a href="just-ralph-it.html">Just Ralph-it</a></li>
-                <li><a href="claude-code-101.html">Claude Code 101</a></li>
-                <li><a href="agents-md-explained.html">Agents.md Explained</a></li>
-                <li><a href="ide-agentic-ai.html">Välj IDE för Agentisk AI</a></li>
-            </ul>
-        </div>
-
-        <div class="mobile-menu-section">
-            <h3>
-                <span class="lang-sv">Länkar</span>
-                <span class="lang-en">Links</span>
-            </h3>
-            <ul class="mobile-menu-links">
-                <li><a href="https://github.com/b3-commit" target="_blank">GitHub</a></li>
-                <li>
-                    <a href="#" id="menuThemeToggle">
-                        <span id="menuThemeText">
-                            <span class="lang-sv">Byt till mörkt läge</span>
-                            <span class="lang-en">Switch to dark mode</span>
-                        </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" id="menuLangToggle">
-                        <span id="menuLangText">
-                            <span class="lang-sv">English</span>
-                            <span class="lang-en">Svenska</span>
-                        </span>
-                    </a>
-                </li>
-            </ul>
-        </div>
+        <!-- Mobile menu content would be generated from manifest -->
     </nav>
 
     <header>
         <nav class="nav-container">
             <div class="nav-left">
                 <a href="index.html" class="logo">B3 Commit</a>
-                <span class="breadcrumb">/ <a href="index.html">AI Handbook</a> / 
-                    <span class="lang-sv">Välj IDE för Agentisk AI</span>
-                    <span class="lang-en">Choosing an IDE for Agentic AI</span>
-                </span>
+                <span class="breadcrumb">/ <a href="index.html"><span class="lang-sv">AI Handbook</span><span class="lang-en">AI Handbook</span></a> / <span class="lang-sv">Välj IDE för Agentisk AI</span><span class="lang-en">Choosing an IDE for Agentic AI</span></span>
             </div>
             <div class="nav-right">
                 <button class="presentation-toggle" id="presentationToggle" aria-label="Presentation mode">
@@ -163,9 +140,6 @@
                     <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
                     </svg>
-                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                    </svg>
                 </button>
                 <button class="hamburger" id="hamburger" aria-label="Öppna meny">
                     <span class="hamburger-line"></span>
@@ -180,404 +154,309 @@
         <article>
             <header class="article-header" id="intro">
                 <p class="article-meta">
-                    <span class="lang-sv">Agentisk utveckling // Januari 2026</span>
-                    <span class="lang-en">Agentic Development // January 2026</span>
+                    <span class="lang-sv">Agentisk utveckling // 2026-01</span>
+                    <span class="lang-en">Agentic Development // 2026-01</span>
                 </p>
-                <h1>
-                    <span class="lang-sv">Välj IDE för Agentisk AI</span>
-                    <span class="lang-en">Choosing an IDE for Agentic AI</span>
-                </h1>
+                <h1><span class="lang-sv">Välj IDE för Agentisk AI</span><span class="lang-en">Choosing an IDE for Agentic AI</span></h1>
                 <p class="subtitle">
-                    <span class="lang-sv">En praktisk guide för .NET-backend och JavaScript-frontend</span>
-                    <span class="lang-en">A practical guide for .NET backend and JavaScript frontend</span>
+                    <span class="lang-sv">En praktisk guide för .NET och JavaScript-team</span>
+                    <span class="lang-en">A practical guide for .NET and JavaScript teams</span>
                 </p>
             </header>
 
             <!-- Article Navigation -->
             <nav class="article-nav" id="articleNav">
-                <a href="#choice" class="nav-pill"><span class="lang-sv">Val</span><span class="lang-en">Choice</span></a>
-                <a href="#matrix" class="nav-pill"><span class="lang-sv">Matris</span><span class="lang-en">Matrix</span></a>
-                <a href="#bundles" class="nav-pill"><span class="lang-sv">Paket</span><span class="lang-en">Bundles</span></a>
-                <a href="#workflows" class="nav-pill"><span class="lang-sv">Flöden</span><span class="lang-en">Workflows</span></a>
-                <a href="#security" class="nav-pill"><span class="lang-sv">Säkerhet</span><span class="lang-en">Security</span></a>
-                <a href="#playbook" class="nav-pill">Playbook</a>
+                <a href="#1-vad-du-väljer-när-du-väljer-ide-agent" class="nav-pill">1) Vad du väljer när du "väljer IDE + agent"</a>
+                <a href="#2-kompakt-matris-ide-modeller-agentförmåga-pris" class="nav-pill">2) Kompakt matris: IDE ↔ modeller ↔ agentförmåga ↔ pris</a>
+                <a href="#3-rekommenderade-startpaket-för-team-praktiskt" class="nav-pill">3) Rekommenderade startpaket för team (praktiskt)</a>
+                <a href="#4-praktiska-agentiska-arbetsflöden-i-iden-komprimerat-med-hänvisningar" class="nav-pill">4) Praktiska agentiska arbetsflöden i IDE:n (komprimerat, med hänvisningar)</a>
+                <a href="#5-skydda-känslig-kodinfo-samlat-utan-att-ligga-i-tabellen" class="nav-pill">5) Skydda känslig kod/info (samlat, utan att ligga i tabellen)</a>
+                <a href="#6-kostnads-och-licensnoter-så-ni-kan-budgetera-rimligt" class="nav-pill">6) Kostnads- och licensnoter (så ni kan budgetera rimligt)</a>
+                <a href="#7-en-kort-team-playbook-att-införa-vecka-1" class="nav-pill">7) En kort "team-playbook" att införa vecka 1</a>
             </nav>
 
-            <!-- Introduction -->
-            <p>
-                <span class="lang-sv">Agentisk AI i en IDE handlar om mer än "autocomplete". Det är arbetsflöden där assistenten kan <strong>planera</strong>, föreslå <strong>diffar över flera filer</strong>, köra <strong>build/test/lint</strong>, läsa felutskrifter och iterera mot tydliga acceptanskriterier.</span>
-                <span class="lang-en">Agentic AI in an IDE is more than "autocomplete". It's a workflow where the assistant can <strong>plan</strong>, propose <strong>multi-file diffs</strong>, run <strong>build/test/lint</strong>, read failures, and iterate toward clear acceptance criteria.</span>
-            </p>
-
-            <p>
-                <span class="lang-sv">Den här artikeln fokuserar på det som är <strong>IDE-specifikt</strong>: vilka IDE:er som är relevanta, vilka modellfamiljer de typiskt ger tillgång till, hur agentflöden ser ut i praktiken för .NET + JS, samt vad det kostar.</span>
-                <span class="lang-en">This article focuses on what is <strong>IDE-specific</strong>: which IDEs/editors are relevant, what model families they typically expose, how agentic workflows look in real engineering for .NET + JS, and what it costs.</span>
-            </p>
-
-            <!-- Section 1: What You Choose -->
-            <h2 id="choice">
-                <span class="lang-sv">1) Vad du väljer när du "väljer IDE + agent"</span>
-                <span class="lang-en">1) What you're actually choosing when you pick "IDE + agent"</span>
-            </h2>
-
-            <p>
-                <span class="lang-sv">I praktiken väljer du fyra saker samtidigt:</span>
-                <span class="lang-en">In practice you are choosing four things at once:</span>
-            </p>
-
-            <ol>
-                <li>
-                    <strong><span class="lang-sv">Kontextmotor</span><span class="lang-en">Context engine</span></strong>: 
-                    <span class="lang-sv">hur editor/agent samlar in relevanta filer och diffar.</span>
-                    <span class="lang-en">how the editor/agent gathers relevant files and diffs.</span>
-                </li>
-                <li>
-                    <strong><span class="lang-sv">Agentförmågor</span><span class="lang-en">Agent capabilities</span></strong>: 
-                    <span class="lang-sv">plan-läge, multi-file edits, körning av kommandon, PR-hjälp.</span>
-                    <span class="lang-en">plan mode, multi-file edits, command execution, PR support.</span>
-                </li>
-                <li>
-                    <strong><span class="lang-sv">Modellportfölj</span><span class="lang-en">Model portfolio</span></strong>: 
-                    <span class="lang-sv">vilka modellfamiljer (OpenAI/Anthropic/Google m.fl.) du kan välja för olika uppgifter.</span>
-                    <span class="lang-en">which model families (OpenAI/Anthropic/Google, etc.) you can select for different tasks.</span>
-                </li>
-                <li>
-                    <strong><span class="lang-sv">Styrning/kostnad</span><span class="lang-en">Governance/cost</span></strong>: 
-                    <span class="lang-sv">licenser, usage/premium requests, team policies.</span>
-                    <span class="lang-en">licenses, usage/premium requests, team policies.</span>
-                </li>
-            </ol>
-
-            <!-- Section 2: Matrix -->
-            <h2 id="matrix">
-                <span class="lang-sv">2) Kompakt matris: IDE ↔ modeller ↔ agentförmåga ↔ pris</span>
-                <span class="lang-en">2) Compact matrix: IDE ↔ models ↔ agent capability ↔ price</span>
-            </h2>
-
-            <div class="cursor-tip">
-                <div class="cursor-tip-header">
-                    <span class="lang-sv">Prisnotering</span>
-                    <span class="lang-en">Pricing Note</span>
-                </div>
-                <p>
-                    <span class="lang-sv">Pris = listpris i USD (exkl. moms), avrundat och indikativt. Funktioner och modellutbud kan variera per plan och kan ändras över tid.</span>
-                    <span class="lang-en">Price = list price in USD (excl. VAT), indicative. Features and model availability vary by plan and may change over time.</span>
-                </p>
-            </div>
-
-            <div class="table-wrapper">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>IDE / editor</th>
-                            <th><span class="lang-sv">AI-assistenter</span><span class="lang-en">AI assistants</span></th>
-                            <th><span class="lang-sv">Modellfamiljer</span><span class="lang-en">Model families</span></th>
-                            <th><span class="lang-sv">Agentiskt stöd</span><span class="lang-en">Agentic support</span></th>
-                            <th><span class="lang-sv">Indikativt pris</span><span class="lang-en">Indicative price</span></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>VS Code</strong></td>
-                            <td>GitHub Copilot, Gemini Code Assist, Amazon Q Developer</td>
-                            <td>
-                                <span class="lang-sv">Copilot: modellval från flera leverantörer. Gemini: Google. Amazon Q: AWS.</span>
-                                <span class="lang-en">Copilot: model selection across vendors. Gemini: Google. Amazon Q: AWS.</span>
-                            </td>
-                            <td>
-                                <span class="lang-sv">Multi-file diffar, plan/agent-lägen, loop "ändra → kör checks → iterera".</span>
-                                <span class="lang-en">Multi-file diffs, plan/agent modes, loop "edit → run checks → iterate".</span>
-                            </td>
-                            <td>Copilot Pro $10/mo, Pro+ $39/mo. Amazon Q Pro $19/user/mo.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Visual Studio</strong></td>
-                            <td>GitHub Copilot</td>
-                            <td>
-                                <span class="lang-sv">Copilot-modeller enligt GitHub.</span>
-                                <span class="lang-en">Copilot models per GitHub.</span>
-                            </td>
-                            <td>
-                                <span class="lang-sv">Agentisk chat/edit i IDE:n, bra match för .NET-slice.</span>
-                                <span class="lang-en">Agentic chat/edit in the IDE; strong fit for .NET slices.</span>
-                            </td>
-                            <td>Business $19/user/mo (org).</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Cursor</strong></td>
-                            <td>Cursor (inbyggda agents + teamkontroller)</td>
-                            <td>
-                                <span class="lang-sv">Usage-baserat, per modell.</span>
-                                <span class="lang-en">Usage-based, per model.</span>
-                            </td>
-                            <td>
-                                <span class="lang-sv">AI-native: multi-file, agent-run, team-styrning.</span>
-                                <span class="lang-en">AI-native: multi-file, agent runs, team spend controls.</span>
-                            </td>
-                            <td>Teams: spend controls + model pricing.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Windsurf</strong></td>
-                            <td>Windsurf (Cascade)</td>
-                            <td>
-                                <span class="lang-sv">Premium-modeller via plan och credits.</span>
-                                <span class="lang-en">Premium models via plan and credits.</span>
-                            </td>
-                            <td>
-                                <span class="lang-sv">AI-native agentflöde via Cascade (multi-step).</span>
-                                <span class="lang-en">AI-native agent flow via Cascade (multi-step).</span>
-                            </td>
-                            <td>
-                                <span class="lang-sv">Planer för individer/teams/enterprise.</span>
-                                <span class="lang-en">Plans for individuals/teams/enterprise.</span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <h3>
-                <span class="lang-sv">Tolkning för .NET + JS-team</span>
-                <span class="lang-en">How to read this for .NET + JS teams</span>
-            </h3>
-
-            <ul>
-                <li>
-                    <span class="lang-sv"><strong>Microsoft-ekosystem:</strong> VS Code/Visual Studio + Copilot är det mest förutsägbara alternativet att rulla ut brett.</span>
-                    <span class="lang-en"><strong>Microsoft ecosystem:</strong> VS Code/Visual Studio + Copilot is typically the most predictable rollout path.</span>
-                </li>
-                <li>
-                    <span class="lang-sv"><strong>Google-spår:</strong> Gemini Code Assist är Googles förstahandsval för IDE-assistans.</span>
-                    <span class="lang-en"><strong>Google-first:</strong> Gemini Code Assist is Google's primary IDE offering.</span>
-                </li>
-                <li>
-                    <span class="lang-sv"><strong>AI-first editor:</strong> Cursor/Windsurf är ofta mer aggressiva i agentflöden, men kräver tydlig kostnadsstyrning.</span>
-                    <span class="lang-en"><strong>AI-first editor:</strong> Cursor/Windsurf often push agent workflows further, but need clear cost control.</span>
-                </li>
-            </ul>
-
-            <!-- Section 3: Bundles -->
-            <h2 id="bundles">
-                <span class="lang-sv">3) Rekommenderade startpaket för team</span>
-                <span class="lang-en">3) Practical starting bundles for teams</span>
-            </h2>
-
-            <p>
-                <span class="lang-sv">Här är tre "baseline"-paket som brukar fungera utan att skapa onödigt verktygskaos:</span>
-                <span class="lang-en">These three "baseline" bundles usually work without creating tool chaos:</span>
-            </p>
-
-            <h3>
-                <span class="lang-sv">Paket A: Microsoft-standard (mest kompatibelt)</span>
-                <span class="lang-en">Bundle A: Microsoft standard (most compatible)</span>
-            </h3>
-            <ul>
-                <li><strong>VS Code</strong> <span class="lang-sv">för JS/TS och polyglot</span><span class="lang-en">for JS/TS and polyglot</span></li>
-                <li><strong>Visual Studio</strong> <span class="lang-sv">för .NET (när det ger mervärde i debug/profiling)</span><span class="lang-en">for .NET (when it adds value in debugging/profiling)</span></li>
-                <li><strong>GitHub Copilot</strong> <span class="lang-sv">som gemensam AI-bas</span><span class="lang-en">as the shared AI baseline</span></li>
-            </ul>
-
-            <h3>
-                <span class="lang-sv">Paket B: Google-spår i IDE:n</span>
-                <span class="lang-en">Bundle B: Google-first IDE assistant</span>
-            </h3>
-            <ul>
-                <li><strong>VS Code</strong></li>
-                <li><strong>Gemini Code Assist</strong> (Standard/Enterprise <span class="lang-sv">om ni behöver org-funktioner</span><span class="lang-en">when you need org-level features</span>)</li>
-            </ul>
-
-            <h3>
-                <span class="lang-sv">Paket C: AI-first editor</span>
-                <span class="lang-en">Bundle C: AI-first editor</span>
-            </h3>
-            <ul>
-                <li><strong>Cursor</strong> <span class="lang-sv">eller</span><span class="lang-en">or</span> <strong>Windsurf</strong> <span class="lang-sv">för team som vill driva agentik hårdare</span><span class="lang-en">for teams that want to push agentic workflows further</span></li>
-                <li><span class="lang-sv">Tydlig spend-control/process för att undvika kostnadsöverraskningar</span><span class="lang-en">Clear spend-control processes to avoid cost surprises</span></li>
-            </ul>
-
-            <!-- Section 4: Workflows -->
-            <h2 id="workflows">
-                <span class="lang-sv">4) Praktiska agentiska arbetsflöden i IDE:n</span>
-                <span class="lang-en">4) Agentic workflows in the IDE</span>
-            </h2>
-
-            <h3>
-                <span class="lang-sv">4.1 Standardloop: "Plan → Diff → Check → Iterera"</span>
-                <span class="lang-en">4.1 Standard loop: "Plan → Diff → Check → Iterate"</span>
-            </h3>
-
-            <ul>
-                <li>
-                    <span class="lang-sv"><strong>En enda valideringssignal</strong> (t.ex. <code>make check</code> eller <code>./scripts/ci.sh</code>) är den viktigaste acceleratorn för agentik.</span>
-                    <span class="lang-en">A <strong>single validation signal</strong> (e.g., <code>make check</code> or <code>./scripts/ci.sh</code>) is the highest-leverage accelerator for agentic development.</span>
-                </li>
-                <li>
-                    <span class="lang-sv">Agentik skalar när du kan "lita på loopen" (agent gör ändringar, kör checks, itererar tills grönt).</span>
-                    <span class="lang-en">Agentic work scales when you can trust the loop (agent changes code, runs checks, iterates until green).</span>
-                </li>
-            </ul>
-
-            <h3>
-                <span class="lang-sv">4.2 .NET: "Vertikal slice" som standarduppdrag</span>
-                <span class="lang-en">4.2 .NET: "Vertical slice" as the default unit of work</span>
-            </h3>
-
-            <ul>
-                <li>
-                    <span class="lang-sv">Endpoint + domänregel + persistence + tester</span>
-                    <span class="lang-en">Endpoint + domain rule + persistence + tests</span>
-                </li>
-                <li>
-                    <span class="lang-sv">Små diffar (max 3–7 filer per iteration)</span>
-                    <span class="lang-en">Small diffs (max 3–7 files per iteration)</span>
-                </li>
-                <li><code>dotnet build</code> + <code>dotnet test</code> <span class="lang-sv">efter varje batch</span><span class="lang-en">after each batch</span></li>
-            </ul>
-
-            <h3>
-                <span class="lang-sv">4.3 JS/TS: "Feature + states + test"</span>
-                <span class="lang-en">4.3 JS/TS: "Feature + states + test"</span>
-            </h3>
-
-            <ul>
-                <li>
-                    <span class="lang-sv">UI-states (loading/error/success)</span>
-                    <span class="lang-en">UI states (loading/error/success)</span>
-                </li>
-                <li>
-                    <span class="lang-sv">Tydlig felhantering (409/400/500)</span>
-                    <span class="lang-en">Explicit error handling (409/400/500)</span>
-                </li>
-                <li>
-                    <span class="lang-sv">lint/test/build som grind</span>
-                    <span class="lang-en">lint/test/build as the gate</span>
-                </li>
-            </ul>
-
-            <h3>
-                <span class="lang-sv">4.4 Reset-regel när sessionen degraderar</span>
-                <span class="lang-en">4.4 Reset rule when the session degrades</span>
-            </h3>
-
-            <p>
-                <span class="lang-sv">När agenten börjar "snurra" är det ofta snabbare att nollställa än att rädda en stökig kontext. Rutinen <code>/compact</code> → <code>/clear</code> → klistra in plan + constraints + aktuella fel är en bra standard.</span>
-                <span class="lang-en">When the agent starts looping, it's often faster to reset than to rescue a noisy context. Your <code>/compact</code> → <code>/clear</code> routine and re-injecting plan + constraints + current errors is a solid default.</span>
-            </p>
-
-            <!-- Section 5: Security -->
-            <h2 id="security">
-                <span class="lang-sv">5) Skydda känslig kod och information</span>
-                <span class="lang-en">5) Protecting sensitive code and information</span>
-            </h2>
-
-            <h3>
-                <span class="lang-sv">5.1 Minimera dataytan som kan lämna maskinen</span>
-                <span class="lang-en">5.1 Minimize the data surface that can leave the machine</span>
-            </h3>
-
-            <ul>
-                <li>
-                    <span class="lang-sv">Skapa en <strong>AI-allowlist</strong> för vilka mappar agenten får läsa (t.ex. <code>/src</code>, <code>/tests</code>) och en <strong>denylist</strong> för allt som aldrig får in i kontext (<code>/secrets</code>, cert, prod-config).</span>
-                    <span class="lang-en">Maintain an <strong>AI allowlist</strong> of folders the agent may read (e.g., <code>/src</code>, <code>/tests</code>) and a <strong>denylist</strong> for everything that must never enter context (<code>/secrets</code>, certs, prod-config).</span>
-                </li>
-                <li>
-                    <span class="lang-sv">Begränsa auto-indexering i känsliga repos om verktyget stödjer det.</span>
-                    <span class="lang-en">Restrict auto-indexing in sensitive repos if the tool supports it.</span>
-                </li>
-            </ul>
-
-            <h3>
-                <span class="lang-sv">5.2 Styr agentens verktyg och nätverksförmåga</span>
-                <span class="lang-en">5.2 Control tools and network capabilities</span>
-            </h3>
-
-            <ul>
-                <li>
-                    <span class="lang-sv">Kör agentens kommandon via en <strong>kontrollerad harness</strong> (script/Makefile) i stället för fri exekvering.</span>
-                    <span class="lang-en">Run commands through a <strong>controlled harness</strong> (script/Makefile) rather than arbitrary execution.</span>
-                </li>
-                <li>
-                    <span class="lang-sv">Whitelista kommandon (build/test/lint) och kräv mänskligt godkännande för riskområden (auth, crypto, infra).</span>
-                    <span class="lang-en">Whitelist commands (build/test/lint) and require human approval for risk areas (auth, crypto, infra).</span>
-                </li>
-            </ul>
-
-            <h3>
-                <span class="lang-sv">5.3 Stabilisera beteende med repo-kontrakt (agents.md)</span>
-                <span class="lang-en">5.3 Stabilize behavior with a repo contract (agents.md)</span>
-            </h3>
-
-            <p>
-                <span class="lang-sv">Ett kort <code>agents.md</code> som alltid innehåller:</span>
-                <span class="lang-en">Keep <code>agents.md</code> short and always include:</span>
-            </p>
-
-            <ul>
-                <li><strong>Commands</strong> (build/test/lint)</li>
-                <li><strong>Structure</strong> (<span class="lang-sv">viktiga mappar</span><span class="lang-en">key folders</span>)</li>
-                <li><strong>Boundaries</strong> (<span class="lang-sv">vad agenten aldrig får göra</span><span class="lang-en">what the agent must not do</span>)</li>
-            </ul>
-
-            <h3>
-                <span class="lang-sv">5.4 Driftkrav: logga verktygsutfall och kör evals</span>
-                <span class="lang-en">5.4 Ops requirement: log tool outcomes and run evals</span>
-            </h3>
-
-            <p>
-                <span class="lang-sv">Behandla modellen som en komponent i en pipeline: verktyg ger sanning, modellen skriver förslag, och ni mäter beteende med evals.</span>
-                <span class="lang-en">Treat the model as a pipeline component: tools produce truth, the model proposes changes, and you measure behavior with evals.</span>
-            </p>
-
-            <!-- Section 6: Pricing -->
-            <h2 id="pricing">
-                <span class="lang-sv">6) Kostnads- och licensnoter</span>
-                <span class="lang-en">6) Pricing and licensing notes</span>
-            </h2>
-
-            <ul>
-                <li><strong>Copilot</strong>: <span class="lang-sv">individuella licenser (Pro/Pro+) och org-licenser (Business m.fl.) är specificerade av GitHub.</span><span class="lang-en">individual licenses (Pro/Pro+) and org licenses (Business, etc.) are specified by GitHub.</span></li>
-                <li><strong>Amazon Q Developer</strong>: <span class="lang-sv">AWS listar prissättning och gränser för free/pro.</span><span class="lang-en">AWS lists pricing and limits for free/pro.</span></li>
-                <li><strong>Gemini Code Assist</strong>: <span class="lang-sv">prissättning och editions (Standard/Enterprise) dokumenteras i Google Cloud.</span><span class="lang-en">pricing and editions are documented in Google Cloud.</span></li>
-                <li><strong>Cursor</strong>: <span class="lang-sv">usage-baserat (modellpriser + token fee/spend controls i Teams).</span><span class="lang-en">usage-based (model pricing + token fees + team spend controls).</span></li>
-                <li><strong>Windsurf</strong>: <span class="lang-sv">prissida anger plan-uppdelning.</span><span class="lang-en">plan split is documented on the pricing page.</span></li>
-            </ul>
-
-            <!-- Section 7: Playbook -->
-            <h2 id="playbook">
-                <span class="lang-sv">7) En kort "team-playbook" att införa vecka 1</span>
-                <span class="lang-en">7) A one-week team playbook (Week 1)</span>
-            </h2>
-
-            <ol>
-                <li>
-                    <span class="lang-sv">Inför <strong>en valideringscommand</strong> (<code>make check</code> eller <code>./scripts/ci.sh</code>) och gör det till agentens standardverktyg.</span>
-                    <span class="lang-en">Introduce <strong>one validation command</strong> (<code>make check</code> or <code>./scripts/ci.sh</code>) and make it the agent's default tool.</span>
-                </li>
-                <li>
-                    <span class="lang-sv">Lägg in <code>agents.md</code> med kommandon/struktur/boundaries (maximalt kompakt).</span>
-                    <span class="lang-en">Add <code>agents.md</code> with commands/structure/boundaries (keep it compact).</span>
-                </li>
-                <li>
-                    <span class="lang-sv">Standardisera prompts: <strong>Goal → Constraints/non-goals → Done → Plan först</strong>.</span>
-                    <span class="lang-en">Standardize prompts: <strong>Goal → Constraints/non-goals → Done → Plan first</strong>.</span>
-                </li>
-                <li>
-                    <span class="lang-sv">Etablera en reset-regel: "om loopen degraderar → compact/clear och börja om rent".</span>
-                    <span class="lang-en">Establish a reset rule: if the loop degrades → compact/clear and restart clean.</span>
-                </li>
-                <li>
-                    <span class="lang-sv">För känsliga repos: aktivera denylist och begränsa agentverktyg.</span>
-                    <span class="lang-en">For sensitive repos: enable denylist and restrict tools.</span>
-                </li>
-            </ol>
-
-            <div class="cursor-tip">
-                <div class="cursor-tip-header">TL;DR</div>
-                <p>
-                    <span class="lang-sv">Välj IDE baserat på ditt teams ekosystem (Microsoft/Google/AI-first). Implementera en valideringsloop, stabilisera kontext med agents.md, och styr kostnader proaktivt.</span>
-                    <span class="lang-en">Choose IDE based on your team's ecosystem (Microsoft/Google/AI-first). Implement a validation loop, stabilize context with agents.md, and manage costs proactively.</span>
-                </p>
-            </div>
+            <div class="lang-sv"><h1 id="agentisk-ai-i-iden-for-net-backend-och-javascript-frontend-januari-2026">Agentisk AI i IDE:n för .NET-backend och JavaScript-frontend (januari 2026)</h1>
+<p>Agentisk AI i en IDE handlar om mer än "autocomplete". Det är arbetsflöden där assistenten kan <strong>planera</strong>, föreslå <strong>diffar över flera filer</strong>, köra <strong>build/test/lint</strong>, läsa felutskrifter och iterera mot tydliga acceptanskriterier. För den generella metodiken (harness, feedback-loop, kontexthygien) hänvisas till dina befintliga texter om agentloopar och "model CI".</p>
+<p>Den här artikeln fokuserar därför på det som är <strong>IDE-specifikt</strong>: vilka IDE:er som är relevanta utan JetBrains, vilka modellfamiljer de typiskt ger tillgång till, hur agentflöden ser ut i praktiken för .NET + JS, samt vad det kostar (indikativt).</p>
+<hr />
+<h2 id="1-vad-du-valjer-nar-du-valjer-ide-agent">1) Vad du väljer när du "väljer IDE + agent"</h2>
+<p>I praktiken väljer du fyra saker samtidigt:</p>
+<p>1) <strong>Kontextmotor</strong>: hur editor/agent samlar in relevanta filer och diffar.<br />
+2) <strong>Agentförmågor</strong>: plan-läge, multi-file edits, körning av kommandon, PR-hjälp.<br />
+3) <strong>Modellportfölj</strong>: vilka modellfamiljer (OpenAI/Anthropic/Google m.fl.) du kan välja för olika uppgifter. GitHub Copilot har t.ex. en officiell lista över vilka modeller som stöds i Copilot Chat.<br />
+4) <strong>Styrning/kostnad</strong>: licenser, usage/premium requests, team policies.</p>
+<hr />
+<h2 id="2-kompakt-matris-ide-modeller-agentformaga-pris">2) Kompakt matris: IDE ↔ modeller ↔ agentförmåga ↔ pris</h2>
+<blockquote>
+<p><strong>Pris</strong> = listpris i USD (exkl. moms), avrundat och indikativt. Funktioner och modellutbud kan variera per plan och kan ändras över tid.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>IDE / editor</th>
+<th>AI-assistenter (exempel)</th>
+<th>Modellfamiljer och bolag (exempel)</th>
+<th>Agentiskt stöd (praktiskt)</th>
+<th>Indikativt pris</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>VS Code</strong></td>
+<td>GitHub Copilot • Gemini Code Assist • Amazon Q Developer • (ev. BYOK via Continue)</td>
+<td>Copilot: modellval i Copilot Chat från flera leverantörer. • Gemini Code Assist: Google (Gemini). • Amazon Q Developer: AWS-tjänst för agentisk kodassistans.</td>
+<td>Multi-file diffar, plan/agent-lägen (planberoende), och loop "ändra → kör checks → iterera".</td>
+<td>Copilot Pro <strong>$10/mån</strong>, Pro+ <strong>$39/mån</strong>. • Amazon Q Developer Pro (listpris): <strong>$19/anv/mån</strong>. • Gemini Code Assist: Standard/Enterprise via Google Cloud-prissättning.</td>
+</tr>
+<tr>
+<td><strong>Visual Studio</strong></td>
+<td>GitHub Copilot</td>
+<td>Copilot-modeller enligt GitHub.</td>
+<td>Agentisk chat/edit i IDE:n, bra match för .NET-slice (API + tester) när repo-harness finns.</td>
+<td>Copilot-licenser enligt GitHub: Business <strong>$19/anv/mån</strong> (org) och individuella Pro/Pro+ enligt ovan.</td>
+</tr>
+<tr>
+<td><strong>Cursor</strong></td>
+<td>Cursor (inbyggda agents + teamkontroller)</td>
+<td>Modellkostnader och styrning dokumenteras i Cursor pricing (usage-baserat, per modell).</td>
+<td>AI-native agentik: multi-file, agent-run, och team-styrning kring spend limits.</td>
+<td>Teams: spend controls och modellpriser via Cursor.</td>
+</tr>
+<tr>
+<td><strong>Windsurf</strong></td>
+<td>Windsurf (Cascade)</td>
+<td>Modellutbud/premium-modeller styrs av Windsurf-plan och credits.</td>
+<td>AI-native agentflöde via Cascade (multi-step i editorn).</td>
+<td>Windsurf prissida (planer för individer/teams/enterprise).</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tolkning för .NET + JS-team:</strong><br />
+- Vill du ha "standardiserbar enterprise-default" i Microsoft-ekosystemet: <strong>VS Code/Visual Studio + Copilot</strong> är det mest förutsägbara alternativet att rulla ut brett (licenser och dokumentation finns tydligt hos GitHub).<br />
+- Vill du ha Google-spår i IDE:n: <strong>Gemini Code Assist</strong> är Googles förstahandsval för IDE-assistans.<br />
+- Vill du ha "AI-first editor" med stark agentupplevelse: <strong>Cursor/Windsurf</strong> är ofta mer aggressiva i agentflöden, men blir också mer "plattform" att standardisera och kostnadsstyra.</p>
+<hr />
+<h2 id="3-rekommenderade-startpaket-for-team-praktiskt">3) Rekommenderade startpaket för team (praktiskt)</h2>
+<p>Här är tre "baseline"-paket som brukar fungera utan att skapa onödigt verktygskaos:</p>
+<h3 id="paket-a-microsoft-standard-mest-kompatibelt">Paket A: Microsoft-standard (mest kompatibelt)</h3>
+<ul>
+<li><strong>VS Code för JS/TS och polyglot</strong></li>
+<li><strong>Visual Studio för .NET</strong> (när det ger mervärde i debug/profiling)</li>
+<li><strong>GitHub Copilot som gemensam AI-bas</strong></li>
+</ul>
+<p>Det här gör det enklare att skapa gemensamma riktlinjer för modellval, prompts, och arbetssätt i teamet (eftersom Copilot-koncepten är samma i båda IDE:erna).</p>
+<h3 id="paket-b-google-spar-i-iden">Paket B: Google-spår i IDE:n</h3>
+<ul>
+<li><strong>VS Code</strong></li>
+<li><strong>Gemini Code Assist</strong> (Standard/Enterprise om ni behöver org-funktioner)</li>
+</ul>
+<p>Gemini Code Assist finns i "for individuals" samt Standard/Enterprise och dokumenteras via Google Developer/Cloud-dokumentation.</p>
+<h3 id="paket-c-ai-first-editor">Paket C: AI-first editor</h3>
+<ul>
+<li><strong>Cursor</strong> eller <strong>Windsurf</strong> för team som vill driva agentik hårdare i editorn</li>
+<li>Tydlig spend-control/process för att undvika kostnadsöverraskningar (Cursor beskriver spending controls i Teams).</li>
+</ul>
+<hr />
+<h2 id="4-praktiska-agentiska-arbetsfloden-i-iden-komprimerat-med-hanvisningar">4) Praktiska agentiska arbetsflöden i IDE:n (komprimerat, med hänvisningar)</h2>
+<p>I stället för att upprepa grunderna från dina tidigare artiklar, bygger den här sektionen en <strong>IDE-anpassad checklista</strong> som kan kopieras till teamets working agreement.</p>
+<h3 id="41-standardloop-i-iden-plan-diff-check-iterera">4.1 Standardloop i IDE:n: "Plan → Diff → Check → Iterera"</h3>
+<ul>
+<li><strong>En enda valideringssignal</strong> (t.ex. <code>make check</code> eller <code>./scripts/ci.sh</code>) är den viktigaste acceleratorn för agentik.  </li>
+<li>Agentik skalar när du kan "lita på loopen" (agent gör ändringar, kör checks, itererar tills grönt, och presenterar diff + risker).  </li>
+<li>Om du vill ha en komplett metodbeskrivning (harness, kontext som "RAM", loggdesign): se <em>Vibe Engineering 101</em>.  </li>
+</ul>
+<h3 id="42-net-vertikal-slice-som-standarduppdrag">4.2 .NET: "Vertikal slice" som standarduppdrag</h3>
+<p>Kör agenten på uppdrag som har tydliga steg och tydlig verifiering:<br />
+- Endpoint + domänregel + persistence + tester (och ev. swagger/kontrakt)<br />
+- Små diffar (max 3–7 filer per iteration)<br />
+- <code>dotnet build</code> + <code>dotnet test</code> efter varje batch</p>
+<p>Det här matchar "tool-driven, easy to validate"-kategorin där agentloopar typiskt ger bäst effekt.  </p>
+<h3 id="43-jsts-feature-states-test">4.3 JS/TS: "Feature + states + test"</h3>
+<p>Låt agenten arbeta runt:<br />
+- UI-states (loading/error/success)<br />
+- tydlig felhantering (409/400/500)<br />
+- lint/test/build som grind</p>
+<p>Och håll loggar minimala och målinriktade – överlastad kontext försämrar agentens precision.  </p>
+<h3 id="44-reset-regel-nar-sessionen-degraderar">4.4 Reset-regel när sessionen degraderar</h3>
+<p>När agenten börjar "snurra" är det ofta snabbare att nollställa än att rädda en stökig kontext. Din befintliga rutin <code>/compact</code> → <code>/clear</code> → klistra in plan + constraints + aktuella fel är en bra standard.  </p>
+<hr />
+<h2 id="5-skydda-kanslig-kodinfo-samlat-utan-att-ligga-i-tabellen">5) Skydda känslig kod/info (samlat, utan att ligga i tabellen)</h2>
+<p>Här är den korta, praktiska versionen som går att operationalisera. För principerna om varför stabil kontext och "contracts" (agents.md) är centrala för tillit, se <em>Agents.md Explained</em>.</p>
+<h3 id="51-minimera-dataytan-som-kan-lamna-maskinen">5.1 Minimera dataytan som kan lämna maskinen</h3>
+<ul>
+<li>Skapa en <strong>AI-allowlist</strong> för vilka mappar agenten får läsa (t.ex. <code>/src</code>, <code>/tests</code>) och en <strong>denylist</strong> för allt som aldrig får in i kontext (<code>/secrets</code>, cert, prod-config, kundexporter).</li>
+<li>Begränsa auto-indexering/"project scanning" i känsliga repos om verktyget stödjer det (målet är att agenten bara ser det som behövs för uppgiften).</li>
+</ul>
+<h3 id="52-styr-agentens-verktyg-och-natverksformaga">5.2 Styr agentens verktyg och nätverksförmåga</h3>
+<ul>
+<li>Kör agentens kommandon via en <strong>kontrollerad harness</strong> (script/Makefile) i stället för fri exekvering.</li>
+<li>Whitelista kommandon (build/test/lint) och kräv mänskligt godkännande för riskområden (auth, crypto, infra, licenser, secrets).</li>
+</ul>
+<h3 id="53-stabilisera-beteende-med-repo-kontrakt-agentsmd">5.3 Stabilisera beteende med repo-kontrakt (agents.md)</h3>
+<p>Ett kort <code>agents.md</code> (eller motsvarande) som alltid innehåller:<br />
+- "Commands" (build/test/lint)<br />
+- "Structure" (viktiga mappar)<br />
+- "Boundaries" (vad agenten aldrig får göra)</p>
+<p>Det minskar slumpen mellan sessioner och bygger tillit genom att eliminera återkommande felklasser.  </p>
+<h3 id="54-driftkrav-logga-verktygsutfall-och-kor-evals">5.4 Driftkrav: logga verktygsutfall och kör evals</h3>
+<p>För agentik i produktion (även internt) bör ni behandla modellen som en komponent i en pipeline: verktyg ger sanning, modellen skriver förslag, och ni mäter beteende med evals. <em>AI Fundamentals 2026</em> beskriver miniminivån tydligt (pipeline + evals).  </p>
+<hr />
+<h2 id="6-kostnads-och-licensnoter-sa-ni-kan-budgetera-rimligt">6) Kostnads- och licensnoter (så ni kan budgetera rimligt)</h2>
+<ul>
+<li><strong>Copilot</strong>: individuella licenser (Pro/Pro+) och org-licenser (Business m.fl.) är tydligt specificerade av GitHub.  </li>
+<li><strong>Amazon Q Developer</strong>: AWS listar prissättning och gränser för free/pro.  </li>
+<li><strong>Gemini Code Assist</strong>: prissättning och editions (Standard/Enterprise) dokumenteras i Google Cloud.  </li>
+<li><strong>Cursor</strong>: usage-baserat (modellpriser + token fee/spend controls i Teams).  </li>
+<li><strong>Windsurf</strong>: prissida anger plan-uppdelning (free/teams/enterprise).  </li>
+</ul>
+<hr />
+<h2 id="7-en-kort-team-playbook-att-infora-vecka-1">7) En kort "team-playbook" att införa vecka 1</h2>
+<p>1) Inför <strong>en valideringscommand</strong> (<code>make check</code> eller <code>./scripts/ci.sh</code>) och gör det till agentens standardverktyg.<br />
+2) Lägg in <code>agents.md</code> med kommandon/struktur/boundaries (maximalt kompakt).<br />
+3) Standardisera prompts: <strong>Goal → Constraints/non-goals → Done → Plan först</strong> (din "prompt som ingenjörskommunikation"-mall).<br />
+4) Etablera en reset-regel: "om loopen degraderar → compact/clear och börja om rent".<br />
+5) För känsliga repos: aktivera denylist och begränsa agentverktyg enligt 5.1–5.2.</p></div>
+            <div class="lang-en"><h1 id="agentic-ai-in-the-ide-for-net-backend-and-javascript-frontend-january-2026">Agentic AI in the IDE for .NET backend and JavaScript frontend (January 2026)</h1>
+<p>Agentic AI in an IDE is more than "autocomplete". It's a workflow where the assistant can <strong>plan</strong>, propose <strong>multi-file diffs</strong>, run <strong>build/test/lint</strong>, read failures, and iterate toward clear acceptance criteria. For the general methodology (harness, feedback loops, context hygiene), refer to your existing articles on agent loops and "model CI".</p>
+<p>This article focuses on what is <strong>IDE-specific</strong>: which IDEs/editors are relevant without JetBrains, what model families they typically expose, how agentic workflows look in real engineering for .NET + JS, and what it costs (indicative).</p>
+<hr />
+<h2 id="1-what-youre-actually-choosing-when-you-pick-ide-agent">1) What you're actually choosing when you pick "IDE + agent"</h2>
+<p>In practice you are choosing four things at once:</p>
+<p>1) <strong>Context engine</strong>: how the editor/agent gathers relevant files and diffs.<br />
+2) <strong>Agent capabilities</strong>: plan mode, multi-file edits, command execution, PR support.<br />
+3) <strong>Model portfolio</strong>: which model families (OpenAI/Anthropic/Google, etc.) you can select for different tasks. GitHub Copilot publishes an official list of supported models for Copilot Chat.<br />
+4) <strong>Governance/cost</strong>: licenses, usage/premium requests, team policies.</p>
+<hr />
+<h2 id="2-compact-matrix-ide-models-agent-capability-price">2) Compact matrix: IDE ↔ models ↔ agent capability ↔ price</h2>
+<blockquote>
+<p><strong>Price</strong> = list price in USD (excl. VAT), indicative. Features and model availability vary by plan and may change over time.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>IDE / editor</th>
+<th>AI assistants (examples)</th>
+<th>Model families &amp; vendors (examples)</th>
+<th>Agentic support (practical)</th>
+<th>Indicative price</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>VS Code</strong></td>
+<td>GitHub Copilot • Gemini Code Assist • Amazon Q Developer • (optional BYOK via Continue)</td>
+<td>Copilot: model selection in Copilot Chat across multiple vendors. • Gemini Code Assist: Google (Gemini). • Amazon Q Developer: AWS service for agentic coding assistance.</td>
+<td>Multi-file diffs, plan/agent modes (plan-dependent), and the loop "edit → run checks → iterate".</td>
+<td>Copilot Pro <strong>$10/mo</strong>, Pro+ <strong>$39/mo</strong>. • Amazon Q Developer Pro: <strong>$19/user/mo</strong> (list price). • Gemini Code Assist: Standard/Enterprise via Google Cloud pricing.</td>
+</tr>
+<tr>
+<td><strong>Visual Studio</strong></td>
+<td>GitHub Copilot</td>
+<td>Copilot models per GitHub.</td>
+<td>Agentic chat/edit in the IDE; a strong fit for .NET "vertical slices" (API + tests) when you have a repo harness.</td>
+<td>Copilot licensing per GitHub: Business <strong>$19/user/mo</strong> (org) plus individual Pro/Pro+ above.</td>
+</tr>
+<tr>
+<td><strong>Cursor</strong></td>
+<td>Cursor (built-in agents + team controls)</td>
+<td>Model costs and governance are documented in Cursor pricing (usage-based, per model).</td>
+<td>AI-native agentic workflow: multi-file edits, agent runs, and team-level spend controls.</td>
+<td>Teams: spend controls and model pricing via Cursor.</td>
+</tr>
+<tr>
+<td><strong>Windsurf</strong></td>
+<td>Windsurf (Cascade)</td>
+<td>Model catalog / premium models are determined by Windsurf plan and credits.</td>
+<td>AI-native agent flow via Cascade (multi-step in the editor).</td>
+<td>Windsurf pricing (plans for individuals/teams/enterprise).</td>
+</tr>
+</tbody>
+</table>
+<p><strong>How to read this for .NET + JS teams:</strong><br />
+- If you want an "enterprise-default" that's easy to standardize in the Microsoft ecosystem: <strong>VS Code/Visual Studio + Copilot</strong> is typically the most predictable rollout path (licensing and docs are very explicit).<br />
+- If you want a Google-first IDE assistant: <strong>Gemini Code Assist</strong> is Google's primary IDE offering.<br />
+- If you want an AI-first editor with a stronger agent experience: <strong>Cursor/Windsurf</strong> often push agent workflows further, but also become a platform you need to standardize and cost-control.</p>
+<hr />
+<h2 id="3-practical-starting-bundles-for-teams">3) Practical starting bundles for teams</h2>
+<p>These three "baseline" bundles usually work without creating tool chaos:</p>
+<h3 id="bundle-a-microsoft-standard-most-compatible">Bundle A: Microsoft standard (most compatible)</h3>
+<ul>
+<li><strong>VS Code for JS/TS and polyglot</strong></li>
+<li><strong>Visual Studio for .NET</strong> (when it adds value in debugging/profiling)</li>
+<li><strong>GitHub Copilot</strong> as the shared AI baseline</li>
+</ul>
+<p>This makes it easier to establish consistent guidance for model selection, prompts, and workflows (because Copilot concepts are consistent across both IDEs).</p>
+<h3 id="bundle-b-google-first-ide-assistant">Bundle B: Google-first IDE assistant</h3>
+<ul>
+<li><strong>VS Code</strong></li>
+<li><strong>Gemini Code Assist</strong> (Standard/Enterprise when you need org-level features)</li>
+</ul>
+<p>Gemini Code Assist is available as "for individuals" and in Standard/Enterprise tiers, documented via Google Developer/Cloud docs.</p>
+<h3 id="bundle-c-ai-first-editor">Bundle C: AI-first editor</h3>
+<ul>
+<li><strong>Cursor</strong> or <strong>Windsurf</strong> for teams that want to push agentic workflows further inside the editor</li>
+<li>Clear spend-control processes to avoid cost surprises (Cursor documents spend controls for Teams).</li>
+</ul>
+<hr />
+<h2 id="4-agentic-workflows-in-the-ide-compressed-with-references">4) Agentic workflows in the IDE (compressed, with references)</h2>
+<p>Rather than repeating fundamentals from your earlier articles, this section provides an <strong>IDE-oriented checklist</strong> you can copy into a team working agreement.</p>
+<h3 id="41-standard-loop-plan-diff-check-iterate">4.1 Standard loop: "Plan → Diff → Check → Iterate"</h3>
+<ul>
+<li>A <strong>single validation signal</strong> (e.g., <code>make check</code> or <code>./scripts/ci.sh</code>) is the highest-leverage accelerator for agentic development.  </li>
+<li>Agentic work scales when you can trust the loop (agent changes code, runs checks, iterates until green, then presents diff + risks).  </li>
+<li>For the complete methodology (harness design, context as "RAM", log signal): see <em>Vibe Engineering 101</em>.  </li>
+</ul>
+<h3 id="42-net-vertical-slice-as-the-default-unit-of-work">4.2 .NET: "Vertical slice" as the default unit of work</h3>
+<p>Run the agent on tasks with clear steps and clear verification:<br />
+- Endpoint + domain rule + persistence + tests (and optionally swagger/contract)<br />
+- Small diffs (max 3–7 files per iteration)<br />
+- <code>dotnet build</code> + <code>dotnet test</code> after each batch</p>
+<p>This fits the "tool-driven, easy to validate" category where agent loops typically produce the best results.  </p>
+<h3 id="43-jsts-feature-states-test">4.3 JS/TS: "Feature + states + test"</h3>
+<p>Have the agent work around:<br />
+- UI states (loading/error/success)<br />
+- explicit error handling (409/400/500)<br />
+- lint/test/build as the gate</p>
+<p>Keep logs minimal and targeted—overloaded context reduces precision.  </p>
+<h3 id="44-reset-rule-when-the-session-degrades">4.4 Reset rule when the session degrades</h3>
+<p>When the agent starts looping, it's often faster to reset than to rescue a noisy context. Your <code>/compact</code> → <code>/clear</code> routine and re-injecting plan + constraints + current errors is a solid default.  </p>
+<hr />
+<h2 id="5-protecting-sensitive-code-and-information-consolidated">5) Protecting sensitive code and information (consolidated)</h2>
+<p>This section is the operational, short version. For the broader principles (why stable context and repo "contracts" such as agents.md matter), see <em>Agents.md Explained</em>.</p>
+<h3 id="51-minimize-the-data-surface-that-can-leave-the-machine">5.1 Minimize the data surface that can leave the machine</h3>
+<ul>
+<li>Maintain an <strong>AI allowlist</strong> of folders the agent may read (e.g., <code>/src</code>, <code>/tests</code>) and a <strong>denylist</strong> for everything that must never enter context (<code>/secrets</code>, certs, prod-config, customer exports).</li>
+<li>Restrict auto-indexing / project scanning in sensitive repos if the tool supports it (goal: the agent only sees what the task requires).</li>
+</ul>
+<h3 id="52-control-tools-and-network-capabilities">5.2 Control tools and network capabilities</h3>
+<ul>
+<li>Run commands through a <strong>controlled harness</strong> (script/Makefile) rather than arbitrary execution.</li>
+<li>Whitelist commands (build/test/lint) and require human approval for risk areas (auth, crypto, infra, licenses, secrets).</li>
+</ul>
+<h3 id="53-stabilize-behavior-with-a-repo-contract-agentsmd">5.3 Stabilize behavior with a repo contract (agents.md)</h3>
+<p>Keep <code>agents.md</code> (or equivalent) short and always include:<br />
+- Commands (build/test/lint)<br />
+- Structure (key folders)<br />
+- Boundaries (what the agent must not do)</p>
+<p>This reduces variance across sessions and eliminates recurring failure modes.  </p>
+<h3 id="54-ops-requirement-log-tool-outcomes-and-run-evals">5.4 Ops requirement: log tool outcomes and run evals</h3>
+<p>For production-grade agentic workflows (even internally), treat the model as a pipeline component: tools produce truth, the model proposes changes, and you measure behavior with evals. <em>AI Fundamentals 2026</em> describes the minimum bar (pipeline + evals).  </p>
+<hr />
+<h2 id="6-pricing-and-licensing-notes-for-budgeting">6) Pricing and licensing notes (for budgeting)</h2>
+<ul>
+<li><strong>Copilot</strong>: individual licenses (Pro/Pro+) and org licenses (Business, etc.) are specified by GitHub.  </li>
+<li><strong>Amazon Q Developer</strong>: AWS lists pricing and limits for free/pro.  </li>
+<li><strong>Gemini Code Assist</strong>: pricing and editions (Standard/Enterprise) are documented in Google Cloud.  </li>
+<li><strong>Cursor</strong>: usage-based (model pricing + token fees + team spend controls).  </li>
+<li><strong>Windsurf</strong>: plan split is documented on the pricing page.  </li>
+</ul>
+<hr />
+<h2 id="7-a-one-week-team-playbook-week-1">7) A one-week team playbook (Week 1)</h2>
+<p>1) Introduce <strong>one validation command</strong> (<code>make check</code> or <code>./scripts/ci.sh</code>) and make it the agent's default tool.<br />
+2) Add <code>agents.md</code> with commands/structure/boundaries (keep it compact).<br />
+3) Standardize prompts: <strong>Goal → Constraints/non-goals → Done → Plan first</strong> (your "prompt as engineering communication" pattern).<br />
+4) Establish a reset rule: if the loop degrades → compact/clear and restart clean.<br />
+5) For sensitive repos: enable denylist and restrict tools per 5.1–5.2.</p></div>
 
         </article>
     </main>
@@ -586,16 +465,13 @@
     <section class="presentation-slide hero-slide" data-slide-number="1 / 8">
         <div class="presentation-slide-content">
             <p class="article-meta">
-                <span class="lang-sv">Agentisk utveckling // Januari 2026</span>
-                <span class="lang-en">Agentic Development // January 2026</span>
+                <span class="lang-sv">Agentisk utveckling // 2026-01</span>
+                <span class="lang-en">Agentic Development // 2026-01</span>
             </p>
-            <h1>
-                <span class="lang-sv">Välj IDE för Agentisk AI</span>
-                <span class="lang-en">Choosing an IDE for Agentic AI</span>
-            </h1>
+            <h1>Choosing an IDE for Agentic AI</h1>
             <p class="subtitle">
-                <span class="lang-sv">En praktisk guide för .NET-backend och JavaScript-frontend</span>
-                <span class="lang-en">A practical guide for .NET backend and JavaScript frontend</span>
+                <span class="lang-sv">En praktisk guide för .NET och JavaScript-team</span>
+                <span class="lang-en">A practical guide for .NET and JavaScript teams</span>
             </p>
         </div>
         <div class="presentation-scroll-hint">
@@ -607,131 +483,310 @@
 
     <section class="presentation-slide" data-slide-number="2 / 8">
         <div class="presentation-slide-content">
-            <h2>
-                <span class="lang-sv">Vad du väljer när du "väljer IDE + agent"</span>
-                <span class="lang-en">What you choose when you pick "IDE + agent"</span>
-            </h2>
-            <p>
-                <span class="lang-sv">I praktiken väljer du fyra saker samtidigt:</span>
-                <span class="lang-en">In practice you are choosing four things at once:</span>
-            </p>
-            <ol>
-                <li><strong><span class="lang-sv">Kontextmotor</span><span class="lang-en">Context engine</span></strong> — <span class="lang-sv">hur editor/agent samlar in relevanta filer</span><span class="lang-en">how the editor/agent gathers relevant files</span></li>
-                <li><strong><span class="lang-sv">Agentförmågor</span><span class="lang-en">Agent capabilities</span></strong> — <span class="lang-sv">plan-läge, multi-file edits, kommandon</span><span class="lang-en">plan mode, multi-file edits, commands</span></li>
-                <li><strong><span class="lang-sv">Modellportfölj</span><span class="lang-en">Model portfolio</span></strong> — <span class="lang-sv">OpenAI/Anthropic/Google m.fl.</span><span class="lang-en">OpenAI/Anthropic/Google, etc.</span></li>
-                <li><strong><span class="lang-sv">Styrning/kostnad</span><span class="lang-en">Governance/cost</span></strong> — <span class="lang-sv">licenser, team policies</span><span class="lang-en">licenses, team policies</span></li>
-            </ol>
+            <div class="lang-sv"><h2 id="1-vad-du-valjer-nar-du-valjer-ide-agent">1) Vad du väljer när du "väljer IDE + agent"</h2>
+<p>I praktiken väljer du fyra saker samtidigt:</p>
+<p>1) <strong>Kontextmotor</strong>: hur editor/agent samlar in relevanta filer och diffar.<br />
+2) <strong>Agentförmågor</strong>: plan-läge, multi-file edits, körning av kommandon, PR-hjälp.<br />
+3) <strong>Modellportfölj</strong>: vilka modellfamiljer (OpenAI/Anthropic/Google m.fl.) du kan välja för olika uppgifter. GitHub Copilot har t.ex. en officiell lista över vilka modeller som stöds i Copilot Chat.<br />
+4) <strong>Styrning/kostnad</strong>: licenser, usage/premium requests, team policies.</p>
+<hr /></div>
+            <div class="lang-en"><h2 id="1-what-youre-actually-choosing-when-you-pick-ide-agent">1) What you're actually choosing when you pick "IDE + agent"</h2>
+<p>In practice you are choosing four things at once:</p>
+<p>1) <strong>Context engine</strong>: how the editor/agent gathers relevant files and diffs.<br />
+2) <strong>Agent capabilities</strong>: plan mode, multi-file edits, command execution, PR support.<br />
+3) <strong>Model portfolio</strong>: which model families (OpenAI/Anthropic/Google, etc.) you can select for different tasks. GitHub Copilot publishes an official list of supported models for Copilot Chat.<br />
+4) <strong>Governance/cost</strong>: licenses, usage/premium requests, team policies.</p>
+<hr /></div>
         </div>
     </section>
 
     <section class="presentation-slide" data-slide-number="3 / 8">
         <div class="presentation-slide-content">
-            <h2>
-                <span class="lang-sv">IDE-matris för .NET + JS</span>
-                <span class="lang-en">IDE Matrix for .NET + JS</span>
-            </h2>
-            <ul>
-                <li><strong>VS Code + Copilot</strong> — <span class="lang-sv">Multi-vendor modeller, Pro $10/mo, Pro+ $39/mo</span><span class="lang-en">Multi-vendor models, Pro $10/mo, Pro+ $39/mo</span></li>
-                <li><strong>Visual Studio + Copilot</strong> — <span class="lang-sv">Bra för .NET, Business $19/user/mo</span><span class="lang-en">Strong for .NET, Business $19/user/mo</span></li>
-                <li><strong>Cursor</strong> — <span class="lang-sv">AI-native, usage-baserat, team spend controls</span><span class="lang-en">AI-native, usage-based, team spend controls</span></li>
-                <li><strong>Windsurf</strong> — <span class="lang-sv">Cascade multi-step, credits-baserat</span><span class="lang-en">Cascade multi-step, credits-based</span></li>
-            </ul>
-            <div class="cursor-tip">
-                <div class="cursor-tip-header">
-                    <span class="lang-sv">Rekommendation</span>
-                    <span class="lang-en">Recommendation</span>
-                </div>
-                <p>
-                    <span class="lang-sv">Microsoft-ekosystem → Copilot. Google-fokus → Gemini. Max agentik → Cursor/Windsurf.</span>
-                    <span class="lang-en">Microsoft ecosystem → Copilot. Google focus → Gemini. Max agentic → Cursor/Windsurf.</span>
-                </p>
-            </div>
+            <div class="lang-sv"><h2 id="2-kompakt-matris-ide-modeller-agentformaga-pris">2) Kompakt matris: IDE ↔ modeller ↔ agentförmåga ↔ pris</h2>
+<blockquote>
+<p><strong>Pris</strong> = listpris i USD (exkl. moms), avrundat och indikativt. Funktioner och modellutbud kan variera per plan och kan ändras över tid.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>IDE / editor</th>
+<th>AI-assistenter (exempel)</th>
+<th>Modellfamiljer och bolag (exempel)</th>
+<th>Agentiskt stöd (praktiskt)</th>
+<th>Indikativt pris</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>VS Code</strong></td>
+<td>GitHub Copilot • Gemini Code Assist • Amazon Q Developer • (ev. BYOK via Continue)</td>
+<td>Copilot: modellval i Copilot Chat från flera leverantörer. • Gemini Code Assist: Google (Gemini). • Amazon Q Developer: AWS-tjänst för agentisk kodassistans.</td>
+<td>Multi-file diffar, plan/agent-lägen (planberoende), och loop "ändra → kör checks → iterera".</td>
+<td>Copilot Pro <strong>$10/mån</strong>, Pro+ <strong>$39/mån</strong>. • Amazon Q Developer Pro (listpris): <strong>$19/anv/mån</strong>. • Gemini Code Assist: Standard/Enterprise via Google Cloud-prissättning.</td>
+</tr>
+<tr>
+<td><strong>Visual Studio</strong></td>
+<td>GitHub Copilot</td>
+<td>Copilot-modeller enligt GitHub.</td>
+<td>Agentisk chat/edit i IDE:n, bra match för .NET-slice (API + tester) när repo-harness finns.</td>
+<td>Copilot-licenser enligt GitHub: Business <strong>$19/anv/mån</strong> (org) och individuella Pro/Pro+ enligt ovan.</td>
+</tr>
+<tr>
+<td><strong>Cursor</strong></td>
+<td>Cursor (inbyggda agents + teamkontroller)</td>
+<td>Modellkostnader och styrning dokumenteras i Cursor pricing (usage-baserat, per modell).</td>
+<td>AI-native agentik: multi-file, agent-run, och team-styrning kring spend limits.</td>
+<td>Teams: spend controls och modellpriser via Cursor.</td>
+</tr>
+<tr>
+<td><strong>Windsurf</strong></td>
+<td>Windsurf (Cascade)</td>
+<td>Modellutbud/premium-modeller styrs av Windsurf-plan och credits.</td>
+<td>AI-native agentflöde via Cascade (multi-step i editorn).</td>
+<td>Windsurf prissida (planer för individer/teams/enterprise).</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tolkning för .NET + JS-team:</strong><br />
+- Vill du ha "standardiserbar enterprise-default" i Microsoft-ekosystemet: <strong>VS Code/Visual Studio + Copilot</strong> är det mest förutsägbara alternativet att rulla ut brett (licenser och dokumentation finns tydligt hos GitHub).<br />
+- Vill du ha Google-spår i IDE:n: <strong>Gemini Code Assist</strong> är Googles förstahandsval för IDE-assistans.<br />
+- Vill du ha "AI-first editor" med stark agentupplevelse: <strong>Cursor/Windsurf</strong> är ofta mer aggressiva i agentflöden, men blir också mer "plattform" att standardisera och kostnadsstyra.</p>
+<hr /></div>
+            <div class="lang-en"><h2 id="2-compact-matrix-ide-models-agent-capability-price">2) Compact matrix: IDE ↔ models ↔ agent capability ↔ price</h2>
+<blockquote>
+<p><strong>Price</strong> = list price in USD (excl. VAT), indicative. Features and model availability vary by plan and may change over time.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>IDE / editor</th>
+<th>AI assistants (examples)</th>
+<th>Model families &amp; vendors (examples)</th>
+<th>Agentic support (practical)</th>
+<th>Indicative price</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>VS Code</strong></td>
+<td>GitHub Copilot • Gemini Code Assist • Amazon Q Developer • (optional BYOK via Continue)</td>
+<td>Copilot: model selection in Copilot Chat across multiple vendors. • Gemini Code Assist: Google (Gemini). • Amazon Q Developer: AWS service for agentic coding assistance.</td>
+<td>Multi-file diffs, plan/agent modes (plan-dependent), and the loop "edit → run checks → iterate".</td>
+<td>Copilot Pro <strong>$10/mo</strong>, Pro+ <strong>$39/mo</strong>. • Amazon Q Developer Pro: <strong>$19/user/mo</strong> (list price). • Gemini Code Assist: Standard/Enterprise via Google Cloud pricing.</td>
+</tr>
+<tr>
+<td><strong>Visual Studio</strong></td>
+<td>GitHub Copilot</td>
+<td>Copilot models per GitHub.</td>
+<td>Agentic chat/edit in the IDE; a strong fit for .NET "vertical slices" (API + tests) when you have a repo harness.</td>
+<td>Copilot licensing per GitHub: Business <strong>$19/user/mo</strong> (org) plus individual Pro/Pro+ above.</td>
+</tr>
+<tr>
+<td><strong>Cursor</strong></td>
+<td>Cursor (built-in agents + team controls)</td>
+<td>Model costs and governance are documented in Cursor pricing (usage-based, per model).</td>
+<td>AI-native agentic workflow: multi-file edits, agent runs, and team-level spend controls.</td>
+<td>Teams: spend controls and model pricing via Cursor.</td>
+</tr>
+<tr>
+<td><strong>Windsurf</strong></td>
+<td>Windsurf (Cascade)</td>
+<td>Model catalog / premium models are determined by Windsurf plan and credits.</td>
+<td>AI-native agent flow via Cascade (multi-step in the editor).</td>
+<td>Windsurf pricing (plans for individuals/teams/enterprise).</td>
+</tr>
+</tbody>
+</table>
+<p><strong>How to read this for .NET + JS teams:</strong><br />
+- If you want an "enterprise-default" that's easy to standardize in the Microsoft ecosystem: <strong>VS Code/Visual Studio + Copilot</strong> is typically the most predictable rollout path (licensing and docs are very explicit).<br />
+- If you want a Google-first IDE assistant: <strong>Gemini Code Assist</strong> is Google's primary IDE offering.<br />
+- If you want an AI-first editor with a stronger agent experience: <strong>Cursor/Windsurf</strong> often push agent workflows further, but also become a platform you need to standardize and cost-control.</p>
+<hr /></div>
         </div>
     </section>
 
     <section class="presentation-slide" data-slide-number="4 / 8">
         <div class="presentation-slide-content">
-            <h2>
-                <span class="lang-sv">Tre startpaket för team</span>
-                <span class="lang-en">Three starting bundles for teams</span>
-            </h2>
-            <h3><span class="lang-sv">Paket A: Microsoft-standard</span><span class="lang-en">Bundle A: Microsoft standard</span></h3>
-            <p>VS Code + Visual Studio + GitHub Copilot</p>
-            <h3><span class="lang-sv">Paket B: Google-spår</span><span class="lang-en">Bundle B: Google-first</span></h3>
-            <p>VS Code + Gemini Code Assist</p>
-            <h3><span class="lang-sv">Paket C: AI-first</span><span class="lang-en">Bundle C: AI-first</span></h3>
-            <p>Cursor <span class="lang-sv">eller</span><span class="lang-en">or</span> Windsurf + <span class="lang-sv">tydlig kostnadsstyrning</span><span class="lang-en">clear cost controls</span></p>
+            <div class="lang-sv"><h2 id="3-rekommenderade-startpaket-for-team-praktiskt">3) Rekommenderade startpaket för team (praktiskt)</h2>
+<p>Här är tre "baseline"-paket som brukar fungera utan att skapa onödigt verktygskaos:</p>
+<h3 id="paket-a-microsoft-standard-mest-kompatibelt">Paket A: Microsoft-standard (mest kompatibelt)</h3>
+<ul>
+<li><strong>VS Code för JS/TS och polyglot</strong></li>
+<li><strong>Visual Studio för .NET</strong> (när det ger mervärde i debug/profiling)</li>
+<li><strong>GitHub Copilot som gemensam AI-bas</strong></li>
+</ul>
+<p>Det här gör det enklare att skapa gemensamma riktlinjer för modellval, prompts, och arbetssätt i teamet (eftersom Copilot-koncepten är samma i båda IDE:erna).</p>
+<h3 id="paket-b-google-spar-i-iden">Paket B: Google-spår i IDE:n</h3>
+<ul>
+<li><strong>VS Code</strong></li>
+<li><strong>Gemini Code Assist</strong> (Standard/Enterprise om ni behöver org-funktioner)</li>
+</ul>
+<p>Gemini Code Assist finns i "for individuals" samt Standard/Enterprise och dokumenteras via Google Developer/Cloud-dokumentation.</p>
+<h3 id="paket-c-ai-first-editor">Paket C: AI-first editor</h3>
+<ul>
+<li><strong>Cursor</strong> eller <strong>Windsurf</strong> för team som vill driva agentik hårdare i editorn</li>
+<li>Tydlig spend-control/process för att undvika kostnadsöverraskningar (Cursor beskriver spending controls i Teams).</li>
+</ul>
+<hr /></div>
+            <div class="lang-en"><h2 id="3-practical-starting-bundles-for-teams">3) Practical starting bundles for teams</h2>
+<p>These three "baseline" bundles usually work without creating tool chaos:</p>
+<h3 id="bundle-a-microsoft-standard-most-compatible">Bundle A: Microsoft standard (most compatible)</h3>
+<ul>
+<li><strong>VS Code for JS/TS and polyglot</strong></li>
+<li><strong>Visual Studio for .NET</strong> (when it adds value in debugging/profiling)</li>
+<li><strong>GitHub Copilot</strong> as the shared AI baseline</li>
+</ul>
+<p>This makes it easier to establish consistent guidance for model selection, prompts, and workflows (because Copilot concepts are consistent across both IDEs).</p>
+<h3 id="bundle-b-google-first-ide-assistant">Bundle B: Google-first IDE assistant</h3>
+<ul>
+<li><strong>VS Code</strong></li>
+<li><strong>Gemini Code Assist</strong> (Standard/Enterprise when you need org-level features)</li>
+</ul>
+<p>Gemini Code Assist is available as "for individuals" and in Standard/Enterprise tiers, documented via Google Developer/Cloud docs.</p>
+<h3 id="bundle-c-ai-first-editor">Bundle C: AI-first editor</h3>
+<ul>
+<li><strong>Cursor</strong> or <strong>Windsurf</strong> for teams that want to push agentic workflows further inside the editor</li>
+<li>Clear spend-control processes to avoid cost surprises (Cursor documents spend controls for Teams).</li>
+</ul>
+<hr /></div>
         </div>
     </section>
 
     <section class="presentation-slide" data-slide-number="5 / 8">
         <div class="presentation-slide-content">
-            <h2>
-                <span class="lang-sv">Agentiska arbetsflöden</span>
-                <span class="lang-en">Agentic Workflows</span>
-            </h2>
-            <h3><span class="lang-sv">Standardloop</span><span class="lang-en">Standard loop</span></h3>
-            <p><strong>Plan → Diff → Check → Iterate</strong></p>
-            <h3>.NET</h3>
-            <p><span class="lang-sv">Vertikal slice: Endpoint + domän + persistence + tester</span><span class="lang-en">Vertical slice: Endpoint + domain + persistence + tests</span></p>
-            <h3>JS/TS</h3>
-            <p><span class="lang-sv">Feature + UI-states + felhantering + lint/test</span><span class="lang-en">Feature + UI states + error handling + lint/test</span></p>
-            <h3><span class="lang-sv">Reset-regel</span><span class="lang-en">Reset rule</span></h3>
-            <p><code>/compact</code> → <code>/clear</code> → <span class="lang-sv">börja om rent</span><span class="lang-en">restart clean</span></p>
+            <div class="lang-sv"><h2 id="4-praktiska-agentiska-arbetsfloden-i-iden-komprimerat-med-hanvisningar">4) Praktiska agentiska arbetsflöden i IDE:n (komprimerat, med hänvisningar)</h2>
+<p>I stället för att upprepa grunderna från dina tidigare artiklar, bygger den här sektionen en <strong>IDE-anpassad checklista</strong> som kan kopieras till teamets working agreement.</p>
+<h3 id="41-standardloop-i-iden-plan-diff-check-iterera">4.1 Standardloop i IDE:n: "Plan → Diff → Check → Iterera"</h3>
+<ul>
+<li><strong>En enda valideringssignal</strong> (t.ex. <code>make check</code> eller <code>./scripts/ci.sh</code>) är den viktigaste acceleratorn för agentik.  </li>
+<li>Agentik skalar när du kan "lita på loopen" (agent gör ändringar, kör checks, itererar tills grönt, och presenterar diff + risker).  </li>
+<li>Om du vill ha en komplett metodbeskrivning (harness, kontext som "RAM", loggdesign): se <em>Vibe Engineering 101</em>.  </li>
+</ul>
+<h3 id="42-net-vertikal-slice-som-standarduppdrag">4.2 .NET: "Vertikal slice" som standarduppdrag</h3>
+<p>Kör agenten på uppdrag som har tydliga steg och tydlig verifiering:<br />
+- Endpoint + domänregel + persistence + tester (och ev. swagger/kontrakt)<br />
+- Små diffar (max 3–7 filer per iteration)<br />
+- <code>dotnet build</code> + <code>dotnet test</code> efter varje batch</p>
+<p>Det här matchar "tool-driven, easy to validate"-kategorin där agentloopar typiskt ger bäst effekt.  </p>
+<h3 id="43-jsts-feature-states-test">4.3 JS/TS: "Feature + states + test"</h3>
+<p>Låt agenten arbeta runt:<br />
+- UI-states (loading/error/success)<br />
+- tydlig felhantering (409/400/500)<br />
+- lint/test/build som grind</p>
+<p>Och håll loggar minimala och målinriktade – överlastad kontext försämrar agentens precision.  </p>
+<h3 id="44-reset-regel-nar-sessionen-degraderar">4.4 Reset-regel när sessionen degraderar</h3>
+<p>När agenten börjar "snurra" är det ofta snabbare att nollställa än att rädda en stökig kontext. Din befintliga rutin <code>/compact</code> → <code>/clear</code> → klistra in plan + constraints + aktuella fel är en bra standard.  </p>
+<hr /></div>
+            <div class="lang-en"><h2 id="4-agentic-workflows-in-the-ide-compressed-with-references">4) Agentic workflows in the IDE (compressed, with references)</h2>
+<p>Rather than repeating fundamentals from your earlier articles, this section provides an <strong>IDE-oriented checklist</strong> you can copy into a team working agreement.</p>
+<h3 id="41-standard-loop-plan-diff-check-iterate">4.1 Standard loop: "Plan → Diff → Check → Iterate"</h3>
+<ul>
+<li>A <strong>single validation signal</strong> (e.g., <code>make check</code> or <code>./scripts/ci.sh</code>) is the highest-leverage accelerator for agentic development.  </li>
+<li>Agentic work scales when you can trust the loop (agent changes code, runs checks, iterates until green, then presents diff + risks).  </li>
+<li>For the complete methodology (harness design, context as "RAM", log signal): see <em>Vibe Engineering 101</em>.  </li>
+</ul>
+<h3 id="42-net-vertical-slice-as-the-default-unit-of-work">4.2 .NET: "Vertical slice" as the default unit of work</h3>
+<p>Run the agent on tasks with clear steps and clear verification:<br />
+- Endpoint + domain rule + persistence + tests (and optionally swagger/contract)<br />
+- Small diffs (max 3–7 files per iteration)<br />
+- <code>dotnet build</code> + <code>dotnet test</code> after each batch</p>
+<p>This fits the "tool-driven, easy to validate" category where agent loops typically produce the best results.  </p>
+<h3 id="43-jsts-feature-states-test">4.3 JS/TS: "Feature + states + test"</h3>
+<p>Have the agent work around:<br />
+- UI states (loading/error/success)<br />
+- explicit error handling (409/400/500)<br />
+- lint/test/build as the gate</p>
+<p>Keep logs minimal and targeted—overloaded context reduces precision.  </p>
+<h3 id="44-reset-rule-when-the-session-degrades">4.4 Reset rule when the session degrades</h3>
+<p>When the agent starts looping, it's often faster to reset than to rescue a noisy context. Your <code>/compact</code> → <code>/clear</code> routine and re-injecting plan + constraints + current errors is a solid default.  </p>
+<hr /></div>
         </div>
     </section>
 
     <section class="presentation-slide" data-slide-number="6 / 8">
         <div class="presentation-slide-content">
-            <h2>
-                <span class="lang-sv">Skydda känslig kod</span>
-                <span class="lang-en">Protect Sensitive Code</span>
-            </h2>
-            <ul>
-                <li><strong>Allowlist/Denylist</strong> — <span class="lang-sv">Styr vilka mappar agenten får läsa</span><span class="lang-en">Control which folders the agent can read</span></li>
-                <li><strong>Harness</strong> — <span class="lang-sv">Kör kommandon via script/Makefile</span><span class="lang-en">Run commands via script/Makefile</span></li>
-                <li><strong>agents.md</strong> — Commands + Structure + Boundaries</li>
-                <li><strong>Evals</strong> — <span class="lang-sv">Logga verktygsutfall och mät beteende</span><span class="lang-en">Log tool outcomes and measure behavior</span></li>
-            </ul>
+            <div class="lang-sv"><h2 id="5-skydda-kanslig-kodinfo-samlat-utan-att-ligga-i-tabellen">5) Skydda känslig kod/info (samlat, utan att ligga i tabellen)</h2>
+<p>Här är den korta, praktiska versionen som går att operationalisera. För principerna om varför stabil kontext och "contracts" (agents.md) är centrala för tillit, se <em>Agents.md Explained</em>.</p>
+<h3 id="51-minimera-dataytan-som-kan-lamna-maskinen">5.1 Minimera dataytan som kan lämna maskinen</h3>
+<ul>
+<li>Skapa en <strong>AI-allowlist</strong> för vilka mappar agenten får läsa (t.ex. <code>/src</code>, <code>/tests</code>) och en <strong>denylist</strong> för allt som aldrig får in i kontext (<code>/secrets</code>, cert, prod-config, kundexporter).</li>
+<li>Begränsa auto-indexering/"project scanning" i känsliga repos om verktyget stödjer det (målet är att agenten bara ser det som behövs för uppgiften).</li>
+</ul>
+<h3 id="52-styr-agentens-verktyg-och-natverksformaga">5.2 Styr agentens verktyg och nätverksförmåga</h3>
+<ul>
+<li>Kör agentens kommandon via en <strong>kontrollerad harness</strong> (script/Makefile) i stället för fri exekvering.</li>
+<li>Whitelista kommandon (build/test/lint) och kräv mänskligt godkännande för riskområden (auth, crypto, infra, licenser, secrets).</li>
+</ul>
+<h3 id="53-stabilisera-beteende-med-repo-kontrakt-agentsmd">5.3 Stabilisera beteende med repo-kontrakt (agents.md)</h3>
+<p>Ett kort <code>agents.md</code> (eller motsvarande) som alltid innehåller:<br />
+- "Commands" (build/test/lint)<br />
+- "Structure" (viktiga mappar)<br />
+- "Boundaries" (vad agenten aldrig får göra)</p>
+<p>Det minskar slumpen mellan sessioner och bygger tillit genom att eliminera återkommande felklasser.  </p>
+<h3 id="54-driftkrav-logga-verktygsutfall-och-kor-evals">5.4 Driftkrav: logga verktygsutfall och kör evals</h3>
+<p>För agentik i produktion (även internt) bör ni behandla modellen som en komponent i en pipeline: verktyg ger sanning, modellen skriver förslag, och ni mäter beteende med evals. <em>AI Fundamentals 2026</em> beskriver miniminivån tydligt (pipeline + evals).  </p>
+<hr /></div>
+            <div class="lang-en"><h2 id="5-protecting-sensitive-code-and-information-consolidated">5) Protecting sensitive code and information (consolidated)</h2>
+<p>This section is the operational, short version. For the broader principles (why stable context and repo "contracts" such as agents.md matter), see <em>Agents.md Explained</em>.</p>
+<h3 id="51-minimize-the-data-surface-that-can-leave-the-machine">5.1 Minimize the data surface that can leave the machine</h3>
+<ul>
+<li>Maintain an <strong>AI allowlist</strong> of folders the agent may read (e.g., <code>/src</code>, <code>/tests</code>) and a <strong>denylist</strong> for everything that must never enter context (<code>/secrets</code>, certs, prod-config, customer exports).</li>
+<li>Restrict auto-indexing / project scanning in sensitive repos if the tool supports it (goal: the agent only sees what the task requires).</li>
+</ul>
+<h3 id="52-control-tools-and-network-capabilities">5.2 Control tools and network capabilities</h3>
+<ul>
+<li>Run commands through a <strong>controlled harness</strong> (script/Makefile) rather than arbitrary execution.</li>
+<li>Whitelist commands (build/test/lint) and require human approval for risk areas (auth, crypto, infra, licenses, secrets).</li>
+</ul>
+<h3 id="53-stabilize-behavior-with-a-repo-contract-agentsmd">5.3 Stabilize behavior with a repo contract (agents.md)</h3>
+<p>Keep <code>agents.md</code> (or equivalent) short and always include:<br />
+- Commands (build/test/lint)<br />
+- Structure (key folders)<br />
+- Boundaries (what the agent must not do)</p>
+<p>This reduces variance across sessions and eliminates recurring failure modes.  </p>
+<h3 id="54-ops-requirement-log-tool-outcomes-and-run-evals">5.4 Ops requirement: log tool outcomes and run evals</h3>
+<p>For production-grade agentic workflows (even internally), treat the model as a pipeline component: tools produce truth, the model proposes changes, and you measure behavior with evals. <em>AI Fundamentals 2026</em> describes the minimum bar (pipeline + evals).  </p>
+<hr /></div>
         </div>
     </section>
 
     <section class="presentation-slide" data-slide-number="7 / 8">
         <div class="presentation-slide-content">
-            <h2>
-                <span class="lang-sv">Kostnader att budgetera</span>
-                <span class="lang-en">Pricing to Budget</span>
-            </h2>
-            <ul>
-                <li><strong>GitHub Copilot</strong> — Pro $10/mo, Pro+ $39/mo, Business $19/user/mo</li>
-                <li><strong>Amazon Q Developer</strong> — Pro $19/user/mo</li>
-                <li><strong>Gemini Code Assist</strong> — <span class="lang-sv">Google Cloud-prissättning</span><span class="lang-en">Google Cloud pricing</span></li>
-                <li><strong>Cursor</strong> — <span class="lang-sv">Usage-baserat + team spend controls</span><span class="lang-en">Usage-based + team spend controls</span></li>
-                <li><strong>Windsurf</strong> — <span class="lang-sv">Plan-baserat (free/teams/enterprise)</span><span class="lang-en">Plan-based (free/teams/enterprise)</span></li>
-            </ul>
+            <div class="lang-sv"><h2 id="6-kostnads-och-licensnoter-sa-ni-kan-budgetera-rimligt">6) Kostnads- och licensnoter (så ni kan budgetera rimligt)</h2>
+<ul>
+<li><strong>Copilot</strong>: individuella licenser (Pro/Pro+) och org-licenser (Business m.fl.) är tydligt specificerade av GitHub.  </li>
+<li><strong>Amazon Q Developer</strong>: AWS listar prissättning och gränser för free/pro.  </li>
+<li><strong>Gemini Code Assist</strong>: prissättning och editions (Standard/Enterprise) dokumenteras i Google Cloud.  </li>
+<li><strong>Cursor</strong>: usage-baserat (modellpriser + token fee/spend controls i Teams).  </li>
+<li><strong>Windsurf</strong>: prissida anger plan-uppdelning (free/teams/enterprise).  </li>
+</ul>
+<hr /></div>
+            <div class="lang-en"><h2 id="6-pricing-and-licensing-notes-for-budgeting">6) Pricing and licensing notes (for budgeting)</h2>
+<ul>
+<li><strong>Copilot</strong>: individual licenses (Pro/Pro+) and org licenses (Business, etc.) are specified by GitHub.  </li>
+<li><strong>Amazon Q Developer</strong>: AWS lists pricing and limits for free/pro.  </li>
+<li><strong>Gemini Code Assist</strong>: pricing and editions (Standard/Enterprise) are documented in Google Cloud.  </li>
+<li><strong>Cursor</strong>: usage-based (model pricing + token fees + team spend controls).  </li>
+<li><strong>Windsurf</strong>: plan split is documented on the pricing page.  </li>
+</ul>
+<hr /></div>
         </div>
     </section>
 
     <section class="presentation-slide" data-slide-number="8 / 8">
         <div class="presentation-slide-content">
-            <h2>
-                <span class="lang-sv">Team-playbook: Vecka 1</span>
-                <span class="lang-en">Team Playbook: Week 1</span>
-            </h2>
-            <ol>
-                <li><span class="lang-sv">Inför <strong>en valideringscommand</strong></span><span class="lang-en">Introduce <strong>one validation command</strong></span> (<code>make check</code>)</li>
-                <li><span class="lang-sv">Lägg in <code>agents.md</code></span><span class="lang-en">Add <code>agents.md</code></span></li>
-                <li><span class="lang-sv">Standardisera prompts: Goal → Constraints → Done → Plan</span><span class="lang-en">Standardize prompts: Goal → Constraints → Done → Plan</span></li>
-                <li><span class="lang-sv">Etablera reset-regel</span><span class="lang-en">Establish reset rule</span></li>
-                <li><span class="lang-sv">Aktivera denylist för känsliga repos</span><span class="lang-en">Enable denylist for sensitive repos</span></li>
-            </ol>
-            <div class="cursor-tip">
-                <div class="cursor-tip-header">TL;DR</div>
-                <p>
-                    <span class="lang-sv">Välj IDE efter ekosystem. Implementera valideringsloop. Stabilisera med agents.md. Styr kostnader.</span>
-                    <span class="lang-en">Choose IDE by ecosystem. Implement validation loop. Stabilize with agents.md. Control costs.</span>
-                </p>
-            </div>
+            <div class="lang-sv"><h2 id="7-en-kort-team-playbook-att-infora-vecka-1">7) En kort "team-playbook" att införa vecka 1</h2>
+<p>1) Inför <strong>en valideringscommand</strong> (<code>make check</code> eller <code>./scripts/ci.sh</code>) och gör det till agentens standardverktyg.<br />
+2) Lägg in <code>agents.md</code> med kommandon/struktur/boundaries (maximalt kompakt).<br />
+3) Standardisera prompts: <strong>Goal → Constraints/non-goals → Done → Plan först</strong> (din "prompt som ingenjörskommunikation"-mall).<br />
+4) Etablera en reset-regel: "om loopen degraderar → compact/clear och börja om rent".<br />
+5) För känsliga repos: aktivera denylist och begränsa agentverktyg enligt 5.1–5.2.</p></div>
+            <div class="lang-en"><h2 id="7-a-one-week-team-playbook-week-1">7) A one-week team playbook (Week 1)</h2>
+<p>1) Introduce <strong>one validation command</strong> (<code>make check</code> or <code>./scripts/ci.sh</code>) and make it the agent's default tool.<br />
+2) Add <code>agents.md</code> with commands/structure/boundaries (keep it compact).<br />
+3) Standardize prompts: <strong>Goal → Constraints/non-goals → Done → Plan first</strong> (your "prompt as engineering communication" pattern).<br />
+4) Establish a reset rule: if the loop degrades → compact/clear and restart clean.<br />
+5) For sensitive repos: enable denylist and restrict tools per 5.1–5.2.</p></div>
         </div>
     </section>
 
@@ -821,45 +876,19 @@
             mobileMenu.classList.contains('active') ? closeMenu() : openMenu();
         });
 
-        menuOverlay.addEventListener('click', closeMenu);
-        menuClose.addEventListener('click', closeMenu);
-
-        document.querySelectorAll('.mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (!link.id || (link.id !== 'menuThemeToggle' && link.id !== 'menuLangToggle')) {
-                    closeMenu();
-                }
-            });
-        });
+        if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
+        if (menuClose) menuClose.addEventListener('click', closeMenu);
 
         // Progress Bar
         window.addEventListener('scroll', () => {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrolled = (winScroll / height) * 100;
-            document.getElementById('progressBar').style.width = scrolled + '%';
+            const progressBar = document.getElementById('progressBar');
+            if (progressBar) progressBar.style.width = scrolled + '%';
         });
 
-        // Smooth scroll for nav pills
-        document.querySelectorAll('.nav-pill, .mobile-menu a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href.startsWith('#')) {
-                    e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                }
-            });
-        });
-
-        // ==================== 
         // Presentation Mode
-        // ====================
         const presentationToggle = document.getElementById('presentationToggle');
         const presentationProgress = document.getElementById('presentationProgress');
         const progressFill = document.getElementById('progressFill');
@@ -868,107 +897,287 @@
 
         function setPresentationMode(enabled) {
             html.setAttribute('data-presentation', enabled ? 'true' : 'false');
-            localStorage.setItem('presentationMode', enabled ? 'true' : 'false');
-            presentationToggle.classList.toggle('active', enabled);
-            
-            if (enabled) {
-                if (slides.length > 0) {
-                    slides[0].scrollIntoView({ behavior: 'smooth' });
-                }
-            } else {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+            localStorage.setItem('presentation', enabled ? 'true' : 'false');
+            if (presentationToggle) {
+                presentationToggle.classList.toggle('active', enabled);
             }
         }
 
-        const savedPresentationMode = localStorage.getItem('presentationMode') === 'true';
-        if (savedPresentationMode) {
-            setPresentationMode(true);
+        // Always start with presentation mode OFF (user must click to enable)
+        setPresentationMode(false);
+
+        if (presentationToggle) {
+            presentationToggle.addEventListener('click', () => {
+                const current = html.getAttribute('data-presentation') === 'true';
+                setPresentationMode(!current);
+                if (!current) {
+                    // Scroll to first slide when enabling
+                    slides[0]?.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
         }
 
-        presentationToggle.addEventListener('click', () => {
-            const isActive = html.getAttribute('data-presentation') === 'true';
-            setPresentationMode(!isActive);
-        });
-
+        // Presentation Progress Tracking
         function updatePresentationProgress() {
             if (html.getAttribute('data-presentation') !== 'true') return;
 
-            const scrollTop = window.scrollY;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             const windowHeight = window.innerHeight;
             let currentSlide = 0;
 
             slides.forEach((slide, index) => {
                 const slideTop = slide.offsetTop;
-                const slideHeight = slide.offsetHeight;
-                
-                if (scrollTop + windowHeight / 2 >= slideTop && 
-                    scrollTop + windowHeight / 2 < slideTop + slideHeight) {
+                const slideBottom = slideTop + slide.offsetHeight;
+                if (scrollTop + windowHeight / 2 >= slideTop && scrollTop + windowHeight / 2 < slideBottom) {
                     currentSlide = index;
                 }
             });
 
+            // Update progress items
             progressItems.forEach((item, index) => {
-                item.classList.remove('active', 'passed');
-                if (index < currentSlide) {
-                    item.classList.add('passed');
-                } else if (index === currentSlide) {
-                    item.classList.add('active');
-                }
+                item.classList.toggle('active', index === currentSlide);
+                item.classList.toggle('passed', index < currentSlide);
             });
 
-            const totalSlides = slides.length;
-            const progressPercentage = (currentSlide / (totalSlides - 1)) * 100;
-            progressFill.style.height = progressPercentage + '%';
+            // Update progress fill
+            if (progressFill && slides.length > 0) {
+                const progress = ((currentSlide + 1) / slides.length) * 100;
+                progressFill.style.height = progress + '%';
+            }
         }
 
         window.addEventListener('scroll', updatePresentationProgress);
+        updatePresentationProgress();
 
-        progressItems.forEach((item, index) => {
-            item.addEventListener('click', () => {
-                if (slides[index]) {
-                    slides[index].scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-
+        // Keyboard Navigation for Presentation Mode
+        // Note: We query slides fresh each time to include dynamically created continuation slides
         document.addEventListener('keydown', (e) => {
             if (html.getAttribute('data-presentation') !== 'true') return;
 
-            let currentSlide = 0;
-            const scrollTop = window.scrollY;
+            // Query slides fresh to include any dynamically created continuation slides
+            const allSlides = document.querySelectorAll('.presentation-slide');
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
             const windowHeight = window.innerHeight;
+            let currentSlideIndex = 0;
 
-            slides.forEach((slide, index) => {
+            allSlides.forEach((slide, index) => {
                 const slideTop = slide.offsetTop;
-                const slideHeight = slide.offsetHeight;
-                if (scrollTop + windowHeight / 2 >= slideTop && 
-                    scrollTop + windowHeight / 2 < slideTop + slideHeight) {
-                    currentSlide = index;
+                if (currentScroll + windowHeight / 2 >= slideTop) {
+                    currentSlideIndex = index;
                 }
             });
 
-            if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+            if (e.key === 'ArrowDown' || e.key === ' ' || e.key === 'PageDown') {
                 e.preventDefault();
-                if (currentSlide < slides.length - 1) {
-                    slides[currentSlide + 1].scrollIntoView({ behavior: 'smooth' });
+                if (currentSlideIndex < allSlides.length - 1) {
+                    allSlides[currentSlideIndex + 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
-            } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'PageUp') {
+            } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
                 e.preventDefault();
-                if (currentSlide > 0) {
-                    slides[currentSlide - 1].scrollIntoView({ behavior: 'smooth' });
+                if (currentSlideIndex > 0) {
+                    allSlides[currentSlideIndex - 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
-            } else if (e.key === 'Escape') {
-                setPresentationMode(false);
             } else if (e.key === 'Home') {
                 e.preventDefault();
-                slides[0].scrollIntoView({ behavior: 'smooth' });
+                allSlides[0].scrollIntoView({ behavior: 'smooth', block: 'start' });
             } else if (e.key === 'End') {
                 e.preventDefault();
-                slides[slides.length - 1].scrollIntoView({ behavior: 'smooth' });
+                allSlides[allSlides.length - 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else if (e.key === 'Escape') {
+                e.preventDefault();
+                setPresentationMode(false);
             }
         });
 
-        updatePresentationProgress();
+        // Click on progress items to jump to slide
+        progressItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                if (slides[index]) {
+                    slides[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Auto-split overflowing slides into continuation slides
+        let slidesSplit = false;
+        
+        function splitOverflowingSlides() {
+            if (slidesSplit) return; // Only run once
+            if (html.getAttribute('data-presentation') !== 'true') return;
+            
+            const maxContentHeight = window.innerHeight - 220; // Account for padding (6rem top + 4rem bottom + buffer)
+            const allSlides = Array.from(document.querySelectorAll('.presentation-slide:not(.continuation-slide)'));
+            let continuationSlides = [];
+            
+            allSlides.forEach((slide, originalIndex) => {
+                const content = slide.querySelector('.presentation-slide-content');
+                if (!content || slide.classList.contains('hero-slide')) return;
+                
+                // Force layout calculation
+                const svDiv = content.querySelector('.lang-sv');
+                const enDiv = content.querySelector('.lang-en');
+                if (!svDiv || !enDiv) return;
+                
+                // Check both language versions for overflow
+                const svOverflows = svDiv.scrollHeight > maxContentHeight;
+                const enOverflows = enDiv.scrollHeight > maxContentHeight;
+                
+                if (!svOverflows && !enOverflows) return;
+                
+                // This slide needs splitting
+                slide.classList.add('has-continuation');
+                
+                // Get splittable elements (skip H2 headers)
+                const svElements = Array.from(svDiv.children).filter(el => el.tagName !== 'H2');
+                const enElements = Array.from(enDiv.children).filter(el => el.tagName !== 'H2');
+                
+                if (svElements.length <= 1) return;
+                
+                // Find split point based on cumulative height
+                let currentHeight = 0;
+                let splitIndex = -1;
+                
+                // Include H2 height in initial calculation
+                const svH2 = svDiv.querySelector('h2');
+                if (svH2) currentHeight = svH2.offsetHeight + 40;
+                
+                for (let i = 0; i < svElements.length; i++) {
+                    const el = svElements[i];
+                    const style = window.getComputedStyle(el);
+                    const marginTop = parseInt(style.marginTop) || 0;
+                    const marginBottom = parseInt(style.marginBottom) || 0;
+                    currentHeight += el.offsetHeight + marginTop + marginBottom;
+                    
+                    if (currentHeight > maxContentHeight && i > 0) {
+                        splitIndex = i;
+                        break;
+                    }
+                }
+                
+                if (splitIndex <= 0) return;
+                
+                // Create continuation slide
+                const continuationSlide = document.createElement('section');
+                continuationSlide.className = 'presentation-slide continuation-slide';
+                continuationSlide.setAttribute('data-original-slide', originalIndex.toString());
+                
+                const continuationContent = document.createElement('div');
+                continuationContent.className = 'presentation-slide-content';
+                
+                // Create language containers for continuation
+                const svContinuation = document.createElement('div');
+                svContinuation.className = 'lang-sv';
+                const enContinuation = document.createElement('div');
+                enContinuation.className = 'lang-en';
+                
+                // Add continuation label
+                const svLabel = document.createElement('span');
+                svLabel.className = 'continuation-label';
+                svLabel.textContent = '(fortsättning)';
+                svContinuation.appendChild(svLabel);
+                
+                const enLabel = document.createElement('span');
+                enLabel.className = 'continuation-label';
+                enLabel.textContent = '(continued)';
+                enContinuation.appendChild(enLabel);
+                
+                // Move overflow elements to continuation slide
+                for (let i = splitIndex; i < svElements.length; i++) {
+                    svContinuation.appendChild(svElements[i].cloneNode(true));
+                    svElements[i].remove();
+                }
+                
+                const enSplitIndex = Math.min(splitIndex, enElements.length);
+                for (let i = enSplitIndex; i < enElements.length; i++) {
+                    enContinuation.appendChild(enElements[i].cloneNode(true));
+                    enElements[i].remove();
+                }
+                
+                continuationContent.appendChild(svContinuation);
+                continuationContent.appendChild(enContinuation);
+                continuationSlide.appendChild(continuationContent);
+                
+                // Insert continuation slide after original
+                slide.insertAdjacentElement('afterend', continuationSlide);
+                continuationSlides.push(continuationSlide);
+            });
+            
+            // If we created continuation slides, update numbering
+            if (continuationSlides.length > 0) {
+                const allSlidesNow = document.querySelectorAll('.presentation-slide');
+                const totalSlides = allSlidesNow.length;
+                
+                allSlidesNow.forEach((slide, index) => {
+                    slide.setAttribute('data-slide-number', `${index + 1} / ${totalSlides}`);
+                });
+                
+                slidesSplit = true;
+                
+                // Recursively check if continuation slides also need splitting
+                setTimeout(splitOverflowingSlides, 50);
+            } else {
+                slidesSplit = true;
+            }
+        }
+        
+        // Run split check when presentation mode is toggled
+        const originalSetPresentationMode = setPresentationMode;
+        setPresentationMode = function(enabled) {
+            originalSetPresentationMode(enabled);
+            if (enabled && !slidesSplit) {
+                // Delay to allow rendering
+                requestAnimationFrame(() => {
+                    setTimeout(splitOverflowingSlides, 50);
+                });
+            }
+        };
+
+        // Reading Progress (vertical chapter navigation for reading mode)
+        const readingProgressItems = document.querySelectorAll('.reading-progress-item');
+        const readingProgressFill = document.getElementById('readingProgressFill');
+        
+        function updateReadingProgress() {
+            // Don't update in presentation mode
+            if (html.getAttribute('data-presentation') === 'true') return;
+            
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const currentLang = html.getAttribute('data-lang') || 'sv';
+            
+            // Find H2 sections only from the active language
+            const sections = document.querySelectorAll(`article .lang-${currentLang} h2[id]`);
+            let currentIndex = -1;
+            
+            sections.forEach((section, index) => {
+                const sectionTop = section.offsetTop - 150; // Offset for header
+                if (scrollTop >= sectionTop) {
+                    currentIndex = index;
+                }
+            });
+            
+            // Update reading progress items
+            readingProgressItems.forEach((item, index) => {
+                item.classList.remove('active', 'passed');
+                if (index === currentIndex) {
+                    item.classList.add('active');
+                } else if (index < currentIndex) {
+                    item.classList.add('passed');
+                }
+            });
+            
+            // Update progress fill
+            if (readingProgressFill && sections.length > 0) {
+                const progress = ((currentIndex + 1) / sections.length) * 100;
+                readingProgressFill.style.height = Math.max(0, progress) + '%';
+            }
+        }
+        
+        // Listen for scroll events
+        window.addEventListener('scroll', updateReadingProgress);
+        
+        // Initial update
+        updateReadingProgress();
+        
+
     </script>
 </body>
 </html>

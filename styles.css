@@ -284,6 +284,13 @@ body > header {
     border-color: var(--accent-olive);
 }
 
+/* Hide nav pills on desktop when reading-progress is visible */
+@media (min-width: 1201px) {
+    .article-nav {
+        display: none;
+    }
+}
+
 /* Hide on very small screens, show hamburger menu instead */
 @media (max-width: 480px) {
     .article-nav {
@@ -738,6 +745,81 @@ blockquote {
     color: var(--text-secondary);
 }
 
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+    background: var(--bg-primary);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--border-color);
+}
+
+thead {
+    background: var(--bg-secondary);
+}
+
+th {
+    text-align: left;
+    padding: 0.875rem 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--border-color);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: top;
+    line-height: 1.5;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tr:hover {
+    background: var(--bg-secondary);
+}
+
+/* First column styling */
+td:first-child {
+    font-weight: 500;
+    color: var(--accent-olive);
+    white-space: nowrap;
+}
+
+/* Responsive tables */
+@media (max-width: 768px) {
+    table {
+        font-size: 0.8rem;
+    }
+    
+    th, td {
+        padding: 0.5rem 0.625rem;
+    }
+    
+    td:first-child {
+        white-space: normal;
+    }
+}
+
+/* Table in presentation mode */
+.presentation-slide table {
+    font-size: 0.85rem;
+}
+
+.presentation-slide th {
+    font-size: 0.75rem;
+}
+
 /* Python syntax highlighting */
 .keyword { color: #c678dd; }
 .string { color: #98c379; }
@@ -917,6 +999,20 @@ footer {
     font-size: 1.4rem;
     max-width: 600px;
     margin: 0 auto;
+}
+
+/* Article Categories */
+.article-category {
+    margin-bottom: 4rem;
+}
+
+.category-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--accent-olive);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border-color);
 }
 
 .article-grid {
@@ -1324,6 +1420,149 @@ footer {
 /* Hide scroll hint after first slide is passed */
 [data-presentation="true"] .presentation-slide:not(:first-of-type) .presentation-scroll-hint {
     display: none;
+}
+
+/* Continuation slides - auto-generated when content overflows */
+.presentation-slide.continuation-slide {
+    /* Align content to top for continuation slides */
+    justify-content: flex-start;
+    padding-top: 8rem;
+}
+
+/* Continuation marker for slides that overflow - shows scroll down hint */
+.presentation-slide.has-continuation::before {
+    content: "↓";
+    position: absolute;
+    bottom: 4rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    opacity: 0.6;
+    animation: presentationBounce 2s infinite;
+}
+
+/* Continuation slide label */
+.continuation-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Ensure continuation slides maintain scroll-snap behavior */
+.presentation-slide.continuation-slide {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+}
+
+/* ==================== */
+/* Reading Progress     */
+/* ==================== */
+/* Vertical chapter navigation for reading mode (desktop only) */
+.reading-progress {
+    position: fixed;
+    left: calc(50% - 500px - 180px); /* Position to the left of max-width content (1000px/2 + gap) */
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 90;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+}
+
+/* Hide in presentation mode (use presentation-progress instead) */
+[data-presentation="true"] .reading-progress {
+    display: none;
+}
+
+.reading-progress-track {
+    position: absolute;
+    left: 5px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--border-color);
+    border-radius: 3px;
+}
+
+.reading-progress-fill {
+    position: absolute;
+    left: 5px;
+    top: 0;
+    width: 3px;
+    height: 0%;
+    background: linear-gradient(180deg, var(--accent-olive), var(--accent-olive-light));
+    border-radius: 3px;
+    transition: height 0.3s ease;
+}
+
+.reading-progress-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    text-decoration: none;
+}
+
+.reading-progress-dot {
+    width: 11px;
+    height: 11px;
+    min-width: 11px;
+    background: var(--bg-primary);
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    transition: all 0.25s ease;
+}
+
+.reading-progress-item:hover .reading-progress-dot {
+    border-color: var(--accent-olive);
+    transform: scale(1.2);
+}
+
+.reading-progress-item.active .reading-progress-dot {
+    background: var(--accent-olive);
+    border-color: var(--accent-olive);
+    box-shadow: 0 0 0 3px rgba(92, 102, 80, 0.2);
+}
+
+.reading-progress-item.passed .reading-progress-dot {
+    background: var(--accent-olive);
+    border-color: var(--accent-olive);
+}
+
+.reading-progress-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color 0.2s ease;
+}
+
+.reading-progress-item:hover .reading-progress-label {
+    color: var(--text-secondary);
+}
+
+.reading-progress-item.active .reading-progress-label {
+    font-weight: 500;
+    color: var(--accent-olive);
+}
+
+/* Hide reading progress on smaller screens */
+@media (max-width: 1200px) {
+    .reading-progress {
+        display: none;
+    }
 }
 
 /* Presentation mode responsive */

@@ -1,104 +1,34 @@
 # B3 Commit AI Handbook - Project Rules
 
 ## Källfiler
-- **HTML-mall**: `_template.html` - kopiera vid nya artiklar
+- **Markdown-källor**: `articles/[slug]-sv.md` och `articles/[slug]-en.md` - källfiler för allt innehåll
+- **Manifest**: `articles/manifest.json` - centraliserad metadata för alla artiklar
+- **Build-script**: `build.py` - genererar HTML från markdown automatiskt
 - **Styling**: `styles.css` - alla CSS-klasser och layout
-- **Referens**: `cursor-python-agent.html` - komplett artikelexempel
+- **HTML-mall**: `_template.html` - referens för struktur (används inte längre för nya artiklar)
 
 ## Riktlinjer
 
 ### Språkstöd
 - Svenska är default (`data-lang="sv"`)
 - Alla texter ska ha både `<span class="lang-sv">` och `<span class="lang-en">`
-- Språk-toggle i header växlar mellan 🇸🇪 SV / 🇬🇧 EN
+- Språk-toggle i header växlar mellan SV / EN
 - localStorage sparar användarens val
 
 ### Branding
-- Logo: Endast text "B3 Commit" (ingen ikon, ingen logo-icon span)
+- Logo: Endast text "B3 Commit" (ingen ikon)
 - Header och innehåll alignar (samma width: 90%, max-width: 1000px)
-- Inga emojis i menylänkar
 - Breadcrumb-format: `/ AI Handbook / [Sidnamn]`
 
 ### Layout
 - Huvudinnehåll: `width: 90%; max-width: 1000px`
 - Se `styles.css` för alla komponenter och mått
 
-## Artikel-navigation
-
-Varje artikel har en navigation med snabblänkar till sektioner. Denna placeras **under artikelrubriken**, inte i headern.
-
-### Komponent
-```html
-<!-- Article Navigation - placeras direkt efter </header> i article -->
-<nav class="article-nav" id="articleNav">
-    <a href="#section1" class="nav-pill">Sektion 1</a>
-    <a href="#section2" class="nav-pill">Sektion 2</a>
-    <!-- ... fler sektioner ... -->
-</nav>
-```
-
-### Funktioner
-- **Sticky**: Fastnar under huvudheadern vid scroll (`top: 60px`)
-- **Centrerad**: Flexbox med `justify-content: center`
-- **Responsiv**: Döljs på små skärmar (<480px), använd hamburgermenyn istället
-- **Språkstöd**: Använd `<span class="lang-sv/en">` för översättningar i pills
-
-### CSS-klasser (i styles.css)
-- `.article-nav` - Container för navigationen
-- `.nav-pill` - Individuella länkknappar
-- `.nav-pill.active` - Aktiv sektion (valfritt)
-
 ## Presentation Mode
 
-Alla artiklar MÅSTE ha stöd för Presentation Mode - ett PowerPoint-inspirerat läge där artikeln visas som fullhöjd slides.
+Alla artiklar har Presentation Mode - ett PowerPoint-inspirerat läge där artikeln visas som fullhöjd slides.
 
-### Komponenter
-
-1. **Toggle-knapp** i `.nav-right`:
-```html
-<button class="presentation-toggle" id="presentationToggle" aria-label="Presentation mode">
-    <span class="icon">📽️</span>
-    <span class="lang-sv">Presentation</span>
-    <span class="lang-en">Present</span>
-</button>
-```
-
-2. **Progress-indikator** efter `<div class="progress-bar">`:
-```html
-<nav class="presentation-progress" id="presentationProgress">
-    <div class="presentation-progress-track"></div>
-    <div class="presentation-progress-fill" id="progressFill"></div>
-    <!-- En item per slide -->
-    <div class="presentation-progress-item active" data-slide="0">
-        <div class="presentation-progress-dot"></div>
-        <span class="presentation-progress-label">[Slide-titel]</span>
-    </div>
-    <!-- ... fler items ... -->
-</nav>
-```
-
-3. **Slides** efter `</main>`, före `<footer>`:
-```html
-<section class="presentation-slide hero-slide" data-slide-number="1 / X">
-    <div class="presentation-slide-content">
-        <!-- Slide-innehåll -->
-    </div>
-    <div class="presentation-scroll-hint">...</div> <!-- Endast på slide 1 -->
-</section>
-```
-
-### Slide-struktur
-- **Slide 1**: Hero med titel, subtitle (klass: `hero-slide`)
-- **Slide 2-N**: Innehållsslides med `<h2>`, text, listor, etc.
-- Varje H2-sektion i artikeln = 1 slide
-- Komplett info på varje slide (inte förkortad)
-
-### JavaScript
-Lägg till presentation mode-scriptet i `<script>`-taggen:
-- Toggle-funktion med localStorage
-- Progress-tracking vid scroll
-- Tangentbordsnavigering (pilar, space, escape)
-- Se `agents-md-explained.html` för komplett implementation
+**Genereras automatiskt av build-scriptet** baserat på H2-sektioner i markdown.
 
 ### CSS-klasser (i styles.css)
 - `.presentation-toggle` - Toggle-knapp
@@ -109,21 +39,50 @@ Lägg till presentation mode-scriptet i `<script>`-taggen:
 
 ## Nya artiklar
 
-1. Kopiera `_template.html` till `[filnamn].html`
-2. Lägg till artikel-navigation (`<nav class="article-nav">`) efter `</header>` i article
-3. Skapa presentation slides för varje H2-sektion
-4. Lägg till presentation progress-indikator
-5. Lägg till presentation toggle-knapp i header
-6. Lägg till presentation mode JavaScript
-7. Lägg till kort på `index.html`:
-```html
-<article class="article-card">
-    <h2><a href="[filnamn].html">[Titel]</a></h2>
-    <p class="meta">[Kategori] // [Datum]</p>
-    <p>[Beskrivning]</p>
-</article>
-```
-8. Lägg till länk i mobile-menu på alla sidor
+### Arbetsflöde
+
+1. **Skapa markdown-källor**:
+   - `articles/[slug]-sv.md` - svensk version
+   - `articles/[slug]-en.md` - engelsk version
+   - Använd H2 (`##`) för sektioner (varje H2 blir en slide)
+
+2. **Uppdatera manifest** (`articles/manifest.json`):
+   ```json
+   {
+     "slug": "article-slug",
+     "html": "article-slug.html",
+     "category": "fundamentals",
+     "date": "2026-01",
+     "title": { "sv": "Svensk titel", "en": "English title" },
+     "subtitle": { "sv": "Undertitel", "en": "Subtitle" },
+     "meta": { "sv": "Kategori", "en": "Category" },
+     "sources": {
+       "sv": "articles/article-slug-sv.md",
+       "en": "articles/article-slug-en.md"
+     },
+     "description": { "sv": "Beskrivning", "en": "Description" }
+   }
+   ```
+
+3. **Uppdatera index.html**:
+   - Lägg till artikel-kort i rätt kategori-sektion
+
+4. **Kör build-script**:
+   ```bash
+   python build.py
+   ```
+   Genererar automatiskt:
+   - HTML med bilingual content
+   - Presentation slides (en per H2)
+   - JavaScript (theme, language, presentation mode, keyboard nav)
+   - Mobile menu med alla artiklar
+   - Article navigation pills
+
+### Viktigt
+- **Redigera inte genererad HTML direkt** - ändringar går förlorade vid nästa build
+- **Redigera markdown-filer** för innehållsändringar
+- **Redigera `build.py`** för strukturella ändringar
 
 ### Referens
-Se `agents-md-explained.html` för komplett exempel på artikel med Presentation Mode.
+- `articles/manifest.json` - exempel på metadata
+- `articles/shared-terminology-sv.md` - exempel på markdown-struktur

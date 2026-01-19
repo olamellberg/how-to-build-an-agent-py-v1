@@ -18,7 +18,7 @@ Utan denna information gissar agenten. Ibland rätt, ofta fel. Resultatet blir u
 Målet är inte att beskriva allt, utan att ge **precis tillräcklig gemensam kontext** så att:
 - du slipper upprepa dig
 - agenten beter sig konsekvent
-- nya sessioner startar “varma”
+- nya sessioner startar "varma"
 
 I dag är vi i ett läge där:
 - agenter klarar verkligt utvecklingsarbete
@@ -64,10 +64,10 @@ Denna osäkerhet bryter förtroende.
 `agents.md` ersätter implicita antaganden med explicita kontrakt.
 
 I stället för:
-“Agenten borde veta detta…”
+"Agenten borde veta detta…"
 
 säger du:
-“Så här fungerar det hos oss.”
+"Så här fungerar det hos oss."
 
 Det handlar inte om att göra agenten smartare.
 **Det handlar om att göra den pålitlig.**
@@ -109,6 +109,40 @@ Compounding Engineering innebär att:
 
 I stället för att upprepa korrigeringar kodar du in begränsningar och arbetssätt så att beteendet förbättras över tid.
 
+
+## Modellkänslighet: varför samma Agents.md fungerar olika mellan modeller
+
+Ett vanligt antagande är att en `agents.md`‑fil är neutral – att den fungerar likadant oavsett modell.
+
+I praktiken stämmer inte detta.
+
+Olika modeller tolkar *samma instruktioner* på olika sätt. Detta blir särskilt tydligt när man jämför OpenAI‑modeller med Anthropics Claude‑modeller, vilket Geoffrey Huntley visar i sitt föredrag.
+
+I hans exempel gav samma `agents.md`:
+- tydligt och beslutsamt beteende hos en OpenAI‑modell
+- mer tveksamt och överdrivet försiktigt beteende hos en Claude‑modell
+
+Filen var oförändrad. Det som ändrades var modellen.
+
+Skillnaderna beror bland annat på hur modeller:
+- tolkar begränsningar
+- reagerar på ton och betoning
+- tar initiativ
+- balanserar försiktighet mot handling
+
+Eftersom `agents.md` normalt laddas på plats 1 i kontextarrayen, direkt efter systemprompten, förstärks dessa skillnader. Små formuleringar kan ge stora beteendeskillnader.
+
+Den centrala insikten är:
+
+**Agents.md är inte bara konfiguration – det är beteendeprogrammering, och beteende är modellberoende.**
+
+Vid byte av modell bör man därför:
+- återvalidera agentens beteende
+- observera tvekan eller övermod
+- hellre regenerera än att lappa filen
+
+Tillförlitlighet uppstår inte genom att välja "bästa" modellen, utan genom att justera **instruktioner, modellbeteende och förväntningar** så att de stämmer överens.
+
 ## Ett kompakt exempel på en bra agents.md
 
 ```md
@@ -136,3 +170,16 @@ I stället för att upprepa korrigeringar kodar du in begränsningar och arbetss
 - Håll den liten och explicit
 - Eliminera upprepade fel
 - Målet är förtroende, inte imponerande output
+
+## Referenser & Credits
+
+### Officiella resurser
+
+- [agents.md](https://agents.md/)
+- [Using CLAUDE.md Files — Anthropic](https://www.claude.com/blog/using-claude-md-files)
+- [How to Write a Great agents.md — GitHub Blog](https://github.blog/ai-and-ml/github-copilot/how-to-write-a-great-agents-md-lessons-from-over-2500-repositories/)
+
+### Inspiration
+
+- [Grit AI Studio](https://www.youtube.com/@GritAIStudio)
+- [Geoffrey Huntley](https://ghuntley.com/)

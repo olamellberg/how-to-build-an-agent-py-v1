@@ -23,111 +23,209 @@
         </div>
         <div class="presentation-progress-item" data-slide="1">
             <div class="presentation-progress-dot"></div>
-            <span class="presentation-progress-label">
-                <span class="lang-sv">Tänk först</span>
-                <span class="lang-en">Think first</span>
-            </span>
+            <span class="presentation-progress-label">Claude Code 101: en praktisk handbok för att leverera riktiga ändringar säkert</span>
         </div>
         <div class="presentation-progress-item" data-slide="2">
             <div class="presentation-progress-dot"></div>
-            <span class="presentation-progress-label">
-                <span class="lang-sv">Arkitektur</span>
-                <span class="lang-en">Architecture</span>
-            </span>
+            <span class="presentation-progress-label">Tänk först (använd Plan Mode, exekvera sedan)</span>
         </div>
         <div class="presentation-progress-item" data-slide="3">
             <div class="presentation-progress-dot"></div>
-            <span class="presentation-progress-label">CLAUDE.md</span>
+            <span class="presentation-progress-label">Arkitektur är inte valfritt (det är hur du begränsar modellen)</span>
         </div>
         <div class="presentation-progress-item" data-slide="4">
             <div class="presentation-progress-dot"></div>
-            <span class="presentation-progress-label">
-                <span class="lang-sv">Kontext</span>
-                <span class="lang-en">Context</span>
-            </span>
+            <span class="presentation-progress-label">CLAUDE.md: din fil med högst hävstång</span>
         </div>
         <div class="presentation-progress-item" data-slide="5">
             <div class="presentation-progress-dot"></div>
-            <span class="presentation-progress-label">Prompting</span>
+            <span class="presentation-progress-label">Goals</span>
         </div>
         <div class="presentation-progress-item" data-slide="6">
             <div class="presentation-progress-dot"></div>
-            <span class="presentation-progress-label">MCP & Hooks</span>
+            <span class="presentation-progress-label">Non-goals</span>
         </div>
         <div class="presentation-progress-item" data-slide="7">
             <div class="presentation-progress-dot"></div>
-            <span class="presentation-progress-label">
-                <span class="lang-sv">När fast</span>
-                <span class="lang-en">When stuck</span>
-            </span>
+            <span class="presentation-progress-label">Commands (run after edits)</span>
         </div>
         <div class="presentation-progress-item" data-slide="8">
             <div class="presentation-progress-dot"></div>
-            <span class="presentation-progress-label">TL;DR</span>
+            <span class="presentation-progress-label">Architecture constraints</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="9">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Working style</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="10">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">"Ultrathink"-läge (kvalitetsfokuserat mindset)</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="11">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Kontextfönster degraderas tidigare än du tror</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="12">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Prompting: behandla det som ingenjörskommunikation</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="13">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Dålig input → dålig output</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="14">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Arbetsflöde för modellval (håll det praktiskt)</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="15">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">MCP, hooks, slash-kommandon och config: använd features som tar bort slit</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="16">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">När Claude fastnar: bryt loopen medvetet</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="17">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Bygg system, inte engångsinteraktioner (headless mode)</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="18">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">TL;DR (Claude Code 101)</span>
         </div>
     </nav>
 
-    <!-- Vertical Scroll Timeline -->
-    <div class="scroll-timeline" id="scrollTimeline">
-        <div class="scroll-timeline-progress" id="scrollProgress"></div>
-        <div class="scroll-timeline-marker" data-section="intro" style="top: 0%">
-            <span class="scroll-timeline-label">Intro</span>
-        </div>
-        <div class="scroll-timeline-marker" data-section="think" style="top: 8%">
-            <span class="scroll-timeline-label">
-                <span class="lang-sv">Tänk först</span>
-                <span class="lang-en">Think first</span>
+    <!-- Reading Progress (vertical chapter nav for reading mode) -->
+    <nav class="reading-progress" id="readingProgress">
+        <div class="reading-progress-track"></div>
+        <div class="reading-progress-fill" id="readingProgressFill"></div>
+        <a href="#claude-code-101-en-praktisk-handbok-för-att-leverera-riktiga-ändringar-säkert" class="reading-progress-item" data-section="claude-code-101-en-praktisk-handbok-för-att-leverera-riktiga-ändringar-säkert">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Claude Code 101: en praktisk handbok för att leverera riktiga ändringar säkert</span>
+                <span class="lang-en">Claude Code 101: a practical playbook for shipping real changes safely</span>
             </span>
-        </div>
-        <div class="scroll-timeline-marker" data-section="architecture" style="top: 16%">
-            <span class="scroll-timeline-label">
-                <span class="lang-sv">Arkitektur</span>
-                <span class="lang-en">Architecture</span>
+        </a>
+        <a href="#tänk-först-använd-plan-mode-exekvera-sedan" class="reading-progress-item" data-section="tänk-först-använd-plan-mode-exekvera-sedan">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Tänk först (använd Plan Mode, exekvera sedan)</span>
+                <span class="lang-en">Think first (use Plan Mode, then execute)</span>
             </span>
-        </div>
-        <div class="scroll-timeline-marker" data-section="claudemd" style="top: 24%">
-            <span class="scroll-timeline-label">CLAUDE.md</span>
-        </div>
-        <div class="scroll-timeline-marker" data-section="ultrathink" style="top: 32%">
-            <span class="scroll-timeline-label">Ultrathink</span>
-        </div>
-        <div class="scroll-timeline-marker" data-section="context" style="top: 40%">
-            <span class="scroll-timeline-label">
-                <span class="lang-sv">Kontext</span>
-                <span class="lang-en">Context</span>
+        </a>
+        <a href="#arkitektur-är-inte-valfritt-det-är-hur-du-begränsar-modellen" class="reading-progress-item" data-section="arkitektur-är-inte-valfritt-det-är-hur-du-begränsar-modellen">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Arkitektur är inte valfritt (det är hur du begränsar modellen)</span>
+                <span class="lang-en">Architecture isn't optional (it's how you constrain the model)</span>
             </span>
-        </div>
-        <div class="scroll-timeline-marker" data-section="prompting" style="top: 48%">
-            <span class="scroll-timeline-label">Prompting</span>
-        </div>
-        <div class="scroll-timeline-marker" data-section="badinput" style="top: 56%">
-            <span class="scroll-timeline-label">
-                <span class="lang-sv">Dålig input</span>
-                <span class="lang-en">Bad input</span>
+        </a>
+        <a href="#claudemd-din-fil-med-högst-hävstång" class="reading-progress-item" data-section="claudemd-din-fil-med-högst-hävstång">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">CLAUDE.md: din fil med högst hävstång</span>
+                <span class="lang-en">CLAUDE.md: your highest-leverage file</span>
             </span>
-        </div>
-        <div class="scroll-timeline-marker" data-section="modelchoice" style="top: 64%">
-            <span class="scroll-timeline-label">
-                <span class="lang-sv">Modellval</span>
-                <span class="lang-en">Model choice</span>
+        </a>
+        <a href="#goals" class="reading-progress-item" data-section="goals">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Goals</span>
+                <span class="lang-en">Goals</span>
             </span>
-        </div>
-        <div class="scroll-timeline-marker" data-section="mcp" style="top: 72%">
-            <span class="scroll-timeline-label">MCP & hooks</span>
-        </div>
-        <div class="scroll-timeline-marker" data-section="stuck" style="top: 80%">
-            <span class="scroll-timeline-label">
-                <span class="lang-sv">När fast</span>
-                <span class="lang-en">When stuck</span>
+        </a>
+        <a href="#non-goals" class="reading-progress-item" data-section="non-goals">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Non-goals</span>
+                <span class="lang-en">Non-goals</span>
             </span>
-        </div>
-        <div class="scroll-timeline-marker" data-section="headless" style="top: 88%">
-            <span class="scroll-timeline-label">Headless</span>
-        </div>
-        <div class="scroll-timeline-marker" data-section="tldr" style="top: 96%">
-            <span class="scroll-timeline-label">TL;DR</span>
-        </div>
-    </div>
+        </a>
+        <a href="#commands-run-after-edits" class="reading-progress-item" data-section="commands-run-after-edits">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Commands (run after edits)</span>
+                <span class="lang-en">Commands (run after edits)</span>
+            </span>
+        </a>
+        <a href="#architecture-constraints" class="reading-progress-item" data-section="architecture-constraints">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Architecture constraints</span>
+                <span class="lang-en">Architecture constraints</span>
+            </span>
+        </a>
+        <a href="#working-style" class="reading-progress-item" data-section="working-style">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Working style</span>
+                <span class="lang-en">Working style</span>
+            </span>
+        </a>
+        <a href="#ultrathink-läge-kvalitetsfokuserat-mindset" class="reading-progress-item" data-section="ultrathink-läge-kvalitetsfokuserat-mindset">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">"Ultrathink"-läge (kvalitetsfokuserat mindset)</span>
+                <span class="lang-en">"Ultrathink" mode (quality-first mindset)</span>
+            </span>
+        </a>
+        <a href="#kontextfönster-degraderas-tidigare-än-du-tror" class="reading-progress-item" data-section="kontextfönster-degraderas-tidigare-än-du-tror">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Kontextfönster degraderas tidigare än du tror</span>
+                <span class="lang-en">Context windows degrade earlier than you think</span>
+            </span>
+        </a>
+        <a href="#prompting-behandla-det-som-ingenjörskommunikation" class="reading-progress-item" data-section="prompting-behandla-det-som-ingenjörskommunikation">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Prompting: behandla det som ingenjörskommunikation</span>
+                <span class="lang-en">Prompting: treat it like engineering communication</span>
+            </span>
+        </a>
+        <a href="#dålig-input-dålig-output" class="reading-progress-item" data-section="dålig-input-dålig-output">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Dålig input → dålig output</span>
+                <span class="lang-en">Bad input → bad output (without the hostility)</span>
+            </span>
+        </a>
+        <a href="#arbetsflöde-för-modellval-håll-det-praktiskt" class="reading-progress-item" data-section="arbetsflöde-för-modellval-håll-det-praktiskt">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Arbetsflöde för modellval (håll det praktiskt)</span>
+                <span class="lang-en">Model choice workflow (keep it practical)</span>
+            </span>
+        </a>
+        <a href="#mcp-hooks-slash-kommandon-och-config-använd-features-som-tar-bort-slit" class="reading-progress-item" data-section="mcp-hooks-slash-kommandon-och-config-använd-features-som-tar-bort-slit">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">MCP, hooks, slash-kommandon och config: använd features som tar bort slit</span>
+                <span class="lang-en">MCP, hooks, slash commands, and configs: use features that remove toil</span>
+            </span>
+        </a>
+        <a href="#när-claude-fastnar-bryt-loopen-medvetet" class="reading-progress-item" data-section="när-claude-fastnar-bryt-loopen-medvetet">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">När Claude fastnar: bryt loopen medvetet</span>
+                <span class="lang-en">When Claude gets stuck: break the loop intentionally</span>
+            </span>
+        </a>
+        <a href="#bygg-system-inte-engångsinteraktioner-headless-mode" class="reading-progress-item" data-section="bygg-system-inte-engångsinteraktioner-headless-mode">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Bygg system, inte engångsinteraktioner (headless mode)</span>
+                <span class="lang-en">Build systems, not one-off interactions (headless mode)</span>
+            </span>
+        </a>
+        <a href="#tldr-claude-code-101" class="reading-progress-item" data-section="tldr-claude-code-101">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">TL;DR (Claude Code 101)</span>
+                <span class="lang-en">TL;DR (Claude Code 101)</span>
+            </span>
+        </a>
+    </nav>
 
     <!-- Menu Overlay -->
     <div class="menu-overlay" id="menuOverlay"></div>
@@ -135,114 +233,17 @@
     <!-- Mobile Menu -->
     <nav class="mobile-menu" id="mobileMenu">
         <div class="mobile-menu-header">
-            <a href="index.html" class="logo">
-                B3 Commit
-            </a>
+            <a href="index.html" class="logo">B3 Commit</a>
             <button class="mobile-menu-close" id="menuClose" aria-label="Stäng meny">&times;</button>
         </div>
-
-        <div class="mobile-menu-section">
-            <h3><span class="lang-sv">I denna artikel</span><span class="lang-en">In this article</span></h3>
-            <ul class="mobile-menu-links">
-                <li><a href="#think"><span class="menu-icon">🧠</span> <span class="lang-sv">Tänk först</span><span class="lang-en">Think first</span></a></li>
-                <li><a href="#architecture"><span class="menu-icon">🏗️</span> <span class="lang-sv">Arkitektur</span><span class="lang-en">Architecture</span></a></li>
-                <li><a href="#claudemd"><span class="menu-icon">📄</span> CLAUDE.md</a></li>
-                <li><a href="#ultrathink"><span class="menu-icon">💎</span> Ultrathink</a></li>
-                <li><a href="#context"><span class="menu-icon">📊</span> <span class="lang-sv">Kontextfönster</span><span class="lang-en">Context windows</span></a></li>
-                <li><a href="#prompting"><span class="menu-icon">💬</span> Prompting</a></li>
-                <li><a href="#mcp"><span class="menu-icon">🔧</span> MCP & hooks</a></li>
-                <li><a href="#stuck"><span class="menu-icon">🔄</span> <span class="lang-sv">När fast</span><span class="lang-en">When stuck</span></a></li>
-                <li><a href="#headless"><span class="menu-icon">⚙️</span> Headless</a></li>
-                <li><a href="#tldr"><span class="menu-icon">📋</span> TL;DR</a></li>
-            </ul>
-        </div>
-
-        <div class="mobile-menu-section">
-            <h3><span class="lang-sv">Artiklar</span><span class="lang-en">Articles</span></h3>
-            <ul class="mobile-menu-links">
-                <li>
-                    <a href="ai-fundamentals.html">
-                        <span class="menu-icon">🧠</span>
-                        AI Fundamentals 2026
-                    </a>
-                </li>
-                <li>
-                    <a href="cursor-python-agent.html">
-                        <span class="menu-icon">🤖</span>
-                        How to Build an Agent
-                    </a>
-                </li>
-                <li>
-                    <a href="vibe-engineering-101.html">
-                        <span class="menu-icon">⚡</span>
-                        Vibe Engineering 101
-                    </a>
-                </li>
-                <li>
-                    <a href="claude-code-101.html">
-                        <span class="menu-icon">🔮</span>
-                        Claude Code 101
-                    </a>
-                </li>
-                <li>
-                    <a href="just-ralph-it.html">
-                        <span class="menu-icon">🔁</span>
-                        Just Ralph-it
-                    </a>
-                </li>
-                <li>
-                    <a href="agents-md-explained.html">
-                        <span class="menu-icon">📋</span>
-                        Agents.md Explained
-                    </a>
-                </li>
-                <li>
-                    <a href="ide-agentic-ai.html">
-                        <span class="menu-icon">🖥️</span>
-                        Välj IDE för Agentisk AI
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="mobile-menu-section">
-            <h3><span class="lang-sv">Länkar</span><span class="lang-en">Links</span></h3>
-            <ul class="mobile-menu-links">
-                <li>
-                    <a href="https://github.com/b3-commit" target="_blank">
-                        <span class="menu-icon">📦</span>
-                        GitHub
-                    </a>
-                </li>
-                <li>
-                    <a href="#" id="menuThemeToggle">
-                        <span class="menu-icon">🌙</span>
-                        <span id="menuThemeText">
-                            <span class="lang-sv">Byt till mörkt läge</span>
-                            <span class="lang-en">Switch to dark mode</span>
-                        </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" id="menuLangToggle">
-                        <span class="menu-icon">🌐</span>
-                        <span id="menuLangText">
-                            <span class="lang-sv">English</span>
-                            <span class="lang-en">Svenska</span>
-                        </span>
-                    </a>
-                </li>
-            </ul>
-        </div>
+        <!-- Mobile menu content would be generated from manifest -->
     </nav>
 
     <header>
         <nav class="nav-container">
             <div class="nav-left">
-                <a href="index.html" class="logo">
-                    B3 Commit
-                </a>
-                <span class="breadcrumb">/ <a href="index.html">AI Handbook</a> / Claude Code 101</span>
+                <a href="index.html" class="logo">B3 Commit</a>
+                <span class="breadcrumb">/ <a href="index.html"><span class="lang-sv">AI Handbook</span><span class="lang-en">AI Handbook</span></a> / <span class="lang-sv">Claude Code 101</span><span class="lang-en">Claude Code 101</span></span>
             </div>
             <div class="nav-right">
                 <button class="presentation-toggle" id="presentationToggle" aria-label="Presentation mode">
@@ -260,9 +261,6 @@
                     <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
                     </svg>
-                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                    </svg>
                 </button>
                 <button class="hamburger" id="hamburger" aria-label="Öppna meny">
                     <span class="hamburger-line"></span>
@@ -277,10 +275,10 @@
         <article>
             <header class="article-header" id="intro">
                 <p class="article-meta">
-                    <span class="lang-sv">Agentisk utveckling // Januari 2026</span>
-                    <span class="lang-en">Agentic Development // January 2026</span>
+                    <span class="lang-sv">Agentisk utveckling // 2026-01</span>
+                    <span class="lang-en">Agentic Development // 2026-01</span>
                 </p>
-                <h1>Claude Code 101</h1>
+                <h1><span class="lang-sv">Claude Code 101</span><span class="lang-en">Claude Code 101</span></h1>
                 <p class="subtitle">
                     <span class="lang-sv">En praktisk handbok för att leverera riktiga ändringar säkert med Claude Code</span>
                     <span class="lang-en">A practical playbook for shipping real changes safely with Claude Code</span>
@@ -289,831 +287,644 @@
 
             <!-- Article Navigation -->
             <nav class="article-nav" id="articleNav">
-                <a href="#think" class="nav-pill"><span class="lang-sv">Tänk</span><span class="lang-en">Think</span></a>
-                <a href="#claudemd" class="nav-pill">CLAUDE.md</a>
-                <a href="#context" class="nav-pill"><span class="lang-sv">Kontext</span><span class="lang-en">Context</span></a>
-                <a href="#prompting" class="nav-pill">Prompting</a>
-                <a href="#mcp" class="nav-pill">MCP</a>
-                <a href="#tldr" class="nav-pill">TL;DR</a>
+                <a href="#claude-code-101-en-praktisk-handbok-för-att-leverera-riktiga-ändringar-säkert" class="nav-pill">Claude Code 101: en praktisk handbok för att leverera riktiga ändringar säkert</a>
+                <a href="#tänk-först-använd-plan-mode-exekvera-sedan" class="nav-pill">Tänk först (använd Plan Mode, exekvera sedan)</a>
+                <a href="#arkitektur-är-inte-valfritt-det-är-hur-du-begränsar-modellen" class="nav-pill">Arkitektur är inte valfritt (det är hur du begränsar modellen)</a>
+                <a href="#claudemd-din-fil-med-högst-hävstång" class="nav-pill">CLAUDE.md: din fil med högst hävstång</a>
+                <a href="#goals" class="nav-pill">Goals</a>
+                <a href="#non-goals" class="nav-pill">Non-goals</a>
+                <a href="#commands-run-after-edits" class="nav-pill">Commands (run after edits)</a>
+                <a href="#architecture-constraints" class="nav-pill">Architecture constraints</a>
+                <a href="#working-style" class="nav-pill">Working style</a>
+                <a href="#ultrathink-läge-kvalitetsfokuserat-mindset" class="nav-pill">"Ultrathink"-läge (kvalitetsfokuserat mindset)</a>
+                <a href="#kontextfönster-degraderas-tidigare-än-du-tror" class="nav-pill">Kontextfönster degraderas tidigare än du tror</a>
+                <a href="#prompting-behandla-det-som-ingenjörskommunikation" class="nav-pill">Prompting: behandla det som ingenjörskommunikation</a>
+                <a href="#dålig-input-dålig-output" class="nav-pill">Dålig input → dålig output</a>
+                <a href="#arbetsflöde-för-modellval-håll-det-praktiskt" class="nav-pill">Arbetsflöde för modellval (håll det praktiskt)</a>
+                <a href="#mcp-hooks-slash-kommandon-och-config-använd-features-som-tar-bort-slit" class="nav-pill">MCP, hooks, slash-kommandon och config: använd features som tar bort slit</a>
+                <a href="#när-claude-fastnar-bryt-loopen-medvetet" class="nav-pill">När Claude fastnar: bryt loopen medvetet</a>
+                <a href="#bygg-system-inte-engångsinteraktioner-headless-mode" class="nav-pill">Bygg system, inte engångsinteraktioner (headless mode)</a>
+                <a href="#tldr-claude-code-101" class="nav-pill">TL;DR (Claude Code 101)</a>
             </nav>
 
-            <p>
-                <span class="lang-sv">Den här guiden är en <strong>Claude Code-specifik</strong> "101" för systemutvecklare. Målet är inte teori — det är en uppsättning repeterbara arbetsflöden som producerar <strong>små diffar, snabb feedback och färre regressioner</strong>.</span>
-                <span class="lang-en">This guide is a <strong>Claude Code–specific</strong> "101" for system developers. The goal is not theory—it's a set of repeatable workflows that produce <strong>small diffs, fast feedback, and fewer regressions</strong>.</span>
-            </p>
+            <div class="lang-sv"><p>Officiell Claude Code-dokumentation: https://code.claude.com/docs/</p>
+<h2 id="claude-code-101-en-praktisk-handbok-for-att-leverera-riktiga-andringar-sakert">Claude Code 101: en praktisk handbok för att leverera riktiga ändringar säkert</h2>
+<p>Den här guiden är en <strong>Claude Code-specifik</strong> "101" för systemutvecklare. Målet är inte teori — det är en uppsättning repeterbara arbetsflöden som producerar <strong>små diffar, snabb feedback och färre regressioner</strong>.</p>
+<hr />
+<h2 id="tank-forst-anvand-plan-mode-exekvera-sedan">Tänk först (använd Plan Mode, exekvera sedan)</h2>
+<p>Claude Code fungerar bäst när första steget är att <strong>strukturera problemet</strong>, inte att skriva instruktioner.</p>
+<h3 id="varfor-detta-spelar-roll">Varför detta spelar roll</h3>
+<p>Om förfrågan är bred kommer Claude fylla i luckor med "rimliga standardvärden". I ingenjörsarbete blir dessa ofta:<br />
+- onödiga abstraktioner<br />
+- för många filer<br />
+- dolda beteendeförändringar<br />
+<strong>Motivering:</strong> tvetydighet ökar lösningsrymden, och modellen kommer utforska den.</p>
+<h3 id="vad-du-ska-gora">Vad du ska göra</h3>
+<p>1) <strong>Skriv måltillståndet (acceptanskriterier) innan du ber om kod.</strong><br />
+<strong>Motivering:</strong> Claude är starkast när den optimerar för ett explicit "klart", inte ett underförstått.</p>
+<p>2) <strong>Använd Plan Mode för allt som påverkar arkitektur, data, auth eller gränssnitt.</strong><br />
+   I Claude Code, gå in i Plan Mode (vanligtvis <strong>Shift+Tab två gånger</strong> beroende på setup).<br />
+<strong>Motivering:</strong> planering tvingar fram explicita gränser och minskar överraskande ändringar.</p>
+<p>3) <strong>Be om alternativ och avvägningar först, välj sedan.</strong><br />
+   Exempelprompt:<br />
+   - "Lista 2–3 möjliga designs, peka ut risker, och rekommendera en. Skriv ingen kod ännu."<br />
+<strong>Motivering:</strong> den snabbaste vägen är ofta att välja rätt approach tidigt.</p>
+<h3 id="ersatt-vagt-med-specifikt">Ersätt vagt med specifikt</h3>
+<p>Dåligt:<br />
+- "Bygg ett auth-system."</p>
+<p>Bra:<br />
+- "Lägg till email/lösenord-auth med befintliga User-modellen; lagra sessioner i Redis med 24h utgång; skydda routes under <code>/api/protected</code>; inga nya beroenden; lägg till integrationstester."</p>
+<p><strong>Motivering:</strong> specificitet förhindrar övergrepp och skapar verifierbar output.</p>
+<hr />
+<h2 id="arkitektur-ar-inte-valfritt-det-ar-hur-du-begransar-modellen">Arkitektur är inte valfritt (det är hur du begränsar modellen)</h2>
+<p>Claude kan generera fungerande kod som bryter mot ditt systems invarianter. Lösningen är inte "bättre kodgenerering". Lösningen är <strong>arkitekturbegränsningar i förväg</strong>.</p>
+<h3 id="vad-du-ska-inkludera-i-din-planforfragan">Vad du ska inkludera i din planförfrågan</h3>
+<ul>
+<li><strong>Gränser:</strong> vilka moduler som kan/inte kan röra varandra</li>
+<li><strong>Invarianter:</strong> vad som måste förbli sant</li>
+<li><strong>Icke-mål:</strong> vad som inte får ändras</li>
+<li><strong>Validering:</strong> kommandon som bevisar att det fungerar</li>
+</ul>
+<p><strong>Motivering:</strong> begränsningar fungerar som skyddsräcken; utan dem uppfinner Claude struktur.</p>
+<hr />
+<h2 id="claudemd-din-fil-med-hogst-havstang">CLAUDE.md: din fil med högst hävstång</h2>
+<p><code>CLAUDE.md</code> är en Markdown-fil som Claude Code läser vid sessionens start. Den fungerar som <strong>beständiga repo-specifika instruktioner</strong>.</p>
+<h3 id="varfor-det-spelar-roll">Varför det spelar roll</h3>
+<p>Det förvandlar upprepade korrigeringar till ett stabilt kontrakt:<br />
+- "använd detta testkommando"<br />
+- "formatera inte om orelaterade filer"<br />
+- "undvik nya abstraktioner"<br />
+- "följ dessa konventioner"</p>
+<p><strong>Motivering:</strong> beständig vägledning minskar promptlängd och ökar konsekvens mellan sessioner.</p>
+<h3 id="hur-du-skriver-en-bra-claudemd">Hur du skriver en bra CLAUDE.md</h3>
+<p><strong>Håll den kort.</strong><br />
+Om du inkluderar för mycket kommer Claude ignorera instruktioner oförutsägbart.<br />
+<strong>Motivering:</strong> instruktionsöverbelastning skapar prioritetskonflikter.</p>
+<p><strong>Gör den repo-specifik.</strong><br />
+Undvik generiska förklaringar ("vad komponenter är"). Inkludera de konstiga, lokala reglerna.<br />
+<strong>Motivering:</strong> Claude känner redan till generella mönster; den behöver <em>dina</em> specifika.</p>
+<p><strong>Förklara "varför", inte bara "vad".</strong><br />
+- "Använd TypeScript strict mode eftersom implicit any orsakade produktionsbuggar."<br />
+<strong>Motivering:</strong> "varför" hjälper Claude göra bättre bedömningar i kantfall.</p>
+<p><strong>Uppdatera den kontinuerligt.</strong><br />
+Varje gång du korrigerar samma misstag två gånger, lägg till en instruktion. Claude Code stödjer snabba sätt att fånga vägledning (ofta via en genväg som <code>#</code>, beroende på konfiguration).<br />
+<strong>Motivering:</strong> detta ackumuleras — varje fix förhindrar framtida omarbete.</p>
+<h3 id="en-praktisk-claudemd-starter-kopieraklistra">En praktisk CLAUDE.md-starter (kopiera/klistra)</h3>
+<pre><code class="language-md"># CLAUDE.md (project instructions)
 
-            <p>
-                <span class="lang-sv">Officiell Claude Code-dokumentation: <a href="https://code.claude.com/docs/" target="_blank">https://code.claude.com/docs/</a></span>
-                <span class="lang-en">Official Claude Code docs: <a href="https://code.claude.com/docs/" target="_blank">https://code.claude.com/docs/</a></span>
-            </p>
-
-            <!-- Section: Think first -->
-            <h2 id="think">
-                <span class="lang-sv">Tänk först (använd Plan Mode, exekvera sedan)</span>
-                <span class="lang-en">Think first (use Plan Mode, then execute)</span>
-            </h2>
-
-            <p>
-                <span class="lang-sv">Claude Code fungerar bäst när första steget är att <strong>strukturera problemet</strong>, inte att skriva instruktioner.</span>
-                <span class="lang-en">Claude Code works best when the first step is <strong>structuring the problem</strong>, not typing instructions.</span>
-            </p>
-
-            <h3>
-                <span class="lang-sv">Varför detta spelar roll</span>
-                <span class="lang-en">Why this matters</span>
-            </h3>
-
-            <p>
-                <span class="lang-sv">Om förfrågan är bred kommer Claude fylla i luckor med "rimliga standardvärden". I ingenjörsarbete blir dessa ofta:</span>
-                <span class="lang-en">If the request is broad, Claude will fill in gaps with "reasonable defaults." In engineering work, those defaults often become:</span>
-            </p>
-
-            <ul>
-                <li>
-                    <span class="lang-sv">onödiga abstraktioner</span>
-                    <span class="lang-en">unnecessary abstractions</span>
-                </li>
-                <li>
-                    <span class="lang-sv">för många filer</span>
-                    <span class="lang-en">too many files</span>
-                </li>
-                <li>
-                    <span class="lang-sv">dolda beteendeförändringar</span>
-                    <span class="lang-en">hidden behavior changes</span>
-                </li>
-            </ul>
-
-            <blockquote>
-                <span class="lang-sv"><strong>Motivering:</strong> tvetydighet ökar lösningsrymden, och modellen kommer utforska den.</span>
-                <span class="lang-en"><strong>Rationale:</strong> ambiguity increases solution space, and the model will explore it.</span>
-            </blockquote>
-
-            <h3>
-                <span class="lang-sv">Vad du ska göra</span>
-                <span class="lang-en">What to do</span>
-            </h3>
-
-            <ol>
-                <li>
-                    <span class="lang-sv"><strong>Skriv måltillståndet (acceptanskriterier) innan du ber om kod.</strong><br><em>Motivering:</em> Claude är starkast när den optimerar för ett explicit "klart", inte ett underförstått.</span>
-                    <span class="lang-en"><strong>Write the target state (acceptance criteria) before asking for code.</strong><br><em>Rationale:</em> Claude is strongest when optimizing for an explicit "done," not an implied one.</span>
-                </li>
-                <li>
-                    <span class="lang-sv"><strong>Använd Plan Mode för allt som påverkar arkitektur, data, auth eller gränssnitt.</strong><br>I Claude Code, gå in i Plan Mode (vanligtvis <strong>Shift+Tab två gånger</strong> beroende på setup).<br><em>Motivering:</em> planering tvingar fram explicita gränser och minskar överraskande ändringar.</span>
-                    <span class="lang-en"><strong>Use Plan Mode for anything that affects architecture, data, auth, or interfaces.</strong><br>In Claude Code, enter Plan Mode (commonly <strong>Shift+Tab twice</strong> depending on setup).<br><em>Rationale:</em> planning forces explicit boundaries and reduces surprise edits.</span>
-                </li>
-                <li>
-                    <span class="lang-sv"><strong>Be om alternativ och avvägningar först, välj sedan.</strong><br>Exempelprompt: "Lista 2–3 möjliga designs, peka ut risker, och rekommendera en. Skriv ingen kod ännu."<br><em>Motivering:</em> den snabbaste vägen är ofta att välja rätt approach tidigt.</span>
-                    <span class="lang-en"><strong>Ask for options and tradeoffs first, then choose.</strong><br>Example prompt: "List 2–3 viable designs, call out risks, and recommend one. Do not write code yet."<br><em>Rationale:</em> the fastest path is often picking the right approach early.</span>
-                </li>
-            </ol>
-
-            <h3>
-                <span class="lang-sv">Ersätt vagt med specifikt</span>
-                <span class="lang-en">Replace vague with specific</span>
-            </h3>
-
-            <p><strong><span class="lang-sv">Dåligt:</span><span class="lang-en">Bad:</span></strong></p>
-            <ul>
-                <li>
-                    <span class="lang-sv">"Bygg ett auth-system."</span>
-                    <span class="lang-en">"Build an auth system."</span>
-                </li>
-            </ul>
-
-            <p><strong><span class="lang-sv">Bra:</span><span class="lang-en">Good:</span></strong></p>
-            <ul>
-                <li>
-                    <span class="lang-sv">"Lägg till email/lösenord-auth med befintliga User-modellen; lagra sessioner i Redis med 24h utgång; skydda routes under <code>/api/protected</code>; inga nya beroenden; lägg till integrationstester."</span>
-                    <span class="lang-en">"Add email/password auth using the existing User model; store sessions in Redis with 24h expiry; protect routes under <code>/api/protected</code>; no new dependencies; add integration tests."</span>
-                </li>
-            </ul>
-
-            <blockquote>
-                <span class="lang-sv"><strong>Motivering:</strong> specificitet förhindrar övergrepp och skapar verifierbar output.</span>
-                <span class="lang-en"><strong>Rationale:</strong> specificity prevents overreach and creates a verifiable output.</span>
-            </blockquote>
-
-            <!-- Section: Architecture -->
-            <h2 id="architecture">
-                <span class="lang-sv">Arkitektur är inte valfritt (det är hur du begränsar modellen)</span>
-                <span class="lang-en">Architecture isn't optional (it's how you constrain the model)</span>
-            </h2>
-
-            <p>
-                <span class="lang-sv">Claude kan generera fungerande kod som bryter mot ditt systems invarianter. Lösningen är inte "bättre kodgenerering". Lösningen är <strong>arkitekturbegränsningar i förväg</strong>.</span>
-                <span class="lang-en">Claude can generate working code that violates your system's invariants. The fix is not "better code generation." The fix is <strong>architectural constraints up front</strong>.</span>
-            </p>
-
-            <h3>
-                <span class="lang-sv">Vad du ska inkludera i din planförfrågan</span>
-                <span class="lang-en">What to include in your plan request</span>
-            </h3>
-
-            <ul>
-                <li>
-                    <span class="lang-sv"><strong>Gränser:</strong> vilka moduler som kan/inte kan röra varandra</span>
-                    <span class="lang-en"><strong>Boundaries:</strong> what modules can/can't touch each other</span>
-                </li>
-                <li>
-                    <span class="lang-sv"><strong>Invarianter:</strong> vad som måste förbli sant</span>
-                    <span class="lang-en"><strong>Invariants:</strong> what must remain true</span>
-                </li>
-                <li>
-                    <span class="lang-sv"><strong>Icke-mål:</strong> vad som inte får ändras</span>
-                    <span class="lang-en"><strong>Non-goals:</strong> what must not change</span>
-                </li>
-                <li>
-                    <span class="lang-sv"><strong>Validering:</strong> kommandon som bevisar att det fungerar</span>
-                    <span class="lang-en"><strong>Validation:</strong> commands that prove it works</span>
-                </li>
-            </ul>
-
-            <blockquote>
-                <span class="lang-sv"><strong>Motivering:</strong> begränsningar fungerar som skyddsräcken; utan dem uppfinner Claude struktur.</span>
-                <span class="lang-en"><strong>Rationale:</strong> constraints act like guardrails; without them, Claude invents structure.</span>
-            </blockquote>
-
-            <!-- Section: CLAUDE.md -->
-            <h2 id="claudemd">
-                <span class="lang-sv">CLAUDE.md: din fil med högst hävstång</span>
-                <span class="lang-en">CLAUDE.md: your highest-leverage file</span>
-            </h2>
-
-            <p>
-                <span class="lang-sv"><code>CLAUDE.md</code> är en Markdown-fil som Claude Code läser vid sessionens start. Den fungerar som <strong>beständiga repo-specifika instruktioner</strong>.</span>
-                <span class="lang-en"><code>CLAUDE.md</code> is a Markdown file Claude Code reads at the start of a session. It functions as <strong>persistent repo-specific instruction</strong>.</span>
-            </p>
-
-            <h3>
-                <span class="lang-sv">Varför det spelar roll</span>
-                <span class="lang-en">Why it matters</span>
-            </h3>
-
-            <p>
-                <span class="lang-sv">Det förvandlar upprepade korrigeringar till ett stabilt kontrakt:</span>
-                <span class="lang-en">It turns repeated corrections into a stable contract:</span>
-            </p>
-
-            <ul>
-                <li>
-                    <span class="lang-sv">"använd detta testkommando"</span>
-                    <span class="lang-en">"use this test command"</span>
-                </li>
-                <li>
-                    <span class="lang-sv">"formatera inte om orelaterade filer"</span>
-                    <span class="lang-en">"don't reformat unrelated files"</span>
-                </li>
-                <li>
-                    <span class="lang-sv">"undvik nya abstraktioner"</span>
-                    <span class="lang-en">"avoid new abstractions"</span>
-                </li>
-                <li>
-                    <span class="lang-sv">"följ dessa konventioner"</span>
-                    <span class="lang-en">"follow these conventions"</span>
-                </li>
-            </ul>
-
-            <blockquote>
-                <span class="lang-sv"><strong>Motivering:</strong> beständig vägledning minskar promptlängd och ökar konsekvens mellan sessioner.</span>
-                <span class="lang-en"><strong>Rationale:</strong> durable guidance reduces prompt length and increases consistency across sessions.</span>
-            </blockquote>
-
-            <h3>
-                <span class="lang-sv">Hur du skriver en bra CLAUDE.md</span>
-                <span class="lang-en">How to write a good CLAUDE.md</span>
-            </h3>
-
-            <ul>
-                <li>
-                    <span class="lang-sv"><strong>Håll den kort.</strong> Om du inkluderar för mycket kommer Claude ignorera instruktioner oförutsägbart.<br><em>Motivering:</em> instruktionsöverbelastning skapar prioritetskonflikter.</span>
-                    <span class="lang-en"><strong>Keep it short.</strong> If you include too much, Claude will ignore instructions unpredictably.<br><em>Rationale:</em> instruction overload creates priority conflicts.</span>
-                </li>
-                <li>
-                    <span class="lang-sv"><strong>Gör den repo-specifik.</strong> Undvik generiska förklaringar ("vad komponenter är"). Inkludera de konstiga, lokala reglerna.<br><em>Motivering:</em> Claude känner redan till generella mönster; den behöver <em>dina</em> specifika.</span>
-                    <span class="lang-en"><strong>Make it repo-specific.</strong> Avoid generic explanations ("what components are"). Include the weird, local rules.<br><em>Rationale:</em> Claude already knows general patterns; it needs your <em>specific</em> ones.</span>
-                </li>
-                <li>
-                    <span class="lang-sv"><strong>Förklara "varför", inte bara "vad".</strong> "Använd TypeScript strict mode eftersom implicit any orsakade produktionsbuggar."<br><em>Motivering:</em> "varför" hjälper Claude göra bättre bedömningar i kantfall.</span>
-                    <span class="lang-en"><strong>Explain "why," not only "what."</strong> "Use TypeScript strict mode because implicit any caused production bugs."<br><em>Rationale:</em> the "why" helps Claude make better judgment calls in edge cases.</span>
-                </li>
-                <li>
-                    <span class="lang-sv"><strong>Uppdatera den kontinuerligt.</strong> Varje gång du korrigerar samma misstag två gånger, lägg till en instruktion.<br><em>Motivering:</em> detta ackumuleras — varje fix förhindrar framtida omarbete.</span>
-                    <span class="lang-en"><strong>Update it continuously.</strong> Any time you correct the same mistake twice, add an instruction.<br><em>Rationale:</em> this compounds—each fix prevents future rework.</span>
-                </li>
-            </ul>
-
-            <h3>
-                <span class="lang-sv">En praktisk CLAUDE.md-starter (kopiera/klistra)</span>
-                <span class="lang-en">A practical CLAUDE.md starter (copy/paste)</span>
-            </h3>
-
-            <pre><code><span class="comment"># CLAUDE.md (project instructions)</span>
-
-<span class="comment">## Goals</span>
+## Goals
 - Produce minimal, reviewable diffs.
 - Prefer existing patterns in this repo.
 
-<span class="comment">## Non-goals</span>
+## Non-goals
 - Do not introduce new dependencies without explicit request.
 - Do not reformat unrelated files.
 - Do not create new abstractions unless asked.
 
-<span class="comment">## Commands (run after edits)</span>
+## Commands (run after edits)
 - Format: &lt;cmd&gt;
 - Lint: &lt;cmd&gt;
 - Typecheck: &lt;cmd&gt;
 - Tests: &lt;cmd&gt;
 
-<span class="comment">## Architecture constraints</span>
+## Architecture constraints
 - Keep domain logic out of HTTP handlers.
 - No DB access in middleware unless explicitly required.
 - Keep public API backwards compatible by default.
 
-<span class="comment">## Working style</span>
+## Working style
 - Start with a 3–7 step plan.
 - After each step: summarize diff + commands run + remaining risks.
-- If uncertain: stop and ask for a decision.</code></pre>
+- If uncertain: stop and ask for a decision.
+</code></pre>
+<hr />
+<h2 id="ultrathink-lage-kvalitetsfokuserat-mindset">"Ultrathink"-läge (kvalitetsfokuserat mindset)</h2>
+<p>Vissa team använder en kort, högvärdig "kvalitetsribba" i sin projektvägledning för att få Claude att prioritera <strong>genomtänkt planering, noggrann läsning och minimal komplexitet</strong>. Detta kan ligga i <code>CLAUDE.md</code> (eller i en separat <code>QUALITY.md</code> som refereras från <code>CLAUDE.md</code>) så länge det förblir koncist.</p>
+<h3 id="principer-att-koda-in-och-varfor-de-hjalper">Principer att koda in (och varför de hjälper)</h3>
+<ul>
+<li>
+<p><strong>Tänk annorlunda:</strong> ifrågasätt antaganden och överväg enklare arkitekturer före implementation.<br />
+<strong>Motivering:</strong> den första fungerande lösningen är ofta inte den bästa för långlivade system.</p>
+</li>
+<li>
+<p><strong>Var besatt av detaljer:</strong> läs befintlig kod som en specifikation — följ etablerade mönster och namngivning.<br />
+<strong>Motivering:</strong> konsekvens minskar integrationsbuggar och håller diffar granskningsbara.</p>
+</li>
+<li>
+<p><strong>Planera som en designer:</strong> skriv en kort plan som gör gränssnitt och invarianter explicita innan du redigerar filer.<br />
+<strong>Motivering:</strong> explicita gränser förhindrar trovärdig-men-felaktig kodgenerering.</p>
+</li>
+<li>
+<p><strong>Hantverk, inte spretighet:</strong> håll funktioner och abstraktioner minimala; undvik att introducera nya lager om det inte efterfrågas.<br />
+<strong>Motivering:</strong> onödig inriktning ökar underhållskostnad och döljer defekter.</p>
+</li>
+<li>
+<p><strong>Iterera obevekligt:</strong> validera efter varje steg (tester, skärmdumpar, jämförelser) och förfina tills det är korrekt och rent.<br />
+<strong>Motivering:</strong> frekvent feedback fångar regressioner tidigt och förkortar vägen till "klart".</p>
+</li>
+<li>
+<p><strong>Förenkla hänsynslöst:</strong> ta bort komplexitet när den inte ger mätbart värde.<br />
+<strong>Motivering:</strong> enklare system misslyckas på färre sätt och är lättare att drifta.</p>
+</li>
+</ul>
+<h3 id="verktygscues-varda-att-fanga">Verktygscues värda att fånga</h3>
+<ul>
+<li>
+<p><strong>Använd dina verktyg som instrument:</strong> luta dig på bash-kommandon, MCP-servrar och anpassade slash-kommandon för repeterbara arbetsflöden.<br />
+<strong>Motivering:</strong> automation minskar manuella kopiera/klistra-fel och sparar tid.</p>
+</li>
+<li>
+<p><strong>Använd Git-historik som kontext:</strong> kontrollera tidigare approaches och konventioner innan du uppfinner nya.<br />
+<strong>Motivering:</strong> historik avslöjar avsikt och minskar churn från "ny men inkonsekvent" implementationer.</p>
+</li>
+<li>
+<p><strong>Behandla mocks/skärmdumpar som specs när tillgängliga:</strong> implementera mot det visuella/beteendemässiga målet.<br />
+<strong>Motivering:</strong> konkreta mål minskar tvetydighet och omarbete.</p>
+</li>
+<li>
+<p><strong>Använd flera Claude-sessioner medvetet:</strong> separera planering vs exekvering, eller isolera orelaterade concerns.<br />
+<strong>Motivering:</strong> separation minskar kontextläckage och förbättrar fokus.</p>
+</li>
+</ul>
+<hr />
+<h2 id="kontextfonster-degraderas-tidigare-an-du-tror">Kontextfönster degraderas tidigare än du tror</h2>
+<p>Även med stora kontextfönster tenderar kvaliteten att sjunka innan du "fyller ribban". Symtom inkluderar:<br />
+- upprepar samma misstag<br />
+- tappar bort begränsningar<br />
+- hallucinerar struktur du aldrig begärde</p>
+<p><strong>Motivering:</strong> mer kontext ökar konkurrensen om uppmärksamhet; viktiga detaljer förlorar betydelse.</p>
+<h3 id="praktiska-kontexthanteringstekniker">Praktiska kontexthanteringstekniker</h3>
+<p><strong>1) En konversation per uppgift</strong><br />
+Använd inte samma session för att bygga auth och refaktorera databaslager.<br />
+<strong>Motivering:</strong> orelaterad kontext läcker och skapar felaktiga antaganden.</p>
+<p><strong>2) Använd externa minnesfiler</strong><br />
+Låt Claude skriva till <code>SCRATCHPAD.md</code>, <code>plan.md</code>, eller <code>devdocs/progress.md</code>.<br />
+<strong>Motivering:</strong> filer består mellan sessioner och förankrar "sanningen" i repot.</p>
+<p><strong>3) Kopiera-klistra reset-arbetsflöde (snabbt och effektivt)</strong><br />
+När saker blir uppsvällda:<br />
+- kör <code>/compact</code> för att få en sammanfattning<br />
+- kör <code>/clear</code> för att nollställa kontext<br />
+- klistra tillbaka endast den kritiska planen + begränsningar + aktuella fel</p>
+<p><strong>Motivering:</strong> en liten, ren kontext överträffar ofta en stor, degraderad.</p>
+<p><strong>4) Vet när du ska rensa</strong><br />
+Om sessionen är förvirrad, nollställ tidigt. <code>CLAUDE.md</code> ger fortfarande grundläggande vägledning.<br />
+<strong>Motivering:</strong> att felsöka en förvirrad kontext är långsammare än att starta om med ett rent briefing.</p>
+<h3 id="adoptera-ratt-mental-modell">Adoptera rätt mental modell</h3>
+<p>Claude är i praktiken tillståndslös om du inte externaliserar tillståndet.<br />
+<strong>Motivering:</strong> att förvänta sig minne som inte finns skapar inkonsekventa resultat.</p>
+<hr />
+<h2 id="prompting-behandla-det-som-ingenjorskommunikation">Prompting: behandla det som ingenjörskommunikation</h2>
+<p>Prompting är inte magi. Det är krav + begränsningar + verifiering.</p>
+<h3 id="anvand-en-repeterbar-promptstruktur">Använd en repeterbar promptstruktur</h3>
+<p><strong>Förfrågningsmall</strong><br />
+- Mål<br />
+- Kontext (filer/sökvägar)<br />
+- Begränsningar / icke-mål<br />
+- "Klart"-kriterier<br />
+- Be om plan först (sedan kod)</p>
+<p><strong>Motivering:</strong> strukturerad input minskar omarbete och gör output granskningsbar.</p>
+<h3 id="inkludera-alltid-vad-som-inte-ska-goras">Inkludera alltid "vad som inte ska göras"</h3>
+<p>Claude standardiserar ofta till extra abstraktion. Om minimalism spelar roll, säg det:<br />
+- "Håll detta enkelt. Inga nya filer om det inte är nödvändigt. Inga abstraktioner jag inte bad om."</p>
+<p><strong>Motivering:</strong> negativa begränsningar förhindrar scope-expansion.</p>
+<h3 id="inkludera-varfor-nar-det-paverkar-avvagningar">Inkludera "varför" när det påverkar avvägningar</h3>
+<p>Exempel:<br />
+- "Körs vid varje request → optimera för latens."<br />
+- "Prototyp att kasta → håll det minimalt."</p>
+<p><strong>Motivering:</strong> "varför" driver korrekta avvägningar.</p>
+<hr />
+<h2 id="dalig-input-dalig-output">Dålig input → dålig output</h2>
+<p>När output konsekvent är fel, är lösningen vanligtvis:<br />
+- otillräckliga begränsningar<br />
+- saknade acceptanskriterier<br />
+- saknad repo-kontext<br />
+- för stora uppgifter (inte nedbrutna)</p>
+<p><strong>Motivering:</strong> modellen kan inte härleda begränsningar du inte tillhandahöll.</p>
+<h3 id="snabb-diagnostisk-checklista">Snabb diagnostisk checklista</h3>
+<p>Om Claude missar målet, kontrollera om prompten innehöll:<br />
+- explicita "klart"-kriterier<br />
+- explicita icke-mål<br />
+- filsökvägar/entrypoints<br />
+- valideringskommandon<br />
+- en stegad planförfrågan</p>
+<p><strong>Motivering:</strong> att sakna någon av dessa ökar tvetydighet och överraskningar.</p>
+<hr />
+<h2 id="arbetsflode-for-modellval-hall-det-praktiskt">Arbetsflöde för modellval (håll det praktiskt)</h2>
+<p>Claude Code exponerar ofta olika modeller med olika avvägningar (hastighet vs djupare planering). Ett pålitligt mönster:</p>
+<ul>
+<li>Använd en starkare resonemangsmodell för <strong>planering och avvägningar</strong></li>
+<li>Använd en snabbare modell för <strong>implementation när planen är låst</strong></li>
+</ul>
+<p><strong>Motivering:</strong> planeringskvalitet är hävstång; exekveringshastighet spelar roll efter att beslut är tagna.</p>
+<hr />
+<h2 id="mcp-hooks-slash-kommandon-och-config-anvand-features-som-tar-bort-slit">MCP, hooks, slash-kommandon och config: använd features som tar bort slit</h2>
+<p>Claude Code har kraftfulla features. Poängen är inte "aktivera allt". Poängen är <strong>ta bort upprepad friktion</strong>.</p>
+<h3 id="mcp-model-context-protocol">MCP (Model Context Protocol)</h3>
+<p>Använd MCP när du upprepat kopierar data från:<br />
+- GitHub<br />
+- Slack<br />
+- issue trackers<br />
+- databaser/API:er</p>
+<p><strong>Motivering:</strong> att automatisera kontextinhämtning minskar manuella fel och sparar tid.</p>
+<h3 id="hooks">Hooks</h3>
+<p>Hooks kan köra kommandon före/efter ändringar:<br />
+- formatter på redigerade filer<br />
+- typkontroll efter redigeringar<br />
+- test-delmängd efter ett steg</p>
+<p><strong>Motivering:</strong> hooks förvandlar goda intentioner till automatisk upprätthållning.</p>
+<h3 id="anpassade-slash-kommandon">Anpassade slash-kommandon</h3>
+<p>Skapa återanvändbara promptar som kommandon via <code>.claude/commands/*.md</code>:<br />
+- <code>/review-pr</code><br />
+- <code>/debug-failure</code><br />
+- <code>/refactor-module</code><br />
+- <code>/write-tests</code></p>
+<p><strong>Motivering:</strong> att standardisera promptar ökar konsekvens i teamet.</p>
+<h3 id="installningarkonfiguration">Inställningar/konfiguration</h3>
+<p>Använd config för att anpassa beteende:<br />
+- standardkommandon<br />
+- föredragen stil (små diffar, stanna-och-fråga vid osäkerhet)<br />
+- skyddsräcken (undvik nya deps, undvik breda refaktoreringar)</p>
+<p><strong>Motivering:</strong> konfiguration minskar prompt-overhead och drift.</p>
+<hr />
+<h2 id="nar-claude-fastnar-bryt-loopen-medvetet">När Claude fastnar: bryt loopen medvetet</h2>
+<p>Fast-mönster:<br />
+- upprepar samma fix<br />
+- självsäker men fel ändringar<br />
+- oändligt "ett försök till"</p>
+<h3 id="vad-du-ska-gora-istallet">Vad du ska göra istället</h3>
+<p><strong>1) Nollställ kontext (<code>/clear</code>)</strong><br />
+Ge sedan endast:<br />
+- uppgiftsbeskrivning<br />
+- begränsningar<br />
+- det specifika felet</p>
+<p><strong>Motivering:</strong> fast beteende korrelerar ofta med förorenad kontext.</p>
+<p><strong>2) Gör uppgiften mindre</strong><br />
+Be om en av:<br />
+- en minimal reproduktion<br />
+- en enfils-fix<br />
+- en test-first-ändring</p>
+<p><strong>Motivering:</strong> mindre sökrymder minskar fellägen.</p>
+<p><strong>3) Visa ett konkret exempel</strong><br />
+- "Här är det önskade outputformatet; applicera det på andra ställen."</p>
+<p><strong>Motivering:</strong> exempel är otvetydiga framgångsmått.</p>
+<p><strong>4) Omformulera</strong><br />
+- "Behandla detta som en tillståndsmaskin."<br />
+- "Skriv detta som rena funktioner med explicita inputs/outputs."</p>
+<p><strong>Motivering:</strong> vissa formuleringar mappar bättre mot modellens resonemang.</p>
+<hr />
+<h2 id="bygg-system-inte-engangsinteraktioner-headless-mode">Bygg system, inte engångsinteraktioner (headless mode)</h2>
+<p>Claude Code kan användas bortom interaktiva sessioner. I synnerhet:<br />
+- headless-körningar (t.ex. via en <code>-p</code> prompt-flagga i vissa uppsättningar)<br />
+- skriptade kedjade arbetsflöden<br />
+- automatiserad PR-granskning / dokumentuppdateringar</p>
+<p><strong>Motivering:</strong> automation förvandlar individuella vinster till repeterbar genomströmning.</p>
+<h3 id="ett-sakert-automationsmonster">Ett säkert automationsmönster</h3>
+<ul>
+<li>kör på ett smalt scope (enskild katalog / filmönster)</li>
+<li>logga output</li>
+<li>kräv CI-pass före merge</li>
+<li>behåll mänsklig granskning för riskfyllda domäner</li>
+</ul>
+<p><strong>Motivering:</strong> avgränsad automation är granskningsbar och minskar oavsiktliga ändringar.</p>
+<h3 id="forbattringssvanghjulet">Förbättringssvänghjulet</h3>
+<ul>
+<li>Claude gör ett misstag</li>
+<li>fånga regeln i <code>CLAUDE.md</code> eller en kommandomall</li>
+<li>lägg till en hook/check för att förhindra upprepning</li>
+</ul>
+<p><strong>Motivering:</strong> systematiska fixes ackumuleras.</p>
+<hr />
+<h2 id="tldr-claude-code-101">TL;DR (Claude Code 101)</h2>
+<ul>
+<li><strong>Tänk först, skriv sedan:</strong> Plan Mode producerar konsekvent bättre resultat.<br />
+<strong>Motivering:</strong> planering begränsar lösningsrymden.</li>
+<li><strong>Skriv arkitekturbegränsningar:</strong> gränser + invarianter + icke-mål.<br />
+<strong>Motivering:</strong> förhindrar trovärdiga-men-felaktiga implementationer.</li>
+<li><strong><code>CLAUDE.md</code> är hävstång:</strong> håll den kort, repo-specifik och uppdaterad.<br />
+<strong>Motivering:</strong> beständiga instruktioner förbättrar varje session.</li>
+<li><strong>Kontext degraderas tidigt:</strong> scope sessioner, externalisera minne, nollställ med <code>/compact</code> + <code>/clear</code>.<br />
+<strong>Motivering:</strong> mindre ren kontext slår stor brusig kontext.</li>
+<li><strong>Prompta som en ingenjör:</strong> var explicit om klart-kriterier och vad som inte ska göras.<br />
+<strong>Motivering:</strong> minskar överengineering och omarbete.</li>
+<li><strong>Använd MCP/hooks/kommandon när de tar bort slit.</strong><br />
+<strong>Motivering:</strong> automation gör kvalitet repeterbar.</li>
+<li><strong>När fast, byt approach:</strong> nollställ, förenkla, visa exempel, omformulera.<br />
+<strong>Motivering:</strong> loop-brytning slår brute force.</li>
+</ul></div>
+            <div class="lang-en"><p>Official Claude Code docs: https://code.claude.com/docs/</p>
+<h2 id="claude-code-101-a-practical-playbook-for-shipping-real-changes-safely">Claude Code 101: a practical playbook for shipping real changes safely</h2>
+<p>This guide is a <strong>Claude Code–specific</strong> "101" for system developers. The goal is not theory—it's a set of repeatable workflows that produce <strong>small diffs, fast feedback, and fewer regressions</strong>.</p>
+<hr />
+<h2 id="think-first-use-plan-mode-then-execute">Think first (use Plan Mode, then execute)</h2>
+<p>Claude Code works best when the first step is <strong>structuring the problem</strong>, not typing instructions.</p>
+<h3 id="why-this-matters">Why this matters</h3>
+<p>If the request is broad, Claude will fill in gaps with "reasonable defaults." In engineering work, those defaults often become:<br />
+- unnecessary abstractions<br />
+- too many files<br />
+- hidden behavior changes<br />
+<strong>Rationale:</strong> ambiguity increases solution space, and the model will explore it.</p>
+<h3 id="what-to-do">What to do</h3>
+<p>1) <strong>Write the target state (acceptance criteria) before asking for code.</strong><br />
+<strong>Rationale:</strong> Claude is strongest when optimizing for an explicit "done," not an implied one.</p>
+<p>2) <strong>Use Plan Mode for anything that affects architecture, data, auth, or interfaces.</strong><br />
+   In Claude Code, enter Plan Mode (commonly <strong>Shift+Tab twice</strong> depending on setup).<br />
+<strong>Rationale:</strong> planning forces explicit boundaries and reduces surprise edits.</p>
+<p>3) <strong>Ask for options and tradeoffs first, then choose.</strong><br />
+   Example prompt:<br />
+   - "List 2–3 viable designs, call out risks, and recommend one. Do not write code yet."<br />
+<strong>Rationale:</strong> the fastest path is often picking the right approach early.</p>
+<h3 id="replace-vague-with-specific">Replace vague with specific</h3>
+<p>Bad:<br />
+- "Build an auth system."</p>
+<p>Good:<br />
+- "Add email/password auth using the existing User model; store sessions in Redis with 24h expiry; protect routes under <code>/api/protected</code>; no new dependencies; add integration tests."</p>
+<p><strong>Rationale:</strong> specificity prevents overreach and creates a verifiable output.</p>
+<hr />
+<h2 id="architecture-isnt-optional-its-how-you-constrain-the-model">Architecture isn't optional (it's how you constrain the model)</h2>
+<p>Claude can generate working code that violates your system's invariants. The fix is not "better code generation." The fix is <strong>architectural constraints up front</strong>.</p>
+<h3 id="what-to-include-in-your-plan-request">What to include in your plan request</h3>
+<ul>
+<li><strong>Boundaries:</strong> what modules can/can't touch each other</li>
+<li><strong>Invariants:</strong> what must remain true</li>
+<li><strong>Non-goals:</strong> what must not change</li>
+<li><strong>Validation:</strong> commands that prove it works</li>
+</ul>
+<p><strong>Rationale:</strong> constraints act like guardrails; without them, Claude invents structure.</p>
+<hr />
+<h2 id="claudemd-your-highest-leverage-file">CLAUDE.md: your highest-leverage file</h2>
+<p><code>CLAUDE.md</code> is a Markdown file Claude Code reads at the start of a session. It functions as <strong>persistent repo-specific instruction</strong>.</p>
+<h3 id="why-it-matters">Why it matters</h3>
+<p>It turns repeated corrections into a stable contract:<br />
+- "use this test command"<br />
+- "don't reformat unrelated files"<br />
+- "avoid new abstractions"<br />
+- "follow these conventions"</p>
+<p><strong>Rationale:</strong> durable guidance reduces prompt length and increases consistency across sessions.</p>
+<h3 id="how-to-write-a-good-claudemd">How to write a good CLAUDE.md</h3>
+<p><strong>Keep it short.</strong><br />
+If you include too much, Claude will ignore instructions unpredictably.<br />
+<strong>Rationale:</strong> instruction overload creates priority conflicts.</p>
+<p><strong>Make it repo-specific.</strong><br />
+Avoid generic explanations ("what components are"). Include the weird, local rules.<br />
+<strong>Rationale:</strong> Claude already knows general patterns; it needs your <em>specific</em> ones.</p>
+<p><strong>Explain "why," not only "what."</strong><br />
+- "Use TypeScript strict mode because implicit any caused production bugs."<br />
+<strong>Rationale:</strong> the "why" helps Claude make better judgment calls in edge cases.</p>
+<p><strong>Update it continuously.</strong><br />
+Any time you correct the same mistake twice, add an instruction. Claude Code supports quick ways to capture guidance (often via a shortcut such as <code>#</code>, depending on configuration).<br />
+<strong>Rationale:</strong> this compounds—each fix prevents future rework.</p>
+<h3 id="a-practical-claudemd-starter-copypaste">A practical CLAUDE.md starter (copy/paste)</h3>
+<pre><code class="language-md"># CLAUDE.md (project instructions)
 
-            <!-- Section: Ultrathink -->
-            <h2 id="ultrathink">
-                <span class="lang-sv">"Ultrathink"-läge (kvalitetsfokuserat mindset)</span>
-                <span class="lang-en">"Ultrathink" mode (quality-first mindset)</span>
-            </h2>
+## Goals
+- Produce minimal, reviewable diffs.
+- Prefer existing patterns in this repo.
 
-            <p>
-                <span class="lang-sv">Vissa team använder en kort, högvärdig "kvalitetsribba" i sin projektvägledning för att få Claude att prioritera <strong>genomtänkt planering, noggrann läsning och minimal komplexitet</strong>. Detta kan ligga i <code>CLAUDE.md</code> (eller i en separat <code>QUALITY.md</code> som refereras från <code>CLAUDE.md</code>) så länge det förblir koncist.</span>
-                <span class="lang-en">Some teams use a short, high-signal "quality bar" in their project guidance to bias Claude toward <strong>deliberate planning, careful reading, and minimal complexity</strong>. This can live in <code>CLAUDE.md</code> (or in a separate <code>QUALITY.md</code> referenced from <code>CLAUDE.md</code>) as long as it stays concise.</span>
-            </p>
+## Non-goals
+- Do not introduce new dependencies without explicit request.
+- Do not reformat unrelated files.
+- Do not create new abstractions unless asked.
 
-            <h3>
-                <span class="lang-sv">Principer att koda in (och varför de hjälper)</span>
-                <span class="lang-en">Principles to encode (and why they help)</span>
-            </h3>
+## Commands (run after edits)
+- Format: &lt;cmd&gt;
+- Lint: &lt;cmd&gt;
+- Typecheck: &lt;cmd&gt;
+- Tests: &lt;cmd&gt;
 
-            <ul>
-                <li>
-                    <span class="lang-sv"><strong>Tänk annorlunda:</strong> ifrågasätt antaganden och överväg enklare arkitekturer före implementation.<br><em>Motivering:</em> den första fungerande lösningen är ofta inte den bästa för långlivade system.</span>
-                    <span class="lang-en"><strong>Think different:</strong> question assumptions and consider simpler architectures before implementation.<br><em>Rationale:</em> the first working solution is often not the best fit for long-lived systems.</span>
-                </li>
-                <li>
-                    <span class="lang-sv"><strong>Var besatt av detaljer:</strong> läs befintlig kod som en specifikation — följ etablerade mönster och namngivning.<br><em>Motivering:</em> konsekvens minskar integrationsbuggar och håller diffar granskningsbara.</span>
-                    <span class="lang-en"><strong>Obsess over details:</strong> read existing code like a specification—follow established patterns and naming.<br><em>Rationale:</em> consistency reduces integration bugs and keeps diffs reviewable.</span>
-                </li>
-                <li>
-                    <span class="lang-sv"><strong>Planera som en designer:</strong> skriv en kort plan som gör gränssnitt och invarianter explicita innan du redigerar filer.<br><em>Motivering:</em> explicita gränser förhindrar trovärdig-men-felaktig kodgenerering.</span>
-                    <span class="lang-en"><strong>Plan like a designer:</strong> write a short plan that makes interfaces and invariants explicit before editing files.<br><em>Rationale:</em> explicit boundaries prevent plausible-but-wrong code generation.</span>
-                </li>
-                <li>
-                    <span class="lang-sv"><strong>Hantverk, inte spretighet:</strong> håll funktioner och abstraktioner minimala; undvik att introducera nya lager om det inte efterfrågas.<br><em>Motivering:</em> onödig inriktning ökar underhållskostnad och döljer defekter.</span>
-                    <span class="lang-en"><strong>Craft, don't sprawl:</strong> keep functions and abstractions minimal; avoid introducing new layers unless requested.<br><em>Rationale:</em> unnecessary indirection increases maintenance cost and hides defects.</span>
-                </li>
-                <li>
-                    <span class="lang-sv"><strong>Iterera obevekligt:</strong> validera efter varje steg (tester, skärmdumpar, jämförelser) och förfina tills det är korrekt och rent.<br><em>Motivering:</em> frekvent feedback fångar regressioner tidigt och förkortar vägen till "klart".</span>
-                    <span class="lang-en"><strong>Iterate relentlessly:</strong> validate after each step (tests, screenshots, comparisons) and refine until it's correct and clean.<br><em>Rationale:</em> frequent feedback catches regressions early and shortens the path to "done."</span>
-                </li>
-                <li>
-                    <span class="lang-sv"><strong>Förenkla hänsynslöst:</strong> ta bort komplexitet när den inte ger mätbart värde.<br><em>Motivering:</em> enklare system misslyckas på färre sätt och är lättare att drifta.</span>
-                    <span class="lang-en"><strong>Simplify ruthlessly:</strong> remove complexity when it doesn't buy measurable value.<br><em>Rationale:</em> simpler systems fail in fewer ways and are easier to operate.</span>
-                </li>
-            </ul>
+## Architecture constraints
+- Keep domain logic out of HTTP handlers.
+- No DB access in middleware unless explicitly required.
+- Keep public API backwards compatible by default.
 
-            <!-- Section: Context windows -->
-            <h2 id="context">
-                <span class="lang-sv">Kontextfönster degraderas tidigare än du tror</span>
-                <span class="lang-en">Context windows degrade earlier than you think</span>
-            </h2>
-
-            <p>
-                <span class="lang-sv">Även med stora kontextfönster tenderar kvaliteten att sjunka innan du "fyller ribban". Symtom inkluderar:</span>
-                <span class="lang-en">Even with large context windows, quality tends to drop before you "fill the bar." Symptoms include:</span>
-            </p>
-
-            <ul>
-                <li>
-                    <span class="lang-sv">upprepar samma misstag</span>
-                    <span class="lang-en">repeating the same mistake</span>
-                </li>
-                <li>
-                    <span class="lang-sv">tappar bort begränsningar</span>
-                    <span class="lang-en">losing track of constraints</span>
-                </li>
-                <li>
-                    <span class="lang-sv">hallucinerar struktur du aldrig begärde</span>
-                    <span class="lang-en">hallucinating structure you never requested</span>
-                </li>
-            </ul>
-
-            <blockquote>
-                <span class="lang-sv"><strong>Motivering:</strong> mer kontext ökar konkurrensen om uppmärksamhet; viktiga detaljer förlorar betydelse.</span>
-                <span class="lang-en"><strong>Rationale:</strong> more context increases competition for attention; important details lose salience.</span>
-            </blockquote>
-
-            <h3>
-                <span class="lang-sv">Praktiska kontexthanteringstekniker</span>
-                <span class="lang-en">Practical context management techniques</span>
-            </h3>
-
-            <ol>
-                <li>
-                    <span class="lang-sv"><strong>En konversation per uppgift</strong><br>Använd inte samma session för att bygga auth och refaktorera databaslager.<br><em>Motivering:</em> orelaterad kontext läcker och skapar felaktiga antaganden.</span>
-                    <span class="lang-en"><strong>One conversation per task</strong><br>Don't use the same session to build auth and refactor database layers.<br><em>Rationale:</em> unrelated context bleeds and creates wrong assumptions.</span>
-                </li>
-                <li>
-                    <span class="lang-sv"><strong>Använd externa minnesfiler</strong><br>Låt Claude skriva till <code>SCRATCHPAD.md</code>, <code>plan.md</code>, eller <code>devdocs/progress.md</code>.<br><em>Motivering:</em> filer består mellan sessioner och förankrar "sanningen" i repot.</span>
-                    <span class="lang-en"><strong>Use external memory files</strong><br>Have Claude write to <code>SCRATCHPAD.md</code>, <code>plan.md</code>, or <code>devdocs/progress.md</code>.<br><em>Rationale:</em> files persist across sessions and anchor the "truth" in the repo.</span>
-                </li>
-                <li>
-                    <span class="lang-sv"><strong>Kopiera-klistra reset-arbetsflöde (snabbt och effektivt)</strong><br>När saker blir uppsvällda:<br>– kör <code>/compact</code> för att få en sammanfattning<br>– kör <code>/clear</code> för att nollställa kontext<br>– klistra tillbaka endast den kritiska planen + begränsningar + aktuella fel<br><em>Motivering:</em> en liten, ren kontext överträffar ofta en stor, degraderad.</span>
-                    <span class="lang-en"><strong>Copy–paste reset workflow (fast and effective)</strong><br>When things get bloated:<br>– run <code>/compact</code> to get a summary<br>– run <code>/clear</code> to reset context<br>– paste back only the critical plan + constraints + current errors<br><em>Rationale:</em> a small, clean context often outperforms a large, degraded one.</span>
-                </li>
-                <li>
-                    <span class="lang-sv"><strong>Vet när du ska rensa</strong><br>Om sessionen är förvirrad, nollställ tidigt. <code>CLAUDE.md</code> ger fortfarande grundläggande vägledning.<br><em>Motivering:</em> att felsöka en förvirrad kontext är långsammare än att starta om med ett rent briefing.</span>
-                    <span class="lang-en"><strong>Know when to clear</strong><br>If the session is confused, reset early. <code>CLAUDE.md</code> still provides baseline guidance.<br><em>Rationale:</em> debugging a confused context is slower than restarting with a clean brief.</span>
-                </li>
-            </ol>
-
-            <div class="cursor-tip">
-                <div class="cursor-tip-header">
-                    <span class="lang-sv">Mental modell</span>
-                    <span class="lang-en">Mental model</span>
-                </div>
-                <p>
-                    <span class="lang-sv">Claude är i praktiken tillståndslös om du inte externaliserar tillståndet. Att förvänta sig minne som inte finns skapar inkonsekventa resultat.</span>
-                    <span class="lang-en">Claude is effectively stateless unless you externalize state. Expecting memory that isn't there creates inconsistent results.</span>
-                </p>
-            </div>
-
-            <!-- Section: Prompting -->
-            <h2 id="prompting">
-                <span class="lang-sv">Prompting: behandla det som ingenjörskommunikation</span>
-                <span class="lang-en">Prompting: treat it like engineering communication</span>
-            </h2>
-
-            <p>
-                <span class="lang-sv">Prompting är inte magi. Det är krav + begränsningar + verifiering.</span>
-                <span class="lang-en">Prompting is not magic. It is requirements + constraints + verification.</span>
-            </p>
-
-            <h3>
-                <span class="lang-sv">Använd en repeterbar promptstruktur</span>
-                <span class="lang-en">Use a repeatable prompt structure</span>
-            </h3>
-
-            <p><strong><span class="lang-sv">Förfrågningsmall:</span><span class="lang-en">Request template:</span></strong></p>
-            <ul>
-                <li>
-                    <span class="lang-sv">Mål</span>
-                    <span class="lang-en">Goal</span>
-                </li>
-                <li>
-                    <span class="lang-sv">Kontext (filer/sökvägar)</span>
-                    <span class="lang-en">Context (files/paths)</span>
-                </li>
-                <li>
-                    <span class="lang-sv">Begränsningar / icke-mål</span>
-                    <span class="lang-en">Constraints / non-goals</span>
-                </li>
-                <li>
-                    <span class="lang-sv">"Klart"-kriterier</span>
-                    <span class="lang-en">"Done" criteria</span>
-                </li>
-                <li>
-                    <span class="lang-sv">Be om plan först (sedan kod)</span>
-                    <span class="lang-en">Ask for a plan first (then code)</span>
-                </li>
-            </ul>
-
-            <blockquote>
-                <span class="lang-sv"><strong>Motivering:</strong> strukturerad input minskar omarbete och gör output granskningsbar.</span>
-                <span class="lang-en"><strong>Rationale:</strong> structured input reduces rework and makes outputs reviewable.</span>
-            </blockquote>
-
-            <h3>
-                <span class="lang-sv">Inkludera alltid "vad som inte ska göras"</span>
-                <span class="lang-en">Always include "what not to do"</span>
-            </h3>
-
-            <p>
-                <span class="lang-sv">Claude standardiserar ofta till extra abstraktion. Om minimalism spelar roll, säg det:</span>
-                <span class="lang-en">Claude often defaults to extra abstraction. If minimalism matters, say so:</span>
-            </p>
-
-            <ul>
-                <li>
-                    <span class="lang-sv">"Håll detta enkelt. Inga nya filer om det inte är nödvändigt. Inga abstraktioner jag inte bad om."</span>
-                    <span class="lang-en">"Keep this simple. No new files unless necessary. No abstractions I didn't ask for."</span>
-                </li>
-            </ul>
-
-            <blockquote>
-                <span class="lang-sv"><strong>Motivering:</strong> negativa begränsningar förhindrar scope-expansion.</span>
-                <span class="lang-en"><strong>Rationale:</strong> negative constraints prevent scope expansion.</span>
-            </blockquote>
-
-            <h3>
-                <span class="lang-sv">Inkludera "varför" när det påverkar avvägningar</span>
-                <span class="lang-en">Include "why" when it affects tradeoffs</span>
-            </h3>
-
-            <p><span class="lang-sv">Exempel:</span><span class="lang-en">Examples:</span></p>
-            <ul>
-                <li>
-                    <span class="lang-sv">"Körs vid varje request → optimera för latens."</span>
-                    <span class="lang-en">"Runs on every request → optimize for latency."</span>
-                </li>
-                <li>
-                    <span class="lang-sv">"Prototyp att kasta → håll det minimalt."</span>
-                    <span class="lang-en">"Prototype to throw away → keep it minimal."</span>
-                </li>
-            </ul>
-
-            <blockquote>
-                <span class="lang-sv"><strong>Motivering:</strong> "varför" driver korrekta avvägningar.</span>
-                <span class="lang-en"><strong>Rationale:</strong> "why" drives correct tradeoffs.</span>
-            </blockquote>
-
-            <!-- Section: Bad input -->
-            <h2 id="badinput">
-                <span class="lang-sv">Dålig input → dålig output</span>
-                <span class="lang-en">Bad input → bad output</span>
-            </h2>
-
-            <p>
-                <span class="lang-sv">När output konsekvent är fel, är lösningen vanligtvis:</span>
-                <span class="lang-en">When output is consistently wrong, the fix is usually:</span>
-            </p>
-
-            <ul>
-                <li>
-                    <span class="lang-sv">otillräckliga begränsningar</span>
-                    <span class="lang-en">insufficient constraints</span>
-                </li>
-                <li>
-                    <span class="lang-sv">saknade acceptanskriterier</span>
-                    <span class="lang-en">missing acceptance criteria</span>
-                </li>
-                <li>
-                    <span class="lang-sv">saknad repo-kontext</span>
-                    <span class="lang-en">missing repo context</span>
-                </li>
-                <li>
-                    <span class="lang-sv">för stora uppgifter (inte nedbrutna)</span>
-                    <span class="lang-en">tasks too large (not decomposed)</span>
-                </li>
-            </ul>
-
-            <blockquote>
-                <span class="lang-sv"><strong>Motivering:</strong> modellen kan inte härleda begränsningar du inte tillhandahöll.</span>
-                <span class="lang-en"><strong>Rationale:</strong> the model can't infer constraints you didn't provide.</span>
-            </blockquote>
-
-            <h3>
-                <span class="lang-sv">Snabb diagnostisk checklista</span>
-                <span class="lang-en">Fast diagnostic checklist</span>
-            </h3>
-
-            <p>
-                <span class="lang-sv">Om Claude missar målet, kontrollera om prompten innehöll:</span>
-                <span class="lang-en">If Claude misses the mark, check whether the prompt contained:</span>
-            </p>
-
-            <ul>
-                <li>
-                    <span class="lang-sv">explicita "klart"-kriterier</span>
-                    <span class="lang-en">explicit "done" criteria</span>
-                </li>
-                <li>
-                    <span class="lang-sv">explicita icke-mål</span>
-                    <span class="lang-en">explicit non-goals</span>
-                </li>
-                <li>
-                    <span class="lang-sv">filsökvägar/entrypoints</span>
-                    <span class="lang-en">file paths/entrypoints</span>
-                </li>
-                <li>
-                    <span class="lang-sv">valideringskommandon</span>
-                    <span class="lang-en">validation commands</span>
-                </li>
-                <li>
-                    <span class="lang-sv">en stegad planförfrågan</span>
-                    <span class="lang-en">a staged plan request</span>
-                </li>
-            </ul>
-
-            <blockquote>
-                <span class="lang-sv"><strong>Motivering:</strong> att sakna någon av dessa ökar tvetydighet och överraskningar.</span>
-                <span class="lang-en"><strong>Rationale:</strong> missing any of these increases ambiguity and surprises.</span>
-            </blockquote>
-
-            <!-- Section: Model choice -->
-            <h2 id="modelchoice">
-                <span class="lang-sv">Arbetsflöde för modellval (håll det praktiskt)</span>
-                <span class="lang-en">Model choice workflow (keep it practical)</span>
-            </h2>
-
-            <p>
-                <span class="lang-sv">Claude Code exponerar ofta olika modeller med olika avvägningar (hastighet vs djupare planering). Ett pålitligt mönster:</span>
-                <span class="lang-en">Claude Code often exposes different models with different tradeoffs (speed vs deeper planning). A reliable pattern:</span>
-            </p>
-
-            <ul>
-                <li>
-                    <span class="lang-sv">Använd en starkare resonemangsmodell för <strong>planering och avvägningar</strong></span>
-                    <span class="lang-en">Use a stronger reasoning model for <strong>planning and tradeoffs</strong></span>
-                </li>
-                <li>
-                    <span class="lang-sv">Använd en snabbare modell för <strong>implementation när planen är låst</strong></span>
-                    <span class="lang-en">Use a faster model for <strong>implementation once the plan is locked</strong></span>
-                </li>
-            </ul>
-
-            <blockquote>
-                <span class="lang-sv"><strong>Motivering:</strong> planeringskvalitet är hävstång; exekveringshastighet spelar roll efter att beslut är tagna.</span>
-                <span class="lang-en"><strong>Rationale:</strong> planning quality is leverage; execution speed matters after decisions are made.</span>
-            </blockquote>
-
-            <!-- Section: MCP, hooks, slash commands -->
-            <h2 id="mcp">
-                <span class="lang-sv">MCP, hooks, slash-kommandon och config: använd features som tar bort slit</span>
-                <span class="lang-en">MCP, hooks, slash commands, and configs: use features that remove toil</span>
-            </h2>
-
-            <p>
-                <span class="lang-sv">Claude Code har kraftfulla features. Poängen är inte "aktivera allt". Poängen är <strong>ta bort upprepad friktion</strong>.</span>
-                <span class="lang-en">Claude Code has power features. The point isn't "enable everything." The point is <strong>remove repeated friction</strong>.</span>
-            </p>
-
-            <h3>MCP (Model Context Protocol)</h3>
-            <p>
-                <span class="lang-sv">Använd MCP när du upprepat kopierar data från:</span>
-                <span class="lang-en">Use MCP when you repeatedly copy data from:</span>
-            </p>
-            <ul>
-                <li>GitHub</li>
-                <li>Slack</li>
-                <li>
-                    <span class="lang-sv">issue trackers</span>
-                    <span class="lang-en">issue trackers</span>
-                </li>
-                <li>
-                    <span class="lang-sv">databaser/API:er</span>
-                    <span class="lang-en">databases/APIs</span>
-                </li>
-            </ul>
-
-            <blockquote>
-                <span class="lang-sv"><strong>Motivering:</strong> att automatisera kontextinhämtning minskar manuella fel och sparar tid.</span>
-                <span class="lang-en"><strong>Rationale:</strong> automating context ingestion reduces manual errors and saves time.</span>
-            </blockquote>
-
-            <h3>Hooks</h3>
-            <p>
-                <span class="lang-sv">Hooks kan köra kommandon före/efter ändringar:</span>
-                <span class="lang-en">Hooks can run commands before/after changes:</span>
-            </p>
-            <ul>
-                <li>
-                    <span class="lang-sv">formatter på redigerade filer</span>
-                    <span class="lang-en">formatter on edited files</span>
-                </li>
-                <li>
-                    <span class="lang-sv">typkontroll efter redigeringar</span>
-                    <span class="lang-en">typechecking after edits</span>
-                </li>
-                <li>
-                    <span class="lang-sv">test-delmängd efter ett steg</span>
-                    <span class="lang-en">test subset after a step</span>
-                </li>
-            </ul>
-
-            <blockquote>
-                <span class="lang-sv"><strong>Motivering:</strong> hooks förvandlar goda intentioner till automatisk upprätthållning.</span>
-                <span class="lang-en"><strong>Rationale:</strong> hooks convert good intentions into automatic enforcement.</span>
-            </blockquote>
-
-            <h3>
-                <span class="lang-sv">Anpassade slash-kommandon</span>
-                <span class="lang-en">Custom slash commands</span>
-            </h3>
-            <p>
-                <span class="lang-sv">Skapa återanvändbara promptar som kommandon via <code>.claude/commands/*.md</code>:</span>
-                <span class="lang-en">Create reusable prompts as commands via <code>.claude/commands/*.md</code>:</span>
-            </p>
-            <ul>
-                <li><code>/review-pr</code></li>
-                <li><code>/debug-failure</code></li>
-                <li><code>/refactor-module</code></li>
-                <li><code>/write-tests</code></li>
-            </ul>
-
-            <blockquote>
-                <span class="lang-sv"><strong>Motivering:</strong> att standardisera promptar ökar konsekvens i teamet.</span>
-                <span class="lang-en"><strong>Rationale:</strong> standardizing prompts increases consistency across the team.</span>
-            </blockquote>
-
-            <h3>
-                <span class="lang-sv">Inställningar/konfiguration</span>
-                <span class="lang-en">Settings/configuration</span>
-            </h3>
-            <p>
-                <span class="lang-sv">Använd config för att anpassa beteende:</span>
-                <span class="lang-en">Use config to align behavior:</span>
-            </p>
-            <ul>
-                <li>
-                    <span class="lang-sv">standardkommandon</span>
-                    <span class="lang-en">default commands</span>
-                </li>
-                <li>
-                    <span class="lang-sv">föredragen stil (små diffar, stanna-och-fråga vid osäkerhet)</span>
-                    <span class="lang-en">preferred style (small diffs, stop-and-ask on uncertainty)</span>
-                </li>
-                <li>
-                    <span class="lang-sv">skyddsräcken (undvik nya deps, undvik breda refaktoreringar)</span>
-                    <span class="lang-en">guardrails (avoid new deps, avoid broad refactors)</span>
-                </li>
-            </ul>
-
-            <blockquote>
-                <span class="lang-sv"><strong>Motivering:</strong> konfiguration minskar prompt-overhead och drift.</span>
-                <span class="lang-en"><strong>Rationale:</strong> configuration reduces prompt overhead and drift.</span>
-            </blockquote>
-
-            <!-- Section: When Claude gets stuck -->
-            <h2 id="stuck">
-                <span class="lang-sv">När Claude fastnar: bryt loopen medvetet</span>
-                <span class="lang-en">When Claude gets stuck: break the loop intentionally</span>
-            </h2>
-
-            <p>
-                <span class="lang-sv">Fast-mönster:</span>
-                <span class="lang-en">Stuck patterns:</span>
-            </p>
-            <ul>
-                <li>
-                    <span class="lang-sv">upprepar samma fix</span>
-                    <span class="lang-en">repeating the same fix</span>
-                </li>
-                <li>
-                    <span class="lang-sv">självsäker men fel ändringar</span>
-                    <span class="lang-en">confident but wrong changes</span>
-                </li>
-                <li>
-                    <span class="lang-sv">oändligt "ett försök till"</span>
-                    <span class="lang-en">endless "one more attempt"</span>
-                </li>
-            </ul>
-
-            <h3>
-                <span class="lang-sv">Vad du ska göra istället</span>
-                <span class="lang-en">What to do instead</span>
-            </h3>
-
-            <ol>
-                <li>
-                    <span class="lang-sv"><strong>Nollställ kontext (<code>/clear</code>)</strong><br>Ge sedan endast:<br>– uppgiftsbeskrivning<br>– begränsningar<br>– det specifika felet<br><em>Motivering:</em> fast beteende korrelerar ofta med förorenad kontext.</span>
-                    <span class="lang-en"><strong>Reset context (<code>/clear</code>)</strong><br>Then re-provide only:<br>– task brief<br>– constraints<br>– the specific error<br><em>Rationale:</em> stuck behavior often correlates with polluted context.</span>
-                </li>
-                <li>
-                    <span class="lang-sv"><strong>Gör uppgiften mindre</strong><br>Be om en av:<br>– en minimal reproduktion<br>– en enfils-fix<br>– en test-first-ändring<br><em>Motivering:</em> mindre sökrymder minskar fellägen.</span>
-                    <span class="lang-en"><strong>Make the task smaller</strong><br>Ask for one of:<br>– a minimal reproduction<br>– a single-file fix<br>– a test-first change<br><em>Rationale:</em> smaller search spaces reduce failure modes.</span>
-                </li>
-                <li>
-                    <span class="lang-sv"><strong>Visa ett konkret exempel</strong><br>"Här är det önskade outputformatet; applicera det på andra ställen."<br><em>Motivering:</em> exempel är otvetydiga framgångsmått.</span>
-                    <span class="lang-en"><strong>Show a concrete example</strong><br>"Here is the desired output format; apply it elsewhere."<br><em>Rationale:</em> examples are unambiguous success metrics.</span>
-                </li>
-                <li>
-                    <span class="lang-sv"><strong>Omformulera</strong><br>"Behandla detta som en tillståndsmaskin."<br>"Skriv detta som rena funktioner med explicita inputs/outputs."<br><em>Motivering:</em> vissa formuleringar mappar bättre mot modellens resonemang.</span>
-                    <span class="lang-en"><strong>Reframe</strong><br>"Treat this as a state machine."<br>"Write this as pure functions with explicit inputs/outputs."<br><em>Rationale:</em> some framings map better onto the model's reasoning.</span>
-                </li>
-            </ol>
-
-            <!-- Section: Headless mode -->
-            <h2 id="headless">
-                <span class="lang-sv">Bygg system, inte engångsinteraktioner (headless mode)</span>
-                <span class="lang-en">Build systems, not one-off interactions (headless mode)</span>
-            </h2>
-
-            <p>
-                <span class="lang-sv">Claude Code kan användas bortom interaktiva sessioner. I synnerhet:</span>
-                <span class="lang-en">Claude Code can be used beyond interactive sessions. In particular:</span>
-            </p>
-            <ul>
-                <li>
-                    <span class="lang-sv">headless-körningar (t.ex. via en <code>-p</code> prompt-flagga i vissa uppsättningar)</span>
-                    <span class="lang-en">headless runs (e.g., via a <code>-p</code> prompt flag in some setups)</span>
-                </li>
-                <li>
-                    <span class="lang-sv">skriptade kedjade arbetsflöden</span>
-                    <span class="lang-en">scripting chained workflows</span>
-                </li>
-                <li>
-                    <span class="lang-sv">automatiserad PR-granskning / dokumentuppdateringar</span>
-                    <span class="lang-en">automated PR review / doc updates</span>
-                </li>
-            </ul>
-
-            <blockquote>
-                <span class="lang-sv"><strong>Motivering:</strong> automation förvandlar individuella vinster till repeterbar genomströmning.</span>
-                <span class="lang-en"><strong>Rationale:</strong> automation turns individual wins into repeatable throughput.</span>
-            </blockquote>
-
-            <h3>
-                <span class="lang-sv">Ett säkert automationsmönster</span>
-                <span class="lang-en">A safe automation pattern</span>
-            </h3>
-            <ul>
-                <li>
-                    <span class="lang-sv">kör på ett smalt scope (enskild katalog / filmönster)</span>
-                    <span class="lang-en">run on a narrow scope (single directory / file patterns)</span>
-                </li>
-                <li>
-                    <span class="lang-sv">logga output</span>
-                    <span class="lang-en">log output</span>
-                </li>
-                <li>
-                    <span class="lang-sv">kräv CI-pass före merge</span>
-                    <span class="lang-en">require CI pass before merge</span>
-                </li>
-                <li>
-                    <span class="lang-sv">behåll mänsklig granskning för riskfyllda domäner</span>
-                    <span class="lang-en">keep human review in the loop for risky domains</span>
-                </li>
-            </ul>
-
-            <blockquote>
-                <span class="lang-sv"><strong>Motivering:</strong> avgränsad automation är granskningsbar och minskar oavsiktliga ändringar.</span>
-                <span class="lang-en"><strong>Rationale:</strong> bounded automation is auditable and reduces unintended changes.</span>
-            </blockquote>
-
-            <h3>
-                <span class="lang-sv">Förbättringssvänghjulet</span>
-                <span class="lang-en">The improvement flywheel</span>
-            </h3>
-            <ul>
-                <li>
-                    <span class="lang-sv">Claude gör ett misstag</span>
-                    <span class="lang-en">Claude makes a mistake</span>
-                </li>
-                <li>
-                    <span class="lang-sv">fånga regeln i <code>CLAUDE.md</code> eller en kommandomall</span>
-                    <span class="lang-en">capture the rule in <code>CLAUDE.md</code> or a command template</span>
-                </li>
-                <li>
-                    <span class="lang-sv">lägg till en hook/check för att förhindra upprepning</span>
-                    <span class="lang-en">add a hook/check to prevent recurrence</span>
-                </li>
-            </ul>
-
-            <blockquote>
-                <span class="lang-sv"><strong>Motivering:</strong> systematiska fixes ackumuleras.</span>
-                <span class="lang-en"><strong>Rationale:</strong> systematic fixes compound.</span>
-            </blockquote>
-
-            <!-- Section: TL;DR -->
-            <h2 id="tldr">TL;DR (Claude Code 101)</h2>
-
-            <ul>
-                <li>
-                    <span class="lang-sv"><strong>Tänk först, skriv sedan:</strong> Plan Mode producerar konsekvent bättre resultat.<br><em>Motivering:</em> planering begränsar lösningsrymden.</span>
-                    <span class="lang-en"><strong>Think first, then type:</strong> Plan Mode consistently produces better outcomes.<br><em>Rationale:</em> planning constrains the solution space.</span>
-                </li>
-                <li>
-                    <span class="lang-sv"><strong>Skriv arkitekturbegränsningar:</strong> gränser + invarianter + icke-mål.<br><em>Motivering:</em> förhindrar trovärdiga-men-felaktiga implementationer.</span>
-                    <span class="lang-en"><strong>Write architecture constraints:</strong> boundaries + invariants + non-goals.<br><em>Rationale:</em> prevents plausible-but-wrong implementations.</span>
-                </li>
-                <li>
-                    <span class="lang-sv"><strong><code>CLAUDE.md</code> är hävstång:</strong> håll den kort, repo-specifik och uppdaterad.<br><em>Motivering:</em> beständiga instruktioner förbättrar varje session.</span>
-                    <span class="lang-en"><strong><code>CLAUDE.md</code> is leverage:</strong> keep it short, repo-specific, and updated.<br><em>Rationale:</em> durable instructions improve every session.</span>
-                </li>
-                <li>
-                    <span class="lang-sv"><strong>Kontext degraderas tidigt:</strong> scope sessioner, externalisera minne, nollställ med <code>/compact</code> + <code>/clear</code>.<br><em>Motivering:</em> mindre ren kontext slår stor brusig kontext.</span>
-                    <span class="lang-en"><strong>Context degrades early:</strong> scope sessions, externalize memory, reset with <code>/compact</code> + <code>/clear</code>.<br><em>Rationale:</em> smaller clean context beats large noisy context.</span>
-                </li>
-                <li>
-                    <span class="lang-sv"><strong>Prompta som en ingenjör:</strong> var explicit om klart-kriterier och vad som inte ska göras.<br><em>Motivering:</em> minskar överengineering och omarbete.</span>
-                    <span class="lang-en"><strong>Prompt like an engineer:</strong> be explicit about done criteria and what not to do.<br><em>Rationale:</em> reduces overengineering and rework.</span>
-                </li>
-                <li>
-                    <span class="lang-sv"><strong>Använd MCP/hooks/kommandon när de tar bort slit.</strong><br><em>Motivering:</em> automation gör kvalitet repeterbar.</span>
-                    <span class="lang-en"><strong>Use MCP/hooks/commands when they remove toil.</strong><br><em>Rationale:</em> automation makes quality repeatable.</span>
-                </li>
-                <li>
-                    <span class="lang-sv"><strong>När fast, byt approach:</strong> nollställ, förenkla, visa exempel, omformulera.<br><em>Motivering:</em> loop-brytning slår brute force.</span>
-                    <span class="lang-en"><strong>When stuck, change approach:</strong> reset, simplify, show examples, reframe.<br><em>Rationale:</em> loop-breaking beats brute force.</span>
-                </li>
-            </ul>
+## Working style
+- Start with a 3–7 step plan.
+- After each step: summarize diff + commands run + remaining risks.
+- If uncertain: stop and ask for a decision.
+</code></pre>
+<hr />
+<h2 id="ultrathink-mode-quality-first-mindset">"Ultrathink" mode (quality-first mindset)</h2>
+<p>Some teams use a short, high-signal "quality bar" in their project guidance to bias Claude toward <strong>deliberate planning, careful reading, and minimal complexity</strong>. This can live in <code>CLAUDE.md</code> (or in a separate <code>QUALITY.md</code> referenced from <code>CLAUDE.md</code>) as long as it stays concise.</p>
+<h3 id="principles-to-encode-and-why-they-help">Principles to encode (and why they help)</h3>
+<ul>
+<li>
+<p><strong>Think different:</strong> question assumptions and consider simpler architectures before implementation.<br />
+<strong>Rationale:</strong> the first working solution is often not the best fit for long-lived systems.</p>
+</li>
+<li>
+<p><strong>Obsess over details:</strong> read existing code like a specification—follow established patterns and naming.<br />
+<strong>Rationale:</strong> consistency reduces integration bugs and keeps diffs reviewable.</p>
+</li>
+<li>
+<p><strong>Plan like a designer:</strong> write a short plan that makes interfaces and invariants explicit before editing files.<br />
+<strong>Rationale:</strong> explicit boundaries prevent plausible-but-wrong code generation.</p>
+</li>
+<li>
+<p><strong>Craft, don't sprawl:</strong> keep functions and abstractions minimal; avoid introducing new layers unless requested.<br />
+<strong>Rationale:</strong> unnecessary indirection increases maintenance cost and hides defects.</p>
+</li>
+<li>
+<p><strong>Iterate relentlessly:</strong> validate after each step (tests, screenshots, comparisons) and refine until it's correct and clean.<br />
+<strong>Rationale:</strong> frequent feedback catches regressions early and shortens the path to "done."</p>
+</li>
+<li>
+<p><strong>Simplify ruthlessly:</strong> remove complexity when it doesn't buy measurable value.<br />
+<strong>Rationale:</strong> simpler systems fail in fewer ways and are easier to operate.</p>
+</li>
+</ul>
+<h3 id="tooling-cues-worth-capturing">Tooling cues worth capturing</h3>
+<ul>
+<li>
+<p><strong>Use your tools as instruments:</strong> lean on bash commands, MCP servers, and custom slash commands for repeatable workflows.<br />
+<strong>Rationale:</strong> automation reduces manual copy/paste errors and saves time.</p>
+</li>
+<li>
+<p><strong>Use Git history as context:</strong> check prior approaches and conventions before inventing new ones.<br />
+<strong>Rationale:</strong> history reveals intent and reduces churn from "new but inconsistent" implementations.</p>
+</li>
+<li>
+<p><strong>Treat mocks/screenshots as specs when available:</strong> implement to the visual/behavioral target.<br />
+<strong>Rationale:</strong> concrete targets reduce ambiguity and rework.</p>
+</li>
+<li>
+<p><strong>Use multiple Claude sessions intentionally:</strong> separate planning vs execution, or isolate unrelated concerns.<br />
+<strong>Rationale:</strong> separation reduces context bleed and improves focus.</p>
+</li>
+</ul>
+<hr />
+<h2 id="context-windows-degrade-earlier-than-you-think">Context windows degrade earlier than you think</h2>
+<p>Even with large context windows, quality tends to drop before you "fill the bar." Symptoms include:<br />
+- repeating the same mistake<br />
+- losing track of constraints<br />
+- hallucinating structure you never requested</p>
+<p><strong>Rationale:</strong> more context increases competition for attention; important details lose salience.</p>
+<h3 id="practical-context-management-techniques">Practical context management techniques</h3>
+<p><strong>1) One conversation per task</strong><br />
+Don't use the same session to build auth and refactor database layers.<br />
+<strong>Rationale:</strong> unrelated context bleeds and creates wrong assumptions.</p>
+<p><strong>2) Use external memory files</strong><br />
+Have Claude write to <code>SCRATCHPAD.md</code>, <code>plan.md</code>, or <code>devdocs/progress.md</code>.<br />
+<strong>Rationale:</strong> files persist across sessions and anchor the "truth" in the repo.</p>
+<p><strong>3) Copy–paste reset workflow (fast and effective)</strong><br />
+When things get bloated:<br />
+- run <code>/compact</code> to get a summary<br />
+- run <code>/clear</code> to reset context<br />
+- paste back only the critical plan + constraints + current errors</p>
+<p><strong>Rationale:</strong> a small, clean context often outperforms a large, degraded one.</p>
+<p><strong>4) Know when to clear</strong><br />
+If the session is confused, reset early. <code>CLAUDE.md</code> still provides baseline guidance.<br />
+<strong>Rationale:</strong> debugging a confused context is slower than restarting with a clean brief.</p>
+<h3 id="adopt-the-right-mental-model">Adopt the right mental model</h3>
+<p>Claude is effectively stateless unless you externalize state.<br />
+<strong>Rationale:</strong> expecting memory that isn't there creates inconsistent results.</p>
+<hr />
+<h2 id="prompting-treat-it-like-engineering-communication">Prompting: treat it like engineering communication</h2>
+<p>Prompting is not magic. It is requirements + constraints + verification.</p>
+<h3 id="use-a-repeatable-prompt-structure">Use a repeatable prompt structure</h3>
+<p><strong>Request template</strong><br />
+- Goal<br />
+- Context (files/paths)<br />
+- Constraints / non-goals<br />
+- "Done" criteria<br />
+- Ask for a plan first (then code)</p>
+<p><strong>Rationale:</strong> structured input reduces rework and makes outputs reviewable.</p>
+<h3 id="always-include-what-not-to-do">Always include "what not to do"</h3>
+<p>Claude often defaults to extra abstraction. If minimalism matters, say so:<br />
+- "Keep this simple. No new files unless necessary. No abstractions I didn't ask for."</p>
+<p><strong>Rationale:</strong> negative constraints prevent scope expansion.</p>
+<h3 id="include-why-when-it-affects-tradeoffs">Include "why" when it affects tradeoffs</h3>
+<p>Examples:<br />
+- "Runs on every request → optimize for latency."<br />
+- "Prototype to throw away → keep it minimal."</p>
+<p><strong>Rationale:</strong> "why" drives correct tradeoffs.</p>
+<hr />
+<h2 id="bad-input-bad-output-without-the-hostility">Bad input → bad output (without the hostility)</h2>
+<p>When output is consistently wrong, the fix is usually:<br />
+- insufficient constraints<br />
+- missing acceptance criteria<br />
+- missing repo context<br />
+- tasks too large (not decomposed)</p>
+<p><strong>Rationale:</strong> the model can't infer constraints you didn't provide.</p>
+<h3 id="fast-diagnostic-checklist">Fast diagnostic checklist</h3>
+<p>If Claude misses the mark, check whether the prompt contained:<br />
+- explicit "done" criteria<br />
+- explicit non-goals<br />
+- file paths/entrypoints<br />
+- validation commands<br />
+- a staged plan request</p>
+<p><strong>Rationale:</strong> missing any of these increases ambiguity and surprises.</p>
+<hr />
+<h2 id="model-choice-workflow-keep-it-practical">Model choice workflow (keep it practical)</h2>
+<p>Claude Code often exposes different models with different tradeoffs (speed vs deeper planning). A reliable pattern:</p>
+<ul>
+<li>Use a stronger reasoning model for <strong>planning and tradeoffs</strong></li>
+<li>Use a faster model for <strong>implementation once the plan is locked</strong></li>
+</ul>
+<p><strong>Rationale:</strong> planning quality is leverage; execution speed matters after decisions are made.</p>
+<hr />
+<h2 id="mcp-hooks-slash-commands-and-configs-use-features-that-remove-toil">MCP, hooks, slash commands, and configs: use features that remove toil</h2>
+<p>Claude Code has power features. The point isn't "enable everything." The point is <strong>remove repeated friction</strong>.</p>
+<h3 id="mcp-model-context-protocol">MCP (Model Context Protocol)</h3>
+<p>Use MCP when you repeatedly copy data from:<br />
+- GitHub<br />
+- Slack<br />
+- issue trackers<br />
+- databases/APIs</p>
+<p><strong>Rationale:</strong> automating context ingestion reduces manual errors and saves time.</p>
+<h3 id="hooks">Hooks</h3>
+<p>Hooks can run commands before/after changes:<br />
+- formatter on edited files<br />
+- typechecking after edits<br />
+- test subset after a step</p>
+<p><strong>Rationale:</strong> hooks convert good intentions into automatic enforcement.</p>
+<h3 id="custom-slash-commands">Custom slash commands</h3>
+<p>Create reusable prompts as commands via <code>.claude/commands/*.md</code>:<br />
+- <code>/review-pr</code><br />
+- <code>/debug-failure</code><br />
+- <code>/refactor-module</code><br />
+- <code>/write-tests</code></p>
+<p><strong>Rationale:</strong> standardizing prompts increases consistency across the team.</p>
+<h3 id="settingsconfiguration">Settings/configuration</h3>
+<p>Use config to align behavior:<br />
+- default commands<br />
+- preferred style (small diffs, stop-and-ask on uncertainty)<br />
+- guardrails (avoid new deps, avoid broad refactors)</p>
+<p><strong>Rationale:</strong> configuration reduces prompt overhead and drift.</p>
+<hr />
+<h2 id="when-claude-gets-stuck-break-the-loop-intentionally">When Claude gets stuck: break the loop intentionally</h2>
+<p>Stuck patterns:<br />
+- repeating the same fix<br />
+- confident but wrong changes<br />
+- endless "one more attempt"</p>
+<h3 id="what-to-do-instead">What to do instead</h3>
+<p><strong>1) Reset context (<code>/clear</code>)</strong><br />
+Then re-provide only:<br />
+- task brief<br />
+- constraints<br />
+- the specific error</p>
+<p><strong>Rationale:</strong> stuck behavior often correlates with polluted context.</p>
+<p><strong>2) Make the task smaller</strong><br />
+Ask for one of:<br />
+- a minimal reproduction<br />
+- a single-file fix<br />
+- a test-first change</p>
+<p><strong>Rationale:</strong> smaller search spaces reduce failure modes.</p>
+<p><strong>3) Show a concrete example</strong><br />
+- "Here is the desired output format; apply it elsewhere."</p>
+<p><strong>Rationale:</strong> examples are unambiguous success metrics.</p>
+<p><strong>4) Reframe</strong><br />
+- "Treat this as a state machine."<br />
+- "Write this as pure functions with explicit inputs/outputs."</p>
+<p><strong>Rationale:</strong> some framings map better onto the model's reasoning.</p>
+<hr />
+<h2 id="build-systems-not-one-off-interactions-headless-mode">Build systems, not one-off interactions (headless mode)</h2>
+<p>Claude Code can be used beyond interactive sessions. In particular:<br />
+- headless runs (e.g., via a <code>-p</code> prompt flag in some setups)<br />
+- scripting chained workflows<br />
+- automated PR review / doc updates</p>
+<p><strong>Rationale:</strong> automation turns individual wins into repeatable throughput.</p>
+<h3 id="a-safe-automation-pattern">A safe automation pattern</h3>
+<ul>
+<li>run on a narrow scope (single directory / file patterns)</li>
+<li>log output</li>
+<li>require CI pass before merge</li>
+<li>keep human review in the loop for risky domains</li>
+</ul>
+<p><strong>Rationale:</strong> bounded automation is auditable and reduces unintended changes.</p>
+<h3 id="the-improvement-flywheel">The improvement flywheel</h3>
+<ul>
+<li>Claude makes a mistake</li>
+<li>capture the rule in <code>CLAUDE.md</code> or a command template</li>
+<li>add a hook/check to prevent recurrence</li>
+</ul>
+<p><strong>Rationale:</strong> systematic fixes compound.</p>
+<hr />
+<h2 id="tldr-claude-code-101">TL;DR (Claude Code 101)</h2>
+<ul>
+<li><strong>Think first, then type:</strong> Plan Mode consistently produces better outcomes.<br />
+<strong>Rationale:</strong> planning constrains the solution space.</li>
+<li><strong>Write architecture constraints:</strong> boundaries + invariants + non-goals.<br />
+<strong>Rationale:</strong> prevents plausible-but-wrong implementations.</li>
+<li><strong><code>CLAUDE.md</code> is leverage:</strong> keep it short, repo-specific, and updated.<br />
+<strong>Rationale:</strong> durable instructions improve every session.</li>
+<li><strong>Context degrades early:</strong> scope sessions, externalize memory, reset with <code>/compact</code> + <code>/clear</code>.<br />
+<strong>Rationale:</strong> smaller clean context beats large noisy context.</li>
+<li><strong>Prompt like an engineer:</strong> be explicit about done criteria and what not to do.<br />
+<strong>Rationale:</strong> reduces overengineering and rework.</li>
+<li><strong>Use MCP/hooks/commands when they remove toil.</strong><br />
+<strong>Rationale:</strong> automation makes quality repeatable.</li>
+<li><strong>When stuck, change approach:</strong> reset, simplify, show examples, reframe.<br />
+<strong>Rationale:</strong> loop-breaking beats brute force.</li>
+</ul></div>
 
         </article>
     </main>
 
-    <!-- Presentation Slides (shown only in presentation mode) -->
-    <section class="presentation-slide hero-slide" data-slide-number="1 / 9">
+    <!-- Presentation Slides -->
+    <section class="presentation-slide hero-slide" data-slide-number="1 / 19">
         <div class="presentation-slide-content">
             <p class="article-meta">
-                <span class="lang-sv">Agentisk utveckling // Januari 2026</span>
-                <span class="lang-en">Agentic Development // January 2026</span>
+                <span class="lang-sv">Agentisk utveckling // 2026-01</span>
+                <span class="lang-en">Agentic Development // 2026-01</span>
             </p>
             <h1>Claude Code 101</h1>
             <p class="subtitle">
@@ -1128,160 +939,718 @@
         </div>
     </section>
 
-    <section class="presentation-slide" data-slide-number="2 / 9">
+    <section class="presentation-slide" data-slide-number="2 / 19">
         <div class="presentation-slide-content">
-            <h2>
-                <span class="lang-sv">Tänk först (Plan Mode)</span>
-                <span class="lang-en">Think first (Plan Mode)</span>
-            </h2>
-            <p>
-                <span class="lang-sv">Claude Code fungerar bäst när första steget är att <strong>strukturera problemet</strong>, inte att skriva instruktioner.</span>
-                <span class="lang-en">Claude Code works best when the first step is <strong>structuring the problem</strong>, not typing instructions.</span>
-            </p>
-            <ol>
-                <li><span class="lang-sv"><strong>Skriv måltillståndet</strong> (acceptanskriterier) innan du ber om kod</span><span class="lang-en"><strong>Write the target state</strong> (acceptance criteria) before asking for code</span></li>
-                <li><span class="lang-sv"><strong>Använd Plan Mode</strong> för arkitektur, data, auth eller gränssnitt</span><span class="lang-en"><strong>Use Plan Mode</strong> for architecture, data, auth, or interfaces</span></li>
-                <li><span class="lang-sv"><strong>Be om alternativ</strong> och avvägningar först, välj sedan</span><span class="lang-en"><strong>Ask for options</strong> and tradeoffs first, then choose</span></li>
-            </ol>
-            <blockquote>
-                <span class="lang-sv">Tvetydighet ökar lösningsrymden, och modellen kommer utforska den.</span>
-                <span class="lang-en">Ambiguity increases solution space, and the model will explore it.</span>
-            </blockquote>
+            <div class="lang-sv"><h2 id="claude-code-101-en-praktisk-handbok-for-att-leverera-riktiga-andringar-sakert">Claude Code 101: en praktisk handbok för att leverera riktiga ändringar säkert</h2>
+<p>Den här guiden är en <strong>Claude Code-specifik</strong> "101" för systemutvecklare. Målet är inte teori — det är en uppsättning repeterbara arbetsflöden som producerar <strong>små diffar, snabb feedback och färre regressioner</strong>.</p>
+<hr /></div>
+            <div class="lang-en"><h2 id="claude-code-101-a-practical-playbook-for-shipping-real-changes-safely">Claude Code 101: a practical playbook for shipping real changes safely</h2>
+<p>This guide is a <strong>Claude Code–specific</strong> "101" for system developers. The goal is not theory—it's a set of repeatable workflows that produce <strong>small diffs, fast feedback, and fewer regressions</strong>.</p>
+<hr /></div>
         </div>
     </section>
 
-    <section class="presentation-slide" data-slide-number="3 / 9">
+    <section class="presentation-slide" data-slide-number="3 / 19">
         <div class="presentation-slide-content">
-            <h2>
-                <span class="lang-sv">Arkitekturbegränsningar</span>
-                <span class="lang-en">Architecture Constraints</span>
-            </h2>
-            <p>
-                <span class="lang-sv">Claude kan generera fungerande kod som bryter mot ditt systems invarianter. Lösningen är <strong>arkitekturbegränsningar i förväg</strong>.</span>
-                <span class="lang-en">Claude can generate working code that violates your system's invariants. The fix is <strong>architectural constraints up front</strong>.</span>
-            </p>
-            <ul>
-                <li><span class="lang-sv"><strong>Gränser:</strong> vilka moduler som kan/inte kan röra varandra</span><span class="lang-en"><strong>Boundaries:</strong> what modules can/can't touch each other</span></li>
-                <li><span class="lang-sv"><strong>Invarianter:</strong> vad som måste förbli sant</span><span class="lang-en"><strong>Invariants:</strong> what must remain true</span></li>
-                <li><span class="lang-sv"><strong>Icke-mål:</strong> vad som inte får ändras</span><span class="lang-en"><strong>Non-goals:</strong> what must not change</span></li>
-                <li><span class="lang-sv"><strong>Validering:</strong> kommandon som bevisar att det fungerar</span><span class="lang-en"><strong>Validation:</strong> commands that prove it works</span></li>
-            </ul>
+            <div class="lang-sv"><h2 id="tank-forst-anvand-plan-mode-exekvera-sedan">Tänk först (använd Plan Mode, exekvera sedan)</h2>
+<p>Claude Code fungerar bäst när första steget är att <strong>strukturera problemet</strong>, inte att skriva instruktioner.</p>
+<h3 id="varfor-detta-spelar-roll">Varför detta spelar roll</h3>
+<p>Om förfrågan är bred kommer Claude fylla i luckor med "rimliga standardvärden". I ingenjörsarbete blir dessa ofta:<br />
+- onödiga abstraktioner<br />
+- för många filer<br />
+- dolda beteendeförändringar<br />
+<strong>Motivering:</strong> tvetydighet ökar lösningsrymden, och modellen kommer utforska den.</p>
+<h3 id="vad-du-ska-gora">Vad du ska göra</h3>
+<p>1) <strong>Skriv måltillståndet (acceptanskriterier) innan du ber om kod.</strong><br />
+<strong>Motivering:</strong> Claude är starkast när den optimerar för ett explicit "klart", inte ett underförstått.</p>
+<p>2) <strong>Använd Plan Mode för allt som påverkar arkitektur, data, auth eller gränssnitt.</strong><br />
+   I Claude Code, gå in i Plan Mode (vanligtvis <strong>Shift+Tab två gånger</strong> beroende på setup).<br />
+<strong>Motivering:</strong> planering tvingar fram explicita gränser och minskar överraskande ändringar.</p>
+<p>3) <strong>Be om alternativ och avvägningar först, välj sedan.</strong><br />
+   Exempelprompt:<br />
+   - "Lista 2–3 möjliga designs, peka ut risker, och rekommendera en. Skriv ingen kod ännu."<br />
+<strong>Motivering:</strong> den snabbaste vägen är ofta att välja rätt approach tidigt.</p>
+<h3 id="ersatt-vagt-med-specifikt">Ersätt vagt med specifikt</h3>
+<p>Dåligt:<br />
+- "Bygg ett auth-system."</p>
+<p>Bra:<br />
+- "Lägg till email/lösenord-auth med befintliga User-modellen; lagra sessioner i Redis med 24h utgång; skydda routes under <code>/api/protected</code>; inga nya beroenden; lägg till integrationstester."</p>
+<p><strong>Motivering:</strong> specificitet förhindrar övergrepp och skapar verifierbar output.</p>
+<hr /></div>
+            <div class="lang-en"><h2 id="think-first-use-plan-mode-then-execute">Think first (use Plan Mode, then execute)</h2>
+<p>Claude Code works best when the first step is <strong>structuring the problem</strong>, not typing instructions.</p>
+<h3 id="why-this-matters">Why this matters</h3>
+<p>If the request is broad, Claude will fill in gaps with "reasonable defaults." In engineering work, those defaults often become:<br />
+- unnecessary abstractions<br />
+- too many files<br />
+- hidden behavior changes<br />
+<strong>Rationale:</strong> ambiguity increases solution space, and the model will explore it.</p>
+<h3 id="what-to-do">What to do</h3>
+<p>1) <strong>Write the target state (acceptance criteria) before asking for code.</strong><br />
+<strong>Rationale:</strong> Claude is strongest when optimizing for an explicit "done," not an implied one.</p>
+<p>2) <strong>Use Plan Mode for anything that affects architecture, data, auth, or interfaces.</strong><br />
+   In Claude Code, enter Plan Mode (commonly <strong>Shift+Tab twice</strong> depending on setup).<br />
+<strong>Rationale:</strong> planning forces explicit boundaries and reduces surprise edits.</p>
+<p>3) <strong>Ask for options and tradeoffs first, then choose.</strong><br />
+   Example prompt:<br />
+   - "List 2–3 viable designs, call out risks, and recommend one. Do not write code yet."<br />
+<strong>Rationale:</strong> the fastest path is often picking the right approach early.</p>
+<h3 id="replace-vague-with-specific">Replace vague with specific</h3>
+<p>Bad:<br />
+- "Build an auth system."</p>
+<p>Good:<br />
+- "Add email/password auth using the existing User model; store sessions in Redis with 24h expiry; protect routes under <code>/api/protected</code>; no new dependencies; add integration tests."</p>
+<p><strong>Rationale:</strong> specificity prevents overreach and creates a verifiable output.</p>
+<hr /></div>
         </div>
     </section>
 
-    <section class="presentation-slide" data-slide-number="4 / 9">
+    <section class="presentation-slide" data-slide-number="4 / 19">
         <div class="presentation-slide-content">
-            <h2>CLAUDE.md</h2>
-            <p>
-                <span class="lang-sv"><code>CLAUDE.md</code> är en Markdown-fil som Claude Code läser vid sessionens start. Den fungerar som <strong>beständiga repo-specifika instruktioner</strong>.</span>
-                <span class="lang-en"><code>CLAUDE.md</code> is a Markdown file Claude Code reads at the start of a session. It functions as <strong>persistent repo-specific instruction</strong>.</span>
-            </p>
-            <ul>
-                <li><span class="lang-sv"><strong>Håll den kort</strong> — för mycket ignoreras oförutsägbart</span><span class="lang-en"><strong>Keep it short</strong> — too much is ignored unpredictably</span></li>
-                <li><span class="lang-sv"><strong>Gör den repo-specifik</strong> — lokala regler, inte generella</span><span class="lang-en"><strong>Make it repo-specific</strong> — local rules, not general</span></li>
-                <li><span class="lang-sv"><strong>Förklara "varför"</strong> — hjälper kantfall</span><span class="lang-en"><strong>Explain "why"</strong> — helps edge cases</span></li>
-                <li><span class="lang-sv"><strong>Uppdatera kontinuerligt</strong> — varje korrigering = en instruktion</span><span class="lang-en"><strong>Update continuously</strong> — each correction = an instruction</span></li>
-            </ul>
+            <div class="lang-sv"><h2 id="arkitektur-ar-inte-valfritt-det-ar-hur-du-begransar-modellen">Arkitektur är inte valfritt (det är hur du begränsar modellen)</h2>
+<p>Claude kan generera fungerande kod som bryter mot ditt systems invarianter. Lösningen är inte "bättre kodgenerering". Lösningen är <strong>arkitekturbegränsningar i förväg</strong>.</p>
+<h3 id="vad-du-ska-inkludera-i-din-planforfragan">Vad du ska inkludera i din planförfrågan</h3>
+<ul>
+<li><strong>Gränser:</strong> vilka moduler som kan/inte kan röra varandra</li>
+<li><strong>Invarianter:</strong> vad som måste förbli sant</li>
+<li><strong>Icke-mål:</strong> vad som inte får ändras</li>
+<li><strong>Validering:</strong> kommandon som bevisar att det fungerar</li>
+</ul>
+<p><strong>Motivering:</strong> begränsningar fungerar som skyddsräcken; utan dem uppfinner Claude struktur.</p>
+<hr /></div>
+            <div class="lang-en"><h2 id="architecture-isnt-optional-its-how-you-constrain-the-model">Architecture isn't optional (it's how you constrain the model)</h2>
+<p>Claude can generate working code that violates your system's invariants. The fix is not "better code generation." The fix is <strong>architectural constraints up front</strong>.</p>
+<h3 id="what-to-include-in-your-plan-request">What to include in your plan request</h3>
+<ul>
+<li><strong>Boundaries:</strong> what modules can/can't touch each other</li>
+<li><strong>Invariants:</strong> what must remain true</li>
+<li><strong>Non-goals:</strong> what must not change</li>
+<li><strong>Validation:</strong> commands that prove it works</li>
+</ul>
+<p><strong>Rationale:</strong> constraints act like guardrails; without them, Claude invents structure.</p>
+<hr /></div>
         </div>
     </section>
 
-    <section class="presentation-slide" data-slide-number="5 / 9">
+    <section class="presentation-slide" data-slide-number="5 / 19">
         <div class="presentation-slide-content">
-            <h2>
-                <span class="lang-sv">Kontexthantering</span>
-                <span class="lang-en">Context Management</span>
-            </h2>
-            <p>
-                <span class="lang-sv">Även med stora kontextfönster sjunker kvaliteten före gränsen.</span>
-                <span class="lang-en">Even with large context windows, quality drops before the limit.</span>
-            </p>
-            <ul>
-                <li><span class="lang-sv"><strong>En konversation per uppgift</strong></span><span class="lang-en"><strong>One conversation per task</strong></span></li>
-                <li><span class="lang-sv"><strong>Använd externa minnesfiler</strong> (<code>SCRATCHPAD.md</code>, <code>plan.md</code>)</span><span class="lang-en"><strong>Use external memory files</strong> (<code>SCRATCHPAD.md</code>, <code>plan.md</code>)</span></li>
-                <li><span class="lang-sv"><strong>Kopiera-klistra reset</strong>: <code>/compact</code> → <code>/clear</code> → klistra tillbaka kritisk plan</span><span class="lang-en"><strong>Copy-paste reset</strong>: <code>/compact</code> → <code>/clear</code> → paste back critical plan</span></li>
-                <li><span class="lang-sv"><strong>Nollställ tidigt</strong> om sessionen är förvirrad</span><span class="lang-en"><strong>Reset early</strong> if the session is confused</span></li>
-            </ul>
-            <div class="cursor-tip">
-                <div class="cursor-tip-header">
-                    <span class="lang-sv">Mental modell</span>
-                    <span class="lang-en">Mental model</span>
-                </div>
-                <p>
-                    <span class="lang-sv">Claude är tillståndslös om du inte externaliserar tillståndet.</span>
-                    <span class="lang-en">Claude is stateless unless you externalize state.</span>
-                </p>
-            </div>
+            <div class="lang-sv"><h2 id="claudemd-din-fil-med-hogst-havstang">CLAUDE.md: din fil med högst hävstång</h2>
+<p><code>CLAUDE.md</code> är en Markdown-fil som Claude Code läser vid sessionens start. Den fungerar som <strong>beständiga repo-specifika instruktioner</strong>.</p>
+<h3 id="varfor-det-spelar-roll">Varför det spelar roll</h3>
+<p>Det förvandlar upprepade korrigeringar till ett stabilt kontrakt:<br />
+- "använd detta testkommando"<br />
+- "formatera inte om orelaterade filer"<br />
+- "undvik nya abstraktioner"<br />
+- "följ dessa konventioner"</p>
+<p><strong>Motivering:</strong> beständig vägledning minskar promptlängd och ökar konsekvens mellan sessioner.</p>
+<h3 id="hur-du-skriver-en-bra-claudemd">Hur du skriver en bra CLAUDE.md</h3>
+<p><strong>Håll den kort.</strong><br />
+Om du inkluderar för mycket kommer Claude ignorera instruktioner oförutsägbart.<br />
+<strong>Motivering:</strong> instruktionsöverbelastning skapar prioritetskonflikter.</p>
+<p><strong>Gör den repo-specifik.</strong><br />
+Undvik generiska förklaringar ("vad komponenter är"). Inkludera de konstiga, lokala reglerna.<br />
+<strong>Motivering:</strong> Claude känner redan till generella mönster; den behöver <em>dina</em> specifika.</p>
+<p><strong>Förklara "varför", inte bara "vad".</strong><br />
+- "Använd TypeScript strict mode eftersom implicit any orsakade produktionsbuggar."<br />
+<strong>Motivering:</strong> "varför" hjälper Claude göra bättre bedömningar i kantfall.</p>
+<p><strong>Uppdatera den kontinuerligt.</strong><br />
+Varje gång du korrigerar samma misstag två gånger, lägg till en instruktion. Claude Code stödjer snabba sätt att fånga vägledning (ofta via en genväg som <code>#</code>, beroende på konfiguration).<br />
+<strong>Motivering:</strong> detta ackumuleras — varje fix förhindrar framtida omarbete.</p>
+<h3 id="en-praktisk-claudemd-starter-kopieraklistra">En praktisk CLAUDE.md-starter (kopiera/klistra)</h3>
+<p>```md</p>
+<h1 id="claudemd-project-instructions">CLAUDE.md (project instructions)</h1></div>
+            <div class="lang-en"><h2 id="claudemd-your-highest-leverage-file">CLAUDE.md: your highest-leverage file</h2>
+<p><code>CLAUDE.md</code> is a Markdown file Claude Code reads at the start of a session. It functions as <strong>persistent repo-specific instruction</strong>.</p>
+<h3 id="why-it-matters">Why it matters</h3>
+<p>It turns repeated corrections into a stable contract:<br />
+- "use this test command"<br />
+- "don't reformat unrelated files"<br />
+- "avoid new abstractions"<br />
+- "follow these conventions"</p>
+<p><strong>Rationale:</strong> durable guidance reduces prompt length and increases consistency across sessions.</p>
+<h3 id="how-to-write-a-good-claudemd">How to write a good CLAUDE.md</h3>
+<p><strong>Keep it short.</strong><br />
+If you include too much, Claude will ignore instructions unpredictably.<br />
+<strong>Rationale:</strong> instruction overload creates priority conflicts.</p>
+<p><strong>Make it repo-specific.</strong><br />
+Avoid generic explanations ("what components are"). Include the weird, local rules.<br />
+<strong>Rationale:</strong> Claude already knows general patterns; it needs your <em>specific</em> ones.</p>
+<p><strong>Explain "why," not only "what."</strong><br />
+- "Use TypeScript strict mode because implicit any caused production bugs."<br />
+<strong>Rationale:</strong> the "why" helps Claude make better judgment calls in edge cases.</p>
+<p><strong>Update it continuously.</strong><br />
+Any time you correct the same mistake twice, add an instruction. Claude Code supports quick ways to capture guidance (often via a shortcut such as <code>#</code>, depending on configuration).<br />
+<strong>Rationale:</strong> this compounds—each fix prevents future rework.</p>
+<h3 id="a-practical-claudemd-starter-copypaste">A practical CLAUDE.md starter (copy/paste)</h3>
+<p>```md</p>
+<h1 id="claudemd-project-instructions">CLAUDE.md (project instructions)</h1></div>
         </div>
     </section>
 
-    <section class="presentation-slide" data-slide-number="6 / 9">
+    <section class="presentation-slide" data-slide-number="6 / 19">
         <div class="presentation-slide-content">
-            <h2>Prompting</h2>
-            <p>
-                <span class="lang-sv">Prompting är inte magi. Det är krav + begränsningar + verifiering.</span>
-                <span class="lang-en">Prompting is not magic. It is requirements + constraints + verification.</span>
-            </p>
-            <p><strong><span class="lang-sv">Förfrågningsmall:</span><span class="lang-en">Request template:</span></strong></p>
-            <ul>
-                <li><span class="lang-sv">Mål</span><span class="lang-en">Goal</span></li>
-                <li><span class="lang-sv">Kontext (filer/sökvägar)</span><span class="lang-en">Context (files/paths)</span></li>
-                <li><span class="lang-sv">Begränsningar / icke-mål</span><span class="lang-en">Constraints / non-goals</span></li>
-                <li><span class="lang-sv">"Klart"-kriterier</span><span class="lang-en">"Done" criteria</span></li>
-                <li><span class="lang-sv">Be om plan först (sedan kod)</span><span class="lang-en">Ask for a plan first (then code)</span></li>
-            </ul>
+            <div class="lang-sv"><h2 id="goals">Goals</h2>
+<ul>
+<li>Produce minimal, reviewable diffs.</li>
+<li>Prefer existing patterns in this repo.</li>
+</ul></div>
+            <div class="lang-en"><h2 id="goals">Goals</h2>
+<ul>
+<li>Produce minimal, reviewable diffs.</li>
+<li>Prefer existing patterns in this repo.</li>
+</ul></div>
         </div>
     </section>
 
-    <section class="presentation-slide" data-slide-number="7 / 9">
+    <section class="presentation-slide" data-slide-number="7 / 19">
         <div class="presentation-slide-content">
-            <h2>MCP & Hooks</h2>
-            <p>
-                <span class="lang-sv">Poängen är att <strong>ta bort upprepad friktion</strong>.</span>
-                <span class="lang-en">The point is to <strong>remove repeated friction</strong>.</span>
-            </p>
-            <ul>
-                <li><strong>MCP</strong>: <span class="lang-sv">Automatisera kontextinhämtning från GitHub, Slack, databaser</span><span class="lang-en">Automate context ingestion from GitHub, Slack, databases</span></li>
-                <li><strong>Hooks</strong>: <span class="lang-sv">Kör kommandon före/efter ändringar (formatter, typecheck, test)</span><span class="lang-en">Run commands before/after changes (formatter, typecheck, test)</span></li>
-                <li><strong><span class="lang-sv">Slash-kommandon</span><span class="lang-en">Slash commands</span></strong>: <span class="lang-sv">Återanvändbara promptar via <code>.claude/commands/*.md</code></span><span class="lang-en">Reusable prompts via <code>.claude/commands/*.md</code></span></li>
-            </ul>
+            <div class="lang-sv"><h2 id="non-goals">Non-goals</h2>
+<ul>
+<li>Do not introduce new dependencies without explicit request.</li>
+<li>Do not reformat unrelated files.</li>
+<li>Do not create new abstractions unless asked.</li>
+</ul></div>
+            <div class="lang-en"><h2 id="non-goals">Non-goals</h2>
+<ul>
+<li>Do not introduce new dependencies without explicit request.</li>
+<li>Do not reformat unrelated files.</li>
+<li>Do not create new abstractions unless asked.</li>
+</ul></div>
         </div>
     </section>
 
-    <section class="presentation-slide" data-slide-number="8 / 9">
+    <section class="presentation-slide" data-slide-number="8 / 19">
         <div class="presentation-slide-content">
-            <h2>
-                <span class="lang-sv">När Claude fastnar</span>
-                <span class="lang-en">When Claude gets stuck</span>
-            </h2>
-            <ol>
-                <li><span class="lang-sv"><strong>Nollställ kontext</strong> (<code>/clear</code>) — ge endast uppgift + begränsningar + fel</span><span class="lang-en"><strong>Reset context</strong> (<code>/clear</code>) — provide only task + constraints + error</span></li>
-                <li><span class="lang-sv"><strong>Gör uppgiften mindre</strong> — minimal reproduktion, enfils-fix, test-first</span><span class="lang-en"><strong>Make task smaller</strong> — minimal repro, single-file fix, test-first</span></li>
-                <li><span class="lang-sv"><strong>Visa ett konkret exempel</strong> — "Här är önskat format; applicera det"</span><span class="lang-en"><strong>Show a concrete example</strong> — "Here is desired format; apply it"</span></li>
-                <li><span class="lang-sv"><strong>Omformulera</strong> — "Behandla detta som en tillståndsmaskin"</span><span class="lang-en"><strong>Reframe</strong> — "Treat this as a state machine"</span></li>
-            </ol>
+            <div class="lang-sv"><h2 id="commands-run-after-edits">Commands (run after edits)</h2>
+<ul>
+<li>Format: <cmd></li>
+<li>Lint: <cmd></li>
+<li>Typecheck: <cmd></li>
+<li>Tests: <cmd></li>
+</ul></div>
+            <div class="lang-en"><h2 id="commands-run-after-edits">Commands (run after edits)</h2>
+<ul>
+<li>Format: <cmd></li>
+<li>Lint: <cmd></li>
+<li>Typecheck: <cmd></li>
+<li>Tests: <cmd></li>
+</ul></div>
         </div>
     </section>
 
-    <section class="presentation-slide" data-slide-number="9 / 9">
+    <section class="presentation-slide" data-slide-number="9 / 19">
         <div class="presentation-slide-content">
-            <h2>TL;DR</h2>
-            <ul>
-                <li><span class="lang-sv"><strong>Tänk först, skriv sedan:</strong> Plan Mode ger bättre resultat</span><span class="lang-en"><strong>Think first, then type:</strong> Plan Mode gives better outcomes</span></li>
-                <li><span class="lang-sv"><strong>Skriv arkitekturbegränsningar:</strong> gränser + invarianter + icke-mål</span><span class="lang-en"><strong>Write architecture constraints:</strong> boundaries + invariants + non-goals</span></li>
-                <li><span class="lang-sv"><strong>CLAUDE.md är hävstång:</strong> kort, repo-specifik, uppdaterad</span><span class="lang-en"><strong>CLAUDE.md is leverage:</strong> short, repo-specific, updated</span></li>
-                <li><span class="lang-sv"><strong>Kontext degraderas tidigt:</strong> scope sessioner, externalisera minne</span><span class="lang-en"><strong>Context degrades early:</strong> scope sessions, externalize memory</span></li>
-                <li><span class="lang-sv"><strong>Prompta som en ingenjör:</strong> explicit om klart-kriterier</span><span class="lang-en"><strong>Prompt like an engineer:</strong> explicit about done criteria</span></li>
-                <li><span class="lang-sv"><strong>När fast, byt approach:</strong> nollställ, förenkla, omformulera</span><span class="lang-en"><strong>When stuck, change approach:</strong> reset, simplify, reframe</span></li>
-            </ul>
+            <div class="lang-sv"><h2 id="architecture-constraints">Architecture constraints</h2>
+<ul>
+<li>Keep domain logic out of HTTP handlers.</li>
+<li>No DB access in middleware unless explicitly required.</li>
+<li>Keep public API backwards compatible by default.</li>
+</ul></div>
+            <div class="lang-en"><h2 id="architecture-constraints">Architecture constraints</h2>
+<ul>
+<li>Keep domain logic out of HTTP handlers.</li>
+<li>No DB access in middleware unless explicitly required.</li>
+<li>Keep public API backwards compatible by default.</li>
+</ul></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="10 / 19">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="working-style">Working style</h2>
+<ul>
+<li>Start with a 3–7 step plan.</li>
+<li>After each step: summarize diff + commands run + remaining risks.</li>
+<li>If uncertain: stop and ask for a decision.<br />
+```</li>
+</ul>
+<hr /></div>
+            <div class="lang-en"><h2 id="working-style">Working style</h2>
+<ul>
+<li>Start with a 3–7 step plan.</li>
+<li>After each step: summarize diff + commands run + remaining risks.</li>
+<li>If uncertain: stop and ask for a decision.<br />
+```</li>
+</ul>
+<hr /></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="11 / 19">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="ultrathink-lage-kvalitetsfokuserat-mindset">"Ultrathink"-läge (kvalitetsfokuserat mindset)</h2>
+<p>Vissa team använder en kort, högvärdig "kvalitetsribba" i sin projektvägledning för att få Claude att prioritera <strong>genomtänkt planering, noggrann läsning och minimal komplexitet</strong>. Detta kan ligga i <code>CLAUDE.md</code> (eller i en separat <code>QUALITY.md</code> som refereras från <code>CLAUDE.md</code>) så länge det förblir koncist.</p>
+<h3 id="principer-att-koda-in-och-varfor-de-hjalper">Principer att koda in (och varför de hjälper)</h3>
+<ul>
+<li>
+<p><strong>Tänk annorlunda:</strong> ifrågasätt antaganden och överväg enklare arkitekturer före implementation.<br />
+<strong>Motivering:</strong> den första fungerande lösningen är ofta inte den bästa för långlivade system.</p>
+</li>
+<li>
+<p><strong>Var besatt av detaljer:</strong> läs befintlig kod som en specifikation — följ etablerade mönster och namngivning.<br />
+<strong>Motivering:</strong> konsekvens minskar integrationsbuggar och håller diffar granskningsbara.</p>
+</li>
+<li>
+<p><strong>Planera som en designer:</strong> skriv en kort plan som gör gränssnitt och invarianter explicita innan du redigerar filer.<br />
+<strong>Motivering:</strong> explicita gränser förhindrar trovärdig-men-felaktig kodgenerering.</p>
+</li>
+<li>
+<p><strong>Hantverk, inte spretighet:</strong> håll funktioner och abstraktioner minimala; undvik att introducera nya lager om det inte efterfrågas.<br />
+<strong>Motivering:</strong> onödig inriktning ökar underhållskostnad och döljer defekter.</p>
+</li>
+<li>
+<p><strong>Iterera obevekligt:</strong> validera efter varje steg (tester, skärmdumpar, jämförelser) och förfina tills det är korrekt och rent.<br />
+<strong>Motivering:</strong> frekvent feedback fångar regressioner tidigt och förkortar vägen till "klart".</p>
+</li>
+<li>
+<p><strong>Förenkla hänsynslöst:</strong> ta bort komplexitet när den inte ger mätbart värde.<br />
+<strong>Motivering:</strong> enklare system misslyckas på färre sätt och är lättare att drifta.</p>
+</li>
+</ul>
+<h3 id="verktygscues-varda-att-fanga">Verktygscues värda att fånga</h3>
+<ul>
+<li>
+<p><strong>Använd dina verktyg som instrument:</strong> luta dig på bash-kommandon, MCP-servrar och anpassade slash-kommandon för repeterbara arbetsflöden.<br />
+<strong>Motivering:</strong> automation minskar manuella kopiera/klistra-fel och sparar tid.</p>
+</li>
+<li>
+<p><strong>Använd Git-historik som kontext:</strong> kontrollera tidigare approaches och konventioner innan du uppfinner nya.<br />
+<strong>Motivering:</strong> historik avslöjar avsikt och minskar churn från "ny men inkonsekvent" implementationer.</p>
+</li>
+<li>
+<p><strong>Behandla mocks/skärmdumpar som specs när tillgängliga:</strong> implementera mot det visuella/beteendemässiga målet.<br />
+<strong>Motivering:</strong> konkreta mål minskar tvetydighet och omarbete.</p>
+</li>
+<li>
+<p><strong>Använd flera Claude-sessioner medvetet:</strong> separera planering vs exekvering, eller isolera orelaterade concerns.<br />
+<strong>Motivering:</strong> separation minskar kontextläckage och förbättrar fokus.</p>
+</li>
+</ul>
+<hr /></div>
+            <div class="lang-en"><h2 id="ultrathink-mode-quality-first-mindset">"Ultrathink" mode (quality-first mindset)</h2>
+<p>Some teams use a short, high-signal "quality bar" in their project guidance to bias Claude toward <strong>deliberate planning, careful reading, and minimal complexity</strong>. This can live in <code>CLAUDE.md</code> (or in a separate <code>QUALITY.md</code> referenced from <code>CLAUDE.md</code>) as long as it stays concise.</p>
+<h3 id="principles-to-encode-and-why-they-help">Principles to encode (and why they help)</h3>
+<ul>
+<li>
+<p><strong>Think different:</strong> question assumptions and consider simpler architectures before implementation.<br />
+<strong>Rationale:</strong> the first working solution is often not the best fit for long-lived systems.</p>
+</li>
+<li>
+<p><strong>Obsess over details:</strong> read existing code like a specification—follow established patterns and naming.<br />
+<strong>Rationale:</strong> consistency reduces integration bugs and keeps diffs reviewable.</p>
+</li>
+<li>
+<p><strong>Plan like a designer:</strong> write a short plan that makes interfaces and invariants explicit before editing files.<br />
+<strong>Rationale:</strong> explicit boundaries prevent plausible-but-wrong code generation.</p>
+</li>
+<li>
+<p><strong>Craft, don't sprawl:</strong> keep functions and abstractions minimal; avoid introducing new layers unless requested.<br />
+<strong>Rationale:</strong> unnecessary indirection increases maintenance cost and hides defects.</p>
+</li>
+<li>
+<p><strong>Iterate relentlessly:</strong> validate after each step (tests, screenshots, comparisons) and refine until it's correct and clean.<br />
+<strong>Rationale:</strong> frequent feedback catches regressions early and shortens the path to "done."</p>
+</li>
+<li>
+<p><strong>Simplify ruthlessly:</strong> remove complexity when it doesn't buy measurable value.<br />
+<strong>Rationale:</strong> simpler systems fail in fewer ways and are easier to operate.</p>
+</li>
+</ul>
+<h3 id="tooling-cues-worth-capturing">Tooling cues worth capturing</h3>
+<ul>
+<li>
+<p><strong>Use your tools as instruments:</strong> lean on bash commands, MCP servers, and custom slash commands for repeatable workflows.<br />
+<strong>Rationale:</strong> automation reduces manual copy/paste errors and saves time.</p>
+</li>
+<li>
+<p><strong>Use Git history as context:</strong> check prior approaches and conventions before inventing new ones.<br />
+<strong>Rationale:</strong> history reveals intent and reduces churn from "new but inconsistent" implementations.</p>
+</li>
+<li>
+<p><strong>Treat mocks/screenshots as specs when available:</strong> implement to the visual/behavioral target.<br />
+<strong>Rationale:</strong> concrete targets reduce ambiguity and rework.</p>
+</li>
+<li>
+<p><strong>Use multiple Claude sessions intentionally:</strong> separate planning vs execution, or isolate unrelated concerns.<br />
+<strong>Rationale:</strong> separation reduces context bleed and improves focus.</p>
+</li>
+</ul>
+<hr /></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="12 / 19">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="kontextfonster-degraderas-tidigare-an-du-tror">Kontextfönster degraderas tidigare än du tror</h2>
+<p>Även med stora kontextfönster tenderar kvaliteten att sjunka innan du "fyller ribban". Symtom inkluderar:<br />
+- upprepar samma misstag<br />
+- tappar bort begränsningar<br />
+- hallucinerar struktur du aldrig begärde</p>
+<p><strong>Motivering:</strong> mer kontext ökar konkurrensen om uppmärksamhet; viktiga detaljer förlorar betydelse.</p>
+<h3 id="praktiska-kontexthanteringstekniker">Praktiska kontexthanteringstekniker</h3>
+<p><strong>1) En konversation per uppgift</strong><br />
+Använd inte samma session för att bygga auth och refaktorera databaslager.<br />
+<strong>Motivering:</strong> orelaterad kontext läcker och skapar felaktiga antaganden.</p>
+<p><strong>2) Använd externa minnesfiler</strong><br />
+Låt Claude skriva till <code>SCRATCHPAD.md</code>, <code>plan.md</code>, eller <code>devdocs/progress.md</code>.<br />
+<strong>Motivering:</strong> filer består mellan sessioner och förankrar "sanningen" i repot.</p>
+<p><strong>3) Kopiera-klistra reset-arbetsflöde (snabbt och effektivt)</strong><br />
+När saker blir uppsvällda:<br />
+- kör <code>/compact</code> för att få en sammanfattning<br />
+- kör <code>/clear</code> för att nollställa kontext<br />
+- klistra tillbaka endast den kritiska planen + begränsningar + aktuella fel</p>
+<p><strong>Motivering:</strong> en liten, ren kontext överträffar ofta en stor, degraderad.</p>
+<p><strong>4) Vet när du ska rensa</strong><br />
+Om sessionen är förvirrad, nollställ tidigt. <code>CLAUDE.md</code> ger fortfarande grundläggande vägledning.<br />
+<strong>Motivering:</strong> att felsöka en förvirrad kontext är långsammare än att starta om med ett rent briefing.</p>
+<h3 id="adoptera-ratt-mental-modell">Adoptera rätt mental modell</h3>
+<p>Claude är i praktiken tillståndslös om du inte externaliserar tillståndet.<br />
+<strong>Motivering:</strong> att förvänta sig minne som inte finns skapar inkonsekventa resultat.</p>
+<hr /></div>
+            <div class="lang-en"><h2 id="context-windows-degrade-earlier-than-you-think">Context windows degrade earlier than you think</h2>
+<p>Even with large context windows, quality tends to drop before you "fill the bar." Symptoms include:<br />
+- repeating the same mistake<br />
+- losing track of constraints<br />
+- hallucinating structure you never requested</p>
+<p><strong>Rationale:</strong> more context increases competition for attention; important details lose salience.</p>
+<h3 id="practical-context-management-techniques">Practical context management techniques</h3>
+<p><strong>1) One conversation per task</strong><br />
+Don't use the same session to build auth and refactor database layers.<br />
+<strong>Rationale:</strong> unrelated context bleeds and creates wrong assumptions.</p>
+<p><strong>2) Use external memory files</strong><br />
+Have Claude write to <code>SCRATCHPAD.md</code>, <code>plan.md</code>, or <code>devdocs/progress.md</code>.<br />
+<strong>Rationale:</strong> files persist across sessions and anchor the "truth" in the repo.</p>
+<p><strong>3) Copy–paste reset workflow (fast and effective)</strong><br />
+When things get bloated:<br />
+- run <code>/compact</code> to get a summary<br />
+- run <code>/clear</code> to reset context<br />
+- paste back only the critical plan + constraints + current errors</p>
+<p><strong>Rationale:</strong> a small, clean context often outperforms a large, degraded one.</p>
+<p><strong>4) Know when to clear</strong><br />
+If the session is confused, reset early. <code>CLAUDE.md</code> still provides baseline guidance.<br />
+<strong>Rationale:</strong> debugging a confused context is slower than restarting with a clean brief.</p>
+<h3 id="adopt-the-right-mental-model">Adopt the right mental model</h3>
+<p>Claude is effectively stateless unless you externalize state.<br />
+<strong>Rationale:</strong> expecting memory that isn't there creates inconsistent results.</p>
+<hr /></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="13 / 19">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="prompting-behandla-det-som-ingenjorskommunikation">Prompting: behandla det som ingenjörskommunikation</h2>
+<p>Prompting är inte magi. Det är krav + begränsningar + verifiering.</p>
+<h3 id="anvand-en-repeterbar-promptstruktur">Använd en repeterbar promptstruktur</h3>
+<p><strong>Förfrågningsmall</strong><br />
+- Mål<br />
+- Kontext (filer/sökvägar)<br />
+- Begränsningar / icke-mål<br />
+- "Klart"-kriterier<br />
+- Be om plan först (sedan kod)</p>
+<p><strong>Motivering:</strong> strukturerad input minskar omarbete och gör output granskningsbar.</p>
+<h3 id="inkludera-alltid-vad-som-inte-ska-goras">Inkludera alltid "vad som inte ska göras"</h3>
+<p>Claude standardiserar ofta till extra abstraktion. Om minimalism spelar roll, säg det:<br />
+- "Håll detta enkelt. Inga nya filer om det inte är nödvändigt. Inga abstraktioner jag inte bad om."</p>
+<p><strong>Motivering:</strong> negativa begränsningar förhindrar scope-expansion.</p>
+<h3 id="inkludera-varfor-nar-det-paverkar-avvagningar">Inkludera "varför" när det påverkar avvägningar</h3>
+<p>Exempel:<br />
+- "Körs vid varje request → optimera för latens."<br />
+- "Prototyp att kasta → håll det minimalt."</p>
+<p><strong>Motivering:</strong> "varför" driver korrekta avvägningar.</p>
+<hr /></div>
+            <div class="lang-en"><h2 id="prompting-treat-it-like-engineering-communication">Prompting: treat it like engineering communication</h2>
+<p>Prompting is not magic. It is requirements + constraints + verification.</p>
+<h3 id="use-a-repeatable-prompt-structure">Use a repeatable prompt structure</h3>
+<p><strong>Request template</strong><br />
+- Goal<br />
+- Context (files/paths)<br />
+- Constraints / non-goals<br />
+- "Done" criteria<br />
+- Ask for a plan first (then code)</p>
+<p><strong>Rationale:</strong> structured input reduces rework and makes outputs reviewable.</p>
+<h3 id="always-include-what-not-to-do">Always include "what not to do"</h3>
+<p>Claude often defaults to extra abstraction. If minimalism matters, say so:<br />
+- "Keep this simple. No new files unless necessary. No abstractions I didn't ask for."</p>
+<p><strong>Rationale:</strong> negative constraints prevent scope expansion.</p>
+<h3 id="include-why-when-it-affects-tradeoffs">Include "why" when it affects tradeoffs</h3>
+<p>Examples:<br />
+- "Runs on every request → optimize for latency."<br />
+- "Prototype to throw away → keep it minimal."</p>
+<p><strong>Rationale:</strong> "why" drives correct tradeoffs.</p>
+<hr /></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="14 / 19">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="dalig-input-dalig-output">Dålig input → dålig output</h2>
+<p>När output konsekvent är fel, är lösningen vanligtvis:<br />
+- otillräckliga begränsningar<br />
+- saknade acceptanskriterier<br />
+- saknad repo-kontext<br />
+- för stora uppgifter (inte nedbrutna)</p>
+<p><strong>Motivering:</strong> modellen kan inte härleda begränsningar du inte tillhandahöll.</p>
+<h3 id="snabb-diagnostisk-checklista">Snabb diagnostisk checklista</h3>
+<p>Om Claude missar målet, kontrollera om prompten innehöll:<br />
+- explicita "klart"-kriterier<br />
+- explicita icke-mål<br />
+- filsökvägar/entrypoints<br />
+- valideringskommandon<br />
+- en stegad planförfrågan</p>
+<p><strong>Motivering:</strong> att sakna någon av dessa ökar tvetydighet och överraskningar.</p>
+<hr /></div>
+            <div class="lang-en"><h2 id="bad-input-bad-output-without-the-hostility">Bad input → bad output (without the hostility)</h2>
+<p>When output is consistently wrong, the fix is usually:<br />
+- insufficient constraints<br />
+- missing acceptance criteria<br />
+- missing repo context<br />
+- tasks too large (not decomposed)</p>
+<p><strong>Rationale:</strong> the model can't infer constraints you didn't provide.</p>
+<h3 id="fast-diagnostic-checklist">Fast diagnostic checklist</h3>
+<p>If Claude misses the mark, check whether the prompt contained:<br />
+- explicit "done" criteria<br />
+- explicit non-goals<br />
+- file paths/entrypoints<br />
+- validation commands<br />
+- a staged plan request</p>
+<p><strong>Rationale:</strong> missing any of these increases ambiguity and surprises.</p>
+<hr /></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="15 / 19">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="arbetsflode-for-modellval-hall-det-praktiskt">Arbetsflöde för modellval (håll det praktiskt)</h2>
+<p>Claude Code exponerar ofta olika modeller med olika avvägningar (hastighet vs djupare planering). Ett pålitligt mönster:</p>
+<ul>
+<li>Använd en starkare resonemangsmodell för <strong>planering och avvägningar</strong></li>
+<li>Använd en snabbare modell för <strong>implementation när planen är låst</strong></li>
+</ul>
+<p><strong>Motivering:</strong> planeringskvalitet är hävstång; exekveringshastighet spelar roll efter att beslut är tagna.</p>
+<hr /></div>
+            <div class="lang-en"><h2 id="model-choice-workflow-keep-it-practical">Model choice workflow (keep it practical)</h2>
+<p>Claude Code often exposes different models with different tradeoffs (speed vs deeper planning). A reliable pattern:</p>
+<ul>
+<li>Use a stronger reasoning model for <strong>planning and tradeoffs</strong></li>
+<li>Use a faster model for <strong>implementation once the plan is locked</strong></li>
+</ul>
+<p><strong>Rationale:</strong> planning quality is leverage; execution speed matters after decisions are made.</p>
+<hr /></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="16 / 19">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="mcp-hooks-slash-kommandon-och-config-anvand-features-som-tar-bort-slit">MCP, hooks, slash-kommandon och config: använd features som tar bort slit</h2>
+<p>Claude Code har kraftfulla features. Poängen är inte "aktivera allt". Poängen är <strong>ta bort upprepad friktion</strong>.</p>
+<h3 id="mcp-model-context-protocol">MCP (Model Context Protocol)</h3>
+<p>Använd MCP när du upprepat kopierar data från:<br />
+- GitHub<br />
+- Slack<br />
+- issue trackers<br />
+- databaser/API:er</p>
+<p><strong>Motivering:</strong> att automatisera kontextinhämtning minskar manuella fel och sparar tid.</p>
+<h3 id="hooks">Hooks</h3>
+<p>Hooks kan köra kommandon före/efter ändringar:<br />
+- formatter på redigerade filer<br />
+- typkontroll efter redigeringar<br />
+- test-delmängd efter ett steg</p>
+<p><strong>Motivering:</strong> hooks förvandlar goda intentioner till automatisk upprätthållning.</p>
+<h3 id="anpassade-slash-kommandon">Anpassade slash-kommandon</h3>
+<p>Skapa återanvändbara promptar som kommandon via <code>.claude/commands/*.md</code>:<br />
+- <code>/review-pr</code><br />
+- <code>/debug-failure</code><br />
+- <code>/refactor-module</code><br />
+- <code>/write-tests</code></p>
+<p><strong>Motivering:</strong> att standardisera promptar ökar konsekvens i teamet.</p>
+<h3 id="installningarkonfiguration">Inställningar/konfiguration</h3>
+<p>Använd config för att anpassa beteende:<br />
+- standardkommandon<br />
+- föredragen stil (små diffar, stanna-och-fråga vid osäkerhet)<br />
+- skyddsräcken (undvik nya deps, undvik breda refaktoreringar)</p>
+<p><strong>Motivering:</strong> konfiguration minskar prompt-overhead och drift.</p>
+<hr /></div>
+            <div class="lang-en"><h2 id="mcp-hooks-slash-commands-and-configs-use-features-that-remove-toil">MCP, hooks, slash commands, and configs: use features that remove toil</h2>
+<p>Claude Code has power features. The point isn't "enable everything." The point is <strong>remove repeated friction</strong>.</p>
+<h3 id="mcp-model-context-protocol">MCP (Model Context Protocol)</h3>
+<p>Use MCP when you repeatedly copy data from:<br />
+- GitHub<br />
+- Slack<br />
+- issue trackers<br />
+- databases/APIs</p>
+<p><strong>Rationale:</strong> automating context ingestion reduces manual errors and saves time.</p>
+<h3 id="hooks">Hooks</h3>
+<p>Hooks can run commands before/after changes:<br />
+- formatter on edited files<br />
+- typechecking after edits<br />
+- test subset after a step</p>
+<p><strong>Rationale:</strong> hooks convert good intentions into automatic enforcement.</p>
+<h3 id="custom-slash-commands">Custom slash commands</h3>
+<p>Create reusable prompts as commands via <code>.claude/commands/*.md</code>:<br />
+- <code>/review-pr</code><br />
+- <code>/debug-failure</code><br />
+- <code>/refactor-module</code><br />
+- <code>/write-tests</code></p>
+<p><strong>Rationale:</strong> standardizing prompts increases consistency across the team.</p>
+<h3 id="settingsconfiguration">Settings/configuration</h3>
+<p>Use config to align behavior:<br />
+- default commands<br />
+- preferred style (small diffs, stop-and-ask on uncertainty)<br />
+- guardrails (avoid new deps, avoid broad refactors)</p>
+<p><strong>Rationale:</strong> configuration reduces prompt overhead and drift.</p>
+<hr /></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="17 / 19">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="nar-claude-fastnar-bryt-loopen-medvetet">När Claude fastnar: bryt loopen medvetet</h2>
+<p>Fast-mönster:<br />
+- upprepar samma fix<br />
+- självsäker men fel ändringar<br />
+- oändligt "ett försök till"</p>
+<h3 id="vad-du-ska-gora-istallet">Vad du ska göra istället</h3>
+<p><strong>1) Nollställ kontext (<code>/clear</code>)</strong><br />
+Ge sedan endast:<br />
+- uppgiftsbeskrivning<br />
+- begränsningar<br />
+- det specifika felet</p>
+<p><strong>Motivering:</strong> fast beteende korrelerar ofta med förorenad kontext.</p>
+<p><strong>2) Gör uppgiften mindre</strong><br />
+Be om en av:<br />
+- en minimal reproduktion<br />
+- en enfils-fix<br />
+- en test-first-ändring</p>
+<p><strong>Motivering:</strong> mindre sökrymder minskar fellägen.</p>
+<p><strong>3) Visa ett konkret exempel</strong><br />
+- "Här är det önskade outputformatet; applicera det på andra ställen."</p>
+<p><strong>Motivering:</strong> exempel är otvetydiga framgångsmått.</p>
+<p><strong>4) Omformulera</strong><br />
+- "Behandla detta som en tillståndsmaskin."<br />
+- "Skriv detta som rena funktioner med explicita inputs/outputs."</p>
+<p><strong>Motivering:</strong> vissa formuleringar mappar bättre mot modellens resonemang.</p>
+<hr /></div>
+            <div class="lang-en"><h2 id="when-claude-gets-stuck-break-the-loop-intentionally">When Claude gets stuck: break the loop intentionally</h2>
+<p>Stuck patterns:<br />
+- repeating the same fix<br />
+- confident but wrong changes<br />
+- endless "one more attempt"</p>
+<h3 id="what-to-do-instead">What to do instead</h3>
+<p><strong>1) Reset context (<code>/clear</code>)</strong><br />
+Then re-provide only:<br />
+- task brief<br />
+- constraints<br />
+- the specific error</p>
+<p><strong>Rationale:</strong> stuck behavior often correlates with polluted context.</p>
+<p><strong>2) Make the task smaller</strong><br />
+Ask for one of:<br />
+- a minimal reproduction<br />
+- a single-file fix<br />
+- a test-first change</p>
+<p><strong>Rationale:</strong> smaller search spaces reduce failure modes.</p>
+<p><strong>3) Show a concrete example</strong><br />
+- "Here is the desired output format; apply it elsewhere."</p>
+<p><strong>Rationale:</strong> examples are unambiguous success metrics.</p>
+<p><strong>4) Reframe</strong><br />
+- "Treat this as a state machine."<br />
+- "Write this as pure functions with explicit inputs/outputs."</p>
+<p><strong>Rationale:</strong> some framings map better onto the model's reasoning.</p>
+<hr /></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="18 / 19">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="bygg-system-inte-engangsinteraktioner-headless-mode">Bygg system, inte engångsinteraktioner (headless mode)</h2>
+<p>Claude Code kan användas bortom interaktiva sessioner. I synnerhet:<br />
+- headless-körningar (t.ex. via en <code>-p</code> prompt-flagga i vissa uppsättningar)<br />
+- skriptade kedjade arbetsflöden<br />
+- automatiserad PR-granskning / dokumentuppdateringar</p>
+<p><strong>Motivering:</strong> automation förvandlar individuella vinster till repeterbar genomströmning.</p>
+<h3 id="ett-sakert-automationsmonster">Ett säkert automationsmönster</h3>
+<ul>
+<li>kör på ett smalt scope (enskild katalog / filmönster)</li>
+<li>logga output</li>
+<li>kräv CI-pass före merge</li>
+<li>behåll mänsklig granskning för riskfyllda domäner</li>
+</ul>
+<p><strong>Motivering:</strong> avgränsad automation är granskningsbar och minskar oavsiktliga ändringar.</p>
+<h3 id="forbattringssvanghjulet">Förbättringssvänghjulet</h3>
+<ul>
+<li>Claude gör ett misstag</li>
+<li>fånga regeln i <code>CLAUDE.md</code> eller en kommandomall</li>
+<li>lägg till en hook/check för att förhindra upprepning</li>
+</ul>
+<p><strong>Motivering:</strong> systematiska fixes ackumuleras.</p>
+<hr /></div>
+            <div class="lang-en"><h2 id="build-systems-not-one-off-interactions-headless-mode">Build systems, not one-off interactions (headless mode)</h2>
+<p>Claude Code can be used beyond interactive sessions. In particular:<br />
+- headless runs (e.g., via a <code>-p</code> prompt flag in some setups)<br />
+- scripting chained workflows<br />
+- automated PR review / doc updates</p>
+<p><strong>Rationale:</strong> automation turns individual wins into repeatable throughput.</p>
+<h3 id="a-safe-automation-pattern">A safe automation pattern</h3>
+<ul>
+<li>run on a narrow scope (single directory / file patterns)</li>
+<li>log output</li>
+<li>require CI pass before merge</li>
+<li>keep human review in the loop for risky domains</li>
+</ul>
+<p><strong>Rationale:</strong> bounded automation is auditable and reduces unintended changes.</p>
+<h3 id="the-improvement-flywheel">The improvement flywheel</h3>
+<ul>
+<li>Claude makes a mistake</li>
+<li>capture the rule in <code>CLAUDE.md</code> or a command template</li>
+<li>add a hook/check to prevent recurrence</li>
+</ul>
+<p><strong>Rationale:</strong> systematic fixes compound.</p>
+<hr /></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="19 / 19">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="tldr-claude-code-101">TL;DR (Claude Code 101)</h2>
+<ul>
+<li><strong>Tänk först, skriv sedan:</strong> Plan Mode producerar konsekvent bättre resultat.<br />
+<strong>Motivering:</strong> planering begränsar lösningsrymden.</li>
+<li><strong>Skriv arkitekturbegränsningar:</strong> gränser + invarianter + icke-mål.<br />
+<strong>Motivering:</strong> förhindrar trovärdiga-men-felaktiga implementationer.</li>
+<li><strong><code>CLAUDE.md</code> är hävstång:</strong> håll den kort, repo-specifik och uppdaterad.<br />
+<strong>Motivering:</strong> beständiga instruktioner förbättrar varje session.</li>
+<li><strong>Kontext degraderas tidigt:</strong> scope sessioner, externalisera minne, nollställ med <code>/compact</code> + <code>/clear</code>.<br />
+<strong>Motivering:</strong> mindre ren kontext slår stor brusig kontext.</li>
+<li><strong>Prompta som en ingenjör:</strong> var explicit om klart-kriterier och vad som inte ska göras.<br />
+<strong>Motivering:</strong> minskar överengineering och omarbete.</li>
+<li><strong>Använd MCP/hooks/kommandon när de tar bort slit.</strong><br />
+<strong>Motivering:</strong> automation gör kvalitet repeterbar.</li>
+<li><strong>När fast, byt approach:</strong> nollställ, förenkla, visa exempel, omformulera.<br />
+<strong>Motivering:</strong> loop-brytning slår brute force.</li>
+</ul></div>
+            <div class="lang-en"><h2 id="tldr-claude-code-101">TL;DR (Claude Code 101)</h2>
+<ul>
+<li><strong>Think first, then type:</strong> Plan Mode consistently produces better outcomes.<br />
+<strong>Rationale:</strong> planning constrains the solution space.</li>
+<li><strong>Write architecture constraints:</strong> boundaries + invariants + non-goals.<br />
+<strong>Rationale:</strong> prevents plausible-but-wrong implementations.</li>
+<li><strong><code>CLAUDE.md</code> is leverage:</strong> keep it short, repo-specific, and updated.<br />
+<strong>Rationale:</strong> durable instructions improve every session.</li>
+<li><strong>Context degrades early:</strong> scope sessions, externalize memory, reset with <code>/compact</code> + <code>/clear</code>.<br />
+<strong>Rationale:</strong> smaller clean context beats large noisy context.</li>
+<li><strong>Prompt like an engineer:</strong> be explicit about done criteria and what not to do.<br />
+<strong>Rationale:</strong> reduces overengineering and rework.</li>
+<li><strong>Use MCP/hooks/commands when they remove toil.</strong><br />
+<strong>Rationale:</strong> automation makes quality repeatable.</li>
+<li><strong>When stuck, change approach:</strong> reset, simplify, show examples, reframe.<br />
+<strong>Rationale:</strong> loop-breaking beats brute force.</li>
+</ul></div>
         </div>
     </section>
 
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
-                <a href="index.html" class="logo">
-                    B3 Commit
-                </a>
+                <a href="index.html" class="logo">B3 Commit</a>
                 <span class="status-badge">All Systems Operational</span>
             </div>
         </div>
@@ -1298,7 +1667,6 @@
             localStorage.setItem('theme', theme);
         }
 
-        // Load saved theme
         const savedTheme = localStorage.getItem('theme') || 'light';
         setTheme(savedTheme);
 
@@ -1325,7 +1693,6 @@
             localStorage.setItem('language', lang);
         }
 
-        // Load saved language (default: Swedish)
         const savedLang = localStorage.getItem('language') || 'sv';
         setLanguage(savedLang);
 
@@ -1363,103 +1730,22 @@
         }
 
         hamburger.addEventListener('click', () => {
-            if (mobileMenu.classList.contains('active')) {
-                closeMenu();
-            } else {
-                openMenu();
-            }
+            mobileMenu.classList.contains('active') ? closeMenu() : openMenu();
         });
 
-        menuOverlay.addEventListener('click', closeMenu);
-        menuClose.addEventListener('click', closeMenu);
+        if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
+        if (menuClose) menuClose.addEventListener('click', closeMenu);
 
-        // Close menu when clicking a link
-        document.querySelectorAll('.mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (!link.id || (link.id !== 'menuThemeToggle' && link.id !== 'menuLangToggle')) {
-                    closeMenu();
-                }
-            });
-        });
-
-        // Vertical Scroll Timeline
-        const scrollTimeline = document.getElementById('scrollTimeline');
-        const scrollProgress = document.getElementById('scrollProgress');
-        const timelineMarkers = document.querySelectorAll('.scroll-timeline-marker');
-        
-        // Section IDs for tracking
-        const sections = ['intro', 'think', 'architecture', 'claudemd', 'ultrathink', 'context', 'prompting', 'badinput', 'modelchoice', 'mcp', 'stuck', 'headless', 'tldr'];
-        
-        function updateTimeline() {
+        // Progress Bar
+        window.addEventListener('scroll', () => {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrolled = (winScroll / height) * 100;
-            
-            // Update progress bar
-            scrollProgress.style.height = scrolled + '%';
-            
-            // Show/hide timeline based on scroll position
-            if (winScroll > 200) {
-                scrollTimeline.classList.add('visible');
-            } else {
-                scrollTimeline.classList.remove('visible');
-            }
-            
-            // Update active marker based on current section
-            let currentSection = sections[0];
-            sections.forEach(sectionId => {
-                const section = document.getElementById(sectionId);
-                if (section) {
-                    const rect = section.getBoundingClientRect();
-                    if (rect.top <= 150) {
-                        currentSection = sectionId;
-                    }
-                }
-            });
-            
-            timelineMarkers.forEach(marker => {
-                if (marker.dataset.section === currentSection) {
-                    marker.classList.add('active');
-                } else {
-                    marker.classList.remove('active');
-                }
-            });
-        }
-        
-        window.addEventListener('scroll', updateTimeline);
-        updateTimeline(); // Initial call
-        
-        // Click on timeline markers to navigate
-        timelineMarkers.forEach(marker => {
-            marker.addEventListener('click', () => {
-                const sectionId = marker.dataset.section;
-                const section = document.getElementById(sectionId);
-                if (section) {
-                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
+            const progressBar = document.getElementById('progressBar');
+            if (progressBar) progressBar.style.width = scrolled + '%';
         });
 
-        // Smooth scroll for nav pills
-        document.querySelectorAll('.nav-pill, .mobile-menu a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href.startsWith('#')) {
-                    e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                }
-            });
-        });
-
-        // ==================== 
         // Presentation Mode
-        // ====================
         const presentationToggle = document.getElementById('presentationToggle');
         const presentationProgress = document.getElementById('presentationProgress');
         const progressFill = document.getElementById('progressFill');
@@ -1468,100 +1754,287 @@
 
         function setPresentationMode(enabled) {
             html.setAttribute('data-presentation', enabled ? 'true' : 'false');
-            presentationToggle.classList.toggle('active', enabled);
-            
-            if (enabled) {
-                if (slides.length > 0) {
-                    slides[0].scrollIntoView({ behavior: 'smooth' });
-                }
-            } else {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+            localStorage.setItem('presentation', enabled ? 'true' : 'false');
+            if (presentationToggle) {
+                presentationToggle.classList.toggle('active', enabled);
             }
         }
 
-        presentationToggle.addEventListener('click', () => {
-            const isActive = html.getAttribute('data-presentation') === 'true';
-            setPresentationMode(!isActive);
-        });
+        // Always start with presentation mode OFF (user must click to enable)
+        setPresentationMode(false);
 
+        if (presentationToggle) {
+            presentationToggle.addEventListener('click', () => {
+                const current = html.getAttribute('data-presentation') === 'true';
+                setPresentationMode(!current);
+                if (!current) {
+                    // Scroll to first slide when enabling
+                    slides[0]?.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        }
+
+        // Presentation Progress Tracking
         function updatePresentationProgress() {
             if (html.getAttribute('data-presentation') !== 'true') return;
 
-            const scrollTop = window.scrollY;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             const windowHeight = window.innerHeight;
             let currentSlide = 0;
 
             slides.forEach((slide, index) => {
                 const slideTop = slide.offsetTop;
-                const slideHeight = slide.offsetHeight;
-                if (scrollTop + windowHeight / 2 >= slideTop && 
-                    scrollTop + windowHeight / 2 < slideTop + slideHeight) {
+                const slideBottom = slideTop + slide.offsetHeight;
+                if (scrollTop + windowHeight / 2 >= slideTop && scrollTop + windowHeight / 2 < slideBottom) {
                     currentSlide = index;
                 }
             });
 
+            // Update progress items
             progressItems.forEach((item, index) => {
-                item.classList.remove('active', 'passed');
-                if (index < currentSlide) {
-                    item.classList.add('passed');
-                } else if (index === currentSlide) {
-                    item.classList.add('active');
-                }
+                item.classList.toggle('active', index === currentSlide);
+                item.classList.toggle('passed', index < currentSlide);
             });
 
-            const totalSlides = slides.length;
-            const progressPercentage = (currentSlide / (totalSlides - 1)) * 100;
-            progressFill.style.height = progressPercentage + '%';
+            // Update progress fill
+            if (progressFill && slides.length > 0) {
+                const progress = ((currentSlide + 1) / slides.length) * 100;
+                progressFill.style.height = progress + '%';
+            }
         }
 
         window.addEventListener('scroll', updatePresentationProgress);
+        updatePresentationProgress();
 
-        progressItems.forEach((item, index) => {
-            item.addEventListener('click', () => {
-                if (slides[index]) {
-                    slides[index].scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-
+        // Keyboard Navigation for Presentation Mode
+        // Note: We query slides fresh each time to include dynamically created continuation slides
         document.addEventListener('keydown', (e) => {
             if (html.getAttribute('data-presentation') !== 'true') return;
 
-            let currentSlide = 0;
-            const scrollTop = window.scrollY;
+            // Query slides fresh to include any dynamically created continuation slides
+            const allSlides = document.querySelectorAll('.presentation-slide');
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
             const windowHeight = window.innerHeight;
+            let currentSlideIndex = 0;
 
-            slides.forEach((slide, index) => {
+            allSlides.forEach((slide, index) => {
                 const slideTop = slide.offsetTop;
-                const slideHeight = slide.offsetHeight;
-                if (scrollTop + windowHeight / 2 >= slideTop && 
-                    scrollTop + windowHeight / 2 < slideTop + slideHeight) {
-                    currentSlide = index;
+                if (currentScroll + windowHeight / 2 >= slideTop) {
+                    currentSlideIndex = index;
                 }
             });
 
-            if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+            if (e.key === 'ArrowDown' || e.key === ' ' || e.key === 'PageDown') {
                 e.preventDefault();
-                if (currentSlide < slides.length - 1) {
-                    slides[currentSlide + 1].scrollIntoView({ behavior: 'smooth' });
+                if (currentSlideIndex < allSlides.length - 1) {
+                    allSlides[currentSlideIndex + 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
-            } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'PageUp') {
+            } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
                 e.preventDefault();
-                if (currentSlide > 0) {
-                    slides[currentSlide - 1].scrollIntoView({ behavior: 'smooth' });
+                if (currentSlideIndex > 0) {
+                    allSlides[currentSlideIndex - 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
-            } else if (e.key === 'Escape') {
-                setPresentationMode(false);
             } else if (e.key === 'Home') {
                 e.preventDefault();
-                slides[0].scrollIntoView({ behavior: 'smooth' });
+                allSlides[0].scrollIntoView({ behavior: 'smooth', block: 'start' });
             } else if (e.key === 'End') {
                 e.preventDefault();
-                slides[slides.length - 1].scrollIntoView({ behavior: 'smooth' });
+                allSlides[allSlides.length - 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else if (e.key === 'Escape') {
+                e.preventDefault();
+                setPresentationMode(false);
             }
         });
 
-        updatePresentationProgress();
+        // Click on progress items to jump to slide
+        progressItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                if (slides[index]) {
+                    slides[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Auto-split overflowing slides into continuation slides
+        let slidesSplit = false;
+        
+        function splitOverflowingSlides() {
+            if (slidesSplit) return; // Only run once
+            if (html.getAttribute('data-presentation') !== 'true') return;
+            
+            const maxContentHeight = window.innerHeight - 220; // Account for padding (6rem top + 4rem bottom + buffer)
+            const allSlides = Array.from(document.querySelectorAll('.presentation-slide:not(.continuation-slide)'));
+            let continuationSlides = [];
+            
+            allSlides.forEach((slide, originalIndex) => {
+                const content = slide.querySelector('.presentation-slide-content');
+                if (!content || slide.classList.contains('hero-slide')) return;
+                
+                // Force layout calculation
+                const svDiv = content.querySelector('.lang-sv');
+                const enDiv = content.querySelector('.lang-en');
+                if (!svDiv || !enDiv) return;
+                
+                // Check both language versions for overflow
+                const svOverflows = svDiv.scrollHeight > maxContentHeight;
+                const enOverflows = enDiv.scrollHeight > maxContentHeight;
+                
+                if (!svOverflows && !enOverflows) return;
+                
+                // This slide needs splitting
+                slide.classList.add('has-continuation');
+                
+                // Get splittable elements (skip H2 headers)
+                const svElements = Array.from(svDiv.children).filter(el => el.tagName !== 'H2');
+                const enElements = Array.from(enDiv.children).filter(el => el.tagName !== 'H2');
+                
+                if (svElements.length <= 1) return;
+                
+                // Find split point based on cumulative height
+                let currentHeight = 0;
+                let splitIndex = -1;
+                
+                // Include H2 height in initial calculation
+                const svH2 = svDiv.querySelector('h2');
+                if (svH2) currentHeight = svH2.offsetHeight + 40;
+                
+                for (let i = 0; i < svElements.length; i++) {
+                    const el = svElements[i];
+                    const style = window.getComputedStyle(el);
+                    const marginTop = parseInt(style.marginTop) || 0;
+                    const marginBottom = parseInt(style.marginBottom) || 0;
+                    currentHeight += el.offsetHeight + marginTop + marginBottom;
+                    
+                    if (currentHeight > maxContentHeight && i > 0) {
+                        splitIndex = i;
+                        break;
+                    }
+                }
+                
+                if (splitIndex <= 0) return;
+                
+                // Create continuation slide
+                const continuationSlide = document.createElement('section');
+                continuationSlide.className = 'presentation-slide continuation-slide';
+                continuationSlide.setAttribute('data-original-slide', originalIndex.toString());
+                
+                const continuationContent = document.createElement('div');
+                continuationContent.className = 'presentation-slide-content';
+                
+                // Create language containers for continuation
+                const svContinuation = document.createElement('div');
+                svContinuation.className = 'lang-sv';
+                const enContinuation = document.createElement('div');
+                enContinuation.className = 'lang-en';
+                
+                // Add continuation label
+                const svLabel = document.createElement('span');
+                svLabel.className = 'continuation-label';
+                svLabel.textContent = '(fortsättning)';
+                svContinuation.appendChild(svLabel);
+                
+                const enLabel = document.createElement('span');
+                enLabel.className = 'continuation-label';
+                enLabel.textContent = '(continued)';
+                enContinuation.appendChild(enLabel);
+                
+                // Move overflow elements to continuation slide
+                for (let i = splitIndex; i < svElements.length; i++) {
+                    svContinuation.appendChild(svElements[i].cloneNode(true));
+                    svElements[i].remove();
+                }
+                
+                const enSplitIndex = Math.min(splitIndex, enElements.length);
+                for (let i = enSplitIndex; i < enElements.length; i++) {
+                    enContinuation.appendChild(enElements[i].cloneNode(true));
+                    enElements[i].remove();
+                }
+                
+                continuationContent.appendChild(svContinuation);
+                continuationContent.appendChild(enContinuation);
+                continuationSlide.appendChild(continuationContent);
+                
+                // Insert continuation slide after original
+                slide.insertAdjacentElement('afterend', continuationSlide);
+                continuationSlides.push(continuationSlide);
+            });
+            
+            // If we created continuation slides, update numbering
+            if (continuationSlides.length > 0) {
+                const allSlidesNow = document.querySelectorAll('.presentation-slide');
+                const totalSlides = allSlidesNow.length;
+                
+                allSlidesNow.forEach((slide, index) => {
+                    slide.setAttribute('data-slide-number', `${index + 1} / ${totalSlides}`);
+                });
+                
+                slidesSplit = true;
+                
+                // Recursively check if continuation slides also need splitting
+                setTimeout(splitOverflowingSlides, 50);
+            } else {
+                slidesSplit = true;
+            }
+        }
+        
+        // Run split check when presentation mode is toggled
+        const originalSetPresentationMode = setPresentationMode;
+        setPresentationMode = function(enabled) {
+            originalSetPresentationMode(enabled);
+            if (enabled && !slidesSplit) {
+                // Delay to allow rendering
+                requestAnimationFrame(() => {
+                    setTimeout(splitOverflowingSlides, 50);
+                });
+            }
+        };
+
+        // Reading Progress (vertical chapter navigation for reading mode)
+        const readingProgressItems = document.querySelectorAll('.reading-progress-item');
+        const readingProgressFill = document.getElementById('readingProgressFill');
+        
+        function updateReadingProgress() {
+            // Don't update in presentation mode
+            if (html.getAttribute('data-presentation') === 'true') return;
+            
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const currentLang = html.getAttribute('data-lang') || 'sv';
+            
+            // Find H2 sections only from the active language
+            const sections = document.querySelectorAll(`article .lang-${currentLang} h2[id]`);
+            let currentIndex = -1;
+            
+            sections.forEach((section, index) => {
+                const sectionTop = section.offsetTop - 150; // Offset for header
+                if (scrollTop >= sectionTop) {
+                    currentIndex = index;
+                }
+            });
+            
+            // Update reading progress items
+            readingProgressItems.forEach((item, index) => {
+                item.classList.remove('active', 'passed');
+                if (index === currentIndex) {
+                    item.classList.add('active');
+                } else if (index < currentIndex) {
+                    item.classList.add('passed');
+                }
+            });
+            
+            // Update progress fill
+            if (readingProgressFill && sections.length > 0) {
+                const progress = ((currentIndex + 1) / sections.length) * 100;
+                readingProgressFill.style.height = Math.max(0, progress) + '%';
+            }
+        }
+        
+        // Listen for scroll events
+        window.addEventListener('scroll', updateReadingProgress);
+        
+        // Initial update
+        updateReadingProgress();
+        
+
     </script>
 </body>
 </html>

@@ -175,7 +175,7 @@
                 <a href="#7-en-kort-team-playbook-att-införa-vecka-1" class="nav-pill">7) En kort "team-playbook" att införa vecka 1</a>
             </nav>
 
-            <div class="lang-sv"><h1 id="agentisk-ai-i-iden-for-net-backend-och-javascript-frontend-januari-2026">Agentisk AI i IDE:n för .NET-backend och JavaScript-frontend (januari 2026)</h1>
+            <div class="lang-sv"><p><strong>Version 1.0</strong> | 2026-01-22</p>
 <p>Agentisk AI i en IDE handlar om mer än "autocomplete". Det är arbetsflöden där assistenten kan <strong>planera</strong>, föreslå <strong>diffar över flera filer</strong>, köra <strong>build/test/lint</strong>, läsa felutskrifter och iterera mot tydliga acceptanskriterier. För den generella metodiken (harness, feedback-loop, kontexthygien) hänvisas till dina befintliga texter om agentloopar och "model CI".</p>
 <p>Den här artikeln fokuserar därför på det som är <strong>IDE-specifikt</strong>: vilka IDE:er som är relevanta utan JetBrains, vilka modellfamiljer de typiskt ger tillgång till, hur agentflöden ser ut i praktiken för .NET + JS, samt vad det kostar (indikativt).</p>
 <hr />
@@ -229,12 +229,20 @@
 <td>AI-native agentflöde via Cascade (multi-step i editorn).</td>
 <td>Windsurf prissida (planer för individer/teams/enterprise).</td>
 </tr>
+<tr>
+<td><strong>Claude Code</strong> (Terminal)</td>
+<td>Claude Code CLI</td>
+<td>Anthropic (Claude Opus 4.5, Sonnet 4, Haiku). Direkt API-access utan mellanhand.</td>
+<td>Fullt agentisk CLI: multi-file edits, bash-exekvering, git-operationer, plan-läge, sub-agenter. Fungerar i valfri terminal bredvid din IDE.</td>
+<td>Anthropic API-prissättning (usage-baserat). Pro-plan inkluderar Claude Code-användning.</td>
+</tr>
 </tbody>
 </table>
 <p><strong>Tolkning för .NET + JS-team:</strong><br />
 - Vill du ha "standardiserbar enterprise-default" i Microsoft-ekosystemet: <strong>VS Code/Visual Studio + Copilot</strong> är det mest förutsägbara alternativet att rulla ut brett (licenser och dokumentation finns tydligt hos GitHub).<br />
 - Vill du ha Google-spår i IDE:n: <strong>Gemini Code Assist</strong> är Googles förstahandsval för IDE-assistans.<br />
-- Vill du ha "AI-first editor" med stark agentupplevelse: <strong>Cursor/Windsurf</strong> är ofta mer aggressiva i agentflöden, men blir också mer "plattform" att standardisera och kostnadsstyra.</p>
+- Vill du ha "AI-first editor" med stark agentupplevelse: <strong>Cursor/Windsurf</strong> är ofta mer aggressiva i agentflöden, men blir också mer "plattform" att standardisera och kostnadsstyra.<br />
+- Vill du ha maximal agentisk kraft utan att byta IDE: <strong>Claude Code</strong> körs i din terminal bredvid valfri editor. Det erbjuder den mest kapabla agentloopen (plan-läge, sub-agenter, full bash-access) med direkt Anthropic API-åtkomst.</p>
 <hr />
 <h2 id="3-rekommenderade-startpaket-for-team-praktiskt">3) Rekommenderade startpaket för team (praktiskt)</h2>
 <p>Här är tre "baseline"-paket som brukar fungera utan att skapa onödigt verktygskaos:</p>
@@ -255,6 +263,14 @@
 <ul>
 <li><strong>Cursor</strong> eller <strong>Windsurf</strong> för team som vill driva agentik hårdare i editorn</li>
 <li>Tydlig spend-control/process för att undvika kostnadsöverraskningar (Cursor beskriver spending controls i Teams).</li>
+</ul>
+<h3 id="paket-d-terminal-first-agentik-claude-code">Paket D: Terminal-first agentik (Claude Code)</h3>
+<ul>
+<li><strong>Valfri IDE du redan använder</strong> (VS Code, Visual Studio, Vim, etc.)</li>
+<li><strong>Claude Code</strong> i en terminalruta eller separat fönster</li>
+<li>Bäst för utvecklare som vill ha starkast möjliga agentik utan att byta editor</li>
+<li>Claude Code läser <code>CLAUDE.md</code> (liknande <code>agents.md</code>) för repo-kontext, kör bash-kommandon, skapar PR:er, och kan starta sub-agenter för parallellt arbete</li>
+<li>Kombineras väl med lättviktsextensions (Copilot för autocomplete, Claude Code för tunga agentiska uppgifter)</li>
 </ul>
 <hr />
 <h2 id="4-praktiska-agentiska-arbetsfloden-i-iden-komprimerat-med-hanvisningar">4) Praktiska agentiska arbetsflöden i IDE:n (komprimerat, med hänvisningar)</h2>
@@ -316,7 +332,7 @@
 3) Standardisera prompts: <strong>Goal → Constraints/non-goals → Done → Plan först</strong> (din "prompt som ingenjörskommunikation"-mall).<br />
 4) Etablera en reset-regel: "om loopen degraderar → compact/clear och börja om rent".<br />
 5) För känsliga repos: aktivera denylist och begränsa agentverktyg enligt 5.1–5.2.</p></div>
-            <div class="lang-en"><h1 id="agentic-ai-in-the-ide-for-net-backend-and-javascript-frontend-january-2026">Agentic AI in the IDE for .NET backend and JavaScript frontend (January 2026)</h1>
+            <div class="lang-en"><p><strong>Version 1.0</strong> | 2026-01-22</p>
 <p>Agentic AI in an IDE is more than "autocomplete". It's a workflow where the assistant can <strong>plan</strong>, propose <strong>multi-file diffs</strong>, run <strong>build/test/lint</strong>, read failures, and iterate toward clear acceptance criteria. For the general methodology (harness, feedback loops, context hygiene), refer to your existing articles on agent loops and "model CI".</p>
 <p>This article focuses on what is <strong>IDE-specific</strong>: which IDEs/editors are relevant without JetBrains, what model families they typically expose, how agentic workflows look in real engineering for .NET + JS, and what it costs (indicative).</p>
 <hr />
@@ -370,12 +386,20 @@
 <td>AI-native agent flow via Cascade (multi-step in the editor).</td>
 <td>Windsurf pricing (plans for individuals/teams/enterprise).</td>
 </tr>
+<tr>
+<td><strong>Claude Code</strong> (Terminal)</td>
+<td>Claude Code CLI</td>
+<td>Anthropic (Claude Opus 4.5, Sonnet 4, Haiku). Direct API access, no intermediary.</td>
+<td>Full agentic CLI: multi-file edits, bash execution, git operations, plan mode, sub-agents. Works in any terminal alongside your IDE.</td>
+<td>Anthropic API pricing (usage-based). Pro plan includes Claude Code usage.</td>
+</tr>
 </tbody>
 </table>
 <p><strong>How to read this for .NET + JS teams:</strong><br />
 - If you want an "enterprise-default" that's easy to standardize in the Microsoft ecosystem: <strong>VS Code/Visual Studio + Copilot</strong> is typically the most predictable rollout path (licensing and docs are very explicit).<br />
 - If you want a Google-first IDE assistant: <strong>Gemini Code Assist</strong> is Google's primary IDE offering.<br />
-- If you want an AI-first editor with a stronger agent experience: <strong>Cursor/Windsurf</strong> often push agent workflows further, but also become a platform you need to standardize and cost-control.</p>
+- If you want an AI-first editor with a stronger agent experience: <strong>Cursor/Windsurf</strong> often push agent workflows further, but also become a platform you need to standardize and cost-control.<br />
+- If you want maximum agentic power without changing IDE: <strong>Claude Code</strong> runs in your terminal alongside any editor. It offers the most capable agentic loop (plan mode, sub-agents, full bash access) with direct Anthropic API access.</p>
 <hr />
 <h2 id="3-practical-starting-bundles-for-teams">3) Practical starting bundles for teams</h2>
 <p>These three "baseline" bundles usually work without creating tool chaos:</p>
@@ -396,6 +420,14 @@
 <ul>
 <li><strong>Cursor</strong> or <strong>Windsurf</strong> for teams that want to push agentic workflows further inside the editor</li>
 <li>Clear spend-control processes to avoid cost surprises (Cursor documents spend controls for Teams).</li>
+</ul>
+<h3 id="bundle-d-terminal-first-agentic-claude-code">Bundle D: Terminal-first agentic (Claude Code)</h3>
+<ul>
+<li><strong>Any IDE you already use</strong> (VS Code, Visual Studio, Vim, etc.)</li>
+<li><strong>Claude Code</strong> running in a terminal pane or separate window</li>
+<li>Best for developers who want the strongest agentic capabilities without switching editors</li>
+<li>Claude Code reads <code>CLAUDE.md</code> (similar to <code>agents.md</code>) for repo context, runs bash commands, creates PRs, and can spawn sub-agents for parallel work</li>
+<li>Combines well with lightweight IDE extensions (Copilot for autocomplete, Claude Code for heavy agentic tasks)</li>
 </ul>
 <hr />
 <h2 id="4-agentic-workflows-in-the-ide-compressed-with-references">4) Agentic workflows in the IDE (compressed, with references)</h2>
@@ -545,12 +577,20 @@
 <td>AI-native agentflöde via Cascade (multi-step i editorn).</td>
 <td>Windsurf prissida (planer för individer/teams/enterprise).</td>
 </tr>
+<tr>
+<td><strong>Claude Code</strong> (Terminal)</td>
+<td>Claude Code CLI</td>
+<td>Anthropic (Claude Opus 4.5, Sonnet 4, Haiku). Direkt API-access utan mellanhand.</td>
+<td>Fullt agentisk CLI: multi-file edits, bash-exekvering, git-operationer, plan-läge, sub-agenter. Fungerar i valfri terminal bredvid din IDE.</td>
+<td>Anthropic API-prissättning (usage-baserat). Pro-plan inkluderar Claude Code-användning.</td>
+</tr>
 </tbody>
 </table>
 <p><strong>Tolkning för .NET + JS-team:</strong><br />
 - Vill du ha "standardiserbar enterprise-default" i Microsoft-ekosystemet: <strong>VS Code/Visual Studio + Copilot</strong> är det mest förutsägbara alternativet att rulla ut brett (licenser och dokumentation finns tydligt hos GitHub).<br />
 - Vill du ha Google-spår i IDE:n: <strong>Gemini Code Assist</strong> är Googles förstahandsval för IDE-assistans.<br />
-- Vill du ha "AI-first editor" med stark agentupplevelse: <strong>Cursor/Windsurf</strong> är ofta mer aggressiva i agentflöden, men blir också mer "plattform" att standardisera och kostnadsstyra.</p>
+- Vill du ha "AI-first editor" med stark agentupplevelse: <strong>Cursor/Windsurf</strong> är ofta mer aggressiva i agentflöden, men blir också mer "plattform" att standardisera och kostnadsstyra.<br />
+- Vill du ha maximal agentisk kraft utan att byta IDE: <strong>Claude Code</strong> körs i din terminal bredvid valfri editor. Det erbjuder den mest kapabla agentloopen (plan-läge, sub-agenter, full bash-access) med direkt Anthropic API-åtkomst.</p>
 <hr /></div>
             <div class="lang-en"><h2 id="2-compact-matrix-ide-models-agent-capability-price">2) Compact matrix: IDE ↔ models ↔ agent capability ↔ price</h2>
 <blockquote>
@@ -595,12 +635,20 @@
 <td>AI-native agent flow via Cascade (multi-step in the editor).</td>
 <td>Windsurf pricing (plans for individuals/teams/enterprise).</td>
 </tr>
+<tr>
+<td><strong>Claude Code</strong> (Terminal)</td>
+<td>Claude Code CLI</td>
+<td>Anthropic (Claude Opus 4.5, Sonnet 4, Haiku). Direct API access, no intermediary.</td>
+<td>Full agentic CLI: multi-file edits, bash execution, git operations, plan mode, sub-agents. Works in any terminal alongside your IDE.</td>
+<td>Anthropic API pricing (usage-based). Pro plan includes Claude Code usage.</td>
+</tr>
 </tbody>
 </table>
 <p><strong>How to read this for .NET + JS teams:</strong><br />
 - If you want an "enterprise-default" that's easy to standardize in the Microsoft ecosystem: <strong>VS Code/Visual Studio + Copilot</strong> is typically the most predictable rollout path (licensing and docs are very explicit).<br />
 - If you want a Google-first IDE assistant: <strong>Gemini Code Assist</strong> is Google's primary IDE offering.<br />
-- If you want an AI-first editor with a stronger agent experience: <strong>Cursor/Windsurf</strong> often push agent workflows further, but also become a platform you need to standardize and cost-control.</p>
+- If you want an AI-first editor with a stronger agent experience: <strong>Cursor/Windsurf</strong> often push agent workflows further, but also become a platform you need to standardize and cost-control.<br />
+- If you want maximum agentic power without changing IDE: <strong>Claude Code</strong> runs in your terminal alongside any editor. It offers the most capable agentic loop (plan mode, sub-agents, full bash access) with direct Anthropic API access.</p>
 <hr /></div>
         </div>
     </section>
@@ -627,6 +675,14 @@
 <li><strong>Cursor</strong> eller <strong>Windsurf</strong> för team som vill driva agentik hårdare i editorn</li>
 <li>Tydlig spend-control/process för att undvika kostnadsöverraskningar (Cursor beskriver spending controls i Teams).</li>
 </ul>
+<h3 id="paket-d-terminal-first-agentik-claude-code">Paket D: Terminal-first agentik (Claude Code)</h3>
+<ul>
+<li><strong>Valfri IDE du redan använder</strong> (VS Code, Visual Studio, Vim, etc.)</li>
+<li><strong>Claude Code</strong> i en terminalruta eller separat fönster</li>
+<li>Bäst för utvecklare som vill ha starkast möjliga agentik utan att byta editor</li>
+<li>Claude Code läser <code>CLAUDE.md</code> (liknande <code>agents.md</code>) för repo-kontext, kör bash-kommandon, skapar PR:er, och kan starta sub-agenter för parallellt arbete</li>
+<li>Kombineras väl med lättviktsextensions (Copilot för autocomplete, Claude Code för tunga agentiska uppgifter)</li>
+</ul>
 <hr /></div>
             <div class="lang-en"><h2 id="3-practical-starting-bundles-for-teams">3) Practical starting bundles for teams</h2>
 <p>These three "baseline" bundles usually work without creating tool chaos:</p>
@@ -647,6 +703,14 @@
 <ul>
 <li><strong>Cursor</strong> or <strong>Windsurf</strong> for teams that want to push agentic workflows further inside the editor</li>
 <li>Clear spend-control processes to avoid cost surprises (Cursor documents spend controls for Teams).</li>
+</ul>
+<h3 id="bundle-d-terminal-first-agentic-claude-code">Bundle D: Terminal-first agentic (Claude Code)</h3>
+<ul>
+<li><strong>Any IDE you already use</strong> (VS Code, Visual Studio, Vim, etc.)</li>
+<li><strong>Claude Code</strong> running in a terminal pane or separate window</li>
+<li>Best for developers who want the strongest agentic capabilities without switching editors</li>
+<li>Claude Code reads <code>CLAUDE.md</code> (similar to <code>agents.md</code>) for repo context, runs bash commands, creates PRs, and can spawn sub-agents for parallel work</li>
+<li>Combines well with lightweight IDE extensions (Copilot for autocomplete, Claude Code for heavy agentic tasks)</li>
 </ul>
 <hr /></div>
         </div>

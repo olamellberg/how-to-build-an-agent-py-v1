@@ -1,4 +1,5 @@
-# AI Fundamentals 2026  
+# AI Fundamentals 2026
+**Version 1.0** | 2026-01-22
 ### En praktisk grundkurs i generativ AI för systemutvecklare
 
 ## 1) Vad du bygger: modell vs applikation

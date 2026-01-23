@@ -1,6 +1,9 @@
+# Claude Code 101
+**Version 1.0** | 2026-01-22
+
 Officiell Claude Code-dokumentation: https://code.claude.com/docs/
 
-## Claude Code 101: en praktisk handbok för att leverera riktiga ändringar säkert
+## En praktisk handbok för att leverera riktiga ändringar säkert
 
 Den här guiden är en **Claude Code-specifik** "101" för systemutvecklare. Målet är inte teori — det är en uppsättning repeterbara arbetsflöden som producerar **små diffar, snabb feedback och färre regressioner**.
 
@@ -157,40 +160,26 @@ Vissa team använder en kort, högvärdig "kvalitetsribba" i sin projektvägledn
 
 ---
 
-## Kontextfönster degraderas tidigare än du tror
+## Kontexthantering: avancerade tekniker
 
-Även med stora kontextfönster tenderar kvaliteten att sjunka innan du "fyller ribban". Symtom inkluderar:
-- upprepar samma misstag
-- tappar bort begränsningar
-- hallucinerar struktur du aldrig begärde
+För grunderna (50%-regeln, när du ska starta nya sessioner), se [How to Master Claude Code](claude-code-mastery.html). Denna sektion täcker avancerade tekniker.
 
-**Motivering:** mer kontext ökar konkurrensen om uppmärksamhet; viktiga detaljer förlorar betydelse.
+### En konversation per uppgift
+Använd inte samma session för att bygga auth och refaktorera databaslager. Orelaterad kontext läcker och skapar felaktiga antaganden.
 
-### Praktiska kontexthanteringstekniker
+### Använd externa minnesfiler
+Låt Claude skriva till `SCRATCHPAD.md`, `plan.md`, eller `devdocs/progress.md`. Filer består mellan sessioner och förankrar "sanningen" i repot.
 
-**1) En konversation per uppgift**  
-Använd inte samma session för att bygga auth och refaktorera databaslager.  
-**Motivering:** orelaterad kontext läcker och skapar felaktiga antaganden.
-
-**2) Använd externa minnesfiler**  
-Låt Claude skriva till `SCRATCHPAD.md`, `plan.md`, eller `devdocs/progress.md`.  
-**Motivering:** filer består mellan sessioner och förankrar "sanningen" i repot.
-
-**3) Kopiera-klistra reset-arbetsflöde (snabbt och effektivt)**  
+### Kopiera-klistra reset-arbetsflöde
 När saker blir uppsvällda:
 - kör `/compact` för att få en sammanfattning
 - kör `/clear` för att nollställa kontext
 - klistra tillbaka endast den kritiska planen + begränsningar + aktuella fel
 
-**Motivering:** en liten, ren kontext överträffar ofta en stor, degraderad.
+En liten, ren kontext överträffar ofta en stor, degraderad.
 
-**4) Vet när du ska rensa**  
-Om sessionen är förvirrad, nollställ tidigt. `CLAUDE.md` ger fortfarande grundläggande vägledning.  
-**Motivering:** att felsöka en förvirrad kontext är långsammare än att starta om med ett rent briefing.
-
-### Adoptera rätt mental modell
-Claude är i praktiken tillståndslös om du inte externaliserar tillståndet.  
-**Motivering:** att förvänta sig minne som inte finns skapar inkonsekventa resultat.
+### Mental modell
+Claude är i praktiken tillståndslös om du inte externaliserar tillståndet. Att förvänta sig minne som inte finns skapar inkonsekventa resultat.
 
 ---
 
@@ -220,28 +209,6 @@ Exempel:
 - "Prototyp att kasta → håll det minimalt."
 
 **Motivering:** "varför" driver korrekta avvägningar.
-
----
-
-## Dålig input → dålig output
-
-När output konsekvent är fel, är lösningen vanligtvis:
-- otillräckliga begränsningar
-- saknade acceptanskriterier
-- saknad repo-kontext
-- för stora uppgifter (inte nedbrutna)
-
-**Motivering:** modellen kan inte härleda begränsningar du inte tillhandahöll.
-
-### Snabb diagnostisk checklista
-Om Claude missar målet, kontrollera om prompten innehöll:
-- explicita "klart"-kriterier
-- explicita icke-mål
-- filsökvägar/entrypoints
-- valideringskommandon
-- en stegad planförfrågan
-
-**Motivering:** att sakna någon av dessa ökar tvetydighet och överraskningar.
 
 ---
 

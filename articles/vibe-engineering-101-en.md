@@ -1,4 +1,5 @@
-# Vibe Engineering 101  
+# Vibe Engineering 101
+**Version 1.0** | 2026-01-22
 *A practical guide for system developers getting started with agentic development*
 
 Agentic development is less about "AI that writes code" and more about designing a reliable loop: a model proposes changes, tools validate them, and feedback drives the next iteration. This article is a field guide for building that loop so it produces useful software—consistently.
@@ -108,32 +109,163 @@ The fix is rarely "watch harder." It's usually:
 
 ## 6) Project setup is everything
 
-The best time investment you can make is a repo that an agent can operate without confusion.
+The best time investment you can make is a repo that an agent can operate without confusion. A **repository harness** is the infrastructure that makes an agent work reliably.
 
 ### Hard requirement: one command to validate
 Your project should build, test, and lint with **a single command**.
 
-Examples:
-- `make check`
-- `./scripts/ci.sh`
-- `npm test` (if it truly runs the full suite)
-- `cargo test` + `cargo fmt --check` + `cargo clippy` via one wrapper
+**Node.js/TypeScript:**
+```bash
+npm run check  # Runs: build + test + lint
+```
+
+**Python:**
+```bash
+make check  # Runs: pytest + black --check + mypy
+```
+
+**C#/.NET:**
+```bash
+dotnet build && dotnet test && dotnet format --verify
+```
+
+**Rust:**
+```bash
+cargo test && cargo fmt --check && cargo clippy
+```
 
 If validation requires tribal knowledge ("export this var," "run this in that directory," "install this system dependency manually"), your loop will waste context and time re-discovering it—over and over.
 
-### Minimize and shape output
-Everything printed by your tools becomes part of the agent's working memory. Treat logs as an interface to an automated collaborator:
+### Setup checklist
 
-- Prefer **concise summaries** on success  
-  - "✅ 1000 tests passed" beats 1000 lines of "ok"
-- Prefer **focused failures**  
-  - show the failing assertion, relevant diff, minimal stack trace
-- Avoid dumping thousands of lines of compiler spew if you can collapse it
+**One-command validation:**
+- [ ] Create a command (e.g., `make check`, `npm run check`, `./scripts/ci.sh`) that runs build, tests, linting, and formatting
+- [ ] Command works the same in CI and locally
+- [ ] Command provides clear exit code (0 = success, != 0 = failure)
 
-If you can, add a log filter that:
-- extracts the *first* meaningful error
-- includes the relevant file/line
-- outputs only what's needed to take the next step
+**Deterministic tests:**
+- [ ] Tests give the same results every time (no race conditions, no timestamps in assertions)
+- [ ] Tests can run in parallel without conflicts
+- [ ] Tests are isolated (no shared state between tests)
+
+**Clear feedback:**
+- [ ] On success: minimal logs (e.g., "✅ 1000 tests passed" instead of 1000 lines of "ok")
+- [ ] On failure: actionable logs showing the failing assertion, relevant diff, minimal stack trace, relevant file/line
+
+**Stable scripts:**
+- [ ] No "tribal knowledge" requirements
+- [ ] Scripts work in Docker/CI the same way as locally
+- [ ] Paths are relative or via environment variables
+
+### Example: package.json (Node.js)
+
+```json
+{
+  "scripts": {
+    "check": "npm run build && npm run test && npm run lint",
+    "build": "tsc",
+    "test": "jest",
+    "lint": "eslint . --ext .ts,.tsx",
+    "format": "prettier --check ."
+  }
+}
+```
+
+### Example: Makefile (Python)
+
+```makefile
+.PHONY: check build test lint format
+
+check: build test lint format
+	@echo "✅ All checks passed"
+
+build:
+	python -m build
+
+test:
+	pytest
+
+lint:
+	ruff check .
+
+format:
+	black --check .
+```
+
+### Example: scripts/ci.sh (Bash)
+
+```bash
+#!/bin/bash
+set -euo pipefail
+
+echo "Building..."
+npm run build
+
+echo "Running tests..."
+npm test
+
+echo "Linting..."
+npm run lint
+
+echo "✅ All checks passed"
+```
+
+### Log filtering for agents
+
+Agents read all output as feedback. Treat logs as an interface to an automated collaborator:
+
+**Good: Concise on success**
+```
+✅ 1000 tests passed in 2.3s
+```
+
+**Bad: Noisy on success**
+```
+test 1: ok
+test 2: ok
+test 3: ok
+... (997 more lines)
+```
+
+**Good: Actionable on failure**
+```
+FAIL: src/auth.test.ts:42
+Expected: "user@example.com"
+Received: "admin@example.com"
+```
+
+**Bad: Messy on failure**
+```
+[1000 lines of stack trace and compiler output]
+```
+
+### Determinism examples
+
+**Problem: Non-deterministic tests**
+
+```javascript
+// Bad: uses current time
+expect(result).toBe(new Date().toISOString());
+
+// Good: deterministic
+expect(result).toBe("2026-01-14T12:00:00Z");
+```
+
+**Problem: Race conditions**
+
+```python
+# Bad: can fail sometimes
+def test_concurrent():
+    results = []
+    threads = [Thread(target=worker) for _ in range(10)]
+    # ...
+
+# Good: isolated or explicit synchronization
+def test_concurrent():
+    with ThreadPoolExecutor() as executor:
+        results = list(executor.map(worker, range(10)))
+    # ...
+```
 
 This is "context engineering" in practice: design the I/O so the model sees signal, not noise.
 

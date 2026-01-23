@@ -1,4 +1,5 @@
 # agents.md / CLAUDE.md Mall
+**Version 1.0** | 2026-01-22
 ### En kopiera-klistra-mall konsekvent med handbokens vägledning
 
 Denna sida innehåller en minimal, repo-specifik mall för `agents.md` eller `CLAUDE.md`. Mallen är designad för att vara konsekvent med vägledningen i [Agents.md Explained](agents-md-explained.html) och [Claude Code 101](claude-code-101.html).
@@ -174,4 +175,4 @@ Denna sida innehåller en minimal, repo-specifik mall för `agents.md` eller `CL
 
 - [Agents.md Explained](agents-md-explained.html) — djupdykning i agents.md
 - [Claude Code 101](claude-code-101.html) — specifikt för CLAUDE.md
-- [Repository Harness Setup](repo-harness-setup.html) — hur du sätter upp validering
+- [Vibe Engineering 101](vibe-engineering-101.html) — hur du sätter upp validering och harness

@@ -307,8 +307,8 @@
                 <a href="#avslutning" class="nav-pill">Avslutning</a>
             </nav>
 
-            <div class="lang-sv"><h1 id="vibe-engineering-101">Vibe Engineering 101</h1>
-<p><em>En praktisk guide för systemutvecklare som vill komma igång med agentbaserad utveckling</em></p>
+            <div class="lang-sv"><p><strong>Version 1.0</strong> | 2026-01-22<br />
+<em>En praktisk guide för systemutvecklare som vill komma igång med agentbaserad utveckling</em></p>
 <p>Agentbaserad utveckling handlar mindre om "AI som skriver kod" och mer om att designa en pålitlig loop: en modell föreslår ändringar, verktyg validerar dem, och återkoppling driver nästa iteration. Den här artikeln är en fältguide för att bygga den loopen så att den producerar användbar mjukvara — konsekvent.</p>
 <p>Målet här är inte att romantisera "vibe coding", utan att göra det operationellt: tydliga begränsningar, snabb feedback och repeterbara resultat.</p>
 <hr />
@@ -390,28 +390,122 @@
 - försök igen rent</p>
 <hr />
 <h2 id="6-projektupplagg-ar-allt">6) Projektupplägg är allt</h2>
-<p>Den bästa tidsinvesteringen du kan göra är ett repo som en agent kan arbeta i utan förvirring.</p>
+<p>Den bästa tidsinvesteringen du kan göra är ett repo som en agent kan arbeta i utan förvirring. En <strong>repository harness</strong> är den infrastruktur som gör att en agent kan arbeta pålitligt.</p>
 <h3 id="hard-krav-ett-kommando-for-att-validera">Hård krav: ett kommando för att validera</h3>
 <p>Ditt projekt bör bygga, testa och lint med <strong>ett enda kommando</strong>.</p>
-<p>Exempel:<br />
-- <code>make check</code><br />
-- <code>./scripts/ci.sh</code><br />
-- <code>npm test</code> (om det verkligen kör hela suiten)<br />
-- <code>cargo test</code> + <code>cargo fmt --check</code> + <code>cargo clippy</code> via en wrapper</p>
+<p><strong>Node.js/TypeScript:</strong></p>
+<pre><code class="language-bash">npm run check  # Kör: build + test + lint
+</code></pre>
+<p><strong>Python:</strong></p>
+<pre><code class="language-bash">make check  # Kör: pytest + black --check + mypy
+</code></pre>
+<p><strong>C#/.NET:</strong></p>
+<pre><code class="language-bash">dotnet build &amp;&amp; dotnet test &amp;&amp; dotnet format --verify
+</code></pre>
+<p><strong>Rust:</strong></p>
+<pre><code class="language-bash">cargo test &amp;&amp; cargo fmt --check &amp;&amp; cargo clippy
+</code></pre>
 <p>Om validering kräver stamkunskap ("exportera denna variabel", "kör detta i den mappen", "installera detta systemberoende manuellt"), kommer din loop att slösa kontext och tid på att återupptäcka det — om och om igen.</p>
-<h3 id="minimera-och-forma-output">Minimera och forma output</h3>
-<p>Allt som skrivs ut av dina verktyg blir del av agentens arbetsminne. Behandla loggar som ett gränssnitt till en automatiserad medarbetare:</p>
-<ul>
-<li>Föredra <strong>koncisa sammanfattningar</strong> vid framgång  </li>
-<li>"✅ 1000 tester passerade" slår 1000 rader av "ok"</li>
-<li>Föredra <strong>fokuserade misslyckanden</strong>  </li>
-<li>visa det misslyckade påståendet, relevant diff, minimal stack trace</li>
-<li>Undvik att dumpa tusentals rader av kompilatorutskrift om du kan kollapsa den</li>
-</ul>
-<p>Om du kan, lägg till en loggfilter som:<br />
-- extraherar det <em>första</em> meningsfulla felet<br />
-- inkluderar relevant fil/rad<br />
-- outputar endast vad som behövs för nästa steg</p>
+<h3 id="setup-checklista">Setup-checklista</h3>
+<p><strong>Ett-kommando-validering:</strong><br />
+- [ ] Skapa ett kommando (t.ex. <code>make check</code>, <code>npm run check</code>, <code>./scripts/ci.sh</code>) som kör bygge, tester, linting och formatering<br />
+- [ ] Kommandot fungerar i CI och lokalt på samma sätt<br />
+- [ ] Kommandot ger tydlig exit-kod (0 = success, != 0 = failure)</p>
+<p><strong>Deterministiska tester:</strong><br />
+- [ ] Tester ger samma resultat varje gång (inga race conditions, inga timestamps i assertions)<br />
+- [ ] Tester kan köras parallellt utan konflikter<br />
+- [ ] Tester är isolerade (inga delade tillstånd mellan tester)</p>
+<p><strong>Tydlig feedback:</strong><br />
+- [ ] Vid framgång: minimala loggar (t.ex. "✅ 1000 tester passerade" istället för 1000 rader av "ok")<br />
+- [ ] Vid misslyckande: åtgärdbara loggar som visar det misslyckade påståendet, relevant diff, minimal stack trace, relevant fil/rad</p>
+<p><strong>Stabila skript:</strong><br />
+- [ ] Inga "tribal knowledge"-krav<br />
+- [ ] Skript fungerar i Docker/CI på samma sätt som lokalt<br />
+- [ ] Sökvägar är relativa eller via miljövariabler</p>
+<h3 id="exempel-packagejson-nodejs">Exempel: package.json (Node.js)</h3>
+<pre><code class="language-json">{
+  &quot;scripts&quot;: {
+    &quot;check&quot;: &quot;npm run build &amp;&amp; npm run test &amp;&amp; npm run lint&quot;,
+    &quot;build&quot;: &quot;tsc&quot;,
+    &quot;test&quot;: &quot;jest&quot;,
+    &quot;lint&quot;: &quot;eslint . --ext .ts,.tsx&quot;,
+    &quot;format&quot;: &quot;prettier --check .&quot;
+  }
+}
+</code></pre>
+<h3 id="exempel-makefile-python">Exempel: Makefile (Python)</h3>
+<pre><code class="language-makefile">.PHONY: check build test lint format
+
+check: build test lint format
+    @echo &quot;✅ All checks passed&quot;
+
+build:
+    python -m build
+
+test:
+    pytest
+
+lint:
+    ruff check .
+
+format:
+    black --check .
+</code></pre>
+<h3 id="exempel-scriptscish-bash">Exempel: scripts/ci.sh (Bash)</h3>
+<pre><code class="language-bash">#!/bin/bash
+set -euo pipefail
+
+echo &quot;Building...&quot;
+npm run build
+
+echo &quot;Running tests...&quot;
+npm test
+
+echo &quot;Linting...&quot;
+npm run lint
+
+echo &quot;✅ All checks passed&quot;
+</code></pre>
+<h3 id="loggfiltrering-for-agenter">Loggfiltrering för agenter</h3>
+<p>Agenter läser all output som feedback. Behandla loggar som ett gränssnitt till en automatiserad medarbetare:</p>
+<p><strong>Bra: Koncis vid framgång</strong></p>
+<pre><code>✅ 1000 tests passed in 2.3s
+</code></pre>
+<p><strong>Dåligt: Brusig vid framgång</strong></p>
+<pre><code>test 1: ok
+test 2: ok
+test 3: ok
+... (997 more lines)
+</code></pre>
+<p><strong>Bra: Åtgärdbart vid misslyckande</strong></p>
+<pre><code>FAIL: src/auth.test.ts:42
+Expected: &quot;user@example.com&quot;
+Received: &quot;admin@example.com&quot;
+</code></pre>
+<p><strong>Dåligt: Rörigt vid misslyckande</strong></p>
+<pre><code>[1000 lines of stack trace and compiler output]
+</code></pre>
+<h3 id="determinism-exempel">Determinism-exempel</h3>
+<p><strong>Problem: Icke-deterministiska tester</strong></p>
+<pre><code class="language-javascript">// Dåligt: använder nuvarande tid
+expect(result).toBe(new Date().toISOString());
+
+// Bra: deterministisk
+expect(result).toBe(&quot;2026-01-14T12:00:00Z&quot;);
+</code></pre>
+<p><strong>Problem: Race conditions</strong></p>
+<pre><code class="language-python"># Dåligt: kan misslyckas ibland
+def test_concurrent():
+    results = []
+    threads = [Thread(target=worker) for _ in range(10)]
+    # ...
+
+# Bra: isolerat eller explicit synkronisering
+def test_concurrent():
+    with ThreadPoolExecutor() as executor:
+        results = list(executor.map(worker, range(10)))
+    # ...
+</code></pre>
 <p>Detta är "kontextkonstruktion" i praktiken: designa I/O så att modellen ser signal, inte brus.</p>
 <hr />
 <h2 id="7-lita-pa-loopen-inte-dina-ogon">7) Lita på loopen, inte dina ögon</h2>
@@ -608,8 +702,8 @@ från<br />
 <hr />
 <h2 id="avslutning">Avslutning</h2>
 <p>"Vibe Engineering" blir verkligt när du behandlar agenter som en del av ett system: en loop med verktyg, begränsningar och feedback. Om du investerar i harnessen och gör "klart" maskinkontrollerbart, kan du delegera säkrare, röra dig snabbare och spenderar mer tid på de konstruktionsbeslut som faktiskt spelar roll.</p></div>
-            <div class="lang-en"><h1 id="vibe-engineering-101">Vibe Engineering 101</h1>
-<p><em>A practical guide for system developers getting started with agentic development</em></p>
+            <div class="lang-en"><p><strong>Version 1.0</strong> | 2026-01-22<br />
+<em>A practical guide for system developers getting started with agentic development</em></p>
 <p>Agentic development is less about "AI that writes code" and more about designing a reliable loop: a model proposes changes, tools validate them, and feedback drives the next iteration. This article is a field guide for building that loop so it produces useful software—consistently.</p>
 <p>The goal here is not to romanticize "vibe coding," but to make it operational: clear constraints, fast feedback, and repeatable outcomes.</p>
 <hr />
@@ -691,28 +785,122 @@ från<br />
 - retry cleanly</p>
 <hr />
 <h2 id="6-project-setup-is-everything">6) Project setup is everything</h2>
-<p>The best time investment you can make is a repo that an agent can operate without confusion.</p>
+<p>The best time investment you can make is a repo that an agent can operate without confusion. A <strong>repository harness</strong> is the infrastructure that makes an agent work reliably.</p>
 <h3 id="hard-requirement-one-command-to-validate">Hard requirement: one command to validate</h3>
 <p>Your project should build, test, and lint with <strong>a single command</strong>.</p>
-<p>Examples:<br />
-- <code>make check</code><br />
-- <code>./scripts/ci.sh</code><br />
-- <code>npm test</code> (if it truly runs the full suite)<br />
-- <code>cargo test</code> + <code>cargo fmt --check</code> + <code>cargo clippy</code> via one wrapper</p>
+<p><strong>Node.js/TypeScript:</strong></p>
+<pre><code class="language-bash">npm run check  # Runs: build + test + lint
+</code></pre>
+<p><strong>Python:</strong></p>
+<pre><code class="language-bash">make check  # Runs: pytest + black --check + mypy
+</code></pre>
+<p><strong>C#/.NET:</strong></p>
+<pre><code class="language-bash">dotnet build &amp;&amp; dotnet test &amp;&amp; dotnet format --verify
+</code></pre>
+<p><strong>Rust:</strong></p>
+<pre><code class="language-bash">cargo test &amp;&amp; cargo fmt --check &amp;&amp; cargo clippy
+</code></pre>
 <p>If validation requires tribal knowledge ("export this var," "run this in that directory," "install this system dependency manually"), your loop will waste context and time re-discovering it—over and over.</p>
-<h3 id="minimize-and-shape-output">Minimize and shape output</h3>
-<p>Everything printed by your tools becomes part of the agent's working memory. Treat logs as an interface to an automated collaborator:</p>
-<ul>
-<li>Prefer <strong>concise summaries</strong> on success  </li>
-<li>"✅ 1000 tests passed" beats 1000 lines of "ok"</li>
-<li>Prefer <strong>focused failures</strong>  </li>
-<li>show the failing assertion, relevant diff, minimal stack trace</li>
-<li>Avoid dumping thousands of lines of compiler spew if you can collapse it</li>
-</ul>
-<p>If you can, add a log filter that:<br />
-- extracts the <em>first</em> meaningful error<br />
-- includes the relevant file/line<br />
-- outputs only what's needed to take the next step</p>
+<h3 id="setup-checklist">Setup checklist</h3>
+<p><strong>One-command validation:</strong><br />
+- [ ] Create a command (e.g., <code>make check</code>, <code>npm run check</code>, <code>./scripts/ci.sh</code>) that runs build, tests, linting, and formatting<br />
+- [ ] Command works the same in CI and locally<br />
+- [ ] Command provides clear exit code (0 = success, != 0 = failure)</p>
+<p><strong>Deterministic tests:</strong><br />
+- [ ] Tests give the same results every time (no race conditions, no timestamps in assertions)<br />
+- [ ] Tests can run in parallel without conflicts<br />
+- [ ] Tests are isolated (no shared state between tests)</p>
+<p><strong>Clear feedback:</strong><br />
+- [ ] On success: minimal logs (e.g., "✅ 1000 tests passed" instead of 1000 lines of "ok")<br />
+- [ ] On failure: actionable logs showing the failing assertion, relevant diff, minimal stack trace, relevant file/line</p>
+<p><strong>Stable scripts:</strong><br />
+- [ ] No "tribal knowledge" requirements<br />
+- [ ] Scripts work in Docker/CI the same way as locally<br />
+- [ ] Paths are relative or via environment variables</p>
+<h3 id="example-packagejson-nodejs">Example: package.json (Node.js)</h3>
+<pre><code class="language-json">{
+  &quot;scripts&quot;: {
+    &quot;check&quot;: &quot;npm run build &amp;&amp; npm run test &amp;&amp; npm run lint&quot;,
+    &quot;build&quot;: &quot;tsc&quot;,
+    &quot;test&quot;: &quot;jest&quot;,
+    &quot;lint&quot;: &quot;eslint . --ext .ts,.tsx&quot;,
+    &quot;format&quot;: &quot;prettier --check .&quot;
+  }
+}
+</code></pre>
+<h3 id="example-makefile-python">Example: Makefile (Python)</h3>
+<pre><code class="language-makefile">.PHONY: check build test lint format
+
+check: build test lint format
+    @echo &quot;✅ All checks passed&quot;
+
+build:
+    python -m build
+
+test:
+    pytest
+
+lint:
+    ruff check .
+
+format:
+    black --check .
+</code></pre>
+<h3 id="example-scriptscish-bash">Example: scripts/ci.sh (Bash)</h3>
+<pre><code class="language-bash">#!/bin/bash
+set -euo pipefail
+
+echo &quot;Building...&quot;
+npm run build
+
+echo &quot;Running tests...&quot;
+npm test
+
+echo &quot;Linting...&quot;
+npm run lint
+
+echo &quot;✅ All checks passed&quot;
+</code></pre>
+<h3 id="log-filtering-for-agents">Log filtering for agents</h3>
+<p>Agents read all output as feedback. Treat logs as an interface to an automated collaborator:</p>
+<p><strong>Good: Concise on success</strong></p>
+<pre><code>✅ 1000 tests passed in 2.3s
+</code></pre>
+<p><strong>Bad: Noisy on success</strong></p>
+<pre><code>test 1: ok
+test 2: ok
+test 3: ok
+... (997 more lines)
+</code></pre>
+<p><strong>Good: Actionable on failure</strong></p>
+<pre><code>FAIL: src/auth.test.ts:42
+Expected: &quot;user@example.com&quot;
+Received: &quot;admin@example.com&quot;
+</code></pre>
+<p><strong>Bad: Messy on failure</strong></p>
+<pre><code>[1000 lines of stack trace and compiler output]
+</code></pre>
+<h3 id="determinism-examples">Determinism examples</h3>
+<p><strong>Problem: Non-deterministic tests</strong></p>
+<pre><code class="language-javascript">// Bad: uses current time
+expect(result).toBe(new Date().toISOString());
+
+// Good: deterministic
+expect(result).toBe(&quot;2026-01-14T12:00:00Z&quot;);
+</code></pre>
+<p><strong>Problem: Race conditions</strong></p>
+<pre><code class="language-python"># Bad: can fail sometimes
+def test_concurrent():
+    results = []
+    threads = [Thread(target=worker) for _ in range(10)]
+    # ...
+
+# Good: isolated or explicit synchronization
+def test_concurrent():
+    with ThreadPoolExecutor() as executor:
+        results = list(executor.map(worker, range(10)))
+    # ...
+</code></pre>
 <p>This is "context engineering" in practice: design the I/O so the model sees signal, not noise.</p>
 <hr />
 <h2 id="7-trust-the-loop-not-your-eyes">7) Trust the loop, not your eyes</h2>
@@ -1115,53 +1303,241 @@ from<br />
     <section class="presentation-slide" data-slide-number="7 / 19">
         <div class="presentation-slide-content">
             <div class="lang-sv"><h2 id="6-projektupplagg-ar-allt">6) Projektupplägg är allt</h2>
-<p>Den bästa tidsinvesteringen du kan göra är ett repo som en agent kan arbeta i utan förvirring.</p>
+<p>Den bästa tidsinvesteringen du kan göra är ett repo som en agent kan arbeta i utan förvirring. En <strong>repository harness</strong> är den infrastruktur som gör att en agent kan arbeta pålitligt.</p>
 <h3 id="hard-krav-ett-kommando-for-att-validera">Hård krav: ett kommando för att validera</h3>
 <p>Ditt projekt bör bygga, testa och lint med <strong>ett enda kommando</strong>.</p>
-<p>Exempel:<br />
-- <code>make check</code><br />
-- <code>./scripts/ci.sh</code><br />
-- <code>npm test</code> (om det verkligen kör hela suiten)<br />
-- <code>cargo test</code> + <code>cargo fmt --check</code> + <code>cargo clippy</code> via en wrapper</p>
+<p><strong>Node.js/TypeScript:</strong></p>
+<pre><code class="language-bash">npm run check  # Kör: build + test + lint
+</code></pre>
+<p><strong>Python:</strong></p>
+<pre><code class="language-bash">make check  # Kör: pytest + black --check + mypy
+</code></pre>
+<p><strong>C#/.NET:</strong></p>
+<pre><code class="language-bash">dotnet build &amp;&amp; dotnet test &amp;&amp; dotnet format --verify
+</code></pre>
+<p><strong>Rust:</strong></p>
+<pre><code class="language-bash">cargo test &amp;&amp; cargo fmt --check &amp;&amp; cargo clippy
+</code></pre>
 <p>Om validering kräver stamkunskap ("exportera denna variabel", "kör detta i den mappen", "installera detta systemberoende manuellt"), kommer din loop att slösa kontext och tid på att återupptäcka det — om och om igen.</p>
-<h3 id="minimera-och-forma-output">Minimera och forma output</h3>
-<p>Allt som skrivs ut av dina verktyg blir del av agentens arbetsminne. Behandla loggar som ett gränssnitt till en automatiserad medarbetare:</p>
-<ul>
-<li>Föredra <strong>koncisa sammanfattningar</strong> vid framgång  </li>
-<li>"✅ 1000 tester passerade" slår 1000 rader av "ok"</li>
-<li>Föredra <strong>fokuserade misslyckanden</strong>  </li>
-<li>visa det misslyckade påståendet, relevant diff, minimal stack trace</li>
-<li>Undvik att dumpa tusentals rader av kompilatorutskrift om du kan kollapsa den</li>
-</ul>
-<p>Om du kan, lägg till en loggfilter som:<br />
-- extraherar det <em>första</em> meningsfulla felet<br />
-- inkluderar relevant fil/rad<br />
-- outputar endast vad som behövs för nästa steg</p>
+<h3 id="setup-checklista">Setup-checklista</h3>
+<p><strong>Ett-kommando-validering:</strong><br />
+- [ ] Skapa ett kommando (t.ex. <code>make check</code>, <code>npm run check</code>, <code>./scripts/ci.sh</code>) som kör bygge, tester, linting och formatering<br />
+- [ ] Kommandot fungerar i CI och lokalt på samma sätt<br />
+- [ ] Kommandot ger tydlig exit-kod (0 = success, != 0 = failure)</p>
+<p><strong>Deterministiska tester:</strong><br />
+- [ ] Tester ger samma resultat varje gång (inga race conditions, inga timestamps i assertions)<br />
+- [ ] Tester kan köras parallellt utan konflikter<br />
+- [ ] Tester är isolerade (inga delade tillstånd mellan tester)</p>
+<p><strong>Tydlig feedback:</strong><br />
+- [ ] Vid framgång: minimala loggar (t.ex. "✅ 1000 tester passerade" istället för 1000 rader av "ok")<br />
+- [ ] Vid misslyckande: åtgärdbara loggar som visar det misslyckade påståendet, relevant diff, minimal stack trace, relevant fil/rad</p>
+<p><strong>Stabila skript:</strong><br />
+- [ ] Inga "tribal knowledge"-krav<br />
+- [ ] Skript fungerar i Docker/CI på samma sätt som lokalt<br />
+- [ ] Sökvägar är relativa eller via miljövariabler</p>
+<h3 id="exempel-packagejson-nodejs">Exempel: package.json (Node.js)</h3>
+<pre><code class="language-json">{
+  &quot;scripts&quot;: {
+    &quot;check&quot;: &quot;npm run build &amp;&amp; npm run test &amp;&amp; npm run lint&quot;,
+    &quot;build&quot;: &quot;tsc&quot;,
+    &quot;test&quot;: &quot;jest&quot;,
+    &quot;lint&quot;: &quot;eslint . --ext .ts,.tsx&quot;,
+    &quot;format&quot;: &quot;prettier --check .&quot;
+  }
+}
+</code></pre>
+<h3 id="exempel-makefile-python">Exempel: Makefile (Python)</h3>
+<pre><code class="language-makefile">.PHONY: check build test lint format
+
+check: build test lint format
+    @echo &quot;✅ All checks passed&quot;
+
+build:
+    python -m build
+
+test:
+    pytest
+
+lint:
+    ruff check .
+
+format:
+    black --check .
+</code></pre>
+<h3 id="exempel-scriptscish-bash">Exempel: scripts/ci.sh (Bash)</h3>
+<pre><code class="language-bash">#!/bin/bash
+set -euo pipefail
+
+echo &quot;Building...&quot;
+npm run build
+
+echo &quot;Running tests...&quot;
+npm test
+
+echo &quot;Linting...&quot;
+npm run lint
+
+echo &quot;✅ All checks passed&quot;
+</code></pre>
+<h3 id="loggfiltrering-for-agenter">Loggfiltrering för agenter</h3>
+<p>Agenter läser all output som feedback. Behandla loggar som ett gränssnitt till en automatiserad medarbetare:</p>
+<p><strong>Bra: Koncis vid framgång</strong></p>
+<pre><code>✅ 1000 tests passed in 2.3s
+</code></pre>
+<p><strong>Dåligt: Brusig vid framgång</strong></p>
+<pre><code>test 1: ok
+test 2: ok
+test 3: ok
+... (997 more lines)
+</code></pre>
+<p><strong>Bra: Åtgärdbart vid misslyckande</strong></p>
+<pre><code>FAIL: src/auth.test.ts:42
+Expected: &quot;user@example.com&quot;
+Received: &quot;admin@example.com&quot;
+</code></pre>
+<p><strong>Dåligt: Rörigt vid misslyckande</strong></p>
+<pre><code>[1000 lines of stack trace and compiler output]
+</code></pre>
+<h3 id="determinism-exempel">Determinism-exempel</h3>
+<p><strong>Problem: Icke-deterministiska tester</strong></p>
+<pre><code class="language-javascript">// Dåligt: använder nuvarande tid
+expect(result).toBe(new Date().toISOString());
+
+// Bra: deterministisk
+expect(result).toBe(&quot;2026-01-14T12:00:00Z&quot;);
+</code></pre>
+<p><strong>Problem: Race conditions</strong></p>
+<pre><code class="language-python"># Dåligt: kan misslyckas ibland
+def test_concurrent():
+    results = []
+    threads = [Thread(target=worker) for _ in range(10)]
+    # ...
+
+# Bra: isolerat eller explicit synkronisering
+def test_concurrent():
+    with ThreadPoolExecutor() as executor:
+        results = list(executor.map(worker, range(10)))
+    # ...
+</code></pre>
 <p>Detta är "kontextkonstruktion" i praktiken: designa I/O så att modellen ser signal, inte brus.</p>
 <hr /></div>
             <div class="lang-en"><h2 id="6-project-setup-is-everything">6) Project setup is everything</h2>
-<p>The best time investment you can make is a repo that an agent can operate without confusion.</p>
+<p>The best time investment you can make is a repo that an agent can operate without confusion. A <strong>repository harness</strong> is the infrastructure that makes an agent work reliably.</p>
 <h3 id="hard-requirement-one-command-to-validate">Hard requirement: one command to validate</h3>
 <p>Your project should build, test, and lint with <strong>a single command</strong>.</p>
-<p>Examples:<br />
-- <code>make check</code><br />
-- <code>./scripts/ci.sh</code><br />
-- <code>npm test</code> (if it truly runs the full suite)<br />
-- <code>cargo test</code> + <code>cargo fmt --check</code> + <code>cargo clippy</code> via one wrapper</p>
+<p><strong>Node.js/TypeScript:</strong></p>
+<pre><code class="language-bash">npm run check  # Runs: build + test + lint
+</code></pre>
+<p><strong>Python:</strong></p>
+<pre><code class="language-bash">make check  # Runs: pytest + black --check + mypy
+</code></pre>
+<p><strong>C#/.NET:</strong></p>
+<pre><code class="language-bash">dotnet build &amp;&amp; dotnet test &amp;&amp; dotnet format --verify
+</code></pre>
+<p><strong>Rust:</strong></p>
+<pre><code class="language-bash">cargo test &amp;&amp; cargo fmt --check &amp;&amp; cargo clippy
+</code></pre>
 <p>If validation requires tribal knowledge ("export this var," "run this in that directory," "install this system dependency manually"), your loop will waste context and time re-discovering it—over and over.</p>
-<h3 id="minimize-and-shape-output">Minimize and shape output</h3>
-<p>Everything printed by your tools becomes part of the agent's working memory. Treat logs as an interface to an automated collaborator:</p>
-<ul>
-<li>Prefer <strong>concise summaries</strong> on success  </li>
-<li>"✅ 1000 tests passed" beats 1000 lines of "ok"</li>
-<li>Prefer <strong>focused failures</strong>  </li>
-<li>show the failing assertion, relevant diff, minimal stack trace</li>
-<li>Avoid dumping thousands of lines of compiler spew if you can collapse it</li>
-</ul>
-<p>If you can, add a log filter that:<br />
-- extracts the <em>first</em> meaningful error<br />
-- includes the relevant file/line<br />
-- outputs only what's needed to take the next step</p>
+<h3 id="setup-checklist">Setup checklist</h3>
+<p><strong>One-command validation:</strong><br />
+- [ ] Create a command (e.g., <code>make check</code>, <code>npm run check</code>, <code>./scripts/ci.sh</code>) that runs build, tests, linting, and formatting<br />
+- [ ] Command works the same in CI and locally<br />
+- [ ] Command provides clear exit code (0 = success, != 0 = failure)</p>
+<p><strong>Deterministic tests:</strong><br />
+- [ ] Tests give the same results every time (no race conditions, no timestamps in assertions)<br />
+- [ ] Tests can run in parallel without conflicts<br />
+- [ ] Tests are isolated (no shared state between tests)</p>
+<p><strong>Clear feedback:</strong><br />
+- [ ] On success: minimal logs (e.g., "✅ 1000 tests passed" instead of 1000 lines of "ok")<br />
+- [ ] On failure: actionable logs showing the failing assertion, relevant diff, minimal stack trace, relevant file/line</p>
+<p><strong>Stable scripts:</strong><br />
+- [ ] No "tribal knowledge" requirements<br />
+- [ ] Scripts work in Docker/CI the same way as locally<br />
+- [ ] Paths are relative or via environment variables</p>
+<h3 id="example-packagejson-nodejs">Example: package.json (Node.js)</h3>
+<pre><code class="language-json">{
+  &quot;scripts&quot;: {
+    &quot;check&quot;: &quot;npm run build &amp;&amp; npm run test &amp;&amp; npm run lint&quot;,
+    &quot;build&quot;: &quot;tsc&quot;,
+    &quot;test&quot;: &quot;jest&quot;,
+    &quot;lint&quot;: &quot;eslint . --ext .ts,.tsx&quot;,
+    &quot;format&quot;: &quot;prettier --check .&quot;
+  }
+}
+</code></pre>
+<h3 id="example-makefile-python">Example: Makefile (Python)</h3>
+<pre><code class="language-makefile">.PHONY: check build test lint format
+
+check: build test lint format
+    @echo &quot;✅ All checks passed&quot;
+
+build:
+    python -m build
+
+test:
+    pytest
+
+lint:
+    ruff check .
+
+format:
+    black --check .
+</code></pre>
+<h3 id="example-scriptscish-bash">Example: scripts/ci.sh (Bash)</h3>
+<pre><code class="language-bash">#!/bin/bash
+set -euo pipefail
+
+echo &quot;Building...&quot;
+npm run build
+
+echo &quot;Running tests...&quot;
+npm test
+
+echo &quot;Linting...&quot;
+npm run lint
+
+echo &quot;✅ All checks passed&quot;
+</code></pre>
+<h3 id="log-filtering-for-agents">Log filtering for agents</h3>
+<p>Agents read all output as feedback. Treat logs as an interface to an automated collaborator:</p>
+<p><strong>Good: Concise on success</strong></p>
+<pre><code>✅ 1000 tests passed in 2.3s
+</code></pre>
+<p><strong>Bad: Noisy on success</strong></p>
+<pre><code>test 1: ok
+test 2: ok
+test 3: ok
+... (997 more lines)
+</code></pre>
+<p><strong>Good: Actionable on failure</strong></p>
+<pre><code>FAIL: src/auth.test.ts:42
+Expected: &quot;user@example.com&quot;
+Received: &quot;admin@example.com&quot;
+</code></pre>
+<p><strong>Bad: Messy on failure</strong></p>
+<pre><code>[1000 lines of stack trace and compiler output]
+</code></pre>
+<h3 id="determinism-examples">Determinism examples</h3>
+<p><strong>Problem: Non-deterministic tests</strong></p>
+<pre><code class="language-javascript">// Bad: uses current time
+expect(result).toBe(new Date().toISOString());
+
+// Good: deterministic
+expect(result).toBe(&quot;2026-01-14T12:00:00Z&quot;);
+</code></pre>
+<p><strong>Problem: Race conditions</strong></p>
+<pre><code class="language-python"># Bad: can fail sometimes
+def test_concurrent():
+    results = []
+    threads = [Thread(target=worker) for _ in range(10)]
+    # ...
+
+# Good: isolated or explicit synchronization
+def test_concurrent():
+    with ThreadPoolExecutor() as executor:
+        results = list(executor.map(worker, range(10)))
+    # ...
+</code></pre>
 <p>This is "context engineering" in practice: design the I/O so the model sees signal, not noise.</p>
 <hr /></div>
         </div>

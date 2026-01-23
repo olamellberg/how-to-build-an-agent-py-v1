@@ -1,4 +1,5 @@
 # Shared Terminology
+**Version 1.0** | 2026-01-22
 ### Common definitions for agentic AI development
 
 This page defines terms used consistently across all articles in the B3 Commit AI Handbook. Use this as a reference when reading other articles.

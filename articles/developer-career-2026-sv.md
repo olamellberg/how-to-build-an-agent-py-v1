@@ -1,4 +1,5 @@
 # Så överlever du som utvecklare 2026
+**Version 1.0** | 2026-01-22
 ### Anpassa dig och blomstra när AI omformar utvecklarrollen
 
 Om du har öppnat din terminal på sistone och känt en konstig klump i magen, är du inte ensam.

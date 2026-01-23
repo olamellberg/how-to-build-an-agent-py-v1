@@ -1,4 +1,5 @@
-# AI Fundamentals 2026  
+# AI Fundamentals 2026
+**Version 1.0** | 2026-01-22
 ### A practical introduction to generative AI for developers
 
 ## 1) What you're building: model vs application

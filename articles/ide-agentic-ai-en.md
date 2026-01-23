@@ -1,4 +1,5 @@
-# Agentic AI in the IDE for .NET backend and JavaScript frontend (January 2026)
+# Agentic AI in the IDE for .NET backend and JavaScript frontend
+**Version 1.0** | 2026-01-22
 
 Agentic AI in an IDE is more than "autocomplete". It's a workflow where the assistant can **plan**, propose **multi-file diffs**, run **build/test/lint**, read failures, and iterate toward clear acceptance criteria. For the general methodology (harness, feedback loops, context hygiene), refer to your existing articles on agent loops and "model CI".
 
@@ -26,11 +27,13 @@ In practice you are choosing four things at once:
 | **Visual Studio** | GitHub Copilot | Copilot models per GitHub. | Agentic chat/edit in the IDE; a strong fit for .NET "vertical slices" (API + tests) when you have a repo harness. | Copilot licensing per GitHub: Business **$19/user/mo** (org) plus individual Pro/Pro+ above. |
 | **Cursor** | Cursor (built-in agents + team controls) | Model costs and governance are documented in Cursor pricing (usage-based, per model). | AI-native agentic workflow: multi-file edits, agent runs, and team-level spend controls. | Teams: spend controls and model pricing via Cursor. |
 | **Windsurf** | Windsurf (Cascade) | Model catalog / premium models are determined by Windsurf plan and credits. | AI-native agent flow via Cascade (multi-step in the editor). | Windsurf pricing (plans for individuals/teams/enterprise). |
+| **Claude Code** (Terminal) | Claude Code CLI | Anthropic (Claude Opus 4.5, Sonnet 4, Haiku). Direct API access, no intermediary. | Full agentic CLI: multi-file edits, bash execution, git operations, plan mode, sub-agents. Works in any terminal alongside your IDE. | Anthropic API pricing (usage-based). Pro plan includes Claude Code usage. |
 
-**How to read this for .NET + JS teams:**  
-- If you want an "enterprise-default" that's easy to standardize in the Microsoft ecosystem: **VS Code/Visual Studio + Copilot** is typically the most predictable rollout path (licensing and docs are very explicit).  
-- If you want a Google-first IDE assistant: **Gemini Code Assist** is Google's primary IDE offering.  
+**How to read this for .NET + JS teams:**
+- If you want an "enterprise-default" that's easy to standardize in the Microsoft ecosystem: **VS Code/Visual Studio + Copilot** is typically the most predictable rollout path (licensing and docs are very explicit).
+- If you want a Google-first IDE assistant: **Gemini Code Assist** is Google's primary IDE offering.
 - If you want an AI-first editor with a stronger agent experience: **Cursor/Windsurf** often push agent workflows further, but also become a platform you need to standardize and cost-control.
+- If you want maximum agentic power without changing IDE: **Claude Code** runs in your terminal alongside any editor. It offers the most capable agentic loop (plan mode, sub-agents, full bash access) with direct Anthropic API access.
 
 ---
 
@@ -53,6 +56,13 @@ Gemini Code Assist is available as "for individuals" and in Standard/Enterprise 
 ### Bundle C: AI-first editor
 - **Cursor** or **Windsurf** for teams that want to push agentic workflows further inside the editor
 - Clear spend-control processes to avoid cost surprises (Cursor documents spend controls for Teams).
+
+### Bundle D: Terminal-first agentic (Claude Code)
+- **Any IDE you already use** (VS Code, Visual Studio, Vim, etc.)
+- **Claude Code** running in a terminal pane or separate window
+- Best for developers who want the strongest agentic capabilities without switching editors
+- Claude Code reads `CLAUDE.md` (similar to `agents.md`) for repo context, runs bash commands, creates PRs, and can spawn sub-agents for parallel work
+- Combines well with lightweight IDE extensions (Copilot for autocomplete, Claude Code for heavy agentic tasks)
 
 ---
 

@@ -1,4 +1,5 @@
 # How to Build an Agent (Cursor + Python Edition)
+**Version 1.0** | 2026-01-22
 ### or: The Emperor Has No Clothes (And Neither Does This Tutorial)
 
 It's not that hard to build a fully functioning, code-editing agent.
@@ -144,7 +145,7 @@ You:
 
 Notice how we kept the same conversation going over multiple turns. The `conversation` grows longer with every turn and we send the whole conversation every time. The server — OpenAI's server — is stateless. It only sees what's in the `conversation` list. It's up to us to maintain that.
 
-Okay, let's move on, because this is not an agent yet. What's an agent? Here's [my definition](https://youtu.be/J1-W9O3n7j8?t=72): an LLM with *access to tools*, giving it the ability to modify something outside the context window.
+Okay, let's move on, because this is not an agent yet. What's an agent? An agent is a loop where an LLM plans, calls tools, reads results, and repeats until the task is complete. The key insight ([discussed here](https://youtu.be/J1-W9O3n7j8?t=72)) is that tools give the LLM the ability to modify something outside the context window — that's what makes it an *agent* rather than just a chatbot.
 
 ## A First Tool
 

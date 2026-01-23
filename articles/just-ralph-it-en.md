@@ -1,4 +1,5 @@
 # Just Ralph-it
+**Version 1.0** | 2026-01-22
 ### Let the AI do the work in an infinite loop
 
 **Credit:** The Ralph method was created by [Geoffrey Huntley](https://x.com/GeoffreyHuntley). This article is a brief summary — for the complete guide, see [The Ralph Playbook](https://github.com/ghuntley/how-to-ralph-wiggum) on GitHub.

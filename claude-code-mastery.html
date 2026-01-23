@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="sv" data-lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Master Claude Code - B3 Commit AI Handbook</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Presentation Progress Indicator -->
+    <nav class="presentation-progress" id="presentationProgress">
+        <div class="presentation-progress-track"></div>
+        <div class="presentation-progress-fill" id="progressFill"></div>
+        <div class="presentation-progress-item active" data-slide="0">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Intro</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="1">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Introduktion</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="2">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Den grundläggande principen</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="3">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Tänk i features, inte produkter</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="4">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Testa varje feature innan du går vidare</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="5">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Ask User Question Tool</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="6">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Använda Ask User Question Tool</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="7">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Varför planering i förväg spelar roll</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="8">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Bygg features en i taget</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="9">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Den manuella byggprocessen</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="10">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Överdriv inte MCP och plugins</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="11">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Kontexthantering: 50%-regeln</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="12">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Ha djärvhet: Smak spelar roll</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="13">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Planeringstips</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="14">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Viktiga kommandon</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="15">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Mindset-tips</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="16">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Kom igång</span>
+        </div>
+    </nav>
+
+    <!-- Reading Progress (vertical chapter nav for reading mode) -->
+    <nav class="reading-progress" id="readingProgress">
+        <div class="reading-progress-track"></div>
+        <div class="reading-progress-fill" id="readingProgressFill"></div>
+        <a href="#introduktion" class="reading-progress-item" data-section="introduktion">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Introduktion</span>
+                <span class="lang-en">Introduction</span>
+            </span>
+        </a>
+        <a href="#den-grundläggande-principen" class="reading-progress-item" data-section="den-grundläggande-principen">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Den grundläggande principen</span>
+                <span class="lang-en">The Fundamental Principle</span>
+            </span>
+        </a>
+        <a href="#tänk-i-features-inte-produkter" class="reading-progress-item" data-section="tänk-i-features-inte-produkter">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Tänk i features, inte produkter</span>
+                <span class="lang-en">Think in Features, Not Products</span>
+            </span>
+        </a>
+        <a href="#testa-varje-feature-innan-du-går-vidare" class="reading-progress-item" data-section="testa-varje-feature-innan-du-går-vidare">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Testa varje feature innan du går vidare</span>
+                <span class="lang-en">Test Each Feature Before Moving On</span>
+            </span>
+        </a>
+        <a href="#ask-user-question-tool" class="reading-progress-item" data-section="ask-user-question-tool">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Ask User Question Tool</span>
+                <span class="lang-en">The Ask User Question Tool</span>
+            </span>
+        </a>
+        <a href="#använda-ask-user-question-tool" class="reading-progress-item" data-section="använda-ask-user-question-tool">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Använda Ask User Question Tool</span>
+                <span class="lang-en">Using the Ask User Question Tool</span>
+            </span>
+        </a>
+        <a href="#varför-planering-i-förväg-spelar-roll" class="reading-progress-item" data-section="varför-planering-i-förväg-spelar-roll">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Varför planering i förväg spelar roll</span>
+                <span class="lang-en">Why Planning Upfront Matters</span>
+            </span>
+        </a>
+        <a href="#bygg-features-en-i-taget" class="reading-progress-item" data-section="bygg-features-en-i-taget">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Bygg features en i taget</span>
+                <span class="lang-en">Build Features One by One</span>
+            </span>
+        </a>
+        <a href="#den-manuella-byggprocessen" class="reading-progress-item" data-section="den-manuella-byggprocessen">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Den manuella byggprocessen</span>
+                <span class="lang-en">The Manual Building Process</span>
+            </span>
+        </a>
+        <a href="#överdriv-inte-mcp-och-plugins" class="reading-progress-item" data-section="överdriv-inte-mcp-och-plugins">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Överdriv inte MCP och plugins</span>
+                <span class="lang-en">Don't Over-Obsess on MCP and Plugins</span>
+            </span>
+        </a>
+        <a href="#kontexthantering-50-regeln" class="reading-progress-item" data-section="kontexthantering-50-regeln">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Kontexthantering: 50%-regeln</span>
+                <span class="lang-en">Context Management: The 50% Rule</span>
+            </span>
+        </a>
+        <a href="#ha-djärvhet-smak-spelar-roll" class="reading-progress-item" data-section="ha-djärvhet-smak-spelar-roll">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Ha djärvhet: Smak spelar roll</span>
+                <span class="lang-en">Have Audacity: Taste Matters</span>
+            </span>
+        </a>
+        <a href="#planeringstips" class="reading-progress-item" data-section="planeringstips">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Planeringstips</span>
+                <span class="lang-en">Planning Tips</span>
+            </span>
+        </a>
+        <a href="#viktiga-kommandon" class="reading-progress-item" data-section="viktiga-kommandon">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Viktiga kommandon</span>
+                <span class="lang-en">Essential Commands</span>
+            </span>
+        </a>
+        <a href="#mindset-tips" class="reading-progress-item" data-section="mindset-tips">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Mindset-tips</span>
+                <span class="lang-en">Mindset Tips</span>
+            </span>
+        </a>
+        <a href="#kom-igång" class="reading-progress-item" data-section="kom-igång">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Kom igång</span>
+                <span class="lang-en">Getting Started</span>
+            </span>
+        </a>
+    </nav>
+
+    <!-- Menu Overlay -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <!-- Mobile Menu -->
+    <nav class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <a href="index.html" class="logo">B3 Commit</a>
+            <button class="mobile-menu-close" id="menuClose" aria-label="Stäng meny">&times;</button>
+        </div>
+        <!-- Mobile menu content would be generated from manifest -->
+    </nav>
+
+    <header>
+        <nav class="nav-container">
+            <div class="nav-left">
+                <a href="index.html" class="logo">B3 Commit</a>
+                <span class="breadcrumb">/ <a href="index.html"><span class="lang-sv">AI Handbook</span><span class="lang-en">AI Handbook</span></a> / <span class="lang-sv">Bemästra Claude Code</span><span class="lang-en">How to Master Claude Code</span></span>
+            </div>
+            <div class="nav-right">
+                <button class="presentation-toggle" id="presentationToggle" aria-label="Presentation mode">
+                    <span class="icon">📽️</span>
+                    <span class="lang-sv">Presentation</span>
+                    <span class="lang-en">Present</span>
+                </button>
+                <button class="lang-toggle" id="langToggle" aria-label="Byt språk">
+                    <span class="flag lang-sv">🇸🇪</span>
+                    <span class="flag lang-en">🇬🇧</span>
+                    <span class="lang-sv">SV</span>
+                    <span class="lang-en">EN</span>
+                </button>
+                <button class="theme-toggle" id="themeToggle" aria-label="Växla tema">
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                </button>
+                <button class="hamburger" id="hamburger" aria-label="Öppna meny">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <article>
+            <header class="article-header" id="intro">
+                <p class="article-meta">
+                    <span class="lang-sv">Praktisk guide // 2026-01</span>
+                    <span class="lang-en">Practical Guide // 2026-01</span>
+                </p>
+                <h1><span class="lang-sv">Bemästra Claude Code</span><span class="lang-en">How to Master Claude Code</span></h1>
+                <p class="subtitle">
+                    <span class="lang-sv">En praktisk guide för utvecklare</span>
+                    <span class="lang-en">A practical guide for developers</span>
+                </p>
+            </header>
+
+            <!-- Article Navigation -->
+            <nav class="article-nav" id="articleNav">
+                <a href="#introduktion" class="nav-pill">Introduktion</a>
+                <a href="#den-grundläggande-principen" class="nav-pill">Den grundläggande principen</a>
+                <a href="#tänk-i-features-inte-produkter" class="nav-pill">Tänk i features, inte produkter</a>
+                <a href="#testa-varje-feature-innan-du-går-vidare" class="nav-pill">Testa varje feature innan du går vidare</a>
+                <a href="#ask-user-question-tool" class="nav-pill">Ask User Question Tool</a>
+                <a href="#använda-ask-user-question-tool" class="nav-pill">Använda Ask User Question Tool</a>
+                <a href="#varför-planering-i-förväg-spelar-roll" class="nav-pill">Varför planering i förväg spelar roll</a>
+                <a href="#bygg-features-en-i-taget" class="nav-pill">Bygg features en i taget</a>
+                <a href="#den-manuella-byggprocessen" class="nav-pill">Den manuella byggprocessen</a>
+                <a href="#överdriv-inte-mcp-och-plugins" class="nav-pill">Överdriv inte MCP och plugins</a>
+                <a href="#kontexthantering-50-regeln" class="nav-pill">Kontexthantering: 50%-regeln</a>
+                <a href="#ha-djärvhet-smak-spelar-roll" class="nav-pill">Ha djärvhet: Smak spelar roll</a>
+                <a href="#planeringstips" class="nav-pill">Planeringstips</a>
+                <a href="#viktiga-kommandon" class="nav-pill">Viktiga kommandon</a>
+                <a href="#mindset-tips" class="nav-pill">Mindset-tips</a>
+                <a href="#kom-igång" class="nav-pill">Kom igång</a>
+            </nav>
+
+            <div class="lang-sv"><p><strong>Version 1.0</strong> | 2026-01-22</p>
+<h2 id="introduktion">Introduktion</h2>
+<p>Det finns tusentals Claude Code-tutorials på internet, men de flesta överkomplicerar saker. Den här guiden fokuserar på det som faktiskt spelar roll: principerna och metoderna som hjälper dig bygga riktig mjukvara med Claude Code.</p>
+<p>Modellerna är tillräckligt bra nu. Frågan är om dina inputs är tillräckligt bra för att matcha dem.</p>
+<hr />
+<h2 id="den-grundlaggande-principen">Den grundläggande principen</h2>
+<p>Det viktigaste att förstå om att arbeta med Claude Code—eller någon AI-agent—är detta: <strong>kvaliteten på dina inputs styr kvaliteten på dina outputs.</strong></p>
+<p>Modellerna har blivit så bra att om du producerar "slop" beror det på att du har gett dem slop. Vi har nått en punkt där utvecklare granskar mer kod än de skriver. Men detta fungerar bara när du är precis med dina instruktioner.</p>
+<p>Tänk på det som att kommunicera med en mänsklig ingenjör. Om du ger glesa instruktioner får du undermåliga resultat.</p>
+<hr />
+<h2 id="tank-i-features-inte-produkter">Tänk i features, inte produkter</h2>
+<p>När du bygger med Claude Code är dina inputs dina PRD:er, att göra-listor eller planer. Nyckeln är att <strong>tänka i features, inte produkter.</strong></p>
+<p>Många utvecklare beskriver en produkt och blir frustrerade när AI:n inte magiskt förstår. Men om du bryter ner din produkt i diskreta features förändras allt.</p>
+<p>Om din produkt behöver fyra kärnfeatures, designa din plan så att agenten bygger varje feature individuellt. Alla features tillsammans blir din produkt.</p>
+<hr />
+<h2 id="testa-varje-feature-innan-du-gar-vidare">Testa varje feature innan du går vidare</h2>
+<p>När du utvecklar features vet du ofta inte om modellen byggde något korrekt förrän du testar det. Lösningen: <strong>introducera tester vid varje steg.</strong></p>
+<ol>
+<li>Claude Code bygger Feature 1</li>
+<li>Skriv ett test för Feature 1</li>
+<li>Om testet passerar, gå vidare till Feature 2</li>
+<li>Upprepa</li>
+</ol>
+<p>Detta tillvägagångssätt säkerställer att du bygger på en solid grund. Det finns ingen poäng med att arbeta på Feature 2 om Feature 1 är trasig.</p>
+<hr />
+<h2 id="ask-user-question-tool">Ask User Question Tool</h2>
+<p>De flesta utvecklare använder Claude Codes standardplaneringsläge: beskriv vad du vill ha, Claude ställer några generiska frågor, sedan börjar den bygga. Detta producerar mediokra resultat.</p>
+<p>Det finns ett bättre sätt: <strong>Ask User Question Tool</strong>.</p>
+<p>Detta verktyg intervjuar dig om detaljerna—teknisk implementation, UI/UX-frågor, avvägningar. Det tvingar dig att tänka djupt innan en enda rad kod skrivs.</p>
+<hr />
+<h2 id="anvanda-ask-user-question-tool">Använda Ask User Question Tool</h2>
+<p>Efter att ha skapat en initial planfil (t.ex. <code>prd.md</code>), prompta Claude Code med:</p>
+<pre><code>Läs denna planfil. Intervjua mig i detalj med ask user question tool om bokstavligen allt—teknisk implementation, UI/UX-frågor och avvägningar.
+</code></pre>
+<p>Claude Code kommer ställa allt mer detaljerade frågor om arbetsflöde, API-kostnader, databasval, UI-stil, lagring och mer.</p>
+<p>Vissa frågor kan vara tekniska beslut du är osäker på. Det är okej—kopiera frågan, klistra in den i en annan AI-chatt och be om vägledning.</p>
+<hr />
+<h2 id="varfor-planering-i-forvag-spelar-roll">Varför planering i förväg spelar roll</h2>
+<p>Utan att specificera detaljer gör Claude Code antaganden åt dig. Vill du att en feature ska visas? Den kanske lägger den i en dashboard när du ville ha en modal.</p>
+<p>När du inte specificerar får du en produkt som inte matchar din vision—sedan slösar du tokens på att fixa saker.</p>
+<p><strong>Investera tid i planering i förväg så sparar du betydande tid (och pengar) senare.</strong></p>
+<hr />
+<h2 id="bygg-features-en-i-taget">Bygg features en i taget</h2>
+<p>Om du är ny på Claude Code, motstå frestelsen att automatisera allt direkt. <strong>Bygg features manuellt, en i taget.</strong></p>
+<p>När du arbetar igenom varje feature individuellt—bygger den, testar den, itererar—utvecklar du intuition för produktbyggande. Du lär dig hur du promptar effektivt och fångar problem tidigt.</p>
+<p>Utvecklare som kämpade i månader och nu är experter har alla en sak gemensamt: de la ner arbetet utan att förlita sig på automatisering.</p>
+<hr />
+<h2 id="den-manuella-byggprocessen">Den manuella byggprocessen</h2>
+<ol>
+<li>Skapa din detaljerade plan med Ask User Question Tool</li>
+<li>Säg till Claude Code: "Låt oss bygga den första featuren"</li>
+<li>När den är byggd, testa den (eller fråga: "Hur kan jag testa detta?")</li>
+<li>Gå vidare till nästa feature</li>
+<li>Upprepa</li>
+</ol>
+<blockquote>
+<p><strong>En notis om automatisering:</strong> "Agentiska loopar" låter Claude Code arbeta autonomt. Dessa är kraftfulla men utanför denna guides omfattning. Bemästra grunderna först.</p>
+</blockquote>
+<hr />
+<h2 id="overdriv-inte-mcp-och-plugins">Överdriv inte MCP och plugins</h2>
+<p>Du kommer höra mycket om MCP-servrar, skills, plugins, <code>prompt.md</code>, <code>agent.md</code>. Här är sanningen: <strong>dessa är inte anledningen till att din produkt inte fungerar.</strong></p>
+<p>De flesta av dessa verktyg tjänar liknande syften—de är bara markdown-filer eller konfigurationer. De är användbara så småningom, men de är optimeringar, inte grunder.</p>
+<p>Grunden är din plan. Om din plan är solid förbättrar dessa verktyg ditt arbetsflöde. Om din plan är svag kommer ingen mängd verktyg att rädda dig.</p>
+<hr />
+<h2 id="kontexthantering-50-regeln">Kontexthantering: 50%-regeln</h2>
+<p>Kontext är kritiskt. Claude Code visar vilken procent av ditt kontextfönster som har använts. <strong>Överskrid inte 50%.</strong></p>
+<p>Claude Opus 4.5 har en gräns på 200 000 tokens. När du har förbrukat ~100 000 tokens försämras kvaliteten. Det är då utvecklare säger "Det började bra men blev sedan dåligt."</p>
+<p>Tänk på det som informationsöverbelastning—vid någon punkt skulle du känna dig överväldigad och glömma tidigare material. AI-modeller beter sig liknande.</p>
+<p><strong>När du når 40-50% kontextanvändning, starta en ny session.</strong></p>
+<hr />
+<h2 id="ha-djarvhet-smak-spelar-roll">Ha djärvhet: Smak spelar roll</h2>
+<p>Mjukvaruutveckling blir enkelt. Mjukvaruingenjörskonst förblir svårt.</p>
+<p>Att arkitektera mjukvara, säkerställa användbarhet, skapa bra UX/UI, ha god smak—detta kräver tid, eftertanke och djärvhet.</p>
+<p>Ja, du kan klona miljardprogramvara nu. Alla kan. Så vad gör din mjukvara annorlunda?</p>
+<hr />
+<h2 id="planeringstips">Planeringstips</h2>
+<p><strong>Använd Ask User Question Tool explicit.</strong> Istället för att låta Claude generera en generisk plan, anropa detta verktyg. Ja, det ställer många frågor—det är poängen.</p>
+<p><strong>Referera filer med @-omnämnanden.</strong> Peka Claude på specifika filer: "Titta på @src/api/users.ts och fixa buggen." Detta håller Claude fokuserad.</p>
+<p><strong>Spåra framsteg i en fil.</strong> Ha en <code>progress.md</code> som dokumenterar vad som är byggt, vad som fungerar, vad som är nästa. Ovärderligt för längre projekt.</p>
+<hr />
+<h2 id="viktiga-kommandon">Viktiga kommandon</h2>
+<p>Några kommandon sparar tid:<br />
+- <code>/context</code> — kontrollera kontextfönsteranvändning<br />
+- <code>/compact</code> — komprimera kontext för att frigöra utrymme<br />
+- <code>/clear</code> — starta en ny session<br />
+- <code>Shift+Tab</code> — växla planläge</p>
+<p><strong>Sätt upp CLAUDE.md</strong> för persistent kontext—tech stack, konventioner, struktur. Detta förtjänar en egen djupdykning.</p>
+<hr />
+<h2 id="mindset-tips">Mindset-tips</h2>
+<p><strong>Skylla inte på verktygen.</strong> När din produkt inte fungerar är det nästan aldrig MCP eller plugins. Det är din plan.</p>
+<p><strong>Lägg ner arbetet innan du automatiserar.</strong> Om du inte har deployat något ännu, använd inte automatiseringsverktyg. Lär dig bygga manuellt först.</p>
+<p><strong>Använd papper och penna.</strong> Att skissa features på papper tvingar dig att tänka innan du involverar AI. De bästa apparna kommer från omsorgsfullt planerande.</p>
+<p><strong>Ditt terminalval spelar ingen roll.</strong> Mac-terminal, Ghostty, iTerm2, Warp—det är bara preferenser. Prokrastinera inte.</p>
+<hr />
+<h2 id="kom-igang">Kom igång</h2>
+<ol>
+<li>Installera Claude Code (terminal) eller ladda ner Claude Code-appen</li>
+<li>Skapa en projektmapp och navigera till den</li>
+<li>Starta Claude Code och skapa din initiala plan</li>
+<li>Använd Ask User Question Tool för att förfina planen</li>
+<li>Bygg din första feature, testa den, iterera</li>
+<li>Upprepa tills du har en fungerande produkt</li>
+</ol></div>
+            <div class="lang-en"><p><strong>Version 1.0</strong> | 2026-01-22</p>
+<h2 id="introduction">Introduction</h2>
+<p>There are thousands of Claude Code tutorials on the internet, but most overcomplicate things. This guide strips it down to what actually matters: the principles and practices that will help you build real software with Claude Code.</p>
+<p>The models are good enough now. The question is whether your inputs are good enough to match them.</p>
+<hr />
+<h2 id="the-fundamental-principle">The Fundamental Principle</h2>
+<p>The most important thing to understand about working with Claude Code—or any AI agent—is this: <strong>the quality of your inputs dictates the quality of your outputs.</strong></p>
+<p>The models have become so good that if you're producing "slop," it's because you've given it slop. We've reached a point where developers are reviewing more code than they write. But this only works when you're precise with your instructions.</p>
+<p>Think of it like communicating with a human engineer. If you give sparse instructions, you'll get subpar results.</p>
+<hr />
+<h2 id="think-in-features-not-products">Think in Features, Not Products</h2>
+<p>When building with Claude Code, your inputs are your PRDs, to-do lists, or plans. The key is to <strong>think in features, not products.</strong></p>
+<p>Many developers describe a product and get frustrated when the AI doesn't magically understand. But if you break your product down into discrete features, everything changes.</p>
+<p>If your product needs four core features, design your plan so the agent builds each feature individually. All features together equal your product.</p>
+<hr />
+<h2 id="test-each-feature-before-moving-on">Test Each Feature Before Moving On</h2>
+<p>When developing features, you often don't know if the model built something correctly until you test it. The solution: <strong>introduce tests at each step.</strong></p>
+<ol>
+<li>Claude Code builds Feature 1</li>
+<li>Write a test for Feature 1</li>
+<li>If the test passes, move to Feature 2</li>
+<li>Repeat</li>
+</ol>
+<p>This approach ensures you're building on a solid foundation. There's no point working on Feature 2 if Feature 1 is broken.</p>
+<hr />
+<h2 id="the-ask-user-question-tool">The Ask User Question Tool</h2>
+<p>Most developers use Claude Code's default planning mode: describe what you want, Claude asks a few generic questions, then starts building. This produces mediocre results.</p>
+<p>There's a better way: the <strong>Ask User Question Tool</strong>.</p>
+<p>This tool interviews you about the specifics—technical implementation, UI/UX concerns, trade-offs. It forces you to think deeply before a single line of code is written.</p>
+<hr />
+<h2 id="using-the-ask-user-question-tool">Using the Ask User Question Tool</h2>
+<p>After creating an initial plan file (e.g., <code>prd.md</code>), prompt Claude Code with:</p>
+<pre><code>Read this plan file. Interview me in detail using the ask user question tool about literally anything—technical implementation, UI/UX concerns, and trade-offs.
+</code></pre>
+<p>Claude Code will ask increasingly granular questions about workflow, API costs, database approach, UI style, storage, and more.</p>
+<p>Some questions might be technical decisions you're unsure about. That's fine—copy the question, paste it into another AI chat, and ask for guidance.</p>
+<hr />
+<h2 id="why-planning-upfront-matters">Why Planning Upfront Matters</h2>
+<p>Without specifying details, Claude Code makes assumptions for you. Want a feature displayed? It might put it in a dashboard when you wanted a modal.</p>
+<p>When you don't specify, you end up with a product that doesn't match your vision—then you waste tokens fixing things.</p>
+<p><strong>Invest time in planning upfront and you'll save significant time (and money) later.</strong></p>
+<hr />
+<h2 id="build-features-one-by-one">Build Features One by One</h2>
+<p>If you're new to Claude Code, resist the temptation to automate everything immediately. <strong>Build features manually, one at a time.</strong></p>
+<p>When you work through each feature individually—building it, testing it, iterating—you develop intuition for product building. You learn how to prompt effectively and catch issues early.</p>
+<p>Developers who struggled for months and are now experts all have one thing in common: they put in the reps without relying on automation.</p>
+<hr />
+<h2 id="the-manual-building-process">The Manual Building Process</h2>
+<ol>
+<li>Create your detailed plan using the Ask User Question Tool</li>
+<li>Tell Claude Code: "Let's build the first feature"</li>
+<li>Once built, test it (or ask: "How can I test this?")</li>
+<li>Move to the next feature</li>
+<li>Repeat</li>
+</ol>
+<blockquote>
+<p><strong>A note on automation:</strong> "Agentic loops" let Claude Code work autonomously. These are powerful but beyond this guide's scope. Master the fundamentals first.</p>
+</blockquote>
+<hr />
+<h2 id="dont-over-obsess-on-mcp-and-plugins">Don't Over-Obsess on MCP and Plugins</h2>
+<p>You'll hear a lot about MCP servers, skills, plugins, <code>prompt.md</code>, <code>agent.md</code>. Here's the truth: <strong>these are not why your product isn't working.</strong></p>
+<p>Most of these tools serve similar purposes—they're just markdown files or configurations. They're useful eventually, but they're optimizations, not fundamentals.</p>
+<p>The fundamental is your plan. If your plan is solid, these tools enhance your workflow. If your plan is weak, no amount of tooling will save you.</p>
+<hr />
+<h2 id="context-management-the-50-rule">Context Management: The 50% Rule</h2>
+<p>Context is critical. Claude Code shows what percentage of your context window has been used. <strong>Don't exceed 50%.</strong></p>
+<p>Claude Opus 4.5 has a 200,000 token limit. Once you've consumed ~100,000 tokens, quality deteriorates. This is when developers say, "It started great but went bad."</p>
+<p>Think of it like information overload—at some point you'd feel overwhelmed and forget earlier material. AI models behave similarly.</p>
+<p><strong>When you hit 40-50% context usage, start a new session.</strong></p>
+<hr />
+<h2 id="have-audacity-taste-matters">Have Audacity: Taste Matters</h2>
+<p>Software development is becoming easy. Software <em>engineering</em> remains hard.</p>
+<p>Architecting software, ensuring usability, creating great UX/UI, having good taste—this requires time, thought, and audacity.</p>
+<p>Yes, you can clone billion-dollar software now. Everyone can. So what makes your software different?</p>
+<hr />
+<h2 id="planning-tips">Planning Tips</h2>
+<p><strong>Use the Ask User Question Tool explicitly.</strong> Instead of letting Claude generate a generic plan, invoke this tool. Yes, it asks many questions—that's the point.</p>
+<p><strong>Reference files with @-mentions.</strong> Point Claude at specific files: "Look at @src/api/users.ts and fix the bug." This keeps Claude focused.</p>
+<p><strong>Track progress in a file.</strong> Keep a <code>progress.md</code> documenting what's built, what's working, what's next. Invaluable for longer projects.</p>
+<hr />
+<h2 id="essential-commands">Essential Commands</h2>
+<p>A few commands save time:<br />
+- <code>/context</code> — check context window usage<br />
+- <code>/compact</code> — compress context to free space<br />
+- <code>/clear</code> — start a fresh session<br />
+- <code>Shift+Tab</code> — toggle plan mode</p>
+<p><strong>Set up CLAUDE.md</strong> for persistent context—tech stack, conventions, structure. This deserves its own deep dive.</p>
+<hr />
+<h2 id="mindset-tips">Mindset Tips</h2>
+<p><strong>Don't blame the tooling.</strong> When your product isn't working, it's almost never MCP or plugins. It's your plan.</p>
+<p><strong>Get reps before automating.</strong> If you haven't deployed anything yet, don't use automation tools. Learn to build manually first.</p>
+<p><strong>Use pen and paper.</strong> Sketching features on paper forces you to think before involving AI. The best apps come from thoughtful planning.</p>
+<p><strong>Your terminal choice doesn't matter.</strong> Mac terminal, Ghostty, iTerm2, Warp—it's all preference. Don't procrastinate.</p>
+<hr />
+<h2 id="getting-started">Getting Started</h2>
+<ol>
+<li>Install Claude Code (terminal) or download the Claude Code app</li>
+<li>Create a project folder and navigate to it</li>
+<li>Start Claude Code and create your initial plan</li>
+<li>Use the Ask User Question Tool to refine that plan</li>
+<li>Build your first feature, test it, iterate</li>
+<li>Repeat until you have a working product</li>
+</ol></div>
+
+        </article>
+    </main>
+
+    <!-- Presentation Slides -->
+    <section class="presentation-slide hero-slide" data-slide-number="1 / 17">
+        <div class="presentation-slide-content">
+            <p class="article-meta">
+                <span class="lang-sv">Praktisk guide // 2026-01</span>
+                <span class="lang-en">Practical Guide // 2026-01</span>
+            </p>
+            <h1>How to Master Claude Code</h1>
+            <p class="subtitle">
+                <span class="lang-sv">En praktisk guide för utvecklare</span>
+                <span class="lang-en">A practical guide for developers</span>
+            </p>
+        </div>
+        <div class="presentation-scroll-hint">
+            <span class="lang-sv">Scrolla ner</span>
+            <span class="lang-en">Scroll down</span>
+            <span>↓</span>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="2 / 17">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="introduktion">Introduktion</h2>
+<p>Det finns tusentals Claude Code-tutorials på internet, men de flesta överkomplicerar saker. Den här guiden fokuserar på det som faktiskt spelar roll: principerna och metoderna som hjälper dig bygga riktig mjukvara med Claude Code.</p>
+<p>Modellerna är tillräckligt bra nu. Frågan är om dina inputs är tillräckligt bra för att matcha dem.</p>
+<hr /></div>
+            <div class="lang-en"><h2 id="introduction">Introduction</h2>
+<p>There are thousands of Claude Code tutorials on the internet, but most overcomplicate things. This guide strips it down to what actually matters: the principles and practices that will help you build real software with Claude Code.</p>
+<p>The models are good enough now. The question is whether your inputs are good enough to match them.</p>
+<hr /></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="3 / 17">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="den-grundlaggande-principen">Den grundläggande principen</h2>
+<p>Det viktigaste att förstå om att arbeta med Claude Code—eller någon AI-agent—är detta: <strong>kvaliteten på dina inputs styr kvaliteten på dina outputs.</strong></p>
+<p>Modellerna har blivit så bra att om du producerar "slop" beror det på att du har gett dem slop. Vi har nått en punkt där utvecklare granskar mer kod än de skriver. Men detta fungerar bara när du är precis med dina instruktioner.</p>
+<p>Tänk på det som att kommunicera med en mänsklig ingenjör. Om du ger glesa instruktioner får du undermåliga resultat.</p>
+<hr /></div>
+            <div class="lang-en"><h2 id="the-fundamental-principle">The Fundamental Principle</h2>
+<p>The most important thing to understand about working with Claude Code—or any AI agent—is this: <strong>the quality of your inputs dictates the quality of your outputs.</strong></p>
+<p>The models have become so good that if you're producing "slop," it's because you've given it slop. We've reached a point where developers are reviewing more code than they write. But this only works when you're precise with your instructions.</p>
+<p>Think of it like communicating with a human engineer. If you give sparse instructions, you'll get subpar results.</p>
+<hr /></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="4 / 17">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="tank-i-features-inte-produkter">Tänk i features, inte produkter</h2>
+<p>När du bygger med Claude Code är dina inputs dina PRD:er, att göra-listor eller planer. Nyckeln är att <strong>tänka i features, inte produkter.</strong></p>
+<p>Många utvecklare beskriver en produkt och blir frustrerade när AI:n inte magiskt förstår. Men om du bryter ner din produkt i diskreta features förändras allt.</p>
+<p>Om din produkt behöver fyra kärnfeatures, designa din plan så att agenten bygger varje feature individuellt. Alla features tillsammans blir din produkt.</p>
+<hr /></div>
+            <div class="lang-en"><h2 id="think-in-features-not-products">Think in Features, Not Products</h2>
+<p>When building with Claude Code, your inputs are your PRDs, to-do lists, or plans. The key is to <strong>think in features, not products.</strong></p>
+<p>Many developers describe a product and get frustrated when the AI doesn't magically understand. But if you break your product down into discrete features, everything changes.</p>
+<p>If your product needs four core features, design your plan so the agent builds each feature individually. All features together equal your product.</p>
+<hr /></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="5 / 17">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="testa-varje-feature-innan-du-gar-vidare">Testa varje feature innan du går vidare</h2>
+<p>När du utvecklar features vet du ofta inte om modellen byggde något korrekt förrän du testar det. Lösningen: <strong>introducera tester vid varje steg.</strong></p>
+<ol>
+<li>Claude Code bygger Feature 1</li>
+<li>Skriv ett test för Feature 1</li>
+<li>Om testet passerar, gå vidare till Feature 2</li>
+<li>Upprepa</li>
+</ol>
+<p>Detta tillvägagångssätt säkerställer att du bygger på en solid grund. Det finns ingen poäng med att arbeta på Feature 2 om Feature 1 är trasig.</p>
+<hr /></div>
+            <div class="lang-en"><h2 id="test-each-feature-before-moving-on">Test Each Feature Before Moving On</h2>
+<p>When developing features, you often don't know if the model built something correctly until you test it. The solution: <strong>introduce tests at each step.</strong></p>
+<ol>
+<li>Claude Code builds Feature 1</li>
+<li>Write a test for Feature 1</li>
+<li>If the test passes, move to Feature 2</li>
+<li>Repeat</li>
+</ol>
+<p>This approach ensures you're building on a solid foundation. There's no point working on Feature 2 if Feature 1 is broken.</p>
+<hr /></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="6 / 17">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="ask-user-question-tool">Ask User Question Tool</h2>
+<p>De flesta utvecklare använder Claude Codes standardplaneringsläge: beskriv vad du vill ha, Claude ställer några generiska frågor, sedan börjar den bygga. Detta producerar mediokra resultat.</p>
+<p>Det finns ett bättre sätt: <strong>Ask User Question Tool</strong>.</p>
+<p>Detta verktyg intervjuar dig om detaljerna—teknisk implementation, UI/UX-frågor, avvägningar. Det tvingar dig att tänka djupt innan en enda rad kod skrivs.</p>
+<hr /></div>
+            <div class="lang-en"><h2 id="the-ask-user-question-tool">The Ask User Question Tool</h2>
+<p>Most developers use Claude Code's default planning mode: describe what you want, Claude asks a few generic questions, then starts building. This produces mediocre results.</p>
+<p>There's a better way: the <strong>Ask User Question Tool</strong>.</p>
+<p>This tool interviews you about the specifics—technical implementation, UI/UX concerns, trade-offs. It forces you to think deeply before a single line of code is written.</p>
+<hr /></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="7 / 17">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="anvanda-ask-user-question-tool">Använda Ask User Question Tool</h2>
+<p>Efter att ha skapat en initial planfil (t.ex. <code>prd.md</code>), prompta Claude Code med:</p>
+<pre><code>Läs denna planfil. Intervjua mig i detalj med ask user question tool om bokstavligen allt—teknisk implementation, UI/UX-frågor och avvägningar.
+</code></pre>
+<p>Claude Code kommer ställa allt mer detaljerade frågor om arbetsflöde, API-kostnader, databasval, UI-stil, lagring och mer.</p>
+<p>Vissa frågor kan vara tekniska beslut du är osäker på. Det är okej—kopiera frågan, klistra in den i en annan AI-chatt och be om vägledning.</p>
+<hr /></div>
+            <div class="lang-en"><h2 id="using-the-ask-user-question-tool">Using the Ask User Question Tool</h2>
+<p>After creating an initial plan file (e.g., <code>prd.md</code>), prompt Claude Code with:</p>
+<pre><code>Read this plan file. Interview me in detail using the ask user question tool about literally anything—technical implementation, UI/UX concerns, and trade-offs.
+</code></pre>
+<p>Claude Code will ask increasingly granular questions about workflow, API costs, database approach, UI style, storage, and more.</p>
+<p>Some questions might be technical decisions you're unsure about. That's fine—copy the question, paste it into another AI chat, and ask for guidance.</p>
+<hr /></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="8 / 17">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="varfor-planering-i-forvag-spelar-roll">Varför planering i förväg spelar roll</h2>
+<p>Utan att specificera detaljer gör Claude Code antaganden åt dig. Vill du att en feature ska visas? Den kanske lägger den i en dashboard när du ville ha en modal.</p>
+<p>När du inte specificerar får du en produkt som inte matchar din vision—sedan slösar du tokens på att fixa saker.</p>
+<p><strong>Investera tid i planering i förväg så sparar du betydande tid (och pengar) senare.</strong></p>
+<hr /></div>
+            <div class="lang-en"><h2 id="why-planning-upfront-matters">Why Planning Upfront Matters</h2>
+<p>Without specifying details, Claude Code makes assumptions for you. Want a feature displayed? It might put it in a dashboard when you wanted a modal.</p>
+<p>When you don't specify, you end up with a product that doesn't match your vision—then you waste tokens fixing things.</p>
+<p><strong>Invest time in planning upfront and you'll save significant time (and money) later.</strong></p>
+<hr /></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="9 / 17">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="bygg-features-en-i-taget">Bygg features en i taget</h2>
+<p>Om du är ny på Claude Code, motstå frestelsen att automatisera allt direkt. <strong>Bygg features manuellt, en i taget.</strong></p>
+<p>När du arbetar igenom varje feature individuellt—bygger den, testar den, itererar—utvecklar du intuition för produktbyggande. Du lär dig hur du promptar effektivt och fångar problem tidigt.</p>
+<p>Utvecklare som kämpade i månader och nu är experter har alla en sak gemensamt: de la ner arbetet utan att förlita sig på automatisering.</p>
+<hr /></div>
+            <div class="lang-en"><h2 id="build-features-one-by-one">Build Features One by One</h2>
+<p>If you're new to Claude Code, resist the temptation to automate everything immediately. <strong>Build features manually, one at a time.</strong></p>
+<p>When you work through each feature individually—building it, testing it, iterating—you develop intuition for product building. You learn how to prompt effectively and catch issues early.</p>
+<p>Developers who struggled for months and are now experts all have one thing in common: they put in the reps without relying on automation.</p>
+<hr /></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="10 / 17">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="den-manuella-byggprocessen">Den manuella byggprocessen</h2>
+<ol>
+<li>Skapa din detaljerade plan med Ask User Question Tool</li>
+<li>Säg till Claude Code: "Låt oss bygga den första featuren"</li>
+<li>När den är byggd, testa den (eller fråga: "Hur kan jag testa detta?")</li>
+<li>Gå vidare till nästa feature</li>
+<li>Upprepa</li>
+</ol>
+<blockquote>
+<p><strong>En notis om automatisering:</strong> "Agentiska loopar" låter Claude Code arbeta autonomt. Dessa är kraftfulla men utanför denna guides omfattning. Bemästra grunderna först.</p>
+</blockquote>
+<hr /></div>
+            <div class="lang-en"><h2 id="the-manual-building-process">The Manual Building Process</h2>
+<ol>
+<li>Create your detailed plan using the Ask User Question Tool</li>
+<li>Tell Claude Code: "Let's build the first feature"</li>
+<li>Once built, test it (or ask: "How can I test this?")</li>
+<li>Move to the next feature</li>
+<li>Repeat</li>
+</ol>
+<blockquote>
+<p><strong>A note on automation:</strong> "Agentic loops" let Claude Code work autonomously. These are powerful but beyond this guide's scope. Master the fundamentals first.</p>
+</blockquote>
+<hr /></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="11 / 17">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="overdriv-inte-mcp-och-plugins">Överdriv inte MCP och plugins</h2>
+<p>Du kommer höra mycket om MCP-servrar, skills, plugins, <code>prompt.md</code>, <code>agent.md</code>. Här är sanningen: <strong>dessa är inte anledningen till att din produkt inte fungerar.</strong></p>
+<p>De flesta av dessa verktyg tjänar liknande syften—de är bara markdown-filer eller konfigurationer. De är användbara så småningom, men de är optimeringar, inte grunder.</p>
+<p>Grunden är din plan. Om din plan är solid förbättrar dessa verktyg ditt arbetsflöde. Om din plan är svag kommer ingen mängd verktyg att rädda dig.</p>
+<hr /></div>
+            <div class="lang-en"><h2 id="dont-over-obsess-on-mcp-and-plugins">Don't Over-Obsess on MCP and Plugins</h2>
+<p>You'll hear a lot about MCP servers, skills, plugins, <code>prompt.md</code>, <code>agent.md</code>. Here's the truth: <strong>these are not why your product isn't working.</strong></p>
+<p>Most of these tools serve similar purposes—they're just markdown files or configurations. They're useful eventually, but they're optimizations, not fundamentals.</p>
+<p>The fundamental is your plan. If your plan is solid, these tools enhance your workflow. If your plan is weak, no amount of tooling will save you.</p>
+<hr /></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="12 / 17">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="kontexthantering-50-regeln">Kontexthantering: 50%-regeln</h2>
+<p>Kontext är kritiskt. Claude Code visar vilken procent av ditt kontextfönster som har använts. <strong>Överskrid inte 50%.</strong></p>
+<p>Claude Opus 4.5 har en gräns på 200 000 tokens. När du har förbrukat ~100 000 tokens försämras kvaliteten. Det är då utvecklare säger "Det började bra men blev sedan dåligt."</p>
+<p>Tänk på det som informationsöverbelastning—vid någon punkt skulle du känna dig överväldigad och glömma tidigare material. AI-modeller beter sig liknande.</p>
+<p><strong>När du når 40-50% kontextanvändning, starta en ny session.</strong></p>
+<hr /></div>
+            <div class="lang-en"><h2 id="context-management-the-50-rule">Context Management: The 50% Rule</h2>
+<p>Context is critical. Claude Code shows what percentage of your context window has been used. <strong>Don't exceed 50%.</strong></p>
+<p>Claude Opus 4.5 has a 200,000 token limit. Once you've consumed ~100,000 tokens, quality deteriorates. This is when developers say, "It started great but went bad."</p>
+<p>Think of it like information overload—at some point you'd feel overwhelmed and forget earlier material. AI models behave similarly.</p>
+<p><strong>When you hit 40-50% context usage, start a new session.</strong></p>
+<hr /></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="13 / 17">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="ha-djarvhet-smak-spelar-roll">Ha djärvhet: Smak spelar roll</h2>
+<p>Mjukvaruutveckling blir enkelt. Mjukvaruingenjörskonst förblir svårt.</p>
+<p>Att arkitektera mjukvara, säkerställa användbarhet, skapa bra UX/UI, ha god smak—detta kräver tid, eftertanke och djärvhet.</p>
+<p>Ja, du kan klona miljardprogramvara nu. Alla kan. Så vad gör din mjukvara annorlunda?</p>
+<hr /></div>
+            <div class="lang-en"><h2 id="have-audacity-taste-matters">Have Audacity: Taste Matters</h2>
+<p>Software development is becoming easy. Software <em>engineering</em> remains hard.</p>
+<p>Architecting software, ensuring usability, creating great UX/UI, having good taste—this requires time, thought, and audacity.</p>
+<p>Yes, you can clone billion-dollar software now. Everyone can. So what makes your software different?</p>
+<hr /></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="14 / 17">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="planeringstips">Planeringstips</h2>
+<p><strong>Använd Ask User Question Tool explicit.</strong> Istället för att låta Claude generera en generisk plan, anropa detta verktyg. Ja, det ställer många frågor—det är poängen.</p>
+<p><strong>Referera filer med @-omnämnanden.</strong> Peka Claude på specifika filer: "Titta på @src/api/users.ts och fixa buggen." Detta håller Claude fokuserad.</p>
+<p><strong>Spåra framsteg i en fil.</strong> Ha en <code>progress.md</code> som dokumenterar vad som är byggt, vad som fungerar, vad som är nästa. Ovärderligt för längre projekt.</p>
+<hr /></div>
+            <div class="lang-en"><h2 id="planning-tips">Planning Tips</h2>
+<p><strong>Use the Ask User Question Tool explicitly.</strong> Instead of letting Claude generate a generic plan, invoke this tool. Yes, it asks many questions—that's the point.</p>
+<p><strong>Reference files with @-mentions.</strong> Point Claude at specific files: "Look at @src/api/users.ts and fix the bug." This keeps Claude focused.</p>
+<p><strong>Track progress in a file.</strong> Keep a <code>progress.md</code> documenting what's built, what's working, what's next. Invaluable for longer projects.</p>
+<hr /></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="15 / 17">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="viktiga-kommandon">Viktiga kommandon</h2>
+<p>Några kommandon sparar tid:<br />
+- <code>/context</code> — kontrollera kontextfönsteranvändning<br />
+- <code>/compact</code> — komprimera kontext för att frigöra utrymme<br />
+- <code>/clear</code> — starta en ny session<br />
+- <code>Shift+Tab</code> — växla planläge</p>
+<p><strong>Sätt upp CLAUDE.md</strong> för persistent kontext—tech stack, konventioner, struktur. Detta förtjänar en egen djupdykning.</p>
+<hr /></div>
+            <div class="lang-en"><h2 id="essential-commands">Essential Commands</h2>
+<p>A few commands save time:<br />
+- <code>/context</code> — check context window usage<br />
+- <code>/compact</code> — compress context to free space<br />
+- <code>/clear</code> — start a fresh session<br />
+- <code>Shift+Tab</code> — toggle plan mode</p>
+<p><strong>Set up CLAUDE.md</strong> for persistent context—tech stack, conventions, structure. This deserves its own deep dive.</p>
+<hr /></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="16 / 17">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="mindset-tips">Mindset-tips</h2>
+<p><strong>Skylla inte på verktygen.</strong> När din produkt inte fungerar är det nästan aldrig MCP eller plugins. Det är din plan.</p>
+<p><strong>Lägg ner arbetet innan du automatiserar.</strong> Om du inte har deployat något ännu, använd inte automatiseringsverktyg. Lär dig bygga manuellt först.</p>
+<p><strong>Använd papper och penna.</strong> Att skissa features på papper tvingar dig att tänka innan du involverar AI. De bästa apparna kommer från omsorgsfullt planerande.</p>
+<p><strong>Ditt terminalval spelar ingen roll.</strong> Mac-terminal, Ghostty, iTerm2, Warp—det är bara preferenser. Prokrastinera inte.</p>
+<hr /></div>
+            <div class="lang-en"><h2 id="mindset-tips">Mindset Tips</h2>
+<p><strong>Don't blame the tooling.</strong> When your product isn't working, it's almost never MCP or plugins. It's your plan.</p>
+<p><strong>Get reps before automating.</strong> If you haven't deployed anything yet, don't use automation tools. Learn to build manually first.</p>
+<p><strong>Use pen and paper.</strong> Sketching features on paper forces you to think before involving AI. The best apps come from thoughtful planning.</p>
+<p><strong>Your terminal choice doesn't matter.</strong> Mac terminal, Ghostty, iTerm2, Warp—it's all preference. Don't procrastinate.</p>
+<hr /></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="17 / 17">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="kom-igang">Kom igång</h2>
+<ol>
+<li>Installera Claude Code (terminal) eller ladda ner Claude Code-appen</li>
+<li>Skapa en projektmapp och navigera till den</li>
+<li>Starta Claude Code och skapa din initiala plan</li>
+<li>Använd Ask User Question Tool för att förfina planen</li>
+<li>Bygg din första feature, testa den, iterera</li>
+<li>Upprepa tills du har en fungerande produkt</li>
+</ol></div>
+            <div class="lang-en"><h2 id="getting-started">Getting Started</h2>
+<ol>
+<li>Install Claude Code (terminal) or download the Claude Code app</li>
+<li>Create a project folder and navigate to it</li>
+<li>Start Claude Code and create your initial plan</li>
+<li>Use the Ask User Question Tool to refine that plan</li>
+<li>Build your first feature, test it, iterate</li>
+<li>Repeat until you have a working product</li>
+</ol></div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">B3 Commit</a>
+                <span class="status-badge">All Systems Operational</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const menuThemeToggle = document.getElementById('menuThemeToggle');
+        const html = document.documentElement;
+
+        function setTheme(theme) {
+            html.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+        }
+
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        setTheme(savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+        });
+
+        if (menuThemeToggle) {
+            menuThemeToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                const currentTheme = html.getAttribute('data-theme');
+                setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+            });
+        }
+
+        // Language Toggle
+        const langToggle = document.getElementById('langToggle');
+        const menuLangToggle = document.getElementById('menuLangToggle');
+
+        function setLanguage(lang) {
+            html.setAttribute('data-lang', lang);
+            html.setAttribute('lang', lang);
+            localStorage.setItem('language', lang);
+        }
+
+        const savedLang = localStorage.getItem('language') || 'sv';
+        setLanguage(savedLang);
+
+        langToggle.addEventListener('click', () => {
+            const currentLang = html.getAttribute('data-lang');
+            setLanguage(currentLang === 'sv' ? 'en' : 'sv');
+        });
+
+        if (menuLangToggle) {
+            menuLangToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                const currentLang = html.getAttribute('data-lang');
+                setLanguage(currentLang === 'sv' ? 'en' : 'sv');
+            });
+        }
+
+        // Hamburger Menu
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const menuClose = document.getElementById('menuClose');
+
+        function openMenu() {
+            hamburger.classList.add('active');
+            mobileMenu.classList.add('active');
+            menuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.contains('active') ? closeMenu() : openMenu();
+        });
+
+        if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
+        if (menuClose) menuClose.addEventListener('click', closeMenu);
+
+        // Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            const progressBar = document.getElementById('progressBar');
+            if (progressBar) progressBar.style.width = scrolled + '%';
+        });
+
+        // Presentation Mode
+        const presentationToggle = document.getElementById('presentationToggle');
+        const presentationProgress = document.getElementById('presentationProgress');
+        const progressFill = document.getElementById('progressFill');
+        const slides = document.querySelectorAll('.presentation-slide');
+        const progressItems = document.querySelectorAll('.presentation-progress-item');
+
+        function setPresentationMode(enabled) {
+            html.setAttribute('data-presentation', enabled ? 'true' : 'false');
+            localStorage.setItem('presentation', enabled ? 'true' : 'false');
+            if (presentationToggle) {
+                presentationToggle.classList.toggle('active', enabled);
+            }
+        }
+
+        // Always start with presentation mode OFF (user must click to enable)
+        setPresentationMode(false);
+
+        if (presentationToggle) {
+            presentationToggle.addEventListener('click', () => {
+                const current = html.getAttribute('data-presentation') === 'true';
+                setPresentationMode(!current);
+                if (!current) {
+                    // Scroll to first slide when enabling
+                    slides[0]?.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        }
+
+        // Presentation Progress Tracking
+        function updatePresentationProgress() {
+            if (html.getAttribute('data-presentation') !== 'true') return;
+
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const windowHeight = window.innerHeight;
+            let currentSlide = 0;
+
+            slides.forEach((slide, index) => {
+                const slideTop = slide.offsetTop;
+                const slideBottom = slideTop + slide.offsetHeight;
+                if (scrollTop + windowHeight / 2 >= slideTop && scrollTop + windowHeight / 2 < slideBottom) {
+                    currentSlide = index;
+                }
+            });
+
+            // Update progress items
+            progressItems.forEach((item, index) => {
+                item.classList.toggle('active', index === currentSlide);
+                item.classList.toggle('passed', index < currentSlide);
+            });
+
+            // Update progress fill
+            if (progressFill && slides.length > 0) {
+                const progress = ((currentSlide + 1) / slides.length) * 100;
+                progressFill.style.height = progress + '%';
+            }
+        }
+
+        window.addEventListener('scroll', updatePresentationProgress);
+        updatePresentationProgress();
+
+        // Keyboard Navigation for Presentation Mode
+        // Note: We query slides fresh each time to include dynamically created continuation slides
+        document.addEventListener('keydown', (e) => {
+            if (html.getAttribute('data-presentation') !== 'true') return;
+
+            // Query slides fresh to include any dynamically created continuation slides
+            const allSlides = document.querySelectorAll('.presentation-slide');
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            const windowHeight = window.innerHeight;
+            let currentSlideIndex = 0;
+
+            allSlides.forEach((slide, index) => {
+                const slideTop = slide.offsetTop;
+                if (currentScroll + windowHeight / 2 >= slideTop) {
+                    currentSlideIndex = index;
+                }
+            });
+
+            if (e.key === 'ArrowDown' || e.key === ' ' || e.key === 'PageDown') {
+                e.preventDefault();
+                if (currentSlideIndex < allSlides.length - 1) {
+                    allSlides[currentSlideIndex + 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+                e.preventDefault();
+                if (currentSlideIndex > 0) {
+                    allSlides[currentSlideIndex - 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            } else if (e.key === 'Home') {
+                e.preventDefault();
+                allSlides[0].scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else if (e.key === 'End') {
+                e.preventDefault();
+                allSlides[allSlides.length - 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else if (e.key === 'Escape') {
+                e.preventDefault();
+                setPresentationMode(false);
+            }
+        });
+
+        // Click on progress items to jump to slide
+        progressItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                if (slides[index]) {
+                    slides[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Auto-split overflowing slides into continuation slides
+        let slidesSplit = false;
+        
+        function splitOverflowingSlides() {
+            if (slidesSplit) return; // Only run once
+            if (html.getAttribute('data-presentation') !== 'true') return;
+            
+            const maxContentHeight = window.innerHeight - 220; // Account for padding (6rem top + 4rem bottom + buffer)
+            const allSlides = Array.from(document.querySelectorAll('.presentation-slide:not(.continuation-slide)'));
+            let continuationSlides = [];
+            
+            allSlides.forEach((slide, originalIndex) => {
+                const content = slide.querySelector('.presentation-slide-content');
+                if (!content || slide.classList.contains('hero-slide')) return;
+                
+                // Force layout calculation
+                const svDiv = content.querySelector('.lang-sv');
+                const enDiv = content.querySelector('.lang-en');
+                if (!svDiv || !enDiv) return;
+                
+                // Check both language versions for overflow
+                const svOverflows = svDiv.scrollHeight > maxContentHeight;
+                const enOverflows = enDiv.scrollHeight > maxContentHeight;
+                
+                if (!svOverflows && !enOverflows) return;
+                
+                // This slide needs splitting
+                slide.classList.add('has-continuation');
+                
+                // Get splittable elements (skip H2 headers)
+                const svElements = Array.from(svDiv.children).filter(el => el.tagName !== 'H2');
+                const enElements = Array.from(enDiv.children).filter(el => el.tagName !== 'H2');
+                
+                if (svElements.length <= 1) return;
+                
+                // Find split point based on cumulative height
+                let currentHeight = 0;
+                let splitIndex = -1;
+                
+                // Include H2 height in initial calculation
+                const svH2 = svDiv.querySelector('h2');
+                if (svH2) currentHeight = svH2.offsetHeight + 40;
+                
+                for (let i = 0; i < svElements.length; i++) {
+                    const el = svElements[i];
+                    const style = window.getComputedStyle(el);
+                    const marginTop = parseInt(style.marginTop) || 0;
+                    const marginBottom = parseInt(style.marginBottom) || 0;
+                    currentHeight += el.offsetHeight + marginTop + marginBottom;
+                    
+                    if (currentHeight > maxContentHeight && i > 0) {
+                        splitIndex = i;
+                        break;
+                    }
+                }
+                
+                if (splitIndex <= 0) return;
+                
+                // Create continuation slide
+                const continuationSlide = document.createElement('section');
+                continuationSlide.className = 'presentation-slide continuation-slide';
+                continuationSlide.setAttribute('data-original-slide', originalIndex.toString());
+                
+                const continuationContent = document.createElement('div');
+                continuationContent.className = 'presentation-slide-content';
+                
+                // Create language containers for continuation
+                const svContinuation = document.createElement('div');
+                svContinuation.className = 'lang-sv';
+                const enContinuation = document.createElement('div');
+                enContinuation.className = 'lang-en';
+                
+                // Add continuation label
+                const svLabel = document.createElement('span');
+                svLabel.className = 'continuation-label';
+                svLabel.textContent = '(fortsättning)';
+                svContinuation.appendChild(svLabel);
+                
+                const enLabel = document.createElement('span');
+                enLabel.className = 'continuation-label';
+                enLabel.textContent = '(continued)';
+                enContinuation.appendChild(enLabel);
+                
+                // Move overflow elements to continuation slide
+                for (let i = splitIndex; i < svElements.length; i++) {
+                    svContinuation.appendChild(svElements[i].cloneNode(true));
+                    svElements[i].remove();
+                }
+                
+                const enSplitIndex = Math.min(splitIndex, enElements.length);
+                for (let i = enSplitIndex; i < enElements.length; i++) {
+                    enContinuation.appendChild(enElements[i].cloneNode(true));
+                    enElements[i].remove();
+                }
+                
+                continuationContent.appendChild(svContinuation);
+                continuationContent.appendChild(enContinuation);
+                continuationSlide.appendChild(continuationContent);
+                
+                // Insert continuation slide after original
+                slide.insertAdjacentElement('afterend', continuationSlide);
+                continuationSlides.push(continuationSlide);
+            });
+            
+            // If we created continuation slides, update numbering
+            if (continuationSlides.length > 0) {
+                const allSlidesNow = document.querySelectorAll('.presentation-slide');
+                const totalSlides = allSlidesNow.length;
+                
+                allSlidesNow.forEach((slide, index) => {
+                    slide.setAttribute('data-slide-number', `${index + 1} / ${totalSlides}`);
+                });
+                
+                slidesSplit = true;
+                
+                // Recursively check if continuation slides also need splitting
+                setTimeout(splitOverflowingSlides, 50);
+            } else {
+                slidesSplit = true;
+            }
+        }
+        
+        // Run split check when presentation mode is toggled
+        const originalSetPresentationMode = setPresentationMode;
+        setPresentationMode = function(enabled) {
+            originalSetPresentationMode(enabled);
+            if (enabled && !slidesSplit) {
+                // Delay to allow rendering
+                requestAnimationFrame(() => {
+                    setTimeout(splitOverflowingSlides, 50);
+                });
+            }
+        };
+
+        // Reading Progress (vertical chapter navigation for reading mode)
+        const readingProgressItems = document.querySelectorAll('.reading-progress-item');
+        const readingProgressFill = document.getElementById('readingProgressFill');
+        
+        function updateReadingProgress() {
+            // Don't update in presentation mode
+            if (html.getAttribute('data-presentation') === 'true') return;
+            
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const currentLang = html.getAttribute('data-lang') || 'sv';
+            
+            // Find H2 sections only from the active language
+            const sections = document.querySelectorAll(`article .lang-${currentLang} h2[id]`);
+            let currentIndex = -1;
+            
+            sections.forEach((section, index) => {
+                const sectionTop = section.offsetTop - 150; // Offset for header
+                if (scrollTop >= sectionTop) {
+                    currentIndex = index;
+                }
+            });
+            
+            // Update reading progress items
+            readingProgressItems.forEach((item, index) => {
+                item.classList.remove('active', 'passed');
+                if (index === currentIndex) {
+                    item.classList.add('active');
+                } else if (index < currentIndex) {
+                    item.classList.add('passed');
+                }
+            });
+            
+            // Update progress fill
+            if (readingProgressFill && sections.length > 0) {
+                const progress = ((currentIndex + 1) / sections.length) * 100;
+                readingProgressFill.style.height = Math.max(0, progress) + '%';
+            }
+        }
+        
+        // Listen for scroll events
+        window.addEventListener('scroll', updateReadingProgress);
+        
+        // Initial update
+        updateReadingProgress();
+        
+
+    </script>
+</body>
+</html>

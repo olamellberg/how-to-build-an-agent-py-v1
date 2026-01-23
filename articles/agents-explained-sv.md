@@ -1,4 +1,5 @@
 # Agents.md förklarat: en praktisk guide till tillförlitlig agentisk AI
+**Version 1.0** | 2026-01-22
 
 ## Ingress: vad Agents.md är, varför det finns och varför det är viktigt
 

@@ -1,4 +1,5 @@
 # agents.md / CLAUDE.md Template
+**Version 1.0** | 2026-01-22
 ### A copy-paste template consistent with handbook guidance
 
 This page contains a minimal, repo-specific template for `agents.md` or `CLAUDE.md`. The template is designed to be consistent with guidance in [Agents.md Explained](agents-md-explained.html) and [Claude Code 101](claude-code-101.html).
@@ -174,4 +175,4 @@ This page contains a minimal, repo-specific template for `agents.md` or `CLAUDE.
 
 - [Agents.md Explained](agents-md-explained.html) — deep dive into agents.md
 - [Claude Code 101](claude-code-101.html) — specific to CLAUDE.md
-- [Repository Harness Setup](repo-harness-setup.html) — how to set up validation
+- [Vibe Engineering 101](vibe-engineering-101.html) — how to set up validation and harness

@@ -1,4 +1,5 @@
 # Gemensam terminologi
+**Version 1.0** | 2026-01-22
 ### Vanliga definitioner för agentisk AI-utveckling
 
 Denna sida definierar termer som används konsekvent i alla artiklar i B3 Commit AI Handbook. Använd denna som referens när du läser andra artiklar.

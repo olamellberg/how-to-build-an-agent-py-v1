@@ -1,4 +1,5 @@
-# Vibe Engineering 101  
+# Vibe Engineering 101
+**Version 1.0** | 2026-01-22
 *En praktisk guide för systemutvecklare som vill komma igång med agentbaserad utveckling*
 
 Agentbaserad utveckling handlar mindre om "AI som skriver kod" och mer om att designa en pålitlig loop: en modell föreslår ändringar, verktyg validerar dem, och återkoppling driver nästa iteration. Den här artikeln är en fältguide för att bygga den loopen så att den producerar användbar mjukvara — konsekvent.
@@ -108,32 +109,163 @@ Fixen är sällan "titta hårdare." Det är vanligtvis:
 
 ## 6) Projektupplägg är allt
 
-Den bästa tidsinvesteringen du kan göra är ett repo som en agent kan arbeta i utan förvirring.
+Den bästa tidsinvesteringen du kan göra är ett repo som en agent kan arbeta i utan förvirring. En **repository harness** är den infrastruktur som gör att en agent kan arbeta pålitligt.
 
 ### Hård krav: ett kommando för att validera
 Ditt projekt bör bygga, testa och lint med **ett enda kommando**.
 
-Exempel:
-- `make check`
-- `./scripts/ci.sh`
-- `npm test` (om det verkligen kör hela suiten)
-- `cargo test` + `cargo fmt --check` + `cargo clippy` via en wrapper
+**Node.js/TypeScript:**
+```bash
+npm run check  # Kör: build + test + lint
+```
+
+**Python:**
+```bash
+make check  # Kör: pytest + black --check + mypy
+```
+
+**C#/.NET:**
+```bash
+dotnet build && dotnet test && dotnet format --verify
+```
+
+**Rust:**
+```bash
+cargo test && cargo fmt --check && cargo clippy
+```
 
 Om validering kräver stamkunskap ("exportera denna variabel", "kör detta i den mappen", "installera detta systemberoende manuellt"), kommer din loop att slösa kontext och tid på att återupptäcka det — om och om igen.
 
-### Minimera och forma output
-Allt som skrivs ut av dina verktyg blir del av agentens arbetsminne. Behandla loggar som ett gränssnitt till en automatiserad medarbetare:
+### Setup-checklista
 
-- Föredra **koncisa sammanfattningar** vid framgång  
-  - "✅ 1000 tester passerade" slår 1000 rader av "ok"
-- Föredra **fokuserade misslyckanden**  
-  - visa det misslyckade påståendet, relevant diff, minimal stack trace
-- Undvik att dumpa tusentals rader av kompilatorutskrift om du kan kollapsa den
+**Ett-kommando-validering:**
+- [ ] Skapa ett kommando (t.ex. `make check`, `npm run check`, `./scripts/ci.sh`) som kör bygge, tester, linting och formatering
+- [ ] Kommandot fungerar i CI och lokalt på samma sätt
+- [ ] Kommandot ger tydlig exit-kod (0 = success, != 0 = failure)
 
-Om du kan, lägg till en loggfilter som:
-- extraherar det *första* meningsfulla felet
-- inkluderar relevant fil/rad
-- outputar endast vad som behövs för nästa steg
+**Deterministiska tester:**
+- [ ] Tester ger samma resultat varje gång (inga race conditions, inga timestamps i assertions)
+- [ ] Tester kan köras parallellt utan konflikter
+- [ ] Tester är isolerade (inga delade tillstånd mellan tester)
+
+**Tydlig feedback:**
+- [ ] Vid framgång: minimala loggar (t.ex. "✅ 1000 tester passerade" istället för 1000 rader av "ok")
+- [ ] Vid misslyckande: åtgärdbara loggar som visar det misslyckade påståendet, relevant diff, minimal stack trace, relevant fil/rad
+
+**Stabila skript:**
+- [ ] Inga "tribal knowledge"-krav
+- [ ] Skript fungerar i Docker/CI på samma sätt som lokalt
+- [ ] Sökvägar är relativa eller via miljövariabler
+
+### Exempel: package.json (Node.js)
+
+```json
+{
+  "scripts": {
+    "check": "npm run build && npm run test && npm run lint",
+    "build": "tsc",
+    "test": "jest",
+    "lint": "eslint . --ext .ts,.tsx",
+    "format": "prettier --check ."
+  }
+}
+```
+
+### Exempel: Makefile (Python)
+
+```makefile
+.PHONY: check build test lint format
+
+check: build test lint format
+	@echo "✅ All checks passed"
+
+build:
+	python -m build
+
+test:
+	pytest
+
+lint:
+	ruff check .
+
+format:
+	black --check .
+```
+
+### Exempel: scripts/ci.sh (Bash)
+
+```bash
+#!/bin/bash
+set -euo pipefail
+
+echo "Building..."
+npm run build
+
+echo "Running tests..."
+npm test
+
+echo "Linting..."
+npm run lint
+
+echo "✅ All checks passed"
+```
+
+### Loggfiltrering för agenter
+
+Agenter läser all output som feedback. Behandla loggar som ett gränssnitt till en automatiserad medarbetare:
+
+**Bra: Koncis vid framgång**
+```
+✅ 1000 tests passed in 2.3s
+```
+
+**Dåligt: Brusig vid framgång**
+```
+test 1: ok
+test 2: ok
+test 3: ok
+... (997 more lines)
+```
+
+**Bra: Åtgärdbart vid misslyckande**
+```
+FAIL: src/auth.test.ts:42
+Expected: "user@example.com"
+Received: "admin@example.com"
+```
+
+**Dåligt: Rörigt vid misslyckande**
+```
+[1000 lines of stack trace and compiler output]
+```
+
+### Determinism-exempel
+
+**Problem: Icke-deterministiska tester**
+
+```javascript
+// Dåligt: använder nuvarande tid
+expect(result).toBe(new Date().toISOString());
+
+// Bra: deterministisk
+expect(result).toBe("2026-01-14T12:00:00Z");
+```
+
+**Problem: Race conditions**
+
+```python
+# Dåligt: kan misslyckas ibland
+def test_concurrent():
+    results = []
+    threads = [Thread(target=worker) for _ in range(10)]
+    # ...
+
+# Bra: isolerat eller explicit synkronisering
+def test_concurrent():
+    with ThreadPoolExecutor() as executor:
+        results = list(executor.map(worker, range(10)))
+    # ...
+```
 
 Detta är "kontextkonstruktion" i praktiken: designa I/O så att modellen ser signal, inte brus.
 

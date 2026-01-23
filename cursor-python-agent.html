@@ -163,7 +163,7 @@
                 <a href="#slutsats" class="nav-pill">Slutsats</a>
             </nav>
 
-            <div class="lang-sv"><h1 id="hur-man-bygger-en-agent-cursor-python">Hur man bygger en agent (Cursor + Python)</h1>
+            <div class="lang-sv"><p><strong>Version 1.0</strong> | 2026-01-22</p>
 <h3 id="eller-kejsaren-har-inga-klader-och-det-har-inte-heller-den-har-tutorialen">eller: Kejsaren har inga kläder (och det har inte heller den här tutorialen)</h3>
 <p>Det är inte så svårt att bygga en fullt fungerande kodredigeringsagent.</p>
 <p>Det verkar som om det skulle vara det. När man ser en agent redigera filer, köra kommandon, ta sig ur fel, prova olika strategier — det verkar som att det måste finnas en hemlighet bakom.</p>
@@ -274,7 +274,7 @@ Assistant: Hej! Det är spännande - att bygga en agent är ett bra sätt att f�
 You:
 </code></pre>
 <p>Lägg märke till hur vi höll samma konversation igång över flera varv. <code>conversation</code> växer längre med varje varv och vi skickar hela konversationen varje gång. Servern — OpenAIs server — är tillståndslös. Den ser bara vad som finns i <code>conversation</code>-listan. Det är upp till oss att upprätthålla det.</p>
-<p>Okej, låt oss gå vidare, eftersom detta inte är en agent ännu. Vad är en agent? Här är <a href="https://youtu.be/J1-W9O3n7j8?t=72">min definition</a>: en LLM med <em>åtkomst till verktyg</em>, vilket ger den möjligheten att modifiera något utanför kontextfönstret.</p>
+<p>Okej, låt oss gå vidare, eftersom detta inte är en agent ännu. Vad är en agent? En agent är en loop där en LLM planerar, anropar verktyg, läser resultat och upprepar tills uppgiften är klar. Den viktigaste insikten (<a href="https://youtu.be/J1-W9O3n7j8?t=72">diskuteras här</a>) är att verktyg ger LLM:en möjligheten att modifiera något utanför kontextfönstret — det är det som gör det till en <em>agent</em> snarare än bara en chatbot.</p>
 <h2 id="ett-forsta-verktyg">Ett första verktyg</h2>
 <p>En LLM med <em>åtkomst till verktyg</em>? Vad är ett verktyg? Grundidén är denna: du skickar en prompt till modellen som säger att den ska svara på ett visst sätt om den vill använda "ett verktyg". Sedan, som mottagare av det meddelandet, "använder du verktyget" genom att köra det och svara med resultatet. Det är allt. Allt annat vi kommer att se är bara abstraktion ovanpå det.</p>
 <p>För att sammanfatta, allt som finns till verktyg och verktygsanvändning är två saker:</p>
@@ -392,7 +392,7 @@ READ_FILE_TOOL = ToolDefinition(
 - Tillräckligt med tokens</p>
 <p>Resten är bara detaljer och boilerplate. Men dessa detaljer — hur du strukturerar verktygen, hur du hanterar fel, hur du designar feedback-loopen — det är där skillnaden mellan en demo och något användbart ligger.</p>
 <p><strong>Och det roligaste?</strong> Du kan använda Cursor för att bygga allt detta. Det är rekursivt. Det är meta. Det är agenter hela vägen ner.</p></div>
-            <div class="lang-en"><h1 id="how-to-build-an-agent-cursor-python-edition">How to Build an Agent (Cursor + Python Edition)</h1>
+            <div class="lang-en"><p><strong>Version 1.0</strong> | 2026-01-22</p>
 <h3 id="or-the-emperor-has-no-clothes-and-neither-does-this-tutorial">or: The Emperor Has No Clothes (And Neither Does This Tutorial)</h3>
 <p>It's not that hard to build a fully functioning, code-editing agent.</p>
 <p>It seems like it would be. When you look at an agent editing files, running commands, wriggling itself out of errors, retrying different strategies — it seems like there has to be a secret behind it.</p>
@@ -503,7 +503,7 @@ Assistant: Hi! That's exciting - building an agent is a great way to understand 
 You:
 </code></pre>
 <p>Notice how we kept the same conversation going over multiple turns. The <code>conversation</code> grows longer with every turn and we send the whole conversation every time. The server — OpenAI's server — is stateless. It only sees what's in the <code>conversation</code> list. It's up to us to maintain that.</p>
-<p>Okay, let's move on, because this is not an agent yet. What's an agent? Here's <a href="https://youtu.be/J1-W9O3n7j8?t=72">my definition</a>: an LLM with <em>access to tools</em>, giving it the ability to modify something outside the context window.</p>
+<p>Okay, let's move on, because this is not an agent yet. What's an agent? An agent is a loop where an LLM plans, calls tools, reads results, and repeats until the task is complete. The key insight (<a href="https://youtu.be/J1-W9O3n7j8?t=72">discussed here</a>) is that tools give the LLM the ability to modify something outside the context window — that's what makes it an <em>agent</em> rather than just a chatbot.</p>
 <h2 id="a-first-tool">A First Tool</h2>
 <p>An LLM with <em>access to tools</em>? What's a tool? The basic idea is this: you send a prompt to the model that says it should reply in a certain way if it wants to use "a tool". Then you, as the receiver of that message, "use the tool" by executing it and replying with the result. That's it. Everything else we'll see is just abstraction on top of it.</p>
 <p>To summarize, all there is to tools and tool use are two things:</p>
@@ -757,7 +757,7 @@ Assistant: Hej! Det är spännande - att bygga en agent är ett bra sätt att f�
 You:
 </code></pre>
 <p>Lägg märke till hur vi höll samma konversation igång över flera varv. <code>conversation</code> växer längre med varje varv och vi skickar hela konversationen varje gång. Servern — OpenAIs server — är tillståndslös. Den ser bara vad som finns i <code>conversation</code>-listan. Det är upp till oss att upprätthålla det.</p>
-<p>Okej, låt oss gå vidare, eftersom detta inte är en agent ännu. Vad är en agent? Här är <a href="https://youtu.be/J1-W9O3n7j8?t=72">min definition</a>: en LLM med <em>åtkomst till verktyg</em>, vilket ger den möjligheten att modifiera något utanför kontextfönstret.</p></div>
+<p>Okej, låt oss gå vidare, eftersom detta inte är en agent ännu. Vad är en agent? En agent är en loop där en LLM planerar, anropar verktyg, läser resultat och upprepar tills uppgiften är klar. Den viktigaste insikten (<a href="https://youtu.be/J1-W9O3n7j8?t=72">diskuteras här</a>) är att verktyg ger LLM:en möjligheten att modifiera något utanför kontextfönstret — det är det som gör det till en <em>agent</em> snarare än bara en chatbot.</p></div>
             <div class="lang-en"><h2 id="pencils-out">Pencils out!</h2>
 <p>Let's start by opening Cursor and creating a new project. Open Cursor, then go to <strong>File → Open Folder</strong> and create a new folder called <code>code-editing-agent</code>.</p>
 <p>Now, open Cursor's integrated terminal with <code>Ctrl+</code> (that's the backtick key). Let's set up our Python environment:</p>
@@ -851,7 +851,7 @@ Assistant: Hi! That's exciting - building an agent is a great way to understand 
 You:
 </code></pre>
 <p>Notice how we kept the same conversation going over multiple turns. The <code>conversation</code> grows longer with every turn and we send the whole conversation every time. The server — OpenAI's server — is stateless. It only sees what's in the <code>conversation</code> list. It's up to us to maintain that.</p>
-<p>Okay, let's move on, because this is not an agent yet. What's an agent? Here's <a href="https://youtu.be/J1-W9O3n7j8?t=72">my definition</a>: an LLM with <em>access to tools</em>, giving it the ability to modify something outside the context window.</p></div>
+<p>Okay, let's move on, because this is not an agent yet. What's an agent? An agent is a loop where an LLM plans, calls tools, reads results, and repeats until the task is complete. The key insight (<a href="https://youtu.be/J1-W9O3n7j8?t=72">discussed here</a>) is that tools give the LLM the ability to modify something outside the context window — that's what makes it an <em>agent</em> rather than just a chatbot.</p></div>
         </div>
     </section>
 

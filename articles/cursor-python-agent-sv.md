@@ -1,4 +1,5 @@
 # Hur man bygger en agent (Cursor + Python)
+**Version 1.0** | 2026-01-22
 ### eller: Kejsaren har inga kläder (och det har inte heller den här tutorialen)
 
 Det är inte så svårt att bygga en fullt fungerande kodredigeringsagent.
@@ -144,7 +145,7 @@ You:
 
 Lägg märke till hur vi höll samma konversation igång över flera varv. `conversation` växer längre med varje varv och vi skickar hela konversationen varje gång. Servern — OpenAIs server — är tillståndslös. Den ser bara vad som finns i `conversation`-listan. Det är upp till oss att upprätthålla det.
 
-Okej, låt oss gå vidare, eftersom detta inte är en agent ännu. Vad är en agent? Här är [min definition](https://youtu.be/J1-W9O3n7j8?t=72): en LLM med *åtkomst till verktyg*, vilket ger den möjligheten att modifiera något utanför kontextfönstret.
+Okej, låt oss gå vidare, eftersom detta inte är en agent ännu. Vad är en agent? En agent är en loop där en LLM planerar, anropar verktyg, läser resultat och upprepar tills uppgiften är klar. Den viktigaste insikten ([diskuteras här](https://youtu.be/J1-W9O3n7j8?t=72)) är att verktyg ger LLM:en möjligheten att modifiera något utanför kontextfönstret — det är det som gör det till en *agent* snarare än bara en chatbot.
 
 ## Ett första verktyg
 

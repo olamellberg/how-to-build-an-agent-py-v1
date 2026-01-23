@@ -1,6 +1,9 @@
+# Claude Code 101
+**Version 1.0** | 2026-01-22
+
 Official Claude Code docs: https://code.claude.com/docs/
 
-## Claude Code 101: a practical playbook for shipping real changes safely
+## A practical playbook for shipping real changes safely
 
 This guide is a **Claude Code–specific** "101" for system developers. The goal is not theory—it's a set of repeatable workflows that produce **small diffs, fast feedback, and fewer regressions**.
 
@@ -157,40 +160,26 @@ Some teams use a short, high-signal "quality bar" in their project guidance to b
 
 ---
 
-## Context windows degrade earlier than you think
+## Context management: advanced techniques
 
-Even with large context windows, quality tends to drop before you "fill the bar." Symptoms include:
-- repeating the same mistake
-- losing track of constraints
-- hallucinating structure you never requested
+For the basics (50% rule, when to start new sessions), see [How to Master Claude Code](claude-code-mastery.html). This section covers advanced techniques.
 
-**Rationale:** more context increases competition for attention; important details lose salience.
+### One conversation per task
+Don't use the same session to build auth and refactor database layers. Unrelated context bleeds and creates wrong assumptions.
 
-### Practical context management techniques
+### Use external memory files
+Have Claude write to `SCRATCHPAD.md`, `plan.md`, or `devdocs/progress.md`. Files persist across sessions and anchor the "truth" in the repo.
 
-**1) One conversation per task**  
-Don't use the same session to build auth and refactor database layers.  
-**Rationale:** unrelated context bleeds and creates wrong assumptions.
-
-**2) Use external memory files**  
-Have Claude write to `SCRATCHPAD.md`, `plan.md`, or `devdocs/progress.md`.  
-**Rationale:** files persist across sessions and anchor the "truth" in the repo.
-
-**3) Copy–paste reset workflow (fast and effective)**  
+### Copy–paste reset workflow
 When things get bloated:
 - run `/compact` to get a summary
 - run `/clear` to reset context
 - paste back only the critical plan + constraints + current errors
 
-**Rationale:** a small, clean context often outperforms a large, degraded one.
+A small, clean context often outperforms a large, degraded one.
 
-**4) Know when to clear**  
-If the session is confused, reset early. `CLAUDE.md` still provides baseline guidance.  
-**Rationale:** debugging a confused context is slower than restarting with a clean brief.
-
-### Adopt the right mental model
-Claude is effectively stateless unless you externalize state.  
-**Rationale:** expecting memory that isn't there creates inconsistent results.
+### Mental model
+Claude is effectively stateless unless you externalize state. Expecting memory that isn't there creates inconsistent results.
 
 ---
 
@@ -220,28 +209,6 @@ Examples:
 - "Prototype to throw away → keep it minimal."
 
 **Rationale:** "why" drives correct tradeoffs.
-
----
-
-## Bad input → bad output (without the hostility)
-
-When output is consistently wrong, the fix is usually:
-- insufficient constraints
-- missing acceptance criteria
-- missing repo context
-- tasks too large (not decomposed)
-
-**Rationale:** the model can't infer constraints you didn't provide.
-
-### Fast diagnostic checklist
-If Claude misses the mark, check whether the prompt contained:
-- explicit "done" criteria
-- explicit non-goals
-- file paths/entrypoints
-- validation commands
-- a staged plan request
-
-**Rationale:** missing any of these increases ambiguity and surprises.
 
 ---
 

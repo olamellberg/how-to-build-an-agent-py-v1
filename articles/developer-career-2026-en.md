@@ -1,4 +1,5 @@
 # How to NOT Kill Your Software Development Career in 2026
+**Version 1.0** | 2026-01-22
 ### Survive and thrive as AI reshapes the developer role
 
 If you've opened your terminal lately and felt a weird pit in your stomach, you aren't alone.

@@ -1,4 +1,5 @@
 # Agents.md Explained: A Practical Guide to Getting Real Value from Agentic AI
+**Version 1.0** | 2026-01-22
 
 ## Ingress: What Agents.md Is, Why It Exists, and Why You Should Care
 

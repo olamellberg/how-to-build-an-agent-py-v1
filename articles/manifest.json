@@ -79,6 +79,32 @@
       }
     },
     {
+      "slug": "claude-code-mastery",
+      "html": "claude-code-mastery.html",
+      "category": "101-guides",
+      "date": "2026-01",
+      "title": {
+        "sv": "Bemästra Claude Code",
+        "en": "How to Master Claude Code"
+      },
+      "subtitle": {
+        "sv": "En praktisk guide för utvecklare",
+        "en": "A practical guide for developers"
+      },
+      "meta": {
+        "sv": "Praktisk guide",
+        "en": "Practical Guide"
+      },
+      "sources": {
+        "sv": "articles/claude-code-mastery-sv.md",
+        "en": "articles/claude-code-mastery-en.md"
+      },
+      "description": {
+        "sv": "Lär dig principerna och metoderna som hjälper dig bygga riktig mjukvara med Claude Code. Inputs, planering, kontexthantering och smak.",
+        "en": "Learn the principles and practices that help you build real software with Claude Code. Inputs, planning, context management, and taste."
+      }
+    },
+    {
       "slug": "vibe-engineering-101",
       "html": "vibe-engineering-101.html",
       "category": "workflows-playbooks",
@@ -206,32 +232,6 @@
       "description": {
         "sv": "Gemensam terminologikontrakt som definierar termer som används konsekvent i alla artiklar i denna handbok.",
         "en": "Shared terminology contract defining terms used consistently across all articles in this handbook."
-      }
-    },
-    {
-      "slug": "repo-harness-setup",
-      "html": "repo-harness-setup.html",
-      "category": "workflows-playbooks",
-      "date": "2026-01",
-      "title": {
-        "sv": "Repository Harness Setup",
-        "en": "Repository Harness Setup"
-      },
-      "subtitle": {
-        "sv": "Checklista för ett-kommando CI, loggsignal och determinism",
-        "en": "Checklist for one-command CI, log signal, and determinism"
-      },
-      "meta": {
-        "sv": "Praktisk guide",
-        "en": "Practical Guide"
-      },
-      "sources": {
-        "sv": "articles/repo-harness-setup-sv.md",
-        "en": "articles/repo-harness-setup-en.md"
-      },
-      "description": {
-        "sv": "En praktisk checklista för att sätta upp en repository harness som gör agentisk utveckling pålitlig. Ett-kommando-validering, loggsignal och determinism.",
-        "en": "A practical checklist for setting up a repository harness that makes agentic development reliable. One-command validation, log signal, and determinism."
       }
     },
     {

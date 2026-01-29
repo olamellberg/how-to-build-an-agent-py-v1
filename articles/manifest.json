@@ -209,29 +209,29 @@
       }
     },
     {
-      "slug": "shared-terminology",
-      "html": "shared-terminology.html",
+      "slug": "spec-driven-development",
+      "html": "spec-driven-development.html",
       "category": "fundamentals",
       "date": "2026-01",
       "title": {
-        "sv": "Gemensam terminologi",
-        "en": "Shared Terminology"
+        "sv": "Spec-driven utveckling: Praktisk guide",
+        "en": "Spec-Driven Development: Practical Guide"
       },
       "subtitle": {
-        "sv": "Vanliga definitioner för agentisk AI-utveckling",
-        "en": "Common definitions for agentic AI development"
+        "sv": "En praktisk guide till specdriven utveckling",
+        "en": "A practical guide to spec-driven development"
       },
       "meta": {
-        "sv": "Referens",
-        "en": "Reference"
+        "sv": "Praktisk guide",
+        "en": "Practical Guide"
       },
       "sources": {
-        "sv": "articles/shared-terminology-sv.md",
-        "en": "articles/shared-terminology-en.md"
+        "sv": "articles/spec-driven-development-sv.md",
+        "en": "articles/spec-driven-development-en.md"
       },
       "description": {
-        "sv": "Gemensam terminologikontrakt som definierar termer som används konsekvent i alla artiklar i denna handbok.",
-        "en": "Shared terminology contract defining terms used consistently across all articles in this handbook."
+        "sv": "En praktisk guide till specdriven utveckling. Lär dig skapa tydliga krav, testbara mål och säkra agentiska flöden.",
+        "en": "A practical guide to spec-driven development. Learn to write clear requirements, testable goals, and safe agentic workflows."
       }
     },
     {

@@ -1,12 +1,25 @@
 # AI Fundamentals 2026
-**Version 1.0** | 2026-01-22
+**Version 1.1** | 2026-01-29
 ### A practical introduction to generative AI for developers
 
-## 1) What you're building: model vs application
+## 1) How to use this foundation
+
+This article gives you the shared mental model and vocabulary that the rest of the handbook builds on. Read it once end-to-end, then use it as a reference when you hit unfamiliar terms.
+
+If you remember only three things:
+- the model is an engine, the application is the product
+- context is limited and must be managed deliberately
+- tools + validation are what make AI reliable
+
+For spec-driven work, see [Spec-Driven Development: Practical Guide](spec-driven-development.html).
+
+---
+
+## 2) What you're building: model vs application
 
 When people say "we're going to build an AI solution", two things are often confused:
 
-### 1.1 The Model (the engine)
+### 2.1 The Model (the engine)
 A **model** is an engine that takes input and produces output (usually text, sometimes also images/audio). It cannot "see" your database, your repo, or your systems unless you connect them.
 
 Examples of well-known models (Jan 2026):
@@ -17,7 +30,7 @@ Examples of well-known models (Jan 2026):
 
 > **Aha 1:** The model is just the "engine". Your product is the application around it.
 
-### 1.2 The Application (everything around it)
+### 2.2 The Application (everything around it)
 Your **application** is the real product. It consists of:
 - prompt templates and rules
 - connection to documents and data
@@ -30,11 +43,11 @@ Your **application** is the real product. It consists of:
 
 ---
 
-## 2) The central idea: the model continues text step by step
+## 3) The central idea: the model continues text step by step
 
 Generative AI works (in practice) as an engine that continues a sequence.
 
-### 2.1 Tokens (the model's "building blocks")
+### 3.1 Tokens (the model's "building blocks")
 The model doesn't read or write "words", but **tokens** — small pieces of text.
 
 Why tokens matter:
@@ -42,14 +55,14 @@ Why tokens matter:
 - **response time** (more tokens take longer)
 - **max length** of input + output
 
-### 2.2 Context (what the model sees)
+### 3.2 Context (what the model sees)
 **Context** is everything you send in a request:
 - instructions ("you are a code reviewer…")
 - user question
 - excerpts from documents or code
 - results from tools
 
-### 2.3 Context window (memory per request)
+### 3.3 Context window (memory per request)
 The model has a maximum for how much context it can hold in its "head" in a single request: the **context window**.
 
 Consequence:
@@ -62,9 +75,9 @@ Consequence:
 
 ---
 
-## 3) Basic concepts and abbreviations
+## 4) Basic concepts and abbreviations
 
-### 3.1 LLM and LMM
+### 4.1 LLM and LMM
 - **LLM** = *Large Language Model* = "large language model" (good at text/code).
 - **LMM** = *Large Multimodal Model* = "large multimodal model" (can handle multiple types of input, e.g. text + image).
 
@@ -75,17 +88,17 @@ Rule of thumb:
 *Example:* GPT-5.1 is stated to support **text and image as input** (typical LMM behavior in practice even though people sometimes still say "LLM" loosely).
 *Example:* The Gemini 3 series is positioned as multimodal and agent-focused.
 
-### 3.2 Inference and training
+### 4.2 Inference and training
 - **Training** = the expensive process where the model learns (creates weights).
 - **Inference** = when you use a finished model (via API or self-hosted).
 
 ---
 
-## 4) Prompting as system design: write a contract
+## 5) Prompting as system design: write a contract
 
 A prompt is not "a question", but a **spec** for how the system should behave.
 
-### 4.1 A good prompt has four parts
+### 5.1 A good prompt has four parts
 1) **Role**: "You are a senior backend developer…"
 2) **Goal**: "Suggest a fix…"
 3) **Rules**: "Only use sources… don't guess…"
@@ -97,13 +110,13 @@ A prompt is not "a question", but a **spec** for how the system should behave.
 > Rules: use only SOURCES and TOOL-RESULTS. If you lack information: write "insufficient data".  
 > Output: return JSON with fields: `root_cause`, `suggested_fix`, `verification_steps`, `sources`.
 
-### 4.2 Why format requirements are a superpower
+### 5.2 Why format requirements are a superpower
 When connecting the model to systems, you want "machine-readable and safe" rather than "free and pretty".  
 This applies whether you use GPT-5.1, Claude Opus 4.5 or a self-hosted Llama 3: *format + validation makes the difference between demo and production.*
 
 ---
 
-## 5) "Creativity" and stability: temperature and sampling
+## 6) "Creativity" and stability: temperature and sampling
 
 When running a model, there are often settings that affect how "bold" it is.
 
@@ -120,16 +133,16 @@ Rules of thumb:
 
 ---
 
-## 6) Knowledge retrieval: RAG and vector database
+## 7) Knowledge retrieval: RAG and vector database
 
-### 6.1 The problem: the model doesn't have your internal knowledge
+### 7.1 The problem: the model doesn't have your internal knowledge
 Even very strong models need your internal sources to be accurate about your systems:
 - runbooks
 - ADRs
 - incidents
 - architecture and code conventions
 
-### 6.2 The solution: RAG
+### 7.2 The solution: RAG
 **RAG** = *Retrieval-Augmented Generation* = "retrieve first, then write".
 
 Flow:
@@ -137,7 +150,7 @@ Flow:
 2) You insert them into context.
 3) The model writes the answer with the excerpts as support.
 
-### 6.3 Embeddings and vector database — why it's needed
+### 7.3 Embeddings and vector database — why it's needed
 To find the "right" text pieces, **embeddings** are often used:
 - **Embedding** = a list of numbers representing the meaning in a text piece.
 - Similar meaning → embeddings are close to each other.
@@ -146,14 +159,14 @@ A **vector database** (*Vector Database*, sometimes "vector store") stores embed
 
 *Related example:* If you run **Llama 3** yourself (open-weights), you still need RAG for the model to become "enterprise-smart" on your documents. The weights are general; RAG is the connection to your reality.
 
-### 6.4 Chunking
+### 7.4 Chunking
 You split documents into pieces ("chunks") before creating embeddings.
 
 Simple rules of thumb:
 - chunk should be "just right": not a whole book, not half a sentence
 - overlap can help so that lists and reasoning don't get cut off
 
-### 6.5 Common RAG mistakes (and how to avoid them)
+### 7.5 Common RAG mistakes (and how to avoid them)
 - **Wrong chunking** → misses the right part  
   *Fix:* split by heading/section, not arbitrarily
 - **Too many excerpts** → messy answer  
@@ -170,9 +183,9 @@ RAG retrieves 2 excerpts from the runbook → the model (e.g. GPT-5.1 or Claude 
 
 ---
 
-## 7) Tools: stop guessing, fetch facts
+## 8) Tools: stop guessing, fetch facts
 
-### 7.1 Tool calling
+### 8.1 Tool calling
 **Tool calling** means the model can invoke defined functions in your app.
 
 Example tools:
@@ -192,22 +205,22 @@ Why tools are important:
 
 ---
 
-## 8) Agent: multiple steps, but with guardrails
+## 9) Agent: multiple steps, but with guardrails
 
-### 8.1 What is an agent?
+### 9.1 What is an agent?
 An **agent** is a loop where the model:
 1) plans briefly
 2) calls tools
 3) reads results
 4) repeats until done
 
-### 8.2 How to make an agent safe (minimum rules)
+### 9.2 How to make an agent safe (minimum rules)
 The first version should be strict:
 - **Max steps**: e.g. 3–5
 - **Allowlist**: only certain tools
 - **Verification before action**: no "actions" without proof
 
-### 8.3 Agent example that devs like
+### 9.3 Agent example that devs like
 Task: "The build is failing — find the cause and suggest a fix."
 
 Agent loop:
@@ -224,9 +237,9 @@ Agent loop:
 
 ---
 
-## 9) Security: validation and prompt injection
+## 10) Security: validation and prompt injection
 
-### 9.1 Two types of validation
+### 10.1 Two types of validation
 1) **Format validation**: is the JSON readable, are fields missing?
 2) **Rule validation**: does the response follow your rules?
 
@@ -235,7 +248,7 @@ Rule validation can be simple checks:
 - `verification_steps` must exist if `suggested_fix` affects code
 - actions require "proof" from tool results
 
-### 9.2 Prompt injection — "data that pretends to be instruction"
+### 10.2 Prompt injection — "data that pretends to be instruction"
 **Prompt injection** is when text in a query or document tries to make the model break rules.
 
 Example: a document in RAG says:
@@ -247,7 +260,7 @@ Protections that give the most effect early:
 - Tool allowlist + limited arguments
 - "Actions" require verification and sometimes human approval
 
-### 9.3 Data hygiene (enterprise basics)
+### 10.3 Data hygiene (enterprise basics)
 The first session should always mention:
 - **PII** (*Personally Identifiable Information*) = personal data
 - don't send unnecessary personal data in the prompt
@@ -256,14 +269,14 @@ The first session should always mention:
 
 ---
 
-## 10) Measure: evals (tests for AI)
+## 11) Measure: evals (tests for AI)
 
-### 10.1 Why you must measure
+### 11.1 Why you must measure
 Small changes in prompt, chunking, model or settings can cause big behavior differences — whether you run GPT-5.1, Claude Opus 4.5, Gemini 3 or Llama 3.
 
 **Evals** are a recurring test suite, similar to a test suite.
 
-### 10.2 Minimum eval setup that works
+### 11.2 Minimum eval setup that works
 Create a folder with cases:
 - 20 common questions (real ones)
 - 5 cases with weak evidence (should say "insufficient data")
@@ -280,14 +293,14 @@ Measure:
 
 ---
 
-## 11) Choosing: model, open/closed, operations
+## 12) Choosing: model, open/closed, operations
 
-### 11.1 Choosing the right model type
+### 12.1 Choosing the right model type
 - text/code → **LLM**
 - text + image/diagram → **LMM**
 - large internal knowledge → **RAG** needed regardless
 
-### 11.2 Open-weights vs closed models
+### 12.2 Open-weights vs closed models
 - **Closed model**: you use a provider via API (e.g. GPT-5.1, Claude Opus 4.5, Gemini 3).
 - **Open-weights**: you can run the weights yourself (e.g. Llama 3).
 
@@ -295,7 +308,7 @@ A simple decision signal:
 - If data/region/latency is a hard requirement → open-weights may be relevant
 - If you need to deliver quickly and iterate → closed is often easiest
 
-### 11.3 Operations — minimum level to require
+### 12.3 Operations — minimum level to require
 - log which sources and tools were used
 - version control prompt + settings
 - budget cap (protection against cost spikes)
@@ -303,7 +316,7 @@ A simple decision signal:
 
 ---
 
-## 12) The simple "pipeline" everyone should know
+## 13) The simple "pipeline" everyone should know
 
 **Question → retrieve data → model writes → validation → delivery**
 
@@ -320,7 +333,67 @@ More specifically:
 
 ---
 
-## 13) Glossary (all abbreviations, clearly)
+## 14) Greenfield vs brownfield projects
+
+These two contexts require different AI strategies.
+
+**Greenfield (new build):**
+- clear target outcomes matter more than compatibility
+- specs should emphasize scope, boundaries, and non-goals
+- guardrails prevent over-design and unnecessary abstractions
+
+**Brownfield (existing system):**
+- compatibility and constraints matter more than novelty
+- specs should document existing invariants and integration points
+- validation is critical (tests, golden masters, regression checks)
+
+Rule of thumb: greenfield needs a clearer vision; brownfield needs tighter constraints.
+
+---
+
+## 15) Shared language for this handbook
+
+This section defines the terms that are used consistently across the handbook. If a term appears here, this is the intended meaning.
+
+### 15.1 Agent
+An **agent** is a loop where a model plans, calls tools, reads results, and repeats until the task is complete. See section 9 for the core loop and guardrails.
+
+### 15.2 Tool calling
+**Tool calling** means the model can invoke defined functions in your application. See section 8 for why tools are the primary source of truth.
+
+### 15.3 RAG (Retrieval-Augmented Generation)
+**RAG** means retrieve first, then write. It connects a model to your internal knowledge. See section 7 for the full flow.
+
+### 15.4 Evals (evaluations)
+**Evals** are recurring tests for AI behavior. They measure correctness, format compliance, and hallucinations. See section 11.
+
+### 15.5 Prompt injection
+**Prompt injection** is when untrusted text tries to override instructions. See section 10 for protections.
+
+### 15.6 agents.md / CLAUDE.md
+**agents.md** (or `CLAUDE.md`) is a small, persistent instruction file that is loaded when an agent works in a repo. Its purpose is to encode stable constraints, commands, and conventions so you stop repeating yourself.
+
+### 15.7 Harness / Repository Harness
+A **harness** is the tooling that makes agentic work reliable: one-command validation, deterministic tests, clear logs, and stable scripts.
+
+### 15.8 Context
+**Context** is everything you send in a request to a model: instructions, user question, sources, and tool results. The **context window** is the hard limit. See section 3.
+
+### 15.9 Compounding Engineering
+**Compounding Engineering** means every repeated agent mistake becomes a rule, script, or check so the system improves over time.
+
+### 15.10 Model Sensitivity
+**Model sensitivity** means different models interpret the same instructions differently. The same guidance can yield different behavior.
+
+### 15.11 Backpressure
+**Backpressure** is when tools push back against bad changes (tests failing, lint errors, build breaks). It steers the agent toward correct behavior.
+
+### 15.12 Eventual Consistency
+**Eventual consistency** means an agentic system converges on "done" after enough iterations when the feedback loop is strong and deterministic.
+
+---
+
+## 16) Glossary (abbreviations only)
 
 - **AI** = Artificial Intelligence  
 - **LLM** = Large Language Model  
@@ -332,32 +405,3 @@ More specifically:
 - **PII** = Personally Identifiable Information  
 - **CI/CD** = Continuous Integration / Continuous Delivery  
 - **DB** = Database
-
-(Other terms without abbreviation:)  
-- **Token**: text piece the model works with  
-- **Context**: what the model sees in a request  
-- **Context window**: max context per request  
-- **Embedding**: number vector representing meaning  
-- **Vector database**: database for embeddings and similarity search  
-- **Chunking**: splitting documents into pieces  
-- **Tool calling**: the model calls functions  
-- **Agent**: multi-step tool loop  
-- **Validation**: checking format and rules  
-- **Evals**: test suite for behavior and quality  
-- **Prompt injection**: text that tries to trick the model into breaking rules  
-- **Hallucination**: response without support in sources/data
-
----
-
-## 14) Two ultra-short examples
-
-### Example A: "Q&A on runbooks"
-- RAG retrieves 3 excerpts
-- The model (e.g. Gemini 3 Flash or GPT-5.1) responds with sources
-- If nothing found: "insufficient data"
-
-### Example B: "Debugging agent"
-- Tool: fetch CI log, run tests
-- Agent max 4 steps
-- Output: JSON with cause, fix, verification  
-This matches exactly the "agents + tools" positioning that many frontier models are pushing right now (e.g. GPT-5.1, Claude Opus 4.5).

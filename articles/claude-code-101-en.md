@@ -343,3 +343,13 @@ Claude Code can be used beyond interactive sessions. In particular:
   **Rationale:** automation makes quality repeatable.
 - **When stuck, change approach:** reset, simplify, show examples, reframe.  
   **Rationale:** loop-breaking beats brute force.
+
+---
+
+## Video
+
+<a href="https://www.youtube.com/watch?v=zxMjOqM7DFs" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+
+<a href="https://www.youtube.com/watch?v=zxMjOqM7DFs" target="_blank" rel="noopener noreferrer">
+<img src="https://img.youtube.com/vi/zxMjOqM7DFs/maxresdefault.jpg" alt="Claude Code 101 video thumbnail" style="width: 100%; height: auto;">
+</a>

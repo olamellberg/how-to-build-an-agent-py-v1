@@ -275,7 +275,10 @@ def generate_article_html(article: Article, sv_content: str, en_content: str, al
                 <span class="lang-sv">{article.meta['sv']} // {article.date}</span>
                 <span class="lang-en">{article.meta['en']} // {article.date}</span>
             </p>
-            <h1>{article.title['en']}</h1>
+            <h2 class="presentation-hero-title">
+                <span class="lang-sv">{article.title['sv']}</span>
+                <span class="lang-en">{article.title['en']}</span>
+            </h2>
             <p class="subtitle">
                 <span class="lang-sv">{article.subtitle['sv']}</span>
                 <span class="lang-en">{article.subtitle['en']}</span>

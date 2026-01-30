@@ -66,7 +66,7 @@ Gemini Code Assist is available as "for individuals" and in Standard/Enterprise 
 
 ---
 
-## 4) Agentic workflows in the IDE (compressed, with references)
+## 4) Agentic workflows in the IDE
 Rather than repeating fundamentals from your earlier articles, this section provides an **IDE-oriented checklist** you can copy into a team working agreement.
 
 ### 4.1 Standard loop: "Plan → Diff → Check → Iterate"
@@ -127,11 +127,3 @@ For production-grade agentic workflows (even internally), treat the model as a p
 - **Cursor**: usage-based (model pricing + token fees + team spend controls).  
 - **Windsurf**: plan split is documented on the pricing page.  
 
----
-
-## 7) A one-week team playbook (Week 1)
-1) Introduce **one validation command** (`make check` or `./scripts/ci.sh`) and make it the agent's default tool.  
-2) Add `agents.md` with commands/structure/boundaries (keep it compact).  
-3) Standardize prompts: **Goal → Constraints/non-goals → Done → Plan first** (your "prompt as engineering communication" pattern).  
-4) Establish a reset rule: if the loop degrades → compact/clear and restart clean.  
-5) For sensitive repos: enable denylist and restrict tools per 5.1–5.2.

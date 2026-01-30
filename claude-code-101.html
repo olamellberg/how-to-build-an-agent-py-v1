@@ -69,6 +69,10 @@
             <div class="presentation-progress-dot"></div>
             <span class="presentation-progress-label">TL;DR (Claude Code 101)</span>
         </div>
+        <div class="presentation-progress-item" data-slide="13">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Video</span>
+        </div>
     </nav>
 
     <!-- Reading Progress (vertical chapter nav for reading mode) -->
@@ -159,6 +163,13 @@
                 <span class="lang-en">TL;DR (Claude Code 101)</span>
             </span>
         </a>
+        <a href="#video" class="reading-progress-item" data-section="video">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Video</span>
+                <span class="lang-en">Video</span>
+            </span>
+        </a>
     </nav>
 
     <!-- Menu Overlay -->
@@ -233,6 +244,7 @@
                 <a href="#när-claude-fastnar-bryt-loopen-medvetet" class="nav-pill">När Claude fastnar: bryt loopen medvetet</a>
                 <a href="#bygg-system-inte-engångsinteraktioner-headless-mode" class="nav-pill">Bygg system, inte engångsinteraktioner (headless mode)</a>
                 <a href="#tldr-claude-code-101" class="nav-pill">TL;DR (Claude Code 101)</a>
+                <a href="#video" class="nav-pill">Video</a>
             </nav>
 
             <div class="lang-sv"><p><strong>Version 1.0</strong> | 2026-01-22</p>
@@ -512,7 +524,13 @@ Be om en av:<br />
 <strong>Motivering:</strong> automation gör kvalitet repeterbar.</li>
 <li><strong>När fast, byt approach:</strong> nollställ, förenkla, visa exempel, omformulera.<br />
 <strong>Motivering:</strong> loop-brytning slår brute force.</li>
-</ul></div>
+</ul>
+<hr />
+<h2 id="video">Video</h2>
+<p><a href="https://www.youtube.com/watch?v=zxMjOqM7DFs" target="_blank" rel="noopener noreferrer">Titta på YouTube</a></p>
+<p><a href="https://www.youtube.com/watch?v=zxMjOqM7DFs" target="_blank" rel="noopener noreferrer"><br />
+<img src="https://img.youtube.com/vi/zxMjOqM7DFs/maxresdefault.jpg" alt="Claude Code 101 video thumbnail" style="width: 100%; height: auto;"><br />
+</a></p></div>
             <div class="lang-en"><p><strong>Version 1.0</strong> | 2026-01-22</p>
 <p>Official Claude Code docs: https://code.claude.com/docs/</p>
 <h2 id="a-practical-playbook-for-shipping-real-changes-safely">A practical playbook for shipping real changes safely</h2>
@@ -790,19 +808,28 @@ Ask for one of:<br />
 <strong>Rationale:</strong> automation makes quality repeatable.</li>
 <li><strong>When stuck, change approach:</strong> reset, simplify, show examples, reframe.<br />
 <strong>Rationale:</strong> loop-breaking beats brute force.</li>
-</ul></div>
+</ul>
+<hr />
+<h2 id="video">Video</h2>
+<p><a href="https://www.youtube.com/watch?v=zxMjOqM7DFs" target="_blank" rel="noopener noreferrer">Watch on YouTube</a></p>
+<p><a href="https://www.youtube.com/watch?v=zxMjOqM7DFs" target="_blank" rel="noopener noreferrer"><br />
+<img src="https://img.youtube.com/vi/zxMjOqM7DFs/maxresdefault.jpg" alt="Claude Code 101 video thumbnail" style="width: 100%; height: auto;"><br />
+</a></p></div>
 
         </article>
     </main>
 
     <!-- Presentation Slides -->
-    <section class="presentation-slide hero-slide" data-slide-number="1 / 13">
+    <section class="presentation-slide hero-slide" data-slide-number="1 / 14">
         <div class="presentation-slide-content">
             <p class="article-meta">
                 <span class="lang-sv">Agentisk utveckling // 2026-01</span>
                 <span class="lang-en">Agentic Development // 2026-01</span>
             </p>
-            <h1>Claude Code 101</h1>
+            <h2 class="presentation-hero-title">
+                <span class="lang-sv">Claude Code 101</span>
+                <span class="lang-en">Claude Code 101</span>
+            </h2>
             <p class="subtitle">
                 <span class="lang-sv">En praktisk handbok för att leverera riktiga ändringar säkert med Claude Code</span>
                 <span class="lang-en">A practical playbook for shipping real changes safely with Claude Code</span>
@@ -815,7 +842,7 @@ Ask for one of:<br />
         </div>
     </section>
 
-    <section class="presentation-slide" data-slide-number="2 / 13">
+    <section class="presentation-slide" data-slide-number="2 / 14">
         <div class="presentation-slide-content">
             <div class="lang-sv"><h2 id="en-praktisk-handbok-for-att-leverera-riktiga-andringar-sakert">En praktisk handbok för att leverera riktiga ändringar säkert</h2>
 <p>Den här guiden är en <strong>Claude Code-specifik</strong> "101" för systemutvecklare. Målet är inte teori — det är en uppsättning repeterbara arbetsflöden som producerar <strong>små diffar, snabb feedback och färre regressioner</strong>.</p>
@@ -826,7 +853,7 @@ Ask for one of:<br />
         </div>
     </section>
 
-    <section class="presentation-slide" data-slide-number="3 / 13">
+    <section class="presentation-slide" data-slide-number="3 / 14">
         <div class="presentation-slide-content">
             <div class="lang-sv"><h2 id="tank-forst-anvand-plan-mode-exekvera-sedan">Tänk först (använd Plan Mode, exekvera sedan)</h2>
 <p>Claude Code fungerar bäst när första steget är att <strong>strukturera problemet</strong>, inte att skriva instruktioner.</p>
@@ -881,7 +908,7 @@ Ask for one of:<br />
         </div>
     </section>
 
-    <section class="presentation-slide" data-slide-number="4 / 13">
+    <section class="presentation-slide" data-slide-number="4 / 14">
         <div class="presentation-slide-content">
             <div class="lang-sv"><h2 id="arkitektur-ar-inte-valfritt-det-ar-hur-du-begransar-modellen">Arkitektur är inte valfritt (det är hur du begränsar modellen)</h2>
 <p>Claude kan generera fungerande kod som bryter mot ditt systems invarianter. Lösningen är inte "bättre kodgenerering". Lösningen är <strong>arkitekturbegränsningar i förväg</strong>.</p>
@@ -908,7 +935,7 @@ Ask for one of:<br />
         </div>
     </section>
 
-    <section class="presentation-slide" data-slide-number="5 / 13">
+    <section class="presentation-slide" data-slide-number="5 / 14">
         <div class="presentation-slide-content">
             <div class="lang-sv"><h2 id="claudemd-din-fil-med-hogst-havstang">CLAUDE.md: din fil med högst hävstång</h2>
 <p><code>CLAUDE.md</code> är en Markdown-fil som Claude Code läser vid sessionens start. Den fungerar som <strong>beständiga repo-specifika instruktioner</strong>.</p>
@@ -1015,7 +1042,7 @@ Any time you correct the same mistake twice, add an instruction. Claude Code sup
         </div>
     </section>
 
-    <section class="presentation-slide" data-slide-number="6 / 13">
+    <section class="presentation-slide" data-slide-number="6 / 14">
         <div class="presentation-slide-content">
             <div class="lang-sv"><h2 id="ultrathink-lage-kvalitetsfokuserat-mindset">"Ultrathink"-läge (kvalitetsfokuserat mindset)</h2>
 <p>Vissa team använder en kort, högvärdig "kvalitetsribba" i sin projektvägledning för att få Claude att prioritera <strong>genomtänkt planering, noggrann läsning och minimal komplexitet</strong>. Detta kan ligga i <code>CLAUDE.md</code> (eller i en separat <code>QUALITY.md</code> som refereras från <code>CLAUDE.md</code>) så länge det förblir koncist.</p>
@@ -1118,7 +1145,7 @@ Any time you correct the same mistake twice, add an instruction. Claude Code sup
         </div>
     </section>
 
-    <section class="presentation-slide" data-slide-number="7 / 13">
+    <section class="presentation-slide" data-slide-number="7 / 14">
         <div class="presentation-slide-content">
             <div class="lang-sv"><h2 id="kontexthantering-avancerade-tekniker">Kontexthantering: avancerade tekniker</h2>
 <p>För grunderna (50%-regeln, när du ska starta nya sessioner), se <a href="claude-code-mastery.html">How to Master Claude Code</a>. Denna sektion täcker avancerade tekniker.</p>
@@ -1153,7 +1180,7 @@ Any time you correct the same mistake twice, add an instruction. Claude Code sup
         </div>
     </section>
 
-    <section class="presentation-slide" data-slide-number="8 / 13">
+    <section class="presentation-slide" data-slide-number="8 / 14">
         <div class="presentation-slide-content">
             <div class="lang-sv"><h2 id="prompting-behandla-det-som-ingenjorskommunikation">Prompting: behandla det som ingenjörskommunikation</h2>
 <p>Prompting är inte magi. Det är krav + begränsningar + verifiering.</p>
@@ -1198,7 +1225,7 @@ Any time you correct the same mistake twice, add an instruction. Claude Code sup
         </div>
     </section>
 
-    <section class="presentation-slide" data-slide-number="9 / 13">
+    <section class="presentation-slide" data-slide-number="9 / 14">
         <div class="presentation-slide-content">
             <div class="lang-sv"><h2 id="arbetsflode-for-modellval-hall-det-praktiskt">Arbetsflöde för modellval (håll det praktiskt)</h2>
 <p>Claude Code exponerar ofta olika modeller med olika avvägningar (hastighet vs djupare planering). Ett pålitligt mönster:</p>
@@ -1219,7 +1246,7 @@ Any time you correct the same mistake twice, add an instruction. Claude Code sup
         </div>
     </section>
 
-    <section class="presentation-slide" data-slide-number="10 / 13">
+    <section class="presentation-slide" data-slide-number="10 / 14">
         <div class="presentation-slide-content">
             <div class="lang-sv"><h2 id="mcp-hooks-slash-kommandon-och-config-anvand-features-som-tar-bort-slit">MCP, hooks, slash-kommandon och config: använd features som tar bort slit</h2>
 <p>Claude Code har kraftfulla features. Poängen är inte "aktivera allt". Poängen är <strong>ta bort upprepad friktion</strong>.</p>
@@ -1282,7 +1309,7 @@ Any time you correct the same mistake twice, add an instruction. Claude Code sup
         </div>
     </section>
 
-    <section class="presentation-slide" data-slide-number="11 / 13">
+    <section class="presentation-slide" data-slide-number="11 / 14">
         <div class="presentation-slide-content">
             <div class="lang-sv"><h2 id="nar-claude-fastnar-bryt-loopen-medvetet">När Claude fastnar: bryt loopen medvetet</h2>
 <p>Fast-mönster:<br />
@@ -1339,7 +1366,7 @@ Ask for one of:<br />
         </div>
     </section>
 
-    <section class="presentation-slide" data-slide-number="12 / 13">
+    <section class="presentation-slide" data-slide-number="12 / 14">
         <div class="presentation-slide-content">
             <div class="lang-sv"><h2 id="bygg-system-inte-engangsinteraktioner-headless-mode">Bygg system, inte engångsinteraktioner (headless mode)</h2>
 <p>Claude Code kan användas bortom interaktiva sessioner. I synnerhet:<br />
@@ -1388,7 +1415,7 @@ Ask for one of:<br />
         </div>
     </section>
 
-    <section class="presentation-slide" data-slide-number="13 / 13">
+    <section class="presentation-slide" data-slide-number="13 / 14">
         <div class="presentation-slide-content">
             <div class="lang-sv"><h2 id="tldr-claude-code-101">TL;DR (Claude Code 101)</h2>
 <ul>
@@ -1406,7 +1433,8 @@ Ask for one of:<br />
 <strong>Motivering:</strong> automation gör kvalitet repeterbar.</li>
 <li><strong>När fast, byt approach:</strong> nollställ, förenkla, visa exempel, omformulera.<br />
 <strong>Motivering:</strong> loop-brytning slår brute force.</li>
-</ul></div>
+</ul>
+<hr /></div>
             <div class="lang-en"><h2 id="tldr-claude-code-101">TL;DR (Claude Code 101)</h2>
 <ul>
 <li><strong>Think first, then type:</strong> Plan Mode consistently produces better outcomes.<br />
@@ -1423,7 +1451,23 @@ Ask for one of:<br />
 <strong>Rationale:</strong> automation makes quality repeatable.</li>
 <li><strong>When stuck, change approach:</strong> reset, simplify, show examples, reframe.<br />
 <strong>Rationale:</strong> loop-breaking beats brute force.</li>
-</ul></div>
+</ul>
+<hr /></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="14 / 14">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="video">Video</h2>
+<p><a href="https://www.youtube.com/watch?v=zxMjOqM7DFs" target="_blank" rel="noopener noreferrer">Titta på YouTube</a></p>
+<p><a href="https://www.youtube.com/watch?v=zxMjOqM7DFs" target="_blank" rel="noopener noreferrer"><br />
+<img src="https://img.youtube.com/vi/zxMjOqM7DFs/maxresdefault.jpg" alt="Claude Code 101 video thumbnail" style="width: 100%; height: auto;"><br />
+</a></p></div>
+            <div class="lang-en"><h2 id="video">Video</h2>
+<p><a href="https://www.youtube.com/watch?v=zxMjOqM7DFs" target="_blank" rel="noopener noreferrer">Watch on YouTube</a></p>
+<p><a href="https://www.youtube.com/watch?v=zxMjOqM7DFs" target="_blank" rel="noopener noreferrer"><br />
+<img src="https://img.youtube.com/vi/zxMjOqM7DFs/maxresdefault.jpg" alt="Claude Code 101 video thumbnail" style="width: 100%; height: auto;"><br />
+</a></p></div>
         </div>
     </section>
 

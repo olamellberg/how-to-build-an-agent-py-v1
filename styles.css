@@ -1219,7 +1219,7 @@ footer {
     text-align: center;
 }
 
-.presentation-slide.hero-slide h1 {
+.presentation-slide.hero-slide .presentation-hero-title {
     font-size: 3.5rem;
     margin-bottom: 1rem;
 }
@@ -1571,7 +1571,7 @@ footer {
         padding: 5rem 1.5rem 3rem;
     }
 
-    .presentation-slide.hero-slide h1 {
+    .presentation-slide.hero-slide .presentation-hero-title {
         font-size: 2.5rem;
     }
 
@@ -1595,7 +1595,7 @@ footer {
         display: none;
     }
 
-    .presentation-slide.hero-slide h1 {
+    .presentation-slide.hero-slide .presentation-hero-title {
         font-size: 2rem;
     }
 

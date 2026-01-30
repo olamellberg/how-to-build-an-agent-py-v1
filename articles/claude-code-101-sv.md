@@ -343,3 +343,13 @@ Claude Code kan användas bortom interaktiva sessioner. I synnerhet:
   **Motivering:** automation gör kvalitet repeterbar.
 - **När fast, byt approach:** nollställ, förenkla, visa exempel, omformulera.  
   **Motivering:** loop-brytning slår brute force.
+
+---
+
+## Video
+
+<a href="https://www.youtube.com/watch?v=zxMjOqM7DFs" target="_blank" rel="noopener noreferrer">Titta på YouTube</a>
+
+<a href="https://www.youtube.com/watch?v=zxMjOqM7DFs" target="_blank" rel="noopener noreferrer">
+<img src="https://img.youtube.com/vi/zxMjOqM7DFs/maxresdefault.jpg" alt="Claude Code 101 video thumbnail" style="width: 100%; height: auto;">
+</a>

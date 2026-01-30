@@ -66,7 +66,7 @@ Gemini Code Assist finns i "for individuals" samt Standard/Enterprise och dokume
 
 ---
 
-## 4) Praktiska agentiska arbetsflöden i IDE:n (komprimerat, med hänvisningar)
+## 4) Agentiska arbetsflöden i IDE:n
 I stället för att upprepa grunderna från dina tidigare artiklar, bygger den här sektionen en **IDE-anpassad checklista** som kan kopieras till teamets working agreement.
 
 ### 4.1 Standardloop i IDE:n: "Plan → Diff → Check → Iterera"
@@ -127,11 +127,3 @@ För agentik i produktion (även internt) bör ni behandla modellen som en kompo
 - **Cursor**: usage-baserat (modellpriser + token fee/spend controls i Teams).  
 - **Windsurf**: prissida anger plan-uppdelning (free/teams/enterprise).  
 
----
-
-## 7) En kort "team-playbook" att införa vecka 1
-1) Inför **en valideringscommand** (`make check` eller `./scripts/ci.sh`) och gör det till agentens standardverktyg.  
-2) Lägg in `agents.md` med kommandon/struktur/boundaries (maximalt kompakt).  
-3) Standardisera prompts: **Goal → Constraints/non-goals → Done → Plan först** (din "prompt som ingenjörskommunikation"-mall).  
-4) Etablera en reset-regel: "om loopen degraderar → compact/clear och börja om rent".  
-5) För känsliga repos: aktivera denylist och begränsa agentverktyg enligt 5.1–5.2.

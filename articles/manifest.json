@@ -81,7 +81,7 @@
     {
       "slug": "claude-code-mastery",
       "html": "claude-code-mastery.html",
-      "category": "101-guides",
+      "category": "workflows-playbooks",
       "date": "2026-01",
       "title": {
         "sv": "Bemästra Claude Code",
@@ -107,7 +107,7 @@
     {
       "slug": "vibe-engineering-101",
       "html": "vibe-engineering-101.html",
-      "category": "workflows-playbooks",
+      "category": "101-guides",
       "date": "2026-01",
       "title": {
         "sv": "Vibe Engineering 101",
@@ -185,7 +185,7 @@
     {
       "slug": "just-ralph-it",
       "html": "just-ralph-it.html",
-      "category": "tips-trix-philosophy",
+      "category": "tooling-choices",
       "date": "2026-01",
       "title": {
         "sv": "Just Ralph-it",
@@ -299,13 +299,13 @@
       "order": 2
     },
     "workflows-playbooks": {
-      "sv": "Workflows & Playbooks",
-      "en": "Workflows & Playbooks",
+      "sv": "Fördjupning",
+      "en": "Deep Dives",
       "order": 3
     },
     "tooling-choices": {
-      "sv": "Tooling & Choices",
-      "en": "Tooling & Choices",
+      "sv": "Verktyg",
+      "en": "Tooling",
       "order": 4
     },
     "tips-trix-philosophy": {

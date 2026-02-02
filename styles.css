@@ -169,6 +169,19 @@ body > header {
     overflow: hidden;
 }
 
+/* Homepage title in the nav (index.html only) */
+.home .nav-title {
+    margin: 0;
+    font-weight: 500;
+    font-size: 1.05rem;
+    letter-spacing: -0.3px;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+}
+
 .nav-right {
     display: flex;
     align-items: center;
@@ -535,6 +548,36 @@ body > header {
 .mobile-menu-links .menu-icon {
     width: 20px;
     text-align: center;
+    font-size: 1rem;
+}
+
+/* Mobile menu submenus */
+.mobile-menu-submenu-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.mobile-menu-sublinks {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mobile-menu-sublinks li {
+    margin-bottom: 0;
+}
+
+.mobile-menu-sublinks a {
+    padding: 0.65rem 0 0.65rem 1.75rem;
     font-size: 1rem;
 }
 
@@ -985,7 +1028,7 @@ footer {
 /* ==================== */
 .hero {
     text-align: center;
-    padding: 4rem 0;
+    padding: 2rem 0 3rem;
     border-bottom: 1px solid var(--border-color);
     margin-bottom: 3rem;
 }
@@ -999,6 +1042,11 @@ footer {
     font-size: 1.4rem;
     max-width: 600px;
     margin: 0 auto;
+}
+
+.home .hero-image img {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
 }
 
 /* Article Categories */
@@ -1118,6 +1166,10 @@ footer {
 
     header {
         padding: 0.75rem 1rem;
+    }
+
+    .home .nav-title {
+        display: none;
     }
 
     .mobile-menu {

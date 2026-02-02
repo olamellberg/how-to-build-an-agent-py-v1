@@ -200,6 +200,22 @@ def generate_mobile_menu(articles: List[Article], categories: Dict) -> str:
                 <span class="lang-en">Links</span>
             </h3>
             <ul class="mobile-menu-links">
+                <li class="mobile-menu-submenu">
+                    <div class="mobile-menu-submenu-title">
+                        <span class="menu-icon">🎬</span>
+                        <span class="lang-sv">Video</span>
+                        <span class="lang-en">Video</span>
+                    </div>
+                    <ul class="mobile-menu-sublinks">
+                        <li>
+                            <a href="video.html">
+                                <span class="menu-icon">▶️</span>
+                                <span class="lang-sv">The Future Belongs To People Who Do Things</span>
+                                <span class="lang-en">The Future Belongs To People Who Do Things</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li><a href="https://github.com/b3-commit" target="_blank">GitHub</a></li>
                 <li>
                     <a href="#" id="menuThemeToggle">
@@ -430,7 +446,7 @@ def generate_article_html(article: Article, sv_content: str, en_content: str, al
     <!-- Mobile Menu -->
     <nav class="mobile-menu" id="mobileMenu">
         <div class="mobile-menu-header">
-            <a href="index.html" class="logo">B3 Commit</a>
+            <a href="index.html" class="logo">B3 Commit AI Playbook</a>
             <button class="mobile-menu-close" id="menuClose" aria-label="Stäng meny">&times;</button>
         </div>
 {mobile_menu}
@@ -439,7 +455,7 @@ def generate_article_html(article: Article, sv_content: str, en_content: str, al
     <header>
         <nav class="nav-container">
             <div class="nav-left">
-                <a href="index.html" class="logo">B3 Commit</a>
+                <a href="index.html" class="logo">B3 Commit AI Playbook</a>
                 <span class="breadcrumb">/ <a href="index.html"><span class="lang-sv">AI Handbook</span><span class="lang-en">AI Handbook</span></a> / <span class="lang-sv">{article.title['sv']}</span><span class="lang-en">{article.title['en']}</span></span>
             </div>
             <div class="nav-right">

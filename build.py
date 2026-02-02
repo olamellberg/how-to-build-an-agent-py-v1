@@ -7,6 +7,7 @@ Generates bilingual HTML from markdown sources
 import json
 import re
 import os
+import unicodedata
 from pathlib import Path
 from typing import Dict, List, Tuple, Optional
 from dataclasses import dataclass
@@ -109,9 +110,14 @@ def extract_h2_sections(md_content: str) -> List[Tuple[str, str, str]]:
 
             # Start new section
             title = line[3:].strip()
-            # Create ID from title (lowercase, replace spaces with hyphens, remove special chars)
-            current_id = re.sub(r'[^\w\s-]', '', title.lower())
+            # Create ID from title.
+            #
+            # Important: match Python-Markdown's heading ID behavior (diacritics stripped),
+            # otherwise nav anchors won't match generated <h2 id="..."> for languages like SV.
+            slug_base = unicodedata.normalize('NFKD', title.lower()).encode('ascii', 'ignore').decode('ascii')
+            current_id = re.sub(r'[^\w\s-]', '', slug_base)
             current_id = re.sub(r'[-\s]+', '-', current_id)
+            current_id = current_id.strip('-')
             current_title = title
             current_section = [line]
         elif current_id:
@@ -147,34 +153,45 @@ def markdown_to_html(md_content: str) -> str:
 
 
 def generate_mobile_menu(articles: List[Article], categories: Dict) -> str:
-    """Generate mobile menu HTML from manifest"""
-    menu_items = []
-    
-    # Group articles by category
-    articles_by_category = {}
-    for article in articles:
-        cat = article.category
-        if cat not in articles_by_category:
-            articles_by_category[cat] = []
-        articles_by_category[cat].append(article)
-    
-    # Generate menu sections
-    for cat_key, cat_info in categories.items():
-        if cat_key in articles_by_category:
-            menu_items.append(f'''        <div class="mobile-menu-section">
+    """Generate mobile menu HTML.
+
+    Canonical order is taken from index.html's article menu, so the slide-out menu
+    is always the same order across pages.
+    """
+    menu_items: List[str] = []
+
+    index_order = read_index_article_menu_order()
+    by_html = {a.html: a for a in articles}
+
+    ordered_articles: List[Article] = []
+    missing_from_manifest: List[str] = []
+    for html in index_order:
+        if html in by_html:
+            ordered_articles.append(by_html[html])
+        else:
+            missing_from_manifest.append(html)
+
+    # Append any manifest articles not present in index.html menu order
+    extra_articles = [a for a in articles if a.html not in set(index_order)]
+    ordered_articles.extend(extra_articles)
+
+    _warn_menu_order_issues_once(missing_from_manifest, extra_articles)
+
+    # Single flat section (matches index.html)
+    menu_items.append(f'''        <div class="mobile-menu-section">
             <h3>
-                <span class="lang-sv">{cat_info['sv']}</span>
-                <span class="lang-en">{cat_info['en']}</span>
+                <span class="lang-sv">Artiklar</span>
+                <span class="lang-en">Articles</span>
             </h3>
             <ul class="mobile-menu-links">''')
-            
-            for article in articles_by_category[cat_key]:
-                menu_items.append(f'''                <li><a href="{article.html}">
+
+    for article in ordered_articles:
+        menu_items.append(f'''                <li><a href="{article.html}">
                     <span class="lang-sv">{article.title['sv']}</span>
                     <span class="lang-en">{article.title['en']}</span>
                 </a></li>''')
-            
-            menu_items.append('            </ul>\n        </div>')
+
+    menu_items.append('            </ul>\n        </div>')
     
     # Add links section
     menu_items.append('''        <div class="mobile-menu-section">
@@ -205,6 +222,70 @@ def generate_mobile_menu(articles: List[Article], categories: Dict) -> str:
     
     return '\n'.join(menu_items)
 
+
+def read_index_article_menu_order() -> List[str]:
+    """Read index.html and return the article .html hrefs in the mobile menu order."""
+    global _INDEX_MENU_ORDER_CACHE
+    if _INDEX_MENU_ORDER_CACHE is not None:
+        return _INDEX_MENU_ORDER_CACHE
+
+    try:
+        with open('index.html', 'r', encoding='utf-8') as f:
+            html = f.read()
+    except FileNotFoundError:
+        _INDEX_MENU_ORDER_CACHE = []
+        _warn_index_parse_once("Warning: index.html not found; falling back to manifest order for menu.")
+        return _INDEX_MENU_ORDER_CACHE
+
+    # Extract the first mobile-menu section's <ul> (the Articles list on the homepage)
+    m = re.search(
+        r'<div class="mobile-menu-section">\s*<h3[^>]*>.*?</h3>\s*<ul class="mobile-menu-links">(.*?)</ul>',
+        html,
+        flags=re.DOTALL,
+    )
+    if not m:
+        _INDEX_MENU_ORDER_CACHE = []
+        _warn_index_parse_once("Warning: could not parse index.html menu; falling back to manifest order for menu.")
+        return _INDEX_MENU_ORDER_CACHE
+
+    block = m.group(1)
+    hrefs = re.findall(r'href="([^"]+\.html)"', block)
+
+    # Keep only article pages (exclude index.html if it appears)
+    ordered = [h for h in hrefs if h != 'index.html']
+    _INDEX_MENU_ORDER_CACHE = ordered
+    return _INDEX_MENU_ORDER_CACHE
+
+
+_INDEX_MENU_ORDER_CACHE: Optional[List[str]] = None
+_INDEX_MENU_PARSE_WARNED = False
+_MENU_ORDER_WARNED = False
+
+
+def _warn_index_parse_once(message: str) -> None:
+    global _INDEX_MENU_PARSE_WARNED
+    if _INDEX_MENU_PARSE_WARNED:
+        return
+    print(message)
+    _INDEX_MENU_PARSE_WARNED = True
+
+
+def _warn_menu_order_issues_once(missing_from_manifest: List[str], extra_articles: List[Article]) -> None:
+    global _MENU_ORDER_WARNED
+    if _MENU_ORDER_WARNED:
+        return
+
+    if missing_from_manifest:
+        print("Warning: index.html references articles missing from manifest:")
+        for html in missing_from_manifest:
+            print(f"  - {html}")
+
+    if extra_articles:
+        print("Warning: manifest contains articles not listed in index.html menu order:")
+        for a in extra_articles:
+            print(f"  - {a.html}")
+
+    _MENU_ORDER_WARNED = True
 
 def generate_article_html(article: Article, sv_content: str, en_content: str, all_articles: List[Article], categories: Dict) -> str:
     """Generate complete HTML for an article"""
@@ -352,7 +433,7 @@ def generate_article_html(article: Article, sv_content: str, en_content: str, al
             <a href="index.html" class="logo">B3 Commit</a>
             <button class="mobile-menu-close" id="menuClose" aria-label="Stäng meny">&times;</button>
         </div>
-        <!-- Mobile menu content would be generated from manifest -->
+{mobile_menu}
     </nav>
 
     <header>

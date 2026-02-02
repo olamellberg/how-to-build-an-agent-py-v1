@@ -66,6 +66,8 @@ Alla artiklar har Presentation Mode - ett PowerPoint-inspirerat läge där artik
 
 3. **Uppdatera index.html**:
    - Lägg till artikel-kort i rätt kategori-sektion
+   - Håll **mobilmenyns artikel-lista** (slide-out / “side menu”) i **samma ordning som artiklarna på index**
+   - **Inga brutna länkar**: alla artiklar i mobilmenyn måste finnas i `articles/manifest.json` och byggas av `build.py`
 
 4. **Kör build-script**:
    ```bash
@@ -75,7 +77,7 @@ Alla artiklar har Presentation Mode - ett PowerPoint-inspirerat läge där artik
    - HTML med bilingual content
    - Presentation slides (en per H2)
    - JavaScript (theme, language, presentation mode, keyboard nav)
-   - Mobile menu med alla artiklar
+   - Mobile menu med alla artiklar (ordningen hämtas från index.html)
    - Article navigation pills
 
 ### Viktigt

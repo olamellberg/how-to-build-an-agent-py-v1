@@ -285,6 +285,32 @@
         "sv": "Jobbet försvinner inte — det flyttar sig. Lär dig vilka färdigheter som blir värdefulla när AI tar över syntax och output: arkitektur, debugging, säkerhet och produkttänk.",
         "en": "The job isn't disappearing — it's moving. Learn which skills become valuable when AI handles syntax and output: architecture, debugging, security, and product thinking."
       }
+    },
+    {
+      "slug": "collaboration-with-claude-code-team-tips",
+      "html": "collaboration-with-claude-code-team-tips.html",
+      "category": "collaboration",
+      "date": "2026-02",
+      "title": {
+        "sv": "Samarbete med Claude Code: Teamtips för utvecklare",
+        "en": "Collaboration with Claude Code: Team Tips for Developers"
+      },
+      "subtitle": {
+        "sv": "Praktiska teammetoder för att skala agentisk utveckling",
+        "en": "Practical team practices for scaling agentic coding"
+      },
+      "meta": {
+        "sv": "Samarbete",
+        "en": "Collaboration"
+      },
+      "sources": {
+        "sv": "articles/collaboration-with-claude-code-team-tips-sv.md",
+        "en": "articles/collaboration-with-claude-code-team-tips-en.md"
+      },
+      "description": {
+        "sv": "En praktisk playbook för hur team kan skala Claude Code med worktrees, Plan → Execute → Verify, subagents och tydliga evidenskrav.",
+        "en": "A practical playbook for scaling Claude Code in teams with worktrees, Plan → Execute → Verify, subagents, and evidence-based verification."
+      }
     }
   ],
   "categories": {
@@ -308,10 +334,15 @@
       "en": "Tooling",
       "order": 4
     },
+    "collaboration": {
+      "sv": "Samarbete",
+      "en": "Collaboration",
+      "order": 5
+    },
     "tips-trix-philosophy": {
       "sv": "Tips, Trix & Filosofi",
       "en": "Tips, Tricks & Philosophy",
-      "order": 5
+      "order": 6
     }
   }
 }

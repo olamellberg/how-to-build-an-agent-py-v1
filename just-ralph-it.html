@@ -153,6 +153,10 @@
                     <span class="lang-sv">Agents.md förklarat</span>
                     <span class="lang-en">Agents.md Explained</span>
                 </a></li>
+                <li><a href="comprehension-debt.html">
+                    <span class="lang-sv">Förståelseskuld: den verkliga flaskhalsen i agentisk mjukvaruleverans</span>
+                    <span class="lang-en">Comprehension Debt: The Real Bottleneck in Agentic Software Delivery</span>
+                </a></li>
                 <li><a href="ide-agentic-ai.html">
                     <span class="lang-sv">Välj IDE för Agentisk AI</span>
                     <span class="lang-en">Choosing an IDE for Agentic AI</span>
@@ -352,6 +356,13 @@ done
 <blockquote>
 <p>"Eventual consistency achieved through iteration."</p>
 </blockquote>
+<h3 id="felmonster-oandlig-iteration-utan-att-lara-sig">Felmönster: oändlig iteration utan att lära sig</h3>
+<p>Ralph-loopar är kraftfulla, men de kan också fånga dig i “nästan där”-iteration där agenten fortsätter ändra kod utan att självförtroendet ökar.</p>
+<p>Praktiska skyddsräcken:<br />
+- <strong>Stopkriterier</strong>: sätt ett max antal iterationer per uppgift (eller per feltyp). Om det fortfarande inte konvergerar, planera om.<br />
+- <strong>Ny evidens per försök</strong>: varje nytt försök måste lägga till ett nytt test, ett mindre scope eller ett tydligare framgångskriterium — annars snurrar ni bara.<br />
+- <strong>Periodisk checkpoint</strong>: var N:e iteration, kräv att agenten förklarar nuvarande design + kvarvarande risker i ~10 rader.</p>
+<p>Notera också: autonomi förstärker <strong>abstraktionssvullnad</strong> och <strong>död kod</strong> om du inte tvingar fram borttagning. Lägg in en explicit regel i din build-prompt: ta bort oanvända kodvägar som skapats under refaktoreringar och håll diffar minimala.</p>
 <hr />
 <h2 id="filstruktur">Filstruktur</h2>
 <p>Ett typiskt Ralph-projekt ser ut så här:</p>
@@ -521,6 +532,13 @@ done
 <blockquote>
 <p>"Eventual consistency achieved through iteration."</p>
 </blockquote>
+<h3 id="failure-mode-endless-iteration-without-learning">Failure mode: endless iteration without learning</h3>
+<p>Ralph loops are powerful, but they can also trap you in “almost there” iteration where the agent keeps changing code without increasing confidence.</p>
+<p>Practical guardrails:<br />
+- <strong>Stop criteria</strong>: set a max iteration count per task (or per failure type). If it’s still not converging, re-plan.<br />
+- <strong>New evidence per retry</strong>: each retry must add a new test, a smaller scope, or a clearer success criterion—otherwise you’re just spinning.<br />
+- <strong>Periodic checkpoint</strong>: every N iterations, require the agent to explain the current design + remaining risks in ~10 lines.</p>
+<p>Also note: autonomy amplifies <strong>abstraction bloat</strong> and <strong>dead code</strong> unless you enforce deletion. Add an explicit rule to your build prompt: remove unused code paths created during refactors and keep diffs minimal.</p>
 <hr />
 <h2 id="file-structure">File structure</h2>
 <p>A typical Ralph project looks like this:</p>
@@ -772,6 +790,13 @@ done
 <blockquote>
 <p>"Eventual consistency achieved through iteration."</p>
 </blockquote>
+<h3 id="felmonster-oandlig-iteration-utan-att-lara-sig">Felmönster: oändlig iteration utan att lära sig</h3>
+<p>Ralph-loopar är kraftfulla, men de kan också fånga dig i “nästan där”-iteration där agenten fortsätter ändra kod utan att självförtroendet ökar.</p>
+<p>Praktiska skyddsräcken:<br />
+- <strong>Stopkriterier</strong>: sätt ett max antal iterationer per uppgift (eller per feltyp). Om det fortfarande inte konvergerar, planera om.<br />
+- <strong>Ny evidens per försök</strong>: varje nytt försök måste lägga till ett nytt test, ett mindre scope eller ett tydligare framgångskriterium — annars snurrar ni bara.<br />
+- <strong>Periodisk checkpoint</strong>: var N:e iteration, kräv att agenten förklarar nuvarande design + kvarvarande risker i ~10 rader.</p>
+<p>Notera också: autonomi förstärker <strong>abstraktionssvullnad</strong> och <strong>död kod</strong> om du inte tvingar fram borttagning. Lägg in en explicit regel i din build-prompt: ta bort oanvända kodvägar som skapats under refaktoreringar och håll diffar minimala.</p>
 <hr /></div>
             <div class="lang-en"><h2 id="key-principles">Key Principles</h2>
 <h3 id="1-context-is-everything">1. Context is everything</h3>
@@ -799,6 +824,13 @@ done
 <blockquote>
 <p>"Eventual consistency achieved through iteration."</p>
 </blockquote>
+<h3 id="failure-mode-endless-iteration-without-learning">Failure mode: endless iteration without learning</h3>
+<p>Ralph loops are powerful, but they can also trap you in “almost there” iteration where the agent keeps changing code without increasing confidence.</p>
+<p>Practical guardrails:<br />
+- <strong>Stop criteria</strong>: set a max iteration count per task (or per failure type). If it’s still not converging, re-plan.<br />
+- <strong>New evidence per retry</strong>: each retry must add a new test, a smaller scope, or a clearer success criterion—otherwise you’re just spinning.<br />
+- <strong>Periodic checkpoint</strong>: every N iterations, require the agent to explain the current design + remaining risks in ~10 lines.</p>
+<p>Also note: autonomy amplifies <strong>abstraction bloat</strong> and <strong>dead code</strong> unless you enforce deletion. Add an explicit rule to your build prompt: remove unused code paths created during refactors and keep diffs minimal.</p>
 <hr /></div>
         </div>
     </section>

@@ -41,6 +41,8 @@ SDD är en loop, inte ett dokument.
 
 Att hålla livscykeln explicit motverkar drift och håller kontexten fräsch.
 
+En praktisk varning: kostnaden för verifiering är ofta **icke‑linjär**. Första utkastet kan vara billigt; “de sista 20%” (integrationsinvarianter, kantfall, rollout/rollback, observerbarhet) är där team tappar tid. Gör verifiering explicit tidigt så att du inte upptäcker dolt arbete i slutet.
+
 ---
 
 ## 5) Minsta fungerande spec (MVS)
@@ -53,6 +55,8 @@ En användbar spec kan vara kort. Minsta som fungerar:
 - **Input/output:** format, schema, gränssnitt
 - **Exempel:** ett bra, ett dåligt
 - **Validering:** tester eller checks att köra
+- **Antaganden & oklarheter:** vad som måste vara sant för att detta ska fungera (och vad du inte är säker på ännu)
+- **Rollout/rollback (brownfield):** hur du skeppar säkert och hur du backar om verkligheten inte stämmer
 
 När dessa sex punkter är tydliga blir implementationen rak.
 
@@ -99,6 +103,7 @@ Tecken på att det är för stort:
 - flera orelaterade filer ändras samtidigt
 - långa, tvetydiga prompts
 - valideringssteg är oklara eller saknas
+- diffen är för stor för att granskas “i en sittning” (reviewbandbredden är flaskhalsen)
 
 ---
 

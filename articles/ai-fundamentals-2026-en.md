@@ -219,6 +219,8 @@ The first version should be strict:
 - **Max steps**: e.g. 3–5
 - **Allowlist**: only certain tools
 - **Verification before action**: no "actions" without proof
+- **Assumptions first**: list assumptions/unknowns; stop if uncertainty touches auth, data, or public contracts
+- **Anti-bloat constraints**: prefer the smallest diff; avoid new abstraction layers unless asked; delete dead code during refactors
 
 ### 9.3 Agent example that devs like
 Task: "The build is failing — find the cause and suggest a fix."
@@ -275,6 +277,8 @@ The first session should always mention:
 Small changes in prompt, chunking, model or settings can cause big behavior differences — whether you run GPT-5.1, Claude Opus 4.5, Gemini 3 or Llama 3.
 
 **Evals** are a recurring test suite, similar to a test suite.
+
+This matters even more as generation gets cheap: **verification becomes the bottleneck**. Evals reduce rubber-stamping by making correctness and rule-following measurable, repeatable, and automatable.
 
 ### 11.2 Minimum eval setup that works
 Create a folder with cases:

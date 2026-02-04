@@ -175,6 +175,10 @@
                     <span class="lang-sv">Agents.md förklarat</span>
                     <span class="lang-en">Agents.md Explained</span>
                 </a></li>
+                <li><a href="comprehension-debt.html">
+                    <span class="lang-sv">Förståelseskuld: den verkliga flaskhalsen i agentisk mjukvaruleverans</span>
+                    <span class="lang-en">Comprehension Debt: The Real Bottleneck in Agentic Software Delivery</span>
+                </a></li>
                 <li><a href="ide-agentic-ai.html">
                     <span class="lang-sv">Välj IDE för Agentisk AI</span>
                     <span class="lang-en">Choosing an IDE for Agentic AI</span>
@@ -322,6 +326,20 @@
 - <strong>Granska för korrekthet, pålitlighet och säkerhet</strong>.<br />
 - <strong>Integrera ändringar i ett komplext system</strong> med riktiga användare, riktig data och riktiga fellägen.</p>
 <p>Med andra ord: ditt värde flyttar från <em>att skriva</em> till <em>omdöme</em>.</p>
+<h3 id="forstaelseskuld-och-verifieringsflaskhalsen">Förståelseskuld och verifieringsflaskhalsen</h3>
+<p>När kodgenerering blir billig flyttas begränsningen: <strong>gransknings- och verifieringskapacitet</strong> blir flaskhalsen.</p>
+<p><strong>Förståelseskuld (comprehension debt)</strong> är vad som händer när teamet kan mergea ändringar snabbare än det kan förstå dem. Koden “fungerar”, men ingen kan förklara vilka antaganden den bygger på, vad den kan råka ha sönder, eller hur man ska drifta den när den fallerar.</p>
+<p>Signaler på att ni bygger upp förståelseskuld:<br />
+- PR:er och diffar fortsätter växa, även när funktionerna är “små”<br />
+- granskningar degenererar till stilfeedback (“ser bra ut”) i stället för korrekthet<br />
+- ändringar skeppas utan ett evidensunderlag (körda tester + outputs + risknoter)<br />
+- teamet kan inte förklara <em>varför</em> en ändring finns en vecka senare</p>
+<p>Motåtgärder som fungerar i riktiga team:<br />
+- kräv ett <strong>evidensunderlag</strong> (körda kommandon + resultat + riskområden) för meningsfulla ändringar<br />
+- håll ändringar <strong>små och granskbara</strong> (en beteendeförändring per PR)<br />
+- tvinga fram antaganden (“vad antar vi om data, auth och kontrakt?”)<br />
+- lägg till regressionstester när du hittar ett missat kantfall<br />
+- prioritera borttagning och förenkling framför “smarta” nya abstraktionslager</p>
 <hr />
 <h2 id="fardighet-1-arkitektur-blir-nya-hello-world">Färdighet 1: Arkitektur blir nya "Hello World"</h2>
 <p>När implementation blir billig, blir <strong>beslut</strong> dyra.</p>
@@ -344,6 +362,15 @@
 - "Vad går sönder i produktion, inte i tester?"</p>
 <p>Behandla AI-utdata som en PR från någon som är ny i din kodbas: läs den noga, testa den aggressivt och anta att den missade ett undantagsfall.</p>
 <p><strong>2026 är din förmåga att <em>läsa, testa och validera</em> kod mer värdefull än din förmåga att skriva den snabbt.</strong></p>
+<h3 id="de-sista-20-ar-inte-linjara">De sista 20% är inte linjära</h3>
+<p>AI kan ofta ta dig till ett plausibelt första utkast snabbt. Den dyra delen är att göra det <strong>produktionsklart</strong>:<br />
+- kantfall och dålig indata<br />
+- kompatibilitet med befintliga invarianter<br />
+- utrullnings-/rollbackstrategi<br />
+- prestanda under verklig latens och last<br />
+- säkerhet och behörigheter<br />
+- observability (loggar/mått/traces som låter dig felsöka senare)</p>
+<p>Se “nästan klart” som en risksignal: det är där de konceptuella buggarna gömmer sig.</p>
 <hr />
 <h2 id="fardighet-3-bli-sakerhetsvakten">Färdighet 3: Bli säkerhetsvakten</h2>
 <p>Ett av de snabbaste sätten att förstöra en modern kodbas är att leverera stora volymer av ogranskad genererad kod.</p>
@@ -371,6 +398,8 @@
 <p>För att ge plats åt den nya hävstången, släpp det gamla bagaget.</p>
 <p><strong>Sluta memorera boilerplate.</strong><br />
 Slösa inte hjärnkapacitet på “exakt syntax för X”. Slå upp det. Låt verktygen generera det. Spara tankekraften till beslut, avvägningar och begränsningar.</p>
+<p><strong>Sluta gummistämpla.</strong><br />
+Om du inte kan förklara vad som ändrades, vilka antaganden det bygger på och vad som visar att det är korrekt, då har du inte granskat det än. Kräv evidens och håll diffar tillräckligt små för att förstå.</p>
 <p><strong>Sluta vara en puritetsnobb.</strong><br />
 "Det är inte riktig kodning om du inte skrev det." Ingen som betalar för din produkt bryr sig. Användaren bryr sig om att det fungerar.</p>
 <p><strong>Sluta ignorera verktygen.</strong><br />
@@ -393,6 +422,7 @@ Att vägra AI-stöd 2026 är som att vägra Google 2005. Du vinner inga poäng f
 <li><strong>Financial Times</strong> om "forward-deployed engineers" och hybridroller som kombinerar teknik + kundkontext.</li>
 <li><strong>IEEE Spectrum</strong> om tidiga signaler på generativ AIs arbetsmarknadseffekter, särskilt för juniora roller.</li>
 <li><strong>Wired</strong> om "vibe coding" — experter ser snabb förändring men varnar för opålitlighet och buggar.</li>
+<li><strong>Addy Osmani</strong> om “80%-problemet” i agentisk kodning — varför generering blir billig medan verifiering blir flaskhalsen.</li>
 </ul></div>
             <div class="lang-en"><p><strong>Version 1.0</strong> | 2026-01-22</p>
 <h3 id="the-skills-that-help-you-thrive-as-ai-reshapes-the-developer-role">The skills that help you thrive as AI reshapes the developer role</h3>
@@ -421,6 +451,20 @@ Att vägra AI-stöd 2026 är som att vägra Google 2005. Du vinner inga poäng f
 - <strong>Reviewing for correctness, reliability, and security</strong>.<br />
 - <strong>Integrating changes into a complex system</strong> with real users, real data, and real failure modes.</p>
 <p>In other words: your value moves from <em>typing</em> to <em>judgment</em>.</p>
+<h3 id="comprehension-debt-and-the-verification-bottleneck">Comprehension debt and the verification bottleneck</h3>
+<p>As code generation gets cheap, the limiting factor moves: <strong>review and verification throughput</strong> becomes the constraint.</p>
+<p><strong>Comprehension debt</strong> is what happens when the team can merge changes faster than it can understand them. The code “works,” but no one can explain what assumptions it relies on, what it might break, or how to operate it when it fails.</p>
+<p>Signals you're accumulating comprehension debt:<br />
+- PRs and diffs keep growing, even when features are “small”<br />
+- reviews devolve into style feedback (“looks fine”) instead of correctness<br />
+- changes ship without an evidence trail (tests run, outputs, risk notes)<br />
+- the team can’t explain <em>why</em> a change exists a week later</p>
+<p>Countermeasures that work in real teams:<br />
+- require an <strong>evidence bundle</strong> (commands run + results + risk areas) for meaningful changes<br />
+- keep changes <strong>small and reviewable</strong> (one behavior change per PR)<br />
+- force assumptions into the open (“what are we assuming about data, auth, and contracts?”)<br />
+- add regression tests when you find a missed edge case<br />
+- prefer deletion and simplification over “clever” new abstraction layers</p>
 <hr />
 <h2 id="skill-1-architecture-becomes-the-new-hello-world">Skill 1: Architecture Becomes the New "Hello World"</h2>
 <p>When implementation gets cheap, <strong>decisions</strong> become expensive.</p>
@@ -443,6 +487,15 @@ Att vägra AI-stöd 2026 är som att vägra Google 2005. Du vinner inga poäng f
 - "What breaks in prod, not in tests?"</p>
 <p>Treat AI output like a PR from someone new to your codebase: read it closely, test it aggressively, and assume it missed an edge case.</p>
 <p><strong>In 2026, your ability to <em>read and validate</em> code is more valuable than your ability to type it.</strong></p>
+<h3 id="the-last-20-isnt-linear">The last 20% isn't linear</h3>
+<p>AI can often get you to a plausible first draft fast. The expensive part is making it <strong>production-grade</strong>:<br />
+- edge cases and bad inputs<br />
+- compatibility with existing invariants<br />
+- rollout/rollback strategy<br />
+- performance under real latency and load<br />
+- security and permissions<br />
+- observability (logs/metrics/traces that let you debug later)</p>
+<p>Treat “mostly done” as a risk signal: it’s where conceptual bugs hide.</p>
 <hr />
 <h2 id="skill-3-become-the-security-sentinel">Skill 3: Become the Security Sentinel</h2>
 <p>One of the fastest ways to wreck a modern codebase is to ship large volumes of unreviewed generated code.</p>
@@ -470,6 +523,8 @@ Att vägra AI-stöd 2026 är som att vägra Google 2005. Du vinner inga poäng f
 <p>To make room for the new leverage, drop the old baggage.</p>
 <p><strong>Stop memorizing boilerplate.</strong><br />
 Don't waste brain space on "exact syntax for X." Look it up. Prompt it. Save your cognition for decisions and constraints.</p>
+<p><strong>Stop rubber-stamping.</strong><br />
+If you can't explain what changed, what assumptions it relies on, and what proves it's correct, you haven't reviewed it yet. Demand evidence and keep diffs small enough to understand.</p>
 <p><strong>Stop being a purity snob.</strong><br />
 "It's not real coding if you didn't type it." Nobody paying for your product cares. The user cares that it works.</p>
 <p><strong>Stop ignoring the tools.</strong><br />
@@ -492,6 +547,7 @@ Refusing AI assistance in 2026 is like refusing Google in 2005. You don't win po
 <li><strong>Financial Times</strong> on "forward-deployed engineers" and hybrid roles combining tech + customer context.</li>
 <li><strong>IEEE Spectrum</strong> on early signals of generative AI's labor market impact, especially for junior roles.</li>
 <li><strong>Wired</strong> on "vibe coding" — experts see rapid change but warn about unreliability and bugs.</li>
+<li><strong>Addy Osmani</strong> on the “80% problem” in agentic coding — why generation gets cheap while verification becomes the bottleneck.</li>
 </ul></div>
 
         </article>
@@ -550,6 +606,20 @@ Refusing AI assistance in 2026 is like refusing Google in 2005. You don't win po
 - <strong>Granska för korrekthet, pålitlighet och säkerhet</strong>.<br />
 - <strong>Integrera ändringar i ett komplext system</strong> med riktiga användare, riktig data och riktiga fellägen.</p>
 <p>Med andra ord: ditt värde flyttar från <em>att skriva</em> till <em>omdöme</em>.</p>
+<h3 id="forstaelseskuld-och-verifieringsflaskhalsen">Förståelseskuld och verifieringsflaskhalsen</h3>
+<p>När kodgenerering blir billig flyttas begränsningen: <strong>gransknings- och verifieringskapacitet</strong> blir flaskhalsen.</p>
+<p><strong>Förståelseskuld (comprehension debt)</strong> är vad som händer när teamet kan mergea ändringar snabbare än det kan förstå dem. Koden “fungerar”, men ingen kan förklara vilka antaganden den bygger på, vad den kan råka ha sönder, eller hur man ska drifta den när den fallerar.</p>
+<p>Signaler på att ni bygger upp förståelseskuld:<br />
+- PR:er och diffar fortsätter växa, även när funktionerna är “små”<br />
+- granskningar degenererar till stilfeedback (“ser bra ut”) i stället för korrekthet<br />
+- ändringar skeppas utan ett evidensunderlag (körda tester + outputs + risknoter)<br />
+- teamet kan inte förklara <em>varför</em> en ändring finns en vecka senare</p>
+<p>Motåtgärder som fungerar i riktiga team:<br />
+- kräv ett <strong>evidensunderlag</strong> (körda kommandon + resultat + riskområden) för meningsfulla ändringar<br />
+- håll ändringar <strong>små och granskbara</strong> (en beteendeförändring per PR)<br />
+- tvinga fram antaganden (“vad antar vi om data, auth och kontrakt?”)<br />
+- lägg till regressionstester när du hittar ett missat kantfall<br />
+- prioritera borttagning och förenkling framför “smarta” nya abstraktionslager</p>
 <hr /></div>
             <div class="lang-en"><h2 id="the-shift-from-writer-to-editor-in-chief">The Shift: From "Writer" to "Editor-in-Chief"</h2>
 <p>For the last 20 years, a big chunk of the job was converting clear thinking into exact syntax. It was high-friction translation.</p>
@@ -562,6 +632,20 @@ Refusing AI assistance in 2026 is like refusing Google in 2005. You don't win po
 - <strong>Reviewing for correctness, reliability, and security</strong>.<br />
 - <strong>Integrating changes into a complex system</strong> with real users, real data, and real failure modes.</p>
 <p>In other words: your value moves from <em>typing</em> to <em>judgment</em>.</p>
+<h3 id="comprehension-debt-and-the-verification-bottleneck">Comprehension debt and the verification bottleneck</h3>
+<p>As code generation gets cheap, the limiting factor moves: <strong>review and verification throughput</strong> becomes the constraint.</p>
+<p><strong>Comprehension debt</strong> is what happens when the team can merge changes faster than it can understand them. The code “works,” but no one can explain what assumptions it relies on, what it might break, or how to operate it when it fails.</p>
+<p>Signals you're accumulating comprehension debt:<br />
+- PRs and diffs keep growing, even when features are “small”<br />
+- reviews devolve into style feedback (“looks fine”) instead of correctness<br />
+- changes ship without an evidence trail (tests run, outputs, risk notes)<br />
+- the team can’t explain <em>why</em> a change exists a week later</p>
+<p>Countermeasures that work in real teams:<br />
+- require an <strong>evidence bundle</strong> (commands run + results + risk areas) for meaningful changes<br />
+- keep changes <strong>small and reviewable</strong> (one behavior change per PR)<br />
+- force assumptions into the open (“what are we assuming about data, auth, and contracts?”)<br />
+- add regression tests when you find a missed edge case<br />
+- prefer deletion and simplification over “clever” new abstraction layers</p>
 <hr /></div>
         </div>
     </section>
@@ -603,6 +687,15 @@ Refusing AI assistance in 2026 is like refusing Google in 2005. You don't win po
 - "Vad går sönder i produktion, inte i tester?"</p>
 <p>Behandla AI-utdata som en PR från någon som är ny i din kodbas: läs den noga, testa den aggressivt och anta att den missade ett undantagsfall.</p>
 <p><strong>2026 är din förmåga att <em>läsa, testa och validera</em> kod mer värdefull än din förmåga att skriva den snabbt.</strong></p>
+<h3 id="de-sista-20-ar-inte-linjara">De sista 20% är inte linjära</h3>
+<p>AI kan ofta ta dig till ett plausibelt första utkast snabbt. Den dyra delen är att göra det <strong>produktionsklart</strong>:<br />
+- kantfall och dålig indata<br />
+- kompatibilitet med befintliga invarianter<br />
+- utrullnings-/rollbackstrategi<br />
+- prestanda under verklig latens och last<br />
+- säkerhet och behörigheter<br />
+- observability (loggar/mått/traces som låter dig felsöka senare)</p>
+<p>Se “nästan klart” som en risksignal: det är där de konceptuella buggarna gömmer sig.</p>
 <hr /></div>
             <div class="lang-en"><h2 id="skill-2-debugging-becomes-the-multiplier">Skill 2: Debugging Becomes the Multiplier</h2>
 <p>Here's the practical reality of AI-generated code:</p>
@@ -616,6 +709,15 @@ Refusing AI assistance in 2026 is like refusing Google in 2005. You don't win po
 - "What breaks in prod, not in tests?"</p>
 <p>Treat AI output like a PR from someone new to your codebase: read it closely, test it aggressively, and assume it missed an edge case.</p>
 <p><strong>In 2026, your ability to <em>read and validate</em> code is more valuable than your ability to type it.</strong></p>
+<h3 id="the-last-20-isnt-linear">The last 20% isn't linear</h3>
+<p>AI can often get you to a plausible first draft fast. The expensive part is making it <strong>production-grade</strong>:<br />
+- edge cases and bad inputs<br />
+- compatibility with existing invariants<br />
+- rollout/rollback strategy<br />
+- performance under real latency and load<br />
+- security and permissions<br />
+- observability (logs/metrics/traces that let you debug later)</p>
+<p>Treat “mostly done” as a risk signal: it’s where conceptual bugs hide.</p>
 <hr /></div>
         </div>
     </section>
@@ -680,6 +782,8 @@ Refusing AI assistance in 2026 is like refusing Google in 2005. You don't win po
 <p>För att ge plats åt den nya hävstången, släpp det gamla bagaget.</p>
 <p><strong>Sluta memorera boilerplate.</strong><br />
 Slösa inte hjärnkapacitet på “exakt syntax för X”. Slå upp det. Låt verktygen generera det. Spara tankekraften till beslut, avvägningar och begränsningar.</p>
+<p><strong>Sluta gummistämpla.</strong><br />
+Om du inte kan förklara vad som ändrades, vilka antaganden det bygger på och vad som visar att det är korrekt, då har du inte granskat det än. Kräv evidens och håll diffar tillräckligt små för att förstå.</p>
 <p><strong>Sluta vara en puritetsnobb.</strong><br />
 "Det är inte riktig kodning om du inte skrev det." Ingen som betalar för din produkt bryr sig. Användaren bryr sig om att det fungerar.</p>
 <p><strong>Sluta ignorera verktygen.</strong><br />
@@ -690,6 +794,8 @@ Att vägra AI-stöd 2026 är som att vägra Google 2005. Du vinner inga poäng f
 <p>To make room for the new leverage, drop the old baggage.</p>
 <p><strong>Stop memorizing boilerplate.</strong><br />
 Don't waste brain space on "exact syntax for X." Look it up. Prompt it. Save your cognition for decisions and constraints.</p>
+<p><strong>Stop rubber-stamping.</strong><br />
+If you can't explain what changed, what assumptions it relies on, and what proves it's correct, you haven't reviewed it yet. Demand evidence and keep diffs small enough to understand.</p>
 <p><strong>Stop being a purity snob.</strong><br />
 "It's not real coding if you didn't type it." Nobody paying for your product cares. The user cares that it works.</p>
 <p><strong>Stop ignoring the tools.</strong><br />
@@ -731,6 +837,7 @@ Refusing AI assistance in 2026 is like refusing Google in 2005. You don't win po
 <li><strong>Financial Times</strong> om "forward-deployed engineers" och hybridroller som kombinerar teknik + kundkontext.</li>
 <li><strong>IEEE Spectrum</strong> om tidiga signaler på generativ AIs arbetsmarknadseffekter, särskilt för juniora roller.</li>
 <li><strong>Wired</strong> om "vibe coding" — experter ser snabb förändring men varnar för opålitlighet och buggar.</li>
+<li><strong>Addy Osmani</strong> om “80%-problemet” i agentisk kodning — varför generering blir billig medan verifiering blir flaskhalsen.</li>
 </ul></div>
             <div class="lang-en"><h2 id="references">References</h2>
 <ul>
@@ -739,6 +846,7 @@ Refusing AI assistance in 2026 is like refusing Google in 2005. You don't win po
 <li><strong>Financial Times</strong> on "forward-deployed engineers" and hybrid roles combining tech + customer context.</li>
 <li><strong>IEEE Spectrum</strong> on early signals of generative AI's labor market impact, especially for junior roles.</li>
 <li><strong>Wired</strong> on "vibe coding" — experts see rapid change but warn about unreliability and bugs.</li>
+<li><strong>Addy Osmani</strong> on the “80% problem” in agentic coding — why generation gets cheap while verification becomes the bottleneck.</li>
 </ul></div>
         </div>
     </section>

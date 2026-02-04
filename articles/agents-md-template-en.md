@@ -4,4 +4,4 @@
 
 This template is now included as the final chapter in [Agents.md Explained](agents-md-explained.html#agentsmd-claudemd-template).
 
-Go there for the full copy-paste template and examples.
+Go there for the full copy-paste template and examples, including optional lines for **assumptions/unknowns** and **evidence requirements** (commands run + results) to reduce “plausible-but-wrong” agent output.

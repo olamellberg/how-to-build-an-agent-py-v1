@@ -252,6 +252,10 @@
                     <span class="lang-sv">Agents.md förklarat</span>
                     <span class="lang-en">Agents.md Explained</span>
                 </a></li>
+                <li><a href="comprehension-debt.html">
+                    <span class="lang-sv">Förståelseskuld: den verkliga flaskhalsen i agentisk mjukvaruleverans</span>
+                    <span class="lang-en">Comprehension Debt: The Real Bottleneck in Agentic Software Delivery</span>
+                </a></li>
                 <li><a href="ide-agentic-ai.html">
                     <span class="lang-sv">Välj IDE för Agentisk AI</span>
                     <span class="lang-en">Choosing an IDE for Agentic AI</span>
@@ -554,7 +558,9 @@ RAG hämtar 2 utdrag från runbook → modellen (t.ex. GPT-5.1 eller Claude Opus
 <p>Första versionen bör vara strikt:<br />
 - <strong>Maxsteg</strong>: t.ex. 3–5<br />
 - <strong>Allowlist</strong>: bara vissa verktyg<br />
-- <strong>Verifiering före action</strong>: inga "actions" utan bevis</p>
+- <strong>Verifiering före action</strong>: inga "actions" utan bevis<br />
+- <strong>Antaganden först</strong>: lista antaganden/oklarheter; stanna om osäkerhet rör auth, data eller publika kontrakt<br />
+- <strong>Anti-bloat-constraints</strong>: föredra minsta möjliga diff; undvik nya abstraktionslager om det inte efterfrågas; ta bort död kod under refaktoreringar</p>
 <h3 id="93-agentexempel-som-devs-gillar">9.3 Agentexempel som devs gillar</h3>
 <p>Uppgift: "Bygget failar — hitta orsaken och föreslå en fix."</p>
 <p>Agentloop:<br />
@@ -598,6 +604,7 @@ RAG hämtar 2 utdrag från runbook → modellen (t.ex. GPT-5.1 eller Claude Opus
 <h3 id="111-varfor-du-maste-mata">11.1 Varför du måste mäta</h3>
 <p>Små förändringar i prompt, chunking, modell eller inställningar kan ge stora beteendeskillnader — oavsett om du kör GPT-5.1, Claude Opus 4.5, Gemini 3 eller Llama 3.</p>
 <p><strong>Evals</strong> är en återkommande testsvit, liknande en testsuite.</p>
+<p>Detta blir ännu viktigare när generering blir billig: <strong>verifiering blir flaskhalsen</strong>. Evals minskar gummistämpling genom att göra korrekthet och regel‑efterlevnad mätbar, repeterbar och automatiserbar.</p>
 <h3 id="112-minsta-eval-setup-som-fungerar">11.2 Minsta eval-setup som fungerar</h3>
 <p>Skapa en mapp med case:<br />
 - 20 vanliga frågor (riktiga)<br />
@@ -875,7 +882,9 @@ RAG retrieves 2 excerpts from the runbook → the model (e.g. GPT-5.1 or Claude 
 <p>The first version should be strict:<br />
 - <strong>Max steps</strong>: e.g. 3–5<br />
 - <strong>Allowlist</strong>: only certain tools<br />
-- <strong>Verification before action</strong>: no "actions" without proof</p>
+- <strong>Verification before action</strong>: no "actions" without proof<br />
+- <strong>Assumptions first</strong>: list assumptions/unknowns; stop if uncertainty touches auth, data, or public contracts<br />
+- <strong>Anti-bloat constraints</strong>: prefer the smallest diff; avoid new abstraction layers unless asked; delete dead code during refactors</p>
 <h3 id="93-agent-example-that-devs-like">9.3 Agent example that devs like</h3>
 <p>Task: "The build is failing — find the cause and suggest a fix."</p>
 <p>Agent loop:<br />
@@ -919,6 +928,7 @@ RAG retrieves 2 excerpts from the runbook → the model (e.g. GPT-5.1 or Claude 
 <h3 id="111-why-you-must-measure">11.1 Why you must measure</h3>
 <p>Small changes in prompt, chunking, model or settings can cause big behavior differences — whether you run GPT-5.1, Claude Opus 4.5, Gemini 3 or Llama 3.</p>
 <p><strong>Evals</strong> are a recurring test suite, similar to a test suite.</p>
+<p>This matters even more as generation gets cheap: <strong>verification becomes the bottleneck</strong>. Evals reduce rubber-stamping by making correctness and rule-following measurable, repeatable, and automatable.</p>
 <h3 id="112-minimum-eval-setup-that-works">11.2 Minimum eval setup that works</h3>
 <p>Create a folder with cases:<br />
 - 20 common questions (real ones)<br />
@@ -1425,7 +1435,9 @@ RAG retrieves 2 excerpts from the runbook → the model (e.g. GPT-5.1 or Claude 
 <p>Första versionen bör vara strikt:<br />
 - <strong>Maxsteg</strong>: t.ex. 3–5<br />
 - <strong>Allowlist</strong>: bara vissa verktyg<br />
-- <strong>Verifiering före action</strong>: inga "actions" utan bevis</p>
+- <strong>Verifiering före action</strong>: inga "actions" utan bevis<br />
+- <strong>Antaganden först</strong>: lista antaganden/oklarheter; stanna om osäkerhet rör auth, data eller publika kontrakt<br />
+- <strong>Anti-bloat-constraints</strong>: föredra minsta möjliga diff; undvik nya abstraktionslager om det inte efterfrågas; ta bort död kod under refaktoreringar</p>
 <h3 id="93-agentexempel-som-devs-gillar">9.3 Agentexempel som devs gillar</h3>
 <p>Uppgift: "Bygget failar — hitta orsaken och föreslå en fix."</p>
 <p>Agentloop:<br />
@@ -1450,7 +1462,9 @@ RAG retrieves 2 excerpts from the runbook → the model (e.g. GPT-5.1 or Claude 
 <p>The first version should be strict:<br />
 - <strong>Max steps</strong>: e.g. 3–5<br />
 - <strong>Allowlist</strong>: only certain tools<br />
-- <strong>Verification before action</strong>: no "actions" without proof</p>
+- <strong>Verification before action</strong>: no "actions" without proof<br />
+- <strong>Assumptions first</strong>: list assumptions/unknowns; stop if uncertainty touches auth, data, or public contracts<br />
+- <strong>Anti-bloat constraints</strong>: prefer the smallest diff; avoid new abstraction layers unless asked; delete dead code during refactors</p>
 <h3 id="93-agent-example-that-devs-like">9.3 Agent example that devs like</h3>
 <p>Task: "The build is failing — find the cause and suggest a fix."</p>
 <p>Agent loop:<br />
@@ -1530,6 +1544,7 @@ RAG retrieves 2 excerpts from the runbook → the model (e.g. GPT-5.1 or Claude 
 <h3 id="111-varfor-du-maste-mata">11.1 Varför du måste mäta</h3>
 <p>Små förändringar i prompt, chunking, modell eller inställningar kan ge stora beteendeskillnader — oavsett om du kör GPT-5.1, Claude Opus 4.5, Gemini 3 eller Llama 3.</p>
 <p><strong>Evals</strong> är en återkommande testsvit, liknande en testsuite.</p>
+<p>Detta blir ännu viktigare när generering blir billig: <strong>verifiering blir flaskhalsen</strong>. Evals minskar gummistämpling genom att göra korrekthet och regel‑efterlevnad mätbar, repeterbar och automatiserbar.</p>
 <h3 id="112-minsta-eval-setup-som-fungerar">11.2 Minsta eval-setup som fungerar</h3>
 <p>Skapa en mapp med case:<br />
 - 20 vanliga frågor (riktiga)<br />
@@ -1549,6 +1564,7 @@ RAG retrieves 2 excerpts from the runbook → the model (e.g. GPT-5.1 or Claude 
 <h3 id="111-why-you-must-measure">11.1 Why you must measure</h3>
 <p>Small changes in prompt, chunking, model or settings can cause big behavior differences — whether you run GPT-5.1, Claude Opus 4.5, Gemini 3 or Llama 3.</p>
 <p><strong>Evals</strong> are a recurring test suite, similar to a test suite.</p>
+<p>This matters even more as generation gets cheap: <strong>verification becomes the bottleneck</strong>. Evals reduce rubber-stamping by making correctness and rule-following measurable, repeatable, and automatable.</p>
 <h3 id="112-minimum-eval-setup-that-works">11.2 Minimum eval setup that works</h3>
 <p>Create a folder with cases:<br />
 - 20 common questions (real ones)<br />

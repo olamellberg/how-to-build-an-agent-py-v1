@@ -292,4 +292,12 @@ Det är inte så svårt. En agent är bara:
 
 Resten är bara detaljer och boilerplate. Men dessa detaljer — hur du strukturerar verktygen, hur du hanterar fel, hur du designar feedback-loopen — det är där skillnaden mellan en demo och något användbart ligger.
 
+### Produktionsfallgropar (vad som går sönder efter demon)
+När du går från “cool prototyp” till “användbart verktyg” skiftar felen:
+
+- **Konceptuella fel > syntaxfel**: agenten kan producera plausibel kod som är fel för dina verkliga constraints. Gör framgångskriterier och invarianter explicita.
+- **Antaganden måste vara synliga**: lägg till ett `assumptions`/`unknowns`-fält (eller motsvarande) i agentens output, bredvid `verification_steps`.
+- **Bloat-kontroll spelar roll**: håll scopet tajt, föredra minsta diff, och ta bort död kod under refaktoreringar i stället för att lämna parallella vägar bakom dig.
+- **Verifiering är en produktfeature**: investera i en harness (ett-kommando-check), riktade tester och lättviktiga evals så att du kan iterera säkert.
+
 **Och det roligaste?** Du kan använda Cursor för att bygga allt detta. Det är rekursivt. Det är meta. Det är agenter hela vägen ner.

@@ -41,6 +41,8 @@ SDD is a loop, not a document.
 
 Keeping the lifecycle explicit prevents drift and keeps context fresh.
 
+One practical warning: the cost of verification is often **non-linear**. The first draft can be cheap; the “last 20%” (integration invariants, edge cases, rollout/rollback, observability) is where teams lose time. Make verification explicit early so you don’t discover hidden work at the end.
+
 ---
 
 ## 5) The Minimum Viable Spec (MVS)
@@ -53,6 +55,8 @@ A useful spec can be short. The minimum that works:
 - **Inputs/outputs:** format, schema, interfaces
 - **Examples:** one good, one bad
 - **Validation:** tests or checks to run
+- **Assumptions & unknowns:** what must be true for this to work (and what you’re not sure about yet)
+- **Rollout/rollback (brownfield):** how to ship safely and how to back out if reality disagrees
 
 If these six items are clear, implementation becomes straightforward.
 
@@ -99,6 +103,7 @@ Signals you are too big:
 - multiple unrelated files changed at once
 - long, ambiguous prompts
 - validation steps are unclear or missing
+- the diff is too large to review “in one sitting” (your review bandwidth is the bottleneck)
 
 ---
 

@@ -208,6 +208,10 @@
                     <span class="lang-sv">Agents.md förklarat</span>
                     <span class="lang-en">Agents.md Explained</span>
                 </a></li>
+                <li><a href="comprehension-debt.html">
+                    <span class="lang-sv">Förståelseskuld: den verkliga flaskhalsen i agentisk mjukvaruleverans</span>
+                    <span class="lang-en">Comprehension Debt: The Real Bottleneck in Agentic Software Delivery</span>
+                </a></li>
                 <li><a href="ide-agentic-ai.html">
                     <span class="lang-sv">Välj IDE för Agentisk AI</span>
                     <span class="lang-en">Choosing an IDE for Agentic AI</span>
@@ -356,6 +360,7 @@
 3) <strong>Utföra:</strong> implementera i små, granskbara steg<br />
 4) <strong>Verifiera:</strong> kontrollera mot tester/evals och skärp specen</p>
 <p>Att hålla livscykeln explicit motverkar drift och håller kontexten fräsch.</p>
+<p>En praktisk varning: kostnaden för verifiering är ofta <strong>icke‑linjär</strong>. Första utkastet kan vara billigt; “de sista 20%” (integrationsinvarianter, kantfall, rollout/rollback, observerbarhet) är där team tappar tid. Gör verifiering explicit tidigt så att du inte upptäcker dolt arbete i slutet.</p>
 <hr />
 <h2 id="5-minsta-fungerande-spec-mvs">5) Minsta fungerande spec (MVS)</h2>
 <p>En användbar spec kan vara kort. Minsta som fungerar:</p>
@@ -366,6 +371,8 @@
 <li><strong>Input/output:</strong> format, schema, gränssnitt</li>
 <li><strong>Exempel:</strong> ett bra, ett dåligt</li>
 <li><strong>Validering:</strong> tester eller checks att köra</li>
+<li><strong>Antaganden &amp; oklarheter:</strong> vad som måste vara sant för att detta ska fungera (och vad du inte är säker på ännu)</li>
+<li><strong>Rollout/rollback (brownfield):</strong> hur du skeppar säkert och hur du backar om verkligheten inte stämmer</li>
 </ul>
 <p>När dessa sex punkter är tydliga blir implementationen rak.</p>
 <hr />
@@ -394,7 +401,8 @@
 <p>Tecken på att det är för stort:<br />
 - flera orelaterade filer ändras samtidigt<br />
 - långa, tvetydiga prompts<br />
-- valideringssteg är oklara eller saknas</p>
+- valideringssteg är oklara eller saknas<br />
+- diffen är för stor för att granskas “i en sittning” (reviewbandbredden är flaskhalsen)</p>
 <hr />
 <h2 id="10-greenfield-vs-brownfield-specar">10) Greenfield vs brownfield-specar</h2>
 <p><strong>Greenfield:</strong> fokusera på vision, gränser och non-goals för att undvika överbyggande.<br />
@@ -463,6 +471,7 @@ Won’t:
 3) <strong>Execute:</strong> implement in small, reviewable steps<br />
 4) <strong>Verify:</strong> check against tests/evals and tighten the spec</p>
 <p>Keeping the lifecycle explicit prevents drift and keeps context fresh.</p>
+<p>One practical warning: the cost of verification is often <strong>non-linear</strong>. The first draft can be cheap; the “last 20%” (integration invariants, edge cases, rollout/rollback, observability) is where teams lose time. Make verification explicit early so you don’t discover hidden work at the end.</p>
 <hr />
 <h2 id="5-the-minimum-viable-spec-mvs">5) The Minimum Viable Spec (MVS)</h2>
 <p>A useful spec can be short. The minimum that works:</p>
@@ -473,6 +482,8 @@ Won’t:
 <li><strong>Inputs/outputs:</strong> format, schema, interfaces</li>
 <li><strong>Examples:</strong> one good, one bad</li>
 <li><strong>Validation:</strong> tests or checks to run</li>
+<li><strong>Assumptions &amp; unknowns:</strong> what must be true for this to work (and what you’re not sure about yet)</li>
+<li><strong>Rollout/rollback (brownfield):</strong> how to ship safely and how to back out if reality disagrees</li>
 </ul>
 <p>If these six items are clear, implementation becomes straightforward.</p>
 <hr />
@@ -501,7 +512,8 @@ Won’t:
 <p>Signals you are too big:<br />
 - multiple unrelated files changed at once<br />
 - long, ambiguous prompts<br />
-- validation steps are unclear or missing</p>
+- validation steps are unclear or missing<br />
+- the diff is too large to review “in one sitting” (your review bandwidth is the bottleneck)</p>
 <hr />
 <h2 id="10-greenfield-vs-brownfield-specs">10) Greenfield vs brownfield specs</h2>
 <p><strong>Greenfield:</strong> focus on vision, boundaries, and non-goals to avoid over-building.<br />
@@ -628,6 +640,7 @@ Won’t:
 3) <strong>Utföra:</strong> implementera i små, granskbara steg<br />
 4) <strong>Verifiera:</strong> kontrollera mot tester/evals och skärp specen</p>
 <p>Att hålla livscykeln explicit motverkar drift och håller kontexten fräsch.</p>
+<p>En praktisk varning: kostnaden för verifiering är ofta <strong>icke‑linjär</strong>. Första utkastet kan vara billigt; “de sista 20%” (integrationsinvarianter, kantfall, rollout/rollback, observerbarhet) är där team tappar tid. Gör verifiering explicit tidigt så att du inte upptäcker dolt arbete i slutet.</p>
 <hr /></div>
             <div class="lang-en"><h2 id="4-the-sdd-lifecycle-discover-plan-execute-verify">4) The SDD lifecycle (discover → plan → execute → verify)</h2>
 <p>SDD is a loop, not a document.</p>
@@ -636,6 +649,7 @@ Won’t:
 3) <strong>Execute:</strong> implement in small, reviewable steps<br />
 4) <strong>Verify:</strong> check against tests/evals and tighten the spec</p>
 <p>Keeping the lifecycle explicit prevents drift and keeps context fresh.</p>
+<p>One practical warning: the cost of verification is often <strong>non-linear</strong>. The first draft can be cheap; the “last 20%” (integration invariants, edge cases, rollout/rollback, observability) is where teams lose time. Make verification explicit early so you don’t discover hidden work at the end.</p>
 <hr /></div>
         </div>
     </section>
@@ -651,6 +665,8 @@ Won’t:
 <li><strong>Input/output:</strong> format, schema, gränssnitt</li>
 <li><strong>Exempel:</strong> ett bra, ett dåligt</li>
 <li><strong>Validering:</strong> tester eller checks att köra</li>
+<li><strong>Antaganden &amp; oklarheter:</strong> vad som måste vara sant för att detta ska fungera (och vad du inte är säker på ännu)</li>
+<li><strong>Rollout/rollback (brownfield):</strong> hur du skeppar säkert och hur du backar om verkligheten inte stämmer</li>
 </ul>
 <p>När dessa sex punkter är tydliga blir implementationen rak.</p>
 <hr /></div>
@@ -663,6 +679,8 @@ Won’t:
 <li><strong>Inputs/outputs:</strong> format, schema, interfaces</li>
 <li><strong>Examples:</strong> one good, one bad</li>
 <li><strong>Validation:</strong> tests or checks to run</li>
+<li><strong>Assumptions &amp; unknowns:</strong> what must be true for this to work (and what you’re not sure about yet)</li>
+<li><strong>Rollout/rollback (brownfield):</strong> how to ship safely and how to back out if reality disagrees</li>
 </ul>
 <p>If these six items are clear, implementation becomes straightforward.</p>
 <hr /></div>
@@ -731,14 +749,16 @@ Won’t:
 <p>Tecken på att det är för stort:<br />
 - flera orelaterade filer ändras samtidigt<br />
 - långa, tvetydiga prompts<br />
-- valideringssteg är oklara eller saknas</p>
+- valideringssteg är oklara eller saknas<br />
+- diffen är för stor för att granskas “i en sittning” (reviewbandbredden är flaskhalsen)</p>
 <hr /></div>
             <div class="lang-en"><h2 id="9-keep-context-fresh-with-small-staged-work">9) Keep context fresh with small, staged work</h2>
 <p>Quality drops when tasks are too big. Break work into small, atomic steps with clear verification. This reduces context bloat and makes the feedback loop reliable.</p>
 <p>Signals you are too big:<br />
 - multiple unrelated files changed at once<br />
 - long, ambiguous prompts<br />
-- validation steps are unclear or missing</p>
+- validation steps are unclear or missing<br />
+- the diff is too large to review “in one sitting” (your review bandwidth is the bottleneck)</p>
 <hr /></div>
         </div>
     </section>

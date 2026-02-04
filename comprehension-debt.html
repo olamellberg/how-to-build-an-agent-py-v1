@@ -1,0 +1,1887 @@
+<!DOCTYPE html>
+<html lang="sv" data-lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehension Debt: The Real Bottleneck in Agentic Software Delivery - B3 Commit AI Handbook</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Presentation Progress Indicator -->
+    <nav class="presentation-progress" id="presentationProgress">
+        <div class="presentation-progress-track"></div>
+        <div class="presentation-progress-fill" id="progressFill"></div>
+        <div class="presentation-progress-item active" data-slide="0">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Intro</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="1">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Sammanfattning</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="2">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Vad den här artikeln fokuserar på</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="3">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Artikelkarta</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="4">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">1) Den nya begränsningen: från “att skriva kod” till “att bevisa korrekthet”</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="5">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">2) Förståelseskuld: definition, tidiga indikatorer och varför den växer</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="6">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">3) Fyra fellägen att designa mot</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="7">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">4) Ingenjörskonst för granskningsbarhet: diffbudgetar, scope och borttagning som standard</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="8">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">5) Evidensunderlag: gör verifiering billig och återanvändbar</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="9">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">6) Fresh-context review‑mönster</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="10">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">7) Ett lättviktigt policyset för team (copy/paste)</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="11">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">8) Vad ni ska mäta: signaler på att verifiering blir er flaskhals</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="12">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Referenser</span>
+        </div>
+    </nav>
+
+    <!-- Reading Progress (vertical chapter nav for reading mode) -->
+    <nav class="reading-progress" id="readingProgress">
+        <div class="reading-progress-track"></div>
+        <div class="reading-progress-fill" id="readingProgressFill"></div>
+        <a href="#sammanfattning" class="reading-progress-item" data-section="sammanfattning">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Sammanfattning</span>
+                <span class="lang-en">Abstract</span>
+            </span>
+        </a>
+        <a href="#vad-den-har-artikeln-fokuserar-pa" class="reading-progress-item" data-section="vad-den-har-artikeln-fokuserar-pa">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Vad den här artikeln fokuserar på</span>
+                <span class="lang-en">What this article focuses on</span>
+            </span>
+        </a>
+        <a href="#artikelkarta" class="reading-progress-item" data-section="artikelkarta">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Artikelkarta</span>
+                <span class="lang-en">Article map</span>
+            </span>
+        </a>
+        <a href="#1-den-nya-begransningen-fran-att-skriva-kod-till-att-bevisa-korrekthet" class="reading-progress-item" data-section="1-den-nya-begransningen-fran-att-skriva-kod-till-att-bevisa-korrekthet">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">1) Den nya begränsningen: från “att skriva kod” till “att bevisa korrekthet”</span>
+                <span class="lang-en">1) The new constraint: from “writing code” to “proving correctness”</span>
+            </span>
+        </a>
+        <a href="#2-forstaelseskuld-definition-tidiga-indikatorer-och-varfor-den-vaxer" class="reading-progress-item" data-section="2-forstaelseskuld-definition-tidiga-indikatorer-och-varfor-den-vaxer">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">2) Förståelseskuld: definition, tidiga indikatorer och varför den växer</span>
+                <span class="lang-en">2) Comprehension debt: definition, leading indicators, and why it compounds</span>
+            </span>
+        </a>
+        <a href="#3-fyra-fellagen-att-designa-mot" class="reading-progress-item" data-section="3-fyra-fellagen-att-designa-mot">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">3) Fyra fellägen att designa mot</span>
+                <span class="lang-en">3) Four failure modes to design against</span>
+            </span>
+        </a>
+        <a href="#4-ingenjorskonst-for-granskningsbarhet-diffbudgetar-scope-och-borttagning-som-standard" class="reading-progress-item" data-section="4-ingenjorskonst-for-granskningsbarhet-diffbudgetar-scope-och-borttagning-som-standard">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">4) Ingenjörskonst för granskningsbarhet: diffbudgetar, scope och borttagning som standard</span>
+                <span class="lang-en">4) Reviewability engineering: diff budgets, scope rules, and deletion bias</span>
+            </span>
+        </a>
+        <a href="#5-evidensunderlag-gor-verifiering-billig-och-ateranvandbar" class="reading-progress-item" data-section="5-evidensunderlag-gor-verifiering-billig-och-ateranvandbar">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">5) Evidensunderlag: gör verifiering billig och återanvändbar</span>
+                <span class="lang-en">5) Evidence bundles: make verification cheap and reusable</span>
+            </span>
+        </a>
+        <a href="#6-fresh-context-reviewmonster" class="reading-progress-item" data-section="6-fresh-context-reviewmonster">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">6) Fresh-context review‑mönster</span>
+                <span class="lang-en">6) Fresh-context review patterns</span>
+            </span>
+        </a>
+        <a href="#7-ett-lattviktigt-policyset-for-team-copypaste" class="reading-progress-item" data-section="7-ett-lattviktigt-policyset-for-team-copypaste">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">7) Ett lättviktigt policyset för team (copy/paste)</span>
+                <span class="lang-en">7) A lightweight team policy set (copy/paste)</span>
+            </span>
+        </a>
+        <a href="#8-vad-ni-ska-mata-signaler-pa-att-verifiering-blir-er-flaskhals" class="reading-progress-item" data-section="8-vad-ni-ska-mata-signaler-pa-att-verifiering-blir-er-flaskhals">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">8) Vad ni ska mäta: signaler på att verifiering blir er flaskhals</span>
+                <span class="lang-en">8) What to measure: signals verification is becoming your bottleneck</span>
+            </span>
+        </a>
+        <a href="#referenser" class="reading-progress-item" data-section="referenser">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Referenser</span>
+                <span class="lang-en">References</span>
+            </span>
+        </a>
+    </nav>
+
+    <!-- Menu Overlay -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <!-- Mobile Menu -->
+    <nav class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <a href="index.html" class="logo">B3 Commit AI Playbook</a>
+            <button class="mobile-menu-close" id="menuClose" aria-label="Stäng meny">&times;</button>
+        </div>
+        <div class="mobile-menu-section">
+            <h3>
+                <span class="lang-sv">Artiklar</span>
+                <span class="lang-en">Articles</span>
+            </h3>
+            <ul class="mobile-menu-links">
+                <li><a href="ai-fundamentals.html">
+                    <span class="lang-sv">AI Fundamentals 2026</span>
+                    <span class="lang-en">AI Fundamentals 2026</span>
+                </a></li>
+                <li><a href="spec-driven-development.html">
+                    <span class="lang-sv">Spec-driven utveckling: Praktisk guide</span>
+                    <span class="lang-en">Spec-Driven Development: Practical Guide</span>
+                </a></li>
+                <li><a href="cursor-python-agent.html">
+                    <span class="lang-sv">Hur man bygger en agent (Cursor + Python)</span>
+                    <span class="lang-en">How to Build an Agent (Cursor + Python Edition)</span>
+                </a></li>
+                <li><a href="claude-code-101.html">
+                    <span class="lang-sv">Claude Code 101</span>
+                    <span class="lang-en">Claude Code 101</span>
+                </a></li>
+                <li><a href="claude-code-mastery.html">
+                    <span class="lang-sv">Bemästra Claude Code</span>
+                    <span class="lang-en">How to Master Claude Code</span>
+                </a></li>
+                <li><a href="collaboration-with-claude-code-team-tips.html">
+                    <span class="lang-sv">Samarbete med Claude Code: Teamtips för utvecklare</span>
+                    <span class="lang-en">Collaboration with Claude Code: Team Tips for Developers</span>
+                </a></li>
+                <li><a href="vibe-engineering-101.html">
+                    <span class="lang-sv">Vibe Engineering 101</span>
+                    <span class="lang-en">Vibe Engineering 101</span>
+                </a></li>
+                <li><a href="agents-md-explained.html">
+                    <span class="lang-sv">Agents.md förklarat</span>
+                    <span class="lang-en">Agents.md Explained</span>
+                </a></li>
+                <li><a href="comprehension-debt.html">
+                    <span class="lang-sv">Förståelseskuld: den verkliga flaskhalsen i agentisk mjukvaruleverans</span>
+                    <span class="lang-en">Comprehension Debt: The Real Bottleneck in Agentic Software Delivery</span>
+                </a></li>
+                <li><a href="ide-agentic-ai.html">
+                    <span class="lang-sv">Välj IDE för Agentisk AI</span>
+                    <span class="lang-en">Choosing an IDE for Agentic AI</span>
+                </a></li>
+                <li><a href="just-ralph-it.html">
+                    <span class="lang-sv">Just Ralph-it</span>
+                    <span class="lang-en">Just Ralph-it</span>
+                </a></li>
+                <li><a href="developer-career-2026.html">
+                    <span class="lang-sv">Din karriär som utvecklare 2026</span>
+                    <span class="lang-en">Your Dev Career in 2026</span>
+                </a></li>
+                <li><a href="agents-md-template.html">
+                    <span class="lang-sv">agents.md / CLAUDE.md Mall</span>
+                    <span class="lang-en">agents.md / CLAUDE.md Template</span>
+                </a></li>
+            </ul>
+        </div>
+        <div class="mobile-menu-section">
+            <h3>
+                <span class="lang-sv">Länkar</span>
+                <span class="lang-en">Links</span>
+            </h3>
+            <ul class="mobile-menu-links">
+                <li class="mobile-menu-submenu">
+                    <div class="mobile-menu-submenu-title">
+                        <span class="menu-icon">🎬</span>
+                        <span class="lang-sv">Video</span>
+                        <span class="lang-en">Video</span>
+                    </div>
+                    <ul class="mobile-menu-sublinks">
+                        <li>
+                            <a href="video.html">
+                                <span class="menu-icon">▶️</span>
+                                <span class="lang-sv">The Future Belongs To People Who Do Things</span>
+                                <span class="lang-en">The Future Belongs To People Who Do Things</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="https://github.com/b3-commit" target="_blank">GitHub</a></li>
+                <li>
+                    <a href="#" id="menuThemeToggle">
+                        <span id="menuThemeText">
+                            <span class="lang-sv">Byt till mörkt läge</span>
+                            <span class="lang-en">Switch to dark mode</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="menuLangToggle">
+                        <span id="menuLangText">
+                            <span class="lang-sv">English</span>
+                            <span class="lang-en">Svenska</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <header>
+        <nav class="nav-container">
+            <div class="nav-left">
+                <a href="index.html" class="logo">B3 Commit AI Playbook</a>
+                <span class="breadcrumb">/ <a href="index.html"><span class="lang-sv">AI Handbook</span><span class="lang-en">AI Handbook</span></a> / <span class="lang-sv">Förståelseskuld: den verkliga flaskhalsen i agentisk mjukvaruleverans</span><span class="lang-en">Comprehension Debt: The Real Bottleneck in Agentic Software Delivery</span></span>
+            </div>
+            <div class="nav-right">
+                <button class="presentation-toggle" id="presentationToggle" aria-label="Presentation mode">
+                    <span class="icon">📽️</span>
+                    <span class="lang-sv">Presentation</span>
+                    <span class="lang-en">Present</span>
+                </button>
+                <button class="lang-toggle" id="langToggle" aria-label="Byt språk">
+                    <span class="flag lang-sv">🇸🇪</span>
+                    <span class="flag lang-en">🇬🇧</span>
+                    <span class="lang-sv">SV</span>
+                    <span class="lang-en">EN</span>
+                </button>
+                <button class="theme-toggle" id="themeToggle" aria-label="Växla tema">
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                </button>
+                <button class="hamburger" id="hamburger" aria-label="Öppna meny">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <article>
+            <header class="article-header" id="intro">
+                <p class="article-meta">
+                    <span class="lang-sv">Granskningsbarhet // 2026-02</span>
+                    <span class="lang-en">Reviewability // 2026-02</span>
+                </p>
+                <h1><span class="lang-sv">Förståelseskuld: den verkliga flaskhalsen i agentisk mjukvaruleverans</span><span class="lang-en">Comprehension Debt: The Real Bottleneck in Agentic Software Delivery</span></h1>
+                <p class="subtitle">
+                    <span class="lang-sv">Hur du konstruerar för granskningsbarhet när generering är billig</span>
+                    <span class="lang-en">How to engineer reviewability when generation is cheap</span>
+                </p>
+            </header>
+
+            <!-- Article Navigation -->
+            <nav class="article-nav" id="articleNav">
+                <a href="#sammanfattning" class="nav-pill">Sammanfattning</a>
+                <a href="#vad-den-har-artikeln-fokuserar-pa" class="nav-pill">Vad den här artikeln fokuserar på</a>
+                <a href="#artikelkarta" class="nav-pill">Artikelkarta</a>
+                <a href="#1-den-nya-begransningen-fran-att-skriva-kod-till-att-bevisa-korrekthet" class="nav-pill">1) Den nya begränsningen: från “att skriva kod” till “att bevisa korrekthet”</a>
+                <a href="#2-forstaelseskuld-definition-tidiga-indikatorer-och-varfor-den-vaxer" class="nav-pill">2) Förståelseskuld: definition, tidiga indikatorer och varför den växer</a>
+                <a href="#3-fyra-fellagen-att-designa-mot" class="nav-pill">3) Fyra fellägen att designa mot</a>
+                <a href="#4-ingenjorskonst-for-granskningsbarhet-diffbudgetar-scope-och-borttagning-som-standard" class="nav-pill">4) Ingenjörskonst för granskningsbarhet: diffbudgetar, scope och borttagning som standard</a>
+                <a href="#5-evidensunderlag-gor-verifiering-billig-och-ateranvandbar" class="nav-pill">5) Evidensunderlag: gör verifiering billig och återanvändbar</a>
+                <a href="#6-fresh-context-reviewmonster" class="nav-pill">6) Fresh-context review‑mönster</a>
+                <a href="#7-ett-lattviktigt-policyset-for-team-copypaste" class="nav-pill">7) Ett lättviktigt policyset för team (copy/paste)</a>
+                <a href="#8-vad-ni-ska-mata-signaler-pa-att-verifiering-blir-er-flaskhals" class="nav-pill">8) Vad ni ska mäta: signaler på att verifiering blir er flaskhals</a>
+                <a href="#referenser" class="nav-pill">Referenser</a>
+            </nav>
+
+            <div class="lang-sv"><p><strong>Version 1.0</strong> | 2026-02-03</p>
+<h3 id="hur-du-konstruerar-for-granskningsbarhet-nar-generering-ar-billig">Hur du konstruerar för granskningsbarhet när generering är billig</h3>
+<h2 id="sammanfattning">Sammanfattning</h2>
+<p>Moderna kodagenter kan producera plausibla implementationer snabbt, ofta nå “ser klart ut” på minuter. Begränsningen har flyttats: ingenjörsteam är inte längre begränsade av att generera kod, utan av att verifiera korrekthet, bevara delad förståelse och integrera ändringar säkert i system med riktiga invarianter.</p>
+<p>Den här artikeln definierar <strong>förståelseskuld (comprehension debt)</strong>: glappet mellan det du skeppat och det teamet kan förklara, felsöka och drifta. Den beskriver fellägena som driver den — <strong>antagandespridning</strong>, <strong>abstraktionssvullnad</strong>, <strong>ackumulering av död kod</strong> och <strong>sykofantiskt instämmande</strong> — och visar varför de ofta dyker upp <em>efter</em> första utkastet, när ändringar börjar interagera med produktionsverkligheten.</p>
+<p>I stället för att “prompt:a bättre” föreslår artikeln en praktisk driftsmodell: behandla granskning som en pipeline med explicita budgetar (diffstorlek, scope), kräv evidensunderlag (körda kommandon + outputs + risknoter), tvinga fram borttagning och förenkling, och använd fresh-context reviews för att fånga konceptuella fel tidigt. Målet är att behålla agentisk hastighet <strong>utan</strong> att kodgranskning degenererar till gummistämpling.</p>
+<h2 id="vad-den-har-artikeln-fokuserar-pa">Vad den här artikeln fokuserar på</h2>
+<p>Den här artikeln fokuserar på:</p>
+<ul>
+<li>teamnivå‑begränsningar som håller PR:er granskningsbara</li>
+<li>verifieringsevidens och granskningschecklistor</li>
+<li>processmönster som minskar konceptuella fel</li>
+</ul>
+<p>Den återberättar medvetet <em>inte</em>:</p>
+<ul>
+<li>harness‑setup och “one-command validation” (se <em>Vibe Engineering 101</em>)</li>
+<li>specmallar och kravstruktur (se <em>Spec-Driven Development</em>)</li>
+<li>grunderna i kontexthantering (se <em>Claude Code 101</em> / <em>How to Master Claude Code</em>)</li>
+</ul>
+<h2 id="artikelkarta">Artikelkarta</h2>
+<p>Om du har ont om tid, börja med avsnitt <strong>4–7</strong>. De innehåller de konkreta arbetssätten som gör att agentisk leverans kan skala <em>utan</em> gummistämpling.</p>
+<ol>
+<li><strong>Den nya begränsningen</strong>: från att skriva kod till att bevisa korrekthet</li>
+<li><strong>Förståelseskuld</strong>: definition, tidiga indikatorer och varför den växer</li>
+<li><strong>Fyra fellägen</strong>: konceptuella misstag agenter gör (och varför de består)</li>
+<li><strong>Ingenjörskonst för granskningsbarhet</strong>: diffbudgetar, scope och borttagning som standard</li>
+<li><strong>Evidensunderlag</strong>: artefakten som gör granskning skalbar</li>
+<li><strong>Fresh-context review</strong>: fånga konceptuella fel med rena indata</li>
+<li><strong>Policyset för team</strong>: copy/paste‑guardrails</li>
+<li><strong>Vad ni ska mäta</strong>: signaler på att verifiering blir er flaskhals</li>
+</ol>
+<hr />
+<h2 id="1-den-nya-begransningen-fran-att-skriva-kod-till-att-bevisa-korrekthet">1) Den nya begränsningen: från “att skriva kod” till “att bevisa korrekthet”</h2>
+<p>Agentisk utveckling förändrar vad som är en bristvara.</p>
+<p>När generering är billig slutar team vara begränsade av tangentryckningar. I stället blir flaskhalsen <strong>verifiering</strong>: att bevisa att en ändring är korrekt, säker att integrera och tillräckligt begriplig för att drifta senare. Addy Osmani kallar detta “80%-problemet”: agenter kan ofta ta dig till ett plausibelt första utkast snabbt, men sista biten domineras av integrationsverklighet och mänsklig granskningsbandbredd. (<a href="https://addyo.substack.com/p/the-80-problem-in-agentic-coding?utm_source=tldrdev">addyo.substack.com</a>)</p>
+<h3 id="den-sista-20-ar-inte-linjar">Den “sista 20%” är inte linjär</h3>
+<p>Den sista delen innehåller ofta arbete som är svårt att helt delegera eftersom det beror på systemets faktiska invarianter:</p>
+<ul>
+<li><strong>Kantfall</strong>: sällsynta inputs, samtidighet, delvisa fel, tidszoner, behörigheter, datamigrationsquirks</li>
+<li><strong>Integrationskorrekthet</strong>: kontrakt mellan moduler, bakåtkompatibilitet, utrullningsbegränsningar</li>
+<li><strong>Driftsäkerhet</strong>: loggning, mätetal, larm, felsökningsvägar, rollback-planer</li>
+<li><strong>Prestanda &amp; kostnad</strong>: “det funkar”-utkastet som är för långsamt eller för dyrt</li>
+<li><strong>Säkerhet &amp; regelefterlevnad</strong>: antaganden om authz/authn, datahantering, attackyta</li>
+</ul>
+<p>Om din process inte gör dessa kontroller billiga och upprepningsbara hamnar du i en paradox: <strong>mer kod producerad, samma (eller sämre) leveransgenomströmning</strong>.</p>
+<h3 id="den-praktiska-konsekvensen">Den praktiska konsekvensen</h3>
+<p>I agentisk leverans är “granskningsbarhet” inte en trevlighet. Det är ett ingenjörskrav.</p>
+<p>Ert system behöver kunna svara, för varje PR:</p>
+<ul>
+<li>Vad ändrades (beteendemässigt)?</li>
+<li>Vilken evidens säger att det fungerar?</li>
+<li>Vad kan gå sönder, och hur skulle vi märka det?</li>
+<li>Vad är rollback-historien om verkligheten inte håller med?</li>
+</ul>
+<p>När ni inte kan svara snabbt har ni inte skeppat kod. Ni har skeppat <strong>osäkerhet</strong>.</p>
+<hr />
+<h2 id="2-forstaelseskuld-definition-tidiga-indikatorer-och-varfor-den-vaxer">2) Förståelseskuld: definition, tidiga indikatorer och varför den växer</h2>
+<p><strong>Förståelseskuld</strong> är glappet mellan det ni skeppade och det teamet kan förklara, felsöka och drifta med hög tillit senare.</p>
+<p>Den hänger ihop med (men skiljer sig från) teknisk skuld:</p>
+<ul>
+<li><strong>Teknisk skuld</strong>: “vi förstår det, men det är fult/skört/långsamt och vi får betala senare.”</li>
+<li><strong>Förståelseskuld</strong>: “vi skeppade det, men vi kan inte riktigt förklara det — vi satsar framtida tid på hopp.”</li>
+</ul>
+<h3 id="varfor-den-vaxer">Varför den växer</h3>
+<p>Förståelseskuld växer snabbare än linjärt eftersom varje oklar ändring gör det svårare att validera nästa.</p>
+<p>När ni inte förstår en modul fullt ut tenderar ni att:</p>
+<ul>
+<li>skriva svagare tester (ni vet inte vad som ska assertas)</li>
+<li>missa invarianter (“det här måste alltid vara sant”)</li>
+<li>acceptera sköra abstraktioner (“det verkar rimligt”)</li>
+<li>granska på vibes i stället för evidens (“LGTM” blir en coping‑mekanism)</li>
+</ul>
+<p>Med tiden blir granskning gummistämpling: er förmåga att <strong>skilja</strong> bra kod från plausibel kod hänger inte med agentens förmåga att <strong>generera</strong> plausibel kod. Osmani lyfter detta som en dold kostnad i produktivitetsnarrativet. (<a href="https://addyo.substack.com/p/the-80-problem-in-agentic-coding?utm_source=tldrdev">addyo.substack.com</a>)</p>
+<h3 id="tidiga-indikatorer-varningssignaler">Tidiga indikatorer (varningssignaler)</h3>
+<p>Om flera av de här stämmer ackumuleras förståelseskuld redan:</p>
+<ul>
+<li>PR:er mergas med kommentarer som “ser bra ut” utan konkret verifieringsevidens</li>
+<li>PR-sammanfattningar beskriver <em>vilka filer</em> som ändrats men inte <em>vilket beteende</em> som ändrats</li>
+<li>reviewers frågar “varför behövs det här?” <em>efter</em> att koden är skriven (intent var inte förankrat)</li>
+<li>diffar innehåller ofta “drive-by”-refactors, renames och nya abstraktioner</li>
+<li>“tillfällig” kod blir kvar för alltid (feature flags, kommenterade block, alternativa paths)</li>
+<li>on‑call kan inte svara på “vad ändrades nyligen?” inom några minuter</li>
+</ul>
+<p>Fixen är sällan “var mer försiktig.” Den är nästan alltid “konstruera arbetsflödet så att det är svårt att skeppa okända saker.”</p>
+<hr />
+<h2 id="3-fyra-fellagen-att-designa-mot">3) Fyra fellägen att designa mot</h2>
+<p>Som Osmani noterar har många agentmisstag flyttat från uppenbara syntaxfel till <strong>konceptuella fel</strong>: sådant som ser koherent ut i en diff men bryter riktiga constraints senare. (<a href="https://addyo.substack.com/p/the-80-problem-in-agentic-coding?utm_source=tldrdev">addyo.substack.com</a>)</p>
+<h3 id="31-antagandespridning">3.1 Antagandespridning</h3>
+<p><strong>Vad det är:</strong> agenten gör ett tidigt antagande (“det här API:et beter sig som X”, “fältet finns alltid”) och bygger en koherent lösning ovanpå det.</p>
+<p><strong>Hur det visar sig:</strong></p>
+<ul>
+<li>en refaktor ändrar betydelse subtilt (t.ex. tidszoner, nullability, casing, auth checks)</li>
+<li>ny logik speglar ett mönster som är <em>nästan</em> rätt men bryter en lokal invariant</li>
+<li>tester passerar eftersom de inte täcker den verkliga produktionsformen</li>
+</ul>
+<p><strong>Motåtgärder:</strong></p>
+<ul>
+<li>Kräv en explicit <strong>Antaganden</strong>‑lista i PR:ens evidensunderlag.</li>
+<li>Lägg till en “prove it”‑check: tester för kantfall, kontraktstester eller en snabb integrationskörning.</li>
+<li>Gör ett kort “utforska först”‑steg: hitta befintligt mönster i kodbasen innan ni implementerar.</li>
+</ul>
+<h3 id="32-abstraktionssvullnad">3.2 Abstraktionssvullnad</h3>
+<p><strong>Vad det är:</strong> agenten introducerar onödiga lager (factories, managers, generiska frameworks) som ökar ytan och minskar tydligheten.</p>
+<p><strong>Hur det visar sig:</strong></p>
+<ul>
+<li>en 20‑raders beteendeförändring blir 5 filer och en ny “arkitektur”</li>
+<li>abstraktioner som inte återanvänds (än) men tvingar alla att lära dem nu</li>
+<li>“flexibilitet” som aldrig behövs, i utbyte mot omedelbar komplexitet</li>
+</ul>
+<p><strong>Motåtgärder:</strong></p>
+<ul>
+<li>Standardregel: <strong>ingen ny abstraktion utan ett konkret återanvändningsfall</strong>.</li>
+<li>Föredra enklaste korrekta implementation, extrahera först när upprepning uppstår.</li>
+<li>Upprätthåll <strong>diffbudgetar</strong> så svullnad inte kan gömma sig i en “stor men plausibel” PR.</li>
+</ul>
+<h3 id="33-ackumulering-av-dod-kod">3.3 Ackumulering av död kod</h3>
+<p><strong>Vad det är:</strong> gamla implementationer ligger kvar, alternativa vägar förblir nåbara och “tillfällig” scaffolding blir permanent.</p>
+<p><strong>Hur det visar sig:</strong></p>
+<ul>
+<li>duplicerade funktioner (“v1” och “v2”) finns båda “för säkerhets skull”</li>
+<li>feature flags utan borttagningsplan</li>
+<li>stora diffar som lägger till nytt beteende men inte tar bort det gamla beteendet</li>
+</ul>
+<p><strong>Motåtgärder:</strong></p>
+<ul>
+<li>Bias mot <strong>borttagning</strong>: om ni lägger till en ny path, ta bort den gamla i samma PR (eller i en explicit schemalagd uppföljning).</li>
+<li>Behandla kommenterad kod som en lukt: ta bort den, lita på git-historiken.</li>
+<li>Lägg till statiska checks där det går (outnyttjade exports, unreachable code, coverage‑drop).</li>
+</ul>
+<h3 id="34-sykofantiskt-instammande">3.4 Sykofantiskt instämmande</h3>
+<p><strong>Vad det är:</strong> agenten instämmer självsäkert och kör, även när krav krockar, är underspecificerade eller innebär tradeoffs.</p>
+<p><strong>Hur det visar sig:</strong></p>
+<ul>
+<li>“sure!”‑implementationer som ignorerar non‑goals eller dolda prioriteringar</li>
+<li>ändringar som “funkar” men skiftar produktbeteende oavsiktligt</li>
+<li>saknad tradeoff‑diskussion (hastighet vs korrekthet, caching vs staleness, etc.)</li>
+</ul>
+<p><strong>Motåtgärder:</strong></p>
+<ul>
+<li>Gör tradeoffs explicita i spec eller PR: “vi optimerar för X över Y.”</li>
+<li>Kräv en “Risker &amp; tradeoffs”‑sektion i evidensunderlaget.</li>
+<li>Använd <strong>fresh-context review</strong> (avsnitt 6) för att tvinga kritik, inte fortsättning.</li>
+</ul>
+<hr />
+<h2 id="4-ingenjorskonst-for-granskningsbarhet-diffbudgetar-scope-och-borttagning-som-standard">4) Ingenjörskonst för granskningsbarhet: diffbudgetar, scope och borttagning som standard</h2>
+<p>Om granskning är er flaskhals kan ni inte “fixa det” med mer prompting. Ni fixar det genom att designa arbetet så att det är granskningsbart som default.</p>
+<h3 id="diffbudgetar-gor-prer-lasbara-i-en-sittning">Diffbudgetar (gör PR:er läsbara i en sittning)</h3>
+<p>Välj budgetar som passar ert team, men gör dem explicita. Exempel på startpunkter:</p>
+<ul>
+<li><strong>En beteendeförändring per PR</strong> (allt annat blir en uppföljnings‑PR)</li>
+<li><strong>Begränsa blast radius</strong>: 1 subsystem, 1 publik interface eller 1 user-facing flow</li>
+<li><strong>Begränsa storlek</strong>: t.ex. 200–400 LOC netto, ≤10 filer (justera efter er verklighet)</li>
+<li><strong>Begränsa nyhet</strong>: ingen helt ny “framework”-nivå + beteendeförändring i samma PR</li>
+</ul>
+<p>Rätt budget är den era reviewers klarar utan kontextkollaps. Om granskning ofta tar dagar är PR:erna för stora.</p>
+<h3 id="separera-refaktor-fran-beteendeforandring">Separera refaktor från beteendeförändring</h3>
+<p>Agenter är bra på att “städa upp”, men städning är dyr att verifiera när den blandas med beteendeförändring.</p>
+<p>Två pragmatiska regler:</p>
+<ul>
+<li>Om det ändrar beteende måste det ha fokuserad verifiering (tester/evidens).</li>
+<li>Om det är “bara refaktor” ska det vara mekaniskt verifierbart (inga logikändringar) och landa separat.</li>
+</ul>
+<h3 id="borttagning-som-standard-bekampa-entropi">Borttagning som standard (bekämpa entropi)</h3>
+<p>När generering är billig växer system om ni inte aktivt tar bort.</p>
+<p>I granskning, fråga:</p>
+<ul>
+<li>Vad tog vi bort?</li>
+<li>Vad blev enklare?</li>
+<li>Vilken gammal path behöver inte längre finnas?</li>
+</ul>
+<p>Om en PR bara lägger till, månad efter månad, är förståelseskuld nästan garanterad.</p>
+<hr />
+<h2 id="5-evidensunderlag-gor-verifiering-billig-och-ateranvandbar">5) Evidensunderlag: gör verifiering billig och återanvändbar</h2>
+<p>Ett <strong>evidensunderlag</strong> är en liten, standardiserad artefakt som följer med PR:en. Det svarar på “varför ska jag tro på detta?” utan att granskaren behöver återskapa hela agentsessionen.</p>
+<p>Gör du det rätt blir det det första en reviewer läser och det sista du behöver när du felsöker en regression.</p>
+<h3 id="minimal-mall-for-evidensunderlag-copypaste">Minimal mall för evidensunderlag (copy/paste)</h3>
+<p>Använd i PR-beskrivningar eller som obligatorisk checklista.</p>
+<pre><code class="language-md">## Evidensunderlag
+- Mål:
+- Icke-mål:
+- Beteendeförändring (1–3 bullets):
+  - ...
+- Hur verifierat:
+  - `command` (result)
+  - `command` (result)
+- Risker / kantfall:
+  - ...
+- Utrullning / rollback:
+  - ...
+- Antaganden:
+  - ...
+</code></pre>
+<h3 id="varfor-det-fungerar">Varför det fungerar</h3>
+<p>Evidensunderlag minskar förståelseskuld eftersom de:</p>
+<ul>
+<li>tvingar fram explicit intent (mål/icke‑mål)</li>
+<li>gör “lita på mig” till “här är vad jag körde”</li>
+<li>synliggör antaganden tidigt (innan de blir arkitektur)</li>
+<li>gör granskning mindre beroende av vem som genererade koden</li>
+</ul>
+<hr />
+<h2 id="6-fresh-context-reviewmonster">6) Fresh-context review‑mönster</h2>
+<p>Långa agentsessioner skapar ett nytt problem: granskare kan inte (och ska inte) läsa hela historiken. Lösningen är att granska i en <strong>fresh context</strong>: behandla diff + evidens som input, inte konversationen.</p>
+<h3 id="manniska-evidens-forst-checklista">Människa: evidens-först-checklista</h3>
+<p>Innan du fastnar i implementationdetaljer, kolla fundamenten:</p>
+<ul>
+<li>Gör denna PR <strong>en</strong> sak?</li>
+<li>Är beteendeförändringen tydlig (inte bara “refaktor av X”)?</li>
+<li>Finns verifieringsevidens (tester/kommandon/output)?</li>
+<li>Är antaganden och risker utpekade?</li>
+<li>Lade vi till komplexitet som vi inte behöver direkt?</li>
+<li>Kan en kollega förklara ändringen i morgon utan agentchatten?</li>
+</ul>
+<h3 id="agent-review-fran-scratch-prompt">Agent: “review från scratch”-prompt</h3>
+<p>Be en agent granska som om den saknade all tidigare kontext. Ge bara evidensunderlaget + diffen.</p>
+<pre><code class="language-text">Du granskar en PR. Använd enbart evidensunderlaget och diffen nedan.
+
+Returnera:
+1) Sammanfattning av beteendeförändringen (max 5 bullets)
+2) Antaganden som måste stämma
+3) Risker / kantfall / saknade tester
+4) Onödig komplexitet (vad kan tas bort eller förenklas)
+5) Go/No-Go och vad som skulle ändra det
+</code></pre>
+<p>Det här mönstret är särskilt bra för att fånga konceptuella fel (avsnitt 3) eftersom det tvingar kritik i stället för fortsättning.</p>
+<hr />
+<h2 id="7-ett-lattviktigt-policyset-for-team-copypaste">7) Ett lättviktigt policyset för team (copy/paste)</h2>
+<p>Om ni vill ha agentisk hastighet utan att granskning kollapsar, anta ett minimalt policyset och följ det konsekvent.</p>
+<pre><code class="language-md">## Policy för granskningsbara PR:er (agentiskt arbete)
+- En beteendeförändring per PR.
+- Diffbudget: håll PR:er granskningsbara i en sittning (sätt teamnivå‑tal för LOC/filer/subsystem).
+- Evidensunderlag krävs för alla beteendeförändringar.
+- Refaktor och beteendeförändring landar separat.
+- Inget nytt abstraktionslager utan ett konkret återanvändningsfall.
+- Ta bort död kod (inga “tillfälliga” grenar utan borttagningsplan).
+- Fresh-context review krävs när:
+  - ändringen är högrisk (auth, pengar, behörigheter, datamigreringar)
+  - diffen överskrider budget
+  - reviewern inte kan förklara ändringen efter att ha läst PR:en en gång
+</code></pre>
+<p>Du kan klistra in detta i repo-handbok, PR-template eller till och med i er <code>agents.md</code> som en delad constraint.</p>
+<hr />
+<h2 id="8-vad-ni-ska-mata-signaler-pa-att-verifiering-blir-er-flaskhals">8) Vad ni ska mäta: signaler på att verifiering blir er flaskhals</h2>
+<p>Om ni bara mäter “PR:er mergade” kommer agentiskt arbete se fantastiskt ut ända tills det kollapsar.</p>
+<p>Mät verifieringssystemet.</p>
+<h3 id="signaler-for-granskningslast">Signaler för granskningslast</h3>
+<ul>
+<li>medianstorlek på PR (filer, LOC, “net change”)</li>
+<li>median tid till första review och tid till merge</li>
+<li>antal review‑rundor (kommentarcykler) per PR</li>
+<li>andel PR:er utan evidensunderlag (ska trenda mot ~0)</li>
+</ul>
+<h3 id="signaler-for-kvalitet-drift">Signaler för kvalitet &amp; drift</h3>
+<ul>
+<li>revert‑frekvens inom 24–72 timmar efter merge</li>
+<li>incidenter kopplade till “nyligen ändrat som vi inte riktigt förstod”</li>
+<li>tid att diagnosticera regressioner (om den ökar, ökar förståelseskulden)</li>
+</ul>
+<h3 id="forstaelsesignaler-svarare-men-vardefulla">Förståelsesignaler (svårare, men värdefulla)</h3>
+<ul>
+<li>slumpmässiga “förklara denna PR”‑spotchecks i review (klarar författaren 2 minuter?)</li>
+<li>onboarding‑tid till att bli effektiv i kodbasen</li>
+<li>“rädsla att röra”-områden (moduler alla undviker)</li>
+</ul>
+<p>Om dessa trendar fel är fixen nästan alltid samma: mindre diffar, starkare evidens, färre antaganden och mer borttagning.</p>
+<h2 id="referenser">Referenser</h2>
+<ul>
+<li>Addy Osmani — “The 80% Problem in Agentic Coding” (<a href="https://addyo.substack.com/p/the-80-problem-in-agentic-coding?utm_source=tldrdev">addyo.substack.com</a>)</li>
+</ul></div>
+            <div class="lang-en"><p><strong>Version 1.0</strong> | 2026-02-03</p>
+<h3 id="how-to-engineer-reviewability-when-generation-is-cheap">How to engineer reviewability when generation is cheap</h3>
+<h2 id="abstract">Abstract</h2>
+<p>Modern coding agents can produce plausible implementations quickly, often reaching “looks done” in minutes. The constraint has shifted: engineering teams are no longer limited by generating code, but by verifying correctness, preserving shared understanding, and integrating changes safely into systems with real invariants.</p>
+<p>This article defines <strong>comprehension debt</strong>: the gap between what you shipped and what the team can explain, debug, and operate. It describes the failure modes that drive it—<strong>assumption propagation</strong>, <strong>abstraction bloat</strong>, <strong>dead code accumulation</strong>, and <strong>sycophantic agreement</strong>—and shows why they appear <em>after</em> the first draft, when changes start interacting with production reality.</p>
+<p>Instead of “prompting better,” the article proposes a practical operating model: treat review as a pipeline with explicit budgets (diff size, scope), require evidence bundles (commands run + outputs + risk notes), enforce deletion and simplification, and use fresh-context reviews to surface conceptual errors early. The goal is to keep agentic velocity <strong>without</strong> turning code review into rubber-stamping.</p>
+<h2 id="what-this-article-focuses-on">What this article focuses on</h2>
+<p>This article focuses on:</p>
+<ul>
+<li>team-level constraints that keep PRs reviewable</li>
+<li>verification evidence and review checklists</li>
+<li>process patterns that reduce conceptual failures</li>
+</ul>
+<p>It intentionally does <em>not</em> re-teach:</p>
+<ul>
+<li>harness setup and “one-command validation” (see <em>Vibe Engineering 101</em>)</li>
+<li>spec templates and requirement structure (see <em>Spec-Driven Development</em>)</li>
+<li>context management basics (see <em>Claude Code 101</em> / <em>How to Master Claude Code</em>)</li>
+</ul>
+<h2 id="article-map">Article map</h2>
+<p>If you’re short on time, start with sections <strong>4–7</strong>. They contain the concrete practices that make agentic delivery scale <em>without</em> rubber-stamping.</p>
+<ol>
+<li><strong>The new constraint</strong>: from writing code to proving correctness</li>
+<li><strong>Comprehension debt</strong>: definition, leading indicators, and why it compounds</li>
+<li><strong>Four failure modes</strong>: conceptual mistakes agents make (and why they persist)</li>
+<li><strong>Reviewability engineering</strong>: diff budgets, scope rules, and deletion bias</li>
+<li><strong>Evidence bundles</strong>: the artifact that makes review scalable</li>
+<li><strong>Fresh-context review</strong>: catch conceptual errors with clean inputs</li>
+<li><strong>Team policy set</strong>: copy/paste guardrails</li>
+<li><strong>What to measure</strong>: signals verification is becoming your bottleneck</li>
+</ol>
+<hr />
+<h2 id="1-the-new-constraint-from-writing-code-to-proving-correctness">1) The new constraint: from “writing code” to “proving correctness”</h2>
+<p>Agentic coding changes what is scarce.</p>
+<p>When generation is cheap, teams stop being constrained by keystrokes. Instead, the bottleneck becomes <strong>verification</strong>: proving that a change is correct, safe to integrate, and understandable enough to operate later. Addy Osmani calls this the “80% problem”: agents can often get you to a plausible first draft quickly, but the last stretch is dominated by integration reality and human review bandwidth. (<a href="https://addyo.substack.com/p/the-80-problem-in-agentic-coding?utm_source=tldrdev">addyo.substack.com</a>)</p>
+<h3 id="the-last-20-is-not-linear">The “last 20%” is not linear</h3>
+<p>That last part tends to include work that is hard to fully delegate because it depends on system-specific invariants:</p>
+<ul>
+<li><strong>Edge cases</strong>: rare inputs, concurrency, partial failures, time zones, permissions, data migration quirks</li>
+<li><strong>Integration correctness</strong>: cross-module contracts, backwards compatibility, rollout constraints</li>
+<li><strong>Operational safety</strong>: logging, metrics, alerts, debugging paths, rollback plans</li>
+<li><strong>Performance &amp; cost</strong>: the “it works” draft that is too slow or too expensive</li>
+<li><strong>Security &amp; compliance</strong>: assumptions about authz/authn, data handling, threat surface</li>
+</ul>
+<p>If your process doesn’t make these checks cheap and repeatable, you end up with a paradox: <strong>more code produced, same (or worse) throughput shipped</strong>.</p>
+<h3 id="the-practical-implication">The practical implication</h3>
+<p>In agentic delivery, “reviewability” is not a nicety. It is an engineering requirement.</p>
+<p>Your system needs a way to answer, for every PR:</p>
+<ul>
+<li>What changed (behaviorally)?</li>
+<li>What evidence says it works?</li>
+<li>What might break, and how would we know?</li>
+<li>What is the rollback story if reality disagrees?</li>
+</ul>
+<p>When you can’t answer those quickly, you haven’t shipped code. You’ve shipped <strong>uncertainty</strong>.</p>
+<hr />
+<h2 id="2-comprehension-debt-definition-leading-indicators-and-why-it-compounds">2) Comprehension debt: definition, leading indicators, and why it compounds</h2>
+<p><strong>Comprehension debt</strong> is the gap between what you shipped and what the team can explain, debug, and operate confidently later.</p>
+<p>It is related to (but different from) technical debt:</p>
+<ul>
+<li><strong>Technical debt</strong>: “we understand it, but it’s ugly/fragile/slow and we’ll pay later.”</li>
+<li><strong>Comprehension debt</strong>: “we shipped it, but we can’t really explain it — we’re betting future time on hope.”</li>
+</ul>
+<h3 id="why-it-compounds">Why it compounds</h3>
+<p>Comprehension debt grows faster than linearly because each unclear change reduces your ability to validate the next change.</p>
+<p>When you don’t fully understand a module, you:</p>
+<ul>
+<li>write weaker tests (you don’t know what to assert)</li>
+<li>miss invariants (“this must always be true”)</li>
+<li>accept brittle abstractions (“it seems reasonable”)</li>
+<li>review by vibes instead of evidence (“LGTM” becomes a coping mechanism)</li>
+</ul>
+<p>Over time, review turns into rubber-stamping: your ability to <strong>discriminate</strong> good code from plausible code fails to keep up with the agent’s ability to <strong>generate</strong> plausible code. Osmani highlights this as the hidden cost of the productivity narrative. (<a href="https://addyo.substack.com/p/the-80-problem-in-agentic-coding?utm_source=tldrdev">addyo.substack.com</a>)</p>
+<h3 id="leading-indicators-early-warning-signs">Leading indicators (early warning signs)</h3>
+<p>If several of these are true, comprehension debt is already accumulating:</p>
+<ul>
+<li>PRs merge with comments like “seems fine” but without concrete verification evidence</li>
+<li>PR summaries describe <em>what files changed</em> but not <em>what behavior changed</em></li>
+<li>reviewers ask “why is this needed?” <em>after</em> code is written (intent wasn’t anchored)</li>
+<li>diffs routinely include “drive-by” refactors, renames, and new abstractions</li>
+<li>“temporary” code stays forever (feature flags, commented-out blocks, alternative paths)</li>
+<li>the on-call engineer can’t answer “what changed recently?” within a few minutes</li>
+</ul>
+<p>The fix is rarely “be more careful.” It’s almost always “engineer the workflow so it’s hard to ship unknowns.”</p>
+<hr />
+<h2 id="3-four-failure-modes-to-design-against">3) Four failure modes to design against</h2>
+<p>As Osmani notes, many agent mistakes have shifted from obvious syntax errors to <strong>conceptual failures</strong>: the kind that look coherent in a diff but violate real constraints later. (<a href="https://addyo.substack.com/p/the-80-problem-in-agentic-coding?utm_source=tldrdev">addyo.substack.com</a>)</p>
+<h3 id="31-assumption-propagation">3.1 Assumption propagation</h3>
+<p><strong>What it is:</strong> the agent makes an early assumption (“this API behaves like X”, “this field is always present”) and builds a coherent solution on top of it.</p>
+<p><strong>How it shows up:</strong></p>
+<ul>
+<li>a refactor changes meaning subtly (e.g., timezone handling, nullability, casing, auth checks)</li>
+<li>new logic mirrors a pattern that is <em>almost</em> right but violates a local invariant</li>
+<li>tests pass because they don’t cover the real production shape</li>
+</ul>
+<p><strong>Countermeasures:</strong></p>
+<ul>
+<li>Require an explicit <strong>Assumptions</strong> list in the PR evidence bundle.</li>
+<li>Add a “prove it” check: tests for edge cases, contract tests, or a quick integration run.</li>
+<li>Do a short “explore first” step: find the existing pattern in the codebase before implementing.</li>
+</ul>
+<h3 id="32-abstraction-bloat">3.2 Abstraction bloat</h3>
+<p><strong>What it is:</strong> the agent introduces unnecessary layers (factories, managers, generic frameworks) that increase surface area and reduce clarity.</p>
+<p><strong>How it shows up:</strong></p>
+<ul>
+<li>a 20-line behavior change becomes 5 files and a new “architecture”</li>
+<li>abstractions that are not reused (yet) but demand everyone learn them now</li>
+<li>“flexibility” that’s never required, traded for immediate complexity</li>
+</ul>
+<p><strong>Countermeasures:</strong></p>
+<ul>
+<li>Default rule: <strong>no new abstraction without a concrete reuse case</strong>.</li>
+<li>Prefer the simplest correct implementation, then extract only if repetition appears.</li>
+<li>Enforce <strong>diff budgets</strong> so bloat can’t hide in a “big but plausible” PR.</li>
+</ul>
+<h3 id="33-dead-code-accumulation">3.3 Dead code accumulation</h3>
+<p><strong>What it is:</strong> old implementations linger, alternate paths stay reachable, and “temporary” scaffolding becomes permanent.</p>
+<p><strong>How it shows up:</strong></p>
+<ul>
+<li>duplicated functions (“v1” and “v2”) both exist “just in case”</li>
+<li>feature flags with no removal plan</li>
+<li>large diffs that add new behavior but don’t delete the old behavior</li>
+</ul>
+<p><strong>Countermeasures:</strong></p>
+<ul>
+<li>Bias toward <strong>deletion</strong>: if you add a new path, delete the old path in the same PR (or in an explicitly scheduled follow-up).</li>
+<li>Treat commented-out code as a smell: delete it, rely on git history.</li>
+<li>Add static checks where possible (unused exports, unreachable code, coverage drops).</li>
+</ul>
+<h3 id="34-sycophantic-agreement">3.4 Sycophantic agreement</h3>
+<p><strong>What it is:</strong> the agent confidently agrees and executes, even when requirements conflict, are underspecified, or imply tradeoffs.</p>
+<p><strong>How it shows up:</strong></p>
+<ul>
+<li>“sure!” implementations that ignore non-goals or hidden priorities</li>
+<li>changes that “work” but shift product behavior in unintended ways</li>
+<li>missing tradeoff discussion (speed vs correctness, caching vs staleness, etc.)</li>
+</ul>
+<p><strong>Countermeasures:</strong></p>
+<ul>
+<li>Make tradeoffs explicit in the spec or PR: “we optimize for X over Y.”</li>
+<li>Require a “Risks &amp; tradeoffs” section in the evidence bundle.</li>
+<li>Use <strong>fresh-context review</strong> (section 6) to force critique, not continuation.</li>
+</ul>
+<hr />
+<h2 id="4-reviewability-engineering-diff-budgets-scope-rules-and-deletion-bias">4) Reviewability engineering: diff budgets, scope rules, and deletion bias</h2>
+<p>If review is your bottleneck, you can’t “fix it” with more prompting. You fix it by designing work so it is reviewable by default.</p>
+<h3 id="diff-budgets-make-prs-readable-in-one-sitting">Diff budgets (make PRs readable in one sitting)</h3>
+<p>Pick budgets that fit your team, but make them explicit. Example starting points:</p>
+<ul>
+<li><strong>One behavior change per PR</strong> (everything else is a follow-up PR)</li>
+<li><strong>Cap blast radius</strong>: 1 subsystem, 1 public interface, or 1 user-facing flow</li>
+<li><strong>Cap size</strong>: e.g. 200–400 LOC net change, ≤10 files (tune to your reality)</li>
+<li><strong>Cap novelty</strong>: no brand-new “framework” + behavior change in the same PR</li>
+</ul>
+<p>The right budget is the one your reviewers can handle without context collapse. If review routinely takes days, the PRs are too big.</p>
+<h3 id="split-refactors-from-behavior-changes">Split refactors from behavior changes</h3>
+<p>Agents are great at “cleaning up,” but cleanup is expensive to verify when mixed with behavior changes.</p>
+<p>Two pragmatic rules:</p>
+<ul>
+<li>If it changes behavior, it must have focused verification (tests/evidence).</li>
+<li>If it’s “just refactor,” it should be mechanically verifiable (no logic changes) and land separately.</li>
+</ul>
+<h3 id="deletion-bias-fight-entropy">Deletion bias (fight entropy)</h3>
+<p>When generation is cheap, systems bloat unless you actively delete.</p>
+<p>In reviews, ask:</p>
+<ul>
+<li>What did we remove?</li>
+<li>What got simpler?</li>
+<li>What old path no longer needs to exist?</li>
+</ul>
+<p>If a PR only adds, month after month, comprehension debt is almost guaranteed.</p>
+<hr />
+<h2 id="5-evidence-bundles-make-verification-cheap-and-reusable">5) Evidence bundles: make verification cheap and reusable</h2>
+<p>An <strong>evidence bundle</strong> is a small, standardized artifact that travels with the PR. It answers “why should I believe this?” without requiring the reviewer to replay the entire agent session.</p>
+<p>Done right, it becomes the first thing a reviewer reads and the last thing you need when debugging a regression.</p>
+<h3 id="minimal-evidence-bundle-template-copypaste">Minimal evidence bundle template (copy/paste)</h3>
+<p>Use this in PR descriptions or as a required checklist.</p>
+<pre><code class="language-md">## Evidence bundle
+- Goal:
+- Non-goals:
+- Behavior change (1–3 bullets):
+  - ...
+- How verified:
+  - `command` (result)
+  - `command` (result)
+- Risks / edge cases:
+  - ...
+- Rollout / rollback:
+  - ...
+- Assumptions:
+  - ...
+</code></pre>
+<h3 id="why-it-works">Why it works</h3>
+<p>Evidence bundles reduce comprehension debt because they:</p>
+<ul>
+<li>force explicit intent (goal/non-goals)</li>
+<li>turn “trust me” into “here’s what I ran”</li>
+<li>surface assumptions early (before they become architecture)</li>
+<li>make review less dependent on who generated the code</li>
+</ul>
+<hr />
+<h2 id="6-fresh-context-review-patterns">6) Fresh-context review patterns</h2>
+<p>Long agent sessions create a new problem: reviewers can’t (and shouldn’t) read the entire history. The solution is to review in a <strong>fresh context</strong>: treat the diff + evidence as the input, not the conversation.</p>
+<h3 id="human-evidence-first-checklist">Human: evidence-first checklist</h3>
+<p>Before you get lost in implementation details, check the fundamentals:</p>
+<ul>
+<li>Does this PR do <strong>one</strong> thing?</li>
+<li>Is the behavior change stated clearly (not just “refactored X”)?</li>
+<li>Is there verification evidence (tests/commands/output)?</li>
+<li>Are assumptions and risks called out?</li>
+<li>Did we add complexity that we don’t immediately need?</li>
+<li>Could a teammate explain this change tomorrow without the agent chat?</li>
+</ul>
+<h3 id="agent-review-from-scratch-prompt">Agent: “review from scratch” prompt</h3>
+<p>Ask an agent to review as if it had no prior context. Provide only the evidence bundle + diff.</p>
+<pre><code class="language-text">You are reviewing a PR. Only use the evidence bundle and diff below.
+
+Return:
+1) Summary of the behavior change (max 5 bullets)
+2) Assumptions that must be true
+3) Risks / edge cases / missing tests
+4) Unnecessary complexity (what can be deleted or simplified)
+5) Go/No-Go and what would change it
+</code></pre>
+<p>This pattern is specifically useful for catching conceptual failures (section 3) because it forces critique instead of continuation.</p>
+<hr />
+<h2 id="7-a-lightweight-team-policy-set-copypaste">7) A lightweight team policy set (copy/paste)</h2>
+<p>If you want agentic velocity without review collapse, adopt a tiny policy set and enforce it consistently.</p>
+<pre><code class="language-md">## PR reviewability policy (agentic work)
+- One behavior change per PR.
+- Diff budget: keep PRs reviewable in one sitting (set team numbers for LOC/files/subsystems).
+- Evidence bundle required for all behavior changes.
+- Refactors and behavior changes land separately.
+- No new abstraction layer without a concrete reuse case.
+- Delete dead code (no “temporary” branches without a removal plan).
+- Fresh-context review required when:
+  - the change is high-risk (auth, money, permissions, data migrations)
+  - the diff exceeds budget
+  - the reviewer can’t explain the change after reading the PR once
+</code></pre>
+<p>You can paste this into a repo handbook, a PR template, or even your <code>agents.md</code> as a shared constraint.</p>
+<hr />
+<h2 id="8-what-to-measure-signals-verification-is-becoming-your-bottleneck">8) What to measure: signals verification is becoming your bottleneck</h2>
+<p>If you only measure “PRs merged,” agentic work will look great right until it collapses.</p>
+<p>Measure the verification system.</p>
+<h3 id="review-load-signals">Review load signals</h3>
+<ul>
+<li>median PR size (files touched, LOC, “net change”)</li>
+<li>median time-to-first-review and time-to-merge</li>
+<li>number of review rounds (comment cycles) per PR</li>
+<li>percentage of PRs missing evidence bundles (should trend to ~0)</li>
+</ul>
+<h3 id="qualityoperations-signals">Quality/operations signals</h3>
+<ul>
+<li>revert rate within 24–72 hours of merge</li>
+<li>incidents linked to “recent change we didn’t fully understand”</li>
+<li>time-to-diagnose regressions (if it’s rising, comprehension debt is rising)</li>
+</ul>
+<h3 id="comprehension-signals-harder-but-valuable">Comprehension signals (harder, but valuable)</h3>
+<ul>
+<li>random “explain this PR” spot checks in review (can the author do it in 2 minutes?)</li>
+<li>onboarding time to become effective in the codebase</li>
+<li>“fear-of-touching” areas (modules everyone avoids)</li>
+</ul>
+<p>When these trend the wrong way, the fix is almost always the same: smaller diffs, stronger evidence, fewer assumptions, and more deletion.</p>
+<h2 id="references">References</h2>
+<ul>
+<li>Addy Osmani — “The 80% Problem in Agentic Coding” (<a href="https://addyo.substack.com/p/the-80-problem-in-agentic-coding?utm_source=tldrdev">addyo.substack.com</a>)</li>
+</ul></div>
+
+        </article>
+    </main>
+
+    <!-- Presentation Slides -->
+    <section class="presentation-slide hero-slide" data-slide-number="1 / 13">
+        <div class="presentation-slide-content">
+            <p class="article-meta">
+                <span class="lang-sv">Granskningsbarhet // 2026-02</span>
+                <span class="lang-en">Reviewability // 2026-02</span>
+            </p>
+            <h2 class="presentation-hero-title">
+                <span class="lang-sv">Förståelseskuld: den verkliga flaskhalsen i agentisk mjukvaruleverans</span>
+                <span class="lang-en">Comprehension Debt: The Real Bottleneck in Agentic Software Delivery</span>
+            </h2>
+            <p class="subtitle">
+                <span class="lang-sv">Hur du konstruerar för granskningsbarhet när generering är billig</span>
+                <span class="lang-en">How to engineer reviewability when generation is cheap</span>
+            </p>
+        </div>
+        <div class="presentation-scroll-hint">
+            <span class="lang-sv">Scrolla ner</span>
+            <span class="lang-en">Scroll down</span>
+            <span>↓</span>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="2 / 13">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="sammanfattning">Sammanfattning</h2>
+<p>Moderna kodagenter kan producera plausibla implementationer snabbt, ofta nå “ser klart ut” på minuter. Begränsningen har flyttats: ingenjörsteam är inte längre begränsade av att generera kod, utan av att verifiera korrekthet, bevara delad förståelse och integrera ändringar säkert i system med riktiga invarianter.</p>
+<p>Den här artikeln definierar <strong>förståelseskuld (comprehension debt)</strong>: glappet mellan det du skeppat och det teamet kan förklara, felsöka och drifta. Den beskriver fellägena som driver den — <strong>antagandespridning</strong>, <strong>abstraktionssvullnad</strong>, <strong>ackumulering av död kod</strong> och <strong>sykofantiskt instämmande</strong> — och visar varför de ofta dyker upp <em>efter</em> första utkastet, när ändringar börjar interagera med produktionsverkligheten.</p>
+<p>I stället för att “prompt:a bättre” föreslår artikeln en praktisk driftsmodell: behandla granskning som en pipeline med explicita budgetar (diffstorlek, scope), kräv evidensunderlag (körda kommandon + outputs + risknoter), tvinga fram borttagning och förenkling, och använd fresh-context reviews för att fånga konceptuella fel tidigt. Målet är att behålla agentisk hastighet <strong>utan</strong> att kodgranskning degenererar till gummistämpling.</p></div>
+            <div class="lang-en"><h2 id="abstract">Abstract</h2>
+<p>Modern coding agents can produce plausible implementations quickly, often reaching “looks done” in minutes. The constraint has shifted: engineering teams are no longer limited by generating code, but by verifying correctness, preserving shared understanding, and integrating changes safely into systems with real invariants.</p>
+<p>This article defines <strong>comprehension debt</strong>: the gap between what you shipped and what the team can explain, debug, and operate. It describes the failure modes that drive it—<strong>assumption propagation</strong>, <strong>abstraction bloat</strong>, <strong>dead code accumulation</strong>, and <strong>sycophantic agreement</strong>—and shows why they appear <em>after</em> the first draft, when changes start interacting with production reality.</p>
+<p>Instead of “prompting better,” the article proposes a practical operating model: treat review as a pipeline with explicit budgets (diff size, scope), require evidence bundles (commands run + outputs + risk notes), enforce deletion and simplification, and use fresh-context reviews to surface conceptual errors early. The goal is to keep agentic velocity <strong>without</strong> turning code review into rubber-stamping.</p></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="3 / 13">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="vad-den-har-artikeln-fokuserar-pa">Vad den här artikeln fokuserar på</h2>
+<p>Den här artikeln fokuserar på:</p>
+<ul>
+<li>teamnivå‑begränsningar som håller PR:er granskningsbara</li>
+<li>verifieringsevidens och granskningschecklistor</li>
+<li>processmönster som minskar konceptuella fel</li>
+</ul>
+<p>Den återberättar medvetet <em>inte</em>:</p>
+<ul>
+<li>harness‑setup och “one-command validation” (se <em>Vibe Engineering 101</em>)</li>
+<li>specmallar och kravstruktur (se <em>Spec-Driven Development</em>)</li>
+<li>grunderna i kontexthantering (se <em>Claude Code 101</em> / <em>How to Master Claude Code</em>)</li>
+</ul></div>
+            <div class="lang-en"><h2 id="what-this-article-focuses-on">What this article focuses on</h2>
+<p>This article focuses on:</p>
+<ul>
+<li>team-level constraints that keep PRs reviewable</li>
+<li>verification evidence and review checklists</li>
+<li>process patterns that reduce conceptual failures</li>
+</ul>
+<p>It intentionally does <em>not</em> re-teach:</p>
+<ul>
+<li>harness setup and “one-command validation” (see <em>Vibe Engineering 101</em>)</li>
+<li>spec templates and requirement structure (see <em>Spec-Driven Development</em>)</li>
+<li>context management basics (see <em>Claude Code 101</em> / <em>How to Master Claude Code</em>)</li>
+</ul></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="4 / 13">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="artikelkarta">Artikelkarta</h2>
+<p>Om du har ont om tid, börja med avsnitt <strong>4–7</strong>. De innehåller de konkreta arbetssätten som gör att agentisk leverans kan skala <em>utan</em> gummistämpling.</p>
+<ol>
+<li><strong>Den nya begränsningen</strong>: från att skriva kod till att bevisa korrekthet</li>
+<li><strong>Förståelseskuld</strong>: definition, tidiga indikatorer och varför den växer</li>
+<li><strong>Fyra fellägen</strong>: konceptuella misstag agenter gör (och varför de består)</li>
+<li><strong>Ingenjörskonst för granskningsbarhet</strong>: diffbudgetar, scope och borttagning som standard</li>
+<li><strong>Evidensunderlag</strong>: artefakten som gör granskning skalbar</li>
+<li><strong>Fresh-context review</strong>: fånga konceptuella fel med rena indata</li>
+<li><strong>Policyset för team</strong>: copy/paste‑guardrails</li>
+<li><strong>Vad ni ska mäta</strong>: signaler på att verifiering blir er flaskhals</li>
+</ol>
+<hr /></div>
+            <div class="lang-en"><h2 id="article-map">Article map</h2>
+<p>If you’re short on time, start with sections <strong>4–7</strong>. They contain the concrete practices that make agentic delivery scale <em>without</em> rubber-stamping.</p>
+<ol>
+<li><strong>The new constraint</strong>: from writing code to proving correctness</li>
+<li><strong>Comprehension debt</strong>: definition, leading indicators, and why it compounds</li>
+<li><strong>Four failure modes</strong>: conceptual mistakes agents make (and why they persist)</li>
+<li><strong>Reviewability engineering</strong>: diff budgets, scope rules, and deletion bias</li>
+<li><strong>Evidence bundles</strong>: the artifact that makes review scalable</li>
+<li><strong>Fresh-context review</strong>: catch conceptual errors with clean inputs</li>
+<li><strong>Team policy set</strong>: copy/paste guardrails</li>
+<li><strong>What to measure</strong>: signals verification is becoming your bottleneck</li>
+</ol>
+<hr /></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="5 / 13">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="1-den-nya-begransningen-fran-att-skriva-kod-till-att-bevisa-korrekthet">1) Den nya begränsningen: från “att skriva kod” till “att bevisa korrekthet”</h2>
+<p>Agentisk utveckling förändrar vad som är en bristvara.</p>
+<p>När generering är billig slutar team vara begränsade av tangentryckningar. I stället blir flaskhalsen <strong>verifiering</strong>: att bevisa att en ändring är korrekt, säker att integrera och tillräckligt begriplig för att drifta senare. Addy Osmani kallar detta “80%-problemet”: agenter kan ofta ta dig till ett plausibelt första utkast snabbt, men sista biten domineras av integrationsverklighet och mänsklig granskningsbandbredd. (<a href="https://addyo.substack.com/p/the-80-problem-in-agentic-coding?utm_source=tldrdev">addyo.substack.com</a>)</p>
+<h3 id="den-sista-20-ar-inte-linjar">Den “sista 20%” är inte linjär</h3>
+<p>Den sista delen innehåller ofta arbete som är svårt att helt delegera eftersom det beror på systemets faktiska invarianter:</p>
+<ul>
+<li><strong>Kantfall</strong>: sällsynta inputs, samtidighet, delvisa fel, tidszoner, behörigheter, datamigrationsquirks</li>
+<li><strong>Integrationskorrekthet</strong>: kontrakt mellan moduler, bakåtkompatibilitet, utrullningsbegränsningar</li>
+<li><strong>Driftsäkerhet</strong>: loggning, mätetal, larm, felsökningsvägar, rollback-planer</li>
+<li><strong>Prestanda &amp; kostnad</strong>: “det funkar”-utkastet som är för långsamt eller för dyrt</li>
+<li><strong>Säkerhet &amp; regelefterlevnad</strong>: antaganden om authz/authn, datahantering, attackyta</li>
+</ul>
+<p>Om din process inte gör dessa kontroller billiga och upprepningsbara hamnar du i en paradox: <strong>mer kod producerad, samma (eller sämre) leveransgenomströmning</strong>.</p>
+<h3 id="den-praktiska-konsekvensen">Den praktiska konsekvensen</h3>
+<p>I agentisk leverans är “granskningsbarhet” inte en trevlighet. Det är ett ingenjörskrav.</p>
+<p>Ert system behöver kunna svara, för varje PR:</p>
+<ul>
+<li>Vad ändrades (beteendemässigt)?</li>
+<li>Vilken evidens säger att det fungerar?</li>
+<li>Vad kan gå sönder, och hur skulle vi märka det?</li>
+<li>Vad är rollback-historien om verkligheten inte håller med?</li>
+</ul>
+<p>När ni inte kan svara snabbt har ni inte skeppat kod. Ni har skeppat <strong>osäkerhet</strong>.</p>
+<hr /></div>
+            <div class="lang-en"><h2 id="1-the-new-constraint-from-writing-code-to-proving-correctness">1) The new constraint: from “writing code” to “proving correctness”</h2>
+<p>Agentic coding changes what is scarce.</p>
+<p>When generation is cheap, teams stop being constrained by keystrokes. Instead, the bottleneck becomes <strong>verification</strong>: proving that a change is correct, safe to integrate, and understandable enough to operate later. Addy Osmani calls this the “80% problem”: agents can often get you to a plausible first draft quickly, but the last stretch is dominated by integration reality and human review bandwidth. (<a href="https://addyo.substack.com/p/the-80-problem-in-agentic-coding?utm_source=tldrdev">addyo.substack.com</a>)</p>
+<h3 id="the-last-20-is-not-linear">The “last 20%” is not linear</h3>
+<p>That last part tends to include work that is hard to fully delegate because it depends on system-specific invariants:</p>
+<ul>
+<li><strong>Edge cases</strong>: rare inputs, concurrency, partial failures, time zones, permissions, data migration quirks</li>
+<li><strong>Integration correctness</strong>: cross-module contracts, backwards compatibility, rollout constraints</li>
+<li><strong>Operational safety</strong>: logging, metrics, alerts, debugging paths, rollback plans</li>
+<li><strong>Performance &amp; cost</strong>: the “it works” draft that is too slow or too expensive</li>
+<li><strong>Security &amp; compliance</strong>: assumptions about authz/authn, data handling, threat surface</li>
+</ul>
+<p>If your process doesn’t make these checks cheap and repeatable, you end up with a paradox: <strong>more code produced, same (or worse) throughput shipped</strong>.</p>
+<h3 id="the-practical-implication">The practical implication</h3>
+<p>In agentic delivery, “reviewability” is not a nicety. It is an engineering requirement.</p>
+<p>Your system needs a way to answer, for every PR:</p>
+<ul>
+<li>What changed (behaviorally)?</li>
+<li>What evidence says it works?</li>
+<li>What might break, and how would we know?</li>
+<li>What is the rollback story if reality disagrees?</li>
+</ul>
+<p>When you can’t answer those quickly, you haven’t shipped code. You’ve shipped <strong>uncertainty</strong>.</p>
+<hr /></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="6 / 13">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="2-forstaelseskuld-definition-tidiga-indikatorer-och-varfor-den-vaxer">2) Förståelseskuld: definition, tidiga indikatorer och varför den växer</h2>
+<p><strong>Förståelseskuld</strong> är glappet mellan det ni skeppade och det teamet kan förklara, felsöka och drifta med hög tillit senare.</p>
+<p>Den hänger ihop med (men skiljer sig från) teknisk skuld:</p>
+<ul>
+<li><strong>Teknisk skuld</strong>: “vi förstår det, men det är fult/skört/långsamt och vi får betala senare.”</li>
+<li><strong>Förståelseskuld</strong>: “vi skeppade det, men vi kan inte riktigt förklara det — vi satsar framtida tid på hopp.”</li>
+</ul>
+<h3 id="varfor-den-vaxer">Varför den växer</h3>
+<p>Förståelseskuld växer snabbare än linjärt eftersom varje oklar ändring gör det svårare att validera nästa.</p>
+<p>När ni inte förstår en modul fullt ut tenderar ni att:</p>
+<ul>
+<li>skriva svagare tester (ni vet inte vad som ska assertas)</li>
+<li>missa invarianter (“det här måste alltid vara sant”)</li>
+<li>acceptera sköra abstraktioner (“det verkar rimligt”)</li>
+<li>granska på vibes i stället för evidens (“LGTM” blir en coping‑mekanism)</li>
+</ul>
+<p>Med tiden blir granskning gummistämpling: er förmåga att <strong>skilja</strong> bra kod från plausibel kod hänger inte med agentens förmåga att <strong>generera</strong> plausibel kod. Osmani lyfter detta som en dold kostnad i produktivitetsnarrativet. (<a href="https://addyo.substack.com/p/the-80-problem-in-agentic-coding?utm_source=tldrdev">addyo.substack.com</a>)</p>
+<h3 id="tidiga-indikatorer-varningssignaler">Tidiga indikatorer (varningssignaler)</h3>
+<p>Om flera av de här stämmer ackumuleras förståelseskuld redan:</p>
+<ul>
+<li>PR:er mergas med kommentarer som “ser bra ut” utan konkret verifieringsevidens</li>
+<li>PR-sammanfattningar beskriver <em>vilka filer</em> som ändrats men inte <em>vilket beteende</em> som ändrats</li>
+<li>reviewers frågar “varför behövs det här?” <em>efter</em> att koden är skriven (intent var inte förankrat)</li>
+<li>diffar innehåller ofta “drive-by”-refactors, renames och nya abstraktioner</li>
+<li>“tillfällig” kod blir kvar för alltid (feature flags, kommenterade block, alternativa paths)</li>
+<li>on‑call kan inte svara på “vad ändrades nyligen?” inom några minuter</li>
+</ul>
+<p>Fixen är sällan “var mer försiktig.” Den är nästan alltid “konstruera arbetsflödet så att det är svårt att skeppa okända saker.”</p>
+<hr /></div>
+            <div class="lang-en"><h2 id="2-comprehension-debt-definition-leading-indicators-and-why-it-compounds">2) Comprehension debt: definition, leading indicators, and why it compounds</h2>
+<p><strong>Comprehension debt</strong> is the gap between what you shipped and what the team can explain, debug, and operate confidently later.</p>
+<p>It is related to (but different from) technical debt:</p>
+<ul>
+<li><strong>Technical debt</strong>: “we understand it, but it’s ugly/fragile/slow and we’ll pay later.”</li>
+<li><strong>Comprehension debt</strong>: “we shipped it, but we can’t really explain it — we’re betting future time on hope.”</li>
+</ul>
+<h3 id="why-it-compounds">Why it compounds</h3>
+<p>Comprehension debt grows faster than linearly because each unclear change reduces your ability to validate the next change.</p>
+<p>When you don’t fully understand a module, you:</p>
+<ul>
+<li>write weaker tests (you don’t know what to assert)</li>
+<li>miss invariants (“this must always be true”)</li>
+<li>accept brittle abstractions (“it seems reasonable”)</li>
+<li>review by vibes instead of evidence (“LGTM” becomes a coping mechanism)</li>
+</ul>
+<p>Over time, review turns into rubber-stamping: your ability to <strong>discriminate</strong> good code from plausible code fails to keep up with the agent’s ability to <strong>generate</strong> plausible code. Osmani highlights this as the hidden cost of the productivity narrative. (<a href="https://addyo.substack.com/p/the-80-problem-in-agentic-coding?utm_source=tldrdev">addyo.substack.com</a>)</p>
+<h3 id="leading-indicators-early-warning-signs">Leading indicators (early warning signs)</h3>
+<p>If several of these are true, comprehension debt is already accumulating:</p>
+<ul>
+<li>PRs merge with comments like “seems fine” but without concrete verification evidence</li>
+<li>PR summaries describe <em>what files changed</em> but not <em>what behavior changed</em></li>
+<li>reviewers ask “why is this needed?” <em>after</em> code is written (intent wasn’t anchored)</li>
+<li>diffs routinely include “drive-by” refactors, renames, and new abstractions</li>
+<li>“temporary” code stays forever (feature flags, commented-out blocks, alternative paths)</li>
+<li>the on-call engineer can’t answer “what changed recently?” within a few minutes</li>
+</ul>
+<p>The fix is rarely “be more careful.” It’s almost always “engineer the workflow so it’s hard to ship unknowns.”</p>
+<hr /></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="7 / 13">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="3-fyra-fellagen-att-designa-mot">3) Fyra fellägen att designa mot</h2>
+<p>Som Osmani noterar har många agentmisstag flyttat från uppenbara syntaxfel till <strong>konceptuella fel</strong>: sådant som ser koherent ut i en diff men bryter riktiga constraints senare. (<a href="https://addyo.substack.com/p/the-80-problem-in-agentic-coding?utm_source=tldrdev">addyo.substack.com</a>)</p>
+<h3 id="31-antagandespridning">3.1 Antagandespridning</h3>
+<p><strong>Vad det är:</strong> agenten gör ett tidigt antagande (“det här API:et beter sig som X”, “fältet finns alltid”) och bygger en koherent lösning ovanpå det.</p>
+<p><strong>Hur det visar sig:</strong></p>
+<ul>
+<li>en refaktor ändrar betydelse subtilt (t.ex. tidszoner, nullability, casing, auth checks)</li>
+<li>ny logik speglar ett mönster som är <em>nästan</em> rätt men bryter en lokal invariant</li>
+<li>tester passerar eftersom de inte täcker den verkliga produktionsformen</li>
+</ul>
+<p><strong>Motåtgärder:</strong></p>
+<ul>
+<li>Kräv en explicit <strong>Antaganden</strong>‑lista i PR:ens evidensunderlag.</li>
+<li>Lägg till en “prove it”‑check: tester för kantfall, kontraktstester eller en snabb integrationskörning.</li>
+<li>Gör ett kort “utforska först”‑steg: hitta befintligt mönster i kodbasen innan ni implementerar.</li>
+</ul>
+<h3 id="32-abstraktionssvullnad">3.2 Abstraktionssvullnad</h3>
+<p><strong>Vad det är:</strong> agenten introducerar onödiga lager (factories, managers, generiska frameworks) som ökar ytan och minskar tydligheten.</p>
+<p><strong>Hur det visar sig:</strong></p>
+<ul>
+<li>en 20‑raders beteendeförändring blir 5 filer och en ny “arkitektur”</li>
+<li>abstraktioner som inte återanvänds (än) men tvingar alla att lära dem nu</li>
+<li>“flexibilitet” som aldrig behövs, i utbyte mot omedelbar komplexitet</li>
+</ul>
+<p><strong>Motåtgärder:</strong></p>
+<ul>
+<li>Standardregel: <strong>ingen ny abstraktion utan ett konkret återanvändningsfall</strong>.</li>
+<li>Föredra enklaste korrekta implementation, extrahera först när upprepning uppstår.</li>
+<li>Upprätthåll <strong>diffbudgetar</strong> så svullnad inte kan gömma sig i en “stor men plausibel” PR.</li>
+</ul>
+<h3 id="33-ackumulering-av-dod-kod">3.3 Ackumulering av död kod</h3>
+<p><strong>Vad det är:</strong> gamla implementationer ligger kvar, alternativa vägar förblir nåbara och “tillfällig” scaffolding blir permanent.</p>
+<p><strong>Hur det visar sig:</strong></p>
+<ul>
+<li>duplicerade funktioner (“v1” och “v2”) finns båda “för säkerhets skull”</li>
+<li>feature flags utan borttagningsplan</li>
+<li>stora diffar som lägger till nytt beteende men inte tar bort det gamla beteendet</li>
+</ul>
+<p><strong>Motåtgärder:</strong></p>
+<ul>
+<li>Bias mot <strong>borttagning</strong>: om ni lägger till en ny path, ta bort den gamla i samma PR (eller i en explicit schemalagd uppföljning).</li>
+<li>Behandla kommenterad kod som en lukt: ta bort den, lita på git-historiken.</li>
+<li>Lägg till statiska checks där det går (outnyttjade exports, unreachable code, coverage‑drop).</li>
+</ul>
+<h3 id="34-sykofantiskt-instammande">3.4 Sykofantiskt instämmande</h3>
+<p><strong>Vad det är:</strong> agenten instämmer självsäkert och kör, även när krav krockar, är underspecificerade eller innebär tradeoffs.</p>
+<p><strong>Hur det visar sig:</strong></p>
+<ul>
+<li>“sure!”‑implementationer som ignorerar non‑goals eller dolda prioriteringar</li>
+<li>ändringar som “funkar” men skiftar produktbeteende oavsiktligt</li>
+<li>saknad tradeoff‑diskussion (hastighet vs korrekthet, caching vs staleness, etc.)</li>
+</ul>
+<p><strong>Motåtgärder:</strong></p>
+<ul>
+<li>Gör tradeoffs explicita i spec eller PR: “vi optimerar för X över Y.”</li>
+<li>Kräv en “Risker &amp; tradeoffs”‑sektion i evidensunderlaget.</li>
+<li>Använd <strong>fresh-context review</strong> (avsnitt 6) för att tvinga kritik, inte fortsättning.</li>
+</ul>
+<hr /></div>
+            <div class="lang-en"><h2 id="3-four-failure-modes-to-design-against">3) Four failure modes to design against</h2>
+<p>As Osmani notes, many agent mistakes have shifted from obvious syntax errors to <strong>conceptual failures</strong>: the kind that look coherent in a diff but violate real constraints later. (<a href="https://addyo.substack.com/p/the-80-problem-in-agentic-coding?utm_source=tldrdev">addyo.substack.com</a>)</p>
+<h3 id="31-assumption-propagation">3.1 Assumption propagation</h3>
+<p><strong>What it is:</strong> the agent makes an early assumption (“this API behaves like X”, “this field is always present”) and builds a coherent solution on top of it.</p>
+<p><strong>How it shows up:</strong></p>
+<ul>
+<li>a refactor changes meaning subtly (e.g., timezone handling, nullability, casing, auth checks)</li>
+<li>new logic mirrors a pattern that is <em>almost</em> right but violates a local invariant</li>
+<li>tests pass because they don’t cover the real production shape</li>
+</ul>
+<p><strong>Countermeasures:</strong></p>
+<ul>
+<li>Require an explicit <strong>Assumptions</strong> list in the PR evidence bundle.</li>
+<li>Add a “prove it” check: tests for edge cases, contract tests, or a quick integration run.</li>
+<li>Do a short “explore first” step: find the existing pattern in the codebase before implementing.</li>
+</ul>
+<h3 id="32-abstraction-bloat">3.2 Abstraction bloat</h3>
+<p><strong>What it is:</strong> the agent introduces unnecessary layers (factories, managers, generic frameworks) that increase surface area and reduce clarity.</p>
+<p><strong>How it shows up:</strong></p>
+<ul>
+<li>a 20-line behavior change becomes 5 files and a new “architecture”</li>
+<li>abstractions that are not reused (yet) but demand everyone learn them now</li>
+<li>“flexibility” that’s never required, traded for immediate complexity</li>
+</ul>
+<p><strong>Countermeasures:</strong></p>
+<ul>
+<li>Default rule: <strong>no new abstraction without a concrete reuse case</strong>.</li>
+<li>Prefer the simplest correct implementation, then extract only if repetition appears.</li>
+<li>Enforce <strong>diff budgets</strong> so bloat can’t hide in a “big but plausible” PR.</li>
+</ul>
+<h3 id="33-dead-code-accumulation">3.3 Dead code accumulation</h3>
+<p><strong>What it is:</strong> old implementations linger, alternate paths stay reachable, and “temporary” scaffolding becomes permanent.</p>
+<p><strong>How it shows up:</strong></p>
+<ul>
+<li>duplicated functions (“v1” and “v2”) both exist “just in case”</li>
+<li>feature flags with no removal plan</li>
+<li>large diffs that add new behavior but don’t delete the old behavior</li>
+</ul>
+<p><strong>Countermeasures:</strong></p>
+<ul>
+<li>Bias toward <strong>deletion</strong>: if you add a new path, delete the old path in the same PR (or in an explicitly scheduled follow-up).</li>
+<li>Treat commented-out code as a smell: delete it, rely on git history.</li>
+<li>Add static checks where possible (unused exports, unreachable code, coverage drops).</li>
+</ul>
+<h3 id="34-sycophantic-agreement">3.4 Sycophantic agreement</h3>
+<p><strong>What it is:</strong> the agent confidently agrees and executes, even when requirements conflict, are underspecified, or imply tradeoffs.</p>
+<p><strong>How it shows up:</strong></p>
+<ul>
+<li>“sure!” implementations that ignore non-goals or hidden priorities</li>
+<li>changes that “work” but shift product behavior in unintended ways</li>
+<li>missing tradeoff discussion (speed vs correctness, caching vs staleness, etc.)</li>
+</ul>
+<p><strong>Countermeasures:</strong></p>
+<ul>
+<li>Make tradeoffs explicit in the spec or PR: “we optimize for X over Y.”</li>
+<li>Require a “Risks &amp; tradeoffs” section in the evidence bundle.</li>
+<li>Use <strong>fresh-context review</strong> (section 6) to force critique, not continuation.</li>
+</ul>
+<hr /></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="8 / 13">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="4-ingenjorskonst-for-granskningsbarhet-diffbudgetar-scope-och-borttagning-som-standard">4) Ingenjörskonst för granskningsbarhet: diffbudgetar, scope och borttagning som standard</h2>
+<p>Om granskning är er flaskhals kan ni inte “fixa det” med mer prompting. Ni fixar det genom att designa arbetet så att det är granskningsbart som default.</p>
+<h3 id="diffbudgetar-gor-prer-lasbara-i-en-sittning">Diffbudgetar (gör PR:er läsbara i en sittning)</h3>
+<p>Välj budgetar som passar ert team, men gör dem explicita. Exempel på startpunkter:</p>
+<ul>
+<li><strong>En beteendeförändring per PR</strong> (allt annat blir en uppföljnings‑PR)</li>
+<li><strong>Begränsa blast radius</strong>: 1 subsystem, 1 publik interface eller 1 user-facing flow</li>
+<li><strong>Begränsa storlek</strong>: t.ex. 200–400 LOC netto, ≤10 filer (justera efter er verklighet)</li>
+<li><strong>Begränsa nyhet</strong>: ingen helt ny “framework”-nivå + beteendeförändring i samma PR</li>
+</ul>
+<p>Rätt budget är den era reviewers klarar utan kontextkollaps. Om granskning ofta tar dagar är PR:erna för stora.</p>
+<h3 id="separera-refaktor-fran-beteendeforandring">Separera refaktor från beteendeförändring</h3>
+<p>Agenter är bra på att “städa upp”, men städning är dyr att verifiera när den blandas med beteendeförändring.</p>
+<p>Två pragmatiska regler:</p>
+<ul>
+<li>Om det ändrar beteende måste det ha fokuserad verifiering (tester/evidens).</li>
+<li>Om det är “bara refaktor” ska det vara mekaniskt verifierbart (inga logikändringar) och landa separat.</li>
+</ul>
+<h3 id="borttagning-som-standard-bekampa-entropi">Borttagning som standard (bekämpa entropi)</h3>
+<p>När generering är billig växer system om ni inte aktivt tar bort.</p>
+<p>I granskning, fråga:</p>
+<ul>
+<li>Vad tog vi bort?</li>
+<li>Vad blev enklare?</li>
+<li>Vilken gammal path behöver inte längre finnas?</li>
+</ul>
+<p>Om en PR bara lägger till, månad efter månad, är förståelseskuld nästan garanterad.</p>
+<hr /></div>
+            <div class="lang-en"><h2 id="4-reviewability-engineering-diff-budgets-scope-rules-and-deletion-bias">4) Reviewability engineering: diff budgets, scope rules, and deletion bias</h2>
+<p>If review is your bottleneck, you can’t “fix it” with more prompting. You fix it by designing work so it is reviewable by default.</p>
+<h3 id="diff-budgets-make-prs-readable-in-one-sitting">Diff budgets (make PRs readable in one sitting)</h3>
+<p>Pick budgets that fit your team, but make them explicit. Example starting points:</p>
+<ul>
+<li><strong>One behavior change per PR</strong> (everything else is a follow-up PR)</li>
+<li><strong>Cap blast radius</strong>: 1 subsystem, 1 public interface, or 1 user-facing flow</li>
+<li><strong>Cap size</strong>: e.g. 200–400 LOC net change, ≤10 files (tune to your reality)</li>
+<li><strong>Cap novelty</strong>: no brand-new “framework” + behavior change in the same PR</li>
+</ul>
+<p>The right budget is the one your reviewers can handle without context collapse. If review routinely takes days, the PRs are too big.</p>
+<h3 id="split-refactors-from-behavior-changes">Split refactors from behavior changes</h3>
+<p>Agents are great at “cleaning up,” but cleanup is expensive to verify when mixed with behavior changes.</p>
+<p>Two pragmatic rules:</p>
+<ul>
+<li>If it changes behavior, it must have focused verification (tests/evidence).</li>
+<li>If it’s “just refactor,” it should be mechanically verifiable (no logic changes) and land separately.</li>
+</ul>
+<h3 id="deletion-bias-fight-entropy">Deletion bias (fight entropy)</h3>
+<p>When generation is cheap, systems bloat unless you actively delete.</p>
+<p>In reviews, ask:</p>
+<ul>
+<li>What did we remove?</li>
+<li>What got simpler?</li>
+<li>What old path no longer needs to exist?</li>
+</ul>
+<p>If a PR only adds, month after month, comprehension debt is almost guaranteed.</p>
+<hr /></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="9 / 13">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="5-evidensunderlag-gor-verifiering-billig-och-ateranvandbar">5) Evidensunderlag: gör verifiering billig och återanvändbar</h2>
+<p>Ett <strong>evidensunderlag</strong> är en liten, standardiserad artefakt som följer med PR:en. Det svarar på “varför ska jag tro på detta?” utan att granskaren behöver återskapa hela agentsessionen.</p>
+<p>Gör du det rätt blir det det första en reviewer läser och det sista du behöver när du felsöker en regression.</p>
+<h3 id="minimal-mall-for-evidensunderlag-copypaste">Minimal mall för evidensunderlag (copy/paste)</h3>
+<p>Använd i PR-beskrivningar eller som obligatorisk checklista.</p>
+<pre><code class="language-md">## Evidensunderlag
+- Mål:
+- Icke-mål:
+- Beteendeförändring (1–3 bullets):
+  - ...
+- Hur verifierat:
+  - `command` (result)
+  - `command` (result)
+- Risker / kantfall:
+  - ...
+- Utrullning / rollback:
+  - ...
+- Antaganden:
+  - ...
+</code></pre>
+<h3 id="varfor-det-fungerar">Varför det fungerar</h3>
+<p>Evidensunderlag minskar förståelseskuld eftersom de:</p>
+<ul>
+<li>tvingar fram explicit intent (mål/icke‑mål)</li>
+<li>gör “lita på mig” till “här är vad jag körde”</li>
+<li>synliggör antaganden tidigt (innan de blir arkitektur)</li>
+<li>gör granskning mindre beroende av vem som genererade koden</li>
+</ul>
+<hr /></div>
+            <div class="lang-en"><h2 id="5-evidence-bundles-make-verification-cheap-and-reusable">5) Evidence bundles: make verification cheap and reusable</h2>
+<p>An <strong>evidence bundle</strong> is a small, standardized artifact that travels with the PR. It answers “why should I believe this?” without requiring the reviewer to replay the entire agent session.</p>
+<p>Done right, it becomes the first thing a reviewer reads and the last thing you need when debugging a regression.</p>
+<h3 id="minimal-evidence-bundle-template-copypaste">Minimal evidence bundle template (copy/paste)</h3>
+<p>Use this in PR descriptions or as a required checklist.</p>
+<pre><code class="language-md">## Evidence bundle
+- Goal:
+- Non-goals:
+- Behavior change (1–3 bullets):
+  - ...
+- How verified:
+  - `command` (result)
+  - `command` (result)
+- Risks / edge cases:
+  - ...
+- Rollout / rollback:
+  - ...
+- Assumptions:
+  - ...
+</code></pre>
+<h3 id="why-it-works">Why it works</h3>
+<p>Evidence bundles reduce comprehension debt because they:</p>
+<ul>
+<li>force explicit intent (goal/non-goals)</li>
+<li>turn “trust me” into “here’s what I ran”</li>
+<li>surface assumptions early (before they become architecture)</li>
+<li>make review less dependent on who generated the code</li>
+</ul>
+<hr /></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="10 / 13">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="6-fresh-context-reviewmonster">6) Fresh-context review‑mönster</h2>
+<p>Långa agentsessioner skapar ett nytt problem: granskare kan inte (och ska inte) läsa hela historiken. Lösningen är att granska i en <strong>fresh context</strong>: behandla diff + evidens som input, inte konversationen.</p>
+<h3 id="manniska-evidens-forst-checklista">Människa: evidens-först-checklista</h3>
+<p>Innan du fastnar i implementationdetaljer, kolla fundamenten:</p>
+<ul>
+<li>Gör denna PR <strong>en</strong> sak?</li>
+<li>Är beteendeförändringen tydlig (inte bara “refaktor av X”)?</li>
+<li>Finns verifieringsevidens (tester/kommandon/output)?</li>
+<li>Är antaganden och risker utpekade?</li>
+<li>Lade vi till komplexitet som vi inte behöver direkt?</li>
+<li>Kan en kollega förklara ändringen i morgon utan agentchatten?</li>
+</ul>
+<h3 id="agent-review-fran-scratch-prompt">Agent: “review från scratch”-prompt</h3>
+<p>Be en agent granska som om den saknade all tidigare kontext. Ge bara evidensunderlaget + diffen.</p>
+<pre><code class="language-text">Du granskar en PR. Använd enbart evidensunderlaget och diffen nedan.
+
+Returnera:
+1) Sammanfattning av beteendeförändringen (max 5 bullets)
+2) Antaganden som måste stämma
+3) Risker / kantfall / saknade tester
+4) Onödig komplexitet (vad kan tas bort eller förenklas)
+5) Go/No-Go och vad som skulle ändra det
+</code></pre>
+<p>Det här mönstret är särskilt bra för att fånga konceptuella fel (avsnitt 3) eftersom det tvingar kritik i stället för fortsättning.</p>
+<hr /></div>
+            <div class="lang-en"><h2 id="6-fresh-context-review-patterns">6) Fresh-context review patterns</h2>
+<p>Long agent sessions create a new problem: reviewers can’t (and shouldn’t) read the entire history. The solution is to review in a <strong>fresh context</strong>: treat the diff + evidence as the input, not the conversation.</p>
+<h3 id="human-evidence-first-checklist">Human: evidence-first checklist</h3>
+<p>Before you get lost in implementation details, check the fundamentals:</p>
+<ul>
+<li>Does this PR do <strong>one</strong> thing?</li>
+<li>Is the behavior change stated clearly (not just “refactored X”)?</li>
+<li>Is there verification evidence (tests/commands/output)?</li>
+<li>Are assumptions and risks called out?</li>
+<li>Did we add complexity that we don’t immediately need?</li>
+<li>Could a teammate explain this change tomorrow without the agent chat?</li>
+</ul>
+<h3 id="agent-review-from-scratch-prompt">Agent: “review from scratch” prompt</h3>
+<p>Ask an agent to review as if it had no prior context. Provide only the evidence bundle + diff.</p>
+<pre><code class="language-text">You are reviewing a PR. Only use the evidence bundle and diff below.
+
+Return:
+1) Summary of the behavior change (max 5 bullets)
+2) Assumptions that must be true
+3) Risks / edge cases / missing tests
+4) Unnecessary complexity (what can be deleted or simplified)
+5) Go/No-Go and what would change it
+</code></pre>
+<p>This pattern is specifically useful for catching conceptual failures (section 3) because it forces critique instead of continuation.</p>
+<hr /></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="11 / 13">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="7-ett-lattviktigt-policyset-for-team-copypaste">7) Ett lättviktigt policyset för team (copy/paste)</h2>
+<p>Om ni vill ha agentisk hastighet utan att granskning kollapsar, anta ett minimalt policyset och följ det konsekvent.</p>
+<pre><code class="language-md">## Policy för granskningsbara PR:er (agentiskt arbete)
+- En beteendeförändring per PR.
+- Diffbudget: håll PR:er granskningsbara i en sittning (sätt teamnivå‑tal för LOC/filer/subsystem).
+- Evidensunderlag krävs för alla beteendeförändringar.
+- Refaktor och beteendeförändring landar separat.
+- Inget nytt abstraktionslager utan ett konkret återanvändningsfall.
+- Ta bort död kod (inga “tillfälliga” grenar utan borttagningsplan).
+- Fresh-context review krävs när:
+  - ändringen är högrisk (auth, pengar, behörigheter, datamigreringar)
+  - diffen överskrider budget
+  - reviewern inte kan förklara ändringen efter att ha läst PR:en en gång
+</code></pre>
+<p>Du kan klistra in detta i repo-handbok, PR-template eller till och med i er <code>agents.md</code> som en delad constraint.</p>
+<hr /></div>
+            <div class="lang-en"><h2 id="7-a-lightweight-team-policy-set-copypaste">7) A lightweight team policy set (copy/paste)</h2>
+<p>If you want agentic velocity without review collapse, adopt a tiny policy set and enforce it consistently.</p>
+<pre><code class="language-md">## PR reviewability policy (agentic work)
+- One behavior change per PR.
+- Diff budget: keep PRs reviewable in one sitting (set team numbers for LOC/files/subsystems).
+- Evidence bundle required for all behavior changes.
+- Refactors and behavior changes land separately.
+- No new abstraction layer without a concrete reuse case.
+- Delete dead code (no “temporary” branches without a removal plan).
+- Fresh-context review required when:
+  - the change is high-risk (auth, money, permissions, data migrations)
+  - the diff exceeds budget
+  - the reviewer can’t explain the change after reading the PR once
+</code></pre>
+<p>You can paste this into a repo handbook, a PR template, or even your <code>agents.md</code> as a shared constraint.</p>
+<hr /></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="12 / 13">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="8-vad-ni-ska-mata-signaler-pa-att-verifiering-blir-er-flaskhals">8) Vad ni ska mäta: signaler på att verifiering blir er flaskhals</h2>
+<p>Om ni bara mäter “PR:er mergade” kommer agentiskt arbete se fantastiskt ut ända tills det kollapsar.</p>
+<p>Mät verifieringssystemet.</p>
+<h3 id="signaler-for-granskningslast">Signaler för granskningslast</h3>
+<ul>
+<li>medianstorlek på PR (filer, LOC, “net change”)</li>
+<li>median tid till första review och tid till merge</li>
+<li>antal review‑rundor (kommentarcykler) per PR</li>
+<li>andel PR:er utan evidensunderlag (ska trenda mot ~0)</li>
+</ul>
+<h3 id="signaler-for-kvalitet-drift">Signaler för kvalitet &amp; drift</h3>
+<ul>
+<li>revert‑frekvens inom 24–72 timmar efter merge</li>
+<li>incidenter kopplade till “nyligen ändrat som vi inte riktigt förstod”</li>
+<li>tid att diagnosticera regressioner (om den ökar, ökar förståelseskulden)</li>
+</ul>
+<h3 id="forstaelsesignaler-svarare-men-vardefulla">Förståelsesignaler (svårare, men värdefulla)</h3>
+<ul>
+<li>slumpmässiga “förklara denna PR”‑spotchecks i review (klarar författaren 2 minuter?)</li>
+<li>onboarding‑tid till att bli effektiv i kodbasen</li>
+<li>“rädsla att röra”-områden (moduler alla undviker)</li>
+</ul>
+<p>Om dessa trendar fel är fixen nästan alltid samma: mindre diffar, starkare evidens, färre antaganden och mer borttagning.</p></div>
+            <div class="lang-en"><h2 id="8-what-to-measure-signals-verification-is-becoming-your-bottleneck">8) What to measure: signals verification is becoming your bottleneck</h2>
+<p>If you only measure “PRs merged,” agentic work will look great right until it collapses.</p>
+<p>Measure the verification system.</p>
+<h3 id="review-load-signals">Review load signals</h3>
+<ul>
+<li>median PR size (files touched, LOC, “net change”)</li>
+<li>median time-to-first-review and time-to-merge</li>
+<li>number of review rounds (comment cycles) per PR</li>
+<li>percentage of PRs missing evidence bundles (should trend to ~0)</li>
+</ul>
+<h3 id="qualityoperations-signals">Quality/operations signals</h3>
+<ul>
+<li>revert rate within 24–72 hours of merge</li>
+<li>incidents linked to “recent change we didn’t fully understand”</li>
+<li>time-to-diagnose regressions (if it’s rising, comprehension debt is rising)</li>
+</ul>
+<h3 id="comprehension-signals-harder-but-valuable">Comprehension signals (harder, but valuable)</h3>
+<ul>
+<li>random “explain this PR” spot checks in review (can the author do it in 2 minutes?)</li>
+<li>onboarding time to become effective in the codebase</li>
+<li>“fear-of-touching” areas (modules everyone avoids)</li>
+</ul>
+<p>When these trend the wrong way, the fix is almost always the same: smaller diffs, stronger evidence, fewer assumptions, and more deletion.</p></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="13 / 13">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="referenser">Referenser</h2>
+<ul>
+<li>Addy Osmani — “The 80% Problem in Agentic Coding” (<a href="https://addyo.substack.com/p/the-80-problem-in-agentic-coding?utm_source=tldrdev">addyo.substack.com</a>)</li>
+</ul></div>
+            <div class="lang-en"><h2 id="references">References</h2>
+<ul>
+<li>Addy Osmani — “The 80% Problem in Agentic Coding” (<a href="https://addyo.substack.com/p/the-80-problem-in-agentic-coding?utm_source=tldrdev">addyo.substack.com</a>)</li>
+</ul></div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">B3 Commit</a>
+                <span class="status-badge">All Systems Operational</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const menuThemeToggle = document.getElementById('menuThemeToggle');
+        const html = document.documentElement;
+
+        function setTheme(theme) {
+            html.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+        }
+
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        setTheme(savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+        });
+
+        if (menuThemeToggle) {
+            menuThemeToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                const currentTheme = html.getAttribute('data-theme');
+                setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+            });
+        }
+
+        // Language Toggle
+        const langToggle = document.getElementById('langToggle');
+        const menuLangToggle = document.getElementById('menuLangToggle');
+
+        function setLanguage(lang) {
+            html.setAttribute('data-lang', lang);
+            html.setAttribute('lang', lang);
+            localStorage.setItem('language', lang);
+        }
+
+        const savedLang = localStorage.getItem('language') || 'sv';
+        setLanguage(savedLang);
+
+        langToggle.addEventListener('click', () => {
+            const currentLang = html.getAttribute('data-lang');
+            setLanguage(currentLang === 'sv' ? 'en' : 'sv');
+        });
+
+        if (menuLangToggle) {
+            menuLangToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                const currentLang = html.getAttribute('data-lang');
+                setLanguage(currentLang === 'sv' ? 'en' : 'sv');
+            });
+        }
+
+        // Hamburger Menu
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const menuClose = document.getElementById('menuClose');
+
+        function openMenu() {
+            hamburger.classList.add('active');
+            mobileMenu.classList.add('active');
+            menuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.contains('active') ? closeMenu() : openMenu();
+        });
+
+        if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
+        if (menuClose) menuClose.addEventListener('click', closeMenu);
+
+        // Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            const progressBar = document.getElementById('progressBar');
+            if (progressBar) progressBar.style.width = scrolled + '%';
+        });
+
+        // Presentation Mode
+        const presentationToggle = document.getElementById('presentationToggle');
+        const presentationProgress = document.getElementById('presentationProgress');
+        const progressFill = document.getElementById('progressFill');
+        const slides = document.querySelectorAll('.presentation-slide');
+        const progressItems = document.querySelectorAll('.presentation-progress-item');
+
+        function setPresentationMode(enabled) {
+            html.setAttribute('data-presentation', enabled ? 'true' : 'false');
+            localStorage.setItem('presentation', enabled ? 'true' : 'false');
+            if (presentationToggle) {
+                presentationToggle.classList.toggle('active', enabled);
+            }
+        }
+
+        // Always start with presentation mode OFF (user must click to enable)
+        setPresentationMode(false);
+
+        if (presentationToggle) {
+            presentationToggle.addEventListener('click', () => {
+                const current = html.getAttribute('data-presentation') === 'true';
+                setPresentationMode(!current);
+                if (!current) {
+                    // Scroll to first slide when enabling
+                    slides[0]?.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        }
+
+        // Presentation Progress Tracking
+        function updatePresentationProgress() {
+            if (html.getAttribute('data-presentation') !== 'true') return;
+
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const windowHeight = window.innerHeight;
+            let currentSlide = 0;
+
+            slides.forEach((slide, index) => {
+                const slideTop = slide.offsetTop;
+                const slideBottom = slideTop + slide.offsetHeight;
+                if (scrollTop + windowHeight / 2 >= slideTop && scrollTop + windowHeight / 2 < slideBottom) {
+                    currentSlide = index;
+                }
+            });
+
+            // Update progress items
+            progressItems.forEach((item, index) => {
+                item.classList.toggle('active', index === currentSlide);
+                item.classList.toggle('passed', index < currentSlide);
+            });
+
+            // Update progress fill
+            if (progressFill && slides.length > 0) {
+                const progress = ((currentSlide + 1) / slides.length) * 100;
+                progressFill.style.height = progress + '%';
+            }
+        }
+
+        window.addEventListener('scroll', updatePresentationProgress);
+        updatePresentationProgress();
+
+        // Keyboard Navigation for Presentation Mode
+        // Note: We query slides fresh each time to include dynamically created continuation slides
+        document.addEventListener('keydown', (e) => {
+            if (html.getAttribute('data-presentation') !== 'true') return;
+
+            // Query slides fresh to include any dynamically created continuation slides
+            const allSlides = document.querySelectorAll('.presentation-slide');
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            const windowHeight = window.innerHeight;
+            let currentSlideIndex = 0;
+
+            allSlides.forEach((slide, index) => {
+                const slideTop = slide.offsetTop;
+                if (currentScroll + windowHeight / 2 >= slideTop) {
+                    currentSlideIndex = index;
+                }
+            });
+
+            if (e.key === 'ArrowDown' || e.key === ' ' || e.key === 'PageDown') {
+                e.preventDefault();
+                if (currentSlideIndex < allSlides.length - 1) {
+                    allSlides[currentSlideIndex + 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+                e.preventDefault();
+                if (currentSlideIndex > 0) {
+                    allSlides[currentSlideIndex - 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            } else if (e.key === 'Home') {
+                e.preventDefault();
+                allSlides[0].scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else if (e.key === 'End') {
+                e.preventDefault();
+                allSlides[allSlides.length - 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else if (e.key === 'Escape') {
+                e.preventDefault();
+                setPresentationMode(false);
+            }
+        });
+
+        // Click on progress items to jump to slide
+        progressItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                if (slides[index]) {
+                    slides[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Auto-split overflowing slides into continuation slides
+        let slidesSplit = false;
+        
+        function splitOverflowingSlides() {
+            if (slidesSplit) return; // Only run once
+            if (html.getAttribute('data-presentation') !== 'true') return;
+            
+            const maxContentHeight = window.innerHeight - 220; // Account for padding (6rem top + 4rem bottom + buffer)
+            const allSlides = Array.from(document.querySelectorAll('.presentation-slide:not(.continuation-slide)'));
+            let continuationSlides = [];
+            
+            allSlides.forEach((slide, originalIndex) => {
+                const content = slide.querySelector('.presentation-slide-content');
+                if (!content || slide.classList.contains('hero-slide')) return;
+                
+                // Force layout calculation
+                const svDiv = content.querySelector('.lang-sv');
+                const enDiv = content.querySelector('.lang-en');
+                if (!svDiv || !enDiv) return;
+                
+                // Check both language versions for overflow
+                const svOverflows = svDiv.scrollHeight > maxContentHeight;
+                const enOverflows = enDiv.scrollHeight > maxContentHeight;
+                
+                if (!svOverflows && !enOverflows) return;
+                
+                // This slide needs splitting
+                slide.classList.add('has-continuation');
+                
+                // Get splittable elements (skip H2 headers)
+                const svElements = Array.from(svDiv.children).filter(el => el.tagName !== 'H2');
+                const enElements = Array.from(enDiv.children).filter(el => el.tagName !== 'H2');
+                
+                if (svElements.length <= 1) return;
+                
+                // Find split point based on cumulative height
+                let currentHeight = 0;
+                let splitIndex = -1;
+                
+                // Include H2 height in initial calculation
+                const svH2 = svDiv.querySelector('h2');
+                if (svH2) currentHeight = svH2.offsetHeight + 40;
+                
+                for (let i = 0; i < svElements.length; i++) {
+                    const el = svElements[i];
+                    const style = window.getComputedStyle(el);
+                    const marginTop = parseInt(style.marginTop) || 0;
+                    const marginBottom = parseInt(style.marginBottom) || 0;
+                    currentHeight += el.offsetHeight + marginTop + marginBottom;
+                    
+                    if (currentHeight > maxContentHeight && i > 0) {
+                        splitIndex = i;
+                        break;
+                    }
+                }
+                
+                if (splitIndex <= 0) return;
+                
+                // Create continuation slide
+                const continuationSlide = document.createElement('section');
+                continuationSlide.className = 'presentation-slide continuation-slide';
+                continuationSlide.setAttribute('data-original-slide', originalIndex.toString());
+                
+                const continuationContent = document.createElement('div');
+                continuationContent.className = 'presentation-slide-content';
+                
+                // Create language containers for continuation
+                const svContinuation = document.createElement('div');
+                svContinuation.className = 'lang-sv';
+                const enContinuation = document.createElement('div');
+                enContinuation.className = 'lang-en';
+                
+                // Add continuation label
+                const svLabel = document.createElement('span');
+                svLabel.className = 'continuation-label';
+                svLabel.textContent = '(fortsättning)';
+                svContinuation.appendChild(svLabel);
+                
+                const enLabel = document.createElement('span');
+                enLabel.className = 'continuation-label';
+                enLabel.textContent = '(continued)';
+                enContinuation.appendChild(enLabel);
+                
+                // Move overflow elements to continuation slide
+                for (let i = splitIndex; i < svElements.length; i++) {
+                    svContinuation.appendChild(svElements[i].cloneNode(true));
+                    svElements[i].remove();
+                }
+                
+                const enSplitIndex = Math.min(splitIndex, enElements.length);
+                for (let i = enSplitIndex; i < enElements.length; i++) {
+                    enContinuation.appendChild(enElements[i].cloneNode(true));
+                    enElements[i].remove();
+                }
+                
+                continuationContent.appendChild(svContinuation);
+                continuationContent.appendChild(enContinuation);
+                continuationSlide.appendChild(continuationContent);
+                
+                // Insert continuation slide after original
+                slide.insertAdjacentElement('afterend', continuationSlide);
+                continuationSlides.push(continuationSlide);
+            });
+            
+            // If we created continuation slides, update numbering
+            if (continuationSlides.length > 0) {
+                const allSlidesNow = document.querySelectorAll('.presentation-slide');
+                const totalSlides = allSlidesNow.length;
+                
+                allSlidesNow.forEach((slide, index) => {
+                    slide.setAttribute('data-slide-number', `${index + 1} / ${totalSlides}`);
+                });
+                
+                slidesSplit = true;
+                
+                // Recursively check if continuation slides also need splitting
+                setTimeout(splitOverflowingSlides, 50);
+            } else {
+                slidesSplit = true;
+            }
+        }
+        
+        // Run split check when presentation mode is toggled
+        const originalSetPresentationMode = setPresentationMode;
+        setPresentationMode = function(enabled) {
+            originalSetPresentationMode(enabled);
+            if (enabled && !slidesSplit) {
+                // Delay to allow rendering
+                requestAnimationFrame(() => {
+                    setTimeout(splitOverflowingSlides, 50);
+                });
+            }
+        };
+
+        // Reading Progress (vertical chapter navigation for reading mode)
+        const readingProgressItems = document.querySelectorAll('.reading-progress-item');
+        const readingProgressFill = document.getElementById('readingProgressFill');
+        
+        function updateReadingProgress() {
+            // Don't update in presentation mode
+            if (html.getAttribute('data-presentation') === 'true') return;
+            
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const currentLang = html.getAttribute('data-lang') || 'sv';
+            
+            // Find H2 sections only from the active language
+            const sections = document.querySelectorAll(`article .lang-${currentLang} h2[id]`);
+            let currentIndex = -1;
+            
+            sections.forEach((section, index) => {
+                const sectionTop = section.offsetTop - 150; // Offset for header
+                if (scrollTop >= sectionTop) {
+                    currentIndex = index;
+                }
+            });
+            
+            // Update reading progress items
+            readingProgressItems.forEach((item, index) => {
+                item.classList.remove('active', 'passed');
+                if (index === currentIndex) {
+                    item.classList.add('active');
+                } else if (index < currentIndex) {
+                    item.classList.add('passed');
+                }
+            });
+            
+            // Update progress fill
+            if (readingProgressFill && sections.length > 0) {
+                const progress = ((currentIndex + 1) / sections.length) * 100;
+                readingProgressFill.style.height = Math.max(0, progress) + '%';
+            }
+        }
+        
+        // Listen for scroll events
+        window.addEventListener('scroll', updateReadingProgress);
+        
+        // Initial update
+        updateReadingProgress();
+        
+
+    </script>
+</body>
+</html>

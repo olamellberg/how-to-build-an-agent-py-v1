@@ -73,6 +73,13 @@ I stället för att upprepa grunderna från dina tidigare artiklar, bygger den h
 - **En enda valideringssignal** (t.ex. `make check` eller `./scripts/ci.sh`) är den viktigaste acceleratorn för agentik.  
 - Agentik skalar när du kan "lita på loopen" (agent gör ändringar, kör checks, itererar tills grönt, och presenterar diff + risker).  
 - Om du vill ha en komplett metodbeskrivning (harness, kontext som "RAM", loggdesign): se *Vibe Engineering 101*.  
+- **Optimera för reviewgenomströmning:** agenter kan generera mer kod än team kan granska säkert. Håll diffar små, undvik blandade refactor+feature-PR:er, och behandla “granskningsbarhet” som ett hårt krav.
+- Kräv ett **evidensunderlag** i IDE/PR: körda kommandon + outputs, nyckelrisker, och (för brownfield) en rollback-notis.
+- En snabb reviewer-checklista (funkar i de flesta stackar):
+  - gränser/invarianter (vad får inte ändras?)
+  - tester som lagts till/uppdaterats (vad förhindrar regression?)
+  - config/migreringar (något miljöberoende?)
+  - säkerhetskänsliga flöden (auth, behörigheter, hemligheter)
 
 ### 4.2 .NET: "Vertikal slice" som standarduppdrag
 Kör agenten på uppdrag som har tydliga steg och tydlig verifiering:

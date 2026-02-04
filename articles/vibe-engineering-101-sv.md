@@ -75,6 +75,8 @@ En produktiv ram är:
 - **Du designar feedback-loopen.**
 - **Du granskar resultat, inte varje rad.**
 
+I teamskala designar du också **reviewsystemet**: vilket evidensunderlag som krävs, hur stora diffar som får vara, och när rätt drag är att stanna och planera om.
+
 Modeller beter sig som extremt snabba medarbetare utan långsiktigt minne. De kan röra sig snabbt, men de behöver:
 - tydliga begränsningar
 - skarpa definitioner av framgång
@@ -446,10 +448,18 @@ En verklig oro i agentbaserad utveckling är långsiktig kodkvalitetsdrift:
 - duplicerad logik
 - otydliga gränser
 
+Det finns också ett mer subtilt problem: **förståelseskuld (comprehension debt)**. När agenter genererar ändringar snabbare än människor kan verifiera och förstå dem börjar team mergea kod de senare inte kan förklara eller drifta med förtroende.
+
+I praktiken syns det ofta som en **verifieringsflaskhals**: genomströmningen flyttar från “att skriva kod” till “att granska och bevisa korrekthet”. Om du inte konstruerar för granskningsbarhet blir systemets output-takt en belastning.
+
 Mildringar:
 - tvinga formatering och linting
 - kräv tester för ändringar
 - upprätthåll en arkitektur/beslutslogg
+- upprätthåll **diffbudgetar** (en beteendeförändring per PR; sätt tak för filer/LOC så det går att granska i en sittning)
+- kräv ett **evidensunderlag** (körda kommandon + outputs + risker + rollback-notis när relevant)
+- föredra **borttagning och förenkling** framför oombedda nya abstraktionslager
+- gör **fresh-context reviews** för förändringar med hög insats (granska diff + evidensunderlag, inte hela chatten)
 - refaktorera medvetet i faser
 - periodiskt "åter-härled" moduler från en ren spec (när motiverat)
 - håll moduler små och utbytbara

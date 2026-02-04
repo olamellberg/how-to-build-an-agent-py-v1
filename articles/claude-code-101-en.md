@@ -33,6 +33,10 @@ If the request is broad, Claude will fill in gaps with "reasonable defaults." In
    - "List 2–3 viable designs, call out risks, and recommend one. Do not write code yet."  
    **Rationale:** the fastest path is often picking the right approach early.
 
+4) **List assumptions and unknowns explicitly.**  
+   Examples: data shape, auth expectations, backward compatibility, performance constraints.  
+   **Rationale:** most “agent bugs” are assumption bugs; surfacing them early prevents rework.
+
 ### Replace vague with specific
 Bad:
 - "Build an auth system."
@@ -41,6 +45,11 @@ Good:
 - "Add email/password auth using the existing User model; store sessions in Redis with 24h expiry; protect routes under `/api/protected`; no new dependencies; add integration tests."
 
 **Rationale:** specificity prevents overreach and creates a verifiable output.
+
+### The 80% trap: why “mostly working” is where time goes
+Agents often deliver a plausible first draft quickly. The time sink is making it **ship-ready**: edge cases, integration invariants, rollout/rollback, security, and observability.
+
+Practical rule: if you can’t point to **what proves it works** (tests + commands + outputs), you don’t have “80% done” — you have a demo.
 
 ---
 
@@ -200,6 +209,9 @@ Prompting is not magic. It is requirements + constraints + verification.
 ### Always include "what not to do"
 Claude often defaults to extra abstraction. If minimalism matters, say so:
 - "Keep this simple. No new files unless necessary. No abstractions I didn't ask for."
+- "Prefer the smallest diff that meets the goal. One behavior change per PR."
+- "Delete dead code created during refactors; do not leave parallel implementations behind."
+- "If assumptions are required, list them and stop for a decision before coding."
 
 **Rationale:** negative constraints prevent scope expansion.
 
@@ -309,6 +321,8 @@ Claude Code can be used beyond interactive sessions. In particular:
 - automated PR review / doc updates
 
 **Rationale:** automation turns individual wins into repeatable throughput.
+
+One caution: automation also increases **review load**. If the system can generate more changes than the team can verify, quality drifts. Keep automated tasks narrow, diffs small, and outputs evidence-based.
 
 ### A safe automation pattern
 - run on a narrow scope (single directory / file patterns)

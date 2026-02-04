@@ -186,6 +186,10 @@
                     <span class="lang-sv">Agents.md förklarat</span>
                     <span class="lang-en">Agents.md Explained</span>
                 </a></li>
+                <li><a href="comprehension-debt.html">
+                    <span class="lang-sv">Förståelseskuld: den verkliga flaskhalsen i agentisk mjukvaruleverans</span>
+                    <span class="lang-en">Comprehension Debt: The Real Bottleneck in Agentic Software Delivery</span>
+                </a></li>
                 <li><a href="ide-agentic-ai.html">
                     <span class="lang-sv">Välj IDE för Agentisk AI</span>
                     <span class="lang-en">Choosing an IDE for Agentic AI</span>
@@ -358,6 +362,15 @@ Agenter har inget av detta om du inte ger det till dem.</p>
 "Så här fungerar det hos oss."</p>
 <p>Det handlar inte om att göra agenten smartare.<br />
 <strong>Det handlar om att göra den pålitlig.</strong></p>
+<h3 id="felmonster-som-en-bra-agentsmd-forebygger">Felmönster som en bra agents.md förebygger</h3>
+<p>I praktiken är agentfel sällan “den kan inte skriva syntax”. De är oftare “den gissade något viktigt och körde på”. En bra <code>agents.md</code> minskar de vanligaste felmönstren:</p>
+<ul>
+<li><strong>Antagandespridning</strong>: en fel gissning (“den här endpointen är publik”, “den här datan finns alltid”) blir en kedja av felaktig kod som ändå ser prydlig ut.</li>
+<li><strong>Abstraktionssvullnad</strong>: agenten hittar på lager, helpers och indirection som inte efterfrågats eftersom den optimerar för “kompletthet”, inte långsiktig underhållbarhet.</li>
+<li><strong>Ackumulering av död kod</strong>: gamla implementationer lämnas kvar “för säkerhets skull” och repot fylls långsamt med parallella vägar och oanvända utilities.</li>
+<li><strong>Sykofantiskt instämmande</strong>: i stället för att trycka tillbaka på tvetydighet väljer agenten självsäkert standardval som inte matchar din intention.</li>
+</ul>
+<p>Lösningen är inte att “övervaka hårdare”. Den är att koda in constraints som förhindrar gissningar: lista antaganden, håll diffar små, föredra borttagning och stoppa‑och‑fråga när osäkerhet rör auth, data eller publika kontrakt.</p>
 <h3 id="fortroende-byggs-genom-att-eliminera-felklasser">Förtroende byggs genom att eliminera felklasser</h3>
 <p>De största vinsterna kommer inte från snabbare kod, utan från att<br />
 <strong>aldrig behöva rätta samma AI‑misstag två gånger</strong>.</p>
@@ -466,7 +479,10 @@ Varje onödig rad tränger undan verkligt arbete.</p>
 
 ## Working Style
 - Start with a plan (3–7 steps)
+- Always list assumptions/unknowns before implementation; stop if any touch auth, data, or public contracts
+- Prefer the smallest diff that satisfies the goal; do not introduce new abstraction layers unless asked
 - After each step: summarize diff + commands run + remaining risks
+- Delete dead code created during refactors; do not leave parallel implementations behind
 - If uncertain: stop and ask for a decision
 </code></pre>
 <h3 id="fyllda-exempel">Fyllda exempel</h3>
@@ -499,7 +515,10 @@ Varje onödig rad tränger undan verkligt arbete.</p>
 
 ## Working Style
 - Start with a plan (3–7 steps)
+- Always list assumptions/unknowns before implementation; stop if any touch auth, data, or public contracts
+- Prefer the smallest diff that satisfies the goal; do not introduce new abstraction layers unless asked
 - After each step: summarize diff + commands run + remaining risks
+- Delete dead code created during refactors; do not leave parallel implementations behind
 - If uncertain: stop and ask for a decision
 - Always run `npm run check` before committing
 </code></pre>
@@ -532,7 +551,10 @@ Varje onödig rad tränger undan verkligt arbete.</p>
 
 ## Working Style
 - Start with a plan (3–7 steps)
+- Always list assumptions/unknowns before implementation; stop if any touch auth, data, or public contracts
+- Prefer the smallest diff that satisfies the goal; do not introduce new abstraction layers unless asked
 - After each step: summarize diff + commands run + remaining risks
+- Delete dead code created during refactors; do not leave parallel implementations behind
 - If uncertain: stop and ask for a decision
 - Always run `make check` before committing
 </code></pre>
@@ -563,7 +585,10 @@ Varje onödig rad tränger undan verkligt arbete.</p>
 
 ## Working Style
 - Start with a plan (3–7 steps)
+- Always list assumptions/unknowns before implementation; stop if any touch auth, data, or public contracts
+- Prefer the smallest diff that satisfies the goal; do not introduce new abstraction layers unless asked
 - After each step: summarize diff + commands run + remaining risks
+- Delete dead code created during refactors; do not leave parallel implementations behind
 - If uncertain: stop and ask for a decision
 - Always run validation command before committing
 </code></pre>
@@ -646,6 +671,15 @@ That randomness is what destroys trust.</p>
 "This is how things work here."</p>
 <p>Agents.md is not about making the agent smarter.<br />
 <strong>It is about making it reliable.</strong></p>
+<h3 id="failure-modes-a-good-agentsmd-prevents">Failure modes a good agents.md prevents</h3>
+<p>In practice, agent failures are rarely “it can’t write syntax.” They are usually “it guessed something important and ran with it.” A good <code>agents.md</code> reduces the most common failure modes:</p>
+<ul>
+<li><strong>Assumption propagation</strong>: one wrong guess (“this endpoint is public”, “this data is always present”) becomes a chain of incorrect code that still looks clean.</li>
+<li><strong>Abstraction bloat</strong>: the agent invents layers, helpers, and indirection that weren’t requested because it’s optimizing for completeness, not long-term maintainability.</li>
+<li><strong>Dead code accumulation</strong>: old implementations are left behind “just in case,” and the repo slowly fills with parallel paths and unused utilities.</li>
+<li><strong>Sycophantic agreement</strong>: instead of pushing back on ambiguity, the agent confidently chooses defaults that don’t match your intent.</li>
+</ul>
+<p>The fix is not “supervise harder.” It’s to encode constraints that prevent guessing: list assumptions, keep diffs small, prefer deletion, and stop-and-ask when uncertainty touches auth, data, or public contracts.</p>
 <h3 id="trust-compounds-by-removing-failure-modes">Trust Compounds by Removing Failure Modes</h3>
 <p>The biggest gains do not come from writing more code faster.<br />
 They come from <strong>never fixing the same AI mistake twice</strong>.</p>
@@ -750,7 +784,10 @@ Position 2+: Working memory (tasks, logs, reasoning)</p>
 
 ## Working Style
 - Start with a plan (3–7 steps)
+- Always list assumptions/unknowns before implementation; stop if any touch auth, data, or public contracts
+- Prefer the smallest diff that satisfies the goal; do not introduce new abstraction layers unless asked
 - After each step: summarize diff + commands run + remaining risks
+- Delete dead code created during refactors; do not leave parallel implementations behind
 - If uncertain: stop and ask for a decision
 </code></pre>
 <h3 id="filled-examples">Filled Examples</h3>
@@ -783,7 +820,10 @@ Position 2+: Working memory (tasks, logs, reasoning)</p>
 
 ## Working Style
 - Start with a plan (3–7 steps)
+- Always list assumptions/unknowns before implementation; stop if any touch auth, data, or public contracts
+- Prefer the smallest diff that satisfies the goal; do not introduce new abstraction layers unless asked
 - After each step: summarize diff + commands run + remaining risks
+- Delete dead code created during refactors; do not leave parallel implementations behind
 - If uncertain: stop and ask for a decision
 - Always run `npm run check` before committing
 </code></pre>
@@ -816,7 +856,10 @@ Position 2+: Working memory (tasks, logs, reasoning)</p>
 
 ## Working Style
 - Start with a plan (3–7 steps)
+- Always list assumptions/unknowns before implementation; stop if any touch auth, data, or public contracts
+- Prefer the smallest diff that satisfies the goal; do not introduce new abstraction layers unless asked
 - After each step: summarize diff + commands run + remaining risks
+- Delete dead code created during refactors; do not leave parallel implementations behind
 - If uncertain: stop and ask for a decision
 - Always run `make check` before committing
 </code></pre>
@@ -847,7 +890,10 @@ Position 2+: Working memory (tasks, logs, reasoning)</p>
 
 ## Working Style
 - Start with a plan (3–7 steps)
+- Always list assumptions/unknowns before implementation; stop if any touch auth, data, or public contracts
+- Prefer the smallest diff that satisfies the goal; do not introduce new abstraction layers unless asked
 - After each step: summarize diff + commands run + remaining risks
+- Delete dead code created during refactors; do not leave parallel implementations behind
 - If uncertain: stop and ask for a decision
 - Always run validation command before committing
 </code></pre>
@@ -980,6 +1026,15 @@ Agenter har inget av detta om du inte ger det till dem.</p>
 "Så här fungerar det hos oss."</p>
 <p>Det handlar inte om att göra agenten smartare.<br />
 <strong>Det handlar om att göra den pålitlig.</strong></p>
+<h3 id="felmonster-som-en-bra-agentsmd-forebygger">Felmönster som en bra agents.md förebygger</h3>
+<p>I praktiken är agentfel sällan “den kan inte skriva syntax”. De är oftare “den gissade något viktigt och körde på”. En bra <code>agents.md</code> minskar de vanligaste felmönstren:</p>
+<ul>
+<li><strong>Antagandespridning</strong>: en fel gissning (“den här endpointen är publik”, “den här datan finns alltid”) blir en kedja av felaktig kod som ändå ser prydlig ut.</li>
+<li><strong>Abstraktionssvullnad</strong>: agenten hittar på lager, helpers och indirection som inte efterfrågats eftersom den optimerar för “kompletthet”, inte långsiktig underhållbarhet.</li>
+<li><strong>Ackumulering av död kod</strong>: gamla implementationer lämnas kvar “för säkerhets skull” och repot fylls långsamt med parallella vägar och oanvända utilities.</li>
+<li><strong>Sykofantiskt instämmande</strong>: i stället för att trycka tillbaka på tvetydighet väljer agenten självsäkert standardval som inte matchar din intention.</li>
+</ul>
+<p>Lösningen är inte att “övervaka hårdare”. Den är att koda in constraints som förhindrar gissningar: lista antaganden, håll diffar små, föredra borttagning och stoppa‑och‑fråga när osäkerhet rör auth, data eller publika kontrakt.</p>
 <h3 id="fortroende-byggs-genom-att-eliminera-felklasser">Förtroende byggs genom att eliminera felklasser</h3>
 <p>De största vinsterna kommer inte från snabbare kod, utan från att<br />
 <strong>aldrig behöva rätta samma AI‑misstag två gånger</strong>.</p>
@@ -1021,6 +1076,15 @@ That randomness is what destroys trust.</p>
 "This is how things work here."</p>
 <p>Agents.md is not about making the agent smarter.<br />
 <strong>It is about making it reliable.</strong></p>
+<h3 id="failure-modes-a-good-agentsmd-prevents">Failure modes a good agents.md prevents</h3>
+<p>In practice, agent failures are rarely “it can’t write syntax.” They are usually “it guessed something important and ran with it.” A good <code>agents.md</code> reduces the most common failure modes:</p>
+<ul>
+<li><strong>Assumption propagation</strong>: one wrong guess (“this endpoint is public”, “this data is always present”) becomes a chain of incorrect code that still looks clean.</li>
+<li><strong>Abstraction bloat</strong>: the agent invents layers, helpers, and indirection that weren’t requested because it’s optimizing for completeness, not long-term maintainability.</li>
+<li><strong>Dead code accumulation</strong>: old implementations are left behind “just in case,” and the repo slowly fills with parallel paths and unused utilities.</li>
+<li><strong>Sycophantic agreement</strong>: instead of pushing back on ambiguity, the agent confidently chooses defaults that don’t match your intent.</li>
+</ul>
+<p>The fix is not “supervise harder.” It’s to encode constraints that prevent guessing: list assumptions, keep diffs small, prefer deletion, and stop-and-ask when uncertainty touches auth, data, or public contracts.</p>
 <h3 id="trust-compounds-by-removing-failure-modes">Trust Compounds by Removing Failure Modes</h3>
 <p>The biggest gains do not come from writing more code faster.<br />
 They come from <strong>never fixing the same AI mistake twice</strong>.</p>
@@ -1240,7 +1304,10 @@ Position 2+: Working memory (tasks, logs, reasoning)</p>
 
 ## Working Style
 - Start with a plan (3–7 steps)
+- Always list assumptions/unknowns before implementation; stop if any touch auth, data, or public contracts
+- Prefer the smallest diff that satisfies the goal; do not introduce new abstraction layers unless asked
 - After each step: summarize diff + commands run + remaining risks
+- Delete dead code created during refactors; do not leave parallel implementations behind
 - If uncertain: stop and ask for a decision
 </code></pre>
 <h3 id="fyllda-exempel">Fyllda exempel</h3>
@@ -1273,7 +1340,10 @@ Position 2+: Working memory (tasks, logs, reasoning)</p>
 
 ## Working Style
 - Start with a plan (3–7 steps)
+- Always list assumptions/unknowns before implementation; stop if any touch auth, data, or public contracts
+- Prefer the smallest diff that satisfies the goal; do not introduce new abstraction layers unless asked
 - After each step: summarize diff + commands run + remaining risks
+- Delete dead code created during refactors; do not leave parallel implementations behind
 - If uncertain: stop and ask for a decision
 - Always run `npm run check` before committing
 </code></pre>
@@ -1306,7 +1376,10 @@ Position 2+: Working memory (tasks, logs, reasoning)</p>
 
 ## Working Style
 - Start with a plan (3–7 steps)
+- Always list assumptions/unknowns before implementation; stop if any touch auth, data, or public contracts
+- Prefer the smallest diff that satisfies the goal; do not introduce new abstraction layers unless asked
 - After each step: summarize diff + commands run + remaining risks
+- Delete dead code created during refactors; do not leave parallel implementations behind
 - If uncertain: stop and ask for a decision
 - Always run `make check` before committing
 </code></pre>
@@ -1337,7 +1410,10 @@ Position 2+: Working memory (tasks, logs, reasoning)</p>
 
 ## Working Style
 - Start with a plan (3–7 steps)
+- Always list assumptions/unknowns before implementation; stop if any touch auth, data, or public contracts
+- Prefer the smallest diff that satisfies the goal; do not introduce new abstraction layers unless asked
 - After each step: summarize diff + commands run + remaining risks
+- Delete dead code created during refactors; do not leave parallel implementations behind
 - If uncertain: stop and ask for a decision
 - Always run validation command before committing
 </code></pre>
@@ -1392,7 +1468,10 @@ Position 2+: Working memory (tasks, logs, reasoning)</p>
 
 ## Working Style
 - Start with a plan (3–7 steps)
+- Always list assumptions/unknowns before implementation; stop if any touch auth, data, or public contracts
+- Prefer the smallest diff that satisfies the goal; do not introduce new abstraction layers unless asked
 - After each step: summarize diff + commands run + remaining risks
+- Delete dead code created during refactors; do not leave parallel implementations behind
 - If uncertain: stop and ask for a decision
 </code></pre>
 <h3 id="filled-examples">Filled Examples</h3>
@@ -1425,7 +1504,10 @@ Position 2+: Working memory (tasks, logs, reasoning)</p>
 
 ## Working Style
 - Start with a plan (3–7 steps)
+- Always list assumptions/unknowns before implementation; stop if any touch auth, data, or public contracts
+- Prefer the smallest diff that satisfies the goal; do not introduce new abstraction layers unless asked
 - After each step: summarize diff + commands run + remaining risks
+- Delete dead code created during refactors; do not leave parallel implementations behind
 - If uncertain: stop and ask for a decision
 - Always run `npm run check` before committing
 </code></pre>
@@ -1458,7 +1540,10 @@ Position 2+: Working memory (tasks, logs, reasoning)</p>
 
 ## Working Style
 - Start with a plan (3–7 steps)
+- Always list assumptions/unknowns before implementation; stop if any touch auth, data, or public contracts
+- Prefer the smallest diff that satisfies the goal; do not introduce new abstraction layers unless asked
 - After each step: summarize diff + commands run + remaining risks
+- Delete dead code created during refactors; do not leave parallel implementations behind
 - If uncertain: stop and ask for a decision
 - Always run `make check` before committing
 </code></pre>
@@ -1489,7 +1574,10 @@ Position 2+: Working memory (tasks, logs, reasoning)</p>
 
 ## Working Style
 - Start with a plan (3–7 steps)
+- Always list assumptions/unknowns before implementation; stop if any touch auth, data, or public contracts
+- Prefer the smallest diff that satisfies the goal; do not introduce new abstraction layers unless asked
 - After each step: summarize diff + commands run + remaining risks
+- Delete dead code created during refactors; do not leave parallel implementations behind
 - If uncertain: stop and ask for a decision
 - Always run validation command before committing
 </code></pre>

@@ -76,6 +76,17 @@ you define:
 Agents.md is not about making the agent smarter.
 **It is about making it reliable.**
 
+### Failure modes a good agents.md prevents
+
+In practice, agent failures are rarely “it can’t write syntax.” They are usually “it guessed something important and ran with it.” A good `agents.md` reduces the most common failure modes:
+
+- **Assumption propagation**: one wrong guess (“this endpoint is public”, “this data is always present”) becomes a chain of incorrect code that still looks clean.
+- **Abstraction bloat**: the agent invents layers, helpers, and indirection that weren’t requested because it’s optimizing for completeness, not long-term maintainability.
+- **Dead code accumulation**: old implementations are left behind “just in case,” and the repo slowly fills with parallel paths and unused utilities.
+- **Sycophantic agreement**: instead of pushing back on ambiguity, the agent confidently chooses defaults that don’t match your intent.
+
+The fix is not “supervise harder.” It’s to encode constraints that prevent guessing: list assumptions, keep diffs small, prefer deletion, and stop-and-ask when uncertainty touches auth, data, or public contracts.
+
 ### Trust Compounds by Removing Failure Modes
 
 The biggest gains do not come from writing more code faster.
@@ -215,7 +226,10 @@ This chapter includes the copy-paste template that previously lived on its own p
 
 ## Working Style
 - Start with a plan (3–7 steps)
+- Always list assumptions/unknowns before implementation; stop if any touch auth, data, or public contracts
+- Prefer the smallest diff that satisfies the goal; do not introduce new abstraction layers unless asked
 - After each step: summarize diff + commands run + remaining risks
+- Delete dead code created during refactors; do not leave parallel implementations behind
 - If uncertain: stop and ask for a decision
 ```
 
@@ -252,7 +266,10 @@ This chapter includes the copy-paste template that previously lived on its own p
 
 ## Working Style
 - Start with a plan (3–7 steps)
+- Always list assumptions/unknowns before implementation; stop if any touch auth, data, or public contracts
+- Prefer the smallest diff that satisfies the goal; do not introduce new abstraction layers unless asked
 - After each step: summarize diff + commands run + remaining risks
+- Delete dead code created during refactors; do not leave parallel implementations behind
 - If uncertain: stop and ask for a decision
 - Always run `npm run check` before committing
 ```
@@ -288,7 +305,10 @@ This chapter includes the copy-paste template that previously lived on its own p
 
 ## Working Style
 - Start with a plan (3–7 steps)
+- Always list assumptions/unknowns before implementation; stop if any touch auth, data, or public contracts
+- Prefer the smallest diff that satisfies the goal; do not introduce new abstraction layers unless asked
 - After each step: summarize diff + commands run + remaining risks
+- Delete dead code created during refactors; do not leave parallel implementations behind
 - If uncertain: stop and ask for a decision
 - Always run `make check` before committing
 ```
@@ -322,7 +342,10 @@ This chapter includes the copy-paste template that previously lived on its own p
 
 ## Working Style
 - Start with a plan (3–7 steps)
+- Always list assumptions/unknowns before implementation; stop if any touch auth, data, or public contracts
+- Prefer the smallest diff that satisfies the goal; do not introduce new abstraction layers unless asked
 - After each step: summarize diff + commands run + remaining risks
+- Delete dead code created during refactors; do not leave parallel implementations behind
 - If uncertain: stop and ask for a decision
 - Always run validation command before committing
 ```

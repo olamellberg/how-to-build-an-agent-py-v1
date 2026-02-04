@@ -142,6 +142,10 @@
                     <span class="lang-sv">Agents.md förklarat</span>
                     <span class="lang-en">Agents.md Explained</span>
                 </a></li>
+                <li><a href="comprehension-debt.html">
+                    <span class="lang-sv">Förståelseskuld: den verkliga flaskhalsen i agentisk mjukvaruleverans</span>
+                    <span class="lang-en">Comprehension Debt: The Real Bottleneck in Agentic Software Delivery</span>
+                </a></li>
                 <li><a href="ide-agentic-ai.html">
                     <span class="lang-sv">Välj IDE för Agentisk AI</span>
                     <span class="lang-en">Choosing an IDE for Agentic AI</span>
@@ -364,6 +368,13 @@
 <li><strong>En enda valideringssignal</strong> (t.ex. <code>make check</code> eller <code>./scripts/ci.sh</code>) är den viktigaste acceleratorn för agentik.  </li>
 <li>Agentik skalar när du kan "lita på loopen" (agent gör ändringar, kör checks, itererar tills grönt, och presenterar diff + risker).  </li>
 <li>Om du vill ha en komplett metodbeskrivning (harness, kontext som "RAM", loggdesign): se <em>Vibe Engineering 101</em>.  </li>
+<li><strong>Optimera för reviewgenomströmning:</strong> agenter kan generera mer kod än team kan granska säkert. Håll diffar små, undvik blandade refactor+feature-PR:er, och behandla “granskningsbarhet” som ett hårt krav.</li>
+<li>Kräv ett <strong>evidensunderlag</strong> i IDE/PR: körda kommandon + outputs, nyckelrisker, och (för brownfield) en rollback-notis.</li>
+<li>En snabb reviewer-checklista (funkar i de flesta stackar):</li>
+<li>gränser/invarianter (vad får inte ändras?)</li>
+<li>tester som lagts till/uppdaterats (vad förhindrar regression?)</li>
+<li>config/migreringar (något miljöberoende?)</li>
+<li>säkerhetskänsliga flöden (auth, behörigheter, hemligheter)</li>
 </ul>
 <h3 id="42-net-vertikal-slice-som-standarduppdrag">4.2 .NET: "Vertikal slice" som standarduppdrag</h3>
 <p>Kör agenten på uppdrag som har tydliga steg och tydlig verifiering:<br />
@@ -514,6 +525,13 @@
 <li>A <strong>single validation signal</strong> (e.g., <code>make check</code> or <code>./scripts/ci.sh</code>) is the highest-leverage accelerator for agentic development.  </li>
 <li>Agentic work scales when you can trust the loop (agent changes code, runs checks, iterates until green, then presents diff + risks).  </li>
 <li>For the complete methodology (harness design, context as "RAM", log signal): see <em>Vibe Engineering 101</em>.  </li>
+<li><strong>Optimize for review throughput:</strong> agents can generate more code than teams can safely review. Keep diffs small, avoid mixed refactor+feature PRs, and treat “reviewability” as a hard requirement.</li>
+<li>Require an <strong>evidence bundle</strong> in the IDE/PR: commands run + outputs, key risks, and (for brownfield) a rollback note.</li>
+<li>A quick reviewer checklist (works in most stacks):</li>
+<li>boundaries/invariants (what must not change?)</li>
+<li>tests added/updated (what prevents regression?)</li>
+<li>config/migrations (anything environment-dependent?)</li>
+<li>security-sensitive paths (auth, permissions, secrets)</li>
 </ul>
 <h3 id="42-net-vertical-slice-as-the-default-unit-of-work">4.2 .NET: "Vertical slice" as the default unit of work</h3>
 <p>Run the agent on tasks with clear steps and clear verification:<br />
@@ -798,6 +816,13 @@
 <li><strong>En enda valideringssignal</strong> (t.ex. <code>make check</code> eller <code>./scripts/ci.sh</code>) är den viktigaste acceleratorn för agentik.  </li>
 <li>Agentik skalar när du kan "lita på loopen" (agent gör ändringar, kör checks, itererar tills grönt, och presenterar diff + risker).  </li>
 <li>Om du vill ha en komplett metodbeskrivning (harness, kontext som "RAM", loggdesign): se <em>Vibe Engineering 101</em>.  </li>
+<li><strong>Optimera för reviewgenomströmning:</strong> agenter kan generera mer kod än team kan granska säkert. Håll diffar små, undvik blandade refactor+feature-PR:er, och behandla “granskningsbarhet” som ett hårt krav.</li>
+<li>Kräv ett <strong>evidensunderlag</strong> i IDE/PR: körda kommandon + outputs, nyckelrisker, och (för brownfield) en rollback-notis.</li>
+<li>En snabb reviewer-checklista (funkar i de flesta stackar):</li>
+<li>gränser/invarianter (vad får inte ändras?)</li>
+<li>tester som lagts till/uppdaterats (vad förhindrar regression?)</li>
+<li>config/migreringar (något miljöberoende?)</li>
+<li>säkerhetskänsliga flöden (auth, behörigheter, hemligheter)</li>
 </ul>
 <h3 id="42-net-vertikal-slice-som-standarduppdrag">4.2 .NET: "Vertikal slice" som standarduppdrag</h3>
 <p>Kör agenten på uppdrag som har tydliga steg och tydlig verifiering:<br />
@@ -821,6 +846,13 @@
 <li>A <strong>single validation signal</strong> (e.g., <code>make check</code> or <code>./scripts/ci.sh</code>) is the highest-leverage accelerator for agentic development.  </li>
 <li>Agentic work scales when you can trust the loop (agent changes code, runs checks, iterates until green, then presents diff + risks).  </li>
 <li>For the complete methodology (harness design, context as "RAM", log signal): see <em>Vibe Engineering 101</em>.  </li>
+<li><strong>Optimize for review throughput:</strong> agents can generate more code than teams can safely review. Keep diffs small, avoid mixed refactor+feature PRs, and treat “reviewability” as a hard requirement.</li>
+<li>Require an <strong>evidence bundle</strong> in the IDE/PR: commands run + outputs, key risks, and (for brownfield) a rollback note.</li>
+<li>A quick reviewer checklist (works in most stacks):</li>
+<li>boundaries/invariants (what must not change?)</li>
+<li>tests added/updated (what prevents regression?)</li>
+<li>config/migrations (anything environment-dependent?)</li>
+<li>security-sensitive paths (auth, permissions, secrets)</li>
 </ul>
 <h3 id="42-net-vertical-slice-as-the-default-unit-of-work">4.2 .NET: "Vertical slice" as the default unit of work</h3>
 <p>Run the agent on tasks with clear steps and clear verification:<br />

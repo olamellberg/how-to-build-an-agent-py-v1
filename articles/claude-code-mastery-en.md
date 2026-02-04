@@ -17,6 +17,17 @@ The models have become so good that if you're producing "slop," it's because you
 
 Think of it like communicating with a human engineer. If you give sparse instructions, you'll get subpar results.
 
+### Comprehension debt: the hidden cost of “reviewing more than writing”
+
+When agents generate most of the implementation, the bottleneck moves to **verification and understanding**. Over time, teams can accidentally build up **comprehension debt**: you ship changes faster than you can explain, operate, and safely modify them later.
+
+A practical review checklist (use it on AI-written diffs):
+- What assumptions did this change introduce (data shape, auth, concurrency, timeouts)?
+- What invariant must still be true after the change?
+- What is the failure mode in production (and how would we detect it)?
+- What evidence proves it works (tests run + outputs)?
+- Did we remove dead code, or did we leave parallel paths behind?
+
 ---
 
 ## Think in Features, Not Products
@@ -117,6 +128,13 @@ Claude Opus 4.5 has a 200,000 token limit. Once you've consumed ~100,000 tokens,
 Think of it like information overload—at some point you'd feel overwhelmed and forget earlier material. AI models behave similarly.
 
 **When you hit 40-50% context usage, start a new session.**
+
+### Stopping rule: don’t “one more attempt” yourself into a hole
+If you’ve tried 2–3 iterations and the outcome isn’t improving, stop and change the shape of the problem:
+- reset context (new session)
+- shrink the task (single file, single behavior change)
+- add a test/check that makes “done” unambiguous
+- re-plan with explicit assumptions and verification steps
 
 ---
 

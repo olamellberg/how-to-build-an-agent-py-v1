@@ -58,11 +58,21 @@ Claude Code’s **Plan Mode** is explicitly intended for safe exploration and pl
 - Claude runs the exact checks defined in the plan (tests, lint, typecheck, local repro).
 - Claude summarizes evidence (commands run, outputs, what changed).
 
+### Team throughput: optimize for review, not generation
+If an agent can generate changes faster than humans can review them, **review bandwidth becomes your delivery limit**. The practical fix is to treat reviewability as a requirement, not a hope.
+
+Working rules that scale in real teams:
+- **PR size budgets**: cap files/LOC per PR (or per step) so reviews stay “one sitting.”
+- **One behavior change per PR**: avoid mixing refactors + features + formatting.
+- **Evidence bundle required**: include commands run + outputs, risk areas, and a rollback note for anything user-facing or data-touching.
+- **Prefer deletion over addition**: if an agent introduces new layers, require a reason (measurable complexity reduction, testability gain, or operational need).
+
 ### “Two-Claude” review pattern (high leverage)
 When stakes are high (architectural changes, migrations, security-sensitive code):
 1. Session A produces the plan in Plan Mode.
-2. Session B critiques it “as staff engineer”: edge cases, rollout plan, failure modes.
-3. Session A revises plan; then implement.
+2. Session B critiques it “as staff engineer”: assumptions, edge cases, rollout/rollback, and failure modes.
+3. Session A implements and produces a short evidence bundle (diff summary + commands run + results).
+4. Session B does a **fresh-context review** of the diff + evidence bundle (not the whole chat) and flags risks before merge.
 
 ### Model selection tip
 Claude Code supports model configuration and aliases (including a plan/execution split mode such as `opusplan` described in the docs). Standardize team defaults (e.g., “use stronger model for planning, faster model for execution”). ([code.claude.com](https://code.claude.com/docs/en/model-config))
@@ -103,6 +113,8 @@ Anthropic’s workflow guidance and community “config packs” converge on the
 Examples that teams report working well:
 - `/techdebt`: scan for duplication, dead code, missing tests, suspicious TODOs
 - `/verify`: run the project’s canonical verification commands
+- `/assumptions`: list assumptions/unknowns and which are validated by tests (or need checks)
+- `/review-pack`: generate a PR-ready evidence bundle (commands run, outputs, risk areas, rollback note)
 - `/context-sync`: pull a curated “last 7 days” context (issues/PRs/notes) into a single summary (where your environment allows it)
 
 If you want inspiration for structure and patterns, there are public repositories that package real-world Claude Code command/agent setups (useful as examples even if you don’t adopt them wholesale). ([github.com](https://github.com/affaan-m/everything-claude-code))

@@ -48,6 +48,25 @@ Your job is increasingly:
 
 In other words: your value moves from *typing* to *judgment*.
 
+### Comprehension debt and the verification bottleneck
+
+As code generation gets cheap, the limiting factor moves: **review and verification throughput** becomes the constraint.
+
+**Comprehension debt** is what happens when the team can merge changes faster than it can understand them. The code “works,” but no one can explain what assumptions it relies on, what it might break, or how to operate it when it fails.
+
+Signals you're accumulating comprehension debt:
+- PRs and diffs keep growing, even when features are “small”
+- reviews devolve into style feedback (“looks fine”) instead of correctness
+- changes ship without an evidence trail (tests run, outputs, risk notes)
+- the team can’t explain *why* a change exists a week later
+
+Countermeasures that work in real teams:
+- require an **evidence bundle** (commands run + results + risk areas) for meaningful changes
+- keep changes **small and reviewable** (one behavior change per PR)
+- force assumptions into the open (“what are we assuming about data, auth, and contracts?”)
+- add regression tests when you find a missed edge case
+- prefer deletion and simplification over “clever” new abstraction layers
+
 ---
 
 ## Skill 1: Architecture Becomes the New "Hello World"
@@ -83,6 +102,18 @@ Your advantage becomes your ability to *interrogate* code:
 Treat AI output like a PR from someone new to your codebase: read it closely, test it aggressively, and assume it missed an edge case.
 
 **In 2026, your ability to *read and validate* code is more valuable than your ability to type it.**
+
+### The last 20% isn't linear
+
+AI can often get you to a plausible first draft fast. The expensive part is making it **production-grade**:
+- edge cases and bad inputs
+- compatibility with existing invariants
+- rollout/rollback strategy
+- performance under real latency and load
+- security and permissions
+- observability (logs/metrics/traces that let you debug later)
+
+Treat “mostly done” as a risk signal: it’s where conceptual bugs hide.
 
 ---
 
@@ -127,6 +158,9 @@ To make room for the new leverage, drop the old baggage.
 **Stop memorizing boilerplate.**  
 Don't waste brain space on "exact syntax for X." Look it up. Prompt it. Save your cognition for decisions and constraints.
 
+**Stop rubber-stamping.**  
+If you can't explain what changed, what assumptions it relies on, and what proves it's correct, you haven't reviewed it yet. Demand evidence and keep diffs small enough to understand.
+
 **Stop being a purity snob.**  
 "It's not real coding if you didn't type it." Nobody paying for your product cares. The user cares that it works.
 
@@ -162,3 +196,4 @@ This weekend, don't build a generic To-Do app "from scratch." Pick a real proble
 - **Financial Times** on "forward-deployed engineers" and hybrid roles combining tech + customer context.
 - **IEEE Spectrum** on early signals of generative AI's labor market impact, especially for junior roles.
 - **Wired** on "vibe coding" — experts see rapid change but warn about unreliability and bugs.
+- **Addy Osmani** on the “80% problem” in agentic coding — why generation gets cheap while verification becomes the bottleneck.

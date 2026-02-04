@@ -73,6 +73,13 @@ Rather than repeating fundamentals from your earlier articles, this section prov
 - A **single validation signal** (e.g., `make check` or `./scripts/ci.sh`) is the highest-leverage accelerator for agentic development.  
 - Agentic work scales when you can trust the loop (agent changes code, runs checks, iterates until green, then presents diff + risks).  
 - For the complete methodology (harness design, context as "RAM", log signal): see *Vibe Engineering 101*.  
+- **Optimize for review throughput:** agents can generate more code than teams can safely review. Keep diffs small, avoid mixed refactor+feature PRs, and treat “reviewability” as a hard requirement.
+- Require an **evidence bundle** in the IDE/PR: commands run + outputs, key risks, and (for brownfield) a rollback note.
+- A quick reviewer checklist (works in most stacks):
+  - boundaries/invariants (what must not change?)
+  - tests added/updated (what prevents regression?)
+  - config/migrations (anything environment-dependent?)
+  - security-sensitive paths (auth, permissions, secrets)
 
 ### 4.2 .NET: "Vertical slice" as the default unit of work
 Run the agent on tasks with clear steps and clear verification:

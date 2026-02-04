@@ -63,13 +63,23 @@ Claude Code’s **Plan Mode** är avsett för säker utforskning och planering, 
 - Claude kör exakt de checks som definierats i planen (tester, lint, typecheck, lokal repro).
 - Claude sammanfattar evidens (kommandon, output, vad som ändrats).
 
+### Teamgenomströmning: optimera för granskning, inte generering
+Om en agent kan generera ändringar snabbare än människor kan granska dem blir **reviewbandbredd er leveransgräns**. Den praktiska fixen är att behandla granskbarhet som ett krav, inte ett hopp.
+
+Arbetsregler som skalar i riktiga team:
+- **PR-storleksbudgetar**: sätt tak för filer/LOC per PR (eller per steg) så att granskningar ryms på “en sittning”.
+- **En beteendeförändring per PR**: undvik att blanda refactors + features + formatting.
+- **Evidensunderlag krävs**: inkludera körda kommandon + outputs, riskområden och en rollback-notis för allt som är user-facing eller rör data.
+- **Föredra borttagning framför addition**: om en agent introducerar nya lager, kräv en anledning (mätbar komplexitetsreduktion, bättre testbarhet eller ett operativt behov).
+
 ### “Två-Claude”-reviewmönster (hög hävstång)
 
 När insatsen är hög (arkitekturändringar, migreringar, säkerhetskänslig kod):
 
 1. Session A tar fram planen i Plan Mode.
-2. Session B kritiserar den “som staff engineer”: edge cases, rollout-plan, failure modes.
-3. Session A reviderar planen; implementera sedan.
+2. Session B kritiserar den “som staff engineer”: antaganden, kantfall, rollout/rollback och fellägen.
+3. Session A implementerar och tar fram ett kort evidensunderlag (diff-sammanfattning + körda kommandon + resultat).
+4. Session B gör en **fresh-context review** av diff + evidensunderlag (inte hela chatten) och flaggar risker före merge.
 
 ### Tips om modellval
 
@@ -117,6 +127,8 @@ Exempel som team rapporterar fungerar bra:
 
 - `/techdebt`: leta duplication, dead code, saknade tester, misstänkta TODOs
 - `/verify`: kör projektets kanoniska verifieringskommandon
+- `/assumptions`: lista antaganden/oklarheter och vilka som valideras av tester (eller behöver checks)
+- `/review-pack`: generera ett PR-redo evidensunderlag (körda kommandon, outputs, riskområden, rollback-notis)
 - `/context-sync`: dra in en kuraterad “senaste 7 dagar”-kontext (issues/PRs/notes) till en sammanfattning (där miljön tillåter)
 
 Om du vill ha inspiration för struktur och mönster finns publika repos som paketerar verkliga Claude Code command/agent setups (användbara som exempel även om du inte adopterar allt). ([github.com](https://github.com/affaan-m/everything-claude-code))

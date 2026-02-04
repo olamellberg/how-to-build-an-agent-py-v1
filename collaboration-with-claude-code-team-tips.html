@@ -197,6 +197,10 @@
                     <span class="lang-sv">Agents.md förklarat</span>
                     <span class="lang-en">Agents.md Explained</span>
                 </a></li>
+                <li><a href="comprehension-debt.html">
+                    <span class="lang-sv">Förståelseskuld: den verkliga flaskhalsen i agentisk mjukvaruleverans</span>
+                    <span class="lang-en">Comprehension Debt: The Real Bottleneck in Agentic Software Delivery</span>
+                </a></li>
                 <li><a href="ide-agentic-ai.html">
                     <span class="lang-sv">Välj IDE för Agentisk AI</span>
                     <span class="lang-en">Choosing an IDE for Agentic AI</span>
@@ -363,12 +367,20 @@ git worktree add ../wt-obs  chore/observability
 <p><strong>Verify</strong><br />
 - Claude kör exakt de checks som definierats i planen (tester, lint, typecheck, lokal repro).<br />
 - Claude sammanfattar evidens (kommandon, output, vad som ändrats).</p>
+<h3 id="teamgenomstromning-optimera-for-granskning-inte-generering">Teamgenomströmning: optimera för granskning, inte generering</h3>
+<p>Om en agent kan generera ändringar snabbare än människor kan granska dem blir <strong>reviewbandbredd er leveransgräns</strong>. Den praktiska fixen är att behandla granskbarhet som ett krav, inte ett hopp.</p>
+<p>Arbetsregler som skalar i riktiga team:<br />
+- <strong>PR-storleksbudgetar</strong>: sätt tak för filer/LOC per PR (eller per steg) så att granskningar ryms på “en sittning”.<br />
+- <strong>En beteendeförändring per PR</strong>: undvik att blanda refactors + features + formatting.<br />
+- <strong>Evidensunderlag krävs</strong>: inkludera körda kommandon + outputs, riskområden och en rollback-notis för allt som är user-facing eller rör data.<br />
+- <strong>Föredra borttagning framför addition</strong>: om en agent introducerar nya lager, kräv en anledning (mätbar komplexitetsreduktion, bättre testbarhet eller ett operativt behov).</p>
 <h3 id="tva-claude-reviewmonster-hog-havstang">“Två-Claude”-reviewmönster (hög hävstång)</h3>
 <p>När insatsen är hög (arkitekturändringar, migreringar, säkerhetskänslig kod):</p>
 <ol>
 <li>Session A tar fram planen i Plan Mode.</li>
-<li>Session B kritiserar den “som staff engineer”: edge cases, rollout-plan, failure modes.</li>
-<li>Session A reviderar planen; implementera sedan.</li>
+<li>Session B kritiserar den “som staff engineer”: antaganden, kantfall, rollout/rollback och fellägen.</li>
+<li>Session A implementerar och tar fram ett kort evidensunderlag (diff-sammanfattning + körda kommandon + resultat).</li>
+<li>Session B gör en <strong>fresh-context review</strong> av diff + evidensunderlag (inte hela chatten) och flaggar risker före merge.</li>
 </ol>
 <h3 id="tips-om-modellval">Tips om modellval</h3>
 <p>Claude Code stödjer modellkonfiguration och alias (inklusive en plan/execution-split som t.ex. <code>opusplan</code> i dokumentationen). Standardisera teamets default (t.ex. “starkare modell för planering, snabbare modell för execution”). (<a href="https://code.claude.com/docs/en/model-config">code.claude.com</a>)</p>
@@ -407,6 +419,8 @@ git worktree add ../wt-obs  chore/observability
 <ul>
 <li><code>/techdebt</code>: leta duplication, dead code, saknade tester, misstänkta TODOs</li>
 <li><code>/verify</code>: kör projektets kanoniska verifieringskommandon</li>
+<li><code>/assumptions</code>: lista antaganden/oklarheter och vilka som valideras av tester (eller behöver checks)</li>
+<li><code>/review-pack</code>: generera ett PR-redo evidensunderlag (körda kommandon, outputs, riskområden, rollback-notis)</li>
 <li><code>/context-sync</code>: dra in en kuraterad “senaste 7 dagar”-kontext (issues/PRs/notes) till en sammanfattning (där miljön tillåter)</li>
 </ul>
 <p>Om du vill ha inspiration för struktur och mönster finns publika repos som paketerar verkliga Claude Code command/agent setups (användbara som exempel även om du inte adopterar allt). (<a href="https://github.com/affaan-m/everything-claude-code">github.com</a>)</p>
@@ -539,11 +553,19 @@ git worktree add ../wt-obs  chore/observability
 <p><strong>Verify</strong><br />
 - Claude runs the exact checks defined in the plan (tests, lint, typecheck, local repro).<br />
 - Claude summarizes evidence (commands run, outputs, what changed).</p>
+<h3 id="team-throughput-optimize-for-review-not-generation">Team throughput: optimize for review, not generation</h3>
+<p>If an agent can generate changes faster than humans can review them, <strong>review bandwidth becomes your delivery limit</strong>. The practical fix is to treat reviewability as a requirement, not a hope.</p>
+<p>Working rules that scale in real teams:<br />
+- <strong>PR size budgets</strong>: cap files/LOC per PR (or per step) so reviews stay “one sitting.”<br />
+- <strong>One behavior change per PR</strong>: avoid mixing refactors + features + formatting.<br />
+- <strong>Evidence bundle required</strong>: include commands run + outputs, risk areas, and a rollback note for anything user-facing or data-touching.<br />
+- <strong>Prefer deletion over addition</strong>: if an agent introduces new layers, require a reason (measurable complexity reduction, testability gain, or operational need).</p>
 <h3 id="two-claude-review-pattern-high-leverage">“Two-Claude” review pattern (high leverage)</h3>
 <p>When stakes are high (architectural changes, migrations, security-sensitive code):<br />
 1. Session A produces the plan in Plan Mode.<br />
-2. Session B critiques it “as staff engineer”: edge cases, rollout plan, failure modes.<br />
-3. Session A revises plan; then implement.</p>
+2. Session B critiques it “as staff engineer”: assumptions, edge cases, rollout/rollback, and failure modes.<br />
+3. Session A implements and produces a short evidence bundle (diff summary + commands run + results).<br />
+4. Session B does a <strong>fresh-context review</strong> of the diff + evidence bundle (not the whole chat) and flags risks before merge.</p>
 <h3 id="model-selection-tip">Model selection tip</h3>
 <p>Claude Code supports model configuration and aliases (including a plan/execution split mode such as <code>opusplan</code> described in the docs). Standardize team defaults (e.g., “use stronger model for planning, faster model for execution”). (<a href="https://code.claude.com/docs/en/model-config">code.claude.com</a>)</p>
 <hr />
@@ -578,6 +600,8 @@ git worktree add ../wt-obs  chore/observability
 <p>Examples that teams report working well:<br />
 - <code>/techdebt</code>: scan for duplication, dead code, missing tests, suspicious TODOs<br />
 - <code>/verify</code>: run the project’s canonical verification commands<br />
+- <code>/assumptions</code>: list assumptions/unknowns and which are validated by tests (or need checks)<br />
+- <code>/review-pack</code>: generate a PR-ready evidence bundle (commands run, outputs, risk areas, rollback note)<br />
 - <code>/context-sync</code>: pull a curated “last 7 days” context (issues/PRs/notes) into a single summary (where your environment allows it)</p>
 <p>If you want inspiration for structure and patterns, there are public repositories that package real-world Claude Code command/agent setups (useful as examples even if you don’t adopt them wholesale). (<a href="https://github.com/affaan-m/everything-claude-code">github.com</a>)</p>
 <hr />
@@ -757,12 +781,20 @@ git worktree add ../wt-obs  chore/observability
 <p><strong>Verify</strong><br />
 - Claude kör exakt de checks som definierats i planen (tester, lint, typecheck, lokal repro).<br />
 - Claude sammanfattar evidens (kommandon, output, vad som ändrats).</p>
+<h3 id="teamgenomstromning-optimera-for-granskning-inte-generering">Teamgenomströmning: optimera för granskning, inte generering</h3>
+<p>Om en agent kan generera ändringar snabbare än människor kan granska dem blir <strong>reviewbandbredd er leveransgräns</strong>. Den praktiska fixen är att behandla granskbarhet som ett krav, inte ett hopp.</p>
+<p>Arbetsregler som skalar i riktiga team:<br />
+- <strong>PR-storleksbudgetar</strong>: sätt tak för filer/LOC per PR (eller per steg) så att granskningar ryms på “en sittning”.<br />
+- <strong>En beteendeförändring per PR</strong>: undvik att blanda refactors + features + formatting.<br />
+- <strong>Evidensunderlag krävs</strong>: inkludera körda kommandon + outputs, riskområden och en rollback-notis för allt som är user-facing eller rör data.<br />
+- <strong>Föredra borttagning framför addition</strong>: om en agent introducerar nya lager, kräv en anledning (mätbar komplexitetsreduktion, bättre testbarhet eller ett operativt behov).</p>
 <h3 id="tva-claude-reviewmonster-hog-havstang">“Två-Claude”-reviewmönster (hög hävstång)</h3>
 <p>När insatsen är hög (arkitekturändringar, migreringar, säkerhetskänslig kod):</p>
 <ol>
 <li>Session A tar fram planen i Plan Mode.</li>
-<li>Session B kritiserar den “som staff engineer”: edge cases, rollout-plan, failure modes.</li>
-<li>Session A reviderar planen; implementera sedan.</li>
+<li>Session B kritiserar den “som staff engineer”: antaganden, kantfall, rollout/rollback och fellägen.</li>
+<li>Session A implementerar och tar fram ett kort evidensunderlag (diff-sammanfattning + körda kommandon + resultat).</li>
+<li>Session B gör en <strong>fresh-context review</strong> av diff + evidensunderlag (inte hela chatten) och flaggar risker före merge.</li>
 </ol>
 <h3 id="tips-om-modellval">Tips om modellval</h3>
 <p>Claude Code stödjer modellkonfiguration och alias (inklusive en plan/execution-split som t.ex. <code>opusplan</code> i dokumentationen). Standardisera teamets default (t.ex. “starkare modell för planering, snabbare modell för execution”). (<a href="https://code.claude.com/docs/en/model-config">code.claude.com</a>)</p>
@@ -778,11 +810,19 @@ git worktree add ../wt-obs  chore/observability
 <p><strong>Verify</strong><br />
 - Claude runs the exact checks defined in the plan (tests, lint, typecheck, local repro).<br />
 - Claude summarizes evidence (commands run, outputs, what changed).</p>
+<h3 id="team-throughput-optimize-for-review-not-generation">Team throughput: optimize for review, not generation</h3>
+<p>If an agent can generate changes faster than humans can review them, <strong>review bandwidth becomes your delivery limit</strong>. The practical fix is to treat reviewability as a requirement, not a hope.</p>
+<p>Working rules that scale in real teams:<br />
+- <strong>PR size budgets</strong>: cap files/LOC per PR (or per step) so reviews stay “one sitting.”<br />
+- <strong>One behavior change per PR</strong>: avoid mixing refactors + features + formatting.<br />
+- <strong>Evidence bundle required</strong>: include commands run + outputs, risk areas, and a rollback note for anything user-facing or data-touching.<br />
+- <strong>Prefer deletion over addition</strong>: if an agent introduces new layers, require a reason (measurable complexity reduction, testability gain, or operational need).</p>
 <h3 id="two-claude-review-pattern-high-leverage">“Two-Claude” review pattern (high leverage)</h3>
 <p>When stakes are high (architectural changes, migrations, security-sensitive code):<br />
 1. Session A produces the plan in Plan Mode.<br />
-2. Session B critiques it “as staff engineer”: edge cases, rollout plan, failure modes.<br />
-3. Session A revises plan; then implement.</p>
+2. Session B critiques it “as staff engineer”: assumptions, edge cases, rollout/rollback, and failure modes.<br />
+3. Session A implements and produces a short evidence bundle (diff summary + commands run + results).<br />
+4. Session B does a <strong>fresh-context review</strong> of the diff + evidence bundle (not the whole chat) and flags risks before merge.</p>
 <h3 id="model-selection-tip">Model selection tip</h3>
 <p>Claude Code supports model configuration and aliases (including a plan/execution split mode such as <code>opusplan</code> described in the docs). Standardize team defaults (e.g., “use stronger model for planning, faster model for execution”). (<a href="https://code.claude.com/docs/en/model-config">code.claude.com</a>)</p>
 <hr /></div>
@@ -851,6 +891,8 @@ git worktree add ../wt-obs  chore/observability
 <ul>
 <li><code>/techdebt</code>: leta duplication, dead code, saknade tester, misstänkta TODOs</li>
 <li><code>/verify</code>: kör projektets kanoniska verifieringskommandon</li>
+<li><code>/assumptions</code>: lista antaganden/oklarheter och vilka som valideras av tester (eller behöver checks)</li>
+<li><code>/review-pack</code>: generera ett PR-redo evidensunderlag (körda kommandon, outputs, riskområden, rollback-notis)</li>
 <li><code>/context-sync</code>: dra in en kuraterad “senaste 7 dagar”-kontext (issues/PRs/notes) till en sammanfattning (där miljön tillåter)</li>
 </ul>
 <p>Om du vill ha inspiration för struktur och mönster finns publika repos som paketerar verkliga Claude Code command/agent setups (användbara som exempel även om du inte adopterar allt). (<a href="https://github.com/affaan-m/everything-claude-code">github.com</a>)</p>
@@ -865,6 +907,8 @@ git worktree add ../wt-obs  chore/observability
 <p>Examples that teams report working well:<br />
 - <code>/techdebt</code>: scan for duplication, dead code, missing tests, suspicious TODOs<br />
 - <code>/verify</code>: run the project’s canonical verification commands<br />
+- <code>/assumptions</code>: list assumptions/unknowns and which are validated by tests (or need checks)<br />
+- <code>/review-pack</code>: generate a PR-ready evidence bundle (commands run, outputs, risk areas, rollback note)<br />
 - <code>/context-sync</code>: pull a curated “last 7 days” context (issues/PRs/notes) into a single summary (where your environment allows it)</p>
 <p>If you want inspiration for structure and patterns, there are public repositories that package real-world Claude Code command/agent setups (useful as examples even if you don’t adopt them wholesale). (<a href="https://github.com/affaan-m/everything-claude-code">github.com</a>)</p>
 <hr /></div>

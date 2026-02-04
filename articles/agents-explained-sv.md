@@ -73,6 +73,17 @@ säger du:
 Det handlar inte om att göra agenten smartare.
 **Det handlar om att göra den pålitlig.**
 
+### Felmönster som en bra agents.md förebygger
+
+I praktiken är agentfel sällan “den kan inte skriva syntax”. De är oftare “den gissade något viktigt och körde på”. En bra `agents.md` minskar de vanligaste felmönstren:
+
+- **Antagandespridning**: en fel gissning (“den här endpointen är publik”, “den här datan finns alltid”) blir en kedja av felaktig kod som ändå ser prydlig ut.
+- **Abstraktionssvullnad**: agenten hittar på lager, helpers och indirection som inte efterfrågats eftersom den optimerar för “kompletthet”, inte långsiktig underhållbarhet.
+- **Ackumulering av död kod**: gamla implementationer lämnas kvar “för säkerhets skull” och repot fylls långsamt med parallella vägar och oanvända utilities.
+- **Sykofantiskt instämmande**: i stället för att trycka tillbaka på tvetydighet väljer agenten självsäkert standardval som inte matchar din intention.
+
+Lösningen är inte att “övervaka hårdare”. Den är att koda in constraints som förhindrar gissningar: lista antaganden, håll diffar små, föredra borttagning och stoppa‑och‑fråga när osäkerhet rör auth, data eller publika kontrakt.
+
 ### Förtroende byggs genom att eliminera felklasser
 
 De största vinsterna kommer inte från snabbare kod, utan från att
@@ -214,7 +225,10 @@ Det här kapitlet innehåller en kopiera‑klistra‑mall för `agents.md` eller
 
 ## Working Style
 - Start with a plan (3–7 steps)
+- Always list assumptions/unknowns before implementation; stop if any touch auth, data, or public contracts
+- Prefer the smallest diff that satisfies the goal; do not introduce new abstraction layers unless asked
 - After each step: summarize diff + commands run + remaining risks
+- Delete dead code created during refactors; do not leave parallel implementations behind
 - If uncertain: stop and ask for a decision
 ```
 
@@ -251,7 +265,10 @@ Det här kapitlet innehåller en kopiera‑klistra‑mall för `agents.md` eller
 
 ## Working Style
 - Start with a plan (3–7 steps)
+- Always list assumptions/unknowns before implementation; stop if any touch auth, data, or public contracts
+- Prefer the smallest diff that satisfies the goal; do not introduce new abstraction layers unless asked
 - After each step: summarize diff + commands run + remaining risks
+- Delete dead code created during refactors; do not leave parallel implementations behind
 - If uncertain: stop and ask for a decision
 - Always run `npm run check` before committing
 ```
@@ -287,7 +304,10 @@ Det här kapitlet innehåller en kopiera‑klistra‑mall för `agents.md` eller
 
 ## Working Style
 - Start with a plan (3–7 steps)
+- Always list assumptions/unknowns before implementation; stop if any touch auth, data, or public contracts
+- Prefer the smallest diff that satisfies the goal; do not introduce new abstraction layers unless asked
 - After each step: summarize diff + commands run + remaining risks
+- Delete dead code created during refactors; do not leave parallel implementations behind
 - If uncertain: stop and ask for a decision
 - Always run `make check` before committing
 ```
@@ -321,7 +341,10 @@ Det här kapitlet innehåller en kopiera‑klistra‑mall för `agents.md` eller
 
 ## Working Style
 - Start with a plan (3–7 steps)
+- Always list assumptions/unknowns before implementation; stop if any touch auth, data, or public contracts
+- Prefer the smallest diff that satisfies the goal; do not introduce new abstraction layers unless asked
 - After each step: summarize diff + commands run + remaining risks
+- Delete dead code created during refactors; do not leave parallel implementations behind
 - If uncertain: stop and ask for a decision
 - Always run validation command before committing
 ```

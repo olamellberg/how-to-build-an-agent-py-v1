@@ -292,4 +292,12 @@ It's not that hard. An agent is just:
 
 The rest is just details and boilerplate. But those details — how you structure the tools, how you handle errors, how you design the feedback loop — that's where the difference between a demo and something useful lies.
 
+### Production pitfalls (what breaks after the demo)
+When you move from “cool prototype” to “useful tool,” the failures shift:
+
+- **Conceptual failures > syntax failures**: the agent can produce plausible code that’s wrong for your real constraints. Make success criteria and invariants explicit.
+- **Assumptions must be visible**: add an `assumptions`/`unknowns` field (or equivalent) to your agent’s outputs, alongside `verification_steps`.
+- **Bloat control matters**: keep scope tight, prefer the smallest diff, and delete dead code during refactors instead of leaving parallel paths behind.
+- **Verification is a product feature**: invest in a harness (one-command check), targeted tests, and lightweight evals so you can iterate safely.
+
 **And the funniest part?** You can use Cursor to build all of this. It's recursive. It's meta. It's agents all the way down.

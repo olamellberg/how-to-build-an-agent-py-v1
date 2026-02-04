@@ -48,6 +48,25 @@ Ditt jobb blir allt mer:
 
 Med andra ord: ditt värde flyttar från *att skriva* till *omdöme*.
 
+### Förståelseskuld och verifieringsflaskhalsen
+
+När kodgenerering blir billig flyttas begränsningen: **gransknings- och verifieringskapacitet** blir flaskhalsen.
+
+**Förståelseskuld (comprehension debt)** är vad som händer när teamet kan mergea ändringar snabbare än det kan förstå dem. Koden “fungerar”, men ingen kan förklara vilka antaganden den bygger på, vad den kan råka ha sönder, eller hur man ska drifta den när den fallerar.
+
+Signaler på att ni bygger upp förståelseskuld:
+- PR:er och diffar fortsätter växa, även när funktionerna är “små”
+- granskningar degenererar till stilfeedback (“ser bra ut”) i stället för korrekthet
+- ändringar skeppas utan ett evidensunderlag (körda tester + outputs + risknoter)
+- teamet kan inte förklara *varför* en ändring finns en vecka senare
+
+Motåtgärder som fungerar i riktiga team:
+- kräv ett **evidensunderlag** (körda kommandon + resultat + riskområden) för meningsfulla ändringar
+- håll ändringar **små och granskbara** (en beteendeförändring per PR)
+- tvinga fram antaganden (“vad antar vi om data, auth och kontrakt?”)
+- lägg till regressionstester när du hittar ett missat kantfall
+- prioritera borttagning och förenkling framför “smarta” nya abstraktionslager
+
 ---
 
 ## Färdighet 1: Arkitektur blir nya "Hello World"
@@ -83,6 +102,18 @@ Din fördel blir din förmåga att *pressa* koden med rätt frågor:
 Behandla AI-utdata som en PR från någon som är ny i din kodbas: läs den noga, testa den aggressivt och anta att den missade ett undantagsfall.
 
 **2026 är din förmåga att *läsa, testa och validera* kod mer värdefull än din förmåga att skriva den snabbt.**
+
+### De sista 20% är inte linjära
+
+AI kan ofta ta dig till ett plausibelt första utkast snabbt. Den dyra delen är att göra det **produktionsklart**:
+- kantfall och dålig indata
+- kompatibilitet med befintliga invarianter
+- utrullnings-/rollbackstrategi
+- prestanda under verklig latens och last
+- säkerhet och behörigheter
+- observability (loggar/mått/traces som låter dig felsöka senare)
+
+Se “nästan klart” som en risksignal: det är där de konceptuella buggarna gömmer sig.
 
 ---
 
@@ -127,6 +158,9 @@ För att ge plats åt den nya hävstången, släpp det gamla bagaget.
 **Sluta memorera boilerplate.**  
 Slösa inte hjärnkapacitet på “exakt syntax för X”. Slå upp det. Låt verktygen generera det. Spara tankekraften till beslut, avvägningar och begränsningar.
 
+**Sluta gummistämpla.**  
+Om du inte kan förklara vad som ändrades, vilka antaganden det bygger på och vad som visar att det är korrekt, då har du inte granskat det än. Kräv evidens och håll diffar tillräckligt små för att förstå.
+
 **Sluta vara en puritetsnobb.**  
 "Det är inte riktig kodning om du inte skrev det." Ingen som betalar för din produkt bryr sig. Användaren bryr sig om att det fungerar.
 
@@ -162,3 +196,4 @@ Den här helgen, bygg inte en generisk To-Do-app "från grunden." Välj ett verk
 - **Financial Times** om "forward-deployed engineers" och hybridroller som kombinerar teknik + kundkontext.
 - **IEEE Spectrum** om tidiga signaler på generativ AIs arbetsmarknadseffekter, särskilt för juniora roller.
 - **Wired** om "vibe coding" — experter ser snabb förändring men varnar för opålitlighet och buggar.
+- **Addy Osmani** om “80%-problemet” i agentisk kodning — varför generering blir billig medan verifiering blir flaskhalsen.

@@ -94,6 +94,16 @@ Lita på att agenten självkorrigerar. Din roll är att:
 
 > "Eventual consistency achieved through iteration."
 
+### Felmönster: oändlig iteration utan att lära sig
+Ralph-loopar är kraftfulla, men de kan också fånga dig i “nästan där”-iteration där agenten fortsätter ändra kod utan att självförtroendet ökar.
+
+Praktiska skyddsräcken:
+- **Stopkriterier**: sätt ett max antal iterationer per uppgift (eller per feltyp). Om det fortfarande inte konvergerar, planera om.
+- **Ny evidens per försök**: varje nytt försök måste lägga till ett nytt test, ett mindre scope eller ett tydligare framgångskriterium — annars snurrar ni bara.
+- **Periodisk checkpoint**: var N:e iteration, kräv att agenten förklarar nuvarande design + kvarvarande risker i ~10 rader.
+
+Notera också: autonomi förstärker **abstraktionssvullnad** och **död kod** om du inte tvingar fram borttagning. Lägg in en explicit regel i din build-prompt: ta bort oanvända kodvägar som skapats under refaktoreringar och håll diffar minimala.
+
 ---
 
 ## Filstruktur

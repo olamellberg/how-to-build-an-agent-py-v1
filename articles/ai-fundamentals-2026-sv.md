@@ -219,6 +219,8 @@ Första versionen bör vara strikt:
 - **Maxsteg**: t.ex. 3–5
 - **Allowlist**: bara vissa verktyg
 - **Verifiering före action**: inga "actions" utan bevis
+- **Antaganden först**: lista antaganden/oklarheter; stanna om osäkerhet rör auth, data eller publika kontrakt
+- **Anti-bloat-constraints**: föredra minsta möjliga diff; undvik nya abstraktionslager om det inte efterfrågas; ta bort död kod under refaktoreringar
 
 ### 9.3 Agentexempel som devs gillar
 Uppgift: "Bygget failar — hitta orsaken och föreslå en fix."
@@ -275,6 +277,8 @@ Första sessionen bör alltid nämna:
 Små förändringar i prompt, chunking, modell eller inställningar kan ge stora beteendeskillnader — oavsett om du kör GPT-5.1, Claude Opus 4.5, Gemini 3 eller Llama 3.
 
 **Evals** är en återkommande testsvit, liknande en testsuite.
+
+Detta blir ännu viktigare när generering blir billig: **verifiering blir flaskhalsen**. Evals minskar gummistämpling genom att göra korrekthet och regel‑efterlevnad mätbar, repeterbar och automatiserbar.
 
 ### 11.2 Minsta eval-setup som fungerar
 Skapa en mapp med case:

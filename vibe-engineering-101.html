@@ -274,6 +274,10 @@
                     <span class="lang-sv">Agents.md förklarat</span>
                     <span class="lang-en">Agents.md Explained</span>
                 </a></li>
+                <li><a href="comprehension-debt.html">
+                    <span class="lang-sv">Förståelseskuld: den verkliga flaskhalsen i agentisk mjukvaruleverans</span>
+                    <span class="lang-en">Comprehension Debt: The Real Bottleneck in Agentic Software Delivery</span>
+                </a></li>
                 <li><a href="ide-agentic-ai.html">
                     <span class="lang-sv">Välj IDE för Agentisk AI</span>
                     <span class="lang-en">Choosing an IDE for Agentic AI</span>
@@ -462,6 +466,7 @@
 <li><strong>Du designar feedback-loopen.</strong></li>
 <li><strong>Du granskar resultat, inte varje rad.</strong></li>
 </ul>
+<p>I teamskala designar du också <strong>reviewsystemet</strong>: vilket evidensunderlag som krävs, hur stora diffar som får vara, och när rätt drag är att stanna och planera om.</p>
 <p>Modeller beter sig som extremt snabba medarbetare utan långsiktigt minne. De kan röra sig snabbt, men de behöver:<br />
 - tydliga begränsningar<br />
 - skarpa definitioner av framgång<br />
@@ -736,10 +741,16 @@ def test_concurrent():
 - övervuxna abstraktioner<br />
 - duplicerad logik<br />
 - otydliga gränser</p>
+<p>Det finns också ett mer subtilt problem: <strong>förståelseskuld (comprehension debt)</strong>. När agenter genererar ändringar snabbare än människor kan verifiera och förstå dem börjar team mergea kod de senare inte kan förklara eller drifta med förtroende.</p>
+<p>I praktiken syns det ofta som en <strong>verifieringsflaskhals</strong>: genomströmningen flyttar från “att skriva kod” till “att granska och bevisa korrekthet”. Om du inte konstruerar för granskningsbarhet blir systemets output-takt en belastning.</p>
 <p>Mildringar:<br />
 - tvinga formatering och linting<br />
 - kräv tester för ändringar<br />
 - upprätthåll en arkitektur/beslutslogg<br />
+- upprätthåll <strong>diffbudgetar</strong> (en beteendeförändring per PR; sätt tak för filer/LOC så det går att granska i en sittning)<br />
+- kräv ett <strong>evidensunderlag</strong> (körda kommandon + outputs + risker + rollback-notis när relevant)<br />
+- föredra <strong>borttagning och förenkling</strong> framför oombedda nya abstraktionslager<br />
+- gör <strong>fresh-context reviews</strong> för förändringar med hög insats (granska diff + evidensunderlag, inte hela chatten)<br />
 - refaktorera medvetet i faser<br />
 - periodiskt "åter-härled" moduler från en ren spec (när motiverat)<br />
 - håll moduler små och utbytbara</p>
@@ -857,6 +868,7 @@ från<br />
 <li><strong>You design the feedback loop.</strong></li>
 <li><strong>You review outcomes, not every line.</strong></li>
 </ul>
+<p>At team scale, you also design the <strong>review system</strong>: what evidence is required, how big diffs are allowed to be, and when the right move is to stop and re-plan.</p>
 <p>Models behave like extremely fast collaborators with no long-term memory. They can move quickly, but they need:<br />
 - clear constraints<br />
 - crisp definitions of success<br />
@@ -1131,10 +1143,16 @@ def test_concurrent():
 - overgrown abstractions<br />
 - duplicated logic<br />
 - unclear boundaries</p>
+<p>There’s also a more subtle problem: <strong>comprehension debt</strong>. When agents generate changes faster than humans can verify and understand them, teams start merging code they can’t later explain or operate confidently.</p>
+<p>In practice, this often shows up as a <strong>verification bottleneck</strong>: throughput moves from “writing code” to “reviewing and proving correctness.” If you don’t engineer for reviewability, the system’s output rate becomes a liability.</p>
 <p>Mitigations:<br />
 - enforce formatting and linting<br />
 - require tests for changes<br />
 - maintain an architecture/decisions log<br />
+- enforce <strong>diff budgets</strong> (one behavior change per PR; cap files/LOC so it’s reviewable in one sitting)<br />
+- require an <strong>evidence bundle</strong> (commands run + outputs + risks + rollback note when relevant)<br />
+- prefer <strong>deletion and simplification</strong> over unrequested new abstraction layers<br />
+- do <strong>fresh-context reviews</strong> for high-stakes changes (review the diff + evidence, not the whole chat)<br />
 - refactor deliberately in phases<br />
 - periodically "re-derive" modules from a clean spec (when warranted)<br />
 - keep modules small and replaceable</p>
@@ -1338,6 +1356,7 @@ from<br />
 <li><strong>Du designar feedback-loopen.</strong></li>
 <li><strong>Du granskar resultat, inte varje rad.</strong></li>
 </ul>
+<p>I teamskala designar du också <strong>reviewsystemet</strong>: vilket evidensunderlag som krävs, hur stora diffar som får vara, och när rätt drag är att stanna och planera om.</p>
 <p>Modeller beter sig som extremt snabba medarbetare utan långsiktigt minne. De kan röra sig snabbt, men de behöver:<br />
 - tydliga begränsningar<br />
 - skarpa definitioner av framgång<br />
@@ -1352,6 +1371,7 @@ from<br />
 <li><strong>You design the feedback loop.</strong></li>
 <li><strong>You review outcomes, not every line.</strong></li>
 </ul>
+<p>At team scale, you also design the <strong>review system</strong>: what evidence is required, how big diffs are allowed to be, and when the right move is to stop and re-plan.</p>
 <p>Models behave like extremely fast collaborators with no long-term memory. They can move quickly, but they need:<br />
 - clear constraints<br />
 - crisp definitions of success<br />
@@ -1937,10 +1957,16 @@ def test_concurrent():
 - övervuxna abstraktioner<br />
 - duplicerad logik<br />
 - otydliga gränser</p>
+<p>Det finns också ett mer subtilt problem: <strong>förståelseskuld (comprehension debt)</strong>. När agenter genererar ändringar snabbare än människor kan verifiera och förstå dem börjar team mergea kod de senare inte kan förklara eller drifta med förtroende.</p>
+<p>I praktiken syns det ofta som en <strong>verifieringsflaskhals</strong>: genomströmningen flyttar från “att skriva kod” till “att granska och bevisa korrekthet”. Om du inte konstruerar för granskningsbarhet blir systemets output-takt en belastning.</p>
 <p>Mildringar:<br />
 - tvinga formatering och linting<br />
 - kräv tester för ändringar<br />
 - upprätthåll en arkitektur/beslutslogg<br />
+- upprätthåll <strong>diffbudgetar</strong> (en beteendeförändring per PR; sätt tak för filer/LOC så det går att granska i en sittning)<br />
+- kräv ett <strong>evidensunderlag</strong> (körda kommandon + outputs + risker + rollback-notis när relevant)<br />
+- föredra <strong>borttagning och förenkling</strong> framför oombedda nya abstraktionslager<br />
+- gör <strong>fresh-context reviews</strong> för förändringar med hög insats (granska diff + evidensunderlag, inte hela chatten)<br />
 - refaktorera medvetet i faser<br />
 - periodiskt "åter-härled" moduler från en ren spec (när motiverat)<br />
 - håll moduler små och utbytbara</p>
@@ -1952,10 +1978,16 @@ def test_concurrent():
 - overgrown abstractions<br />
 - duplicated logic<br />
 - unclear boundaries</p>
+<p>There’s also a more subtle problem: <strong>comprehension debt</strong>. When agents generate changes faster than humans can verify and understand them, teams start merging code they can’t later explain or operate confidently.</p>
+<p>In practice, this often shows up as a <strong>verification bottleneck</strong>: throughput moves from “writing code” to “reviewing and proving correctness.” If you don’t engineer for reviewability, the system’s output rate becomes a liability.</p>
 <p>Mitigations:<br />
 - enforce formatting and linting<br />
 - require tests for changes<br />
 - maintain an architecture/decisions log<br />
+- enforce <strong>diff budgets</strong> (one behavior change per PR; cap files/LOC so it’s reviewable in one sitting)<br />
+- require an <strong>evidence bundle</strong> (commands run + outputs + risks + rollback note when relevant)<br />
+- prefer <strong>deletion and simplification</strong> over unrequested new abstraction layers<br />
+- do <strong>fresh-context reviews</strong> for high-stakes changes (review the diff + evidence, not the whole chat)<br />
 - refactor deliberately in phases<br />
 - periodically "re-derive" modules from a clean spec (when warranted)<br />
 - keep modules small and replaceable</p>

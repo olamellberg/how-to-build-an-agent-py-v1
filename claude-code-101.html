@@ -219,6 +219,10 @@
                     <span class="lang-sv">Agents.md förklarat</span>
                     <span class="lang-en">Agents.md Explained</span>
                 </a></li>
+                <li><a href="comprehension-debt.html">
+                    <span class="lang-sv">Förståelseskuld: den verkliga flaskhalsen i agentisk mjukvaruleverans</span>
+                    <span class="lang-en">Comprehension Debt: The Real Bottleneck in Agentic Software Delivery</span>
+                </a></li>
                 <li><a href="ide-agentic-ai.html">
                     <span class="lang-sv">Välj IDE för Agentisk AI</span>
                     <span class="lang-en">Choosing an IDE for Agentic AI</span>
@@ -366,12 +370,18 @@
    Exempelprompt:<br />
    - "Lista 2–3 möjliga designs, peka ut risker, och rekommendera en. Skriv ingen kod ännu."<br />
 <strong>Motivering:</strong> den snabbaste vägen är ofta att välja rätt approach tidigt.</p>
+<p>4) <strong>Lista antaganden och oklarheter explicit.</strong><br />
+   Exempel: dataformat, auth-förväntningar, bakåtkompatibilitet, prestandabegränsningar.<br />
+<strong>Motivering:</strong> de flesta “agent-buggar” är antagandebuggar; att synliggöra dem tidigt minskar omarbete.</p>
 <h3 id="ersatt-vagt-med-specifikt">Ersätt vagt med specifikt</h3>
 <p>Dåligt:<br />
 - "Bygg ett auth-system."</p>
 <p>Bra:<br />
 - "Lägg till email/lösenord-auth med befintliga User-modellen; lagra sessioner i Redis med 24h utgång; skydda routes under <code>/api/protected</code>; inga nya beroenden; lägg till integrationstester."</p>
 <p><strong>Motivering:</strong> specificitet förhindrar övergrepp och skapar verifierbar output.</p>
+<h3 id="80-fallan-varfor-mest-fungerar-ar-dar-tiden-forsvinner">80%-fällan: varför “mest fungerar” är där tiden försvinner</h3>
+<p>Agenter levererar ofta ett plausibelt första utkast snabbt. Tidssänkan är att göra det <strong>leveransklart</strong>: kantfall, integrationsinvarianter, rollout/rollback, säkerhet och observerbarhet.</p>
+<p>Praktisk regel: om du inte kan peka på <strong>vad som bevisar att det fungerar</strong> (tester + kommandon + outputs) så har du inte “80% klart” — du har en demo.</p>
 <hr />
 <h2 id="arkitektur-ar-inte-valfritt-det-ar-hur-du-begransar-modellen">Arkitektur är inte valfritt (det är hur du begränsar modellen)</h2>
 <p>Claude kan generera fungerande kod som bryter mot ditt systems invarianter. Lösningen är inte "bättre kodgenerering". Lösningen är <strong>arkitekturbegränsningar i förväg</strong>.</p>
@@ -511,7 +521,10 @@ Varje gång du korrigerar samma misstag två gånger, lägg till en instruktion.
 <p><strong>Motivering:</strong> strukturerad input minskar omarbete och gör output granskningsbar.</p>
 <h3 id="inkludera-alltid-vad-som-inte-ska-goras">Inkludera alltid "vad som inte ska göras"</h3>
 <p>Claude standardiserar ofta till extra abstraktion. Om minimalism spelar roll, säg det:<br />
-- "Håll detta enkelt. Inga nya filer om det inte är nödvändigt. Inga abstraktioner jag inte bad om."</p>
+- "Håll detta enkelt. Inga nya filer om det inte är nödvändigt. Inga abstraktioner jag inte bad om."<br />
+- "Föredra minsta möjliga diff som uppnår målet. En beteendeförändring per PR."<br />
+- "Ta bort död kod som skapas under refaktoreringar; lämna inga parallella implementationer bakom dig."<br />
+- "Om antaganden krävs: lista dem och stanna för ett beslut innan du kodar."</p>
 <p><strong>Motivering:</strong> negativa begränsningar förhindrar scope-expansion.</p>
 <h3 id="inkludera-varfor-nar-det-paverkar-avvagningar">Inkludera "varför" när det påverkar avvägningar</h3>
 <p>Exempel:<br />
@@ -588,6 +601,7 @@ Be om en av:<br />
 - skriptade kedjade arbetsflöden<br />
 - automatiserad PR-granskning / dokumentuppdateringar</p>
 <p><strong>Motivering:</strong> automation förvandlar individuella vinster till repeterbar genomströmning.</p>
+<p>En varning: automation ökar också <strong>granskningslasten</strong>. Om systemet kan generera fler ändringar än teamet kan verifiera glider kvaliteten. Håll automatiserade uppgifter smala, diffar små och outputs evidensbaserade.</p>
 <h3 id="ett-sakert-automationsmonster">Ett säkert automationsmönster</h3>
 <ul>
 <li>kör på ett smalt scope (enskild katalog / filmönster)</li>
@@ -650,12 +664,18 @@ Be om en av:<br />
    Example prompt:<br />
    - "List 2–3 viable designs, call out risks, and recommend one. Do not write code yet."<br />
 <strong>Rationale:</strong> the fastest path is often picking the right approach early.</p>
+<p>4) <strong>List assumptions and unknowns explicitly.</strong><br />
+   Examples: data shape, auth expectations, backward compatibility, performance constraints.<br />
+<strong>Rationale:</strong> most “agent bugs” are assumption bugs; surfacing them early prevents rework.</p>
 <h3 id="replace-vague-with-specific">Replace vague with specific</h3>
 <p>Bad:<br />
 - "Build an auth system."</p>
 <p>Good:<br />
 - "Add email/password auth using the existing User model; store sessions in Redis with 24h expiry; protect routes under <code>/api/protected</code>; no new dependencies; add integration tests."</p>
 <p><strong>Rationale:</strong> specificity prevents overreach and creates a verifiable output.</p>
+<h3 id="the-80-trap-why-mostly-working-is-where-time-goes">The 80% trap: why “mostly working” is where time goes</h3>
+<p>Agents often deliver a plausible first draft quickly. The time sink is making it <strong>ship-ready</strong>: edge cases, integration invariants, rollout/rollback, security, and observability.</p>
+<p>Practical rule: if you can’t point to <strong>what proves it works</strong> (tests + commands + outputs), you don’t have “80% done” — you have a demo.</p>
 <hr />
 <h2 id="architecture-isnt-optional-its-how-you-constrain-the-model">Architecture isn't optional (it's how you constrain the model)</h2>
 <p>Claude can generate working code that violates your system's invariants. The fix is not "better code generation." The fix is <strong>architectural constraints up front</strong>.</p>
@@ -795,7 +815,10 @@ Any time you correct the same mistake twice, add an instruction. Claude Code sup
 <p><strong>Rationale:</strong> structured input reduces rework and makes outputs reviewable.</p>
 <h3 id="always-include-what-not-to-do">Always include "what not to do"</h3>
 <p>Claude often defaults to extra abstraction. If minimalism matters, say so:<br />
-- "Keep this simple. No new files unless necessary. No abstractions I didn't ask for."</p>
+- "Keep this simple. No new files unless necessary. No abstractions I didn't ask for."<br />
+- "Prefer the smallest diff that meets the goal. One behavior change per PR."<br />
+- "Delete dead code created during refactors; do not leave parallel implementations behind."<br />
+- "If assumptions are required, list them and stop for a decision before coding."</p>
 <p><strong>Rationale:</strong> negative constraints prevent scope expansion.</p>
 <h3 id="include-why-when-it-affects-tradeoffs">Include "why" when it affects tradeoffs</h3>
 <p>Examples:<br />
@@ -872,6 +895,7 @@ Ask for one of:<br />
 - scripting chained workflows<br />
 - automated PR review / doc updates</p>
 <p><strong>Rationale:</strong> automation turns individual wins into repeatable throughput.</p>
+<p>One caution: automation also increases <strong>review load</strong>. If the system can generate more changes than the team can verify, quality drifts. Keep automated tasks narrow, diffs small, and outputs evidence-based.</p>
 <h3 id="a-safe-automation-pattern">A safe automation pattern</h3>
 <ul>
 <li>run on a narrow scope (single directory / file patterns)</li>
@@ -969,12 +993,18 @@ Ask for one of:<br />
    Exempelprompt:<br />
    - "Lista 2–3 möjliga designs, peka ut risker, och rekommendera en. Skriv ingen kod ännu."<br />
 <strong>Motivering:</strong> den snabbaste vägen är ofta att välja rätt approach tidigt.</p>
+<p>4) <strong>Lista antaganden och oklarheter explicit.</strong><br />
+   Exempel: dataformat, auth-förväntningar, bakåtkompatibilitet, prestandabegränsningar.<br />
+<strong>Motivering:</strong> de flesta “agent-buggar” är antagandebuggar; att synliggöra dem tidigt minskar omarbete.</p>
 <h3 id="ersatt-vagt-med-specifikt">Ersätt vagt med specifikt</h3>
 <p>Dåligt:<br />
 - "Bygg ett auth-system."</p>
 <p>Bra:<br />
 - "Lägg till email/lösenord-auth med befintliga User-modellen; lagra sessioner i Redis med 24h utgång; skydda routes under <code>/api/protected</code>; inga nya beroenden; lägg till integrationstester."</p>
 <p><strong>Motivering:</strong> specificitet förhindrar övergrepp och skapar verifierbar output.</p>
+<h3 id="80-fallan-varfor-mest-fungerar-ar-dar-tiden-forsvinner">80%-fällan: varför “mest fungerar” är där tiden försvinner</h3>
+<p>Agenter levererar ofta ett plausibelt första utkast snabbt. Tidssänkan är att göra det <strong>leveransklart</strong>: kantfall, integrationsinvarianter, rollout/rollback, säkerhet och observerbarhet.</p>
+<p>Praktisk regel: om du inte kan peka på <strong>vad som bevisar att det fungerar</strong> (tester + kommandon + outputs) så har du inte “80% klart” — du har en demo.</p>
 <hr /></div>
             <div class="lang-en"><h2 id="think-first-use-plan-mode-then-execute">Think first (use Plan Mode, then execute)</h2>
 <p>Claude Code works best when the first step is <strong>structuring the problem</strong>, not typing instructions.</p>
@@ -994,12 +1024,18 @@ Ask for one of:<br />
    Example prompt:<br />
    - "List 2–3 viable designs, call out risks, and recommend one. Do not write code yet."<br />
 <strong>Rationale:</strong> the fastest path is often picking the right approach early.</p>
+<p>4) <strong>List assumptions and unknowns explicitly.</strong><br />
+   Examples: data shape, auth expectations, backward compatibility, performance constraints.<br />
+<strong>Rationale:</strong> most “agent bugs” are assumption bugs; surfacing them early prevents rework.</p>
 <h3 id="replace-vague-with-specific">Replace vague with specific</h3>
 <p>Bad:<br />
 - "Build an auth system."</p>
 <p>Good:<br />
 - "Add email/password auth using the existing User model; store sessions in Redis with 24h expiry; protect routes under <code>/api/protected</code>; no new dependencies; add integration tests."</p>
 <p><strong>Rationale:</strong> specificity prevents overreach and creates a verifiable output.</p>
+<h3 id="the-80-trap-why-mostly-working-is-where-time-goes">The 80% trap: why “mostly working” is where time goes</h3>
+<p>Agents often deliver a plausible first draft quickly. The time sink is making it <strong>ship-ready</strong>: edge cases, integration invariants, rollout/rollback, security, and observability.</p>
+<p>Practical rule: if you can’t point to <strong>what proves it works</strong> (tests + commands + outputs), you don’t have “80% done” — you have a demo.</p>
 <hr /></div>
         </div>
     </section>
@@ -1290,7 +1326,10 @@ Any time you correct the same mistake twice, add an instruction. Claude Code sup
 <p><strong>Motivering:</strong> strukturerad input minskar omarbete och gör output granskningsbar.</p>
 <h3 id="inkludera-alltid-vad-som-inte-ska-goras">Inkludera alltid "vad som inte ska göras"</h3>
 <p>Claude standardiserar ofta till extra abstraktion. Om minimalism spelar roll, säg det:<br />
-- "Håll detta enkelt. Inga nya filer om det inte är nödvändigt. Inga abstraktioner jag inte bad om."</p>
+- "Håll detta enkelt. Inga nya filer om det inte är nödvändigt. Inga abstraktioner jag inte bad om."<br />
+- "Föredra minsta möjliga diff som uppnår målet. En beteendeförändring per PR."<br />
+- "Ta bort död kod som skapas under refaktoreringar; lämna inga parallella implementationer bakom dig."<br />
+- "Om antaganden krävs: lista dem och stanna för ett beslut innan du kodar."</p>
 <p><strong>Motivering:</strong> negativa begränsningar förhindrar scope-expansion.</p>
 <h3 id="inkludera-varfor-nar-det-paverkar-avvagningar">Inkludera "varför" när det påverkar avvägningar</h3>
 <p>Exempel:<br />
@@ -1310,7 +1349,10 @@ Any time you correct the same mistake twice, add an instruction. Claude Code sup
 <p><strong>Rationale:</strong> structured input reduces rework and makes outputs reviewable.</p>
 <h3 id="always-include-what-not-to-do">Always include "what not to do"</h3>
 <p>Claude often defaults to extra abstraction. If minimalism matters, say so:<br />
-- "Keep this simple. No new files unless necessary. No abstractions I didn't ask for."</p>
+- "Keep this simple. No new files unless necessary. No abstractions I didn't ask for."<br />
+- "Prefer the smallest diff that meets the goal. One behavior change per PR."<br />
+- "Delete dead code created during refactors; do not leave parallel implementations behind."<br />
+- "If assumptions are required, list them and stop for a decision before coding."</p>
 <p><strong>Rationale:</strong> negative constraints prevent scope expansion.</p>
 <h3 id="include-why-when-it-affects-tradeoffs">Include "why" when it affects tradeoffs</h3>
 <p>Examples:<br />
@@ -1470,6 +1512,7 @@ Ask for one of:<br />
 - skriptade kedjade arbetsflöden<br />
 - automatiserad PR-granskning / dokumentuppdateringar</p>
 <p><strong>Motivering:</strong> automation förvandlar individuella vinster till repeterbar genomströmning.</p>
+<p>En varning: automation ökar också <strong>granskningslasten</strong>. Om systemet kan generera fler ändringar än teamet kan verifiera glider kvaliteten. Håll automatiserade uppgifter smala, diffar små och outputs evidensbaserade.</p>
 <h3 id="ett-sakert-automationsmonster">Ett säkert automationsmönster</h3>
 <ul>
 <li>kör på ett smalt scope (enskild katalog / filmönster)</li>
@@ -1492,6 +1535,7 @@ Ask for one of:<br />
 - scripting chained workflows<br />
 - automated PR review / doc updates</p>
 <p><strong>Rationale:</strong> automation turns individual wins into repeatable throughput.</p>
+<p>One caution: automation also increases <strong>review load</strong>. If the system can generate more changes than the team can verify, quality drifts. Keep automated tasks narrow, diffs small, and outputs evidence-based.</p>
 <h3 id="a-safe-automation-pattern">A safe automation pattern</h3>
 <ul>
 <li>run on a narrow scope (single directory / file patterns)</li>

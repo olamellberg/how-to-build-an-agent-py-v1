@@ -311,6 +311,32 @@
         "sv": "En praktisk playbook för hur team kan skala Claude Code med worktrees, Plan → Execute → Verify, subagents och tydliga evidenskrav.",
         "en": "A practical playbook for scaling Claude Code in teams with worktrees, Plan → Execute → Verify, subagents, and evidence-based verification."
       }
+    },
+    {
+      "slug": "comprehension-debt",
+      "html": "comprehension-debt.html",
+      "category": "workflows-playbooks",
+      "date": "2026-02",
+      "title": {
+        "sv": "Förståelseskuld: den verkliga flaskhalsen i agentisk mjukvaruleverans",
+        "en": "Comprehension Debt: The Real Bottleneck in Agentic Software Delivery"
+      },
+      "subtitle": {
+        "sv": "Hur du konstruerar för granskningsbarhet när generering är billig",
+        "en": "How to engineer reviewability when generation is cheap"
+      },
+      "meta": {
+        "sv": "Granskningsbarhet",
+        "en": "Reviewability"
+      },
+      "sources": {
+        "sv": "articles/comprehension-debt-sv.md",
+        "en": "articles/comprehension-debt-en.md"
+      },
+      "description": {
+        "sv": "Förståelseskuld är glappet mellan det du skeppar och det teamet kan förklara, felsöka och drifta. Lär dig diffbudgetar, evidensunderlag och fresh-context reviews som håller PR:er granskningsbara utan gummistämpling.",
+        "en": "Comprehension debt is the gap between what you ship and what the team can explain, debug, and operate. Learn diff budgets, evidence bundles, and fresh-context reviews that keep PRs reviewable without rubber-stamping."
+      }
     }
   ],
   "categories": {

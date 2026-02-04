@@ -17,6 +17,17 @@ Modellerna har blivit så bra att om du producerar "slop" beror det på att du h
 
 Tänk på det som att kommunicera med en mänsklig ingenjör. Om du ger glesa instruktioner får du undermåliga resultat.
 
+### Förståelseskuld: den dolda kostnaden i att “granska mer än du skriver”
+
+När agenter genererar större delen av implementationen flyttas flaskhalsen till **verifiering och förståelse**. Över tid kan team oavsiktligt bygga upp **förståelseskuld (comprehension debt)**: ni skeppar ändringar snabbare än ni kan förklara dem, drifta dem och säkert ändra dem senare.
+
+En praktisk review-checklista (använd den på AI-skrivna diffar):
+- Vilka antaganden introducerade den här ändringen (dataformat, auth, samtidighet, timeouts)?
+- Vilken invariant måste fortfarande vara sann efter ändringen?
+- Vilket är felläget i produktion (och hur skulle vi upptäcka det)?
+- Vilket evidensunderlag bevisar att det fungerar (körda tester + outputs)?
+- Tog vi bort död kod, eller lämnade vi parallella vägar bakom oss?
+
 ---
 
 ## Tänk i features, inte produkter
@@ -117,6 +128,13 @@ Claude Opus 4.5 har en gräns på 200 000 tokens. När du har förbrukat ~100 00
 Tänk på det som informationsöverbelastning—vid någon punkt skulle du känna dig överväldigad och glömma tidigare material. AI-modeller beter sig liknande.
 
 **När du når 40-50% kontextanvändning, starta en ny session.**
+
+### Stopregel: gräv inte en grop med “bara ett försök till”
+Om du har testat 2–3 iterationer och resultatet inte förbättras, stanna och ändra problemets form:
+- nollställ kontext (ny session)
+- gör uppgiften mindre (en fil, en beteendeförändring)
+- lägg till ett test/check som gör “klart” otvetydigt
+- planera om med explicita antaganden och verifieringssteg
 
 ---
 

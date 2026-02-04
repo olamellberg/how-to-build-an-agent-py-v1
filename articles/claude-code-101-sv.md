@@ -33,6 +33,10 @@ Om förfrågan är bred kommer Claude fylla i luckor med "rimliga standardvärde
    - "Lista 2–3 möjliga designs, peka ut risker, och rekommendera en. Skriv ingen kod ännu."  
    **Motivering:** den snabbaste vägen är ofta att välja rätt approach tidigt.
 
+4) **Lista antaganden och oklarheter explicit.**  
+   Exempel: dataformat, auth-förväntningar, bakåtkompatibilitet, prestandabegränsningar.  
+   **Motivering:** de flesta “agent-buggar” är antagandebuggar; att synliggöra dem tidigt minskar omarbete.
+
 ### Ersätt vagt med specifikt
 Dåligt:
 - "Bygg ett auth-system."
@@ -41,6 +45,11 @@ Bra:
 - "Lägg till email/lösenord-auth med befintliga User-modellen; lagra sessioner i Redis med 24h utgång; skydda routes under `/api/protected`; inga nya beroenden; lägg till integrationstester."
 
 **Motivering:** specificitet förhindrar övergrepp och skapar verifierbar output.
+
+### 80%-fällan: varför “mest fungerar” är där tiden försvinner
+Agenter levererar ofta ett plausibelt första utkast snabbt. Tidssänkan är att göra det **leveransklart**: kantfall, integrationsinvarianter, rollout/rollback, säkerhet och observerbarhet.
+
+Praktisk regel: om du inte kan peka på **vad som bevisar att det fungerar** (tester + kommandon + outputs) så har du inte “80% klart” — du har en demo.
 
 ---
 
@@ -200,6 +209,9 @@ Prompting är inte magi. Det är krav + begränsningar + verifiering.
 ### Inkludera alltid "vad som inte ska göras"
 Claude standardiserar ofta till extra abstraktion. Om minimalism spelar roll, säg det:
 - "Håll detta enkelt. Inga nya filer om det inte är nödvändigt. Inga abstraktioner jag inte bad om."
+- "Föredra minsta möjliga diff som uppnår målet. En beteendeförändring per PR."
+- "Ta bort död kod som skapas under refaktoreringar; lämna inga parallella implementationer bakom dig."
+- "Om antaganden krävs: lista dem och stanna för ett beslut innan du kodar."
 
 **Motivering:** negativa begränsningar förhindrar scope-expansion.
 
@@ -309,6 +321,8 @@ Claude Code kan användas bortom interaktiva sessioner. I synnerhet:
 - automatiserad PR-granskning / dokumentuppdateringar
 
 **Motivering:** automation förvandlar individuella vinster till repeterbar genomströmning.
+
+En varning: automation ökar också **granskningslasten**. Om systemet kan generera fler ändringar än teamet kan verifiera glider kvaliteten. Håll automatiserade uppgifter smala, diffar små och outputs evidensbaserade.
 
 ### Ett säkert automationsmönster
 - kör på ett smalt scope (enskild katalog / filmönster)

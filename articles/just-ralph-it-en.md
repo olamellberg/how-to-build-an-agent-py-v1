@@ -94,6 +94,16 @@ Trust the agent to self-correct. Your role is to:
 
 > "Eventual consistency achieved through iteration."
 
+### Failure mode: endless iteration without learning
+Ralph loops are powerful, but they can also trap you in “almost there” iteration where the agent keeps changing code without increasing confidence.
+
+Practical guardrails:
+- **Stop criteria**: set a max iteration count per task (or per failure type). If it’s still not converging, re-plan.
+- **New evidence per retry**: each retry must add a new test, a smaller scope, or a clearer success criterion—otherwise you’re just spinning.
+- **Periodic checkpoint**: every N iterations, require the agent to explain the current design + remaining risks in ~10 lines.
+
+Also note: autonomy amplifies **abstraction bloat** and **dead code** unless you enforce deletion. Add an explicit rule to your build prompt: remove unused code paths created during refactors and keep diffs minimal.
+
 ---
 
 ## File structure

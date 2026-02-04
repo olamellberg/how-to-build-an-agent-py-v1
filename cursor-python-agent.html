@@ -142,6 +142,10 @@
                     <span class="lang-sv">Agents.md förklarat</span>
                     <span class="lang-en">Agents.md Explained</span>
                 </a></li>
+                <li><a href="comprehension-debt.html">
+                    <span class="lang-sv">Förståelseskuld: den verkliga flaskhalsen i agentisk mjukvaruleverans</span>
+                    <span class="lang-en">Comprehension Debt: The Real Bottleneck in Agentic Software Delivery</span>
+                </a></li>
                 <li><a href="ide-agentic-ai.html">
                     <span class="lang-sv">Välj IDE för Agentisk AI</span>
                     <span class="lang-en">Choosing an IDE for Agentic AI</span>
@@ -487,6 +491,14 @@ READ_FILE_TOOL = ToolDefinition(
 - Verktyg<br />
 - Tillräckligt med tokens</p>
 <p>Resten är bara detaljer och boilerplate. Men dessa detaljer — hur du strukturerar verktygen, hur du hanterar fel, hur du designar feedback-loopen — det är där skillnaden mellan en demo och något användbart ligger.</p>
+<h3 id="produktionsfallgropar-vad-som-gar-sonder-efter-demon">Produktionsfallgropar (vad som går sönder efter demon)</h3>
+<p>När du går från “cool prototyp” till “användbart verktyg” skiftar felen:</p>
+<ul>
+<li><strong>Konceptuella fel &gt; syntaxfel</strong>: agenten kan producera plausibel kod som är fel för dina verkliga constraints. Gör framgångskriterier och invarianter explicita.</li>
+<li><strong>Antaganden måste vara synliga</strong>: lägg till ett <code>assumptions</code>/<code>unknowns</code>-fält (eller motsvarande) i agentens output, bredvid <code>verification_steps</code>.</li>
+<li><strong>Bloat-kontroll spelar roll</strong>: håll scopet tajt, föredra minsta diff, och ta bort död kod under refaktoreringar i stället för att lämna parallella vägar bakom dig.</li>
+<li><strong>Verifiering är en produktfeature</strong>: investera i en harness (ett-kommando-check), riktade tester och lättviktiga evals så att du kan iterera säkert.</li>
+</ul>
 <p><strong>Och det roligaste?</strong> Du kan använda Cursor för att bygga allt detta. Det är rekursivt. Det är meta. Det är agenter hela vägen ner.</p></div>
             <div class="lang-en"><p><strong>Version 1.0</strong> | 2026-01-22</p>
 <h3 id="or-the-emperor-has-no-clothes-and-neither-does-this-tutorial">or: The Emperor Has No Clothes (And Neither Does This Tutorial)</h3>
@@ -716,6 +728,14 @@ READ_FILE_TOOL = ToolDefinition(
 - Tools<br />
 - Enough tokens</p>
 <p>The rest is just details and boilerplate. But those details — how you structure the tools, how you handle errors, how you design the feedback loop — that's where the difference between a demo and something useful lies.</p>
+<h3 id="production-pitfalls-what-breaks-after-the-demo">Production pitfalls (what breaks after the demo)</h3>
+<p>When you move from “cool prototype” to “useful tool,” the failures shift:</p>
+<ul>
+<li><strong>Conceptual failures &gt; syntax failures</strong>: the agent can produce plausible code that’s wrong for your real constraints. Make success criteria and invariants explicit.</li>
+<li><strong>Assumptions must be visible</strong>: add an <code>assumptions</code>/<code>unknowns</code> field (or equivalent) to your agent’s outputs, alongside <code>verification_steps</code>.</li>
+<li><strong>Bloat control matters</strong>: keep scope tight, prefer the smallest diff, and delete dead code during refactors instead of leaving parallel paths behind.</li>
+<li><strong>Verification is a product feature</strong>: invest in a harness (one-command check), targeted tests, and lightweight evals so you can iterate safely.</li>
+</ul>
 <p><strong>And the funniest part?</strong> You can use Cursor to build all of this. It's recursive. It's meta. It's agents all the way down.</p></div>
 
         </article>
@@ -1196,6 +1216,14 @@ READ_FILE_TOOL = ToolDefinition(
 - Verktyg<br />
 - Tillräckligt med tokens</p>
 <p>Resten är bara detaljer och boilerplate. Men dessa detaljer — hur du strukturerar verktygen, hur du hanterar fel, hur du designar feedback-loopen — det är där skillnaden mellan en demo och något användbart ligger.</p>
+<h3 id="produktionsfallgropar-vad-som-gar-sonder-efter-demon">Produktionsfallgropar (vad som går sönder efter demon)</h3>
+<p>När du går från “cool prototyp” till “användbart verktyg” skiftar felen:</p>
+<ul>
+<li><strong>Konceptuella fel &gt; syntaxfel</strong>: agenten kan producera plausibel kod som är fel för dina verkliga constraints. Gör framgångskriterier och invarianter explicita.</li>
+<li><strong>Antaganden måste vara synliga</strong>: lägg till ett <code>assumptions</code>/<code>unknowns</code>-fält (eller motsvarande) i agentens output, bredvid <code>verification_steps</code>.</li>
+<li><strong>Bloat-kontroll spelar roll</strong>: håll scopet tajt, föredra minsta diff, och ta bort död kod under refaktoreringar i stället för att lämna parallella vägar bakom dig.</li>
+<li><strong>Verifiering är en produktfeature</strong>: investera i en harness (ett-kommando-check), riktade tester och lättviktiga evals så att du kan iterera säkert.</li>
+</ul>
 <p><strong>Och det roligaste?</strong> Du kan använda Cursor för att bygga allt detta. Det är rekursivt. Det är meta. Det är agenter hela vägen ner.</p></div>
             <div class="lang-en"><h2 id="conclusion">Conclusion</h2>
 <p>It's not that hard. An agent is just:<br />
@@ -1204,6 +1232,14 @@ READ_FILE_TOOL = ToolDefinition(
 - Tools<br />
 - Enough tokens</p>
 <p>The rest is just details and boilerplate. But those details — how you structure the tools, how you handle errors, how you design the feedback loop — that's where the difference between a demo and something useful lies.</p>
+<h3 id="production-pitfalls-what-breaks-after-the-demo">Production pitfalls (what breaks after the demo)</h3>
+<p>When you move from “cool prototype” to “useful tool,” the failures shift:</p>
+<ul>
+<li><strong>Conceptual failures &gt; syntax failures</strong>: the agent can produce plausible code that’s wrong for your real constraints. Make success criteria and invariants explicit.</li>
+<li><strong>Assumptions must be visible</strong>: add an <code>assumptions</code>/<code>unknowns</code> field (or equivalent) to your agent’s outputs, alongside <code>verification_steps</code>.</li>
+<li><strong>Bloat control matters</strong>: keep scope tight, prefer the smallest diff, and delete dead code during refactors instead of leaving parallel paths behind.</li>
+<li><strong>Verification is a product feature</strong>: invest in a harness (one-command check), targeted tests, and lightweight evals so you can iterate safely.</li>
+</ul>
 <p><strong>And the funniest part?</strong> You can use Cursor to build all of this. It's recursive. It's meta. It's agents all the way down.</p></div>
         </div>
     </section>

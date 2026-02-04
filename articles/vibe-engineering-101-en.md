@@ -75,6 +75,8 @@ A productive framing is:
 - **You design the feedback loop.**
 - **You review outcomes, not every line.**
 
+At team scale, you also design the **review system**: what evidence is required, how big diffs are allowed to be, and when the right move is to stop and re-plan.
+
 Models behave like extremely fast collaborators with no long-term memory. They can move quickly, but they need:
 - clear constraints
 - crisp definitions of success
@@ -446,10 +448,18 @@ A real concern in agentic development is long-term code quality drift:
 - duplicated logic
 - unclear boundaries
 
+There’s also a more subtle problem: **comprehension debt**. When agents generate changes faster than humans can verify and understand them, teams start merging code they can’t later explain or operate confidently.
+
+In practice, this often shows up as a **verification bottleneck**: throughput moves from “writing code” to “reviewing and proving correctness.” If you don’t engineer for reviewability, the system’s output rate becomes a liability.
+
 Mitigations:
 - enforce formatting and linting
 - require tests for changes
 - maintain an architecture/decisions log
+- enforce **diff budgets** (one behavior change per PR; cap files/LOC so it’s reviewable in one sitting)
+- require an **evidence bundle** (commands run + outputs + risks + rollback note when relevant)
+- prefer **deletion and simplification** over unrequested new abstraction layers
+- do **fresh-context reviews** for high-stakes changes (review the diff + evidence, not the whole chat)
 - refactor deliberately in phases
 - periodically "re-derive" modules from a clean spec (when warranted)
 - keep modules small and replaceable

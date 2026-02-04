@@ -4,4 +4,4 @@
 
 Mallen är nu inkluderad som sista kapitlet i [Agents.md Explained](agents-md-explained.html#agentsmd-claudemd-template).
 
-Gå dit för full kopiera‑klistra‑mall och exempel.
+Gå dit för full kopiera‑klistra‑mall och exempel, inklusive valfria rader för **antaganden/oklarheter** och **evidenskrav** (körda kommandon + resultat) för att minska “plausibelt-men-fel” agentutdata.

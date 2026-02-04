@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>agents.md / CLAUDE.md Template - B3 Commit AI Handbook</title>
+    <title>NotebookLM in the AI Playbook - B3 Commit AI Handbook</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -21,13 +21,34 @@
             <div class="presentation-progress-dot"></div>
             <span class="presentation-progress-label">Intro</span>
         </div>
+        <div class="presentation-progress-item" data-slide="1">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Syfte: från läsning till användning</span>
+        </div>
+        <div class="presentation-progress-item" data-slide="2">
+            <div class="presentation-progress-dot"></div>
+            <span class="presentation-progress-label">Så använder du notebooken (rekommenderat flöde)</span>
+        </div>
     </nav>
 
     <!-- Reading Progress (vertical chapter nav for reading mode) -->
     <nav class="reading-progress" id="readingProgress">
         <div class="reading-progress-track"></div>
         <div class="reading-progress-fill" id="readingProgressFill"></div>
-        
+        <a href="#syfte-fran-lasning-till-anvandning" class="reading-progress-item" data-section="syfte-fran-lasning-till-anvandning">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Syfte: från läsning till användning</span>
+                <span class="lang-en">Purpose: from reading to applying</span>
+            </span>
+        </a>
+        <a href="#sa-anvander-du-notebooken-rekommenderat-flode" class="reading-progress-item" data-section="sa-anvander-du-notebooken-rekommenderat-flode">
+            <div class="reading-progress-dot"></div>
+            <span class="reading-progress-label">
+                <span class="lang-sv">Så använder du notebooken (rekommenderat flöde)</span>
+                <span class="lang-en">How to use the notebook (recommended flow)</span>
+            </span>
+        </a>
     </nav>
 
     <!-- Menu Overlay -->
@@ -150,7 +171,7 @@
         <nav class="nav-container">
             <div class="nav-left">
                 <a href="index.html" class="logo">B3 Commit AI Playbook</a>
-                <span class="breadcrumb">/ <a href="index.html"><span class="lang-sv">AI Handbook</span><span class="lang-en">AI Handbook</span></a> / <span class="lang-sv">agents.md / CLAUDE.md Mall</span><span class="lang-en">agents.md / CLAUDE.md Template</span></span>
+                <span class="breadcrumb">/ <a href="index.html"><span class="lang-sv">AI Handbook</span><span class="lang-en">AI Handbook</span></a> / <span class="lang-sv">NotebookLM i AI Playbooken</span><span class="lang-en">NotebookLM in the AI Playbook</span></span>
             </div>
             <div class="nav-right">
                 <button class="presentation-toggle" id="presentationToggle" aria-label="Presentation mode">
@@ -182,53 +203,140 @@
         <article>
             <header class="article-header" id="intro">
                 <p class="article-meta">
-                    <span class="lang-sv">Mall // 2026-01</span>
-                    <span class="lang-en">Template // 2026-01</span>
+                    <span class="lang-sv">Verktyg // 2026-02</span>
+                    <span class="lang-en">Tooling // 2026-02</span>
                 </p>
-                <h1><span class="lang-sv">agents.md / CLAUDE.md Mall</span><span class="lang-en">agents.md / CLAUDE.md Template</span></h1>
+                <h1><span class="lang-sv">NotebookLM i AI Playbooken</span><span class="lang-en">NotebookLM in the AI Playbook</span></h1>
                 <p class="subtitle">
-                    <span class="lang-sv">En kopiera-klistra-mall konsekvent med handbokens vägledning</span>
-                    <span class="lang-en">A copy-paste template consistent with handbook guidance</span>
+                    <span class="lang-sv">En notebook per artikel — med podcast och quiz</span>
+                    <span class="lang-en">One notebook per article — with a podcast and a quiz</span>
                 </p>
             </header>
 
             <!-- Article Navigation -->
             <nav class="article-nav" id="articleNav">
-                
+                <a href="#syfte-fran-lasning-till-anvandning" class="nav-pill">Syfte: från läsning till användning</a>
+                <a href="#sa-anvander-du-notebooken-rekommenderat-flode" class="nav-pill">Så använder du notebooken (rekommenderat flöde)</a>
             </nav>
 
-            <div class="lang-sv"><p><strong>Version 1.0</strong> | 2026-01-22</p>
-<h3 id="en-kopiera-klistra-mall-konsekvent-med-handbokens-vagledning">En kopiera-klistra-mall konsekvent med handbokens vägledning</h3>
-<p>Mallen är nu inkluderad som sista kapitlet i <a href="agents-md-explained.html#agentsmd-claudemd-template">Agents.md Explained</a>.</p>
-<p>Gå dit för full kopiera‑klistra‑mall och exempel, inklusive valfria rader för <strong>antaganden/oklarheter</strong> och <strong>evidenskrav</strong> (körda kommandon + resultat) för att minska “plausibelt-men-fel” agentutdata.</p></div>
-            <div class="lang-en"><p><strong>Version 1.0</strong> | 2026-01-22</p>
-<h3 id="a-copy-paste-template-consistent-with-handbook-guidance">A copy-paste template consistent with handbook guidance</h3>
-<p>This template is now included as the final chapter in <a href="agents-md-explained.html#agentsmd-claudemd-template">Agents.md Explained</a>.</p>
-<p>Go there for the full copy-paste template and examples, including optional lines for <strong>assumptions/unknowns</strong> and <strong>evidence requirements</strong> (commands run + results) to reduce “plausible-but-wrong” agent output.</p></div>
+            <div class="lang-sv"><p><strong>Version 1.0</strong> | 2026-02-04</p>
+<h3 id="en-notebook-per-artikel-med-podcast-och-quiz">En notebook per artikel — med podcast och quiz</h3>
+<p>NotebookLM är ett komplement till varje artikel i AI Playbooken. För <strong>varje artikel</strong> finns en färdig notebook som du använder för att:</p>
+<ul>
+<li>repetera snabbt (podcast)</li>
+<li>testa förståelse (quiz)</li>
+<li>få källor + teamets lokala takeaways (sources/notes)</li>
+</ul>
+<p>Exempel (NotebookLM): <a href="https://notebooklm.google.com/notebook/b947a18d-cd83-4c71-ac70-4eaa0fd555c7?pli=1" target="_blank" rel="noopener noreferrer">Öppna exempelnotebook</a></p>
+<hr />
+<h2 id="syfte-fran-lasning-till-anvandning">Syfte: från läsning till användning</h2>
+<p>En artikel räcker ofta för att “förstå”. Notebooken är till för att du ska kunna <strong>använda</strong> innehållet i praktiken på 10–20 minuter:</p>
+<ul>
+<li>podcasten ger helheten snabbt</li>
+<li>quizet avslöjar om du missat ett begrepp eller en “pitfall”</li>
+<li>notes visar hur vi i teamet brukar tillämpa idéerna</li>
+</ul>
+<hr />
+<h2 id="sa-anvander-du-notebooken-rekommenderat-flode">Så använder du notebooken (rekommenderat flöde)</h2>
+<ul>
+<li><strong>1) Öppna notebooken för artikeln</strong> (via artikelns länk eller NotebookLM-listan).</li>
+<li><strong>2) Lyssna på podcasten</strong> för att få helheten först.</li>
+<li><strong>3) Gör quizet</strong> utan att fuska. Notera 1–2 frågor du missade.</li>
+<li><strong>4) Slå upp i artikeln</strong> de avsnitt som quizet pekade ut.</li>
+<li><strong>5) Skumma notes</strong> och plocka 1 sak du vill testa i ditt nästa arbete.</li>
+</ul></div>
+            <div class="lang-en"><p><strong>Version 1.0</strong> | 2026-02-04</p>
+<h3 id="one-notebook-per-article-with-a-podcast-and-a-quiz">One notebook per article — with a podcast and a quiz</h3>
+<p>NotebookLM is a companion to each AI Playbook article. For <strong>every article</strong>, there is an existing notebook you use to:</p>
+<ul>
+<li>recap quickly (podcast)</li>
+<li>verify understanding (quiz)</li>
+<li>access sources + team-specific takeaways (sources/notes)</li>
+</ul>
+<p>Example (NotebookLM): <a href="https://notebooklm.google.com/notebook/b947a18d-cd83-4c71-ac70-4eaa0fd555c7?pli=1" target="_blank" rel="noopener noreferrer">Open example notebook</a></p>
+<hr />
+<h2 id="purpose-from-reading-to-applying">Purpose: from reading to applying</h2>
+<p>An article helps you understand. The notebook is designed to help you <strong>apply</strong> the content in 10–20 minutes:</p>
+<ul>
+<li>the podcast gives you the big picture fast</li>
+<li>the quiz reveals gaps and common pitfalls</li>
+<li>the notes show how we tend to use the ideas in the team</li>
+</ul>
+<hr />
+<h2 id="how-to-use-the-notebook-recommended-flow">How to use the notebook (recommended flow)</h2>
+<ul>
+<li><strong>1) Open the notebook for the article</strong> (from the article link or your NotebookLM list).</li>
+<li><strong>2) Listen to the podcast</strong> first to get the overview.</li>
+<li><strong>3) Take the quiz</strong> without cheating. Note 1–2 questions you missed.</li>
+<li><strong>4) Re-read the relevant parts</strong> of the article that the quiz pointed to.</li>
+<li><strong>5) Skim the notes</strong> and pick one thing to try in your next work session.</li>
+</ul></div>
 
         </article>
     </main>
 
     <!-- Presentation Slides -->
-    <section class="presentation-slide hero-slide" data-slide-number="1 / 1">
+    <section class="presentation-slide hero-slide" data-slide-number="1 / 3">
         <div class="presentation-slide-content">
             <p class="article-meta">
-                <span class="lang-sv">Mall // 2026-01</span>
-                <span class="lang-en">Template // 2026-01</span>
+                <span class="lang-sv">Verktyg // 2026-02</span>
+                <span class="lang-en">Tooling // 2026-02</span>
             </p>
             <h2 class="presentation-hero-title">
-                <span class="lang-sv">agents.md / CLAUDE.md Mall</span>
-                <span class="lang-en">agents.md / CLAUDE.md Template</span>
+                <span class="lang-sv">NotebookLM i AI Playbooken</span>
+                <span class="lang-en">NotebookLM in the AI Playbook</span>
             </h2>
             <p class="subtitle">
-                <span class="lang-sv">En kopiera-klistra-mall konsekvent med handbokens vägledning</span>
-                <span class="lang-en">A copy-paste template consistent with handbook guidance</span>
+                <span class="lang-sv">En notebook per artikel — med podcast och quiz</span>
+                <span class="lang-en">One notebook per article — with a podcast and a quiz</span>
             </p>
         </div>
         <div class="presentation-scroll-hint">
             <span class="lang-sv">Scrolla ner</span>
             <span class="lang-en">Scroll down</span>
             <span>↓</span>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="2 / 3">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="syfte-fran-lasning-till-anvandning">Syfte: från läsning till användning</h2>
+<p>En artikel räcker ofta för att “förstå”. Notebooken är till för att du ska kunna <strong>använda</strong> innehållet i praktiken på 10–20 minuter:</p>
+<ul>
+<li>podcasten ger helheten snabbt</li>
+<li>quizet avslöjar om du missat ett begrepp eller en “pitfall”</li>
+<li>notes visar hur vi i teamet brukar tillämpa idéerna</li>
+</ul>
+<hr /></div>
+            <div class="lang-en"><h2 id="purpose-from-reading-to-applying">Purpose: from reading to applying</h2>
+<p>An article helps you understand. The notebook is designed to help you <strong>apply</strong> the content in 10–20 minutes:</p>
+<ul>
+<li>the podcast gives you the big picture fast</li>
+<li>the quiz reveals gaps and common pitfalls</li>
+<li>the notes show how we tend to use the ideas in the team</li>
+</ul>
+<hr /></div>
+        </div>
+    </section>
+
+    <section class="presentation-slide" data-slide-number="3 / 3">
+        <div class="presentation-slide-content">
+            <div class="lang-sv"><h2 id="sa-anvander-du-notebooken-rekommenderat-flode">Så använder du notebooken (rekommenderat flöde)</h2>
+<ul>
+<li><strong>1) Öppna notebooken för artikeln</strong> (via artikelns länk eller NotebookLM-listan).</li>
+<li><strong>2) Lyssna på podcasten</strong> för att få helheten först.</li>
+<li><strong>3) Gör quizet</strong> utan att fuska. Notera 1–2 frågor du missade.</li>
+<li><strong>4) Slå upp i artikeln</strong> de avsnitt som quizet pekade ut.</li>
+<li><strong>5) Skumma notes</strong> och plocka 1 sak du vill testa i ditt nästa arbete.</li>
+</ul></div>
+            <div class="lang-en"><h2 id="how-to-use-the-notebook-recommended-flow">How to use the notebook (recommended flow)</h2>
+<ul>
+<li><strong>1) Open the notebook for the article</strong> (from the article link or your NotebookLM list).</li>
+<li><strong>2) Listen to the podcast</strong> first to get the overview.</li>
+<li><strong>3) Take the quiz</strong> without cheating. Note 1–2 questions you missed.</li>
+<li><strong>4) Re-read the relevant parts</strong> of the article that the quiz pointed to.</li>
+<li><strong>5) Skim the notes</strong> and pick one thing to try in your next work session.</li>
+</ul></div>
         </div>
     </section>
 

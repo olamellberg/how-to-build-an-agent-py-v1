@@ -260,6 +260,10 @@
                     <span class="lang-sv">Välj IDE för Agentisk AI</span>
                     <span class="lang-en">Choosing an IDE for Agentic AI</span>
                 </a></li>
+                <li><a href="notebooklm-tutorial.html">
+                    <span class="lang-sv">NotebookLM i AI Playbooken</span>
+                    <span class="lang-en">NotebookLM in the AI Playbook</span>
+                </a></li>
                 <li><a href="just-ralph-it.html">
                     <span class="lang-sv">Just Ralph-it</span>
                     <span class="lang-en">Just Ralph-it</span>
@@ -383,25 +387,16 @@
                 <a href="#16-ordlista-endast-forkortningar" class="nav-pill">16) Ordlista (endast förkortningar)</a>
             </nav>
 
-            <div class="article-audio" aria-label="Ljudspelare">
-                <p class="article-audio-label">
-                    <span class="lang-sv">Lyssna</span>
-                    <span class="lang-en">Listen</span>
-                </p>
-                <audio controls preload="metadata" id="articleAudio">
-                    <source src="https://www.dropbox.com/scl/fi/mbu92cb8chc37r3c4cd87/Bygg_robusta_system_runt_AI-motorn.m4a?rlkey=5ldrajbeudhkp8fu38khshn06&st=uz7septf&dl=1" type="audio/mp4">
-                    <p><span class="lang-sv">Din webbläsare stödjer inte HTML5-ljud.</span><span class="lang-en">Your browser does not support HTML5 audio.</span></p>
-                </audio>
-                <p class="article-audio-fallback" id="articleAudioFallback" hidden>
-                    <span class="lang-sv">Spelaren kunde inte ladda filen. </span><span class="lang-en">The player could not load the file. </span>
-                    <a href="https://www.dropbox.com/scl/fi/mbu92cb8chc37r3c4cd87/Bygg_robusta_system_runt_AI-motorn.m4a?rlkey=5ldrajbeudhkp8fu38khshn06&st=uz7septf&dl=0" target="_blank" rel="noopener noreferrer">
-                        <span class="lang-sv">Öppna i Dropbox</span><span class="lang-en">Open in Dropbox</span>
-                    </a>
-                </p>
-            </div>
-
             <div class="lang-sv"><p><strong>Version 1.1</strong> | 2026-01-29</p>
 <h3 id="en-praktisk-grundkurs-i-generativ-ai-for-systemutvecklare">En praktisk grundkurs i generativ AI för systemutvecklare</h3>
+<div class="article-audio" aria-label="Ljudspelare">
+    <p class="article-audio-label">Lyssna</p>
+    <audio controls preload="metadata">
+        <source src="audio/Bygg_robusta_system_runt_AI-motorn.m4a" type="audio/mp4">
+        <p>Din webbläsare stödjer inte HTML5-ljud.</p>
+    </audio>
+</div>
+
 <h2 id="1-hur-du-anvander-denna-grund">1) Hur du använder denna grund</h2>
 <p>Den här artikeln ger dig den gemensamma mentala modellen och vokabulären som resten av handboken bygger på. Läs den en gång från början till slut, och använd den sedan som referens när du stöter på nya begrepp.</p>
 <p>Om du bara kommer ihåg tre saker:<br />
@@ -726,6 +721,14 @@ RAG hämtar 2 utdrag från runbook → modellen (t.ex. GPT-5.1 eller Claude Opus
 </ul></div>
             <div class="lang-en"><p><strong>Version 1.1</strong> | 2026-01-29</p>
 <h3 id="a-practical-introduction-to-generative-ai-for-developers">A practical introduction to generative AI for developers</h3>
+<div class="article-audio" aria-label="Audio player">
+    <p class="article-audio-label">Listen</p>
+    <audio controls preload="metadata">
+        <source src="audio/Bygg_robusta_system_runt_AI-motorn.m4a" type="audio/mp4">
+        <p>Your browser does not support HTML5 audio.</p>
+    </audio>
+</div>
+
 <h2 id="1-how-to-use-this-foundation">1) How to use this foundation</h2>
 <p>This article gives you the shared mental model and vocabulary that the rest of the handbook builds on. Read it once end-to-end, then use it as a reference when you hit unfamiliar terms.</p>
 <p>If you remember only three things:<br />
@@ -1809,17 +1812,6 @@ RAG retrieves 2 excerpts from the runbook → the model (e.g. GPT-5.1 or Claude 
     </footer>
 
     <script>
-        // Show fallback link if audio fails to load (e.g. Google Drive CORS/403)
-        (function () {
-            var el = document.getElementById('articleAudio');
-            var fallback = document.getElementById('articleAudioFallback');
-            if (el && fallback) {
-                el.addEventListener('error', function () {
-                    fallback.hidden = false;
-                });
-            }
-        })();
-
         // Theme Toggle
         const themeToggle = document.getElementById('themeToggle');
         const menuThemeToggle = document.getElementById('menuThemeToggle');

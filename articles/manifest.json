@@ -183,6 +183,32 @@
       }
     },
     {
+      "slug": "notebooklm-tutorial",
+      "html": "notebooklm-tutorial.html",
+      "category": "tooling-choices",
+      "date": "2026-02",
+      "title": {
+        "sv": "NotebookLM i AI Playbooken",
+        "en": "NotebookLM in the AI Playbook"
+      },
+      "subtitle": {
+        "sv": "En notebook per artikel — med podcast och quiz",
+        "en": "One notebook per article — with a podcast and a quiz"
+      },
+      "meta": {
+        "sv": "Verktyg",
+        "en": "Tooling"
+      },
+      "sources": {
+        "sv": "articles/notebooklm-tutorial-sv.md",
+        "en": "articles/notebooklm-tutorial-en.md"
+      },
+      "description": {
+        "sv": "Kort tutorial för hur teamet använder Google NotebookLM: en notebook per artikel, med podcast och quiz.",
+        "en": "A short tutorial for the team’s NotebookLM workflow: one notebook per article, with a podcast and a quiz."
+      }
+    },
+    {
       "slug": "just-ralph-it",
       "html": "just-ralph-it.html",
       "category": "tooling-choices",

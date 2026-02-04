@@ -2,6 +2,14 @@
 **Version 1.1** | 2026-01-29
 ### En praktisk grundkurs i generativ AI för systemutvecklare
 
+<div class="article-audio" aria-label="Ljudspelare">
+    <p class="article-audio-label">Lyssna</p>
+    <audio controls preload="metadata">
+        <source src="audio/Bygg_robusta_system_runt_AI-motorn.m4a" type="audio/mp4">
+        <p>Din webbläsare stödjer inte HTML5-ljud.</p>
+    </audio>
+</div>
+
 ## 1) Hur du använder denna grund
 
 Den här artikeln ger dig den gemensamma mentala modellen och vokabulären som resten av handboken bygger på. Läs den en gång från början till slut, och använd den sedan som referens när du stöter på nya begrepp.

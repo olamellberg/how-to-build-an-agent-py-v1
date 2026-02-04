@@ -2,6 +2,14 @@
 **Version 1.1** | 2026-01-29
 ### A practical introduction to generative AI for developers
 
+<div class="article-audio" aria-label="Audio player">
+    <p class="article-audio-label">Listen</p>
+    <audio controls preload="metadata">
+        <source src="audio/Bygg_robusta_system_runt_AI-motorn.m4a" type="audio/mp4">
+        <p>Your browser does not support HTML5 audio.</p>
+    </audio>
+</div>
+
 ## 1) How to use this foundation
 
 This article gives you the shared mental model and vocabulary that the rest of the handbook builds on. Read it once end-to-end, then use it as a reference when you hit unfamiliar terms.

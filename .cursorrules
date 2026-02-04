@@ -88,3 +88,57 @@ Alla artiklar har Presentation Mode - ett PowerPoint-inspirerat läge där artik
 ### Referens
 - `articles/manifest.json` - exempel på metadata
 - `articles/ai-fundamentals-2026-sv.md` - exempel på markdown-struktur
+
+## HTML5-ljudspelare (Audio embed)
+
+För att lägga till en ljudspelare i en artikel så att den fungerar tillförlitligt:
+
+### 1. Placering
+- Lägg blocket **efter** `</nav>` (article-nav) och **före** första `<div class="lang-sv">` i artikeln.
+
+### 2. Dropbox-URL
+- Använd **Dropbox** för ljudfiler (Google Drive ger ofta CORS/403 med `<audio>`).
+- Länk från Dropbox: "Dela" → "Länk" → kopiera länken (innehåller ofta `rlkey` och `st`).
+- **I `<source src="...">`**: använd samma URL men med **`dl=1`** (direkt fil så spelaren kan ladda).
+- **I fallback-länken**: använd samma URL med **`dl=0`** (öppnar i Dropbox i webbläsaren).
+
+### 3. HTML-mall (bilingual)
+```html
+<div class="article-audio" aria-label="Ljudspelare">
+    <p class="article-audio-label">
+        <span class="lang-sv">Lyssna</span>
+        <span class="lang-en">Listen</span>
+    </p>
+    <audio controls preload="metadata" id="articleAudio">
+        <source src="DROPBOX_URL_MED_dl=1" type="audio/mp4">
+        <p><span class="lang-sv">Din webbläsare stödjer inte HTML5-ljud.</span><span class="lang-en">Your browser does not support HTML5 audio.</span></p>
+    </audio>
+    <p class="article-audio-fallback" id="articleAudioFallback" hidden>
+        <span class="lang-sv">Spelaren kunde inte ladda filen. </span><span class="lang-en">The player could not load the file. </span>
+        <a href="DROPBOX_URL_MED_dl=0" target="_blank" rel="noopener noreferrer">
+            <span class="lang-sv">Öppna i Dropbox</span><span class="lang-en">Open in Dropbox</span>
+        </a>
+    </p>
+</div>
+```
+
+### 4. Felhantering (visa fallback vid load-fel)
+Lägg i sidans befintliga `<script>` (t.ex. efter theme/language-kod):
+```javascript
+(function () {
+    var el = document.getElementById('articleAudio');
+    var fallback = document.getElementById('articleAudioFallback');
+    if (el && fallback) {
+        el.addEventListener('error', function () { fallback.hidden = false; });
+    }
+})();
+```
+
+### 5. CSS
+Klasserna `.article-audio`, `.article-audio-label`, `.article-audio-fallback` finns redan i `styles.css`. Ingen extra CSS behövs för nya sidor.
+
+### 6. Flera spelare på samma sida
+Använd unika id:n, t.ex. `id="articleAudio"` → `id="articleSlugAudio"` och `id="articleAudioFallback"` → `id="articleSlugAudioFallback"`, och uppdatera scriptet så att det pekar på rätt id (eller loopa över alla spelare).
+
+### Referens
+- `ai-fundamentals.html` – fungerande exempel (Dropbox-länk, fallback, error-script).

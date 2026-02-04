@@ -622,6 +622,35 @@ main {
     letter-spacing: 0.5px;
 }
 
+.article-audio {
+    margin: 1.25rem 0;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    background: var(--bg-secondary);
+}
+
+.article-audio-label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.article-audio audio {
+    width: 100%;
+    max-width: 100%;
+}
+
+.article-audio-fallback {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-top: 0.75rem;
+}
+
+.article-audio-fallback a {
+    color: var(--link-color);
+}
+
 h1 {
     font-size: 3rem;
     font-weight: 500;

@@ -944,6 +944,155 @@ td:first-child {
     background: rgba(92, 102, 80, 0.15);
 }
 
+/* ==================== */
+/* NotebookLM Study Hub */
+/* ==================== */
+.notebook-lm-hub {
+    margin: 1.25rem 0;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+    overflow: hidden;
+    transition: all 0.2s ease;
+}
+
+.notebook-lm-hub:hover {
+    border-color: var(--accent-olive);
+    box-shadow: 0 4px 12px rgba(92, 102, 80, 0.12);
+    transform: translateY(-1px);
+}
+
+[data-theme="dark"] .notebook-lm-hub:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.notebook-lm-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    text-decoration: none;
+    color: inherit;
+}
+
+.notebook-lm-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    background: var(--accent-olive);
+    border-radius: 10px;
+    font-size: 1.5rem;
+    transition: transform 0.2s ease;
+}
+
+.notebook-lm-hub:hover .notebook-lm-icon {
+    transform: scale(1.05);
+}
+
+.notebook-lm-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.notebook-lm-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.notebook-lm-badge {
+    font-size: 0.65rem;
+    font-weight: 500;
+    background: var(--accent-olive);
+    color: white;
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.notebook-lm-description {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+.notebook-lm-features {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.notebook-lm-feature {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.notebook-lm-feature-icon {
+    font-size: 0.9rem;
+}
+
+.notebook-lm-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    color: var(--text-muted);
+    transition: all 0.2s ease;
+}
+
+.notebook-lm-hub:hover .notebook-lm-arrow {
+    color: var(--accent-olive);
+    transform: translateX(3px);
+}
+
+.notebook-lm-arrow svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .notebook-lm-link {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+    
+    .notebook-lm-icon {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        font-size: 1.25rem;
+    }
+    
+    .notebook-lm-content {
+        flex-basis: calc(100% - 88px);
+    }
+    
+    .notebook-lm-arrow {
+        display: none;
+    }
+    
+    .notebook-lm-features {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+}
+
 /* Agent prompt boxes */
 .agent-prompt {
     background: linear-gradient(135deg, #f8f6f0 0%, #f0ede8 100%);

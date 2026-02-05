@@ -223,12 +223,10 @@
                     <span class="lang-sv">Presentation</span>
                     <span class="lang-en">Present</span>
                 </button>
-                <button class="lang-toggle" id="langToggle" aria-label="Byt språk">
-                    <span class="flag lang-sv">🇸🇪</span>
-                    <span class="flag lang-en">🇬🇧</span>
-                    <span class="lang-sv">SV</span>
-                    <span class="lang-en">EN</span>
-                </button>
+                <div class="lang-switch" id="langSwitch" aria-label="Byt språk">
+                    <button class="lang-option" data-lang="sv">SV</button>
+                    <button class="lang-option" data-lang="en">EN</button>
+                </div>
                 <button class="theme-toggle" id="themeToggle" aria-label="Växla tema">
                     <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
@@ -981,21 +979,27 @@
         }
 
         // Language Toggle
-        const langToggle = document.getElementById('langToggle');
+        const langSwitch = document.getElementById('langSwitch');
+        const langOptions = langSwitch.querySelectorAll('.lang-option');
         const menuLangToggle = document.getElementById('menuLangToggle');
 
         function setLanguage(lang) {
             html.setAttribute('data-lang', lang);
             html.setAttribute('lang', lang);
             localStorage.setItem('language', lang);
+            // Update active state on toggle buttons
+            langOptions.forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
         }
 
-        const savedLang = localStorage.getItem('language') || 'sv';
+        const savedLang = localStorage.getItem('language') || 'en';
         setLanguage(savedLang);
 
-        langToggle.addEventListener('click', () => {
-            const currentLang = html.getAttribute('data-lang');
-            setLanguage(currentLang === 'sv' ? 'en' : 'sv');
+        langOptions.forEach(btn => {
+            btn.addEventListener('click', () => {
+                setLanguage(btn.dataset.lang);
+            });
         });
 
         if (menuLangToggle) {
@@ -1159,7 +1163,7 @@
             if (slidesSplit) return; // Only run once
             if (html.getAttribute('data-presentation') !== 'true') return;
             
-            const maxContentHeight = window.innerHeight - 220; // Account for padding (6rem top + 4rem bottom + buffer)
+            const maxContentHeight = window.innerHeight - 140; // Account for padding (4rem top + 3rem bottom + buffer)
             const allSlides = Array.from(document.querySelectorAll('.presentation-slide:not(.continuation-slide)'));
             let continuationSlides = [];
             

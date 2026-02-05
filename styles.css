@@ -363,6 +363,40 @@ body > header {
 /* ==================== */
 /* Language Toggle      */
 /* ==================== */
+.lang-switch {
+    display: flex;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.lang-option {
+    background: none;
+    border: none;
+    padding: 0.35rem 0.6rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.lang-option:not(:last-child) {
+    border-right: 1px solid var(--border-color);
+}
+
+.lang-option:hover {
+    color: var(--text-primary);
+    background: var(--bg-secondary);
+}
+
+.lang-option.active {
+    background: var(--accent-olive);
+    color: white;
+}
+
+/* Legacy lang-toggle (kept for compatibility) */
 .lang-toggle {
     background: none;
     border: 1px solid var(--border-color);
@@ -1424,7 +1458,7 @@ footer {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 6rem 2rem 4rem;
+    padding: 4rem 5vw 3rem;
     scroll-snap-align: start;
     scroll-snap-stop: always;
     position: relative;
@@ -1440,7 +1474,7 @@ footer {
 }
 
 .presentation-slide-content {
-    max-width: 800px;
+    max-width: min(85vw, 1400px);
     width: 100%;
 }
 

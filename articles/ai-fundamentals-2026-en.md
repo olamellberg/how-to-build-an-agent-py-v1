@@ -1,13 +1,33 @@
 # AI Fundamentals 2026
-**Version 1.1** | 2026-01-29
+**Version 1.2** | 2026-02-06
 ### A practical introduction to generative AI for developers
 
-<div class="article-audio" aria-label="Audio player">
-    <p class="article-audio-label">Listen</p>
-    <audio controls preload="metadata">
-        <source src="audio/Bygg_robusta_system_runt_AI-motorn.m4a" type="audio/mp4">
-        <p>Your browser does not support HTML5 audio.</p>
-    </audio>
+<div class="notebook-lm-hub">
+    <a href="https://notebooklm.google.com/notebook/3444229b-66ab-4c76-b612-e3dd933b8214" target="_blank" rel="noopener" class="notebook-lm-link">
+        <div class="notebook-lm-icon">🎧</div>
+        <div class="notebook-lm-content">
+            <div class="notebook-lm-title">
+                NotebookLM Study Hub
+                <span class="notebook-lm-badge">External</span>
+            </div>
+            <div class="notebook-lm-description">Deepen your learning with AI-generated podcast and interactive quiz</div>
+            <div class="notebook-lm-features">
+                <span class="notebook-lm-feature">
+                    <span class="notebook-lm-feature-icon">🎙️</span>
+                    Podcast
+                </span>
+                <span class="notebook-lm-feature">
+                    <span class="notebook-lm-feature-icon">📝</span>
+                    Quiz
+                </span>
+            </div>
+        </div>
+        <div class="notebook-lm-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+        </div>
+    </a>
 </div>
 
 ## 1) How to use this foundation
@@ -30,8 +50,10 @@ When people say "we're going to build an AI solution", two things are often conf
 ### 2.1 The Model (the engine)
 A **model** is an engine that takes input and produces output (usually text, sometimes also images/audio). It cannot "see" your database, your repo, or your systems unless you connect them.
 
-Examples of well-known models (Jan 2026):
+Examples of well-known models (Feb 2026):
+- **OpenAI GPT-5.3 Codex** (closed model via API; latest flagship for code generation and agentic tasks)
 - **OpenAI GPT-5.1** (closed model via API; focus on code and agentic tasks)
+- **Anthropic Claude Opus 4.6** (closed model via API; latest flagship for code, agents, and extended thinking)
 - **Anthropic Claude Opus 4.5** (closed model via API; focus on code/agents/computer use)
 - **Google Gemini 3 Flash / Gemini 3 Pro** (closed models; Flash for low latency/efficiency and agentic flows)
 - **Meta Llama 3 (open-weights)** (weights on GitHub; runnable on your own infrastructure)
@@ -77,7 +99,7 @@ Consequence:
 - You can't always "paste everything".
 - You need techniques to extract the right pieces (e.g. RAG).
 
-*Related example:* Claude Opus 4.5 was launched with a very large context window (Anthropic mentions 200k tokens in the model family documentation).
+*Related example:* Claude Opus 4.6 continues the trend of very large context windows (Anthropic mentions 200k tokens in the model family documentation).
 
 > **Aha 2:** Managing context smartly is a core competency in generative AI.
 
@@ -93,7 +115,7 @@ Rule of thumb:
 - Text/code → LLM  
 - Text + images/diagrams/screenshots → LMM
 
-*Example:* GPT-5.1 is stated to support **text and image as input** (typical LMM behavior in practice even though people sometimes still say "LLM" loosely).
+*Example:* GPT-5.3 Codex and GPT-5.1 support **text and image as input** (typical LMM behavior in practice even though people sometimes still say "LLM" loosely).
 *Example:* The Gemini 3 series is positioned as multimodal and agent-focused.
 
 ### 4.2 Inference and training
@@ -120,7 +142,7 @@ A prompt is not "a question", but a **spec** for how the system should behave.
 
 ### 5.2 Why format requirements are a superpower
 When connecting the model to systems, you want "machine-readable and safe" rather than "free and pretty".  
-This applies whether you use GPT-5.1, Claude Opus 4.5 or a self-hosted Llama 3: *format + validation makes the difference between demo and production.*
+This applies whether you use GPT-5.3 Codex, Claude Opus 4.6 or a self-hosted Llama 3: *format + validation makes the difference between demo and production.*
 
 ---
 
@@ -135,7 +157,7 @@ Rules of thumb:
 - Code, JSON, exact formats → **lower temperature**
 - Brainstorming, text suggestions → **higher temperature**
 
-*Related example:* GPT-5.1 is described as a flagship model for **code and agentic tasks** — precisely the scenarios where you often want low temperature + strict format requirements.
+*Related example:* GPT-5.3 Codex is described as a flagship model for **code generation and agentic tasks** — precisely the scenarios where you often want low temperature + strict format requirements.
 
 > **Aha 3:** Many "AI bugs" are actually configuration and format issues.
 
@@ -159,7 +181,7 @@ Why tools are important:
 
 > **Aha 4:** In stable systems, the model is often "the writer" — tools are "the truth".
 
-*Related example:* GPT-5.1 is explicitly described as strong for **agentic tasks** (where tools are central), and Claude Opus 4.5 is also marketed as strong for "agents/computer use".
+*Related example:* GPT-5.3 Codex is explicitly described as strong for **agentic tasks** (where tools are central), and Claude Opus 4.6 is also marketed as strong for "agents/extended thinking/computer use".
 
 ---
 
@@ -205,7 +227,7 @@ Agent loop:
 - large internal knowledge → **RAG** needed regardless
 
 ### 9.2 Open-weights vs closed models
-- **Closed model**: you use a provider via API (e.g. GPT-5.1, Claude Opus 4.5, Gemini 3).
+- **Closed model**: you use a provider via API (e.g. GPT-5.3 Codex, Claude Opus 4.6, Gemini 3).
 - **Open-weights**: you can run the weights yourself (e.g. Llama 3).
 
 A simple decision signal:
@@ -287,7 +309,7 @@ Simple rules of thumb:
 
 #### Mini-example (RAG)
 Question: "How do we rollback service X?"  
-RAG retrieves 2 excerpts from the runbook → the model (e.g. GPT-5.1 or Claude Opus 4.5) responds and lists:
+RAG retrieves 2 excerpts from the runbook → the model (e.g. GPT-5.3 Codex or Claude Opus 4.6) responds and lists:
 - `sources: ["runbook/service-x#rollback", "runbook/service-x#common-issues"]`
 
 ### 11.2 Security: validation and prompt injection
@@ -323,7 +345,7 @@ The first session should always mention:
 ### 11.3 Measure: evals (tests for AI)
 
 #### Why you must measure
-Small changes in prompt, chunking, model or settings can cause big behavior differences — whether you run GPT-5.1, Claude Opus 4.5, Gemini 3 or Llama 3.
+Small changes in prompt, chunking, model or settings can cause big behavior differences — whether you run GPT-5.3 Codex, Claude Opus 4.6, Gemini 3 or Llama 3.
 
 **Evals** are a recurring test suite, similar to a test suite.
 
@@ -357,7 +379,7 @@ More specifically:
 6) Return + log sources/tool calls
 7) Run evals regularly
 
-*Related example:* A typical setup is to let a strong model (e.g. GPT-5.1 or Claude Opus 4.5) handle summarization/planning and let tools provide the truth.
+*Related example:* A typical setup is to let a strong model (e.g. GPT-5.3 Codex or Claude Opus 4.6) handle summarization/planning and let tools provide the truth.
 
 ---
 

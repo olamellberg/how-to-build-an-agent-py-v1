@@ -278,10 +278,12 @@
                     <span class="lang-sv">Presentation</span>
                     <span class="lang-en">Present</span>
                 </button>
-                <div class="lang-switch" id="langSwitch" aria-label="Byt språk">
-                    <button class="lang-option" data-lang="sv">SV</button>
-                    <button class="lang-option" data-lang="en">EN</button>
-                </div>
+                <button class="lang-toggle" id="langToggle" aria-label="Byt språk">
+                    <span class="flag lang-sv">🇸🇪</span>
+                    <span class="flag lang-en">🇬🇧</span>
+                    <span class="lang-sv">SV</span>
+                    <span class="lang-en">EN</span>
+                </button>
                 <button class="theme-toggle" id="themeToggle" aria-label="Växla tema">
                     <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
@@ -1138,27 +1140,21 @@ git worktree add ../wt-obs  chore/observability
         }
 
         // Language Toggle
-        const langSwitch = document.getElementById('langSwitch');
-        const langOptions = langSwitch.querySelectorAll('.lang-option');
+        const langToggle = document.getElementById('langToggle');
         const menuLangToggle = document.getElementById('menuLangToggle');
 
         function setLanguage(lang) {
             html.setAttribute('data-lang', lang);
             html.setAttribute('lang', lang);
             localStorage.setItem('language', lang);
-            // Update active state on toggle buttons
-            langOptions.forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.lang === lang);
-            });
         }
 
-        const savedLang = localStorage.getItem('language') || 'en';
+        const savedLang = localStorage.getItem('language') || 'sv';
         setLanguage(savedLang);
 
-        langOptions.forEach(btn => {
-            btn.addEventListener('click', () => {
-                setLanguage(btn.dataset.lang);
-            });
+        langToggle.addEventListener('click', () => {
+            const currentLang = html.getAttribute('data-lang');
+            setLanguage(currentLang === 'sv' ? 'en' : 'sv');
         });
 
         if (menuLangToggle) {
@@ -1316,75 +1312,50 @@ git worktree add ../wt-obs  chore/observability
         });
 
         // Auto-split overflowing slides into continuation slides
-        let splitInProgress = false;
-        
-        function updateSlideNumbering() {
-            const allSlidesNow = document.querySelectorAll('.presentation-slide');
-            const totalSlides = allSlidesNow.length;
-            allSlidesNow.forEach((slide, index) => {
-                slide.setAttribute('data-slide-number', `${index + 1} / ${totalSlides}`);
-            });
-        }
+        let slidesSplit = false;
         
         function splitOverflowingSlides() {
+            if (slidesSplit) return; // Only run once
             if (html.getAttribute('data-presentation') !== 'true') return;
-            if (splitInProgress) return;
-            splitInProgress = true;
             
-            const maxContentHeight = window.innerHeight - 140; // Account for padding
-            let didSplit = false;
+            const maxContentHeight = window.innerHeight - 220; // Account for padding (6rem top + 4rem bottom + buffer)
+            const allSlides = Array.from(document.querySelectorAll('.presentation-slide:not(.continuation-slide)'));
+            let continuationSlides = [];
             
-            // Determine which language is currently visible
-            const currentLang = html.getAttribute('data-lang') || 'en';
-            
-            // Get ALL slides including any previously created continuations (but not hero)
-            const allSlides = Array.from(document.querySelectorAll('.presentation-slide:not(.hero-slide)'));
-            
-            allSlides.forEach((slide) => {
-                // Skip already processed slides
-                if (slide.classList.contains('already-split')) return;
-                
+            allSlides.forEach((slide, originalIndex) => {
                 const content = slide.querySelector('.presentation-slide-content');
-                if (!content) return;
+                if (!content || slide.classList.contains('hero-slide')) return;
                 
+                // Force layout calculation
                 const svDiv = content.querySelector('.lang-sv');
                 const enDiv = content.querySelector('.lang-en');
                 if (!svDiv || !enDiv) return;
                 
-                // Use the VISIBLE language div for height calculations
-                const visibleDiv = currentLang === 'sv' ? svDiv : enDiv;
-                const visibleOverflows = visibleDiv.scrollHeight > maxContentHeight;
+                // Check both language versions for overflow
+                const svOverflows = svDiv.scrollHeight > maxContentHeight;
+                const enOverflows = enDiv.scrollHeight > maxContentHeight;
                 
-                if (!visibleOverflows) return;
+                if (!svOverflows && !enOverflows) return;
                 
-                // Mark as processed to avoid re-splitting
-                slide.classList.add('has-continuation', 'already-split');
+                // This slide needs splitting
+                slide.classList.add('has-continuation');
                 
-                // Get splittable elements (skip H2 headers and continuation labels)
-                const svElements = Array.from(svDiv.children).filter(el => 
-                    el.tagName !== 'H2' && !el.classList.contains('continuation-label')
-                );
-                const enElements = Array.from(enDiv.children).filter(el => 
-                    el.tagName !== 'H2' && !el.classList.contains('continuation-label')
-                );
+                // Get splittable elements (skip H2 headers)
+                const svElements = Array.from(svDiv.children).filter(el => el.tagName !== 'H2');
+                const enElements = Array.from(enDiv.children).filter(el => el.tagName !== 'H2');
                 
-                // Use the visible language's elements for height calculation
-                const visibleElements = currentLang === 'sv' ? svElements : enElements;
+                if (svElements.length <= 1) return;
                 
-                if (visibleElements.length <= 1) return;
-                
-                // Find split point based on cumulative height using VISIBLE elements
+                // Find split point based on cumulative height
                 let currentHeight = 0;
                 let splitIndex = -1;
                 
-                // Include H2 and continuation label height in initial calculation
-                const visibleH2 = visibleDiv.querySelector('h2');
-                const contLabel = visibleDiv.querySelector('.continuation-label');
-                if (visibleH2) currentHeight = visibleH2.offsetHeight + 40;
-                if (contLabel) currentHeight += contLabel.offsetHeight + 20;
+                // Include H2 height in initial calculation
+                const svH2 = svDiv.querySelector('h2');
+                if (svH2) currentHeight = svH2.offsetHeight + 40;
                 
-                for (let i = 0; i < visibleElements.length; i++) {
-                    const el = visibleElements[i];
+                for (let i = 0; i < svElements.length; i++) {
+                    const el = svElements[i];
                     const style = window.getComputedStyle(el);
                     const marginTop = parseInt(style.marginTop) || 0;
                     const marginBottom = parseInt(style.marginBottom) || 0;
@@ -1401,6 +1372,7 @@ git worktree add ../wt-obs  chore/observability
                 // Create continuation slide
                 const continuationSlide = document.createElement('section');
                 continuationSlide.className = 'presentation-slide continuation-slide';
+                continuationSlide.setAttribute('data-original-slide', originalIndex.toString());
                 
                 const continuationContent = document.createElement('div');
                 continuationContent.className = 'presentation-slide-content';
@@ -1440,19 +1412,24 @@ git worktree add ../wt-obs  chore/observability
                 
                 // Insert continuation slide after original
                 slide.insertAdjacentElement('afterend', continuationSlide);
-                didSplit = true;
+                continuationSlides.push(continuationSlide);
             });
             
-            // Update numbering and recursively check if new slides also need splitting
-            if (didSplit) {
-                updateSlideNumbering();
-                splitInProgress = false;
-                // Check again in case continuation slides are still too long
-                requestAnimationFrame(() => {
-                    setTimeout(splitOverflowingSlides, 50);
+            // If we created continuation slides, update numbering
+            if (continuationSlides.length > 0) {
+                const allSlidesNow = document.querySelectorAll('.presentation-slide');
+                const totalSlides = allSlidesNow.length;
+                
+                allSlidesNow.forEach((slide, index) => {
+                    slide.setAttribute('data-slide-number', `${index + 1} / ${totalSlides}`);
                 });
+                
+                slidesSplit = true;
+                
+                // Recursively check if continuation slides also need splitting
+                setTimeout(splitOverflowingSlides, 50);
             } else {
-                splitInProgress = false;
+                slidesSplit = true;
             }
         }
         
@@ -1460,7 +1437,7 @@ git worktree add ../wt-obs  chore/observability
         const originalSetPresentationMode = setPresentationMode;
         setPresentationMode = function(enabled) {
             originalSetPresentationMode(enabled);
-            if (enabled) {
+            if (enabled && !slidesSplit) {
                 // Delay to allow rendering
                 requestAnimationFrame(() => {
                     setTimeout(splitOverflowingSlides, 50);

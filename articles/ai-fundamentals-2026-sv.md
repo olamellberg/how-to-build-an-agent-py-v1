@@ -1,13 +1,33 @@
 # AI Fundamentals 2026
-**Version 1.1** | 2026-01-29
+**Version 1.2** | 2026-02-06
 ### En praktisk grundkurs i generativ AI för systemutvecklare
 
-<div class="article-audio" aria-label="Ljudspelare">
-    <p class="article-audio-label">Lyssna</p>
-    <audio controls preload="metadata">
-        <source src="audio/Bygg_robusta_system_runt_AI-motorn.m4a" type="audio/mp4">
-        <p>Din webbläsare stödjer inte HTML5-ljud.</p>
-    </audio>
+<div class="notebook-lm-hub">
+    <a href="https://notebooklm.google.com/notebook/3444229b-66ab-4c76-b612-e3dd933b8214" target="_blank" rel="noopener" class="notebook-lm-link">
+        <div class="notebook-lm-icon">🎧</div>
+        <div class="notebook-lm-content">
+            <div class="notebook-lm-title">
+                NotebookLM Study Hub
+                <span class="notebook-lm-badge">Extern</span>
+            </div>
+            <div class="notebook-lm-description">Fördjupa dig med AI-genererad podcast och interaktivt quiz</div>
+            <div class="notebook-lm-features">
+                <span class="notebook-lm-feature">
+                    <span class="notebook-lm-feature-icon">🎙️</span>
+                    Podcast
+                </span>
+                <span class="notebook-lm-feature">
+                    <span class="notebook-lm-feature-icon">📝</span>
+                    Quiz
+                </span>
+            </div>
+        </div>
+        <div class="notebook-lm-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+        </div>
+    </a>
 </div>
 
 ## 1) Hur du använder denna grund
@@ -30,8 +50,10 @@ När folk säger "vi ska bygga en AI-lösning" blandas ofta två saker ihop:
 ### 2.1 Modellen (motorn)
 En **modell** är en motor som tar input och ger output (oftast text, ibland även bilder/ljud). Den kan inte "se" din databas, ditt repo eller dina system om du inte kopplar in dem.
 
-Exempel på välkända modeller (jan 2026):
+Exempel på välkända modeller (feb 2026):
+- **OpenAI GPT-5.3 Codex** (sluten modell via API; senaste flaggskeppet för kodgenerering och agentiska uppgifter)
 - **OpenAI GPT-5.1** (sluten modell via API; fokus på kod och agentiska uppgifter)
+- **Anthropic Claude Opus 4.6** (sluten modell via API; senaste flaggskeppet för kod, agenter och utvidgat tänkande)
 - **Anthropic Claude Opus 4.5** (sluten modell via API; fokus på kod/agents/computer use)
 - **Google Gemini 3 Flash / Gemini 3 Pro** (slutna modeller; Flash för låg latens/effektivitet och agentiska flöden)
 - **Meta Llama 3 (öppna vikter)** (vikter på GitHub; körbar på egen infrastruktur)
@@ -77,7 +99,7 @@ Konsekvens:
 - Du kan inte alltid "klistra in allt".
 - Du behöver tekniker för att plocka rätt bitar (t.ex. RAG).
 
-*Relaterat exempel:* Claude Opus 4.5 lanserades med ett mycket stort kontextfönster (Anthropic nämner 200k tokens i dokumentationen för modellfamiljen).
+*Relaterat exempel:* Claude Opus 4.6 fortsätter trenden med mycket stora kontextfönster (Anthropic nämner 200k tokens i dokumentationen för modellfamiljen).
 
 > **Aha 2:** Att hantera kontext smart är en kärnkompetens i generativ AI.
 
@@ -93,7 +115,7 @@ Tumregel:
 - Text/kod → LLM  
 - Text + bilder/diagram/skärmdumpar → LMM
 
-*Exempel:* GPT-5.1 sägs stödja **text och bild som input** (typiskt LMM-beteende i praktiken även om folk ibland säger "LLM" slentrianmässigt).
+*Exempel:* GPT-5.3 Codex och GPT-5.1 stödjer **text och bild som input** (typiskt LMM-beteende i praktiken även om folk ibland säger "LLM" slentrianmässigt).
 *Exempel:* Gemini 3-serien positioneras som multimodal och agentfokuserad.
 
 ### 4.2 Inference och träning
@@ -120,7 +142,7 @@ En prompt är inte "en fråga", utan en **spec** för hur systemet ska bete sig.
 
 ### 5.2 Varför formatkrav är en superkraft
 När du kopplar modellen till system vill du ha "maskinläsbart och säkert" snarare än "fritt och snyggt".  
-Det gäller oavsett om du använder GPT-5.1, Claude Opus 4.5 eller en self-hostad Llama 3: *format + validering är skillnaden mellan demo och produktion.*
+Det gäller oavsett om du använder GPT-5.3 Codex, Claude Opus 4.6 eller en self-hostad Llama 3: *format + validering är skillnaden mellan demo och produktion.*
 
 ---
 
@@ -135,7 +157,7 @@ Tumregler:
 - Kod, JSON, exakta format → **lägre temperatur**
 - Brainstorming, textförslag → **högre temperatur**
 
-*Relaterat exempel:* GPT-5.1 beskrivs som en flaggskeppsmodell för **kod och agentiska uppgifter** — precis de scenarier där låg temperatur + strikta formatkrav ofta ger bäst resultat.
+*Relaterat exempel:* GPT-5.3 Codex beskrivs som en flaggskeppsmodell för **kodgenerering och agentiska uppgifter** — precis de scenarier där låg temperatur + strikta formatkrav ofta ger bäst resultat.
 
 > **Aha 3:** Många "AI-buggar" är egentligen konfigurations- och formatproblem.
 
@@ -159,7 +181,7 @@ Varför verktyg är viktiga:
 
 > **Aha 4:** I stabila system är modellen ofta "skrivaren" — verktyg är "sanningen".
 
-*Relaterat exempel:* GPT-5.1 beskrivs som stark för **agentiska uppgifter** (där verktyg är centrala), och Claude Opus 4.5 marknadsförs också som stark för "agents/computer use".
+*Relaterat exempel:* GPT-5.3 Codex beskrivs som stark för **agentiska uppgifter** (där verktyg är centrala), och Claude Opus 4.6 marknadsförs också som stark för "agents/utvidgat tänkande/computer use".
 
 ---
 
@@ -205,7 +227,7 @@ Agentloop:
 - mycket intern kunskap → **RAG** behövs oavsett
 
 ### 9.2 Öppna vikter vs slutna modeller
-- **Sluten modell**: du använder en provider via API (t.ex. GPT-5.1, Claude Opus 4.5, Gemini 3).
+- **Sluten modell**: du använder en provider via API (t.ex. GPT-5.3 Codex, Claude Opus 4.6, Gemini 3).
 - **Öppna vikter**: du kan köra vikterna själv (t.ex. Llama 3).
 
 En enkel beslutsignal:
@@ -287,7 +309,7 @@ Enkla tumregler:
 
 #### Mini-exempel (RAG)
 Fråga: "Hur rollbackar vi tjänst X?"  
-RAG hämtar 2 utdrag från runbook → modellen (t.ex. GPT-5.1 eller Claude Opus 4.5) svarar och listar:
+RAG hämtar 2 utdrag från runbook → modellen (t.ex. GPT-5.3 Codex eller Claude Opus 4.6) svarar och listar:
 - `sources: ["runbook/service-x#rollback", "runbook/service-x#common-issues"]`
 
 ### 11.2 Säkerhet: validering och instruktionskapning
@@ -323,7 +345,7 @@ Första sessionen bör alltid nämna:
 ### 11.3 Mäta: evals (tester för AI)
 
 #### Varför du måste mäta
-Små förändringar i prompt, chunking, modell eller inställningar kan ge stora beteendeskillnader — oavsett om du kör GPT-5.1, Claude Opus 4.5, Gemini 3 eller Llama 3.
+Små förändringar i prompt, chunking, modell eller inställningar kan ge stora beteendeskillnader — oavsett om du kör GPT-5.3 Codex, Claude Opus 4.6, Gemini 3 eller Llama 3.
 
 **Evals** är en återkommande testsvit, liknande en testsuite.
 
@@ -357,7 +379,7 @@ Mer konkret:
 6) Returnera + logga källor/tool calls
 7) Kör evals regelbundet
 
-*Relaterat exempel:* En typisk setup är att låta en stark modell (t.ex. GPT-5.1 eller Claude Opus 4.5) hantera sammanfattning/planering och låta verktyg leverera sanningen.
+*Relaterat exempel:* En typisk setup är att låta en stark modell (t.ex. GPT-5.3 Codex eller Claude Opus 4.6) hantera sammanfattning/planering och låta verktyg leverera sanningen.
 
 ---
 

@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VSCode + Codex Local — Hands-on guide för utvecklare | B3 Commit</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --turquoise: #0CCCCC;
+    --pink: #DF668A;
+    --beige: #F2F0EC;
+    --dark: #1A1A2E;
+    --separator: #E5E3DF;
+    --white: #FFFFFF;
+    --code-bg: #1E1E2E;
+    --code-text: #CDD6F4;
+    --warning-bg: #FFF3E0;
+    --warning-border: #F57C00;
+    --tip-bg: #F2F0EC;
+    --font: 'Work Sans', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font);
+    color: var(--dark);
+    background: var(--white);
+    line-height: 1.7;
+    font-size: 16.5px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Header line */
+  .header-line {
+    height: 5px;
+    background: var(--turquoise);
+  }
+
+  .container {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* Breadcrumbs */
+  .breadcrumbs {
+    padding: 18px 0 0;
+    font-size: 13px;
+    color: #888;
+    letter-spacing: 0.02em;
+  }
+  .breadcrumbs a {
+    color: var(--turquoise);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .breadcrumbs span { margin: 0 6px; color: #bbb; }
+
+  /* Hero */
+  .hero {
+    padding: 40px 0 36px;
+    border-bottom: 2px solid var(--separator);
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--turquoise);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+    padding: 5px 14px;
+    border-radius: 3px;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1.18;
+    color: var(--dark);
+    margin-bottom: 14px;
+    letter-spacing: -0.5px;
+  }
+  .hero .subtitle {
+    font-size: 18.5px;
+    color: #555;
+    font-weight: 400;
+    line-height: 1.55;
+    max-width: 680px;
+  }
+  .hero-meta {
+    margin-top: 20px;
+    font-size: 13.5px;
+    color: #999;
+  }
+  .hero-meta strong { color: #666; font-weight: 600; }
+
+  /* Section numbering */
+  .section {
+    padding: 48px 0 12px;
+  }
+  .section-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--turquoise);
+    color: var(--white);
+    font-size: 15px;
+    font-weight: 700;
+    margin-right: 12px;
+    flex-shrink: 0;
+  }
+  .section-number.pink {
+    background: var(--pink);
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .section h2 {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--dark);
+    line-height: 1.25;
+  }
+  .section-badge {
+    display: inline-block;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    padding: 4px 11px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .section-badge.turquoise {
+    background: var(--turquoise);
+    color: var(--white);
+  }
+  .section-badge.pink {
+    background: var(--pink);
+    color: var(--white);
+  }
+  .section-badge.dark {
+    background: var(--dark);
+    color: var(--white);
+  }
+
+  .section-intro {
+    font-size: 16.5px;
+    color: #444;
+    margin-bottom: 28px;
+    line-height: 1.7;
+  }
+
+  /* Cards */
+  .card {
+    background: var(--beige);
+    border-radius: 10px;
+    padding: 26px 28px;
+    margin-bottom: 20px;
+    border-left: 4px solid var(--turquoise);
+  }
+  .card.pink {
+    border-left-color: var(--pink);
+  }
+  .card h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 8px;
+  }
+  .card p, .card li {
+    font-size: 15.5px;
+    color: #444;
+    line-height: 1.65;
+  }
+  .card ul {
+    padding-left: 20px;
+    margin-top: 6px;
+  }
+  .card li { margin-bottom: 4px; }
+
+  /* Tip */
+  .tip {
+    background: var(--beige);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin: 24px 0;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .tip-icon { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+  .tip p {
+    font-size: 15px;
+    color: #444;
+    line-height: 1.6;
+  }
+  .tip strong { color: var(--dark); }
+
+  /* Warning */
+  .warning {
+    background: var(--warning-bg);
+    border-left: 4px solid var(--warning-border);
+    border-radius: 0 10px 10px 0;
+    padding: 20px 24px;
+    margin: 24px 0;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .warning-icon { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+  .warning p {
+    font-size: 15px;
+    color: #5D4037;
+    line-height: 1.6;
+  }
+  .warning strong { color: #3E2723; }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 14.5px;
+  }
+  thead th {
+    background: var(--turquoise);
+    color: var(--white);
+    text-align: left;
+    padding: 12px 16px;
+    font-weight: 600;
+    font-size: 13.5px;
+    letter-spacing: 0.3px;
+  }
+  thead th:first-child { border-radius: 8px 0 0 0; }
+  thead th:last-child { border-radius: 0 8px 0 0; }
+  tbody td {
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--separator);
+    color: #333;
+    vertical-align: top;
+  }
+  tbody tr:nth-child(even) { background: var(--beige); }
+  tbody tr:last-child td:first-child { border-radius: 0 0 0 8px; }
+  tbody tr:last-child td:last-child { border-radius: 0 0 8px 0; }
+
+  table.pink thead th {
+    background: var(--pink);
+  }
+
+  /* Code blocks */
+  .code-block {
+    background: var(--code-bg);
+    border-radius: 10px;
+    margin: 20px 0;
+    overflow: hidden;
+  }
+  .code-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 18px;
+    background: rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .code-lang {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--turquoise);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .code-file {
+    font-size: 12px;
+    color: #888;
+    font-style: italic;
+  }
+  pre {
+    padding: 18px 20px;
+    overflow-x: auto;
+    font-size: 13.8px;
+    line-height: 1.6;
+    color: var(--code-text);
+    font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  }
+  pre .comment { color: #6C7086; }
+  pre .keyword { color: #CBA6F7; }
+  pre .string { color: #A6E3A1; }
+  pre .flag { color: #F9E2AF; }
+  pre .cmd { color: #89B4FA; }
+  pre .punct { color: #9399B2; }
+
+  /* Inline code */
+  code {
+    background: #EDEBE7;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: 0.88em;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+    color: var(--dark);
+  }
+
+  /* Body text */
+  .body-text {
+    font-size: 16.5px;
+    color: #333;
+    line-height: 1.75;
+    margin-bottom: 20px;
+  }
+  .body-text strong { color: var(--dark); }
+
+  /* Separator */
+  .sep {
+    height: 1px;
+    background: var(--separator);
+    margin: 40px 0;
+  }
+
+  /* Ordered steps */
+  .step {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 22px;
+    align-items: flex-start;
+  }
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--turquoise);
+    color: var(--white);
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .step-content h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 4px;
+  }
+  .step-content p {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.6;
+  }
+
+  /* Footer */
+  .footer {
+    background: var(--dark);
+    color: #aaa;
+    padding: 40px 0;
+    margin-top: 60px;
+    font-size: 13.5px;
+    line-height: 1.6;
+  }
+  .footer strong { color: #ddd; }
+  .footer a { color: var(--turquoise); text-decoration: none; }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 27px; }
+    .section h2 { font-size: 21px; }
+    .card { padding: 20px; }
+    pre { font-size: 12.5px; padding: 14px 16px; }
+    table { font-size: 13px; }
+    thead th, tbody td { padding: 9px 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header-line"></div>
+
+<div class="container">
+  <div class="breadcrumbs">
+    <a href="#">B3 Commit</a> <span>›</span> <a href="#">Guider</a> <span>›</span> VSCode + Codex Local
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">Aktuellt · Februari 2026</div>
+    <h1>VSCode + Codex Local:<br>Från noll till agentisk utveckling</h1>
+    <p class="subtitle">
+      En komplett hands-on guide för fullstack-utvecklare som vill komma igång med OpenAI:s kodningsagent — direkt i editorn, med ChatGPT Business-licensen ni redan betalar för.
+    </p>
+    <div class="hero-meta">
+      Publicerad <strong>februari 2026</strong> · Verktyg: <strong>Codex IDE Extension + CLI</strong> · Senaste modell: <strong>GPT-5.3-Codex</strong>
+    </div>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">1</span>
+      <h2>Varför Codex Local, och varför nu?</h2>
+    </div>
+    <span class="section-badge turquoise">Kontext</span>
+
+    <p class="body-text">
+      Andrej Karpathy sammanfattade det nyligen: han gick från 80 % manuell kodning till 80 % agentkodning på bara några veckor. Det är inte längre en fråga om <em>huruvida</em> AI-agenter förändrar utvecklaryrket — utan om hur snabbt du anpassar dig.
+    </p>
+    <p class="body-text">
+      OpenAI:s <strong>Codex</strong> är deras svar på den agentiska utvecklingsvågen. Det är inte samma Codex som 2021 — det är en helt ombyggd kodningsagent som kan läsa, redigera och köra kod. Med <strong>Codex Local</strong> i VSCode-extensionen sker allt på din maskin, i ditt projekt, med din sandbox. Och det ingår redan i ChatGPT Business.
+    </p>
+
+    <div class="card">
+      <h3>Vad gör Codex Local unikt?</h3>
+      <ul>
+        <li><strong>Lokal exekvering</strong> — agenten kör kommandon i din terminal, inte i molnet</li>
+        <li><strong>Sandbox-isolering</strong> — filsystemskrivningar och nätverksåtkomst blockeras utanför workspace</li>
+        <li><strong>AGENTS.md</strong> — styrdokument som ger agenten projektspecifik kontext och regler</li>
+        <li><strong>Mid-turn steering</strong> — du kan omdirigera agenten medan den arbetar (nytt feb 2026)</li>
+        <li><strong>Skills-system</strong> — installerbara färdighetspaket som utökar agentens kapacitet</li>
+      </ul>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Egenskap</th>
+          <th>Codex Local (VSCode)</th>
+          <th>Codex Cloud</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Exekvering</td>
+          <td>Din maskin, din terminal</td>
+          <td>OpenAI:s sandbox-miljö</td>
+        </tr>
+        <tr>
+          <td>Filåtkomst</td>
+          <td>Ditt lokala filsystem</td>
+          <td>Klonat repo i molnet</td>
+        </tr>
+        <tr>
+          <td>Nätverksåtkomst</td>
+          <td>Blockerat i Agent mode</td>
+          <td>Konfigurerbart</td>
+        </tr>
+        <tr>
+          <td>Latens</td>
+          <td>Låg (lokal I/O)</td>
+          <td>Högre (nätverksbaserat)</td>
+        </tr>
+        <tr>
+          <td>Parallella tasks</td>
+          <td>En åt gången</td>
+          <td>Multipla parallella</td>
+        </tr>
+        <tr>
+          <td>Bäst för</td>
+          <td>Iterativ daglig utveckling</td>
+          <td>Större bakgrundsjobb</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- SECTION 2 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">2</span>
+      <h2>Installation &amp; setup</h2>
+    </div>
+    <span class="section-badge turquoise">Förberedelse</span>
+
+    <p class="body-text">
+      Codex IDE-extensionen finns tillgänglig för <strong>macOS</strong>, <strong>Linux</strong> och <strong>Windows</strong> (experimentellt, WSL rekommenderas). Den fungerar med VSCode, Cursor, Windsurf och andra VSCode-kompatibla editorer.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Plattform</th>
+          <th>Support</th>
+          <th>Kommentar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>macOS (Apple Silicon / Intel)</td>
+          <td>✅ Full</td>
+          <td>Även Codex Desktop-app tillgänglig</td>
+        </tr>
+        <tr>
+          <td>Linux (Ubuntu/Debian/Arch)</td>
+          <td>✅ Full</td>
+          <td>Landlock-sandbox, Bubblewrap experimentellt</td>
+        </tr>
+        <tr>
+          <td>Windows (nativt)</td>
+          <td>⚠️ Experimentellt</td>
+          <td>AppContainer-sandbox, begränsad filskydd</td>
+        </tr>
+        <tr>
+          <td>Windows + WSL2</td>
+          <td>✅ Rekommenderat</td>
+          <td>Bästa Windows-upplevelsen</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="body-text" style="font-weight:600; margin-bottom: 8px;">Steg-för-steg: VSCode-extensionen</p>
+
+    <div class="step">
+      <span class="step-num">1</span>
+      <div class="step-content">
+        <h4>Installera extensionen</h4>
+        <p>Öppna Extensions-panelen i VSCode (Ctrl+Shift+X), sök <strong>"Codex"</strong> och installera <em>Codex — OpenAI's coding agent</em> av OpenAI. Alternativt via Marketplace-länk eller kommandorad.</p>
+      </div>
+    </div>
+
+    <div class="code-block">
+      <div class="code-header">
+        <span class="code-lang">Bash</span>
+        <span class="code-file">Terminal</span>
+      </div>
+<pre><span class="comment"># Installera extensionen från kommandorad (valfritt)</span>
+<span class="cmd">code</span> --install-extension openai.chatgpt
+
+<span class="comment"># Starta om VSCode efteråt</span>
+<span class="cmd">code</span> <span class="flag">.</span></pre>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span>
+      <div class="step-content">
+        <h4>Logga in med ChatGPT-kontot</h4>
+        <p>Klicka på Codex-ikonen i sidofältet och välj <strong>"Sign in with ChatGPT"</strong>. Webbläsaren öppnas för OAuth. Er ChatGPT Business-admin kan styra åtkomst via RBAC.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span>
+      <div class="step-content">
+        <h4>Öppna ett projekt</h4>
+        <p>Codex kräver att du har en mapp öppen. Öppna ert repo med <code>File → Open Folder</code> eller <code>code ~/projects/mitt-projekt</code>.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">4</span>
+      <div class="step-content">
+        <h4>Verifiera att det fungerar</h4>
+        <p>Skriv ett enkelt meddelande i Codex-panelen, t.ex. <code>Beskriv projektstrukturen i denna mapp</code>. Agenten ska läsa filerna och svara.</p>
+      </div>
+    </div>
+
+    <div class="tip">
+      <span class="tip-icon">💡</span>
+      <p><strong>Windows-användare:</strong> Undvik att arbeta under <code>/mnt/c/</code> i WSL — flytta repot till <code>~/code/</code> för bättre I/O-prestanda. Installera Node via nvm i WSL-skalet: <code>nvm install 22</code>.</p>
+    </div>
+
+    <p class="body-text" style="font-weight:600; margin-top: 28px; margin-bottom: 8px;">Alternativ: Codex CLI (terminalbaserat)</p>
+
+    <p class="body-text">Om du föredrar terminalen, eller vill använda Codex i CI/CD-pipelines:</p>
+
+    <div class="code-block">
+      <div class="code-header">
+        <span class="code-lang">Bash</span>
+        <span class="code-file">Terminal — Installation</span>
+      </div>
+<pre><span class="comment"># Via npm (rekommenderat)</span>
+<span class="cmd">npm</span> install <span class="flag">-g</span> @openai/codex
+
+<span class="comment"># Via Homebrew (macOS)</span>
+<span class="cmd">brew</span> install openai-codex
+
+<span class="comment"># Logga in och starta</span>
+<span class="cmd">codex</span>
+<span class="comment"># Välj "Sign in with ChatGPT" vid prompten</span>
+
+<span class="comment"># Kontrollera status och kvarvarande limits</span>
+<span class="cmd">codex</span>
+<span class="comment"># I TUI:n: /status</span></pre>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- SECTION 3 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">3</span>
+      <h2>AGENTS.md — ge agenten projektkontext</h2>
+    </div>
+    <span class="section-badge turquoise">Konfiguration</span>
+
+    <p class="body-text">
+      <code>AGENTS.md</code> är Codex motsvarighet till Cursor's <code>.cursorrules</code> eller Claude Code's <code>CLAUDE.md</code>. Det är en markdown-fil som agenten läser innan den börjar arbeta. Här definierar du projektets normer, testkommandon och konventioner. Det är den enskilt viktigaste filen att skapa för att få kvalitativt output.
+    </p>
+
+    <div class="card">
+      <h3>Hur Codex upptäcker AGENTS.md</h3>
+      <p>Codex bygger en instrukteringskedja vid sessionsstart. Filerna läses i prioriteringsordning:</p>
+      <ul>
+        <li><strong>Globalt:</strong> <code>~/.codex/AGENTS.md</code> (eller <code>AGENTS.override.md</code>)</li>
+        <li><strong>Projektrot:</strong> <code>AGENTS.md</code> i Git-roten</li>
+        <li><strong>Per katalog:</strong> Nested <code>AGENTS.md</code> nedåt till aktuell arbetskatalog</li>
+      </ul>
+      <p style="margin-top:10px">Override-filer (<code>AGENTS.override.md</code>) vinner alltid över <code>AGENTS.md</code> i samma katalog.</p>
+    </div>
+
+    <div class="code-block">
+      <div class="code-header">
+        <span class="code-lang">Markdown</span>
+        <span class="code-file">AGENTS.md — Exempelfil för ett fullstack-projekt</span>
+      </div>
+<pre><span class="comment"># AGENTS.md</span>
+
+<span class="keyword">## Projektöversikt</span>
+Detta är en Next.js 15 fullstack-applikation med TypeScript,
+Prisma ORM och PostgreSQL. Frontend använder Tailwind CSS.
+
+<span class="keyword">## Arbetsregler</span>
+<span class="string">-</span> Kör alltid `pnpm lint` innan du presenterar ändringar.
+<span class="string">-</span> Kör `pnpm test` efter alla ändringar i src/lib/.
+<span class="string">-</span> Fråga innan du lägger till nya production dependencies.
+<span class="string">-</span> Skriv alla commit-meddelanden på engelska.
+<span class="string">-</span> Föredra server components framför client components.
+
+<span class="keyword">## Testning</span>
+<span class="string">-</span> Enhetstester: `pnpm test`
+<span class="string">-</span> E2E: `pnpm test:e2e` (kräver nätverksåtkomst)
+<span class="string">-</span> Typkontroll: `pnpm typecheck`
+
+<span class="keyword">## Kodstandard</span>
+<span class="string">-</span> Använd zod för alla API-valideringar.
+<span class="string">-</span> Error handling med custom AppError-klass i src/lib/errors.ts.
+<span class="string">-</span> Alla API-routes under src/app/api/ ska ha rate limiting.
+
+<span class="keyword">## Katalogstruktur</span>
+<span class="string">-</span> src/app/       → Next.js App Router pages
+<span class="string">-</span> src/lib/       → Shared utilities, DB-klient
+<span class="string">-</span> src/components/ → React-komponenter
+<span class="string">-</span> prisma/        → Schema och migrationer</pre>
+    </div>
+
+    <div class="tip">
+      <span class="tip-icon">💡</span>
+      <p><strong>Nested overrides:</strong> Lägger ni en <code>AGENTS.override.md</code> i t.ex. <code>services/payments/</code>, kan ni ge separata regler för känsliga moduler — utan att ändra projektrotens standarder.</p>
+    </div>
+
+    <p class="body-text" style="font-weight:600; margin-top: 12px;">Avancerat: config.toml</p>
+
+    <p class="body-text">
+      CLI:n och IDE-extensionen delar konfigurationsfilen <code>~/.codex/config.toml</code>. Här sätter ni default-modell, sandbox-policy, MCP-servrar med mera.
+    </p>
+
+    <div class="code-block">
+      <div class="code-header">
+        <span class="code-lang">TOML</span>
+        <span class="code-file">~/.codex/config.toml</span>
+      </div>
+<pre><span class="comment"># Standardmodell för alla sessioner</span>
+<span class="keyword">model</span> = <span class="string">"gpt-5.3-codex"</span>
+
+<span class="comment"># Godkännandepolicy</span>
+<span class="keyword">approval_policy</span> = <span class="string">"unless-allow-listed"</span>
+
+<span class="comment"># Sandbox-läge</span>
+<span class="keyword">sandbox_mode</span> = <span class="string">"workspace-write"</span>
+
+<span class="comment"># Fallback-filnamn (om projektet redan har annan namnkonvention)</span>
+<span class="keyword">project_doc_fallback_filenames</span> = [<span class="string">"TEAM_GUIDE.md"</span>, <span class="string">".agents.md"</span>]
+<span class="keyword">project_doc_max_bytes</span> = <span class="flag">65536</span>
+
+<span class="comment"># Feature flags</span>
+[<span class="keyword">features</span>]
+<span class="keyword">shell_snapshot</span> = <span class="flag">true</span></pre>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- SECTION 4 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">4</span>
+      <h2>Ett realistiskt arbetsflöde</h2>
+    </div>
+    <span class="section-badge turquoise">Styrkor &amp; Stolthet</span>
+
+    <p class="body-text">
+      Här går vi igenom ett komplett arbetsflöde: från att beskriva en feature, till att agenten implementerar och testar den. Scenariot: ni ska lägga till en ny API-endpoint för att hantera projektinbjudningar.
+    </p>
+
+    <div class="step">
+      <span class="step-num">1</span>
+      <div class="step-content">
+        <h4>Ge kontext med @-referenser</h4>
+        <p>Öppna relevanta filer och referera dem direkt i prompten. Codex förstår <code>@filnamn</code>-syntax.</p>
+      </div>
+    </div>
+
+    <div class="code-block">
+      <div class="code-header">
+        <span class="code-lang">Prompt</span>
+        <span class="code-file">Codex-chatten i VSCode</span>
+      </div>
+<pre>Skapa en ny API-route POST /api/projects/[id]/invite som:
+1. Validerar input med zod (email, role)
+2. Kontrollerar att användaren har admin-roll i projektet
+3. Skapar en invitation i databasen med 72h expiry
+4. Skickar ett mail via @src/lib/email.ts
+
+Följ samma mönster som @src/app/api/projects/[id]/members/route.ts
+Lägg till tester enligt @src/lib/__tests__/members.test.ts</pre>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span>
+      <div class="step-content">
+        <h4>Välj rätt mode</h4>
+        <p>Använd <strong>Agent mode</strong> (standard) för de flesta uppgifter. Codex läser filer, skapar kod och kör kommandon, men frågar innan den skriver utanför workspace eller gör nätverksanrop.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span>
+      <div class="step-content">
+        <h4>Steer medan agenten arbetar</h4>
+        <p>Tack vare <strong>mid-turn steering</strong> (nytt i feb 2026) kan du skicka meddelanden medan Codex arbetar. Tryck Enter för att styra direkt, eller Tab för att köa input.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">4</span>
+      <div class="step-content">
+        <h4>Granska, iterera, committa</h4>
+        <p>Codex visar en diff-preview av alla ändringar. Acceptera, be om justeringar, eller kör <code>/review</code> för att låta agenten granska sin egen kod. Skapa en Git-checkpoint innan och efter.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>De tre agentlägena</h3>
+      <table style="margin: 12px 0 0;">
+        <thead>
+          <tr>
+            <th>Läge</th>
+            <th>Filåtkomst</th>
+            <th>Kommandon</th>
+            <th>Godkännande</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Chat</strong></td>
+            <td>Inga</td>
+            <td>Inga</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Agent</strong></td>
+            <td>Läs + skriv i workspace</td>
+            <td>Ja, i workspace</td>
+            <td>Frågar vid nätverks-/extern åtkomst</td>
+          </tr>
+          <tr>
+            <td><strong>Agent (Full Access)</strong></td>
+            <td>Full</td>
+            <td>Full + nätverk</td>
+            <td>Inget — var försiktig</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="warning">
+      <span class="warning-icon">⚠️</span>
+      <p><strong>Skapa alltid en Git-checkpoint</strong> innan ni ger Codex en större uppgift. Agenten kan modifiera många filer — <code>git stash</code> eller en feature-branch ger er en enkel väg tillbaka.</p>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- SECTION 5 — PINK ACCENT (problem/utmaningar) -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number pink">5</span>
+      <h2>Vanliga problem och lösningar</h2>
+    </div>
+    <span class="section-badge pink">Utmaningar &amp; Lösningar</span>
+
+    <p class="body-text">
+      Agentisk utveckling är kraftfullt men inte friktionsfritt. Här är de vanligaste fallgroparna vi sett — och hur ni tar er förbi dem.
+    </p>
+
+    <table class="pink">
+      <thead>
+        <tr>
+          <th>Problem</th>
+          <th>Orsak</th>
+          <th>Lösning</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>AGENTS.md ignoreras</td>
+          <td>Filen är tom, eller Codex hittar inte Git-roten</td>
+          <td>Kör <code>codex status</code> för att verifiera workspace root. Kontrollera att filen har innehåll.</td>
+        </tr>
+        <tr>
+          <td>Windows: permission-errors</td>
+          <td>Sandbox kan inte skydda mappar med Everyone-write</td>
+          <td>Flytta repot till WSL: <code>~/code/repo</code>. Undvik <code>/mnt/c/</code>.</td>
+        </tr>
+        <tr>
+          <td>Agenten "spinner" utan resultat</td>
+          <td>Reasoning effort för hög + komplex prompt</td>
+          <td>Sänk reasoning effort till <strong>medium</strong>. Bryt ned uppgiften i mindre steg.</td>
+        </tr>
+        <tr>
+          <td>Rate limit nått</td>
+          <td>Komplexa sessioner förbrukar fler tokens</td>
+          <td>Byt till <strong>GPT-5.1-Codex-Mini</strong> för enklare tasks. Håll AGENTS.md koncis. Kolla <code>/status</code>.</td>
+        </tr>
+        <tr>
+          <td>Testerna passerar lokalt men inte i CI</td>
+          <td>Nätverksåtkomst blockerad i Agent mode</td>
+          <td>Tester med nätverksberoende kräver <strong>Agent (Full Access)</strong> eller markera dem som skip i AGENTS.md.</td>
+        </tr>
+        <tr>
+          <td>Fel modell i extensionen</td>
+          <td>Gammal version av extensionen</td>
+          <td>Uppdatera: Extension-panel → Codex → ⟳. Kontrollera model selector under chatten.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="card pink">
+      <h3>När Codex inte är rätt verktyg</h3>
+      <p>
+        Codex Local briljerar på kodgenerering, refaktorering, testskrivning och buggfixar. Däremot är det inte en ersättning för arkitekturbeslut, säkerhetsgranskningar eller förvaltning av affärskritiska system. Som en senior-ingenjör på LinkedIn uttryckte det: AI förändrar hur vi bygger system, men den upphäver inte behovet av förståelse, omdöme och ansvar.
+      </p>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- SECTION 6 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">6</span>
+      <h2>Avancerade funktioner &amp; ekosystem</h2>
+    </div>
+    <span class="section-badge turquoise">Nästa nivå</span>
+
+    <p class="body-text">
+      Codex är mer än en chatbot i editorn. Här är funktionerna som lyfter det från verktyg till arbetsflödesplattform.
+    </p>
+
+    <div class="card">
+      <h3>🧩 Skills — installerbara agentfärdigheter</h3>
+      <p>
+        Skills är mappar med en <code>SKILL.md</code> och stödfiler som utökar agentens kapacitet. Ni kan installera publika skills, skapa egna, eller dela dem i teamet. Skills aktiveras med <code>$skill-name</code> i prompten eller automatiskt baserat på uppgiften.
+      </p>
+      <ul>
+        <li><strong>Personliga:</strong> <code>~/.codex/skills/</code></li>
+        <li><strong>Projektgemensamma:</strong> <code>.codex/skills/</code> i repot</li>
+        <li><strong>Inbyggda:</strong> <code>$skill-creator</code>, <code>$skill-installer</code></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>☁️ Codex Cloud — delegera till bakgrunden</h3>
+      <p>
+        Direkt från IDE-extensionen kan ni skicka större uppgifter till Codex Cloud. Agenten jobbar i en sandboxad kopia av ert repo medan ni fortsätter med annat. Resultaten granskas som en diff och kan appliceras lokalt.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>🔗 MCP-servrar — integrera externa verktyg</h3>
+      <p>
+        Codex kan konsumera och agera som MCP-server (Model Context Protocol). Det innebär att ni kan koppla in databaser, API-dokumentation, Jira, Slack eller egna verktyg som kontextkällor.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>🤖 Automations — agenten jobbar utan prompt</h3>
+      <p>
+        Med Automations kan Codex triggas automatiskt av events — issue triage, CI/CD-status, pull request-reviews, alertövervakning. Tagga <code>@codex</code> i en GitHub PR-kommentar för att starta en code review.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Slash-kommandon i IDE:n</h3>
+      <table style="margin: 8px 0 0;">
+        <thead>
+          <tr>
+            <th>Kommando</th>
+            <th>Funktion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><code>/review</code></td><td>Agenten granskar sin egen eller vald kod</td></tr>
+          <tr><td><code>/plan</code></td><td>Skapar en plan innan implementering (accepterar bilder)</td></tr>
+          <tr><td><code>/status</code></td><td>Visar kvarvarande rate limits och sessioninfo</td></tr>
+          <tr><td><code>/model</code></td><td>Byt modell mitt i sessionen</td></tr>
+          <tr><td><code>/compact</code></td><td>Komprimera sessionshistoriken för att frigöra kontext</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- SECTION 7 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">7</span>
+      <h2>Priser &amp; rate limits</h2>
+    </div>
+    <span class="section-badge dark">Beslutsstöd</span>
+
+    <p class="body-text">
+      Codex ingår i alla betalda ChatGPT-planer. Det finns ingen separat Codex-prenumeration. Här är vad som är relevant för ett Business-team:
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Plan</th>
+          <th>Pris</th>
+          <th>Codex-meddelanden (5h)</th>
+          <th>Data/träning</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Plus</td>
+          <td>$20/mån</td>
+          <td>30–150 (varierar efter komplexitet)</td>
+          <td>Opt-out tillgänglig</td>
+        </tr>
+        <tr>
+          <td>Pro</td>
+          <td>$200/mån</td>
+          <td>300–1 500</td>
+          <td>Opt-out tillgänglig</td>
+        </tr>
+        <tr>
+          <td><strong>Business</strong></td>
+          <td>$25/anv./mån (årligt)</td>
+          <td>Flexibel, delad kreditpool</td>
+          <td><strong>Aldrig — data tränar ej modeller</strong></td>
+        </tr>
+        <tr>
+          <td>Enterprise</td>
+          <td>Anpassad</td>
+          <td>Flexibel, utökad</td>
+          <td>Aldrig + avancerade kontroller</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="tip">
+      <span class="tip-icon">💡</span>
+      <p><strong>Optimera era limits:</strong> Håll AGENTS.md koncis, minimera antalet MCP-servrar, var precis i prompter utan onödig kontext, och byt till GPT-5.1-Codex-Mini för enklare uppgifter.</p>
+    </div>
+
+    <div class="warning">
+      <span class="warning-icon">⚠️</span>
+      <p><strong>Business-planen</strong> garanterar att er data aldrig används för att träna OpenAI:s modeller. Det är den största skillnaden mot Plus/Pro — och anledningen till att den rekommenderas för företagskritisk utveckling.</p>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- SECTION 8 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">8</span>
+      <h2>Modeller — vad ni ska välja</h2>
+    </div>
+    <span class="section-badge turquoise">Aktuellt · Feb 2026</span>
+
+    <p class="body-text">
+      Modelllandskapet rör sig snabbt. I februari 2026 är <strong>GPT-5.3-Codex</strong> den senaste och mest kapabla agentmodellen. Här är en översikt av relevanta modeller:
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Modell</th>
+          <th>Styrka</th>
+          <th>Hastighet</th>
+          <th>Rekommendation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>GPT-5.3-Codex</strong></td>
+          <td>Starkast reasoning + kodning</td>
+          <td>25% snabbare än 5.2</td>
+          <td>Default för komplexa uppgifter</td>
+        </tr>
+        <tr>
+          <td>GPT-5.2-Codex</td>
+          <td>Utmärkt kodning, beprövad</td>
+          <td>Bra</td>
+          <td>Fallback vid API-key-flöden</td>
+        </tr>
+        <tr>
+          <td>GPT-5.1-Codex-Mini</td>
+          <td>Kostnadseffektiv</td>
+          <td>Snabb</td>
+          <td>Enkla tasks, sparar rate limits</td>
+        </tr>
+        <tr>
+          <td>GPT-5.2</td>
+          <td>Generalist</td>
+          <td>Bra</td>
+          <td>Bredare reasoning, inte kodspecifik</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="body-text">
+      Byt modell mitt i sessionen via model selector i IDE:n, eller med <code>/model</code>. Reasoning effort (low/medium/high) påverkar tokenförbrukning markant — börja på <strong>medium</strong> och höj bara vid behov.
+    </p>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- SECTION 9 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number pink">9</span>
+      <h2>Checklista: redo att köra</h2>
+    </div>
+    <span class="section-badge pink">Sammanfattning</span>
+
+    <div class="card pink">
+      <h3>Innan ni börjar</h3>
+      <ul>
+        <li>☐ ChatGPT Business-konto aktiverat med Codex-åtkomst (kolla RBAC)</li>
+        <li>☐ VSCode med Codex-extensionen installerad och inloggad</li>
+        <li>☐ <code>AGENTS.md</code> i projektets rot med testkommandon och kodstandard</li>
+        <li>☐ Git-branch eller stash före varje agentsession</li>
+        <li>☐ Reasoning effort satt till <strong>medium</strong> som default</li>
+        <li>☐ Modell: <strong>GPT-5.3-Codex</strong> (kontrollera att extensionen är uppdaterad)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Första veckans mål</h3>
+      <ul>
+        <li>☐ Dag 1–2: Kör genom setup-guiden ovan med ett verkligt projekt</li>
+        <li>☐ Dag 3: Skriv AGENTS.md med hjälp av Codex (<em>"Analysera detta repo och föreslå en AGENTS.md"</em>)</li>
+        <li>☐ Dag 4–5: Implementera en mindre feature end-to-end med Agent mode</li>
+        <li>☐ Vecka 1: Testa Codex Cloud med en större refaktorering</li>
+      </ul>
+    </div>
+
+    <p class="body-text">
+      AI-skiftet pågår. Modellerna blir bättre var fjärde till åttonde vecka. Det enda sättet att hänga med är att börja använda verktygen på riktigt — inte läsa om dem. Öppna editorn, skapa en AGENTS.md, och ge agenten sitt första uppdrag. Ni har redan licensen.
+    </p>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <div class="container">
+    <strong>B3 Commit</strong> · Guide: VSCode + Codex Local · Februari 2026<br>
+    Senast uppdaterad med information från <a href="https://developers.openai.com/codex/changelog/" target="_blank">Codex Changelog</a> (feb 2026) och <a href="https://developers.openai.com/codex/ide/" target="_blank">Codex IDE Extension docs</a>.<br><br>
+    Prisuppgifter kan ändras. Kontrollera alltid <a href="https://developers.openai.com/codex/pricing/" target="_blank">developers.openai.com/codex/pricing</a> för aktuella villkor.<br>
+    Artikeln innehåller ingen sponsrad information. Alla rekommendationer baseras på oberoende utvärdering.
+  </div>
+</div>
+
+</body>
+</html>

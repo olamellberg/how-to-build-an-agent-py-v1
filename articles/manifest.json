@@ -79,6 +79,32 @@
       }
     },
     {
+      "slug": "vscode-codex-local-guide-b3",
+      "html": "vscode-codex-local-guide-b3.html",
+      "category": "101-guides",
+      "date": "2026-02",
+      "title": {
+        "sv": "VSCode + Codex Local: Från noll till agentisk utveckling",
+        "en": "VSCode + Codex Local: From Zero to Agentic Development"
+      },
+      "subtitle": {
+        "sv": "En komplett hands-on guide för fullstack-utvecklare",
+        "en": "A complete hands-on guide for full-stack developers"
+      },
+      "meta": {
+        "sv": "Codex Local",
+        "en": "Codex Local"
+      },
+      "sources": {
+        "sv": "articles/vscode-codex-local-guide-b3-sv.md",
+        "en": "articles/vscode-codex-local-guide-b3-en.md"
+      },
+      "description": {
+        "sv": "En komplett hands-on guide för utvecklare som vill komma igång med OpenAI:s kodningsagent i VSCode, med AGENTS.md, arbetsflöden och praktiska tips.",
+        "en": "A complete hands-on guide for developers getting started with OpenAI's coding agent in VSCode, including AGENTS.md, workflows, and practical tips."
+      }
+    },
+    {
       "slug": "claude-code-mastery",
       "html": "claude-code-mastery.html",
       "category": "workflows-playbooks",
